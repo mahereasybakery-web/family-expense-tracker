@@ -1472,8 +1472,10 @@
           <button class="btn-action-header" id="btnOpenMiniCalc" title="آلة حاسبة سريعة">
             <i class="fa-solid fa-calculator" style="color: #38bdf8;"></i>
           </button>
-          <button class="btn-action-header gold-trigger" id="btnOpenGold" title="بورصة الذهب والعملات (TradingView)">
-            <i class="fa-solid fa-coins"></i>
+          <!-- زر علوي للدخول على البورصة بجانب الآلة الحاسبة -->
+          <button class="btn-action-header gold-trigger header-gold-btn" id="btnOpenGold" title="بورصة الذهب والعملات المباشرة">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            <span class="gold-btn-label">البورصة</span>
           </button>
           <button class="btn-action-header" id="btnOpenSms" title="قارئ رسائل البنك">
             <i class="fa-solid fa-comment-sms"></i>
@@ -1585,24 +1587,7 @@
     <!-- جسم التطبيق القابل للتمرير -->
     <div class="app-scroll-body">
       
-      <!-- شريط TradingView المباشر للذهب والعملات -->
-      <div class="tv-market-banner" id="tvMarketBanner">
-        <div class="tv-banner-left">
-          <div class="tv-icon-circle">
-            <i class="fa-solid fa-arrow-trend-up"></i>
-          </div>
-          <div class="tv-rates-summary">
-            <div class="tv-title-line">
-              <i class="fa-solid fa-chart-line"></i>
-              <span>بورصة TradingView المباشرة</span>
-            </div>
-            <div class="tv-values-line" id="tvSummaryText">
-              دولار: 56.04 ج.م | ريال: 14.93 ج.م | ذهب 21: 6,375 ج.م
-            </div>
-          </div>
-        </div>
-        <i class="fa-solid fa-chevron-left" style="color: var(--gold);"></i>
-      </div>
+      
 
       <!-- قسم الشارتات التوضيحية والبيانية (قابل للإظهار والإخفاء) -->
       <div class="charts-visual-section" id="chartsVisualSection" style="display: none;">
@@ -1622,80 +1607,89 @@
       </div>
 
       <!-- حاوية Monefy الدائرية الأيقونية -->
+      <!-- بطاقة Monefy الدائرية المركزية للرصيد والفئات -->
       <div class="monefy-central-card">
         
-        <!-- تقسيم ذكي لإعادة استغلال المساحة: يمين الرصيد الحالي، يسار شارتات الأعمدة الأفقية -->
-        <div class="monefy-overview-split">
-          
-          <!-- جانب اليمين: الرصيد الحالي والعجلة والملخص -->
-          <div class="monefy-col-right">
-            <div class="wheel-container">
-              <canvas id="monefyChart" class="wheel-canvas"></canvas>
-              <div class="wheel-center-content">
-                <span class="wheel-caption" id="wheelCaption">الرصيد المتبقي</span>
-                <span class="wheel-amount" id="wheelAmount">0.00 ج.م</span>
-                <div class="wheel-equi-pills">
-                  <span class="equi-tag" id="tagSarEqui">~ 0.00 ر.س</span>
-                  <span class="equi-tag" id="tagUsdEqui">~ 0.00 $</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- بطاقات ملخص الدخل والمصروف -->
-            <div class="balance-cards-row">
-              <div class="summary-card inc" onclick="openTxModal('income')" style="cursor: pointer;" title="انقر لتسجيل دخل جديد">
-                <div class="summary-icon"><i class="fa-solid fa-circle-arrow-up"></i></div>
-                <div class="summary-info">
-                  <span class="summary-title">إجمالي الدخل</span>
-                  <span class="summary-num" id="totalIncomeTxt">+0.00 ج.م</span>
-                </div>
-              </div>
-              <div class="summary-card exp" onclick="openTxModal('expense')" style="cursor: pointer;" title="انقر لتسجيل مصروف جديد">
-                <div class="summary-icon"><i class="fa-solid fa-circle-arrow-down"></i></div>
-                <div class="summary-info">
-                  <span class="summary-title">إجمالي المصروفات</span>
-                  <span class="summary-num" id="totalExpenseTxt">-0.00 ج.م</span>
-                </div>
-              </div>
+        <!-- العجلة الدائرية (Monefy Wheel) -->
+        <div class="wheel-container">
+          <canvas id="monefyChart" class="wheel-canvas"></canvas>
+          <div class="wheel-center-content">
+            <span class="wheel-caption" id="wheelCaption">الرصيد المتبقي</span>
+            <span class="wheel-amount" id="wheelAmount">0.00 ج.م</span>
+            <div class="wheel-equi-pills">
+              <span class="equi-tag" id="tagSarEqui">~ 0.00 ر.س</span>
+              <span class="equi-tag" id="tagUsdEqui">~ 0.00 $</span>
             </div>
           </div>
+        </div>
 
-          <!-- جانب اليسار: شارتات أعمدة بالعرض للمصروفات والأفراد -->
-          <div class="monefy-col-left">
-            <!-- 1. شارت أعمدة بالعرض توضح أكبر بنود المصروفات مرتبة تنازلياً مع الرقم الإجمالي -->
-            <div class="ranking-panel top-cats-panel">
-              <div class="ranking-header">
-                <div class="ranking-title">
-                  <i class="fa-solid fa-chart-simple" style="color: #f43f5e;"></i>
-                  <span>أكبر بنود المصروفات</span>
-                </div>
-                <span class="ranking-total-badge" id="topCatsTotalBadge">-0.00 ج.م</span>
-              </div>
-              <div class="ranking-bars-list" id="topCatsBarsList">
-                <!-- يتم توليد الأعمدة الأفقية ديناميكياً -->
-              </div>
-            </div>
-
-            <!-- 2. تحته شارت صغير أعمدة بالعرض لإجمالي مصروف كل شخص مرتبة تنازلياً -->
-            <div class="ranking-panel members-panel">
-              <div class="ranking-header">
-                <div class="ranking-title">
-                  <i class="fa-solid fa-users-line" style="color: #38bdf8;"></i>
-                  <span>مصروف الأفراد</span>
-                </div>
-                <span class="ranking-total-badge blue" id="membersTotalBadge">5 أفراد</span>
-              </div>
-              <div class="ranking-bars-list" id="membersBarsList">
-                <!-- يتم توليد الأعمدة الأفقية ديناميكياً -->
-              </div>
+        <!-- بطاقات ملخص الدخل والمصروف -->
+        <div class="balance-cards-row">
+          <div class="summary-card inc" onclick="openTxModal('income')" style="cursor: pointer;" title="انقر لتسجيل دخل جديد">
+            <div class="summary-icon"><i class="fa-solid fa-circle-arrow-up"></i></div>
+            <div class="summary-info">
+              <span class="summary-title">إجمالي الدخل</span>
+              <span class="summary-num" id="totalIncomeTxt">+0.00 ج.م</span>
             </div>
           </div>
-
+          <div class="summary-card exp" onclick="openTxModal('expense')" style="cursor: pointer;" title="انقر لتسجيل مصروف جديد">
+            <div class="summary-icon"><i class="fa-solid fa-circle-arrow-down"></i></div>
+            <div class="summary-info">
+              <span class="summary-title">إجمالي المصروفات</span>
+              <span class="summary-num" id="totalExpenseTxt">-0.00 ج.م</span>
+            </div>
+          </div>
         </div>
 
         <!-- شبكة فئات Monefy السريعة -->
         <div class="categories-monefy-grid" id="catGrid">
           <!-- تتولد تلقائياً بالجافاسكريبت -->
+        </div>
+
+      </div>
+
+      <!-- ==============================================================
+           لوحة الشارتات المبسطة الذكية في الشاشة الرئيسية (إعادة بناء بالكامل)
+           ============================================================== -->
+      <div class="simplified-charts-card">
+        
+        <!-- رأس لوحة الشارتات والمؤشرات الحيوية -->
+        <div class="charts-card-header">
+          <div class="charts-card-title">
+            <i class="fa-solid fa-chart-pie" style="color: #38bdf8;"></i>
+            <span>لوحة التحليلات والشارتات السريعة</span>
+          </div>
+          <div class="financial-ratio-pill" id="financialRatioPill" title="نسبة المصروفات إلى إجمالي الدخل">
+            معدل الصرف: 0%
+          </div>
+        </div>
+
+        <!-- 1. شارت أعمدة بالعرض: أكبر بنود المصروفات مرتبة تنازلياً مع الرقم الإجمالي -->
+        <div class="chart-block">
+          <div class="chart-block-header">
+            <div class="chart-block-title">
+              <i class="fa-solid fa-fire" style="color: #f43f5e;"></i>
+              <span>أكبر بنود المصروفات (تنازلياً)</span>
+            </div>
+            <span class="chart-total-badge exp" id="topCatsTotalBadge">-0.00 ج.م</span>
+          </div>
+          <div class="chart-bars-list" id="topCatsBarsList">
+            <!-- يتم توليد أعمدة البنود ديناميكياً -->
+          </div>
+        </div>
+
+        <!-- 2. تحته شارت صغير أعمدة بالعرض: إجمالي مصروف كل شخص مرتبة تنازلياً -->
+        <div class="chart-block">
+          <div class="chart-block-header">
+            <div class="chart-block-title">
+              <i class="fa-solid fa-users" style="color: #38bdf8;"></i>
+              <span>إجمالي مصروف كل شخص (تنازلياً)</span>
+            </div>
+            <span class="chart-total-badge mem" id="membersTotalBadge">5 أفراد شاركوا</span>
+          </div>
+          <div class="chart-bars-list" id="membersBarsList">
+            <!-- يتم توليد أعمدة أفراد العائلة ديناميكياً -->
+          </div>
         </div>
 
       </div>
@@ -1708,6 +1702,9 @@
             <span id="historyHeaderTitle">سجل العمليات: ماهر</span>
           </div>
           <div class="export-btns-group">
+            <button class="btn-export-tool" onclick="resetToDemoData()" title="تحميل عمليات تجريبية لتوضيح أثر الشارتات" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> تجريبي
+            </button>
             <button class="btn-export-tool excel-btn" id="btnExportExcel" title="تصدير إكسيل محاسبي">
               <i class="fa-solid fa-file-excel"></i> إكسيل
             </button>
@@ -2255,8 +2252,7 @@
       { id: 'health', name: 'صحة وعلاج', icon: 'fa-kit-medical', color: '#f43f5e' },
       { id: 'clothes', name: 'ملابس وأحذية', icon: 'fa-shirt', color: '#ec4899' },
       { id: 'kids', name: 'ألعاب وأطفال', icon: 'fa-baby', color: '#06b6d4' },
-      { id: 'eating_out', name: 'مطاعم وكافيهات', icon: 'fa-utensils', color: '#f97316' },
-      { id: 'entertainment', name: 'ترفيه وفسح', icon: 'fa-gamepad', color: '#14b8a6' },
+            { id: 'entertainment', name: 'ترفيه وفسح', icon: 'fa-gamepad', color: '#14b8a6' },
       { id: 'gifts', name: 'هدايا ومجاملات', icon: 'fa-gift', color: '#a855f7' },
       { id: 'education', name: 'تعليم ودروس', icon: 'fa-graduation-cap', color: '#0284c7' },
       { id: 'others', name: 'مصاريف أخرى', icon: 'fa-ellipsis', color: '#64748b' },
@@ -2334,11 +2330,58 @@
         try { state.wallets = JSON.parse(storedWallets); } catch(e) {}
       }
 
+      
+    // ==============================================================
+    // بيانات وعمليات صرف ودخل تجريبية غنية لتوضيح أثر الشارتات بالكامل
+    // ==============================================================
+    const RICH_DEMO_TRANSACTIONS = [
+      // دخل وارد
+      { id: 'tx-inc-1', type: 'income', amount: 48000, label: 'راتب ماهر الشهري الأساسي', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-01' },
+      { id: 'tx-inc-2', type: 'income', amount: 12000, label: 'أرباح استثمار وتداول ذهب', category: 'invest', member: 'ماهر', walletId: 'wallet-default', date: '2026-10-05' },
+      { id: 'tx-inc-3', type: 'income', amount: 8000, label: 'قبض جمعية شهرية عائلية', category: 'other_inc', member: 'أية', walletId: 'wallet-cash', date: '2026-10-10' },
+      { id: 'tx-inc-4', type: 'income', amount: 4500, label: 'مكافأة تميز وإنتاجية', category: 'bonus', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-15' },
+
+      // مصروفات شاملة لكافة أفراد العائلة وبنود الصرف
+      { id: 'tx-exp-1', type: 'expense', amount: 7600, label: 'سوبرماركت ولحوم وخضار الشهر', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-10-03' },
+      { id: 'tx-exp-2', type: 'expense', amount: 5200, label: 'قسط مدرسة وكتب دراسية', category: 'education', member: 'محمد', walletId: 'wallet-bank', date: '2026-10-06' },
+      { id: 'tx-exp-3', type: 'expense', amount: 4300, label: 'كشف واستشارة وأدوية شهرية', category: 'health', member: 'الحاجة', walletId: 'wallet-cash', date: '2026-10-08' },
+      { id: 'tx-exp-4', type: 'expense', amount: 3800, label: 'صيانة دورية وتفويل بنزين السيارة', category: 'transport', member: 'ماهر', walletId: 'wallet-default', date: '2026-10-11' },
+      { id: 'tx-exp-5', type: 'expense', amount: 3400, label: 'ملابس وأحذية شتوية للأولاد', category: 'clothes', member: 'أية', walletId: 'wallet-default', date: '2026-10-14' },
+      { id: 'tx-exp-6', type: 'expense', amount: 2750, label: 'مصروف يومي ونثريات شخصية', category: 'daily', member: 'ماهر', walletId: 'wallet-cash', date: '2026-10-16' },
+      { id: 'tx-exp-7', type: 'expense', amount: 2400, label: 'فواتير كهرباء وغاز وإنترنت منزلي', category: 'bills', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-18' },
+      { id: 'tx-exp-8', type: 'expense', amount: 2100, label: 'مستلزمات نظافة وأجهزة للمنزل', category: 'house', member: 'أية', walletId: 'wallet-default', date: '2026-10-20' },
+      { id: 'tx-exp-9', type: 'expense', amount: 1800, label: 'ألعاب تعليمية وقصص لمريم', category: 'kids', member: 'مريم', walletId: 'wallet-default', date: '2026-10-22' },
+      { id: 'tx-exp-10', type: 'expense', amount: 1650, label: 'فسحة عائلية وترفيه نهاية الأسبوع', category: 'entertainment', member: 'مريم', walletId: 'wallet-cash', date: '2026-10-25' },
+      { id: 'tx-exp-11', type: 'expense', amount: 1250, label: 'هدايا ومجاملات للأقارب', category: 'gifts', member: 'الحاجة', walletId: 'wallet-cash', date: '2026-10-26' },
+      { id: 'tx-exp-12', type: 'expense', amount: 950, label: 'نثريات ومصاريف طارئة أخرى', category: 'others', member: 'محمد', walletId: 'wallet-default', date: '2026-10-27' },
+    ];
+
+    function resetToDemoData() {
+      state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
+      saveTx();
+      renderUI();
+      showToast('✨ تم تحميل وتفعيل البيانات التجريبية الشاملة بنجاح');
+    }
+
       // 3. تحميل الحركات
       const storedTx = localStorage.getItem('family_monefy_txs');
       if (storedTx) {
-        state.transactions = JSON.parse(storedTx);
+        try {
+          const parsed = JSON.parse(storedTx);
+          // إذا كانت الحركات القديمة 5 أو أقل، نقوم بترقيتها تلقائياً للبيانات التجريبية الغنية
+          if (!parsed || parsed.length <= 5) {
+            state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
+            saveTx();
+          } else {
+            state.transactions = parsed;
+          }
+        } catch(e) {
+          state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
+          saveTx();
+        }
       } else {
+        state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
+        saveTx();
         state.transactions = [
           { id: 'tx-1', type: 'income', amount: 35000, label: 'راتب ماهر الشهري', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-01' },
           { id: 'tx-2', type: 'expense', amount: 3200, label: 'سوبرماركت وطلبات البيت', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-10-05' },
@@ -2716,9 +2759,9 @@
           inc += amt;
         } else {
           exp += amt;
-        }
-        if (tx.type === 'expense' && catSums[tx.category] !== undefined) {
-          catSums[tx.category] += amt;
+          if (catSums[tx.category] !== undefined) {
+            catSums[tx.category] += amt;
+          }
         }
       });
 
@@ -2744,6 +2787,18 @@
       const totalExpEl = document.getElementById('totalExpenseTxt');
       if (totalExpEl) totalExpEl.textContent = '-' + exp.toLocaleString() + ' ج.م';
 
+      // مؤشر معدل الصرف من الدخل
+      const ratioEl = document.getElementById('financialRatioPill');
+      if (ratioEl) {
+        if (inc > 0) {
+          const ratioPct = Math.round((exp / inc) * 100);
+          ratioEl.textContent = `معدل الصرف: ${ratioPct}% من الدخل`;
+          ratioEl.style.color = ratioPct > 80 ? 'var(--expense)' : (ratioPct > 50 ? '#f59e0b' : '#10b981');
+        } else {
+          ratioEl.textContent = exp > 0 ? 'لا يوجد دخل مسجل' : 'معدل الصرف: 0%';
+        }
+      }
+
       // قيم أزرار التصنيفات في الشبكة
       EXPENSE_CATEGORIES.forEach(c => {
         const el = document.getElementById(`cat-sum-${c.id}`);
@@ -2751,7 +2806,7 @@
       });
 
       // ─────────────────────────────────────────────────────────────
-      // 1. شارت أعمدة بالعرض: أكبر بنود المصروفات مرتبة تنازلياً مع الرقم الإجمالي
+      // 1. شارت أعمدة بالعرض المعاد بناؤه: أكبر بنود المصروفات مرتبة تنازلياً
       // ─────────────────────────────────────────────────────────────
       const activeCatsRanking = EXPENSE_CATEGORIES
         .map(c => ({ ...c, sum: catSums[c.id] || 0 }))
@@ -2764,25 +2819,30 @@
       const topCatsContainer = document.getElementById('topCatsBarsList');
       if (topCatsContainer) {
         if (activeCatsRanking.length === 0) {
-          topCatsContainer.innerHTML = '<div class="ranking-empty-msg"><i class="fa-solid fa-receipt"></i> لا توجد مصاريف مسجلة حتى الآن</div>';
+          topCatsContainer.innerHTML = '<div style="text-align: center; padding: 14px; color: var(--text-muted); font-size: 0.72rem;"><i class="fa-solid fa-receipt"></i> لا توجد مصاريف مسجلة لهذه الفترة</div>';
         } else {
           const maxCat = activeCatsRanking[0].sum || 1;
-          topCatsContainer.innerHTML = activeCatsRanking.slice(0, 5).map(cat => {
-            const pct = exp > 0 ? Math.round((cat.sum / exp) * 100) : 0;
-            const barPct = Math.min(100, Math.round((cat.sum / maxCat) * 100));
+          topCatsContainer.innerHTML = activeCatsRanking.slice(0, 6).map((cat, idx) => {
+            const pct = exp > 0 ? ((cat.sum / exp) * 100).toFixed(1) : '0';
+            const barWidth = Math.min(100, Math.round((cat.sum / maxCat) * 100));
+            const rankClass = idx === 0 ? 'gold' : (idx === 1 ? 'silver' : (idx === 2 ? 'bronze' : ''));
             return `
-              <div class="h-bar-item" title="${cat.name}: ${cat.sum.toLocaleString()} ج.م (${pct}%)">
-                <div class="h-bar-meta">
-                  <span class="h-bar-label">
-                    <span class="h-bar-icon-box" style="background: ${cat.color};">
+              <div class="pro-bar-row" onclick="quickAddCategory('${cat.id}')" title="انقر لتسجيل مصروف في ${cat.name}">
+                <div class="pro-bar-meta">
+                  <div class="pro-bar-info">
+                    <span class="pro-rank-tag ${rankClass}">#${idx + 1}</span>
+                    <span class="pro-icon-box" style="background: ${cat.color};">
                       <i class="fa-solid ${cat.icon}"></i>
                     </span>
                     <span>${cat.name}</span>
-                  </span>
-                  <span class="h-bar-val">-${cat.sum.toLocaleString()} ج.م <span class="h-bar-pct">(${pct}%)</span></span>
+                  </div>
+                  <div class="pro-bar-vals">
+                    <span class="pro-amount-num">-${cat.sum.toLocaleString()} ج.م</span>
+                    <span class="pro-pct-tag">${pct}%</span>
+                  </div>
                 </div>
-                <div class="h-bar-track">
-                  <div class="h-bar-fill" style="width: ${barPct}%; background: ${cat.color};"></div>
+                <div class="pro-track-bg">
+                  <div class="pro-fill-bar" style="width: ${barWidth}%; background: linear-gradient(90deg, ${cat.color}, #f43f5e);"></div>
                 </div>
               </div>
             `;
@@ -2791,10 +2851,10 @@
       }
 
       // ─────────────────────────────────────────────────────────────
-      // 2. شارت صغير أعمدة بالعرض: إجمالي مصروف كل شخص مرتبة تنازلياً
+      // 2. شارت أعمدة بالعرض المعاد بناؤه: إجمالي مصروف كل شخص مرتبة تنازلياً
       // ─────────────────────────────────────────────────────────────
       const memberSums = {};
-      const actualMembers = ['ماهر', 'أية', 'محمد', 'مريم', 'الحاجة'];
+      const actualMembers = ['أية', 'ماهر', 'محمد', 'الحاجة', 'مريم'];
       actualMembers.forEach(m => memberSums[m] = 0);
       filtered.filter(tx => tx.type === 'expense').forEach(tx => {
         if (memberSums[tx.member] !== undefined) {
@@ -2804,41 +2864,52 @@
 
       const memberRanking = actualMembers.map(name => {
         const emojiMap = { 'ماهر': '👨', 'أية': '👩', 'محمد': '👦', 'مريم': '👧', 'الحاجة': '👵' };
-        const colorMap = { 'ماهر': '#0284c7', 'أية': '#db2777', 'محمد': '#0891b2', 'مريم': '#c026d3', 'الحاجة': '#d97706' };
+        const colorGradients = {
+          'أية': 'linear-gradient(90deg, #db2777, #f43f5e)',
+          'ماهر': 'linear-gradient(90deg, #0284c7, #38bdf8)',
+          'محمد': 'linear-gradient(90deg, #0891b2, #06b6d4)',
+          'الحاجة': 'linear-gradient(90deg, #d97706, #f59e0b)',
+          'مريم': 'linear-gradient(90deg, #c026d3, #e879f9)'
+        };
         return {
           name,
           sum: memberSums[name],
           emoji: emojiMap[name] || '👤',
-          color: colorMap[name] || '#38bdf8'
+          gradient: colorGradients[name] || 'linear-gradient(90deg, #0284c7, #38bdf8)'
         };
       }).sort((a, b) => b.sum - a.sum);
 
       const membersBadge = document.getElementById('membersTotalBadge');
       const activeMembersCount = memberRanking.filter(m => m.sum > 0).length;
-      if (membersBadge) membersBadge.textContent = `${activeMembersCount} أفراد شاركوا`;
+      if (membersBadge) membersBadge.textContent = `${activeMembersCount} أفراد شاركوا بالصرف`;
 
       const membersContainer = document.getElementById('membersBarsList');
       if (membersContainer) {
         if (exp === 0) {
-          membersContainer.innerHTML = '<div class="ranking-empty-msg"><i class="fa-solid fa-users"></i> لا توجد مصاريف للأفراد حتى الآن</div>';
+          membersContainer.innerHTML = '<div style="text-align: center; padding: 14px; color: var(--text-muted); font-size: 0.72rem;"><i class="fa-solid fa-users"></i> لا توجد مصاريف للأفراد حتى الآن</div>';
         } else {
           const maxMem = memberRanking[0].sum || 1;
-          membersContainer.innerHTML = memberRanking.map(m => {
-            const pct = exp > 0 ? Math.round((m.sum / exp) * 100) : 0;
-            const barPct = maxMem > 0 ? Math.min(100, Math.round((m.sum / maxMem) * 100)) : 0;
+          membersContainer.innerHTML = memberRanking.map((m, idx) => {
+            const pct = exp > 0 ? ((m.sum / exp) * 100).toFixed(1) : '0';
+            const barWidth = maxMem > 0 ? Math.min(100, Math.round((m.sum / maxMem) * 100)) : 0;
+            const rankClass = idx === 0 ? 'gold' : (idx === 1 ? 'silver' : (idx === 2 ? 'bronze' : ''));
             return `
-              <div class="h-bar-item" title="${m.name}: ${m.sum.toLocaleString()} ج.م (${pct}%)">
-                <div class="h-bar-meta">
-                  <span class="h-bar-label">
-                    <span style="font-size: 0.82rem;">${m.emoji}</span>
-                    <span>${m.name}</span>
-                  </span>
-                  <span class="h-bar-val" style="color: ${m.sum > 0 ? 'var(--expense)' : 'var(--text-muted)'};">
-                    ${m.sum > 0 ? '-' + m.sum.toLocaleString() + ' ج.م' : '0 ج.م'} <span class="h-bar-pct">(${pct}%)</span>
-                  </span>
+              <div class="pro-bar-row" onclick="selectMember('${m.name}')" title="انقر لعرض مصاريف ${m.name} فقط">
+                <div class="pro-bar-meta">
+                  <div class="pro-bar-info">
+                    <span class="pro-rank-tag ${rankClass}">#${idx + 1}</span>
+                    <span style="font-size: 0.95rem;">${m.emoji}</span>
+                    <span style="font-weight: 800;">${m.name}</span>
+                  </div>
+                  <div class="pro-bar-vals">
+                    <span class="pro-amount-num" style="color: ${m.sum > 0 ? 'var(--expense)' : 'var(--text-muted)'};">
+                      ${m.sum > 0 ? '-' + m.sum.toLocaleString() + ' ج.م' : '0 ج.م'}
+                    </span>
+                    <span class="pro-pct-tag">${pct}%</span>
+                  </div>
                 </div>
-                <div class="h-bar-track">
-                  <div class="h-bar-fill" style="width: ${barPct}%; background: ${m.color};"></div>
+                <div class="pro-track-bg">
+                  <div class="pro-fill-bar" style="width: ${barWidth}%; background: ${m.gradient};"></div>
                 </div>
               </div>
             `;
@@ -2847,7 +2918,6 @@
       }
 
       // شارت Monefy الدائري
-      
       const activeCats = EXPENSE_CATEGORIES.filter(c => catSums[c.id] > 0);
       if (activeCats.length === 0) {
         donutChartInstance.data.labels = ['لا توجد مصاريف'];
