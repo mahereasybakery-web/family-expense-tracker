@@ -1468,7 +1468,7 @@
           </div>
           <h1 class="brand-title">
             مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon"></i> أية
-            <span style="font-size: 0.62rem; background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 1px 6px; border-radius: 6px; font-weight: 800; vertical-align: middle; margin-right: 4px;">v2.5</span>
+            <span style="font-size: 0.62rem; background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 1px 6px; border-radius: 6px; font-weight: 800; vertical-align: middle; margin-right: 4px;">v2.5.7</span>
           </h1>
         </div>
         <div class="header-actions">
@@ -1616,16 +1616,24 @@
       <!-- بطاقة Monefy الدائرية المركزية للرصيد والفئات -->
       <div class="monefy-central-card">
         
-        <!-- العجلة الدائرية (Monefy Wheel) -->
-        <div class="wheel-container">
-          <canvas id="monefyChart" class="wheel-canvas"></canvas>
-          <div class="wheel-center-content">
-            <span class="wheel-caption" id="wheelCaption">الرصيد المتبقي</span>
-            <span class="wheel-amount" id="wheelAmount">0.00 ج.م</span>
-            <div class="wheel-equi-pills">
-              <span class="equi-tag" id="tagSarEqui">~ 0.00 ر.س</span>
-              <span class="equi-tag" id="tagUsdEqui">~ 0.00 $</span>
+        <!-- حاوية العجلة ومفتاح البنود والألوان والقيم بجانبها مباشرة -->
+        <div class="wheel-showcase-wrap">
+          <!-- العجلة الدائرية (Monefy Wheel) -->
+          <div class="wheel-container">
+            <canvas id="monefyChart" class="wheel-canvas"></canvas>
+            <div class="wheel-center-content">
+              <span class="wheel-caption" id="wheelCaption">الرصيد المتبقي</span>
+              <span class="wheel-amount" id="wheelAmount">0.00 ج.م</span>
+              <div class="wheel-equi-pills">
+                <span class="equi-tag" id="tagSarEqui">~ 0.00 ر.س</span>
+                <span class="equi-tag" id="tagUsdEqui">~ 0.00 $</span>
+              </div>
             </div>
+          </div>
+
+          <!-- قائمة توضيح بنود وألوان وقيم العجلة بجانبها -->
+          <div class="wheel-legend-side" id="wheelLegendSide">
+            <!-- تتولد ديناميكياً لتوضيح بند وقيمة ونسبة كل لون (الأزرق، الأحمر، البمبى، الأخضر...) -->
           </div>
         </div>
 
@@ -2370,7 +2378,7 @@
     }
 
       // 3. إدارة إصدار التطبيق وتحميل الحركات الغنية
-      const APP_VERSION = '2.5.5';
+      const APP_VERSION = '2.5.7';
       const storedVer = localStorage.getItem('family_monefy_version');
       
       // إذا كان الإصدار جديداً، نقوم تلقائياً بترحيل وتحميل البيانات التجريبية الغنية لتظهر الشارتات فوراً
@@ -2490,43 +2498,46 @@
       // زر تبديل عرض الشارتات التوضيحية
       document.getElementById('btnToggleAnalytics').addEventListener('click', toggleAnalyticsView);
 
-      // ربط القائمة الجانبية (TradingView)
-      document.getElementById('btnOpenGold').addEventListener('click', openGoldDrawer);
-      document.getElementById('tvMarketBanner').addEventListener('click', openGoldDrawer);
-      document.getElementById('btnCloseDrawer').addEventListener('click', closeGoldDrawer);
-      document.getElementById('goldDrawerBackdrop').addEventListener('click', closeGoldDrawer);
-      document.getElementById('btnRefreshTv').addEventListener('click', fetchTradingViewRates);
+            // دالة مساعدة لربط الأحداث بأمان تام وتجنب أي توقف غير مقصود
+      function safeEvent(id, ev, fn) {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener(ev, fn);
+      }
+
+      // ربط الدخول على البورصة (TradingView)
+      safeEvent('btnOpenGold', 'click', openGoldDrawer);
+      safeEvent('btnCloseDrawer', 'click', closeGoldDrawer);
+      safeEvent('goldDrawerBackdrop', 'click', closeGoldDrawer);
+      safeEvent('btnRefreshTv', 'click', fetchTradingViewRates);
 
       // حاسبة الذهب
-      document.getElementById('calcQty').addEventListener('input', updateCalcDisplay);
-      document.getElementById('calcAsset').addEventListener('change', updateCalcDisplay);
-      document.getElementById('btnImportCalc').addEventListener('click', applyCalcToExpense);
+      safeEvent('calcQty', 'input', updateCalcDisplay);
+      safeEvent('calcAsset', 'change', updateCalcDisplay);
+      safeEvent('btnImportCalc', 'click', applyCalcToExpense);
 
-      // النوافذ الأخرى
-      document.getElementById('btnOpenSms').addEventListener('click', () => openModal('smsModal'));
-      document.getElementById('btnOpenPerm').addEventListener('click', () => openModal('permModal'));
-      document.getElementById('btnOpenAuth').addEventListener('click', () => openModal('authModal'));
-      document.getElementById('btnOpenMiniCalc').addEventListener('click', toggleMiniCalc);
-      document.getElementById('floatingCalcTrigger').addEventListener('click', toggleMiniCalc);
-      document.getElementById('btnCloseMiniCalc').addEventListener('click', toggleMiniCalc);
+      // النوافذ المساعدة
+      safeEvent('btnOpenSms', 'click', () => openModal('smsModal'));
+      safeEvent('btnOpenPerm', 'click', () => openModal('permModal'));
+      safeEvent('btnOpenAuth', 'click', () => openModal('authModal'));
+      safeEvent('btnOpenMiniCalc', 'click', toggleMiniCalc);
+      safeEvent('floatingCalcTrigger', 'click', toggleMiniCalc);
+      safeEvent('btnCloseMiniCalc', 'click', toggleMiniCalc);
 
       // التصدير والعملة
-      document.getElementById('btnExportExcel').addEventListener('click', exportExcel);
-      document.getElementById('btnExportPdf').addEventListener('click', () => window.print());
-      document.getElementById('btnToggleCurrency').addEventListener('click', toggleCurrency);
+      safeEvent('btnExportExcel', 'click', exportExcel);
+      safeEvent('btnExportPdf', 'click', () => window.print());
+      safeEvent('btnToggleCurrency', 'click', toggleCurrency);
 
-      // تاريخ اليوم الافتراضي
-      document.getElementById('inpTxDate').value = new Date().toISOString().split('T')[0];
+      const dateInp = document.getElementById('inpTxDate');
+      if (dateInp) dateInp.value = new Date().toISOString().split('T')[0];
 
-      // إطلاق الواجهة
-      initTheme();
-      initDonutChart();
-      initAnalyticsChart();
-      updateUserAndDefaultDisplay();
-      renderUI();
-
-      // سحب أسعار TradingView لحظياً
-      fetchTradingViewRates();
+      // إطلاق الواجهة بأمان كامل ومحمي ضد أي توقف
+      try { initTheme(); } catch(e) { console.error('Theme init error:', e); }
+      try { initDonutChart(); } catch(e) { console.error('Donut init error:', e); }
+      try { initAnalyticsChart(); } catch(e) { console.error('Analytics init error:', e); }
+      try { updateUserAndDefaultDisplay(); } catch(e) { console.error('User display error:', e); }
+      try { renderUI(); } catch(e) { console.error('Render UI error:', e); }
+      try { fetchTradingViewRates(); } catch(e) { console.error('TradingView error:', e); }
     }
 
     // ==========================================
@@ -2937,6 +2948,37 @@
       }
       donutChartInstance.update();
 
+      // تحديث قائمة بنود وألوان وقيم العجلة بجانبها مباشرة
+      const wheelLegendEl = document.getElementById('wheelLegendSide');
+      if (wheelLegendEl) {
+        if (activeCats.length === 0) {
+          wheelLegendEl.innerHTML = `
+            <div style="text-align: center; padding: 12px; color: var(--text-muted); font-size: 0.7rem;">
+              <i class="fa-solid fa-circle-info" style="margin-bottom: 4px; display: block; opacity: 0.5;"></i>
+              لا توجد مصاريف مسجلة
+            </div>
+          `;
+        } else {
+          wheelLegendEl.innerHTML = activeCats.map(c => {
+            const sum = catSums[c.id] || 0;
+            const pct = exp > 0 ? ((sum / exp) * 100).toFixed(1) : '0';
+            const formattedAmt = formatMoney(sum);
+            return `
+              <div class="wheel-slice-chip" onclick="quickAddCategory('${c.id}')" title="انقر لتسجيل مصروف في ${c.name}">
+                <div class="slice-chip-meta">
+                  <span class="slice-color-indicator" style="background: ${c.color}; box-shadow: 0 0 8px ${c.color}90;"></span>
+                  <span>${c.name}</span>
+                </div>
+                <div class="slice-chip-val-box">
+                  <span class="slice-chip-amount">-${formattedAmt}</span>
+                  <span class="slice-chip-pct">${pct}%</span>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
       // تمييز الأفاتار
       document.querySelectorAll('.avatar-card').forEach(card => {
         const m = card.getAttribute('data-member');
@@ -3193,14 +3235,25 @@
     // 7. ربط بورصة TradingView وسحب الأسعار
     // ==========================================
     function openGoldDrawer() {
-      document.getElementById('goldDrawerBackdrop').classList.add('open');
-      document.getElementById('goldDrawerPanel').classList.add('open');
+      const backdrop = document.getElementById('goldDrawerBackdrop');
+      const panel = document.getElementById('goldDrawerPanel');
+      if (backdrop) backdrop.classList.add('open');
+      if (panel) panel.classList.add('open');
+      pushModalState('goldDrawer');
       updateCalcDisplay();
     }
 
-    function closeGoldDrawer() {
-      document.getElementById('goldDrawerBackdrop').classList.remove('open');
-      document.getElementById('goldDrawerPanel').classList.remove('open');
+    function closeGoldDrawer(fromPopState = false) {
+      const backdrop = document.getElementById('goldDrawerBackdrop');
+      const panel = document.getElementById('goldDrawerPanel');
+      if (backdrop) backdrop.classList.remove('open');
+      if (panel) panel.classList.remove('open');
+      popModalState('goldDrawer');
+      if (!fromPopState) {
+        if (window.history.state && window.history.state.modalId === 'goldDrawer') {
+          window.history.back();
+        }
+      }
     }
 
     async function fetchTradingViewRates() {
@@ -3262,22 +3315,25 @@
         state.rates.USD = 1 / usd;
         state.rates.SAR = 1 / sar;
 
-        document.getElementById('tvGold21Val').textContent = Math.round(g21).toLocaleString() + ' ج.م';
-        document.getElementById('tvGold21Chg').textContent = (goldChg >= 0 ? '+' : '') + goldChg.toFixed(2) + '%';
-        document.getElementById('tvGold24Val').textContent = Math.round(g24).toLocaleString() + ' ج.م';
-        document.getElementById('tvGold24Chg').textContent = (goldChg >= 0 ? '+' : '') + goldChg.toFixed(2) + '%';
-        document.getElementById('tvGoldPoundVal').textContent = Math.round(gPound).toLocaleString() + ' ج.م';
-        document.getElementById('tvGoldOunceVal').textContent = '$' + goldOunce.toFixed(2);
+        const setElText = (id, val) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = val;
+        };
 
-        document.getElementById('tvUsdVal').textContent = usd.toFixed(2) + ' ج.م';
-        document.getElementById('tvUsdChg').textContent = (usdChg >= 0 ? '+' : '') + usdChg.toFixed(2) + '%';
-        document.getElementById('tvSarVal').textContent = sar.toFixed(2) + ' ج.م';
-        document.getElementById('tvSarChg').textContent = (sarChg >= 0 ? '+' : '') + sarChg.toFixed(2) + '%';
+        setElText('tvGold21Val', Math.round(g21).toLocaleString() + ' ج.م');
+        setElText('tvGold21Chg', (goldChg >= 0 ? '+' : '') + goldChg.toFixed(2) + '%');
+        setElText('tvGold24Val', Math.round(g24).toLocaleString() + ' ج.م');
+        setElText('tvGold24Chg', (goldChg >= 0 ? '+' : '') + goldChg.toFixed(2) + '%');
+        setElText('tvGoldPoundVal', Math.round(gPound).toLocaleString() + ' ج.م');
+        setElText('tvGoldOunceVal', '$' + goldOunce.toFixed(2));
 
-        document.getElementById('tvSummaryText').textContent = 
-          `دولار: ${usd.toFixed(2)} ج.م | ريال: ${sar.toFixed(2)} ج.م | ذهب 21: ${Math.round(g21).toLocaleString()} ج.م`;
+        setElText('tvUsdVal', usd.toFixed(2) + ' ج.م');
+        setElText('tvUsdChg', (usdChg >= 0 ? '+' : '') + usdChg.toFixed(2) + '%');
+        setElText('tvSarVal', sar.toFixed(2) + ' ج.م');
+        setElText('tvSarChg', (sarChg >= 0 ? '+' : '') + sarChg.toFixed(2) + '%');
 
-        document.getElementById('tvUpdateTime').textContent = 'محدث الآن عبر TradingView';
+        setElText('tvSummaryText', `دولار: ${usd.toFixed(2)} ج.م | ريال: ${sar.toFixed(2)} ج.م | ذهب 21: ${Math.round(g21).toLocaleString()} ج.م`);
+        setElText('tvUpdateTime', 'محدث الآن عبر TradingView');
         updateCalcDisplay();
         renderUI();
       } catch (e) {
@@ -3465,7 +3521,9 @@
     function closeSpecificModalOrDrawer(id, fromPopState = false) {
       popModalState(id);
       
-      if (id === 'miniCalcWidget') {
+      if (id === 'goldDrawer' || id === 'tradingviewDrawer') {
+        closeGoldDrawer(true);
+      } else if (id === 'miniCalcWidget') {
         const calc = document.getElementById('miniCalcWidget');
         if (calc) calc.classList.remove('open');
       } else if (id === 'tradingviewDrawer') {
