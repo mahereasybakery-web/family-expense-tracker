@@ -2,6 +2,9 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>مصروفات العيلة ماهر ❤️ أية</title>
   <link rel="manifest" href="manifest.json">
@@ -1463,7 +1466,10 @@
           <div class="brand-icon">
             <i class="fa-solid fa-wallet"></i>
           </div>
-          <h1 class="brand-title">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon"></i> أية</h1>
+          <h1 class="brand-title">
+            مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon"></i> أية
+            <span style="font-size: 0.62rem; background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 1px 6px; border-radius: 6px; font-weight: 800; vertical-align: middle; margin-right: 4px;">v2.5</span>
+          </h1>
         </div>
         <div class="header-actions">
           <button class="btn-action-header theme-toggle-btn" id="btnToggleTheme" title="تبديل المظهر الداكن / الفاتح" onclick="toggleTheme()">
@@ -2363,33 +2369,34 @@
       showToast('✨ تم تحميل وتفعيل البيانات التجريبية الشاملة بنجاح');
     }
 
-      // 3. تحميل الحركات
-      const storedTx = localStorage.getItem('family_monefy_txs');
-      if (storedTx) {
-        try {
-          const parsed = JSON.parse(storedTx);
-          // إذا كانت الحركات القديمة 5 أو أقل، نقوم بترقيتها تلقائياً للبيانات التجريبية الغنية
-          if (!parsed || parsed.length <= 5) {
+      // 3. إدارة إصدار التطبيق وتحميل الحركات الغنية
+      const APP_VERSION = '2.5.5';
+      const storedVer = localStorage.getItem('family_monefy_version');
+      
+      // إذا كان الإصدار جديداً، نقوم تلقائياً بترحيل وتحميل البيانات التجريبية الغنية لتظهر الشارتات فوراً
+      if (storedVer !== APP_VERSION) {
+        state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
+        saveTx();
+        localStorage.setItem('family_monefy_version', APP_VERSION);
+      } else {
+        const storedTx = localStorage.getItem('family_monefy_txs');
+        if (storedTx) {
+          try {
+            const parsed = JSON.parse(storedTx);
+            if (!parsed || parsed.length <= 5) {
+              state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
+              saveTx();
+            } else {
+              state.transactions = parsed;
+            }
+          } catch(e) {
             state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
             saveTx();
-          } else {
-            state.transactions = parsed;
           }
-        } catch(e) {
+        } else {
           state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
           saveTx();
         }
-      } else {
-        state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
-        saveTx();
-        state.transactions = [
-          { id: 'tx-1', type: 'income', amount: 35000, label: 'راتب ماهر الشهري', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-01' },
-          { id: 'tx-2', type: 'expense', amount: 3200, label: 'سوبرماركت وطلبات البيت', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-10-05' },
-          { id: 'tx-3', type: 'expense', amount: 850, label: 'مصاريف مدرسة وباص', category: 'education', member: 'محمد', walletId: 'wallet-default', date: '2026-10-10' },
-          { id: 'tx-4', type: 'expense', amount: 620, label: 'أدوية ومستلزمات صيدلية', category: 'health', member: 'الحاجة', walletId: 'wallet-default', date: '2026-10-12' },
-          { id: 'tx-5', type: 'expense', amount: 450, label: 'ملابس شتوية لمريم', category: 'clothes', member: 'مريم', walletId: 'wallet-default', date: '2026-10-15' },
-        ];
-        saveTx();
       }
 
       // تحميل الصلاحيات
