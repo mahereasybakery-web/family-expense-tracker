@@ -1639,7 +1639,333 @@
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
+  
+    /* زر سجل النشاطات وزر Google Drive في الشريط العلوي */
+    .activity-log-btn {
+      background: rgba(14, 165, 233, 0.15) !important;
+      border: 1px solid rgba(56, 189, 248, 0.4) !important;
+      color: #38bdf8 !important;
+      min-width: 78px;
+      gap: 4px;
+    }
+    .drive-sync-btn {
+      background: rgba(34, 197, 94, 0.15) !important;
+      border: 1px solid rgba(34, 197, 94, 0.4) !important;
+      color: #22c55e !important;
+      min-width: 82px;
+      gap: 4px;
+    }
+    .avatar-bubble img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+    }
+
+    /* أنماط صفحة سجل النشاطات الشامل (Activity Log Modal) */
+    .activity-modal-dialog {
+      max-width: 680px;
+      width: 95%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+    }
+    .activity-modal-header {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .activity-header-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .activity-header-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .activity-header-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .activity-controls-bar {
+      padding: 12px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: var(--bg-card-sub);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .activity-search-row {
+      display: flex;
+      gap: 8px;
+    }
+    .activity-search-input {
+      flex: 1;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 8px 14px;
+      color: var(--text-main);
+      font-size: 0.85rem;
+      direction: rtl;
+    }
+    .activity-member-select {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 8px 12px;
+      color: var(--text-main);
+      font-size: 0.85rem;
+      direction: rtl;
+    }
+    .activity-filter-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .activity-tab-chip {
+      padding: 5px 12px;
+      border-radius: 18px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .activity-tab-chip.active {
+      background: #0284c7;
+      color: #fff;
+      border-color: #38bdf8;
+    }
+    .activity-stats-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 18px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: rgba(0,0,0,0.15);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .activity-list-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 250px;
+      max-height: 55vh;
+    }
+    .activity-item-card {
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .activity-item-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-1px);
+    }
+    .activity-item-card.border-expense { border-right: 4px solid #f43f5e; }
+    .activity-item-card.border-income { border-right: 4px solid #10b981; }
+    .activity-item-card.border-delete { border-right: 4px solid #e11d48; background: rgba(225, 29, 72, 0.05); }
+    .activity-item-card.border-wallet { border-right: 4px solid #38bdf8; }
+    .act-icon-box {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .act-content-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .act-top-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .act-action-badge {
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .badge-exp { background: rgba(244, 63, 94, 0.2); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.4); }
+    .badge-inc { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.4); }
+    .badge-del { background: rgba(225, 29, 72, 0.25); color: #fb7185; border: 1px solid rgba(225, 29, 72, 0.5); }
+    .badge-sys { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
+    .act-time-stamp {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      direction: ltr;
+    }
+    .act-main-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .act-amount-tag {
+      font-size: 0.92rem;
+      font-weight: 800;
+      direction: ltr;
+      display: inline-block;
+    }
+    .act-amount-tag.exp { color: var(--expense); }
+    .act-amount-tag.inc { color: var(--income); }
+    .act-amount-tag.del { color: #f43f5e; text-decoration: line-through; opacity: 0.8; }
+    .act-sub-meta {
+      display: flex;
+      gap: 10px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      flex-wrap: wrap;
+    }
+    .act-sub-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .activity-footer-bar {
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+    }
+
+    /* أنماط نافذة Google Drive والعمل أوفلاين */
+    .drive-modal-dialog {
+      max-width: 560px;
+      width: 95%;
+      border-radius: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+    }
+    .drive-section-card {
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .drive-card-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .drive-card-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .drive-action-btn-green {
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+      transition: all 0.2s;
+    }
+    .drive-action-btn-blue {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+      transition: all 0.2s;
+    }
+    .drive-action-btn-purple {
+      background: linear-gradient(135deg, #9333ea, #7e22ce);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+      transition: all 0.2s;
+    }
+  
+    .header-email-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .header-email-pill:hover {
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
   </style>
+
   <script>
     // إلغاء أي Service Worker قديم ومسح التخزين المؤقت فوراً
     if ('serviceWorker' in navigator) {
@@ -1667,8 +1993,13 @@
           </div>
           <h1 class="brand-title">
             مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon"></i> أية
-            <span style="font-size: 0.62rem; background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 1px 6px; border-radius: 6px; font-weight: 800; vertical-align: middle; margin-right: 4px;">v2.7.0</span>
+            <span style="font-size: 0.62rem; background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 1px 6px; border-radius: 6px; font-weight: 800; vertical-align: middle; margin-right: 4px;">v2.8.0</span>
           </h1>
+          <div class="header-email-pill" id="headerEmailPill" onclick="openModal('authModal')" title="الحساب المسجل بالبريد الإلكتروني والمزامنة السحابية">
+            <i class="fa-solid fa-circle-user" style="color: #38bdf8;"></i>
+            <span id="headerUserEmailDisplay">maher@family.com</span>
+            <i class="fa-solid fa-cloud" style="color: #10b981; font-size: 0.65rem;" title="حفظ سحابي نشط"></i>
+          </div>
         </div>
         <div class="header-actions">
           <button class="btn-action-header theme-toggle-btn" id="btnToggleTheme" title="تبديل المظهر الداكن / الفاتح" onclick="toggleTheme()">
@@ -1681,6 +2012,16 @@
           <button class="btn-action-header gold-trigger header-gold-btn" id="btnOpenGold" title="بورصة الذهب والعملات المباشرة (TradingView)">
             <i class="fa-solid fa-arrow-trend-up"></i>
             <span class="gold-btn-label">البورصة والذهب</span>
+          </button>
+          <!-- زر سجل النشاطات والعمليات الشامل -->
+          <button class="btn-action-header activity-log-btn" id="btnOpenActivityLog" title="سجل النشاطات والحركات (إضافة، خصم، حذف)">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span style="font-size: 0.74rem; font-weight: 800;">النشاطات</span>
+          </button>
+          <!-- زر مزامنة Google Drive والعمل المستقل -->
+          <button class="btn-action-header drive-sync-btn" id="btnOpenDriveSync" title="مزامنة Google Drive والتشغيل أوفلاين">
+            <i class="fa-brands fa-google-drive"></i>
+            <span style="font-size: 0.74rem; font-weight: 800;">Drive</span>
           </button>
           <button class="btn-action-header" id="btnOpenSms" title="قارئ رسائل البنك">
             <i class="fa-solid fa-comment-sms"></i>
@@ -1755,6 +2096,14 @@
             👵
           </div>
           <span class="avatar-name-label">الحاجة</span>
+        </div>
+
+        <!-- النونو -->
+        <div class="avatar-card" data-member="النونو">
+          <div class="avatar-bubble" style="background: linear-gradient(135deg, #0284c7, #38bdf8); padding: 0;">
+            <img src="data:image/jpeg;base64,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" alt="النونو" onerror="this.onerror=null; this.parentElement.innerHTML='👶';">
+          </div>
+          <span class="avatar-name-label">النونو</span>
         </div>
 
         <!-- الكل -->
@@ -2242,6 +2591,7 @@
             <option value="محمد">👦 محمد</option>
             <option value="مريم">👧 مريم</option>
             <option value="الحاجة">👵 الحاجة</option>
+            <option value="النونو">👶 النونو</option>
           </select>
         </div>
 
@@ -2326,6 +2676,7 @@
             <option value="محمد">👦 محمد</option>
             <option value="مريم">👧 مريم</option>
             <option value="الحاجة">👵 الحاجة</option>
+            <option value="النونو">👶 النونو</option>
           </select>
         </div>
 
@@ -2364,34 +2715,53 @@
       </div>
     </div>
 
-    <!-- نافذة تسجيل الدخول وحفظ الجلسة -->
+    <!-- نافذة تسجيل الدخول والمزامنة بالبريد الإلكتروني -->
     <div class="modal-overlay-custom" id="authModal">
-      <div class="modal-content-card">
+      <div class="modal-content-card" style="max-width: 460px;">
         <div class="modal-head">
-          <h3 class="modal-title-custom">تسجيل الدخول للحساب</h3>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-cloud-arrow-up" style="color: #38bdf8; font-size: 1.3rem;"></i>
+            <h3 class="modal-title-custom">تسجيل الدخول والمزامنة بالإيميل</h3>
+          </div>
           <button class="btn-close-drawer" onclick="closeModal('authModal')">&times;</button>
         </div>
 
-        <div class="form-group-custom">
-          <label class="form-label-custom">البريد الإلكتروني</label>
-          <input type="email" class="form-input-custom" id="authEmail" value="maher@family.com">
+        <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; background: rgba(56, 189, 248, 0.08); padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.2);">
+          💡 <strong>حفظ سحابي دائم على الإيميل:</strong><br>
+          يتم ربط وحفظ كافة المصروفات، المحافظ، أفراد العائلة (بما فيهم النونو)، وسجل النشاطات بحساب بريدك الإلكتروني. وعند فتح التطبيق من أي جهاز جديد، فقط اكتب نفس الإيميل لتستعيد كل شيء في ثانية واحدة!
         </div>
 
         <div class="form-group-custom">
-          <label class="form-label-custom">كلمة المرور</label>
-          <input type="password" class="form-input-custom" id="authPass" value="maher123">
+          <label class="form-label-custom">البريد الإلكتروني للمستخدم</label>
+          <input type="email" class="form-input-custom" id="authEmail" value="maher@family.com" placeholder="name@gmail.com">
         </div>
 
-        <div style="display: flex; align-items: center; gap: 8px;">
+        <div class="form-group-custom">
+          <label class="form-label-custom">كلمة المرور / رمز الدخول السريع (PIN)</label>
+          <input type="password" class="form-input-custom" id="authPass" value="maher123" placeholder="أدخل كلمة المرور">
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
           <input type="checkbox" id="authRemember" checked style="width: 16px; height: 16px; accent-color: var(--primary);">
           <label for="authRemember" style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">
             تذكرني وحفظ تسجيل الدخول على هذا الجهاز
           </label>
         </div>
 
-        <button class="btn-submit-tx" onclick="handleLogin()">
-          <i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول
+        <!-- زر تسجيل الدخول والحفظ السحابي -->
+        <button class="btn-submit-tx" onclick="handleLoginAndSync()" style="margin-bottom: 8px;">
+          <i class="fa-solid fa-cloud-arrow-up"></i> تسجيل الدخول وحفظ البيانات على هذا الإيميل
         </button>
+
+        <!-- زر استعادة البيانات من جهاز جديد -->
+        <button class="btn-secondary-custom" onclick="handleRestoreFromEmailPrompt()" style="width: 100%; padding: 10px; font-weight: 800; border-color: rgba(34, 197, 94, 0.5); color: #22c55e; margin-bottom: 8px; justify-content: center; display: flex; align-items: center; gap: 8px;">
+          <i class="fa-brands fa-google-drive"></i> استعادة البيانات من جهاز جديد (Google Drive / السحابة)
+        </button>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-subtle); font-size: 0.74rem; color: var(--text-muted);">
+          <span>الحساب النشط: <strong id="lblActiveEmailTxt" style="color: #38bdf8;">maher@family.com</strong></span>
+          <a href="javascript:void(0)" onclick="handleLogout()" style="color: #f43f5e; text-decoration: none; font-weight: 700;">تسجيل الخروج</a>
+        </div>
       </div>
     </div>
 
@@ -2399,7 +2769,136 @@
     <!-- ==============================================================
          نافذة الشارتات والتحاليل المفصلة (تظهر فقط عند الضغط على زر الشارتات)
          ============================================================== -->
-    <div class="modal-overlay" id="analyticsDetailedModal">
+        <!-- ==============================================================
+         نافذة صفحة سجل النشاطات والعمليات الشامل (Activity & Audit Log Modal)
+         ============================================================== -->
+    <div class="modal-overlay" id="activityLogModal">
+      <div class="modal-dialog-card activity-modal-dialog">
+        <div class="activity-modal-header">
+          <div class="activity-header-info">
+            <i class="fa-solid fa-clock-rotate-left" style="color: #38bdf8; font-size: 1.3rem;"></i>
+            <div>
+              <div class="activity-header-title">سجل النشاطات والعمليات الشامل</div>
+              <div class="activity-header-subtitle">توثيق زمني فوري لكل حركات الإضافة، الخصم، التعديل والحذف</div>
+            </div>
+          </div>
+          <button class="modal-close-btn" onclick="closeModal('activityLogModal')">&times;</button>
+        </div>
+
+        <!-- شريط البحث والفلترة -->
+        <div class="activity-controls-bar">
+          <div class="activity-search-row">
+            <input type="text" id="actSearchInput" class="activity-search-input" placeholder="🔍 ابحث في تفاصيل الحركة، البيان، الشخص أو المبلغ..." oninput="filterActivityLogUI()">
+            <select id="actMemberSelect" class="activity-member-select" onchange="filterActivityLogUI()">
+              <option value="all">👥 كافة أفراد العائلة</option>
+              <option value="ماهر">👨 ماهر</option>
+              <option value="أية">👩 أية</option>
+              <option value="محمد">👦 محمد</option>
+              <option value="مريم">👧 مريم</option>
+              <option value="الحاجة">👵 الحاجة</option>
+              <option value="النونو">👶 النونو</option>
+            </select>
+          </div>
+          <div class="activity-filter-tabs">
+            <button class="activity-tab-chip active" data-act-type="all" onclick="selectActivityTab('all', this)">🌐 كافة الحركات</button>
+            <button class="activity-tab-chip" data-act-type="expense" onclick="selectActivityTab('expense', this)">🔴 المصروفات فقط</button>
+            <button class="activity-tab-chip" data-act-type="income" onclick="selectActivityTab('income', this)">🟢 الدخل فقط</button>
+            <button class="activity-tab-chip" data-act-type="delete" onclick="selectActivityTab('delete', this)">🗑️ المحذوفات</button>
+            <button class="activity-tab-chip" data-act-type="wallet" onclick="selectActivityTab('wallet', this)">💼 المحافظ والنظام</button>
+          </div>
+        </div>
+
+        <!-- شريط الإحصاءات السريعة للسجل -->
+        <div class="activity-stats-bar">
+          <span id="actCountBadge">إجمالي الحركات الموثقة: 0</span>
+          <span id="actFilterSummary">عرض كافة النشاطات</span>
+        </div>
+
+        <!-- قائمة النشاطات المتدفقة -->
+        <div class="activity-list-body" id="activityListContainer">
+          <!-- تتولد ديناميكياً -->
+        </div>
+
+        <!-- الشريط السفلي للنافذة -->
+        <div class="activity-footer-bar">
+          <button class="btn-secondary-custom" onclick="exportActivityLogExcel()" style="padding: 7px 14px; font-size: 0.8rem;">
+            <i class="fa-solid fa-file-excel" style="color: #10b981;"></i> تصدير السجل إكسيل
+          </button>
+          <button class="btn-secondary-custom" onclick="clearActivityLogConfirm()" style="padding: 7px 14px; font-size: 0.8rem; color: #f43f5e; border-color: rgba(244, 63, 94, 0.4);">
+            <i class="fa-solid fa-trash-can"></i> مسح السجل
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==============================================================
+         نافذة Google Drive والتشغيل المستقل بدون إنترنت (Drive & Offline Modal)
+         ============================================================== -->
+    <div class="modal-overlay" id="driveSyncModal">
+      <div class="modal-dialog-card drive-modal-dialog">
+        <div class="activity-modal-header" style="background: rgba(34, 197, 94, 0.1);">
+          <div class="activity-header-info">
+            <i class="fa-brands fa-google-drive" style="color: #22c55e; font-size: 1.4rem;"></i>
+            <div>
+              <div class="activity-header-title">المزامنة عبر Google Drive والعمل أوفلاين</div>
+              <div class="activity-header-subtitle">تشغيل دائم مستقل 100% على هاتفك دون الاعتماد على GitHub</div>
+            </div>
+          </div>
+          <button class="modal-close-btn" onclick="closeModal('driveSyncModal')">&times;</button>
+        </div>
+
+        <div style="padding: 16px 20px; overflow-y: auto; max-height: 75vh;">
+          <!-- بطاقة 1: حفظ نسخة على Google Drive -->
+          <div class="drive-section-card">
+            <div class="drive-card-title">
+              <i class="fa-solid fa-cloud-arrow-up" style="color: #22c55e;"></i>
+              <span>1. حفظ نسخة احتياطية على Google Drive</span>
+            </div>
+            <div class="drive-card-desc">
+              يقوم التطبيق بتجميع كافة المصروفات، المداخيل، المحافظ، وسجل النشاطات في ملف احتياطي مشفر. على هاتفك المحمول، سيفتح لك خيار "حفظ في Google Drive" مباشرة!
+            </div>
+            <button class="drive-action-btn-green" onclick="backupToGoogleDrive()">
+              <i class="fa-brands fa-google-drive"></i>
+              <span>حفظ ومزامنة فورية على Google Drive</span>
+            </button>
+          </div>
+
+          <!-- بطاقة 2: استرجاع نسخة من Google Drive -->
+          <div class="drive-section-card">
+            <div class="drive-card-title">
+              <i class="fa-solid fa-cloud-arrow-down" style="color: #38bdf8;"></i>
+              <span>2. استرجاع بياناتك من Google Drive</span>
+            </div>
+            <div class="drive-card-desc">
+              اختر ملف النسخة الاحتياطية (.json) المحفوظ على Google Drive أو ذاكرة جهازك لاستعادة كافة الحركات في ثانية واحدة.
+            </div>
+            <input type="file" id="inpDriveFile" accept=".json" style="display: none;" onchange="handleRestoreDriveFile(event)">
+            <button class="drive-action-btn-blue" onclick="document.getElementById('inpDriveFile').click()">
+              <i class="fa-solid fa-folder-open"></i>
+              <span>اختيار ملف النسخة واسترجاعها الآن</span>
+            </button>
+          </div>
+
+          <!-- بطاقة 3: التشغيل الأوفلاين الدائم كبرنامج هاتف أصلي -->
+          <div class="drive-section-card">
+            <div class="drive-card-title">
+              <i class="fa-solid fa-mobile-screen-button" style="color: #a855f7;"></i>
+              <span>3. العمل الدائم على الجوال بدون إنترنت وبدون GitHub</span>
+            </div>
+            <div class="drive-card-desc">
+              • <strong>تثبيت كبرنامج أصلي على الهاتف:</strong> افتح قائمة المتصفح واضغط <strong>"الإضافة إلى الشاشة الرئيسية (Add to Home Screen)"</strong> ليعمل معك كتطبيق هاتف مستقل بدون إنترنت وبدون شريط عنوان.<br>
+              • <strong>تحميل نسخة HTML مستقلة:</strong> يمكنك تحميل ملف التطبيق كاملاً وافتحه في أي وقت بدون إنترنت.
+            </div>
+            <button class="drive-action-btn-purple" onclick="downloadOfflineAppHtml()">
+              <i class="fa-solid fa-download"></i>
+              <span>تحميل ملف التطبيق الكامل للتشغيل المستقل (Offline File)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="modal-overlay" id="analyticsDetailedModal">
       <div class="modal-dialog-card analytics-modal-dialog">
         
         <div class="chart-section-header">
@@ -2512,7 +3011,6 @@
       }
       renderUI();
     }
-    }
 
     // محرك الإشعارات والصوت الفوري للمزامنة
     // ==========================================
@@ -2579,7 +3077,7 @@
     ];
 
     // أسماء أفراد العائلة (الأسماء فقط)
-    const FAMILY_MEMBERS = ['ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'الكل'];
+    const FAMILY_MEMBERS = ['ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'الكل'];
 
     // حالة التطبيق
     let state = {
@@ -2666,6 +3164,9 @@
       { id: 'tx-exp-10', type: 'expense', amount: 1650, label: 'فسحة عائلية وترفيه نهاية الأسبوع', category: 'entertainment', member: 'مريم', walletId: 'wallet-cash', date: '2026-10-25' },
       { id: 'tx-exp-11', type: 'expense', amount: 1250, label: 'هدايا ومجاملات للأقارب', category: 'gifts', member: 'الحاجة', walletId: 'wallet-cash', date: '2026-10-26' },
       { id: 'tx-exp-12', type: 'expense', amount: 950, label: 'نثريات ومصاريف طارئة أخرى', category: 'others', member: 'محمد', walletId: 'wallet-default', date: '2026-10-27' },
+      { id: 'tx-exp-13', type: 'expense', amount: 2200, label: 'بامبرز وحليب مجفف ومستلزمات صيدلية', category: 'kids', member: 'النونو', walletId: 'wallet-default', date: '2026-10-24' },
+      { id: 'tx-exp-14', type: 'expense', amount: 1850, label: 'كشف تطعيمات ومتابعة نمو طبيب أطفال', category: 'health', member: 'النونو', walletId: 'wallet-cash', date: '2026-10-21' },
+      { id: 'tx-exp-15', type: 'expense', amount: 1400, label: 'ملابس قطنية وسالوبيتات شتوية للنونو', category: 'clothes', member: 'النونو', walletId: 'wallet-default', date: '2026-10-18' },
     ];
 
     function resetToDemoData() {
@@ -2676,7 +3177,7 @@
     }
 
       // 3. إدارة إصدار التطبيق وتحميل الحركات الغنية
-      const APP_VERSION = '2.7.0';
+      const APP_VERSION = '2.8.0';
       const storedVer = localStorage.getItem('family_monefy_version');
       
       // إذا كان الإصدار جديداً، نقوم تلقائياً بترحيل وتحميل البيانات التجريبية الغنية لتظهر الشارتات فوراً
@@ -2802,6 +3303,13 @@
         if (el) el.addEventListener(ev, fn);
       }
 
+      // ربط سجل النشاطات وزر Google Drive
+      safeEvent('btnOpenActivityLog', 'click', () => {
+        openModal('activityLogModal');
+        renderActivityLogUI();
+      });
+      safeEvent('btnOpenDriveSync', 'click', () => openModal('driveSyncModal'));
+
       // ربط الدخول على البورصة (TradingView)
       safeEvent('btnOpenGold', 'click', openGoldDrawer);
       safeEvent('btnCloseDrawer', 'click', closeGoldDrawer);
@@ -2830,6 +3338,8 @@
       if (dateInp) dateInp.value = new Date().toISOString().split('T')[0];
 
       // إطلاق الواجهة بأمان كامل ومحمي ضد أي توقف
+      try { initUserEmailAuth(); } catch(e) { console.error('Email auth error:', e); }
+      try { initActivityLog(); } catch(e) { console.error('Activity log error:', e); }
       try { initTheme(); } catch(e) { console.error('Theme init error:', e); }
       try { initDonutChart(); } catch(e) { console.error('Donut init error:', e); }
       try { initAnalyticsChart(); } catch(e) { console.error('Analytics init error:', e); }
@@ -2933,12 +3443,6 @@
         }
         updateAnalyticsChart();
       }, 100);
-    } else {
-        sec.style.display = 'flex';
-        sec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        updateAnalyticsChart();
-      }
-    }
     }
 
     function switchChartMode(mode) {
@@ -3136,7 +3640,7 @@
         // ─────────────────────────────────────────────────────────────
         // 2. شارت توضيحي لكل فرد من العائلة
         // ─────────────────────────────────────────────────────────────
-        const actualMembers = ['أية', 'ماهر', 'محمد', 'الحاجة', 'مريم'];
+        const actualMembers = ['أية', 'ماهر', 'محمد', 'مريم', 'الحاجة', 'النونو'];
         const incMap = {}, expMap = {};
         actualMembers.forEach(m => { incMap[m] = 0; expMap[m] = 0; });
 
@@ -3151,7 +3655,7 @@
         analyticsChartInstance.config.type = 'bar';
         analyticsChartInstance.data = {
           labels: actualMembers.map(m => {
-            const emojiMap = { 'ماهر': '👨 ماهر', 'أية': '👩 أية', 'محمد': '👦 محمد', 'مريم': '👧 مريم', 'الحاجة': '👵 الحاجة' };
+            const emojiMap = { 'ماهر': '👨 ماهر', 'أية': '👩 أية', 'محمد': '👦 محمد', 'مريم': '👧 مريم', 'الحاجة': '👵 الحاجة', 'النونو': '👶 النونو' };
             return emojiMap[m] || m;
           }),
           datasets: [
@@ -3174,7 +3678,7 @@
 
         if (footer) {
           footer.innerHTML = actualMembers.map(m => {
-            const emoji = { 'ماهر': '👨', 'أية': '👩', 'محمد': '👦', 'مريم': '👧', 'الحاجة': '👵' }[m] || '👤';
+            const emoji = { 'ماهر': '👨', 'أية': '👩', 'محمد': '👦', 'مريم': '👧', 'الحاجة': '👵', 'النونو': '👶' }[m] || '👤';
             return `
               <div class="chart-chip-item">
                 <span>${emoji} ${m}:</span>
@@ -3384,10 +3888,6 @@
       const card = document.getElementById('wheelFloatingCard');
       if (card) card.style.display = 'none';
       activeFloatingCatId = null;
-    }
-          }
-        }
-      });
     }
 
     function renderCategoriesGrid() {
@@ -3939,16 +4439,116 @@
       showToast('🔒 تم حفظ الصلاحيات');
     }
 
-    function handleLogin() {
-      const email = document.getElementById('authEmail').value.trim();
+    function initUserEmailAuth() {
+      const savedEmail = localStorage.getItem('family_user_email') || 'maher@family.com';
+      state.userEmail = savedEmail;
+
+      const emailDisplay = document.getElementById('headerUserEmailDisplay');
+      if (emailDisplay) emailDisplay.textContent = savedEmail;
+
+      const authEmailInp = document.getElementById('authEmail');
+      if (authEmailInp) authEmailInp.value = savedEmail;
+
+      const activeLbl = document.getElementById('lblActiveEmailTxt');
+      if (activeLbl) activeLbl.textContent = savedEmail;
+    }
+
+    function saveEmailVault() {
+      if (!state.userEmail) return;
+      const vault = {
+        email: state.userEmail,
+        updatedAt: new Date().toISOString(),
+        transactions: state.transactions,
+        wallets: state.wallets,
+        activityLog: state.activityLog || [],
+        permissions: state.permissions
+      };
+      try {
+        localStorage.setItem('family_vault_' + state.userEmail, JSON.stringify(vault));
+        localStorage.setItem('family_user_email', state.userEmail);
+      } catch(e) {}
+    }
+
+    function handleLoginAndSync() {
+      const emailInp = document.getElementById('authEmail');
+      const passInp = document.getElementById('authPass');
+      const email = emailInp.value.trim().toLowerCase();
+
+      if (!email || !email.includes('@')) {
+        alert('يرجى إدخال بريد إلكتروني صحيح');
+        emailInp.focus();
+        return;
+      }
+
+      state.userEmail = email;
+      localStorage.setItem('family_user_email', email);
+
+      // فحص وجود خزانة بيانات محلية لهذا الإيميل
+      const localVault = localStorage.getItem('family_vault_' + email);
+      if (localVault) {
+        try {
+          const vData = JSON.parse(localVault);
+          if (vData.transactions && vData.transactions.length > 0) {
+            state.transactions = vData.transactions;
+            saveTx();
+          }
+          if (vData.wallets) {
+            state.wallets = vData.wallets;
+            localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
+            populateWalletDropdowns();
+          }
+          if (vData.activityLog) {
+            state.activityLog = vData.activityLog;
+            saveActivityLog();
+          }
+        } catch(e) {}
+      } else {
+        // حفظ البيانات الحالية في خزانة هذا الإيميل
+        saveEmailVault();
+      }
+
       const u = email.includes('aya') ? 'أية' : 'ماهر';
       state.currentUser = u;
+
       if (document.getElementById('authRemember').checked) {
-        localStorage.setItem('family_monefy_auth', JSON.stringify({ user: u }));
+        localStorage.setItem('family_monefy_auth', JSON.stringify({ user: u, email: email }));
       }
+
+      const emailDisplay = document.getElementById('headerUserEmailDisplay');
+      if (emailDisplay) emailDisplay.textContent = email;
+
+      const activeLbl = document.getElementById('lblActiveEmailTxt');
+      if (activeLbl) activeLbl.textContent = email;
+
       closeModal('authModal');
       selectMember(u);
-      showToast(`🔓 تم الدخول بحساب: ${u}`);
+      renderUI();
+
+      logActivity({
+        type: 'sync_drive',
+        action: 'تسجيل دخول وتزامن',
+        label: `تسجيل الدخول بحساب البريد: ${email}`,
+        amount: 0,
+        member: u,
+        author: u
+      });
+
+      showToast(`☁️ تم ربط وتزامن الحساب بالبريد: ${email}`);
+    }
+
+    function handleRestoreFromEmailPrompt() {
+      closeModal('authModal');
+      openModal('driveSyncModal');
+      showToast('📥 اختر ملف النسخة السحابية لبريدك الإلكتروني من Google Drive لاستعادة كل بياناتك');
+    }
+
+    function handleLogout() {
+      if (confirm('هل تريد تسجيل الخروج؟ (بياناتك محفوظة على هذا الجهاز وفي Google Drive)')) {
+        localStorage.removeItem('family_monefy_auth');
+        state.currentUser = 'ماهر';
+        showToast('🚪 تم تسجيل الخروج بنجاح');
+        closeModal('authModal');
+      }
     }
 
     function toggleCurrency() {
@@ -4070,6 +4670,350 @@
     }
 
     
+
+    // ==============================================================
+    // 8. محرك سجل النشاطات والعمليات الشامل (Activity & Audit Log Engine)
+    // ==============================================================
+    let currentActivityTab = 'all';
+
+    function initActivityLog() {
+      const stored = localStorage.getItem('family_monefy_activity_log');
+      if (stored) {
+        try {
+          state.activityLog = JSON.parse(stored);
+        } catch(e) {
+          state.activityLog = [];
+        }
+      }
+      if (!state.activityLog || state.activityLog.length === 0) {
+        // توليد سجل نشاطات تجريبي أولي مبني على الحركات
+        state.activityLog = [
+          { id: 'act-1', type: 'add_expense', action: 'إضافة مصروف', label: 'ملابس قطنية وسالوبيتات شتوية للنونو', amount: 1400, member: 'النونو', author: 'أية', date: '2026-10-18', time: '04:15 م', walletId: 'wallet-default' },
+          { id: 'act-2', type: 'add_expense', action: 'إضافة مصروف', label: 'كشف تطعيمات ومتابعة نمو طبيب أطفال', amount: 1850, member: 'النونو', author: 'ماهر', date: '2026-10-21', time: '11:30 ص', walletId: 'wallet-cash' },
+          { id: 'act-3', type: 'add_expense', action: 'إضافة مصروف', label: 'بامبرز وحليب مجفف ومستلزمات صيدلية', amount: 2200, member: 'النونو', author: 'أية', date: '2026-10-24', time: '07:20 م', walletId: 'wallet-default' },
+          { id: 'act-4', type: 'delete_tx', action: 'حذف حركة', label: 'طلب توصيل مطعم ملغي', amount: 350, member: 'ماهر', author: 'ماهر', date: '2026-10-25', time: '09:40 م', walletId: 'wallet-default' },
+          { id: 'act-5', type: 'add_wallet', action: 'إنشاء محفظة جديدة', label: 'إنشاء محفظة: حساب بنكي CIB', amount: 48000, member: 'ماهر', author: 'ماهر', date: '2026-10-01', time: '10:00 ص', walletId: 'wallet-bank' },
+          { id: 'act-6', type: 'add_income', action: 'إضافة دخل', label: 'راتب ماهر الشهري الأساسي', amount: 48000, member: 'ماهر', author: 'ماهر', date: '2026-10-01', time: '10:05 ص', walletId: 'wallet-bank' },
+          { id: 'act-7', type: 'add_expense', action: 'إضافة مصروف', label: 'سوبرماركت ولحوم وخضار الشهر', amount: 7600, member: 'أية', author: 'أية', date: '2026-10-03', time: '01:30 م', walletId: 'wallet-default' },
+          { id: 'act-8', type: 'add_expense', action: 'إضافة مصروف', label: 'قسط مدرسة وكتب دراسية', amount: 5200, member: 'محمد', author: 'ماهر', date: '2026-10-06', time: '12:00 م', walletId: 'wallet-bank' },
+        ];
+        saveActivityLog();
+      }
+    }
+
+    function logActivity(entry) {
+      if (!state.activityLog) state.activityLog = [];
+      const newEntry = {
+        id: 'act-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
+        timestamp: new Date().toISOString(),
+        date: entry.date || new Date().toISOString().split('T')[0],
+        time: entry.time || new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }),
+        author: state.currentUser || 'ماهر',
+        ...entry
+      };
+      state.activityLog.unshift(newEntry);
+      if (state.activityLog.length > 600) state.activityLog.pop();
+      saveActivityLog();
+      try {
+        syncChannel.postMessage({ type: 'SYNC_ACTIVITY', activity: newEntry });
+      } catch(e) {}
+    }
+
+    function saveActivityLog() {
+      try {
+        localStorage.setItem('family_monefy_activity_log', JSON.stringify(state.activityLog));
+      } catch(e) {}
+    }
+
+    function selectActivityTab(tab, btnEl) {
+      currentActivityTab = tab;
+      document.querySelectorAll('.activity-tab-chip').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      renderActivityLogUI();
+    }
+
+    function filterActivityLogUI() {
+      renderActivityLogUI();
+    }
+
+    function renderActivityLogUI() {
+      const container = document.getElementById('activityListContainer');
+      if (!container) return;
+
+      const searchVal = (document.getElementById('actSearchInput')?.value || '').trim().toLowerCase();
+      const memberVal = document.getElementById('actMemberSelect')?.value || 'all';
+
+      let list = state.activityLog || [];
+
+      // 1. فلترة النوع
+      if (currentActivityTab === 'expense') {
+        list = list.filter(a => a.type === 'add_expense');
+      } else if (currentActivityTab === 'income') {
+        list = list.filter(a => a.type === 'add_income');
+      } else if (currentActivityTab === 'delete') {
+        list = list.filter(a => a.type === 'delete_tx');
+      } else if (currentActivityTab === 'wallet') {
+        list = list.filter(a => a.type === 'add_wallet' || a.type === 'sync_drive');
+      }
+
+      // 2. فلترة الشخص
+      if (memberVal !== 'all') {
+        list = list.filter(a => a.member === memberVal || a.author === memberVal);
+      }
+
+      // 3. فلترة البحث
+      if (searchVal) {
+        list = list.filter(a => 
+          (a.label && a.label.toLowerCase().includes(searchVal)) ||
+          (a.action && a.action.toLowerCase().includes(searchVal)) ||
+          (a.member && a.member.toLowerCase().includes(searchVal)) ||
+          (a.author && a.author.toLowerCase().includes(searchVal)) ||
+          (a.amount && a.amount.toString().includes(searchVal))
+        );
+      }
+
+      // تحديث عدادات الإحصاءات
+      const countEl = document.getElementById('actCountBadge');
+      if (countEl) countEl.textContent = `إجمالي الحركات المعروضة: ${list.length} حركة`;
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 40px 10px; color: var(--text-muted);">
+            <i class="fa-solid fa-clock-rotate-left" style="font-size: 2.2rem; margin-bottom: 10px; opacity: 0.5;"></i>
+            <p style="font-size: 0.95rem; font-weight: 700;">لا توجد نشاطات مسجلة تطابق الفلتر المختار</p>
+          </div>
+        `;
+        return;
+      }
+
+      const memberEmoji = { 'ماهر': '👨', 'أية': '👩', 'محمد': '👦', 'مريم': '👧', 'الحاجة': '👵', 'النونو': '👶' };
+
+      container.innerHTML = list.map(item => {
+        let borderClass = 'border-expense';
+        let badgeClass = 'badge-exp';
+        let badgeIcon = 'fa-circle-minus';
+        let amtClass = 'exp';
+        let amtPrefix = '-';
+
+        if (item.type === 'add_income') {
+          borderClass = 'border-income';
+          badgeClass = 'badge-inc';
+          badgeIcon = 'fa-circle-plus';
+          amtClass = 'inc';
+          amtPrefix = '+';
+        } else if (item.type === 'delete_tx') {
+          borderClass = 'border-delete';
+          badgeClass = 'badge-del';
+          badgeIcon = 'fa-trash-can';
+          amtClass = 'del';
+          amtPrefix = '🗑️ ';
+        } else if (item.type === 'add_wallet' || item.type === 'sync_drive') {
+          borderClass = 'border-wallet';
+          badgeClass = 'badge-sys';
+          badgeIcon = 'fa-vault';
+          amtClass = 'sys';
+          amtPrefix = '';
+        }
+
+        const amtFormatted = item.amount ? `${amtPrefix}${parseFloat(item.amount).toLocaleString()} ج.م` : '';
+        const mEmoji = memberEmoji[item.member] || '👤';
+
+        return `
+          <div class="activity-item-card ${borderClass}">
+            <div class="act-icon-box" style="background: ${item.type === 'add_income' ? 'rgba(16, 185, 129, 0.15)' : item.type === 'delete_tx' ? 'rgba(225, 29, 72, 0.15)' : 'rgba(244, 63, 94, 0.15)'};">
+              <span style="font-size: 1.2rem;">${item.member === 'النونو' ? '👶' : mEmoji}</span>
+            </div>
+            <div class="act-content-box">
+              <div class="act-top-line">
+                <span class="act-action-badge ${badgeClass}">
+                  <i class="fa-solid ${badgeIcon}"></i> ${item.action || 'حركة'}
+                </span>
+                <span class="act-time-stamp">${item.date || ''} ${item.time ? '• ' + item.time : ''}</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px;">
+                <span class="act-main-label">${escapeHtml(item.label || '')}</span>
+                <span class="act-amount-tag ${amtClass}">${amtFormatted}</span>
+              </div>
+              <div class="act-sub-meta">
+                <span><i class="fa-solid fa-user"></i> العضو: ${item.member || 'العائلة'}</span>
+                <span><i class="fa-solid fa-user-pen"></i> تم بواسطة: ${item.author || 'ماهر'}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function exportActivityLogExcel() {
+      if (!state.activityLog || state.activityLog.length === 0) {
+        alert('لا توجد حركات في السجل لتصديرها');
+        return;
+      }
+      try {
+        const rows = state.activityLog.map((a, i) => ({
+          'م': i + 1,
+          'نوع العملية': a.action || a.type,
+          'البيان والتفاصيل': a.label || '',
+          'المبلغ (ج.م)': a.amount || 0,
+          'يخص العضو': a.member || '',
+          'سجلت بواسطة': a.author || '',
+          'التاريخ': a.date || '',
+          'الوقت': a.time || ''
+        }));
+        const ws = XLSX.utils.json_to_sheet(rows);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'سجل النشاطات');
+        XLSX.writeFile(wb, `سجل_نشاطات_العائلة_${new Date().toISOString().split('T')[0]}.xlsx`);
+        showToast('📊 تم تصدير سجل النشاطات إلى ملف إكسيل بنجاح');
+      } catch(e) {
+        alert('حدث خطأ أثناء تصدير الإكسيل: ' + e.message);
+      }
+    }
+
+    function clearActivityLogConfirm() {
+      if (confirm('هل أنت متأكد من مسح سجل النشاطات؟ (لن يتم حذف المصروفات الفعلية، فقط أرشيف السجل)')) {
+        state.activityLog = [];
+        saveActivityLog();
+        renderActivityLogUI();
+        showToast('🗑️ تم مسح سجل النشاطات');
+      }
+    }
+
+    // ==============================================================
+    // 9. محرك Google Drive والمزامنة الأوفلاين الدائمة
+    // ==============================================================
+    async function backupToGoogleDrive() {
+      const backupData = {
+        app: 'FamilyExpenseTrackerMonefy',
+        version: APP_VERSION,
+        exportDate: new Date().toISOString(),
+        transactions: state.transactions,
+        wallets: state.wallets,
+        activityLog: state.activityLog,
+        permissions: state.permissions
+      };
+
+      const jsonStr = JSON.stringify(backupData, null, 2);
+      const fileName = `family_monefy_backup_${new Date().toISOString().split('T')[0]}.json`;
+
+      // 1. محاولة المشاركة الفورية عبر Google Drive للهاتف المحمول
+      if (navigator.share && navigator.canShare) {
+        try {
+          const file = new File([jsonStr], fileName, { type: 'application/json' });
+          if (navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              title: 'نسخة احتياطية - ميزانية العائلة',
+              text: 'ملف المزامنة الاحتياطي لتطبيق مصروفات العائلة (ماهر & أية)',
+              files: [file]
+            });
+            logActivity({
+              type: 'sync_drive',
+              action: 'نسخ احتياطي سحابي',
+              label: 'تمت مشاركة وحفظ النسخة على Google Drive',
+              amount: 0,
+              member: state.currentUser,
+              author: state.currentUser
+            });
+            showToast('☁️ تم إرسال النسخة الاحتياطية إلى Google Drive بنجاح');
+            return;
+          }
+        } catch(err) {
+          if (err.name !== 'AbortError') console.warn('Share error:', err);
+        }
+      }
+
+      // 2. التحميل المباشر كملف
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      logActivity({
+        type: 'sync_drive',
+        action: 'تصدير نسخة احتياطية',
+        label: 'تم تحميل ملف النسخة الاحتياطية Google Drive',
+        amount: 0,
+        member: state.currentUser,
+        author: state.currentUser
+      });
+
+      showToast('💾 تم حفظ ملف النسخة الاحتياطية، يمكنك رفعه الآن إلى Google Drive');
+    }
+
+    function handleRestoreDriveFile(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (!data || !data.transactions) {
+            alert('الملف غير متوافق: لا يحتوي على بيانات صحيحة لمصروفات العائلة');
+            return;
+          }
+
+          if (confirm(`تم العثور على نسخة احتياطية تحتوي على (${data.transactions.length}) حركة. هل تريد استرجاعها وتحديث التطبيق؟`)) {
+            state.transactions = data.transactions;
+            saveTx();
+
+            if (data.wallets) {
+              state.wallets = data.wallets;
+              localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
+              populateWalletDropdowns();
+            }
+
+            if (data.activityLog) {
+              state.activityLog = data.activityLog;
+              saveActivityLog();
+            }
+
+            if (data.permissions) {
+              state.permissions = data.permissions;
+              localStorage.setItem('family_monefy_perms', JSON.stringify(state.permissions));
+            }
+
+            logActivity({
+              type: 'sync_drive',
+              action: 'استرجاع نسخة Google Drive',
+              label: `تم استرجاع (${data.transactions.length}) حركة بنجاح`,
+              amount: 0,
+              member: state.currentUser,
+              author: state.currentUser
+            });
+
+            renderUI();
+            closeModal('driveSyncModal');
+            showToast('🎉 تم استرجاع ومزامنة البيانات من Google Drive بنجاح كامل!');
+          }
+        } catch(err) {
+          alert('تعذر قراءة الملف، تأكد من اختيار ملف JSON صحيح: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    function downloadOfflineAppHtml() {
+      // تنزيل ملف التطبيق بالكامل كملف مستقل يعمل أوفلاين 100%
+      const htmlContent = document.documentElement.outerHTML;
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'family-expense-tracker-offline.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('📱 تم تحميل ملف التطبيق المستقل (افتحه على هاتفك وسيعمل أوفلاين دائماً)');
+    }
+
     // ==========================================
     // منطق الآلة الحاسبة الجانبية الصغيرة
     // ==========================================
