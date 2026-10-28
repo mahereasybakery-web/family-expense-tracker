@@ -1127,6 +1127,161 @@
       gap: 5px;
     }
 
+    
+    /* ==============================================
+       تصميم الآلة الحاسبة الجانبية الصغيرة
+       ============================================== */
+    .floating-calc-trigger {
+      position: absolute;
+      left: 12px;
+      bottom: 80px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.45);
+      z-index: 90;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.25s;
+    }
+
+    .floating-calc-trigger:hover {
+      transform: scale(1.1);
+    }
+
+    .mini-calc-widget {
+      position: absolute;
+      left: 12px;
+      bottom: 80px;
+      width: 250px;
+      background: #131b2e;
+      border: 1.5px solid #38bdf8;
+      border-radius: 20px;
+      padding: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+      z-index: 120;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      animation: popIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      direction: rtl;
+    }
+
+    .mini-calc-widget.open {
+      display: flex;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .mini-calc-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+
+    .btn-close-calc {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .mini-calc-display-box {
+      background: #090d16;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      min-height: 48px;
+    }
+
+    .calc-sub-expr {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      direction: ltr;
+    }
+
+    .calc-main-num {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #38bdf8;
+      direction: ltr;
+    }
+
+    .mini-calc-keys {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+    }
+
+    .c-key {
+      background: #1e293b;
+      border: 1px solid var(--border);
+      color: #f8fafc;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 7px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+
+    .c-key:active {
+      transform: scale(0.92);
+      background: #334155;
+    }
+
+    .c-key.op-key {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .c-key.equal-key {
+      grid-column: span 2;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      font-weight: 900;
+      border: none;
+    }
+
+    .btn-calc-use-val {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px dashed #38bdf8;
+      color: #38bdf8;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 6px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+
+    .btn-calc-use-val:hover {
+      background: rgba(56, 189, 248, 0.25);
+    }
+
     /* النوافذ المنبثقة (Modals) */
     .modal-overlay-custom {
       position: absolute;
@@ -1311,6 +1466,9 @@
           <h1 class="brand-title">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon"></i> أية</h1>
         </div>
         <div class="header-actions">
+          <button class="btn-action-header" id="btnOpenMiniCalc" title="آلة حاسبة سريعة">
+            <i class="fa-solid fa-calculator" style="color: #38bdf8;"></i>
+          </button>
           <button class="btn-action-header gold-trigger" id="btnOpenGold" title="بورصة الذهب والعملات (TradingView)">
             <i class="fa-solid fa-coins"></i>
           </button>
@@ -1524,6 +1682,60 @@
         </div>
       </div>
 
+    </div>
+
+    
+    <!-- ==============================================
+         آلة حاسبة جانبية صغيرة منبثقة وسريعة
+         ============================================== -->
+    <div class="mini-calc-widget" id="miniCalcWidget">
+      <div class="mini-calc-head">
+        <div style="display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 800; color: #38bdf8;">
+          <i class="fa-solid fa-calculator"></i>
+          <span>حاسبة سريعة</span>
+        </div>
+        <button class="btn-close-calc" id="btnCloseMiniCalc">&times;</button>
+      </div>
+      
+      <div class="mini-calc-display-box">
+        <div class="calc-sub-expr" id="calcHistoryExpr">&nbsp;</div>
+        <div class="calc-main-num" id="calcScreenVal">0</div>
+      </div>
+
+      <div class="mini-calc-keys">
+        <button class="c-key op-key" onclick="calcAction('clear')">C</button>
+        <button class="c-key op-key" onclick="calcAction('backspace')"><i class="fa-solid fa-delete-left"></i></button>
+        <button class="c-key op-key" onclick="calcAction('op', '%')">%</button>
+        <button class="c-key op-key" onclick="calcAction('op', '/')">÷</button>
+
+        <button class="c-key" onclick="calcAction('num', '7')">7</button>
+        <button class="c-key" onclick="calcAction('num', '8')">8</button>
+        <button class="c-key" onclick="calcAction('num', '9')">9</button>
+        <button class="c-key op-key" onclick="calcAction('op', '*')">×</button>
+
+        <button class="c-key" onclick="calcAction('num', '4')">4</button>
+        <button class="c-key" onclick="calcAction('num', '5')">5</button>
+        <button class="c-key" onclick="calcAction('num', '6')">6</button>
+        <button class="c-key op-key" onclick="calcAction('op', '-')">-</button>
+
+        <button class="c-key" onclick="calcAction('num', '1')">1</button>
+        <button class="c-key" onclick="calcAction('num', '2')">2</button>
+        <button class="c-key" onclick="calcAction('num', '3')">3</button>
+        <button class="c-key op-key" onclick="calcAction('op', '+')">+</button>
+
+        <button class="c-key" onclick="calcAction('num', '0')">0</button>
+        <button class="c-key" onclick="calcAction('num', '.')">.</button>
+        <button class="c-key equal-key" onclick="calcAction('equals')">=</button>
+      </div>
+
+      <button class="btn-calc-use-val" onclick="useCalcValInTx()">
+        <i class="fa-solid fa-arrow-down-to-bracket"></i> وضع الناتج في خانة المبلغ
+      </button>
+    </div>
+
+    <!-- زر عائم جانبي صغير لفتح الحاسبة بلمسة واحدة -->
+    <div class="floating-calc-trigger" id="floatingCalcTrigger" title="آلة حاسبة سريعة">
+      <i class="fa-solid fa-calculator"></i>
     </div>
 
     <!-- الشريط السفلي لتطبيق Monefy (+ و -) -->
@@ -2171,6 +2383,9 @@
       document.getElementById('btnOpenSms').addEventListener('click', () => openModal('smsModal'));
       document.getElementById('btnOpenPerm').addEventListener('click', () => openModal('permModal'));
       document.getElementById('btnOpenAuth').addEventListener('click', () => openModal('authModal'));
+      document.getElementById('btnOpenMiniCalc').addEventListener('click', toggleMiniCalc);
+      document.getElementById('floatingCalcTrigger').addEventListener('click', toggleMiniCalc);
+      document.getElementById('btnCloseMiniCalc').addEventListener('click', toggleMiniCalc);
 
       // التصدير والعملة
       document.getElementById('btnExportExcel').addEventListener('click', exportExcel);
@@ -2969,6 +3184,98 @@
     }
     function escapeHtml(t) {
       const d = document.createElement('div'); d.textContent = t; return d.innerHTML;
+    }
+
+    
+    // ==========================================
+    // منطق الآلة الحاسبة الجانبية الصغيرة
+    // ==========================================
+    let calcState = {
+      currVal: '0',
+      prevVal: null,
+      op: null,
+      resetScreen: false
+    };
+
+    function toggleMiniCalc() {
+      const widget = document.getElementById('miniCalcWidget');
+      widget.classList.toggle('open');
+    }
+
+    function calcAction(type, val) {
+      const screen = document.getElementById('calcScreenVal');
+      const expr = document.getElementById('calcHistoryExpr');
+
+      if (type === 'num') {
+        if (calcState.resetScreen || calcState.currVal === '0') {
+          calcState.currVal = val === '.' ? '0.' : val;
+          calcState.resetScreen = false;
+        } else {
+          if (val === '.' && calcState.currVal.includes('.')) return;
+          calcState.currVal += val;
+        }
+      } else if (type === 'clear') {
+        calcState.currVal = '0';
+        calcState.prevVal = null;
+        calcState.op = null;
+        expr.innerHTML = '&nbsp;';
+      } else if (type === 'backspace') {
+        if (calcState.currVal.length > 1) {
+          calcState.currVal = calcState.currVal.slice(0, -1);
+        } else {
+          calcState.currVal = '0';
+        }
+      } else if (type === 'op') {
+        if (val === '%') {
+          calcState.currVal = (parseFloat(calcState.currVal) / 100).toString();
+        } else {
+          calcState.prevVal = parseFloat(calcState.currVal);
+          calcState.op = val;
+          calcState.resetScreen = true;
+          const opSymbol = val === '*' ? '×' : (val === '/' ? '÷' : val);
+          expr.textContent = `${calcState.prevVal} ${opSymbol}`;
+        }
+      } else if (type === 'equals') {
+        if (calcState.op && calcState.prevVal !== null) {
+          const current = parseFloat(calcState.currVal);
+          let res = 0;
+          switch (calcState.op) {
+            case '+': res = calcState.prevVal + current; break;
+            case '-': res = calcState.prevVal - current; break;
+            case '*': res = calcState.prevVal * current; break;
+            case '/': res = current !== 0 ? calcState.prevVal / current : 0; break;
+          }
+          const opSymbol = calcState.op === '*' ? '×' : (calcState.op === '/' ? '÷' : calcState.op);
+          expr.textContent = `${calcState.prevVal} ${opSymbol} ${current} =`;
+          calcState.currVal = (Math.round(res * 1000) / 1000).toString();
+          calcState.prevVal = null;
+          calcState.op = null;
+          calcState.resetScreen = true;
+        }
+      }
+
+      screen.textContent = calcState.currVal;
+    }
+
+    function useCalcValInTx() {
+      const val = parseFloat(calcState.currVal);
+      if (!val || isNaN(val) || val <= 0) {
+        showToast('⚠️ يرجى حساب قيمة صالحة أكبر من صفر');
+        return;
+      }
+
+      // إذا كانت نافذة تسجيل المصروف مفتوحة، نضع الناتج فيها
+      const txModal = document.getElementById('txModal');
+      if (txModal.classList.contains('open')) {
+        document.getElementById('inpTxAmount').value = val;
+      } else {
+        // نفتح نافذة المصروف ونضع المبلغ
+        openTxModal('expense');
+        document.getElementById('inpTxAmount').value = val;
+      }
+
+      document.getElementById('miniCalcWidget').classList.remove('open');
+      showToast(`🔢 تم إدراج المبلغ (${val} ج.م) في خانة المبلغ بنجاح`);
     }
 
     window.addEventListener('DOMContentLoaded', initApp);
