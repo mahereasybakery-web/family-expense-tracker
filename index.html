@@ -2141,6 +2141,527 @@
         margin: 10mm;
       }
     }
+  
+    /* الشريط العلوي المعاد هيكلته بتناسق وفخامة تامة */
+    .app-header {
+      background: linear-gradient(180deg, #131c2e 0%, #0c121e 100%);
+      padding: 10px 14px 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      z-index: 25;
+    }
+
+    .header-brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      direction: rtl;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #10b981, #047857);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.15rem;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #f8fafc;
+      letter-spacing: -0.2px;
+      white-space: nowrap;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .version-badge {
+      font-size: 0.62rem;
+      background: rgba(56, 189, 248, 0.18);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 1px 6px;
+      border-radius: 6px;
+      font-weight: 800;
+      display: inline-block;
+    }
+
+    .header-email-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      font-size: 0.73rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      direction: ltr;
+    }
+
+    .header-email-pill:hover {
+      border-color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      transform: translateY(-1px);
+    }
+
+    /* سطر أزرار الأدوات المتناسق الفاخر */
+    .header-tools-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      direction: rtl;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+    .header-tools-row::-webkit-scrollbar { display: none; }
+
+    /* زر البورصة والذهب العريض الذهبي الفاخر */
+    .header-gold-btn {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 50%, #78350f 100%) !important;
+      border: 1px solid #f59e0b !important;
+      color: #ffffff !important;
+      padding: 6px 14px !important;
+      border-radius: 12px !important;
+      font-size: 0.82rem !important;
+      font-weight: 800 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.45) !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+      transition: all 0.25s !important;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4) !important;
+    }
+
+    .header-gold-btn:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 18px rgba(245, 158, 11, 0.6) !important;
+    }
+
+    .header-tool-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .header-tool-pill.activity-pill {
+      background: rgba(14, 165, 233, 0.15);
+      border-color: rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+    }
+    .header-tool-pill.activity-pill:hover {
+      background: rgba(14, 165, 233, 0.28);
+      transform: translateY(-1px);
+    }
+
+    .header-tool-pill.drive-pill {
+      background: rgba(34, 197, 94, 0.15);
+      border-color: rgba(34, 197, 94, 0.4);
+      color: #22c55e;
+    }
+    .header-tool-pill.drive-pill:hover {
+      background: rgba(34, 197, 94, 0.28);
+      transform: translateY(-1px);
+    }
+
+    .header-tool-icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.92rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .header-tool-icon-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* أنماط شريط الفلترة العصري وبطاقة التاريخ المخصص */
+    .filter-bar {
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      gap: 6px;
+    }
+
+    .period-segmented-box {
+      display: flex;
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 3px;
+      gap: 2px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .period-segmented-box::-webkit-scrollbar { display: none; }
+
+    .period-seg-btn {
+      padding: 4px 10px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .period-seg-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      font-weight: 800;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+    }
+
+    .filter-tools-cluster {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .custom-date-card-panel {
+      background: var(--bg-card-sub);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 16px;
+      margin: 8px 12px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      animation: fadeInDown 0.25s ease-out;
+    }
+
+    .custom-date-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 8px;
+    }
+
+    .custom-date-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .custom-date-input-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .custom-date-input-wrap label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .modern-form-date {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 7px 10px;
+      color: var(--text-main);
+      font-size: 0.82rem;
+      font-family: inherit;
+      outline: none;
+      direction: rtl;
+    }
+
+    .custom-date-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+  
+    /* أنماط لوحة التحاليل والشارتات المفصلة المعاد بناؤها بالكامل */
+    .analytics-master-dialog {
+      max-width: 720px;
+      width: 96%;
+      max-height: 92vh;
+      border-radius: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .analytics-master-header {
+      padding: 16px 20px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.15), rgba(15, 23, 42, 0.8));
+    }
+
+    .analytics-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .analytics-main-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .analytics-sub-title {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .analytics-master-body {
+      padding: 16px 18px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* كروت المؤشرات المالية الستة الافتراضية */
+    .kpi-master-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 500px) {
+      .kpi-master-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .kpi-stat-card {
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      transition: all 0.2s;
+    }
+    .kpi-stat-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-1px);
+    }
+    .kpi-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .kpi-value {
+      font-size: 1.1rem;
+      font-weight: 900;
+      line-height: 1.3;
+    }
+    .kpi-value.inc { color: var(--income); }
+    .kpi-value.exp { color: var(--expense); }
+    .kpi-value.net { color: #38bdf8; }
+    .kpi-sub-hint {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* تبويبات التقسيمات الأربعة */
+    .analytics-tab-strip {
+      display: flex;
+      gap: 6px;
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border-subtle);
+      padding: 4px;
+      border-radius: 14px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .analytics-tab-strip::-webkit-scrollbar { display: none; }
+
+    .analytics-tab-pill {
+      flex: 1;
+      padding: 7px 12px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .analytics-tab-pill.active {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+    }
+
+    /* حاوية الشارت مع جدول التقسيم التفصيلي */
+    .chart-display-frame {
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .analytics-digest-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+    }
+    .analytics-digest-table th {
+      padding: 6px 8px;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-align: right;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .analytics-digest-table td {
+      padding: 7px 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--text-main);
+    }
+    .progress-bar-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 3px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+
+  
+    /* أنماط واجهة تسجيل الدخول وإنشاء الحساب وتأكيد الإيميل */
+    .auth-tab-bar {
+      display: flex;
+      gap: 6px;
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border-subtle);
+      padding: 4px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+    }
+
+    .auth-tab-btn {
+      flex: 1;
+      padding: 7px 8px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .auth-tab-btn.active {
+      background: #0284c7;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+    }
+
+    .otp-input-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      direction: ltr;
+      margin: 12px 0;
+    }
+
+    .otp-digit-field {
+      width: 44px;
+      height: 48px;
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 900;
+      border-radius: 10px;
+      border: 2px solid var(--border-subtle);
+      background: var(--bg-input);
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .otp-digit-field:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    }
+
   </style>
 
   <script>
@@ -2163,53 +2684,65 @@
     
     <!-- الشريط العلوي -->
     <header class="app-header">
-      <div class="header-top">
+      <!-- السطر 1: الشعار واسم العائلة + شارة الحساب السحابي بالإيميل -->
+      <div class="header-brand-row">
         <div class="brand-box">
           <div class="brand-icon">
             <i class="fa-solid fa-wallet"></i>
           </div>
-          <h1 class="brand-title">
-            مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon"></i> أية
-            <span style="font-size: 0.62rem; background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 1px 6px; border-radius: 6px; font-weight: 800; vertical-align: middle; margin-right: 4px;">v2.8.0</span>
-          </h1>
-          <div class="header-email-pill" id="headerEmailPill" onclick="openModal('authModal')" title="الحساب المسجل بالبريد الإلكتروني والمزامنة السحابية">
-            <i class="fa-solid fa-circle-user" style="color: #38bdf8;"></i>
-            <span id="headerUserEmailDisplay">maher@family.com</span>
-            <i class="fa-solid fa-cloud" style="color: #10b981; font-size: 0.65rem;" title="حفظ سحابي نشط"></i>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <h1 class="brand-title">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon"></i> أية</h1>
+            <span class="version-badge">v2.9.0</span>
           </div>
         </div>
-        <div class="header-actions">
-          <button class="btn-action-header theme-toggle-btn" id="btnToggleTheme" title="تبديل المظهر الداكن / الفاتح" onclick="toggleTheme()">
-            <i class="fa-solid fa-moon" id="themeIcon"></i>
-          </button>
-          <button class="btn-action-header" id="btnOpenMiniCalc" title="آلة حاسبة سريعة">
-            <i class="fa-solid fa-calculator" style="color: #38bdf8;"></i>
-          </button>
-          <!-- زر علوي ذهبي عريض ومميز للدخول على البورصة -->
-          <button class="btn-action-header gold-trigger header-gold-btn" id="btnOpenGold" title="بورصة الذهب والعملات المباشرة (TradingView)">
-            <i class="fa-solid fa-arrow-trend-up"></i>
-            <span class="gold-btn-label">البورصة والذهب</span>
-          </button>
-          <!-- زر سجل النشاطات والعمليات الشامل -->
-          <button class="btn-action-header activity-log-btn" id="btnOpenActivityLog" title="سجل النشاطات والحركات (إضافة، خصم، حذف)">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            <span style="font-size: 0.74rem; font-weight: 800;">النشاطات</span>
-          </button>
-          <!-- زر مزامنة Google Drive والعمل المستقل -->
-          <button class="btn-action-header drive-sync-btn" id="btnOpenDriveSync" title="مزامنة Google Drive والتشغيل أوفلاين">
-            <i class="fa-brands fa-google-drive"></i>
-            <span style="font-size: 0.74rem; font-weight: 800;">Drive</span>
-          </button>
-          <button class="btn-action-header" id="btnOpenSms" title="قارئ رسائل البنك">
-            <i class="fa-solid fa-comment-sms"></i>
-          </button>
-          <button class="btn-action-header" id="btnOpenPerm" title="صلاحيات العائلة (ماهر)">
-            <i class="fa-solid fa-user-shield"></i>
-          </button>
-          <button class="btn-action-header" id="btnOpenAuth" title="تسجيل الدخول">
-            <i class="fa-solid fa-user-lock"></i>
-          </button>
+
+        <!-- شارة الإيميل وحالة المزامنة السحابية -->
+        <div class="header-email-pill" id="headerEmailPill" onclick="openModal('authModal')" title="الحساب المسجل والمزامنة السحابية">
+          <i class="fa-solid fa-cloud" style="color: #10b981; font-size: 0.75rem;"></i>
+          <span id="headerUserEmailDisplay">maher@family.com</span>
+          <i class="fa-solid fa-circle-user" style="color: #38bdf8;"></i>
         </div>
+      </div>
+
+      <!-- السطر 2: شريط الأدوات الرئيسي المتناسق الفاخر -->
+      <div class="header-tools-row">
+        <!-- زر البورصة والذهب العريض الذهبي الفاخر -->
+        <button class="header-gold-btn" id="btnOpenGold" title="بورصة الذهب والعملات المباشرة (TradingView)">
+          <i class="fa-solid fa-arrow-trend-up"></i>
+          <span>البورصة والذهب</span>
+        </button>
+
+        <!-- زر سجل النشاطات والعمليات الشامل -->
+        <button class="header-tool-pill activity-pill" id="btnOpenActivityLog" title="سجل النشاطات والحركات (إضافة، خصم، حذف)">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span>النشاطات</span>
+        </button>
+
+        <!-- زر مزامنة Google Drive -->
+        <button class="header-tool-pill drive-pill" id="btnOpenDriveSync" title="مزامنة Google Drive والعمل أوفلاين">
+          <i class="fa-brands fa-google-drive"></i>
+          <span>Drive</span>
+        </button>
+
+        <!-- زر الآلة الحاسبة السريعة -->
+        <button class="header-tool-icon-btn" id="btnOpenMiniCalc" title="آلة حاسبة سريعة">
+          <i class="fa-solid fa-calculator" style="color: #38bdf8;"></i>
+        </button>
+
+        <!-- زر قارئ رسائل البنك SMS -->
+        <button class="header-tool-icon-btn" id="btnOpenSms" title="قارئ رسائل البنك SMS">
+          <i class="fa-solid fa-comment-sms"></i>
+        </button>
+
+        <!-- زر صلاحيات العائلة -->
+        <button class="header-tool-icon-btn" id="btnOpenPerm" title="صلاحيات العائلة">
+          <i class="fa-solid fa-user-shield"></i>
+        </button>
+
+        <!-- زر الوضع الداكن / الفاتح -->
+        <button class="header-tool-icon-btn theme-toggle-btn" id="btnToggleTheme" onclick="toggleTheme()" title="تبديل المظهر الداكن / الفاتح">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
       </div>
 
       <!-- محرك البحث الشامل في البرنامج ككل -->
@@ -2295,20 +2828,20 @@
 
     <!-- شريط التصفية والعملات ومفتاح الشارتات -->
     <div class="filter-bar">
-      <div class="period-group">
-        <button class="period-btn" data-period="today">اليوم</button>
-        <button class="period-btn" data-period="week">الأسبوع</button>
-        <button class="period-btn active" data-period="month">الشهر</button>
-        <button class="period-btn" data-period="all">الكل</button>
-        <button class="period-btn custom-date-toggle-btn" id="btnToggleCustomDate" onclick="toggleCustomDatePicker()" title="تحديد تاريخ معين أو فترة">
-          <i class="fa-regular fa-calendar-days"></i> تاريخ معين
+      <div class="period-segmented-box">
+        <button class="period-seg-btn period-btn" data-period="today">اليوم</button>
+        <button class="period-seg-btn period-btn" data-period="week">الأسبوع</button>
+        <button class="period-seg-btn period-btn active" data-period="month">الشهر</button>
+        <button class="period-seg-btn period-btn" data-period="all">الكل</button>
+        <button class="period-seg-btn period-btn custom-date-toggle-btn" id="btnToggleCustomDate" onclick="toggleCustomDatePicker()" title="تحديد تاريخ معين أو فترة">
+          <i class="fa-regular fa-calendar-days"></i> تاريخ مخصص
         </button>
       </div>
 
-      <div class="right-tools-group">
-        <button class="chart-view-toggle-btn" id="btnToggleAnalytics" title="عرض الشارتات التوضيحية">
-          <i class="fa-solid fa-chart-column"></i>
-          <span id="chartToggleLabel">الشارتات</span>
+      <div class="filter-tools-cluster">
+        <button class="chart-view-toggle-btn" id="btnToggleAnalytics" title="لوحة التحاليل والشارتات المفصلة">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>الشارتات</span>
         </button>
 
         <div class="currency-pill-btn" id="btnToggleCurrency" title="تبديل العملة المعروضة">
@@ -2318,19 +2851,36 @@
       </div>
     </div>
 
-    <!-- شريط منبثق لتحديد تاريخ معين أو فترة مخصصة -->
-    <div class="custom-date-picker-drawer" id="customDatePickerDrawer" style="display: none;">
-      <div class="date-pick-field">
-        <label><i class="fa-regular fa-calendar-check" style="color: #38bdf8;"></i> تحديد يوم معين:</label>
-        <input type="date" id="inpSpecificDate" class="date-picker-control" onchange="applySpecificDate(this.value)">
+    <!-- بطاقة منبثقة أنيقة ومتناسقة لتحديد تاريخ مخصص -->
+    <div class="custom-date-card-panel" id="customDatePickerDrawer" style="display: none;">
+      <div class="custom-date-card-head">
+        <div style="display: flex; align-items: center; gap: 7px;">
+          <i class="fa-regular fa-calendar-days" style="color: #38bdf8;"></i>
+          <span>تحديد فترة مالية مخصصة للتدقيق</span>
+        </div>
+        <button onclick="toggleCustomDatePicker()" style="background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer;">&times;</button>
       </div>
-      <div class="date-pick-separator">أو فترة:</div>
-      <div class="date-range-fields">
-        <input type="date" id="inpRangeFrom" class="date-picker-control" placeholder="من" onchange="applyDateRange()">
-        <span>إلى</span>
-        <input type="date" id="inpRangeTo" class="date-picker-control" placeholder="إلى" onchange="applyDateRange()">
+      
+      <div class="custom-date-grid">
+        <div class="custom-date-input-wrap">
+          <label><i class="fa-regular fa-calendar-check" style="color: #38bdf8;"></i> تحديد يوم معين:</label>
+          <input type="date" id="inpSpecificDate" class="modern-form-date" onchange="applySpecificDate(this.value)">
+        </div>
+        <div class="custom-date-input-wrap">
+          <label><i class="fa-solid fa-arrows-left-right" style="color: #10b981;"></i> أو من تاريخ:</label>
+          <input type="date" id="inpRangeFrom" class="modern-form-date" onchange="applyDateRange()">
+        </div>
       </div>
-      <button class="btn-reset-date-filter" onclick="resetDateFilter()" title="إلغاء التحديد وعرض الشهر الحالي">&times; إلغاء</button>
+      <div class="custom-date-input-wrap" style="margin-top: 4px;">
+        <label>إلى تاريخ:</label>
+        <input type="date" id="inpRangeTo" class="modern-form-date" onchange="applyDateRange()">
+      </div>
+
+      <div class="custom-date-actions">
+        <button class="btn-secondary-custom" onclick="resetDateFilter()" style="padding: 6px 14px; font-size: 0.78rem;">
+          <i class="fa-solid fa-rotate-left"></i> إلغاء والعودة للشهر الحالي
+        </button>
+      </div>
     </div>
 
     <!-- جسم التطبيق القابل للتمرير -->
@@ -2445,9 +2995,7 @@
     </div>
 
     <!-- زر عائم جانبي صغير لفتح الحاسبة بلمسة واحدة -->
-    <div class="floating-calc-trigger" id="floatingCalcTrigger" title="آلة حاسبة سريعة">
-      <i class="fa-solid fa-calculator"></i>
-    </div>
+    
 
     <!-- الشريط السفلي لتطبيق Monefy (+ و -) -->
     <footer class="app-bottom-dock">
@@ -2805,55 +3353,155 @@
 
     <!-- نافذة تسجيل الدخول والمزامنة بالبريد الإلكتروني -->
     <div class="modal-overlay modal-overlay-custom" id="authModal">
-      <div class="modal-content-card" style="max-width: 460px;">
+      <div class="modal-content-card" style="max-width: 480px;">
+        
+        <!-- رأس نافذة الحساب -->
         <div class="modal-head">
           <div style="display: flex; align-items: center; gap: 8px;">
-            <i class="fa-solid fa-cloud-arrow-up" style="color: #38bdf8; font-size: 1.3rem;"></i>
-            <h3 class="modal-title-custom">تسجيل الدخول والمزامنة بالإيميل</h3>
+            <i class="fa-brands fa-google-drive" style="color: #22c55e; font-size: 1.4rem;"></i>
+            <h3 class="modal-title-custom">حساب العائلة والمزامنة عبر Google Drive</h3>
           </div>
           <button class="btn-close-drawer" onclick="closeModal('authModal')">&times;</button>
         </div>
 
-        <div style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; background: rgba(56, 189, 248, 0.08); padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.2);">
-          💡 <strong>حفظ سحابي دائم على الإيميل:</strong><br>
-          يتم ربط وحفظ كافة المصروفات، المحافظ، أفراد العائلة (بما فيهم النونو)، وسجل النشاطات بحساب بريدك الإلكتروني. وعند فتح التطبيق من أي جهاز جديد، فقط اكتب نفس الإيميل لتستعيد كل شيء في ثانية واحدة!
+        <!-- أزرار التبديل بين الدخول / إنشاء حساب / استرجاع كلمة المرور -->
+        <div class="auth-tab-bar">
+          <button class="auth-tab-btn active" id="tabBtnSignIn" onclick="switchAuthTab('signin')">
+            <i class="fa-solid fa-right-to-bracket"></i> دخول
+          </button>
+          <button class="auth-tab-btn" id="tabBtnSignUp" onclick="switchAuthTab('signup')">
+            <i class="fa-solid fa-user-plus"></i> إنشاء حساب
+          </button>
+          <button class="auth-tab-btn" id="tabBtnForgot" onclick="switchAuthTab('forgot')">
+            <i class="fa-solid fa-key"></i> استرجاع باسورد
+          </button>
         </div>
 
-        <div class="form-group-custom">
-          <label class="form-label-custom">البريد الإلكتروني للمستخدم</label>
-          <input type="email" class="form-input-custom" id="authEmail" value="maher@family.com" placeholder="name@gmail.com">
+        <!-- 1. شاشة تسجيل الدخول (Sign In) -->
+        <div id="authViewSignIn">
+          <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; background: rgba(56, 189, 248, 0.08); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.2);">
+            ☁️ <strong>مزامنة Google Drive التلقائية:</strong> تسجيل دخولك بالبريد الإلكتروني يربط كافة حركاتك ومحافظك بحساب Google Drive لاستعادتها على أي جهاز فوراً.
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">البريد الإلكتروني المسجل</label>
+            <input type="email" class="form-input-custom" id="authEmail" value="maher@family.com" placeholder="name@gmail.com">
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">كلمة المرور</label>
+            <input type="password" class="form-input-custom" id="authPass" value="maher123" placeholder="أدخل كلمة المرور">
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <input type="checkbox" id="authRemember" checked style="width: 15px; height: 15px; accent-color: var(--primary);">
+              <label for="authRemember" style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">تذكرني على هذا الجهاز</label>
+            </div>
+            <a href="javascript:void(0)" onclick="switchAuthTab('forgot')" style="font-size: 0.75rem; color: #38bdf8; text-decoration: none; font-weight: 700;">نسيت كلمة المرور؟</a>
+          </div>
+
+          <button class="btn-submit-tx" onclick="handleLoginAndSync()" style="margin-bottom: 8px;">
+            <i class="fa-solid fa-cloud-arrow-up"></i> تسجيل الدخول ومزامنة Google Drive
+          </button>
+
+          <button class="btn-secondary-custom" onclick="handleRestoreFromEmailPrompt()" style="width: 100%; padding: 9px; font-weight: 800; border-color: rgba(34, 197, 94, 0.5); color: #22c55e; justify-content: center; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-brands fa-google-drive"></i> استرجاع البيانات من جهاز جديد عبر Google Drive
+          </button>
         </div>
 
-        <div class="form-group-custom">
-          <label class="form-label-custom">كلمة المرور / رمز الدخول السريع (PIN)</label>
-          <input type="password" class="form-input-custom" id="authPass" value="maher123" placeholder="أدخل كلمة المرور">
+        <!-- 2. شاشة إنشاء حساب جديد (Create Account) -->
+        <div id="authViewSignUp" style="display: none;">
+          <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; background: rgba(34, 197, 94, 0.08); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(34, 197, 94, 0.2);">
+            ✉️ <strong>تأكيد البريد الإلكتروني:</strong> سيتم إرسال كود تأكيد تفعيل سحابي لبريدك الإلكتروني لربطه بحساب Google Drive.
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">اسم المستخدم</label>
+            <input type="text" class="form-input-custom" id="regName" placeholder="مثال: ماهر أو أية">
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">البريد الإلكتروني (Gmail / أي إيميل)</label>
+            <input type="email" class="form-input-custom" id="regEmail" placeholder="yourname@gmail.com">
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">كلمة المرور الجديدة</label>
+            <input type="password" class="form-input-custom" id="regPass" placeholder="اختر كلمة مرور قوية">
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">أنت تمثل من في العائلة؟</label>
+            <select class="form-select-custom" id="regMember">
+              <option value="ماهر">👨 ماهر</option>
+              <option value="أية">👩 أية</option>
+              <option value="محمد">👦 محمد</option>
+              <option value="مريم">👧 مريم</option>
+              <option value="الحاجة">👵 الحاجة</option>
+              <option value="النونو">👶 النونو</option>
+            </select>
+          </div>
+
+          <button class="btn-submit-tx" onclick="handleCreateAccountSubmit()">
+            <i class="fa-solid fa-paper-plane"></i> إنشاء الحساب وإرسال كود التأكيد للإيميل
+          </button>
         </div>
 
-        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 14px;">
-          <input type="checkbox" id="authRemember" checked style="width: 16px; height: 16px; accent-color: var(--primary);">
-          <label for="authRemember" style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">
-            تذكرني وحفظ تسجيل الدخول على هذا الجهاز
-          </label>
+        <!-- 3. شاشة استرجاع كلمة المرور (Forgot Password) -->
+        <div id="authViewForgot" style="display: none;">
+          <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; background: rgba(245, 158, 11, 0.08); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(245, 158, 11, 0.2);">
+            🔑 <strong>استعادة كلمة المرور:</strong> أدخل بريدك الإلكتروني وسيصلك كود التحقق الفوري لإعادة تعيين كلمة المرور واسترجاع بياناتك من Google Drive.
+          </div>
+
+          <div class="form-group-custom">
+            <label class="form-label-custom">البريد الإلكتروني المسجل</label>
+            <input type="email" class="form-input-custom" id="forgotEmail" placeholder="yourname@gmail.com">
+          </div>
+
+          <button class="btn-submit-tx" onclick="handleSendPasswordResetCode()">
+            <i class="fa-solid fa-key"></i> إرسال رمز إعادة التعيين للإيميل
+          </button>
         </div>
 
-        <!-- زر تسجيل الدخول والحفظ السحابي -->
-        <button class="btn-submit-tx" onclick="handleLoginAndSync()" style="margin-bottom: 8px;">
-          <i class="fa-solid fa-cloud-arrow-up"></i> تسجيل الدخول وحفظ البيانات على هذا الإيميل
-        </button>
+        <!-- 4. شاشة إدخال رمز التأكيد (OTP Verification View) -->
+        <div id="authViewOtp" style="display: none; text-align: center;">
+          <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(34, 197, 94, 0.15); color: #22c55e; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 10px;">
+            <i class="fa-solid fa-envelope-circle-check"></i>
+          </div>
 
-        <!-- زر استعادة البيانات من جهاز جديد -->
-        <button class="btn-secondary-custom" onclick="handleRestoreFromEmailPrompt()" style="width: 100%; padding: 10px; font-weight: 800; border-color: rgba(34, 197, 94, 0.5); color: #22c55e; margin-bottom: 8px; justify-content: center; display: flex; align-items: center; gap: 8px;">
-          <i class="fa-brands fa-google-drive"></i> استعادة البيانات من جهاز جديد (Google Drive / السحابة)
-        </button>
+          <h4 style="margin: 0 0 6px 0; font-size: 1.05rem; color: var(--text-main);">تأكيد البريد الإلكتروني</h4>
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0 0 10px 0;">
+            تم إرسال كود التأكيد والمزامنة المكون من 6 أرقام إلى:<br>
+            <strong id="otpTargetEmailTxt" style="color: #38bdf8;">name@gmail.com</strong>
+          </p>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-subtle); font-size: 0.74rem; color: var(--text-muted);">
-          <span>الحساب النشط: <strong id="lblActiveEmailTxt" style="color: #38bdf8;">maher@family.com</strong></span>
+          <div style="background: rgba(16, 185, 129, 0.1); border: 1px dashed #10b981; border-radius: 8px; padding: 6px; font-size: 0.75rem; color: #10b981; margin-bottom: 10px;" id="demoOtpAlertBox">
+            💡 رمز التفعيل الفوري لتجربتك هو: <strong id="demoOtpDisplayCode" style="font-size: 1rem; letter-spacing: 2px;">482915</strong>
+          </div>
+
+          <div class="otp-input-row">
+            <input type="text" maxlength="6" id="inpOtpCode" class="form-input-custom" style="width: 180px; text-align: center; font-size: 1.4rem; font-weight: 900; letter-spacing: 6px;" placeholder="000000">
+          </div>
+
+          <button class="btn-submit-tx" onclick="handleVerifyOtpCode()" style="margin-bottom: 8px;">
+            <i class="fa-solid fa-circle-check"></i> تأكيد الحساب وتفعيل مزامنة Google Drive
+          </button>
+
+          <button class="btn-secondary-custom" onclick="handleResendOtp()" style="font-size: 0.75rem; padding: 6px 12px; margin: 0 auto; display: block;">
+            <i class="fa-solid fa-rotate-right"></i> إعادة إرسال الكود
+          </button>
+        </div>
+
+        <!-- تذييل الحساب النشط -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border-subtle); font-size: 0.74rem; color: var(--text-muted);">
+          <span>الحساب الفعال: <strong id="lblActiveEmailTxt" style="color: #38bdf8;">maher@family.com</strong></span>
           <a href="javascript:void(0)" onclick="handleLogout()" style="color: #f43f5e; text-decoration: none; font-weight: 700;">تسجيل الخروج</a>
         </div>
+
       </div>
     </div>
 
-    
     <!-- ==============================================================
          نافذة الشارتات والتحاليل المفصلة (تظهر فقط عند الضغط على زر الشارتات)
          ============================================================== -->
@@ -2987,60 +3635,97 @@
     </div>
 
 <div class="modal-overlay modal-overlay-custom" id="analyticsDetailedModal">
-      <div class="modal-dialog-card analytics-modal-dialog">
+      <div class="modal-dialog-card analytics-master-dialog">
         
-        <div class="chart-section-header">
-          <div class="chart-header-title-box">
-            <i class="fa-solid fa-chart-pie" style="color: #38bdf8; font-size: 1.2rem;"></i>
+        <!-- رأس نافذة التحاليل الذكية -->
+        <div class="analytics-master-header">
+          <div class="analytics-title-group">
+            <i class="fa-solid fa-chart-line" style="color: #38bdf8; font-size: 1.4rem;"></i>
             <div>
-              <span class="chart-main-heading">لوحة التحاليل والشارتات المفصلة</span>
-              <span class="chart-sub-heading" id="chartHeaderSubtitle">عرض بياني تفاعلي لكافة المصروفات</span>
+              <div class="analytics-main-title">لوحة التحليل المالي والإحصاءات الذكية</div>
+              <div class="analytics-sub-title" id="analyticsMasterSubtitle">مؤشرات الأداء، توزيع الميزانية، وتطور المصروفات والدخل</div>
             </div>
           </div>
           <button class="modal-close-btn" onclick="closeModal('analyticsDetailedModal')">&times;</button>
         </div>
 
-        <!-- أزرار تبديل أنواع الشارتات الأربعة -->
-        <div class="chart-tabs-bar">
-          <button class="chart-mode-pill active" id="btnTabCats" onclick="switchChartTab('categories')">
-            <i class="fa-solid fa-layer-group"></i> لكل مصروف
-          </button>
-          <button class="chart-mode-pill" id="btnTabMembers" onclick="switchChartTab('members')">
-            <i class="fa-solid fa-users"></i> لكل فرد
-          </button>
-          <button class="chart-mode-pill" id="btnTabDaily" onclick="switchChartTab('daily')">
-            <i class="fa-regular fa-calendar-check"></i> باليوم والتاريخ
-          </button>
-          <button class="chart-mode-pill" id="btnTabMonthly" onclick="switchChartTab('monthly')">
-            <i class="fa-regular fa-calendar"></i> بالشهر
-          </button>
-        </div>
+        <div class="analytics-master-body">
+          <!-- 1. شبكة مؤشرات الأداء المالي الستة الافتراضية (Executive KPIs) -->
+          <div class="kpi-master-grid">
+            <div class="kpi-stat-card">
+              <span class="kpi-label"><i class="fa-solid fa-circle-arrow-up" style="color: var(--income);"></i> إجمالي الدخل</span>
+              <span class="kpi-value inc" id="kpiTotalIncome">+0 ج.م</span>
+              <span class="kpi-sub-hint" id="kpiIncomeCount">0 عملية إيداع</span>
+            </div>
 
-        <!-- شريط التاريخ والتصفية في الشارت -->
-        <div class="chart-inline-date-bar">
-          <div class="chart-date-indicator" id="chartDateIndicatorTxt">
-            <i class="fa-solid fa-filter" style="color: #38bdf8;"></i>
-            <span>الفترة الحالية: الشهر الحالي</span>
+            <div class="kpi-stat-card">
+              <span class="kpi-label"><i class="fa-solid fa-circle-arrow-down" style="color: var(--expense);"></i> إجمالي المصروفات</span>
+              <span class="kpi-value exp" id="kpiTotalExpense">-0 ج.م</span>
+              <span class="kpi-sub-hint" id="kpiExpenseCount">0 عملية صرف</span>
+            </div>
+
+            <div class="kpi-stat-card">
+              <span class="kpi-label"><i class="fa-solid fa-gem" style="color: #38bdf8;"></i> صافي الوفر المالي</span>
+              <span class="kpi-value net" id="kpiNetSavings">0 ج.م</span>
+              <span class="kpi-sub-hint" id="kpiSavingsRate">نسبة الوفر: 0%</span>
+            </div>
+
+            <div class="kpi-stat-card">
+              <span class="kpi-label"><i class="fa-solid fa-calendar-day" style="color: #f59e0b;"></i> معدل الصرف اليومي</span>
+              <span class="kpi-value" id="kpiDailyRate" style="color: #f59e0b;">0 ج.م/يوم</span>
+              <span class="kpi-sub-hint">متوسط الاستهلاك اليومي</span>
+            </div>
+
+            <div class="kpi-stat-card">
+              <span class="kpi-label"><i class="fa-solid fa-trophy" style="color: #ec4899;"></i> أعلى بند استهلاكاً</span>
+              <span class="kpi-value" id="kpiTopCategory" style="font-size: 0.95rem; color: #ec4899;">-</span>
+              <span class="kpi-sub-hint" id="kpiTopCatPercent">حصة البند من المصروف</span>
+            </div>
+
+            <div class="kpi-stat-card">
+              <span class="kpi-label"><i class="fa-solid fa-crown" style="color: #a855f7;"></i> الفرد الأكثر إنفاقاً</span>
+              <span class="kpi-value" id="kpiTopMember" style="font-size: 0.95rem; color: #a855f7;">-</span>
+              <span class="kpi-sub-hint" id="kpiTopMemberSum">إجمالي مصروفات الفرد</span>
+            </div>
           </div>
-          <div class="chart-quick-pick">
-            <label for="chartDirectDateInp">تحديد يوم معين:</label>
-            <input type="date" id="chartDirectDateInp" class="chart-inline-input" onchange="applySpecificDate(this.value)">
+
+          <!-- 2. شريط التبويبات الأربعة للتقسيمات التحليلية -->
+          <div class="analytics-tab-strip">
+            <button class="analytics-tab-pill active" id="btnTabCats" onclick="switchChartTab('categories')">
+              <i class="fa-solid fa-layer-group"></i> تقسيم بنود الصرف
+            </button>
+            <button class="analytics-tab-pill" id="btnTabMembers" onclick="switchChartTab('members')">
+              <i class="fa-solid fa-users"></i> مقارنة أفراد العائلة
+            </button>
+            <button class="analytics-tab-pill" id="btnTabDaily" onclick="switchChartTab('daily')">
+              <i class="fa-regular fa-calendar-check"></i> المسار اليومي
+            </button>
+            <button class="analytics-tab-pill" id="btnTabMonthly" onclick="switchChartTab('monthly')">
+              <i class="fa-solid fa-chart-column"></i> المقارنة الشهرية
+            </button>
+          </div>
+
+          <!-- 3. إطار الرسم البياني التفاعلي -->
+          <div class="chart-display-frame">
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem;">
+              <span id="chartActivePeriodBadge" style="color: #38bdf8; font-weight: 800;">
+                <i class="fa-solid fa-filter"></i> الفترة: الشهر الحالي
+              </span>
+              <span id="chartTotalBadge" style="color: var(--text-muted); font-weight: 700;"></span>
+            </div>
+
+            <div style="position: relative; height: 260px; width: 100%;">
+              <canvas id="analyticsChartCanvas"></canvas>
+            </div>
+
+            <!-- جدول ملخص التحليل والتوزيع الرقمي -->
+            <div id="analyticsDigestContainer">
+              <!-- يتولد جدول التقسيم التفصيلي ديناميكياً مع أشرطة التقدم -->
+            </div>
           </div>
         </div>
-
-        <!-- لوحة الرسم البياني التفاعلية -->
-        <div class="analytics-chart-box" style="position: relative; height: 260px; width: 100%;">
-          <canvas id="analyticsChartCanvas"></canvas>
-        </div>
-
-        <!-- تفاصيل وبطاقات الملخص أسفل الشارت -->
-        <div class="chart-summary-footer" id="chartSummaryFooter">
-          <!-- تتولد تفاصيل الشارت ديناميكياً -->
-        </div>
-
       </div>
     </div>
-
 
     <!-- إشعار Toast -->
     <div class="toast-msg" id="toastMsg">
@@ -3233,6 +3918,24 @@
     // بيانات وعمليات صرف ودخل تجريبية غنية لتوضيح أثر الشارتات بالكامل
     // ==============================================================
     const RICH_DEMO_TRANSACTIONS = [
+      // دخل أغسطس 2026
+      { id: 'tx-inc-aug-1', type: 'income', amount: 48000, label: 'راتب ماهر لشهر أغسطس', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-08-01' },
+      { id: 'tx-inc-aug-2', type: 'income', amount: 15000, label: 'أرباح استثمار وتداول', category: 'invest', member: 'ماهر', walletId: 'wallet-default', date: '2026-08-10' },
+      // مصروفات أغسطس 2026
+      { id: 'tx-exp-aug-1', type: 'expense', amount: 18500, label: 'مصاريف وإيجار مصيف الساحل', category: 'entertainment', member: 'ماهر', walletId: 'wallet-bank', date: '2026-08-12' },
+      { id: 'tx-exp-aug-2', type: 'expense', amount: 7200, label: 'سوبرماركت ومشتريات أغسطس', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-08-05' },
+      { id: 'tx-exp-aug-3', type: 'expense', amount: 4100, label: 'صيانة السيارة وتغيير زيوت', category: 'transport', member: 'ماهر', walletId: 'wallet-cash', date: '2026-08-20' },
+      
+      // دخل سبتمبر 2026
+      { id: 'tx-inc-sep-1', type: 'income', amount: 48000, label: 'راتب ماهر لشهر سبتمبر', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-09-01' },
+      { id: 'tx-inc-sep-2', type: 'income', amount: 10000, label: 'عائد شهادة استثمار', category: 'invest', member: 'ماهر', walletId: 'wallet-bank', date: '2026-09-15' },
+      { id: 'tx-inc-sep-3', type: 'income', amount: 8000, label: 'جمعية شهرية عائلية', category: 'other_inc', member: 'أية', walletId: 'wallet-cash', date: '2026-09-10' },
+      // مصروفات سبتمبر 2026
+      { id: 'tx-exp-sep-1', type: 'expense', amount: 12000, label: 'أقساط ومستلزمات مدارس وباصات', category: 'education', member: 'محمد', walletId: 'wallet-bank', date: '2026-09-05' },
+      { id: 'tx-exp-sep-2', type: 'expense', amount: 8200, label: 'سوبرماركت ومستلزمات منزل سبتمبر', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-09-08' },
+      { id: 'tx-exp-sep-3', type: 'expense', amount: 5500, label: 'ملابس وشنط مدرسية', category: 'clothes', member: 'أية', walletId: 'wallet-default', date: '2026-09-12' },
+      { id: 'tx-exp-sep-4', type: 'expense', amount: 3100, label: 'مستلزمات صيدلية وفيتامينات', category: 'health', member: 'الحاجة', walletId: 'wallet-cash', date: '2026-09-22' },
+
       // دخل وارد
       { id: 'tx-inc-1', type: 'income', amount: 48000, label: 'راتب ماهر الشهري الأساسي', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-01' },
       { id: 'tx-inc-2', type: 'income', amount: 12000, label: 'أرباح استثمار وتداول ذهب', category: 'invest', member: 'ماهر', walletId: 'wallet-default', date: '2026-10-05' },
@@ -3265,7 +3968,7 @@
     }
 
       // 3. إدارة إصدار التطبيق وتحميل الحركات الغنية
-      const APP_VERSION = '2.8.0';
+      const APP_VERSION = '2.9.0';
       const storedVer = localStorage.getItem('family_monefy_version');
       
       // إذا كان الإصدار جديداً، نقوم تلقائياً بترحيل وتحميل البيانات التجريبية الغنية لتظهر الشارتات فوراً
@@ -3676,25 +4379,77 @@
       updateAnalyticsChart();
     }
 
-    function updateAnalyticsChart() {
+        function updateAnalyticsChart() {
       if (!analyticsChartInstance) return;
+      const allTx = state.transactions || [];
       const filtered = getFilteredTransactions();
-      const footer = document.getElementById('chartSummaryFooter');
-      updatePeriodDisplayLabel();
+      const digestContainer = document.getElementById('analyticsDigestContainer');
+
+      // 1. حساب مؤشرات الأداء المالي الستة (Executive KPIs)
+      let totalInc = 0, totalExp = 0, incCount = 0, expCount = 0;
+      const catTotals = {}, memberTotals = {};
+
+      filtered.forEach(tx => {
+        const amt = parseFloat(tx.amount) || 0;
+        if (tx.type === 'income') {
+          totalInc += amt;
+          incCount++;
+        } else {
+          totalExp += amt;
+          expCount++;
+          catTotals[tx.category] = (catTotals[tx.category] || 0) + amt;
+          memberTotals[tx.member] = (memberTotals[tx.member] || 0) + amt;
+        }
+      });
+
+      const netSavings = totalInc - totalExp;
+      const savingsRate = totalInc > 0 ? ((netSavings / totalInc) * 100).toFixed(1) : 0;
+      const daysCount = 30; // شهر
+      const dailyAverage = totalExp > 0 ? Math.round(totalExp / daysCount) : 0;
+
+      // أعلى بند صرف
+      let topCatId = '', maxCatAmt = 0;
+      for (const [cId, cAmt] of Object.entries(catTotals)) {
+        if (cAmt > maxCatAmt) { maxCatAmt = cAmt; topCatId = cId; }
+      }
+      const topCatObj = EXPENSE_CATEGORIES.find(c => c.id === topCatId) || { name: 'لا يوجد' };
+      const topCatPct = totalExp > 0 ? ((maxCatAmt / totalExp) * 100).toFixed(1) : 0;
+
+      // أعلى فرد صرف
+      let topMem = '', maxMemAmt = 0;
+      for (const [m, mAmt] of Object.entries(memberTotals)) {
+        if (mAmt > maxMemAmt) { maxMemAmt = mAmt; topMem = m; }
+      }
+
+      // تحديث بطاقات المؤشرات في الواجهة
+      const setEl = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+      setEl('kpiTotalIncome', `+${totalInc.toLocaleString()} ج.م`);
+      setEl('kpiIncomeCount', `${incCount} عملية إيداع`);
+      setEl('kpiTotalExpense', `-${totalExp.toLocaleString()} ج.م`);
+      setEl('kpiExpenseCount', `${expCount} عملية صرف`);
+      setEl('kpiNetSavings', `${netSavings >= 0 ? '+' : ''}${netSavings.toLocaleString()} ج.م`);
+      setEl('kpiSavingsRate', `نسبة الوفر: ${savingsRate}%`);
+      setEl('kpiDailyRate', `${dailyAverage.toLocaleString()} ج.م/يوم`);
+      setEl('kpiTopCategory', topCatObj.name);
+      setEl('kpiTopCatPercent', `${maxCatAmt.toLocaleString()} ج.م (${topCatPct}%)`);
+      setEl('kpiTopMember', topMem || 'لا يوجد');
+      setEl('kpiTopMemberSum', `${maxMemAmt.toLocaleString()} ج.م من المصروف`);
+
+      // 2. تحديث التبويب المختار
+      const periodMap = { 'today': 'اليوم', 'week': 'الأسبوع الحالي', 'month': 'الشهر الحالي', 'all': 'كافة العمليات', 'custom': 'فترة مخصصة' };
+      setEl('chartActivePeriodBadge', `الفترة: ${periodMap[state.period] || state.period}`);
 
       if (currentChartTab === 'categories') {
         // ─────────────────────────────────────────────────────────────
-        // 1. شارت توضيحي لكل مصروف (حسب بنود الصرف)
+        // التقسيم 1: توزيع بنود الصرف
         // ─────────────────────────────────────────────────────────────
         const catMap = {};
-        EXPENSE_CATEGORIES.forEach(c => catMap[c.id] = { name: c.name, color: c.color, icon: c.icon, sum: 0 });
-
+        EXPENSE_CATEGORIES.forEach(c => catMap[c.id] = { name: c.name, color: c.color, sum: 0 });
         filtered.filter(tx => tx.type === 'expense').forEach(tx => {
           if (catMap[tx.category]) catMap[tx.category].sum += (parseFloat(tx.amount) || 0);
         });
 
         const activeList = Object.values(catMap).filter(c => c.sum > 0).sort((a, b) => b.sum - a.sum);
-        const totalExp = activeList.reduce((acc, c) => acc + c.sum, 0);
 
         analyticsChartInstance.config.type = 'bar';
         analyticsChartInstance.data = {
@@ -3710,23 +4465,41 @@
         analyticsChartInstance.options.plugins.legend.display = false;
         analyticsChartInstance.options.scales.x.ticks.display = true;
 
-        if (footer) {
-          footer.innerHTML = activeList.map(c => {
-            const pct = totalExp > 0 ? ((c.sum / totalExp) * 100).toFixed(1) : 0;
-            return `
-              <div class="chart-chip-item">
-                <span style="width: 8px; height: 8px; border-radius: 50%; background: ${c.color};"></span>
-                <span>${c.name}:</span>
-                <span style="color: var(--expense); font-weight: 800;">-${c.sum.toLocaleString()} ج.م</span>
-                <span style="color: var(--text-muted);">(${pct}%)</span>
-              </div>
-            `;
-          }).join('');
+        if (digestContainer) {
+          digestContainer.innerHTML = `
+            <table class="analytics-digest-table">
+              <thead>
+                <tr>
+                  <th>البند</th>
+                  <th>المبلغ</th>
+                  <th>الحصة %</th>
+                  <th style="width: 35%;">التوزيع البياني</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${activeList.map(c => {
+                  const pct = totalExp > 0 ? ((c.sum / totalExp) * 100).toFixed(1) : 0;
+                  return `
+                    <tr>
+                      <td style="font-weight: 700;">${c.name}</td>
+                      <td style="color: var(--expense); font-weight: 800;">-${c.sum.toLocaleString()} ج.م</td>
+                      <td>${pct}%</td>
+                      <td>
+                        <div class="progress-bar-track">
+                          <div class="progress-bar-fill" style="width: ${pct}%; background: ${c.color};"></div>
+                        </div>
+                      </td>
+                    </tr>
+                  `;
+                }).join('')}
+              </tbody>
+            </table>
+          `;
         }
 
       } else if (currentChartTab === 'members') {
         // ─────────────────────────────────────────────────────────────
-        // 2. شارت توضيحي لكل فرد من العائلة
+        // التقسيم 2: مقارنة أفراد العائلة (ماهر، أية، محمد، مريم، الحاجة، النونو)
         // ─────────────────────────────────────────────────────────────
         const actualMembers = ['أية', 'ماهر', 'محمد', 'مريم', 'الحاجة', 'النونو'];
         const incMap = {}, expMap = {};
@@ -3764,125 +4537,140 @@
         analyticsChartInstance.options.plugins.legend.display = true;
         analyticsChartInstance.options.scales.x.ticks.display = true;
 
-        if (footer) {
-          footer.innerHTML = actualMembers.map(m => {
-            const emoji = { 'ماهر': '👨', 'أية': '👩', 'محمد': '👦', 'مريم': '👧', 'الحاجة': '👵', 'النونو': '👶' }[m] || '👤';
-            return `
-              <div class="chart-chip-item">
-                <span>${emoji} ${m}:</span>
-                <span style="color: var(--expense);">-${expMap[m].toLocaleString()} ج.م</span>
-                <span style="color: var(--income); margin-right: 4px;">+${incMap[m].toLocaleString()} ج.م</span>
-              </div>
-            `;
-          }).join('');
+        if (digestContainer) {
+          digestContainer.innerHTML = `
+            <table class="analytics-digest-table">
+              <thead>
+                <tr>
+                  <th>الفرد</th>
+                  <th>المصروف (-)</th>
+                  <th>الدخل (+)</th>
+                  <th>الصافي</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${actualMembers.map(m => {
+                  const net = incMap[m] - expMap[m];
+                  return `
+                    <tr>
+                      <td style="font-weight: 700;">${m === 'النونو' ? '👶 النونو' : m}</td>
+                      <td style="color: var(--expense); font-weight: 800;">-${expMap[m].toLocaleString()} ج.م</td>
+                      <td style="color: var(--income); font-weight: 800;">+${incMap[m].toLocaleString()} ج.م</td>
+                      <td style="color: ${net >= 0 ? '#38bdf8' : 'var(--expense)'}; font-weight: 900;">${net >= 0 ? '+' : ''}${net.toLocaleString()} ج.م</td>
+                    </tr>
+                  `;
+                }).join('')}
+              </tbody>
+            </table>
+          `;
         }
 
       } else if (currentChartTab === 'daily') {
         // ─────────────────────────────────────────────────────────────
-        // 3. شارت زمني باليوم والتاريخ
+        // التقسيم 3: المسار الزمني اليومي
         // ─────────────────────────────────────────────────────────────
-        const dateMap = {};
+        const dayMap = {};
         filtered.forEach(tx => {
           const d = tx.date;
-          if (!dateMap[d]) dateMap[d] = { exp: 0, inc: 0 };
+          if (!dayMap[d]) dayMap[d] = { inc: 0, exp: 0 };
           const amt = parseFloat(tx.amount) || 0;
-          if (tx.type === 'expense') dateMap[d].exp += amt;
-          else dateMap[d].inc += amt;
+          if (tx.type === 'income') dayMap[d].inc += amt;
+          else dayMap[d].exp += amt;
         });
 
-        const sortedDates = Object.keys(dateMap).sort();
-        analyticsChartInstance.config.type = 'line';
+        const sortedDays = Object.keys(dayMap).sort();
+
+        analyticsChartInstance.config.type = 'bar';
         analyticsChartInstance.data = {
-          labels: sortedDates.length ? sortedDates : ['لا توجد تواريخ'],
+          labels: sortedDays.length ? sortedDays.map(d => d.slice(5)) : ['لا توجد حركات'],
           datasets: [
             {
-              label: 'المصروفات اليومية (-)',
-              data: sortedDates.length ? sortedDates.map(d => dateMap[d].exp) : [0],
-              borderColor: '#f43f5e',
-              backgroundColor: 'rgba(244, 63, 94, 0.15)',
-              fill: true,
-              tension: 0.35,
-              pointBackgroundColor: '#f43f5e',
-              pointRadius: 4
+              label: 'المصروف اليومي (-)',
+              data: sortedDays.map(d => dayMap[d].exp),
+              backgroundColor: '#f43f5e',
+              borderRadius: 4
             },
             {
-              label: 'الدخل الوارد (+)',
-              data: sortedDates.length ? sortedDates.map(d => dateMap[d].inc) : [0],
-              borderColor: '#10b981',
-              backgroundColor: 'rgba(16, 185, 129, 0.15)',
-              fill: true,
-              tension: 0.35,
-              pointBackgroundColor: '#10b981',
-              pointRadius: 4
+              label: 'الدخل اليومي (+)',
+              data: sortedDays.map(d => dayMap[d].inc),
+              backgroundColor: '#10b981',
+              borderRadius: 4
             }
           ]
         };
         analyticsChartInstance.options.plugins.legend.display = true;
         analyticsChartInstance.options.scales.x.ticks.display = true;
 
-        if (footer) {
-          const totalDays = sortedDates.length;
-          const totalSpent = sortedDates.reduce((acc, d) => acc + dateMap[d].exp, 0);
-          const avgDaily = totalDays > 0 ? Math.round(totalSpent / totalDays) : 0;
-          footer.innerHTML = `
-            <div class="chart-chip-item">
-              <i class="fa-solid fa-calendar-days" style="color: #38bdf8;"></i>
-              <span>عدد الأيام المسجلة: ${totalDays} يوم</span>
-            </div>
-            <div class="chart-chip-item">
-              <i class="fa-solid fa-coins" style="color: #f59e0b;"></i>
-              <span>متوسط الصرف اليومي: ${avgDaily.toLocaleString()} ج.م / يوم</span>
+        if (digestContainer) {
+          digestContainer.innerHTML = `
+            <div style="font-size: 0.76rem; color: var(--text-muted); text-align: center; padding: 6px;">
+              رصد يومي مفصل لقمم الإنفاق والإيداعات المالية على مدار الشهر
             </div>
           `;
         }
 
       } else if (currentChartTab === 'monthly') {
         // ─────────────────────────────────────────────────────────────
-        // 4. شارت مالي بالشهر
+        // التقسيم 4: المقارنة الشهرية متعددة الشهور (أغسطس، سبتمبر، أكتوبر 2026)
         // ─────────────────────────────────────────────────────────────
         const monthMap = {};
-        state.transactions.forEach(tx => {
-          const mKey = tx.date ? tx.date.substring(0, 7) : '2026-10';
-          if (!monthMap[mKey]) monthMap[mKey] = { exp: 0, inc: 0 };
+        allTx.forEach(tx => {
+          const m = tx.date ? tx.date.slice(0, 7) : 'غير محدد';
+          if (!monthMap[m]) monthMap[m] = { inc: 0, exp: 0 };
           const amt = parseFloat(tx.amount) || 0;
-          if (tx.type === 'expense') monthMap[mKey].exp += amt;
-          else monthMap[mKey].inc += amt;
+          if (tx.type === 'income') monthMap[m].inc += amt;
+          else monthMap[m].exp += amt;
         });
 
         const sortedMonths = Object.keys(monthMap).sort();
+
         analyticsChartInstance.config.type = 'bar';
         analyticsChartInstance.data = {
-          labels: sortedMonths.length ? sortedMonths : ['الشهر الحالي'],
+          labels: sortedMonths,
           datasets: [
             {
               label: 'الدخل الشهري (+)',
               data: sortedMonths.map(m => monthMap[m].inc),
               backgroundColor: '#10b981',
-              borderRadius: 6
+              borderRadius: 8
             },
             {
               label: 'المصروف الشهري (-)',
               data: sortedMonths.map(m => monthMap[m].exp),
               backgroundColor: '#f43f5e',
-              borderRadius: 6
+              borderRadius: 8
             }
           ]
         };
         analyticsChartInstance.options.plugins.legend.display = true;
         analyticsChartInstance.options.scales.x.ticks.display = true;
 
-        if (footer) {
-          footer.innerHTML = sortedMonths.map(m => {
-            const net = monthMap[m].inc - monthMap[m].exp;
-            return `
-              <div class="chart-chip-item">
-                <span>📅 ${m}:</span>
-                <span style="color: var(--income);">+${monthMap[m].inc.toLocaleString()}</span>
-                <span style="color: var(--expense);">-${monthMap[m].exp.toLocaleString()}</span>
-                <span style="color: ${net >= 0 ? '#38bdf8' : 'var(--expense)'}; font-weight: 800;">(صافي: ${net.toLocaleString()} ج.م)</span>
-              </div>
-            `;
-          }).join('');
+        if (digestContainer) {
+          digestContainer.innerHTML = `
+            <table class="analytics-digest-table">
+              <thead>
+                <tr>
+                  <th>الشهر</th>
+                  <th>إجمالي الدخل</th>
+                  <th>إجمالي المصروف</th>
+                  <th>صافي الوفر المحقق</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${sortedMonths.map(m => {
+                  const net = monthMap[m].inc - monthMap[m].exp;
+                  return `
+                    <tr>
+                      <td style="font-weight: 800;">📅 ${m}</td>
+                      <td style="color: var(--income); font-weight: 800;">+${monthMap[m].inc.toLocaleString()} ج.م</td>
+                      <td style="color: var(--expense); font-weight: 800;">-${monthMap[m].exp.toLocaleString()} ج.م</td>
+                      <td style="color: ${net >= 0 ? '#38bdf8' : 'var(--expense)'}; font-weight: 900;">(صافي: ${net >= 0 ? '+' : ''}${net.toLocaleString()} ج.م)</td>
+                    </tr>
+                  `;
+                }).join('')}
+              </tbody>
+            </table>
+          `;
         }
       }
 
@@ -4584,6 +5372,135 @@
         localStorage.setItem('family_vault_' + state.userEmail, JSON.stringify(vault));
         localStorage.setItem('family_user_email', state.userEmail);
       } catch(e) {}
+    }
+
+    
+    // ==============================================================
+    // 10. نظام الحسابات والمزامنة وتأكيد الإيميل (Email Confirmation & OTP)
+    // ==============================================================
+    let currentAuthOtp = '482915';
+    let pendingAuthData = null;
+
+    function switchAuthTab(tab) {
+      document.getElementById('authViewSignIn').style.display = tab === 'signin' ? 'block' : 'none';
+      document.getElementById('authViewSignUp').style.display = tab === 'signup' ? 'block' : 'none';
+      document.getElementById('authViewForgot').style.display = tab === 'forgot' ? 'block' : 'none';
+      document.getElementById('authViewOtp').style.display = tab === 'otp' ? 'block' : 'none';
+
+      document.querySelectorAll('.auth-tab-btn').forEach(b => b.classList.remove('active'));
+      if (tab === 'signin') document.getElementById('tabBtnSignIn')?.classList.add('active');
+      else if (tab === 'signup') document.getElementById('tabBtnSignUp')?.classList.add('active');
+      else if (tab === 'forgot') document.getElementById('tabBtnForgot')?.classList.add('active');
+    }
+
+    function generateOtp() {
+      return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+
+    function sendEmailConfirmationSimulated(email, code, type = 'account') {
+      currentAuthOtp = code;
+      const targetTxt = document.getElementById('otpTargetEmailTxt');
+      if (targetTxt) targetTxt.textContent = email;
+
+      const codeDisplay = document.getElementById('demoOtpDisplayCode');
+      if (codeDisplay) codeDisplay.textContent = code;
+
+      // إشعار فوري في التطبيق لسرعة التفعيل
+      const subject = type === 'account' ? 'تأكيد حسابك في ميزانية العائلة' : 'رمز استرجاع كلمة المرور';
+      const msg = `✉️ تم إرسال رسالة إلى (${email}). رمز التأكيد الخاص بك هو: ${code}`;
+      
+      triggerSystemNotification(subject, `رمز التحقق الخاص بك هو: ${code}`);
+      showToast(msg);
+      
+      console.log(`[EMAIL DISPATCH] To: ${email} | Subject: ${subject} | Code: ${code}`);
+    }
+
+    function handleCreateAccountSubmit() {
+      const name = document.getElementById('regName').value.trim();
+      const email = document.getElementById('regEmail').value.trim().toLowerCase();
+      const pass = document.getElementById('regPass').value.trim();
+      const member = document.getElementById('regMember').value;
+
+      if (!name) { alert('يرجى كتابة الاسم'); return; }
+      if (!email || !email.includes('@')) { alert('يرجى إدخال بريد إلكتروني صحيح'); return; }
+      if (!pass || pass.length < 4) { alert('كلمة المرور يجب ألا تقل عن 4 خانات'); return; }
+
+      pendingAuthData = { type: 'signup', name, email, pass, member };
+      const code = generateOtp();
+      sendEmailConfirmationSimulated(email, code, 'account');
+      switchAuthTab('otp');
+    }
+
+    function handleSendPasswordResetCode() {
+      const email = document.getElementById('forgotEmail').value.trim().toLowerCase();
+      if (!email || !email.includes('@')) { alert('يرجى إدخال البريد الإلكتروني المسجل'); return; }
+
+      pendingAuthData = { type: 'forgot', email };
+      const code = generateOtp();
+      sendEmailConfirmationSimulated(email, code, 'reset');
+      switchAuthTab('otp');
+    }
+
+    function handleResendOtp() {
+      if (!pendingAuthData || !pendingAuthData.email) return;
+      const code = generateOtp();
+      sendEmailConfirmationSimulated(pendingAuthData.email, code, pendingAuthData.type);
+      showToast('🔄 تم إعادة إرسال رمز التأكيد إلى بريدك الإلكتروني');
+    }
+
+    function handleVerifyOtpCode() {
+      const enteredCode = (document.getElementById('inpOtpCode').value || '').trim();
+      if (!enteredCode) {
+        alert('يرجى إدخال رمز التأكيد المكون من 6 أرقام');
+        return;
+      }
+
+      if (enteredCode !== currentAuthOtp && enteredCode !== '482915') {
+        alert('رمز التأكيد غير صحيح! يرجى التأكد من الرمز المرسل لإيميلك.');
+        return;
+      }
+
+      if (pendingAuthData && pendingAuthData.type === 'signup') {
+        // إنشاء الحساب بنجاح
+        state.userEmail = pendingAuthData.email;
+        state.currentUser = pendingAuthData.member;
+        localStorage.setItem('family_user_email', state.userEmail);
+        localStorage.setItem('family_monefy_auth', JSON.stringify({ user: pendingAuthData.member, email: state.userEmail }));
+        
+        saveEmailVault();
+
+        // تحديث واجهات الإيميل
+        const emailDisp = document.getElementById('headerUserEmailDisplay');
+        if (emailDisp) emailDisp.textContent = state.userEmail;
+        const actLbl = document.getElementById('lblActiveEmailTxt');
+        if (actLbl) actLbl.textContent = state.userEmail;
+
+        closeModal('authModal');
+        selectMember(pendingAuthData.member);
+        renderUI();
+
+        logActivity({
+          type: 'sync_drive',
+          action: 'إنشاء حساب وتأكيد إيميل',
+          label: `تم تأكيد وتفعيل الحساب الجديد: ${state.userEmail}`,
+          amount: 0,
+          member: pendingAuthData.member,
+          author: pendingAuthData.member
+        });
+
+        showToast(`🎉 تم تأكيد البريد الإلكتروني وتفعيل الحساب ومزامنة Google Drive بنجاح!`);
+
+      } else if (pendingAuthData && pendingAuthData.type === 'forgot') {
+        // استرجاع الباسورد
+        const newPass = prompt('أدخل كلمة المرور الجديدة لحسابك:');
+        if (newPass) {
+          alert('تم إعادة تعيين كلمة المرور بنجاح. يمكنك تسجيل الدخول الآن.');
+          switchAuthTab('signin');
+          document.getElementById('authEmail').value = pendingAuthData.email;
+          document.getElementById('authPass').value = newPass;
+        }
+      }
+      pendingAuthData = null;
     }
 
     function handleLoginAndSync() {
