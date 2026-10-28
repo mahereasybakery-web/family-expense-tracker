@@ -1640,6 +1640,19 @@
       transform: translateX(-50%) translateY(0);
     }
   </style>
+  <script>
+    // إلغاء أي Service Worker قديم ومسح التخزين المؤقت فوراً
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        for (let r of regs) r.unregister();
+      }).catch(function(e) {});
+    }
+    if ('caches' in window) {
+      caches.keys().then(function(keys) {
+        for (let k of keys) caches.delete(k);
+      }).catch(function(e) {});
+    }
+  </script>
 </head>
 <body>
 
@@ -4151,7 +4164,21 @@
       showToast(`🔢 تم إدراج المبلغ (${val} ج.م) في خانة المبلغ بنجاح`);
     }
 
-    window.addEventListener('DOMContentLoaded', initApp);
+        // تشغيل فوري بدون انتظار إذا كانت الصفحة قد تم تحميلها بالفعل
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
+    // احتياط إضافي لمتصفحات الهواتف لضمان التحديث التلقائي
+    setTimeout(() => {
+      try {
+        const amtEl = document.getElementById('wheelAmount');
+        if (amtEl && (amtEl.textContent === '0.00 ج.م' || amtEl.textContent === '0 ج.م') && state.transactions.length > 0) {
+          renderUI();
+        }
+      } catch(e) {}
+    }, 400);
   </script>
 </body>
 </html>
