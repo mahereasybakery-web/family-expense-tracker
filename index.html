@@ -1918,10 +1918,51 @@
   </div>
 
   <script>
+    
+    // ==========================================
+    // محرك الإشعارات والصوت الفوري للمزامنة
+    // ==========================================
+    function playNotificationChime() {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+        osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15); // A5
+        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.35);
+      } catch(e) {}
+    }
+
+    function requestNotificationPermission() {
+      if ('Notification' in window && Notification.permission === 'default') {
+        Notification.requestPermission();
+      }
+    }
+
+    function triggerSystemNotification(title, body) {
+      playNotificationChime();
+      if ('Notification' in window && Notification.permission === 'granted') {
+        try {
+          new Notification(title, {
+            body: body,
+            icon: 'https://cdn-icons-png.flaticon.com/512/3135/3135706.png',
+            dir: 'rtl'
+          });
+        } catch(e) {}
+      }
+    }
+
     // ==========================================
     // 1. تصنيفات Monefy للبنود
     // ==========================================
     const EXPENSE_CATEGORIES = [
+      { id: 'daily', name: 'مصروف يومي', icon: 'fa-hand-holding-dollar', color: '#f59e0b' },
       { id: 'food', name: 'طعام ومشتريات', icon: 'fa-basket-shopping', color: '#10b981' },
       { id: 'bills', name: 'فواتير والتزامات', icon: 'fa-file-invoice-dollar', color: '#f59e0b' },
       { id: 'transport', name: 'مواصلات وبنزين', icon: 'fa-car', color: '#3b82f6' },
@@ -2035,19 +2076,31 @@
       // بناء شبكة تصنيفات Monefy
       renderCategoriesGrid();
 
-      // الاستماع للمزامنة السحابية
+      // طلب إذن إشعارات المتصفح
+      requestNotificationPermission();
+
+      // الاستماع للمزامنة السحابية الفورية
       syncChannel.onmessage = (e) => {
         if (e.data && e.data.type === 'SYNC_TX') {
           state.transactions = e.data.transactions;
           renderUI();
-          showToast(`⚡ مزامنة: ${e.data.author} سجل: ${e.data.label}`);
+          const txInfo = e.data.tx;
+          const isExp = txInfo && txInfo.type === 'expense';
+          const msg = isExp 
+            ? `قام ${e.data.author} بتسجيل مصروف: "${e.data.label}" بمبلغ ${txInfo ? txInfo.amount : ''} ج.م`
+            : `قام ${e.data.author} بتسجيل دخل جديد: "${e.data.label}" بمبلغ ${txInfo ? txInfo.amount : ''} ج.م`;
+          
+          triggerSystemNotification('🔔 إشعار مصروفات العيلة', msg);
+          showToast(`⚡ مزامنة فورية: ${msg}`);
         } else if (e.data && e.data.type === 'SYNC_PERM') {
           state.permissions = e.data.permissions;
+          playNotificationChime();
           showToast('🔐 تم تحديث الصلاحيات');
         } else if (e.data && e.data.type === 'SYNC_WALLETS') {
           state.wallets = e.data.wallets;
           populateWalletDropdowns();
           renderUI();
+          playNotificationChime();
         }
       };
 
@@ -2636,13 +2689,15 @@
       saveTx();
       closeModal('txModal');
 
-      // إرسال المزامنة فوراً
+      // إرسال المزامنة فوراً للجميع مع تفاصيل الحركة والصوت
       syncChannel.postMessage({
         type: 'SYNC_TX',
         transactions: state.transactions,
         author: state.currentUser,
-        label: newTx.label
+        label: newTx.label,
+        tx: newTx
       });
+      playNotificationChime();
 
       renderUI();
       showToast(newTx.type === 'income' ? `💵 تم تسجيل الدخل بنجاح (+${amt} ج.م)` : `✅ تم تسجيل المصروف لحساب ${newTx.member}`);
