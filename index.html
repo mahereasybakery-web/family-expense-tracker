@@ -1,0 +1,2922 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>مصروفات العيلة ماهر ❤️ أية</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- الخطوط والأيقونات -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- المكتبات: SheetJS للإكسيل و Chart.js للشارتات التوضيحية -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --expense: #f43f5e;
+      --expense-dark: #e11d48;
+      --income: #10b981;
+      --income-bg: rgba(16, 185, 129, 0.15);
+      --bg-app: #090d16;
+      --bg-card: #131b2e;
+      --bg-card-sub: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #26334d;
+      --gold: #f59e0b;
+      --gold-dark: #d97706;
+      --font-family: 'Cairo', 'Tajawal', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      direction: rtl;
+      text-align: right;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: radial-gradient(circle at top, #162035, #090d16);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      overflow-x: hidden;
+      direction: rtl;
+    }
+
+    /* هيكل التطبيق (Frame الهاتف الحديث) */
+    .mobile-frame {
+      width: 100%;
+      max-width: 480px;
+      height: 100vh;
+      max-height: 960px;
+      background-color: var(--bg-app);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+      border: 1px solid var(--border);
+    }
+
+    @media (min-width: 481px) {
+      .mobile-frame {
+        height: 94vh;
+        border-radius: 36px;
+        border: 3px solid #334155;
+      }
+    }
+
+    /* الشريط العلوي */
+    .app-header {
+      background: linear-gradient(180deg, #162035 0%, #0f172a 100%);
+      padding: 12px 14px 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 20;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      direction: rtl;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #10b981, #047857);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .brand-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #f8fafc;
+      letter-spacing: -0.3px;
+    }
+
+    .heart-icon {
+      color: #f43f5e;
+      display: inline-block;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.22); }
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-action-header {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #f8fafc;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-action-header:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-2px);
+    }
+
+    .btn-action-header.gold-trigger {
+      background: rgba(245, 158, 11, 0.18);
+      border-color: #f59e0b;
+      color: #fbbf24;
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+    }
+
+    /* شريط البحث الشامل في البرنامج ككل */
+    .global-search-bar {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input-field {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 7px 34px 7px 12px;
+      color: #f8fafc;
+      font-size: 0.8rem;
+      font-family: inherit;
+      outline: none;
+      direction: rtl;
+      transition: all 0.2s;
+    }
+
+    .search-input-field:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .search-icon-pos {
+      position: absolute;
+      right: 12px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      pointer-events: none;
+    }
+
+    .clear-search-btn {
+      position: absolute;
+      left: 10px;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: none;
+      font-size: 0.8rem;
+    }
+
+    /* شريط اختيار المحفظة الحالية */
+    .wallet-selector-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 12px;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+    }
+
+    .wallet-info-part {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .wallet-dropdown {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: #38bdf8;
+      font-weight: 800;
+      font-size: 0.75rem;
+      border-radius: 8px;
+      padding: 3px 8px;
+      outline: none;
+      direction: rtl;
+    }
+
+    .btn-add-wallet {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* شريط أفراد العائلة (الأسماء فقط وبدون ألقاب) */
+    .avatars-container {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 4px 2px 2px;
+      scrollbar-width: none;
+      direction: rtl;
+    }
+    .avatars-container::-webkit-scrollbar { display: none; }
+
+    .avatar-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.25s;
+    }
+
+    .avatar-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .avatar-bubble {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      background: var(--bg-card-sub);
+      border: 2px solid transparent;
+      transition: all 0.25s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .avatar-card.active .avatar-bubble {
+      border-color: #38bdf8;
+      background: linear-gradient(135deg, #1e3a8a, #0284c7);
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.5);
+      transform: scale(1.06);
+    }
+
+    .avatar-name-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .avatar-card.active .avatar-name-label {
+      color: #38bdf8;
+      font-weight: 800;
+    }
+
+    /* شريط الفترات وتبديل العملة والشارت */
+    .filter-bar {
+      background: var(--bg-card);
+      padding: 6px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .period-group {
+      display: flex;
+      gap: 3px;
+      background: var(--bg-app);
+      padding: 3px;
+      border-radius: 10px;
+    }
+
+    .period-btn {
+      padding: 3px 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      transition: all 0.2s;
+    }
+
+    .period-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.4);
+    }
+
+    .right-tools-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chart-view-toggle-btn {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .currency-pill-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid #f59e0b;
+      color: #fbbf24;
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* جسم التطبيق القابل للتمرير */
+    .app-scroll-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      scrollbar-width: thin;
+    }
+
+    /* شريط بورصة TradingView */
+    .tv-market-banner {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1px solid #f59e0b;
+      border-radius: 14px;
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
+      transition: all 0.25s;
+    }
+
+    .tv-banner-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tv-icon-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #f59e0b;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 900;
+    }
+
+    .tv-rates-summary {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tv-title-line {
+      font-size: 0.68rem;
+      color: #fbbf24;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .tv-values-line {
+      font-size: 0.72rem;
+      color: #f8fafc;
+      font-weight: 700;
+      direction: rtl;
+    }
+
+    /* حاوية Monefy المركزية */
+    .monefy-central-card {
+      background: var(--bg-card);
+      border-radius: 26px;
+      padding: 16px 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .wheel-container {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .wheel-canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .wheel-center-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      direction: rtl;
+    }
+
+    .wheel-caption {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .wheel-amount {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1.2;
+      direction: rtl;
+    }
+
+    .wheel-amount.negative {
+      color: var(--expense);
+    }
+
+    .wheel-equi-pills {
+      display: flex;
+      gap: 5px;
+      margin-top: 3px;
+      direction: rtl;
+    }
+
+    .equi-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      background: rgba(255,255,255,0.08);
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: #94a3b8;
+    }
+
+    /* شريط بطاقتي الدخل والمصروف */
+    .balance-cards-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .summary-card {
+      background: var(--bg-card-sub);
+      border-radius: 14px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .summary-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .summary-card.inc .summary-icon {
+      background: var(--income-bg);
+      color: var(--income);
+    }
+
+    .summary-card.exp .summary-icon {
+      background: rgba(244, 63, 94, 0.15);
+      color: var(--expense);
+    }
+
+    .summary-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .summary-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .summary-num {
+      font-size: 0.98rem;
+      font-weight: 900;
+      direction: rtl;
+    }
+
+    .summary-card.inc .summary-num { color: var(--income); }
+    .summary-card.exp .summary-num { color: var(--expense); }
+
+    /* شبكة أيقونات Monefy المحيطة */
+    .categories-monefy-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      width: 100%;
+    }
+
+    .cat-btn {
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 7px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .cat-btn:hover {
+      transform: translateY(-2px);
+      border-color: #38bdf8;
+    }
+
+    .cat-icon-wrap {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+
+    .cat-title-text {
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--text-main);
+      text-align: center;
+    }
+
+    .cat-total-text {
+      font-size: 0.6rem;
+      font-weight: 800;
+      color: var(--expense);
+      direction: rtl;
+    }
+
+    /* بطاقة الشارتات التوضيحية التحليلية */
+    .charts-visual-section {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .chart-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chart-type-tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--bg-card-sub);
+      padding: 2px;
+      border-radius: 8px;
+    }
+
+    .chart-type-btn {
+      padding: 3px 8px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border: none;
+      background: transparent;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .chart-type-btn.active {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    .analytics-chart-box {
+      width: 100%;
+      height: 180px;
+      position: relative;
+    }
+
+    /* بطاقة سجل الحركات والعمليات */
+    .history-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .history-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #f8fafc;
+    }
+
+    .export-btns-group {
+      display: flex;
+      gap: 5px;
+    }
+
+    .btn-export-tool {
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-export-tool.excel-btn { color: #34d399; }
+    .btn-export-tool.pdf-btn { color: #f87171; }
+
+    /* قائمة العمليات */
+    .tx-scroll-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+
+    .tx-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-card-sub);
+      border-radius: 12px;
+      padding: 8px 10px;
+      border-right: 4px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .tx-row.exp { border-right-color: var(--expense); }
+    .tx-row.inc { 
+      border-right-color: var(--income); 
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.08), var(--bg-card-sub));
+    }
+
+    .tx-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tx-badge-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.85rem;
+    }
+
+    .tx-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .tx-label-name {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #f8fafc;
+    }
+
+    .tx-sub-info {
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .member-pill {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 800;
+    }
+
+    .wallet-pill {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    .tx-amount-display {
+      font-size: 0.9rem;
+      font-weight: 900;
+      direction: rtl;
+    }
+    .tx-amount-display.exp { color: var(--expense); }
+    .tx-amount-display.inc { color: var(--income); }
+
+    .btn-delete-tx {
+      background: none;
+      border: none;
+      color: #64748b;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .btn-delete-tx:hover { color: #f43f5e; }
+
+    /* الشريط السفلي لتطبيق Monefy (+ و -) */
+    .app-bottom-dock {
+      background: #0f172a;
+      border-top: 1px solid var(--border);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 20;
+    }
+
+    .action-fab {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      transition: all 0.25s;
+    }
+
+    .action-fab:hover {
+      transform: scale(1.1);
+    }
+
+    .action-fab.exp-fab {
+      background: linear-gradient(135deg, #f43f5e, #be123c);
+      box-shadow: 0 8px 20px rgba(244, 63, 94, 0.35);
+    }
+
+    .action-fab.inc-fab {
+      background: linear-gradient(135deg, #10b981, #047857);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+    }
+
+    .fab-icon-symbol {
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .fab-label-text {
+      font-size: 0.58rem;
+      font-weight: 800;
+      margin-top: 1px;
+    }
+
+    .active-user-dock-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      cursor: pointer;
+    }
+
+    .user-switcher-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 16px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .target-charge-hint {
+      font-size: 0.62rem;
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
+    /* ==============================================
+       القائمة الجانبية: الذهب والعملات (TradingView)
+       ============================================== */
+    .side-drawer-backdrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(9, 13, 22, 0.7);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .side-drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .side-drawer-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 86%;
+      max-width: 380px;
+      height: 100%;
+      background: var(--bg-card);
+      box-shadow: -10px 0 35px rgba(0,0,0,0.6);
+      z-index: 110;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      border-left: 2px solid var(--gold);
+      direction: rtl;
+    }
+
+    .side-drawer-panel.open {
+      transform: translateX(0);
+    }
+
+    .drawer-top-bar {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: #fff;
+      padding: 14px;
+      border-bottom: 2px solid var(--gold);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .drawer-top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .drawer-main-title {
+      font-size: 1rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #fef08a;
+    }
+
+    .btn-close-drawer {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #fff;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .drawer-scroll-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .gold-grid-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .market-box {
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .market-box.gold-21-box {
+      border-color: var(--gold);
+      background: linear-gradient(145deg, rgba(245, 158, 11, 0.12), var(--bg-card-sub));
+    }
+
+    .market-box.full-span {
+      grid-column: span 2;
+    }
+
+    .market-box-title {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .market-box-val {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #f8fafc;
+      direction: rtl;
+    }
+
+    .market-box-sub {
+      font-size: 0.62rem;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .change-tag {
+      font-weight: 800;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+    .change-tag.up { color: #34d399; background: rgba(52, 211, 153, 0.15); }
+    .change-tag.down { color: #f87171; background: rgba(248, 113, 113, 0.15); }
+
+    /* حاسبة الذهب السريعة */
+    .gold-calc-card {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1px solid var(--gold);
+      border-radius: 14px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .calc-row-inputs {
+      display: flex;
+      gap: 6px;
+    }
+
+    .calc-input-qty {
+      width: 65px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .calc-select-asset {
+      flex: 1;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .calc-select-asset option {
+      background: #1e293b;
+      color: #fff;
+    }
+
+    .calc-result-badge {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 6px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+    }
+
+    .calc-result-num {
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #fde047;
+      direction: rtl;
+    }
+
+    .btn-import-calc {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #0f172a;
+      border: none;
+      padding: 7px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    /* النوافذ المنبثقة (Modals) */
+    .modal-overlay-custom {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(9, 13, 22, 0.75);
+      backdrop-filter: blur(5px);
+      display: none;
+      justify-content: center;
+      align-items: flex-end;
+      z-index: 150;
+      direction: rtl;
+    }
+
+    .modal-overlay-custom.open {
+      display: flex;
+    }
+
+    .modal-content-card {
+      background: var(--bg-card);
+      width: 100%;
+      border-radius: 26px 26px 0 0;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 90%;
+      overflow-y: auto;
+      border-top: 1px solid var(--border);
+      animation: slideUp 0.25s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    .modal-title-custom {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* شارة التمييز الواضحة للدخل والمصروف */
+    .tx-nature-banner {
+      border-radius: 12px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .tx-nature-banner.income-nature {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(5, 150, 105, 0.15));
+      border: 1.5px solid #10b981;
+      color: #34d399;
+    }
+
+    .tx-nature-banner.expense-nature {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.25), rgba(225, 29, 72, 0.15));
+      border: 1.5px solid #f43f5e;
+      color: #fb7185;
+    }
+
+    .form-group-custom {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-label-custom {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--text-muted);
+    }
+    .form-label-custom .req { color: var(--expense); }
+
+    .form-input-custom, .form-select-custom {
+      background: var(--bg-card-sub);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 0.88rem;
+      font-family: inherit;
+      color: #fff;
+      outline: none;
+      direction: rtl;
+    }
+
+    .form-input-custom:focus, .form-select-custom:focus {
+      border-color: #38bdf8;
+    }
+
+    .form-input-custom.error-field {
+      border-color: var(--expense) !important;
+      background: rgba(244, 63, 94, 0.1) !important;
+    }
+
+    .error-hint {
+      color: var(--expense);
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: none;
+    }
+    .error-hint.show { display: block; }
+
+    .btn-submit-tx {
+      background: linear-gradient(135deg, #10b981, #047857);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-submit-tx.exp-mode {
+      background: linear-gradient(135deg, #f43f5e, #be123c);
+    }
+
+    /* التنبيهات */
+    .toast-msg {
+      position: absolute;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: #1e293b;
+      color: #fff;
+      padding: 9px 16px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+      z-index: 300;
+      white-space: nowrap;
+      border: 1px solid rgba(255,255,255,0.15);
+      direction: rtl;
+    }
+
+    .toast-msg.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-frame" id="appFrame">
+    
+    <!-- الشريط العلوي -->
+    <header class="app-header">
+      <div class="header-top">
+        <div class="brand-box">
+          <div class="brand-icon">
+            <i class="fa-solid fa-wallet"></i>
+          </div>
+          <h1 class="brand-title">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon"></i> أية</h1>
+        </div>
+        <div class="header-actions">
+          <button class="btn-action-header gold-trigger" id="btnOpenGold" title="بورصة الذهب والعملات (TradingView)">
+            <i class="fa-solid fa-coins"></i>
+          </button>
+          <button class="btn-action-header" id="btnOpenSms" title="قارئ رسائل البنك">
+            <i class="fa-solid fa-comment-sms"></i>
+          </button>
+          <button class="btn-action-header" id="btnOpenPerm" title="صلاحيات العائلة (ماهر)">
+            <i class="fa-solid fa-user-shield"></i>
+          </button>
+          <button class="btn-action-header" id="btnOpenAuth" title="تسجيل الدخول">
+            <i class="fa-solid fa-user-lock"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- محرك البحث الشامل في البرنامج ككل -->
+      <div class="global-search-bar">
+        <i class="fa-solid fa-magnifying-glass search-icon-pos"></i>
+        <input type="text" class="search-input-field" id="globalSearchInput" placeholder="بحث شامل في المصروفات، الدخل، البيانات، الأفراد، المحافظ...">
+        <i class="fa-solid fa-xmark clear-search-btn" id="btnClearSearch"></i>
+      </div>
+
+      <!-- محدد المحفظة وإدارتها -->
+      <div class="wallet-selector-bar">
+        <div class="wallet-info-part">
+          <i class="fa-solid fa-vault" style="color: #38bdf8;"></i>
+          <span>المحفظة النشطة:</span>
+          <select class="wallet-dropdown" id="activeWalletSelect">
+            <!-- تتولد ديناميكياً -->
+          </select>
+        </div>
+        <button class="btn-add-wallet" id="btnOpenAddWallet">
+          <i class="fa-solid fa-plus"></i> محفظة جديدة
+        </button>
+      </div>
+
+      <!-- شريط أفراد العائلة (الأسماء فقط وبدون ألقاب) -->
+      <div class="avatars-container" id="avatarsContainer">
+        <!-- ماهر -->
+        <div class="avatar-card active" data-member="ماهر">
+          <div class="avatar-bubble" style="background: linear-gradient(135deg, #1e3a8a, #0284c7);">
+            👨
+          </div>
+          <span class="avatar-name-label">ماهر</span>
+        </div>
+
+        <!-- أية -->
+        <div class="avatar-card" data-member="أية">
+          <div class="avatar-bubble" style="background: linear-gradient(135deg, #831843, #db2777);">
+            👩
+          </div>
+          <span class="avatar-name-label">أية</span>
+        </div>
+
+        <!-- محمد -->
+        <div class="avatar-card" data-member="محمد">
+          <div class="avatar-bubble" style="background: linear-gradient(135deg, #164e63, #0891b2);">
+            👦
+          </div>
+          <span class="avatar-name-label">محمد</span>
+        </div>
+
+        <!-- مريم -->
+        <div class="avatar-card" data-member="مريم">
+          <div class="avatar-bubble" style="background: linear-gradient(135deg, #701a75, #c026d3);">
+            👧
+          </div>
+          <span class="avatar-name-label">مريم</span>
+        </div>
+
+        <!-- الحاجة -->
+        <div class="avatar-card" data-member="الحاجة">
+          <div class="avatar-bubble" style="background: linear-gradient(135deg, #713f12, #d97706);">
+            👵
+          </div>
+          <span class="avatar-name-label">الحاجة</span>
+        </div>
+
+        <!-- الكل -->
+        <div class="avatar-card" data-member="الكل">
+          <div class="avatar-bubble" style="background: linear-gradient(135deg, #065f46, #059669);">
+            👨‍👩‍👧‍👦
+          </div>
+          <span class="avatar-name-label">الكل</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- شريط التصفية والعملات ومفتاح الشارتات -->
+    <div class="filter-bar">
+      <div class="period-group">
+        <button class="period-btn" data-period="today">اليوم</button>
+        <button class="period-btn" data-period="week">الأسبوع</button>
+        <button class="period-btn active" data-period="month">الشهر</button>
+        <button class="period-btn" data-period="all">الكل</button>
+      </div>
+
+      <div class="right-tools-group">
+        <button class="chart-view-toggle-btn" id="btnToggleAnalytics" title="عرض الشارتات التوضيحية">
+          <i class="fa-solid fa-chart-column"></i>
+          <span id="chartToggleLabel">الشارتات</span>
+        </button>
+
+        <div class="currency-pill-btn" id="btnToggleCurrency" title="تبديل العملة المعروضة">
+          <i class="fa-solid fa-coins"></i>
+          <span id="activeCurrencyText">EGP</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- جسم التطبيق القابل للتمرير -->
+    <div class="app-scroll-body">
+      
+      <!-- شريط TradingView المباشر للذهب والعملات -->
+      <div class="tv-market-banner" id="tvMarketBanner">
+        <div class="tv-banner-left">
+          <div class="tv-icon-circle">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+          </div>
+          <div class="tv-rates-summary">
+            <div class="tv-title-line">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>بورصة TradingView المباشرة</span>
+            </div>
+            <div class="tv-values-line" id="tvSummaryText">
+              دولار: 56.04 ج.م | ريال: 14.93 ج.م | ذهب 21: 6,375 ج.م
+            </div>
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-left" style="color: var(--gold);"></i>
+      </div>
+
+      <!-- قسم الشارتات التوضيحية والبيانية (قابل للإظهار والإخفاء) -->
+      <div class="charts-visual-section" id="chartsVisualSection" style="display: none;">
+        <div class="chart-section-header">
+          <div style="font-size: 0.82rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>الرسوم والشارتات التوضيحية</span>
+          </div>
+          <div class="chart-type-tabs">
+            <button class="chart-type-btn active" id="btnChartModeBar" onclick="switchChartMode('bar')">مقارنة البنود</button>
+            <button class="chart-type-btn" id="btnChartModeTimeline" onclick="switchChartMode('timeline')">تطور الدخل والمصروف</button>
+          </div>
+        </div>
+        <div class="analytics-chart-box">
+          <canvas id="analyticsChartCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- حاوية Monefy الدائرية الأيقونية -->
+      <div class="monefy-central-card">
+        
+        <!-- العجلة الدائرية (Donut Wheel) -->
+        <div class="wheel-container">
+          <canvas id="monefyChart" class="wheel-canvas"></canvas>
+          <div class="wheel-center-content">
+            <span class="wheel-caption" id="wheelCaption">رصيد المحفظة المتبقي</span>
+            <span class="wheel-amount" id="wheelAmount">0.00 ج.م</span>
+            <div class="wheel-equi-pills">
+              <span class="equi-tag" id="tagSarEqui">~ 0.00 ر.س</span>
+              <span class="equi-tag" id="tagUsdEqui">~ 0.00 $</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- بطاقتي الدخل والمصروف -->
+        <div class="balance-cards-row">
+          <div class="summary-card inc" onclick="openTxModal('income')" style="cursor: pointer;" title="انقر لتسجيل دخل جديد">
+            <div class="summary-icon"><i class="fa-solid fa-circle-arrow-up"></i></div>
+            <div class="summary-info">
+              <span class="summary-title">إجمالي الدخل (أرباح/رواتب)</span>
+              <span class="summary-num" id="totalIncomeTxt">+0.00 ج.م</span>
+            </div>
+          </div>
+          <div class="summary-card exp" onclick="openTxModal('expense')" style="cursor: pointer;" title="انقر لتسجيل مصروف جديد">
+            <div class="summary-icon"><i class="fa-solid fa-circle-arrow-down"></i></div>
+            <div class="summary-info">
+              <span class="summary-title">إجمالي المصروفات</span>
+              <span class="summary-num" id="totalExpenseTxt">-0.00 ج.م</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- شبكة أيقونات Monefy المحيطة -->
+        <div class="categories-monefy-grid" id="catGrid">
+          <!-- تتولد تلقائياً بالجافاسكريبت -->
+        </div>
+
+      </div>
+
+      <!-- بطاقة سجل المصروفات والكشوفات مع نتائج البحث -->
+      <div class="history-card">
+        <div class="history-header">
+          <div class="history-title">
+            <i class="fa-solid fa-receipt" style="color: var(--primary);"></i>
+            <span id="historyHeaderTitle">سجل العمليات: ماهر</span>
+          </div>
+          <div class="export-btns-group">
+            <button class="btn-export-tool excel-btn" id="btnExportExcel" title="تصدير إكسيل محاسبي">
+              <i class="fa-solid fa-file-excel"></i> إكسيل
+            </button>
+            <button class="btn-export-tool pdf-btn" id="btnExportPdf" title="تصدير PDF">
+              <i class="fa-solid fa-file-pdf"></i> PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- قائمة الحركات -->
+        <div class="tx-scroll-list" id="txScrollList">
+          <!-- تتولد تلقائياً -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- الشريط السفلي لتطبيق Monefy (+ و -) -->
+    <footer class="app-bottom-dock">
+      <!-- زر تسجيل المصروف (-) -->
+      <button class="action-fab exp-fab" id="btnFabExpense" title="تسجيل مصروف جديد">
+        <span class="fab-icon-symbol"><i class="fa-solid fa-minus"></i></span>
+        <span class="fab-label-text">مصروف</span>
+      </button>
+
+      <!-- مؤشر من يحمل عليه المصروف الافتراضي -->
+      <div class="active-user-dock-indicator" id="dockUserIndicator" title="انقر لتغيير الفرد المستهدف">
+        <div class="user-switcher-pill">
+          <i class="fa-solid fa-user-check" style="color: #38bdf8;"></i>
+          <span id="footerUserLabel">المحمل عليه: ماهر</span>
+        </div>
+        <span class="target-charge-hint" id="targetChargeHint">يتم تحميل المصروف تلقائياً عليه</span>
+      </div>
+
+      <!-- زر تسجيل الدخل الواضح بالكامل (+) -->
+      <button class="action-fab inc-fab" id="btnFabIncome" title="تسجيل دخل جديد">
+        <span class="fab-icon-symbol"><i class="fa-solid fa-plus"></i></span>
+        <span class="fab-label-text">دخل +</span>
+      </button>
+    </footer>
+
+    <!-- ==============================================
+         القائمة الجانبية المنفصلة: الذهب والعملات (TradingView)
+         ============================================== -->
+    <div class="side-drawer-backdrop" id="goldDrawerBackdrop"></div>
+    <div class="side-drawer-panel" id="goldDrawerPanel">
+      
+      <div class="drawer-top-bar">
+        <div class="drawer-top-header">
+          <div class="drawer-main-title">
+            <i class="fa-solid fa-coins"></i>
+            <span>بورصة الذهب والعملات</span>
+          </div>
+          <button class="btn-close-drawer" id="btnCloseDrawer">&times;</button>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: #cbd5e1;">
+          <span style="background: #2962ff; color: #fff; padding: 2px 7px; border-radius: 6px; font-weight: 800;">
+            TradingView Live
+          </span>
+          <span style="color: #34d399; font-weight: 700;">
+            <i class="fa-solid fa-circle" style="font-size: 0.5rem;"></i> بيانات حية لحظية
+          </span>
+        </div>
+      </div>
+
+      <div class="drawer-scroll-body">
+        
+        <!-- زر التحديث اللحظي -->
+        <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-card-sub); padding: 8px 12px; border-radius: 12px; border: 1px solid var(--border);">
+          <span style="font-size: 0.72rem; color: var(--text-muted);" id="tvUpdateTime">محدث الآن</span>
+          <button class="period-btn active" id="btnRefreshTv" style="font-size: 0.7rem; padding: 4px 10px;">
+            <i class="fa-solid fa-arrows-rotate" id="iconSpin"></i> تحديث
+          </button>
+        </div>
+
+        <!-- أسعار الذهب -->
+        <div>
+          <div style="font-size: 0.8rem; font-weight: 800; color: #f8fafc; margin-bottom: 8px;">
+            <i class="fa-solid fa-gem" style="color: var(--gold);"></i> أسعار الذهب في الصاغة (مصر)
+          </div>
+
+          <div class="gold-grid-cards">
+            <!-- عيار 21 -->
+            <div class="market-box gold-21-box">
+              <div class="market-box-title">
+                <i class="fa-solid fa-ring" style="color: var(--gold);"></i>
+                <span>عيار 21 (الأكثر طلباً)</span>
+              </div>
+              <div class="market-box-val" id="tvGold21Val">6,375 ج.م</div>
+              <div class="market-box-sub">
+                <span>جرام</span>
+                <span class="change-tag down" id="tvGold21Chg">-0.40%</span>
+              </div>
+            </div>
+
+            <!-- عيار 24 -->
+            <div class="market-box">
+              <div class="market-box-title">
+                <i class="fa-solid fa-bars" style="color: #d97706;"></i>
+                <span>عيار 24 (السبائك)</span>
+              </div>
+              <div class="market-box-val" id="tvGold24Val">7,286 ج.م</div>
+              <div class="market-box-sub">
+                <span>جرام نقاء 99.9%</span>
+                <span class="change-tag down" id="tvGold24Chg">-0.40%</span>
+              </div>
+            </div>
+
+            <!-- جنيه الذهب -->
+            <div class="market-box full-span" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), var(--bg-card-sub)); border-color: var(--gold);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-size: 0.8rem; font-weight: 800; color: #fde047;">جنيه الذهب (BTC لازوردي)</div>
+                  <div style="font-size: 0.65rem; color: #94a3b8;">وزن 8 جرام - ذهب عيار 21</div>
+                </div>
+                <div class="market-box-val" style="color: #fde047;" id="tvGoldPoundVal">51,000 ج.م</div>
+              </div>
+            </div>
+
+            <!-- أونصة الذهب عالمياً -->
+            <div class="market-box full-span">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 0.72rem; color: var(--text-muted);">أونصة الذهب عالمياً (TVC:GOLD)</span>
+                <span style="font-size: 0.95rem; font-weight: 900; color: #fff;" id="tvGoldOunceVal">$4,043.83</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- أسعار العملات -->
+        <div>
+          <div style="font-size: 0.8rem; font-weight: 800; color: #f8fafc; margin-bottom: 8px;">
+            <i class="fa-solid fa-money-bill-transfer" style="color: #10b981;"></i> أسعار العملات (TradingView FX)
+          </div>
+
+          <div class="gold-grid-cards">
+            <!-- دولار -->
+            <div class="market-box">
+              <div class="market-box-title">
+                <i class="fa-solid fa-dollar-sign" style="color: #10b981;"></i>
+                <span>الدولار الأمريكي</span>
+              </div>
+              <div class="market-box-val" id="tvUsdVal">56.04 ج.م</div>
+              <div class="market-box-sub">
+                <span>USDEGP</span>
+                <span class="change-tag up" id="tvUsdChg">+0.12%</span>
+              </div>
+            </div>
+
+            <!-- ريال -->
+            <div class="market-box">
+              <div class="market-box-title">
+                <i class="fa-solid fa-money-bill-1" style="color: #059669;"></i>
+                <span>الريال السعودي</span>
+              </div>
+              <div class="market-box-val" id="tvSarVal">14.93 ج.م</div>
+              <div class="market-box-sub">
+                <span>SAREGP</span>
+                <span class="change-tag down" id="tvSarChg">-0.01%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- حاسبة الذهب السريعة -->
+        <div class="gold-calc-card">
+          <div style="font-size: 0.8rem; font-weight: 800; color: #fde047;">
+            <i class="fa-solid fa-calculator"></i> حاسبة الذهب والعملات للمصروفات
+          </div>
+          <div class="calc-row-inputs">
+            <input type="number" class="calc-input-qty" id="calcQty" value="10">
+            <select class="calc-select-asset" id="calcAsset">
+              <option value="gold21">جرام ذهب عيار 21</option>
+              <option value="gold24">جرام ذهب عيار 24</option>
+              <option value="goldPound">جنيه ذهب (8 جرام)</option>
+              <option value="usd">دولار أمريكي ($)</option>
+              <option value="sar">ريال سعودي (ر.س)</option>
+            </select>
+          </div>
+          <div class="calc-result-badge">
+            <span>القيمة الإجمالية:</span>
+            <span class="calc-result-num" id="calcResultDisplay">63,750.00 ج.م</span>
+          </div>
+          <button class="btn-import-calc" id="btnImportCalc">
+            <i class="fa-solid fa-plus-circle"></i> إضافة المبلغ للمصروفات فوراً
+          </button>
+        </div>
+
+        <!-- شارت TradingView التفاعلي المصغر -->
+        <div style="background: var(--bg-card-sub); border-radius: 14px; padding: 10px; border: 1px solid var(--border);">
+          <div style="font-size: 0.72rem; font-weight: 800; color: #94a3b8; margin-bottom: 6px;">
+            مؤشر الذهب المباشر (TradingView Mini Chart)
+          </div>
+          <div style="width: 100%; height: 180px; border-radius: 10px; overflow: hidden;">
+            <iframe 
+              src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=ar_AE#%7B%22symbol%22%3A%22TVC%3AGOLD%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22dateRange%22%3A%221M%22%2C%22colorTheme%22%3A%22dark%22%2C%22trendLineColor%22%3A%22rgba(245%2C%20158%2C%2011%2C%201)%22%2C%22underLineColor%22%3A%22rgba(245%2C%20158%2C%2011%2C%200.3)%22%2C%22underLineBottomColor%22%3A%22rgba(245%2C%20158%2C%2011%2C%200)%22%2C%22isTransparent%22%3Afalse%2C%22autosize%22%3Atrue%7D" 
+              style="width: 100%; height: 100%; border: none;" 
+              title="TradingView Gold Chart">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- نافذة إضافة حركة جديدة (مصروف أو دخل مع توضيح كامل) -->
+    <div class="modal-overlay-custom" id="txModal">
+      <div class="modal-content-card">
+        <div class="modal-head">
+          <h3 class="modal-title-custom" id="txModalTitle">
+            <i class="fa-solid fa-circle-plus" id="txModalTitleIcon" style="color: var(--income);"></i>
+            <span id="txModalTitleText">تسجيل دخل جديد</span>
+          </h3>
+          <button class="btn-close-drawer" onclick="closeModal('txModal')">&times;</button>
+        </div>
+
+        <!-- شارة التوضيح البارزة لطبيعة الحركة (دخل أم مصروف) -->
+        <div class="tx-nature-banner income-nature" id="txNatureBanner">
+          <i class="fa-solid fa-arrow-trend-up" id="txNatureIcon"></i>
+          <span id="txNatureText">أنت الآن تسجل (دخل / إيداع وارد) - يضاف إلى الرصيد والمحفظة</span>
+        </div>
+
+        <div class="form-group-custom">
+          <label class="form-label-custom">المبلغ (ج.م) <span class="req">*</span></label>
+          <input type="number" step="0.01" class="form-input-custom" id="inpTxAmount" placeholder="0.00">
+        </div>
+
+        <!-- الشرط الصارم: بيان المصروف إلزامي -->
+        <div class="form-group-custom">
+          <label class="form-label-custom">بيان الحركة (ملاحظات تفصيلية) <span class="req">* إلزامي</span></label>
+          <input type="text" class="form-input-custom" id="inpTxLabel" placeholder="مثال: راتب شهري، حافز، أو شراء مستلزمات">
+          <span class="error-hint" id="txLabelError">عفواً، لا يتم قبول الإضافة الا بتسجيل بيان الحركة!</span>
+        </div>
+
+        <div class="form-group-custom">
+          <label class="form-label-custom">التصنيف</label>
+          <select class="form-select-custom" id="inpTxCategory"></select>
+        </div>
+
+        <div class="form-group-custom">
+          <label class="form-label-custom">يخص من في العائلة؟ (الديفولت التلقائي)</label>
+          <select class="form-select-custom" id="inpTxMember">
+            <option value="ماهر">👨 ماهر</option>
+            <option value="أية">👩 أية</option>
+            <option value="محمد">👦 محمد</option>
+            <option value="مريم">👧 مريم</option>
+            <option value="الحاجة">👵 الحاجة</option>
+          </select>
+        </div>
+
+        <div class="form-group-custom">
+          <label class="form-label-custom">تودع في / تخصم من أي محفظة؟</label>
+          <select class="form-select-custom" id="inpTxWallet"></select>
+        </div>
+
+        <div class="form-group-custom">
+          <label class="form-label-custom">التاريخ</label>
+          <input type="date" class="form-input-custom" id="inpTxDate">
+        </div>
+
+        <button class="btn-submit-tx" id="btnSaveTx">
+          <i class="fa-solid fa-check"></i> <span id="btnSaveTxText">حفظ الدخل فوراً</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- نافذة إضافة محفظة جديدة -->
+    <div class="modal-overlay-custom" id="walletModal">
+      <div class="modal-content-card">
+        <div class="modal-head">
+          <h3 class="modal-title-custom">
+            <i class="fa-solid fa-vault" style="color: #38bdf8;"></i> إضافة محفظة جديدة
+          </h3>
+          <button class="btn-close-drawer" onclick="closeModal('walletModal')">&times;</button>
+        </div>
+
+        <div class="form-group-custom">
+          <label class="form-label-custom">اسم المحفظة <span class="req">*</span></label>
+          <input type="text" class="form-input-custom" id="inpNewWalletName" placeholder="مثال: كاش البيت، محفظة بنك مصر، فودافون كاش">
+        </div>
+
+        <div class="form-group-custom">
+          <label class="form-label-custom">الرصيد الافتتاحي (ج.م)</label>
+          <input type="number" step="0.01" class="form-input-custom" id="inpNewWalletBal" placeholder="0.00" value="0">
+        </div>
+
+        <div class="form-group-custom">
+          <label class="form-label-custom">أيقونة المحفظة</label>
+          <select class="form-select-custom" id="inpNewWalletIcon">
+            <option value="fa-money-bill-wave">💵 نقدي (كاش)</option>
+            <option value="fa-building-columns">🏦 حساب بنكي</option>
+            <option value="fa-mobile-screen">📱 محفظة إلكترونية (كاش)</option>
+            <option value="fa-credit-card">💳 فيزا / كارت ائتمان</option>
+            <option value="fa-piggy-bank">🐖 حصالة ادخار</option>
+          </select>
+        </div>
+
+        <button class="btn-submit-tx" onclick="handleCreateWallet()">
+          <i class="fa-solid fa-plus-circle"></i> إنشاء المحفظة وتفعيل حساباتها
+        </button>
+      </div>
+    </div>
+
+    <!-- نافذة قارئ رسائل البنك -->
+    <div class="modal-overlay-custom" id="smsModal">
+      <div class="modal-content-card">
+        <div class="modal-head">
+          <h3 class="modal-title-custom">قارئ رسائل البنك الذكي</h3>
+          <button class="btn-close-drawer" onclick="closeModal('smsModal')">&times;</button>
+        </div>
+
+        <p style="font-size: 0.75rem; color: var(--text-muted);">
+          الصق رسالة البنك وسيقوم النظام باستخراج المبلغ والجهة فوراً وتوثيقها:
+        </p>
+
+        <div style="display: flex; gap: 6px;">
+          <button class="period-btn" onclick="loadSampleSms(1)">نموذج بنك مصر</button>
+          <button class="period-btn" onclick="loadSampleSms(2)">نموذج CIB</button>
+          <button class="period-btn" onclick="loadSampleSms(3)">نموذج الأهلي</button>
+        </div>
+
+        <textarea class="form-input-custom" id="smsBodyInput" rows="3" placeholder="نص رسالة البنك..."></textarea>
+
+        <div class="form-group-custom">
+          <label class="form-label-custom">تحميل المصروف على حساب:</label>
+          <select class="form-select-custom" id="smsTargetMember">
+            <option value="ماهر">👨 ماهر</option>
+            <option value="أية">👩 أية</option>
+            <option value="محمد">👦 محمد</option>
+            <option value="مريم">👧 مريم</option>
+            <option value="الحاجة">👵 الحاجة</option>
+          </select>
+        </div>
+
+        <button class="btn-submit-tx" onclick="handleParseSms()">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> استخراج وتوثيق المصروف
+        </button>
+      </div>
+    </div>
+
+    <!-- نافذة الصلاحيات لماهر المالك -->
+    <div class="modal-overlay-custom" id="permModal">
+      <div class="modal-content-card">
+        <div class="modal-head">
+          <h3 class="modal-title-custom">صلاحيات العائلة (ماهر)</h3>
+          <button class="btn-close-drawer" onclick="closeModal('permModal')">&times;</button>
+        </div>
+
+        <div style="background: var(--bg-card-sub); padding: 12px; border-radius: 14px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.8rem; font-weight: 700;">تسجيل مصروفات جديدة لأية</span>
+            <input type="checkbox" id="permAyaAdd" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.8rem; font-weight: 700;">إطلاع أية على كافة مصروفات العائلة</span>
+            <input type="checkbox" id="permAyaViewAll" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.8rem; font-weight: 700;">تصدير التقارير (Excel / PDF)</span>
+            <input type="checkbox" id="permAyaExport" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+          </div>
+        </div>
+
+        <button class="btn-submit-tx" onclick="savePermissions()">
+          <i class="fa-solid fa-save"></i> حفظ الصلاحيات
+        </button>
+      </div>
+    </div>
+
+    <!-- نافذة تسجيل الدخول وحفظ الجلسة -->
+    <div class="modal-overlay-custom" id="authModal">
+      <div class="modal-content-card">
+        <div class="modal-head">
+          <h3 class="modal-title-custom">تسجيل الدخول للحساب</h3>
+          <button class="btn-close-drawer" onclick="closeModal('authModal')">&times;</button>
+        </div>
+
+        <div class="form-group-custom">
+          <label class="form-label-custom">البريد الإلكتروني</label>
+          <input type="email" class="form-input-custom" id="authEmail" value="maher@family.com">
+        </div>
+
+        <div class="form-group-custom">
+          <label class="form-label-custom">كلمة المرور</label>
+          <input type="password" class="form-input-custom" id="authPass" value="maher123">
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <input type="checkbox" id="authRemember" checked style="width: 16px; height: 16px; accent-color: var(--primary);">
+          <label for="authRemember" style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">
+            تذكرني وحفظ تسجيل الدخول على هذا الجهاز
+          </label>
+        </div>
+
+        <button class="btn-submit-tx" onclick="handleLogin()">
+          <i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول
+        </button>
+      </div>
+    </div>
+
+    <!-- إشعار Toast -->
+    <div class="toast-msg" id="toastMsg">
+      <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i>
+      <span id="toastTxt">تم بنجاح!</span>
+    </div>
+
+  </div>
+
+  <script>
+    // ==========================================
+    // 1. تصنيفات Monefy للبنود
+    // ==========================================
+    const EXPENSE_CATEGORIES = [
+      { id: 'food', name: 'طعام ومشتريات', icon: 'fa-basket-shopping', color: '#10b981' },
+      { id: 'bills', name: 'فواتير والتزامات', icon: 'fa-file-invoice-dollar', color: '#f59e0b' },
+      { id: 'transport', name: 'مواصلات وبنزين', icon: 'fa-car', color: '#3b82f6' },
+      { id: 'house', name: 'مستلزمات منزل', icon: 'fa-house-chimney', color: '#8b5cf6' },
+      { id: 'health', name: 'صحة وعلاج', icon: 'fa-kit-medical', color: '#f43f5e' },
+      { id: 'clothes', name: 'ملابس وأحذية', icon: 'fa-shirt', color: '#ec4899' },
+      { id: 'kids', name: 'ألعاب وأطفال', icon: 'fa-baby', color: '#06b6d4' },
+      { id: 'eating_out', name: 'مطاعم وكافيهات', icon: 'fa-utensils', color: '#f97316' },
+      { id: 'entertainment', name: 'ترفيه وفسح', icon: 'fa-gamepad', color: '#14b8a6' },
+      { id: 'gifts', name: 'هدايا ومجاملات', icon: 'fa-gift', color: '#a855f7' },
+      { id: 'education', name: 'تعليم ودروس', icon: 'fa-graduation-cap', color: '#0284c7' },
+      { id: 'others', name: 'مصاريف أخرى', icon: 'fa-ellipsis', color: '#64748b' },
+    ];
+
+    const INCOME_CATEGORIES = [
+      { id: 'salary', name: 'راتب شهري', icon: 'fa-money-check-dollar', color: '#10b981' },
+      { id: 'bonus', name: 'مكافآت وحوافز', icon: 'fa-gift', color: '#3b82f6' },
+      { id: 'invest', name: 'أرباح واستثمارات', icon: 'fa-arrow-trend-up', color: '#f59e0b' },
+      { id: 'business', name: 'أعمال وتجارة', icon: 'fa-briefcase', color: '#8b5cf6' },
+      { id: 'other_inc', name: 'دخل إضافي آخر', icon: 'fa-circle-plus', color: '#06b6d4' },
+    ];
+
+    // أسماء أفراد العائلة (الأسماء فقط)
+    const FAMILY_MEMBERS = ['ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'الكل'];
+
+    // حالة التطبيق
+    let state = {
+      currentUser: 'ماهر',
+      selectedMember: 'ماهر', // الفرد المختار حالياً - يحدد الديفولت تلقائياً
+      currentWalletId: 'all', // 'all' أو معرّف المحفظة
+      searchQuery: '',
+      period: 'month',
+      currency: 'EGP',
+      chartMode: 'bar', // 'bar' or 'timeline'
+      rates: {
+        EGP: 1,
+        SAR: 0.067,
+        USD: 0.0178
+      },
+      market: {
+        usdEgp: 56.04,
+        usdChg: 0.12,
+        sarEgp: 14.93,
+        sarChg: -0.01,
+        goldOunce: 4043.83,
+        goldChg: -0.40,
+        gold24: 7286.00,
+        gold21: 6375.00,
+        goldPound: 51000.00,
+      },
+      permissions: {
+        ayaCanAdd: true,
+        ayaCanViewAll: true,
+        ayaCanExport: true,
+      },
+      wallets: [
+        { id: 'wallet-default', name: 'محفظة البيت الرئيسية', icon: 'fa-money-bill-wave', initialBalance: 0 },
+        { id: 'wallet-bank', name: 'حساب بنك مصر', icon: 'fa-building-columns', initialBalance: 0 },
+        { id: 'wallet-vodafone', name: 'فودافون كاش', icon: 'fa-mobile-screen', initialBalance: 0 }
+      ],
+      transactions: [],
+    };
+
+    // قناة المزامنة الفورية
+    const syncChannel = new BroadcastChannel('monefy_family_sync_bus');
+
+    let donutChartInstance = null;
+    let analyticsChartInstance = null;
+    let currentModalType = 'expense';
+
+    function initApp() {
+      // 1. فحص حفظ تسجيل الدخول
+      const savedAuth = localStorage.getItem('family_monefy_auth');
+      if (savedAuth) {
+        try {
+          const authObj = JSON.parse(savedAuth);
+          state.currentUser = authObj.user || 'ماهر';
+        } catch(e) {}
+      }
+
+      // 2. تحميل المحافظ
+      const storedWallets = localStorage.getItem('family_monefy_wallets');
+      if (storedWallets) {
+        try { state.wallets = JSON.parse(storedWallets); } catch(e) {}
+      }
+
+      // 3. تحميل الحركات
+      const storedTx = localStorage.getItem('family_monefy_txs');
+      if (storedTx) {
+        state.transactions = JSON.parse(storedTx);
+      } else {
+        state.transactions = [
+          { id: 'tx-1', type: 'income', amount: 35000, label: 'راتب ماهر الشهري', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-01' },
+          { id: 'tx-2', type: 'expense', amount: 3200, label: 'سوبرماركت وطلبات البيت', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-10-05' },
+          { id: 'tx-3', type: 'expense', amount: 850, label: 'مصاريف مدرسة وباص', category: 'education', member: 'محمد', walletId: 'wallet-default', date: '2026-10-10' },
+          { id: 'tx-4', type: 'expense', amount: 620, label: 'أدوية ومستلزمات صيدلية', category: 'health', member: 'الحاجة', walletId: 'wallet-default', date: '2026-10-12' },
+          { id: 'tx-5', type: 'expense', amount: 450, label: 'ملابس شتوية لمريم', category: 'clothes', member: 'مريم', walletId: 'wallet-default', date: '2026-10-15' },
+        ];
+        saveTx();
+      }
+
+      // تحميل الصلاحيات
+      const storedPerm = localStorage.getItem('family_monefy_perms');
+      if (storedPerm) {
+        try { state.permissions = JSON.parse(storedPerm); } catch(e) {}
+      }
+
+      // تحديث قوائم المحافظ
+      populateWalletDropdowns();
+
+      // بناء شبكة تصنيفات Monefy
+      renderCategoriesGrid();
+
+      // الاستماع للمزامنة السحابية
+      syncChannel.onmessage = (e) => {
+        if (e.data && e.data.type === 'SYNC_TX') {
+          state.transactions = e.data.transactions;
+          renderUI();
+          showToast(`⚡ مزامنة: ${e.data.author} سجل: ${e.data.label}`);
+        } else if (e.data && e.data.type === 'SYNC_PERM') {
+          state.permissions = e.data.permissions;
+          showToast('🔐 تم تحديث الصلاحيات');
+        } else if (e.data && e.data.type === 'SYNC_WALLETS') {
+          state.wallets = e.data.wallets;
+          populateWalletDropdowns();
+          renderUI();
+        }
+      };
+
+      // ربط أزرار أفراد العائلة (تحديد الديفولت تلقائياً!)
+      document.querySelectorAll('.avatar-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const m = card.getAttribute('data-member');
+          selectMember(m);
+        });
+      });
+
+      // ربط البحث الشامل في البرنامج ككل
+      const searchInp = document.getElementById('globalSearchInput');
+      const clearBtn = document.getElementById('btnClearSearch');
+      searchInp.addEventListener('input', (e) => {
+        state.searchQuery = e.target.value.trim();
+        clearBtn.style.display = state.searchQuery ? 'block' : 'none';
+        renderUI();
+      });
+      clearBtn.addEventListener('click', () => {
+        searchInp.value = '';
+        state.searchQuery = '';
+        clearBtn.style.display = 'none';
+        renderUI();
+      });
+
+      // ربط قائمة تبديل المحفظة
+      document.getElementById('activeWalletSelect').addEventListener('change', (e) => {
+        state.currentWalletId = e.target.value;
+        renderUI();
+        const wObj = state.wallets.find(w => w.id === state.currentWalletId);
+        showToast(`💼 تم التبديل إلى: ${wObj ? wObj.name : 'كافة المحافظ'}`);
+      });
+
+      document.getElementById('btnOpenAddWallet').addEventListener('click', () => openModal('walletModal'));
+
+      // ربط الفترات
+      document.querySelectorAll('.period-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.period = btn.getAttribute('data-period');
+          renderUI();
+        });
+      });
+
+      // أزرار Monefy السفلية
+      document.getElementById('btnFabExpense').addEventListener('click', () => openTxModal('expense'));
+      document.getElementById('btnFabIncome').addEventListener('click', () => openTxModal('income'));
+      document.getElementById('btnSaveTx').addEventListener('click', handleSaveTx);
+
+      // زر تبديل عرض الشارتات التوضيحية
+      document.getElementById('btnToggleAnalytics').addEventListener('click', toggleAnalyticsView);
+
+      // ربط القائمة الجانبية (TradingView)
+      document.getElementById('btnOpenGold').addEventListener('click', openGoldDrawer);
+      document.getElementById('tvMarketBanner').addEventListener('click', openGoldDrawer);
+      document.getElementById('btnCloseDrawer').addEventListener('click', closeGoldDrawer);
+      document.getElementById('goldDrawerBackdrop').addEventListener('click', closeGoldDrawer);
+      document.getElementById('btnRefreshTv').addEventListener('click', fetchTradingViewRates);
+
+      // حاسبة الذهب
+      document.getElementById('calcQty').addEventListener('input', updateCalcDisplay);
+      document.getElementById('calcAsset').addEventListener('change', updateCalcDisplay);
+      document.getElementById('btnImportCalc').addEventListener('click', applyCalcToExpense);
+
+      // النوافذ الأخرى
+      document.getElementById('btnOpenSms').addEventListener('click', () => openModal('smsModal'));
+      document.getElementById('btnOpenPerm').addEventListener('click', () => openModal('permModal'));
+      document.getElementById('btnOpenAuth').addEventListener('click', () => openModal('authModal'));
+
+      // التصدير والعملة
+      document.getElementById('btnExportExcel').addEventListener('click', exportExcel);
+      document.getElementById('btnExportPdf').addEventListener('click', () => window.print());
+      document.getElementById('btnToggleCurrency').addEventListener('click', toggleCurrency);
+
+      // تاريخ اليوم الافتراضي
+      document.getElementById('inpTxDate').value = new Date().toISOString().split('T')[0];
+
+      // إطلاق الواجهة
+      initDonutChart();
+      initAnalyticsChart();
+      updateUserAndDefaultDisplay();
+      renderUI();
+
+      // سحب أسعار TradingView لحظياً
+      fetchTradingViewRates();
+    }
+
+    // ==========================================
+    // 2. إدارة المحافظ المتعددة بحسابات خاصة
+    // ==========================================
+    function populateWalletDropdowns() {
+      // 1. القائمة في الشريط العلوي
+      const selectTop = document.getElementById('activeWalletSelect');
+      let html = `<option value="all">🌐 كل المحافظ مجتمعة</option>`;
+      state.wallets.forEach(w => {
+        html += `<option value="${w.id}">${w.name}</option>`;
+      });
+      selectTop.innerHTML = html;
+      selectTop.value = state.currentWalletId;
+
+      // 2. القائمة داخل نموذج الحركة
+      const selectForm = document.getElementById('inpTxWallet');
+      selectForm.innerHTML = state.wallets.map(w => `<option value="${w.id}">${w.name}</option>`).join('');
+    }
+
+    function handleCreateWallet() {
+      const name = document.getElementById('inpNewWalletName').value.trim();
+      const initBal = parseFloat(document.getElementById('inpNewWalletBal').value) || 0;
+      const icon = document.getElementById('inpNewWalletIcon').value;
+
+      if (!name) {
+        alert('يرجى إدخال اسم المحفظة');
+        return;
+      }
+
+      const newWallet = {
+        id: 'wallet-' + Date.now(),
+        name: name,
+        icon: icon,
+        initialBalance: initBal
+      };
+
+      state.wallets.push(newWallet);
+      localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
+
+      // إذا كان هناك رصيد افتتاحي، نسجله كدخل للمحفظة
+      if (initBal > 0) {
+        state.transactions.push({
+          id: 'tx-init-' + Date.now(),
+          type: 'income',
+          amount: initBal,
+          label: `رصيد افتتاحي لمحفظة (${name})`,
+          category: 'other_inc',
+          member: state.selectedMember !== 'الكل' ? state.selectedMember : 'ماهر',
+          walletId: newWallet.id,
+          date: new Date().toISOString().split('T')[0]
+        });
+        saveTx();
+      }
+
+      closeModal('walletModal');
+      populateWalletDropdowns();
+      state.currentWalletId = newWallet.id;
+      document.getElementById('activeWalletSelect').value = newWallet.id;
+      syncChannel.postMessage({ type: 'SYNC_WALLETS', wallets: state.wallets });
+      renderUI();
+      showToast(`💼 تم إنشاء محفظة (${name}) بنجاح`);
+    }
+
+    // ==========================================
+    // 3. اختيار الأفاتار وضبط الديفولت التلقائي
+    // ==========================================
+    function selectMember(member) {
+      state.selectedMember = member;
+
+      // عند اختيار صورة ماهر يتم عمل الديفولت الذي يحمل عليه المصروف ماهر وهكذا لجميع الأفراد!
+      if (member !== 'الكل') {
+        state.currentUser = member;
+      }
+
+      updateUserAndDefaultDisplay();
+      renderUI();
+      showToast(`👤 تم اختيار: ${member} (الديفولت التلقائي للمصروف)`);
+    }
+
+    function updateUserAndDefaultDisplay() {
+      const defaultPerson = state.selectedMember !== 'الكل' ? state.selectedMember : state.currentUser;
+      document.getElementById('footerUserLabel').textContent = `المحمل عليه: ${defaultPerson}`;
+      document.getElementById('targetChargeHint').textContent = `يتم تسجيل أي حركة تلقائياً باسم: ${defaultPerson}`;
+    }
+
+    // ==========================================
+    // 4. الشارتات التوضيحية والتحليلية
+    // ==========================================
+    function toggleAnalyticsView() {
+      const sec = document.getElementById('chartsVisualSection');
+      const isHidden = sec.style.display === 'none';
+      sec.style.display = isHidden ? 'flex' : 'none';
+      document.getElementById('chartToggleLabel').textContent = isHidden ? 'إخفاء الشارت' : 'الشارتات';
+      if (isHidden) {
+        updateAnalyticsChart();
+      }
+    }
+
+    function switchChartMode(mode) {
+      state.chartMode = mode;
+      document.getElementById('btnChartModeBar').className = 'chart-type-btn ' + (mode === 'bar' ? 'active' : '');
+      document.getElementById('btnChartModeTimeline').className = 'chart-type-btn ' + (mode === 'timeline' ? 'active' : '');
+      updateAnalyticsChart();
+    }
+
+    function initAnalyticsChart() {
+      const ctx = document.getElementById('analyticsChartCanvas').getContext('2d');
+      analyticsChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: [], datasets: [] },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'top', labels: { color: '#cbd5e1', font: { family: 'Cairo' } } },
+            tooltip: { rtl: true }
+          },
+          scales: {
+            x: { ticks: { color: '#94a3b8', font: { family: 'Cairo' } }, grid: { display: false } },
+            y: { ticks: { color: '#94a3b8' }, grid: { color: '#1e293b' } }
+          }
+        }
+      });
+    }
+
+    function updateAnalyticsChart() {
+      if (!analyticsChartInstance) return;
+      const filtered = getFilteredTransactions();
+
+      if (state.chartMode === 'bar') {
+        // مقارنة بنود الصرف
+        const catMap = {};
+        EXPENSE_CATEGORIES.forEach(c => catMap[c.name] = 0);
+        filtered.forEach(tx => {
+          if (tx.type === 'expense') {
+            const cat = EXPENSE_CATEGORIES.find(c => c.id === tx.category) || { name: 'مصاريف أخرى' };
+            catMap[cat.name] = (catMap[cat.name] || 0) + parseFloat(tx.amount);
+          }
+        });
+
+        const activeLabels = Object.keys(catMap).filter(k => catMap[k] > 0);
+        const dataVals = activeLabels.map(k => catMap[k]);
+
+        analyticsChartInstance.config.type = 'bar';
+        analyticsChartInstance.data = {
+          labels: activeLabels.length ? activeLabels : ['لا توجد مصاريف'],
+          datasets: [{
+            label: 'إجمالي المصروف (ج.م)',
+            data: dataVals.length ? dataVals : [0],
+            backgroundColor: '#f43f5e',
+            borderRadius: 6
+          }]
+        };
+      } else {
+        // تطور الدخل والمصروف لكل فرد
+        const incMap = {}, expMap = {};
+        FAMILY_MEMBERS.filter(m => m !== 'الكل').forEach(m => { incMap[m] = 0; expMap[m] = 0; });
+
+        filtered.forEach(tx => {
+          if (incMap[tx.member] !== undefined) {
+            if (tx.type === 'income') incMap[tx.member] += parseFloat(tx.amount);
+            else expMap[tx.member] += parseFloat(tx.amount);
+          }
+        });
+
+        const members = Object.keys(incMap);
+        analyticsChartInstance.config.type = 'bar';
+        analyticsChartInstance.data = {
+          labels: members,
+          datasets: [
+            { label: 'الدخل (+)', data: members.map(m => incMap[m]), backgroundColor: '#10b981', borderRadius: 6 },
+            { label: 'المصروف (-)', data: members.map(m => expMap[m]), backgroundColor: '#f43f5e', borderRadius: 6 }
+          ]
+        };
+      }
+      analyticsChartInstance.update();
+    }
+
+    // ==========================================
+    // 5. الشارت الدائري لـ Monefy وتحديث الواجهة
+    // ==========================================
+    function initDonutChart() {
+      const ctx = document.getElementById('monefyChart').getContext('2d');
+      donutChartInstance = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: [],
+          datasets: [{
+            data: [],
+            backgroundColor: [],
+            borderWidth: 2,
+            borderColor: '#131b2e',
+            hoverOffset: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '72%',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              rtl: true,
+              callbacks: {
+                label: (ctx) => ` ${ctx.label}: ${ctx.raw.toLocaleString()} ج.م`
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function renderCategoriesGrid() {
+      const grid = document.getElementById('catGrid');
+      grid.innerHTML = EXPENSE_CATEGORIES.map(cat => `
+        <div class="cat-btn" onclick="quickAddCategory('${cat.id}')">
+          <div class="cat-icon-wrap" style="background: ${cat.color};">
+            <i class="fa-solid ${cat.icon}"></i>
+          </div>
+          <span class="cat-title-text">${cat.name}</span>
+          <span class="cat-total-text" id="cat-sum-${cat.id}">0 ج.م</span>
+        </div>
+      `).join('');
+    }
+
+    function renderUI() {
+      const filtered = getFilteredTransactions();
+
+      let inc = 0, exp = 0;
+      const catSums = {};
+      EXPENSE_CATEGORIES.forEach(c => catSums[c.id] = 0);
+
+      filtered.forEach(tx => {
+        const amt = parseFloat(tx.amount) || 0;
+        if (tx.type === 'income') {
+          inc += amt;
+        } else {
+          exp += amt;
+          if (catSums[tx.category] !== undefined) catSums[tx.category] += amt;
+        }
+      });
+
+      const net = inc - exp;
+
+      // العجلة المركزية
+      const wheelAmtEl = document.getElementById('wheelAmount');
+      wheelAmtEl.textContent = formatMoney(net);
+      wheelAmtEl.className = 'wheel-amount ' + (net < 0 ? 'negative' : '');
+
+      document.getElementById('tagSarEqui').textContent = `~ ${(net * state.rates.SAR).toFixed(2)} ر.س`;
+      document.getElementById('tagUsdEqui').textContent = `~ ${(net * state.rates.USD).toFixed(2)} $`;
+
+      // بطاقات الإجمالي
+      document.getElementById('totalIncomeTxt').textContent = '+' + inc.toLocaleString() + ' ج.م';
+      document.getElementById('totalExpenseTxt').textContent = '-' + exp.toLocaleString() + ' ج.م';
+
+      // قيم التصنيفات
+      EXPENSE_CATEGORIES.forEach(c => {
+        const el = document.getElementById(`cat-sum-${c.id}`);
+        if (el) el.textContent = catSums[c.id] > 0 ? `-${catSums[c.id].toLocaleString()} ج.م` : '0 ج.م';
+      });
+
+      // شارت Monefy
+      const activeCats = EXPENSE_CATEGORIES.filter(c => catSums[c.id] > 0);
+      if (activeCats.length === 0) {
+        donutChartInstance.data.labels = ['لا توجد مصاريف'];
+        donutChartInstance.data.datasets[0].data = [1];
+        donutChartInstance.data.datasets[0].backgroundColor = ['#26334d'];
+      } else {
+        donutChartInstance.data.labels = activeCats.map(c => c.name);
+        donutChartInstance.data.datasets[0].data = activeCats.map(c => catSums[c.id]);
+        donutChartInstance.data.datasets[0].backgroundColor = activeCats.map(c => c.color);
+      }
+      donutChartInstance.update();
+
+      // تمييز الأفاتار
+      document.querySelectorAll('.avatar-card').forEach(card => {
+        const m = card.getAttribute('data-member');
+        if (m === state.selectedMember) card.classList.add('active');
+        else card.classList.remove('active');
+      });
+
+      // عنوان السجل
+      let headerText = `سجل العمليات: ${state.selectedMember === 'الكل' ? 'العائلة كاملة' : state.selectedMember}`;
+      if (state.currentWalletId !== 'all') {
+        const wObj = state.wallets.find(w => w.id === state.currentWalletId);
+        if (wObj) headerText += ` (${wObj.name})`;
+      }
+      if (state.searchQuery) {
+        headerText += ` [بحث: "${state.searchQuery}"]`;
+      }
+      document.getElementById('historyHeaderTitle').textContent = headerText;
+
+      // قائمة الحركات
+      renderTransactionList(filtered);
+
+      // تحديث الشارتات التحليلية إذا كانت مفتوحة
+      if (document.getElementById('chartsVisualSection').style.display !== 'none') {
+        updateAnalyticsChart();
+      }
+    }
+
+    function renderTransactionList(list) {
+      const container = document.getElementById('txScrollList');
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.8rem;">
+            <i class="fa-solid fa-folder-open fa-2x" style="opacity: 0.3; margin-bottom: 6px;"></i>
+            <p>${state.searchQuery ? 'لا توجد نتائج تطابق بحثك' : 'لا توجد حركات مسجلة لهذه الفترة'}</p>
+          </div>
+        `;
+        return;
+      }
+
+      const rev = [...list].reverse();
+      container.innerHTML = rev.map(tx => {
+        const isExp = tx.type === 'expense';
+        const catList = isExp ? EXPENSE_CATEGORIES : INCOME_CATEGORIES;
+        const cat = catList.find(c => c.id === tx.category) || { name: tx.category, icon: isExp ? 'fa-receipt' : 'fa-hand-holding-dollar', color: isExp ? '#f43f5e' : '#10b981' };
+        const wObj = state.wallets.find(w => w.id === tx.walletId) || { name: 'المحفظة' };
+
+        return `
+          <div class="tx-row ${isExp ? 'exp' : 'inc'}">
+            <div class="tx-left">
+              <div class="tx-badge-icon" style="background: ${cat.color};">
+                <i class="fa-solid ${cat.icon}"></i>
+              </div>
+              <div class="tx-meta">
+                <span class="tx-label-name">${escapeHtml(tx.label)}</span>
+                <span class="tx-sub-info">
+                  <span class="member-pill">${tx.member}</span>
+                  <span class="wallet-pill">${wObj.name}</span>
+                  <span>${cat.name}</span>
+                  <span>• ${tx.date}</span>
+                </span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="tx-amount-display ${isExp ? 'exp' : 'inc'}">
+                ${isExp ? '-' : '+'}${parseFloat(tx.amount).toLocaleString()} ج.م
+              </span>
+              <button class="btn-delete-tx" onclick="deleteTx('${tx.id}')" title="حذف">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function getFilteredTransactions() {
+      return state.transactions.filter(tx => {
+        // فلترة الفرد
+        if (state.selectedMember !== 'الكل' && tx.member !== state.selectedMember) return false;
+        if (state.currentUser === 'أية' && !state.permissions.ayaCanViewAll && tx.member !== 'أية') return false;
+
+        // فلترة المحفظة
+        if (state.currentWalletId !== 'all' && tx.walletId !== state.currentWalletId) return false;
+
+        // البحث الشامل في البرنامج ككل (البيان، الفرد، التصنيف، المبلغ، التاريخ)
+        if (state.searchQuery) {
+          const q = state.searchQuery.toLowerCase();
+          const matchLabel = (tx.label || '').toLowerCase().includes(q);
+          const matchMember = (tx.member || '').toLowerCase().includes(q);
+          const matchCategory = (tx.category || '').toLowerCase().includes(q);
+          const matchAmount = (tx.amount || '').toString().includes(q);
+          const matchDate = (tx.date || '').includes(q);
+          const matchWallet = (state.wallets.find(w => w.id === tx.walletId)?.name || '').toLowerCase().includes(q);
+
+          if (!matchLabel && !matchMember && !matchCategory && !matchAmount && !matchDate && !matchWallet) {
+            return false;
+          }
+        }
+
+        // فلترة الفترة الزمنية
+        if (state.period === 'all') return true;
+        const d = new Date(tx.date);
+        const now = new Date();
+        if (state.period === 'today') return d.toDateString() === now.toDateString();
+        if (state.period === 'week') {
+          const past = new Date(); past.setDate(now.getDate() - 7);
+          return d >= past;
+        }
+        if (state.period === 'month') return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+        return true;
+      });
+    }
+
+    // ==========================================
+    // 6. تسجيل الدخل والمصروف مع التوضيح الكامل والديفولت
+    // ==========================================
+    function openTxModal(type, preCat = null) {
+      if (state.currentUser === 'أية' && !state.permissions.ayaCanAdd && type === 'expense') {
+        alert('صلاحية تسجيل المصروفات غير مفعلة لك من قبل المالك (ماهر).');
+        return;
+      }
+
+      currentModalType = type;
+      const titleText = document.getElementById('txModalTitleText');
+      const titleIcon = document.getElementById('txModalTitleIcon');
+      const banner = document.getElementById('txNatureBanner');
+      const bannerText = document.getElementById('txNatureText');
+      const bannerIcon = document.getElementById('txNatureIcon');
+      const btnSave = document.getElementById('btnSaveTx');
+      const btnSaveText = document.getElementById('btnSaveTxText');
+      const catSelect = document.getElementById('inpTxCategory');
+
+      if (type === 'income') {
+        // إعادة عمل تسجيل الدخل بالكامل وتوضيح أنه دخل
+        titleText.textContent = 'تسجيل دخل جديد (+ إيداع وارد)';
+        titleIcon.className = 'fa-solid fa-circle-arrow-up';
+        titleIcon.style.color = 'var(--income)';
+        banner.className = 'tx-nature-banner income-nature';
+        bannerIcon.className = 'fa-solid fa-arrow-trend-up';
+        bannerText.textContent = 'أنت الآن تسجل (دخل / إيراد وارد) - يزيد رصيد المحفظة ويحسب كأرباح أو رواتب';
+        btnSave.className = 'btn-submit-tx';
+        btnSaveText.textContent = 'تأكيد وحفظ الدخل (+)';
+
+        // قائمة تصنيفات الدخل
+        catSelect.innerHTML = INCOME_CATEGORIES.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+      } else {
+        // تسجيل المصروف
+        titleText.textContent = 'تسجيل مصروف جديد (- خصم)';
+        titleIcon.className = 'fa-solid fa-circle-minus';
+        titleIcon.style.color = 'var(--expense)';
+        banner.className = 'tx-nature-banner expense-nature';
+        bannerIcon.className = 'fa-solid fa-arrow-trend-down';
+        bannerText.textContent = 'أنت الآن تسجل (مصروف / خصم) - يخصم من رصيد المحفظة المحددة';
+        btnSave.className = 'btn-submit-tx exp-mode';
+        btnSaveText.textContent = 'تأكيد وحفظ المصروف (-)';
+
+        // قائمة تصنيفات المصروف
+        catSelect.innerHTML = EXPENSE_CATEGORIES.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+      }
+
+      if (preCat) catSelect.value = preCat;
+
+      // الديفولت الذي يحمل عليه المصروف: حسب الفرد المختار حالياً!
+      // "عند إختيار صورة ماهر يتم عمل الديفولت الى يحمل عليه المصروف ماهر وهكذا"
+      const defaultPerson = state.selectedMember !== 'الكل' ? state.selectedMember : state.currentUser;
+      document.getElementById('inpTxMember').value = defaultPerson;
+
+      // محفظة الحركة: المحفظة النشطة حالياً
+      if (state.currentWalletId !== 'all') {
+        document.getElementById('inpTxWallet').value = state.currentWalletId;
+      }
+
+      document.getElementById('inpTxAmount').value = '';
+      document.getElementById('inpTxLabel').value = '';
+      document.getElementById('inpTxLabel').classList.remove('error-field');
+      document.getElementById('txLabelError').classList.remove('show');
+
+      openModal('txModal');
+    }
+
+    function quickAddCategory(catId) {
+      openTxModal('expense', catId);
+    }
+
+    function handleSaveTx() {
+      const amtInp = document.getElementById('inpTxAmount');
+      const lblInp = document.getElementById('inpTxLabel');
+      const errHint = document.getElementById('txLabelError');
+
+      const amt = parseFloat(amtInp.value);
+      const label = lblInp.value.trim();
+
+      // الشرط الصارم الإلزامي:
+      // "لا يتم قبول إضافة بند المصروف الا بتسجيل بيان المصروف"
+      if (!label) {
+        lblInp.classList.add('error-field');
+        errHint.classList.add('show');
+        lblInp.focus();
+        return;
+      } else {
+        lblInp.classList.remove('error-field');
+        errHint.classList.remove('show');
+      }
+
+      if (isNaN(amt) || amt <= 0) {
+        alert('يرجى إدخال مبلغ صحيح أكبر من صفر');
+        amtInp.focus();
+        return;
+      }
+
+      const newTx = {
+        id: 'tx-' + Date.now(),
+        type: currentModalType,
+        amount: amt,
+        label: label,
+        category: document.getElementById('inpTxCategory').value,
+        member: document.getElementById('inpTxMember').value,
+        walletId: document.getElementById('inpTxWallet').value,
+        date: document.getElementById('inpTxDate').value || new Date().toISOString().split('T')[0]
+      };
+
+      state.transactions.push(newTx);
+      saveTx();
+      closeModal('txModal');
+
+      // إرسال المزامنة فوراً
+      syncChannel.postMessage({
+        type: 'SYNC_TX',
+        transactions: state.transactions,
+        author: state.currentUser,
+        label: newTx.label
+      });
+
+      renderUI();
+      showToast(newTx.type === 'income' ? `💵 تم تسجيل الدخل بنجاح (+${amt} ج.م)` : `✅ تم تسجيل المصروف لحساب ${newTx.member}`);
+    }
+
+    function deleteTx(id) {
+      if (!confirm('هل تريد حذف هذه الحركة؟')) return;
+      state.transactions = state.transactions.filter(t => t.id !== id);
+      saveTx();
+      syncChannel.postMessage({ type: 'SYNC_TX', transactions: state.transactions, author: state.currentUser, label: 'حذف' });
+      renderUI();
+      showToast('🗑️ تم حذف الحركة');
+    }
+
+    function saveTx() {
+      localStorage.setItem('family_monefy_txs', JSON.stringify(state.transactions));
+    }
+
+    // ==========================================
+    // 7. ربط بورصة TradingView وسحب الأسعار
+    // ==========================================
+    function openGoldDrawer() {
+      document.getElementById('goldDrawerBackdrop').classList.add('open');
+      document.getElementById('goldDrawerPanel').classList.add('open');
+      updateCalcDisplay();
+    }
+
+    function closeGoldDrawer() {
+      document.getElementById('goldDrawerBackdrop').classList.remove('open');
+      document.getElementById('goldDrawerPanel').classList.remove('open');
+    }
+
+    async function fetchTradingViewRates() {
+      const spin = document.getElementById('iconSpin');
+      if (spin) spin.classList.add('fa-spin');
+
+      try {
+        const forexPromise = fetch('https://scanner.tradingview.com/forex/scan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            symbols: { tickers: ['FX_IDC:USDEGP', 'FX_IDC:USDSAR'] },
+            columns: ['close', 'change', 'bid', 'ask']
+          })
+        }).then(r => r.json()).catch(() => null);
+
+        const goldPromise = fetch('https://scanner.tradingview.com/cfd/scan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            symbols: { tickers: ['TVC:GOLD'] },
+            columns: ['close', 'change', 'bid', 'ask']
+          })
+        }).then(r => r.json()).catch(() => null);
+
+        const [forexData, goldData] = await Promise.all([forexPromise, goldPromise]);
+
+        let usd = 56.04, usdChg = 0.12;
+        let sar = 14.93, sarChg = -0.01;
+        let goldOunce = 4043.83, goldChg = -0.40;
+
+        if (forexData && forexData.data) {
+          const u = forexData.data.find(d => d.s === 'FX_IDC:USDEGP');
+          const s = forexData.data.find(d => d.s === 'FX_IDC:USDSAR');
+          if (u && u.d) { usd = u.d[0]; usdChg = u.d[1] || 0.12; }
+          if (s && s.d && u && u.d) {
+            sar = usd / (s.d[0] || 3.7523);
+            sarChg = s.d[1] || -0.01;
+          }
+        }
+
+        if (goldData && goldData.data) {
+          const g = goldData.data.find(d => d.s === 'TVC:GOLD');
+          if (g && g.d) { goldOunce = g.d[0]; goldChg = g.d[1] || -0.40; }
+        }
+
+        // معادلة الصاغة المصرية لحساب عيار 24 وعيار 21
+        const g24 = (goldOunce * usd) / 31.1034768;
+        const g21 = g24 * (21 / 24);
+        const gPound = g21 * 8;
+
+        state.market = {
+          usdEgp: usd, usdChg: usdChg,
+          sarEgp: sar, sarChg: sarChg,
+          goldOunce: goldOunce, goldChg: goldChg,
+          gold24: g24, gold21: g21, goldPound: gPound,
+        };
+
+        state.rates.USD = 1 / usd;
+        state.rates.SAR = 1 / sar;
+
+        document.getElementById('tvGold21Val').textContent = Math.round(g21).toLocaleString() + ' ج.م';
+        document.getElementById('tvGold21Chg').textContent = (goldChg >= 0 ? '+' : '') + goldChg.toFixed(2) + '%';
+        document.getElementById('tvGold24Val').textContent = Math.round(g24).toLocaleString() + ' ج.م';
+        document.getElementById('tvGold24Chg').textContent = (goldChg >= 0 ? '+' : '') + goldChg.toFixed(2) + '%';
+        document.getElementById('tvGoldPoundVal').textContent = Math.round(gPound).toLocaleString() + ' ج.م';
+        document.getElementById('tvGoldOunceVal').textContent = '$' + goldOunce.toFixed(2);
+
+        document.getElementById('tvUsdVal').textContent = usd.toFixed(2) + ' ج.م';
+        document.getElementById('tvUsdChg').textContent = (usdChg >= 0 ? '+' : '') + usdChg.toFixed(2) + '%';
+        document.getElementById('tvSarVal').textContent = sar.toFixed(2) + ' ج.م';
+        document.getElementById('tvSarChg').textContent = (sarChg >= 0 ? '+' : '') + sarChg.toFixed(2) + '%';
+
+        document.getElementById('tvSummaryText').textContent = 
+          `دولار: ${usd.toFixed(2)} ج.م | ريال: ${sar.toFixed(2)} ج.م | ذهب 21: ${Math.round(g21).toLocaleString()} ج.م`;
+
+        document.getElementById('tvUpdateTime').textContent = 'محدث الآن عبر TradingView';
+        updateCalcDisplay();
+        renderUI();
+      } catch (e) {
+        console.warn('TV fetch note:', e);
+      } finally {
+        if (spin) setTimeout(() => spin.classList.remove('fa-spin'), 600);
+      }
+    }
+
+    function updateCalcDisplay() {
+      const qty = parseFloat(document.getElementById('calcQty').value) || 0;
+      const asset = document.getElementById('calcAsset').value;
+      let unit = 0;
+      if (asset === 'gold21') unit = state.market.gold21;
+      else if (asset === 'gold24') unit = state.market.gold24;
+      else if (asset === 'goldPound') unit = state.market.goldPound;
+      else if (asset === 'usd') unit = state.market.usdEgp;
+      else if (asset === 'sar') unit = state.market.sarEgp;
+
+      const total = qty * unit;
+      document.getElementById('calcResultDisplay').textContent = total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ج.م';
+    }
+
+    function applyCalcToExpense() {
+      const qty = parseFloat(document.getElementById('calcQty').value) || 1;
+      const assetEl = document.getElementById('calcAsset');
+      const name = assetEl.options[assetEl.selectedIndex].text;
+      
+      let unit = 0;
+      const asset = assetEl.value;
+      if (asset === 'gold21') unit = state.market.gold21;
+      else if (asset === 'gold24') unit = state.market.gold24;
+      else if (asset === 'goldPound') unit = state.market.goldPound;
+      else if (asset === 'usd') unit = state.market.usdEgp;
+      else if (asset === 'sar') unit = state.market.sarEgp;
+
+      const total = Math.round(qty * unit * 100) / 100;
+
+      closeGoldDrawer();
+      openTxModal('expense');
+      document.getElementById('inpTxAmount').value = total;
+      document.getElementById('inpTxLabel').value = `شراء ${qty} ${name} (TradingView)`;
+      showToast(`💰 تم نقل ${total.toLocaleString()} ج.م لنموذج المصروف`);
+    }
+
+    // ==========================================
+    // 8. قارئ رسائل البنك والصلاحيات
+    // ==========================================
+    function loadSampleSms(bank) {
+      const txt = document.getElementById('smsBodyInput');
+      if (bank === 1) txt.value = "تمت عملية شراء على بطاقتك بنك مصر بمبلغ 850.50 جم لدى CARREFOUR بتاريخ 2026-10-28.";
+      if (bank === 2) txt.value = "خصم CIB: تم سحب مبلغ 420.00 EGP من كارتك في SPINNEYS.";
+      if (bank === 3) txt.value = "البنك الأهلي المصري: حركة خصم بقيمة 290.00 جنيه لدى صيدليات العزبي.";
+    }
+
+    function handleParseSms() {
+      const body = document.getElementById('smsBodyInput').value.trim();
+      const target = document.getElementById('smsTargetMember').value;
+      if (!body) { alert('يرجى لصق نص الرسالة'); return; }
+
+      const amtRegex = /(?:بمبلغ|مبلغ|بقيمة|خصم)\s*([0-9,.]+)\s*(?:جم|جنيه|EGP|LE)/i;
+      const match = body.match(amtRegex);
+      let amt = match ? parseFloat(match[1].replace(/,/g, '')) : null;
+
+      const mRegex = /(?:لدى|في|at)\s+([A-Za-z0-9\u0600-\u06FF\s]+?)(?:\s+بتاريخ|\s+كارت|\.|$)/i;
+      const mMatch = body.match(mRegex);
+      let merchant = mMatch ? mMatch[1].trim() : 'مشتريات بطاقة';
+
+      if (!amt) { alert('تعذر استخراج المبلغ تلقائياً من الرسالة'); return; }
+
+      const newTx = {
+        id: 'tx-sms-' + Date.now(),
+        type: 'expense',
+        amount: amt,
+        label: `[رسالة بنك] ${merchant}`,
+        category: 'food',
+        member: target,
+        walletId: state.currentWalletId !== 'all' ? state.currentWalletId : state.wallets[0].id,
+        date: new Date().toISOString().split('T')[0]
+      };
+
+      state.transactions.push(newTx);
+      saveTx();
+      closeModal('smsModal');
+      syncChannel.postMessage({ type: 'SYNC_TX', transactions: state.transactions, author: state.currentUser, label: newTx.label });
+      renderUI();
+      showToast(`💳 تم توثيق رسالة البنك (${amt} ج.م)`);
+    }
+
+    function savePermissions() {
+      state.permissions.ayaCanAdd = document.getElementById('permAyaAdd').checked;
+      state.permissions.ayaCanViewAll = document.getElementById('permAyaViewAll').checked;
+      state.permissions.ayaCanExport = document.getElementById('permAyaExport').checked;
+      localStorage.setItem('family_monefy_perms', JSON.stringify(state.permissions));
+      syncChannel.postMessage({ type: 'SYNC_PERM', permissions: state.permissions });
+      closeModal('permModal');
+      showToast('🔒 تم حفظ الصلاحيات');
+    }
+
+    function handleLogin() {
+      const email = document.getElementById('authEmail').value.trim();
+      const u = email.includes('aya') ? 'أية' : 'ماهر';
+      state.currentUser = u;
+      if (document.getElementById('authRemember').checked) {
+        localStorage.setItem('family_monefy_auth', JSON.stringify({ user: u }));
+      }
+      closeModal('authModal');
+      selectMember(u);
+      showToast(`🔓 تم الدخول بحساب: ${u}`);
+    }
+
+    function toggleCurrency() {
+      if (state.currency === 'EGP') state.currency = 'SAR';
+      else if (state.currency === 'SAR') state.currency = 'USD';
+      else state.currency = 'EGP';
+      document.getElementById('activeCurrencyText').textContent = state.currency;
+      renderUI();
+    }
+
+    function formatMoney(n) {
+      if (state.currency === 'SAR') return (n * state.rates.SAR).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ر.س';
+      if (state.currency === 'USD') return '$' + (n * state.rates.USD).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ج.م';
+    }
+
+    function exportExcel() {
+      const filtered = getFilteredTransactions();
+      const rows = [
+        ['كشف مصروفات عائلة ماهر ❤️ أية'],
+        ['الحساب:', state.selectedMember, 'المحفظة:', state.currentWalletId, 'التاريخ:', new Date().toLocaleDateString('ar-EG')],
+        [],
+        ['التاريخ', 'بيان الحركة', 'الفرد', 'المحفظة', 'التصنيف', 'النوع', 'المبلغ (ج.م)']
+      ];
+
+      filtered.forEach(tx => {
+        const catList = tx.type === 'expense' ? EXPENSE_CATEGORIES : INCOME_CATEGORIES;
+        const cat = catList.find(c => c.id === tx.category) || { name: 'أخرى' };
+        const wObj = state.wallets.find(w => w.id === tx.walletId) || { name: 'المحفظة' };
+        const amt = parseFloat(tx.amount);
+        rows.push([
+          tx.date, tx.label, tx.member, wObj.name, cat.name,
+          tx.type === 'expense' ? 'مصروف' : 'دخل',
+          tx.type === 'expense' ? -amt : amt
+        ]);
+      });
+
+      const ws = XLSX.utils.aoa_to_sheet(rows);
+      ws['!cols'] = [{ wch: 14 }, { wch: 36 }, { wch: 14 }, { wch: 18 }, { wch: 18 }, { wch: 14 }, { wch: 16 }];
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'كشف الحساب');
+      XLSX.writeFile(wb, `كشف_حساب_${state.selectedMember}_${new Date().toISOString().split('T')[0]}.xlsx`);
+      showToast('📊 تم تصدير ملف الإكسيل بنجاح');
+    }
+
+    function openModal(id) { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+    function showToast(msg) {
+      const t = document.getElementById('toastMsg');
+      document.getElementById('toastTxt').textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3500);
+    }
+    function escapeHtml(t) {
+      const d = document.createElement('div'); d.textContent = t; return d.innerHTML;
+    }
+
+    window.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>
