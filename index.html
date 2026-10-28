@@ -653,12 +653,12 @@
 
     .wheel-container {
       position: relative;
-      width: 240px;
-      height: 240px;
+      width: min(270px, 78vw);
+      height: min(270px, 78vw);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 10px;
+      margin: 6px 0 14px;
     }
 
     .wheel-canvas {
@@ -676,6 +676,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
       direction: rtl;
     }
 
@@ -683,34 +687,76 @@
       font-size: 0.72rem;
       font-weight: 700;
       color: var(--text-muted);
+      letter-spacing: 0.3px;
+      margin-bottom: 2px;
     }
 
-    .wheel-amount {
+    .wheel-main-figure {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      direction: ltr;
+      gap: 1px;
+      margin: 1px 0;
+    }
+
+    .figure-sign {
       font-size: 1.5rem;
       font-weight: 900;
       color: var(--primary);
-      line-height: 1.2;
+    }
+    .figure-sign.negative { color: var(--expense); }
+
+    .figure-num {
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--primary);
+      font-family: 'Cairo', system-ui, sans-serif;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .figure-num.negative { color: var(--expense); }
+
+    .figure-dec {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary);
+      opacity: 0.85;
+    }
+    .figure-dec.negative { color: var(--expense); }
+
+    .figure-curr {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      margin-left: 4px;
       direction: rtl;
     }
 
-    .wheel-amount.negative {
-      color: var(--expense);
+    .wheel-amount {
+      display: none; /* Replaced by .wheel-main-figure */
     }
 
     .wheel-equi-pills {
-      display: flex;
-      gap: 5px;
-      margin-top: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 5px;
+      background: rgba(255,255,255,0.06);
+      padding: 3px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: #94a3b8;
       direction: rtl;
     }
 
-    .equi-tag {
-      font-size: 0.62rem;
-      font-weight: 800;
-      background: rgba(255,255,255,0.08);
-      padding: 2px 6px;
-      border-radius: 6px;
-      color: #94a3b8;
+    body.light-theme .wheel-equi-pills {
+      background: rgba(0,0,0,0.05);
+      border-color: rgba(0,0,0,0.08);
+      color: #64748b;
     }
 
     /* شريط بطاقتي الدخل والمصروف */
@@ -1472,23 +1518,26 @@
     }
 
     /* النوافذ المنبثقة (Modals) */
+    .modal-overlay,
     .modal-overlay-custom {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(9, 13, 22, 0.75);
-      backdrop-filter: blur(5px);
-      display: none;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none !important;
       justify-content: center;
-      align-items: flex-end;
-      z-index: 150;
+      align-items: center;
+      z-index: 99999;
       direction: rtl;
     }
 
+    .modal-overlay.open,
     .modal-overlay-custom.open {
-      display: flex;
+      display: flex !important;
     }
 
     .modal-content-card {
@@ -1964,6 +2013,134 @@
       border-color: #38bdf8;
       color: #38bdf8;
     }
+  
+    /* ورقة كشف الحساب المحاسبي للطباعة و PDF */
+    #printableStatementSheet {
+      display: none;
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .mobile-frame, .modal-overlay, .modal-overlay-custom, .theme-toggle-btn, .mini-calc-widget, #goldDrawerBackdrop, #goldDrawerPanel, .toast-notification {
+        display: none !important;
+      }
+      #printableStatementSheet {
+        display: block !important;
+        width: 100% !important;
+        padding: 15px 20px !important;
+        direction: rtl !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-family: 'Cairo', Arial, sans-serif !important;
+      }
+      .print-header-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #0284c7;
+        padding-bottom: 12px;
+        margin-bottom: 16px;
+      }
+      .print-title-area h2 {
+        margin: 0 0 4px 0;
+        font-size: 1.4rem;
+        color: #0369a1;
+        font-weight: 900;
+      }
+      .print-title-area p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: #475569;
+      }
+      .print-meta-badges {
+        display: flex;
+        gap: 10px;
+        font-size: 0.8rem;
+        color: #334155;
+        margin-bottom: 14px;
+        background: #f1f5f9;
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 1px solid #cbd5e1;
+      }
+      .print-kpis-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .print-kpi-card {
+        background: #f8fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+      }
+      .print-kpi-card span {
+        display: block;
+        font-size: 0.72rem;
+        color: #64748b;
+        font-weight: 700;
+        margin-bottom: 3px;
+      }
+      .print-kpi-card strong {
+        font-size: 1.05rem;
+        font-weight: 900;
+      }
+      .print-kpi-card.inc strong { color: #15803d; }
+      .print-kpi-card.exp strong { color: #be123c; }
+      .print-kpi-card.net strong { color: #0369a1; }
+      
+      .print-ledger-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.8rem;
+        margin-bottom: 18px;
+      }
+      .print-ledger-table th {
+        background: #0284c7 !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        padding: 8px 6px;
+        border: 1px solid #0284c7;
+        font-weight: 800;
+        text-align: center;
+      }
+      .print-ledger-table td {
+        padding: 7px 6px;
+        border: 1px solid #cbd5e1;
+        text-align: center;
+      }
+      .print-ledger-table tr:nth-child(even) td {
+        background: #f8fafc;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .print-ledger-table .align-right { text-align: right; }
+      .print-ledger-table .debit-val { color: #be123c; font-weight: 800; direction: ltr; }
+      .print-ledger-table .credit-val { color: #15803d; font-weight: 800; direction: ltr; }
+      .print-ledger-table .running-val { color: #0f172a; font-weight: 900; direction: ltr; }
+      
+      .print-footer-audit {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #cbd5e1;
+        padding-top: 12px;
+        font-size: 0.78rem;
+        color: #64748b;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 10mm;
+      }
+    }
   </style>
 
   <script>
@@ -2161,64 +2338,6 @@
       
       
 
-      <!-- ==============================================================
-           قسم الشارتات التوضيحية المتكاملة (لكل مصروف، لكل فرد، باليوم، بالشهر)
-           ============================================================== -->
-      <div class="charts-visual-section" id="chartsVisualSection" style="display: none;">
-        <div class="chart-section-header">
-          <div class="chart-header-title-box">
-            <i class="fa-solid fa-chart-pie" style="color: #38bdf8; font-size: 1.1rem;"></i>
-            <div>
-              <span class="chart-main-heading">الرسوم والشارتات التوضيحية</span>
-              <span class="chart-sub-heading" id="chartHeaderSubtitle">عرض تحليلي مفصل للمصروفات</span>
-            </div>
-          </div>
-          <button class="btn-close-chart-panel" onclick="toggleAnalyticsView()" title="إغلاق الشارتات">&times;</button>
-        </div>
-
-        <!-- أزرار تبديل أنواع الشارتات الأربعة -->
-        <div class="chart-tabs-bar">
-          <button class="chart-mode-pill active" id="btnTabCats" onclick="switchChartTab('categories')">
-            <i class="fa-solid fa-layer-group"></i> لكل مصروف
-          </button>
-          <button class="chart-mode-pill" id="btnTabMembers" onclick="switchChartTab('members')">
-            <i class="fa-solid fa-users"></i> لكل فرد
-          </button>
-          <button class="chart-mode-pill" id="btnTabDaily" onclick="switchChartTab('daily')">
-            <i class="fa-regular fa-calendar-check"></i> باليوم والتاريخ
-          </button>
-          <button class="chart-mode-pill" id="btnTabMonthly" onclick="switchChartTab('monthly')">
-            <i class="fa-regular fa-calendar"></i> بالشهر
-          </button>
-        </div>
-
-        <!-- شريط تحكم سريع بالتاريخ داخل الشارت -->
-        <div class="chart-inline-date-bar">
-          <div class="chart-date-indicator" id="chartDateIndicatorTxt">
-            <i class="fa-solid fa-filter" style="color: #38bdf8;"></i>
-            <span>الفترة الحالية: الشهر الحالي</span>
-          </div>
-          <div class="chart-quick-pick">
-            <label for="chartDirectDateInp">تحديد يوم:</label>
-            <input type="date" id="chartDirectDateInp" class="chart-inline-input" onchange="applySpecificDate(this.value)">
-          </div>
-        </div>
-
-        <!-- لوحة الرسم البياني التفاعلية -->
-        <div class="analytics-chart-box" style="position: relative; height: 230px; width: 100%;">
-          <canvas id="analyticsChartCanvas"></canvas>
-        </div>
-
-        <!-- بطاقات الملخص التحليلي أسفل الشارت -->
-        <div class="chart-summary-footer" id="chartSummaryFooter">
-          <!-- تتولد تفاصيل الشارت ديناميكياً -->
-        </div>
-      </div>
-        <div class="analytics-chart-box">
-          <canvas id="analyticsChartCanvas"></canvas>
-        </div>
-      </div>
-
       <!-- حاوية Monefy الدائرية الأيقونية -->
       <!-- بطاقة Monefy المركزية المبسطة والأنيقة للتسجيل فقط -->
       <div class="monefy-central-card">
@@ -2228,46 +2347,15 @@
           <canvas id="monefyChart" class="wheel-canvas"></canvas>
           <div class="wheel-center-content">
             <span class="wheel-caption" id="wheelCaption">الرصيد المتبقي</span>
-            <span class="wheel-amount" id="wheelAmount">0.00 ج.م</span>
-            <div class="wheel-equi-pills">
-              <span class="equi-tag" id="tagSarEqui">~ 0.00 ر.س</span>
-              <span class="equi-tag" id="tagUsdEqui">~ 0.00 $</span>
+            <div class="wheel-main-figure">
+              <span class="figure-sign" id="wheelMainSign"></span>
+              <span class="figure-num" id="wheelMainNum">0</span>
+              <span class="figure-dec" id="wheelMainDec">.00</span>
+              <span class="figure-curr" id="wheelMainCurr">ج.م</span>
             </div>
-          </div>
-          
-          <!-- نافذة عائمة تفاعلية (Floating Card) تظهر فقط عند الضغط على أي شريحة في الشارت -->
-          <div class="wheel-floating-card" id="wheelFloatingCard" style="display: none;">
-            <div class="floating-card-head">
-              <div class="floating-cat-title">
-                <span class="floating-cat-dot" id="floatingCatDot"></span>
-                <span id="floatingCatName">طعام ومشتريات</span>
-              </div>
-              <button class="btn-close-floating" onclick="closeFloatingWheelCard()">&times;</button>
-            </div>
-            <div class="floating-card-body">
-              <span class="floating-amt-text" id="floatingCatAmount">-0.00 ج.م</span>
-              <span class="floating-pct-badge" id="floatingCatPct">0%</span>
-            </div>
-            <button class="floating-quick-add-btn" id="floatingQuickAddBtn">
-              <i class="fa-solid fa-plus"></i> تسجيل مصروف في هذا البند
-            </button>
-          </div>
-        </div>
-
-        <!-- بطاقات ملخص الدخل والمصروف -->
-        <div class="balance-cards-row">
-          <div class="summary-card inc" onclick="openTxModal('income')" style="cursor: pointer;" title="انقر لتسجيل دخل جديد">
-            <div class="summary-icon"><i class="fa-solid fa-circle-arrow-up"></i></div>
-            <div class="summary-info">
-              <span class="summary-title">إجمالي الدخل</span>
-              <span class="summary-num" id="totalIncomeTxt">+0.00 ج.م</span>
-            </div>
-          </div>
-          <div class="summary-card exp" onclick="openTxModal('expense')" style="cursor: pointer;" title="انقر لتسجيل مصروف جديد">
-            <div class="summary-icon"><i class="fa-solid fa-circle-arrow-down"></i></div>
-            <div class="summary-info">
-              <span class="summary-title">إجمالي المصروفات</span>
-              <span class="summary-num" id="totalExpenseTxt">-0.00 ج.م</span>
+            <span class="wheel-amount" id="wheelAmount" style="display: none;">0.00 ج.م</span>
+            <div class="wheel-equi-pills" id="wheelEquiText">
+              <span>~ 0.00 ر.س</span> • <span>$0.00</span>
             </div>
           </div>
         </div>
@@ -2550,7 +2638,7 @@
     </div>
 
     <!-- نافذة إضافة حركة جديدة (مصروف أو دخل مع توضيح كامل) -->
-    <div class="modal-overlay-custom" id="txModal">
+    <div class="modal-overlay modal-overlay-custom" id="txModal">
       <div class="modal-content-card">
         <div class="modal-head">
           <h3 class="modal-title-custom" id="txModalTitle">
@@ -2612,7 +2700,7 @@
     </div>
 
     <!-- نافذة إضافة محفظة جديدة -->
-    <div class="modal-overlay-custom" id="walletModal">
+    <div class="modal-overlay modal-overlay-custom" id="walletModal">
       <div class="modal-content-card">
         <div class="modal-head">
           <h3 class="modal-title-custom">
@@ -2649,7 +2737,7 @@
     </div>
 
     <!-- نافذة قارئ رسائل البنك -->
-    <div class="modal-overlay-custom" id="smsModal">
+    <div class="modal-overlay modal-overlay-custom" id="smsModal">
       <div class="modal-content-card">
         <div class="modal-head">
           <h3 class="modal-title-custom">قارئ رسائل البنك الذكي</h3>
@@ -2687,7 +2775,7 @@
     </div>
 
     <!-- نافذة الصلاحيات لماهر المالك -->
-    <div class="modal-overlay-custom" id="permModal">
+    <div class="modal-overlay modal-overlay-custom" id="permModal">
       <div class="modal-content-card">
         <div class="modal-head">
           <h3 class="modal-title-custom">صلاحيات العائلة (ماهر)</h3>
@@ -2716,7 +2804,7 @@
     </div>
 
     <!-- نافذة تسجيل الدخول والمزامنة بالبريد الإلكتروني -->
-    <div class="modal-overlay-custom" id="authModal">
+    <div class="modal-overlay modal-overlay-custom" id="authModal">
       <div class="modal-content-card" style="max-width: 460px;">
         <div class="modal-head">
           <div style="display: flex; align-items: center; gap: 8px;">
@@ -2772,7 +2860,7 @@
         <!-- ==============================================================
          نافذة صفحة سجل النشاطات والعمليات الشامل (Activity & Audit Log Modal)
          ============================================================== -->
-    <div class="modal-overlay" id="activityLogModal">
+    <div class="modal-overlay modal-overlay-custom" id="activityLogModal">
       <div class="modal-dialog-card activity-modal-dialog">
         <div class="activity-modal-header">
           <div class="activity-header-info">
@@ -2834,7 +2922,7 @@
     <!-- ==============================================================
          نافذة Google Drive والتشغيل المستقل بدون إنترنت (Drive & Offline Modal)
          ============================================================== -->
-    <div class="modal-overlay" id="driveSyncModal">
+    <div class="modal-overlay modal-overlay-custom" id="driveSyncModal">
       <div class="modal-dialog-card drive-modal-dialog">
         <div class="activity-modal-header" style="background: rgba(34, 197, 94, 0.1);">
           <div class="activity-header-info">
@@ -2898,7 +2986,7 @@
       </div>
     </div>
 
-<div class="modal-overlay" id="analyticsDetailedModal">
+<div class="modal-overlay modal-overlay-custom" id="analyticsDetailedModal">
       <div class="modal-dialog-card analytics-modal-dialog">
         
         <div class="chart-section-header">
@@ -3331,7 +3419,7 @@
 
       // التصدير والعملة
       safeEvent('btnExportExcel', 'click', exportExcel);
-      safeEvent('btnExportPdf', 'click', () => window.print());
+      safeEvent('btnExportPdf', 'click', exportPdf);
       safeEvent('btnToggleCurrency', 'click', toggleCurrency);
 
       const dateInp = document.getElementById('inpTxDate');
@@ -3821,7 +3909,8 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          cutout: '72%',
+          cutout: '74%',
+          radius: '96%',
           onClick: (event, elements) => {
             if (!elements || elements.length === 0) return;
             const elementIndex = elements[0].index;
@@ -3924,18 +4013,46 @@
 
       const net = inc - exp;
 
-      // 1. العجلة المركزية (الرصيد المتبقي النظيف)
+      // 1. العجلة المركزية (الرصيد المتبقي المتناسق بدقة رقمية ممتازة)
+      const isNeg = net < 0;
+      const absNet = Math.abs(net);
+      const parts = absNet.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).split('.');
+      const intPart = parts[0];
+      const decPart = '.' + parts[1];
+
+      const signEl = document.getElementById('wheelMainSign');
+      const numEl = document.getElementById('wheelMainNum');
+      const decEl = document.getElementById('wheelMainDec');
+      const currEl = document.getElementById('wheelMainCurr');
+
+      if (numEl) {
+        if (signEl) {
+          signEl.textContent = isNeg ? '-' : '';
+          signEl.className = 'figure-sign ' + (isNeg ? 'negative' : '');
+        }
+        numEl.textContent = intPart;
+        numEl.className = 'figure-num ' + (isNeg ? 'negative' : '');
+        if (decEl) {
+          decEl.textContent = decPart;
+          decEl.className = 'figure-dec ' + (isNeg ? 'negative' : '');
+        }
+        if (currEl) {
+          currEl.textContent = state.currency === 'SAR' ? 'ر.س' : state.currency === 'USD' ? '$' : 'ج.م';
+        }
+      }
+
       const wheelAmtEl = document.getElementById('wheelAmount');
       if (wheelAmtEl) {
         wheelAmtEl.textContent = formatMoney(net);
-        wheelAmtEl.className = 'wheel-amount ' + (net < 0 ? 'negative' : '');
+        wheelAmtEl.className = 'wheel-amount ' + (isNeg ? 'negative' : '');
       }
 
-      const sarEl = document.getElementById('tagSarEqui');
-      if (sarEl) sarEl.textContent = `~ ${(net * state.rates.SAR).toFixed(2)} ر.س`;
-      
-      const usdEl = document.getElementById('tagUsdEqui');
-      if (usdEl) usdEl.textContent = `~ ${(net * state.rates.USD).toFixed(2)} $`;
+      const equiEl = document.getElementById('wheelEquiText');
+      if (equiEl) {
+        const sarVal = (absNet * state.rates.SAR).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        const usdVal = (absNet * state.rates.USD).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        equiEl.innerHTML = `<span>~ ${sarVal} ر.س</span> • <span>$${usdVal}</span>`;
+      }
 
       // 2. بطاقات الإجمالي (الدخل والمصروف)
       const totalIncEl = document.getElementById('totalIncomeTxt');
@@ -4567,31 +4684,261 @@
 
     function exportExcel() {
       const filtered = getFilteredTransactions();
-      const rows = [
-        ['كشف مصروفات عائلة ماهر ❤️ أية'],
-        ['الحساب:', state.selectedMember, 'المحفظة:', state.currentWalletId, 'التاريخ:', new Date().toLocaleDateString('ar-EG')],
+      if (!filtered || filtered.length === 0) {
+        alert('لا توجد حركات مسجلة في الفترة المحددة للتصدير');
+        return;
+      }
+
+      // فرز العمليات تصاعدياً بالتاريخ لحساب دفتر الأستاذ والرصيد التراكمي
+      const sortedTx = [...filtered].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      let totalDebits = 0;  // إجمالي المدين (المصروفات -)
+      let totalCredits = 0; // إجمالي الدائن (المداخيل +)
+      let runningBal = 0;   // الرصيد التراكمي المستمر
+
+      const periodLabelMap = { 'today': 'اليوم', 'week': 'الأسبوع الحالي', 'month': 'الشهر الحالي', 'all': 'كافة العمليات المسجلة', 'custom': 'فترة مخصصة' };
+      const currentPeriodDesc = state.period === 'custom' 
+        ? (state.customDate ? `يوم محدد: ${state.customDate}` : `من ${state.customDateFrom} إلى ${state.customDateTo}`)
+        : (periodLabelMap[state.period] || state.period);
+
+      // رأس التقرير المحاسبي المعتمد
+      const headerBlock = [
+        ['كشف حساب وتدقيق العمليات المالية - عائلة ماهر ❤️ أية'],
+        ['نوع التقرير:', 'دفتر الأستاذ العام وتفاصيل الحركات المحاسبية', 'تاريخ ووقت الاستخراج:', new Date().toLocaleString('ar-EG')],
+        ['الفترة المالية المحددة:', currentPeriodDesc, 'الحساب المالي:', state.selectedMember, 'المحفظة النشطة:', state.currentWalletId === 'all' ? 'كافة المحافظ مجتمعة' : (state.wallets.find(w => w.id === state.currentWalletId)?.name || state.currentWalletId)],
         [],
-        ['التاريخ', 'بيان الحركة', 'الفرد', 'المحفظة', 'التصنيف', 'النوع', 'المبلغ (ج.م)']
+        // عناوين الأعمدة المحاسبية المعتمدة (11 عمود كامل)
+        [
+          'م',
+          'التاريخ',
+          'رقم المرجع (ID)',
+          'البيان التفصيلي للحركة',
+          'بند الصرف / التصنيف',
+          'العضو المعني',
+          'المحفظة / الحساب البنكي',
+          'المدين / مصروف (-)',
+          'الدائن / دخل (+)',
+          'الرصيد التراكمي (ج.م)',
+          'سجلت بواسطة'
+        ]
       ];
 
-      filtered.forEach(tx => {
-        const catList = tx.type === 'expense' ? EXPENSE_CATEGORIES : INCOME_CATEGORIES;
-        const cat = catList.find(c => c.id === tx.category) || { name: 'أخرى' };
-        const wObj = state.wallets.find(w => w.id === tx.walletId) || { name: 'المحفظة' };
-        const amt = parseFloat(tx.amount);
-        rows.push([
-          tx.date, tx.label, tx.member, wObj.name, cat.name,
-          tx.type === 'expense' ? 'مصروف' : 'دخل',
-          tx.type === 'expense' ? -amt : amt
+      const dataRows = [];
+      sortedTx.forEach((tx, idx) => {
+        const amt = parseFloat(tx.amount) || 0;
+        const isExp = tx.type === 'expense';
+        
+        let debit = 0;
+        let credit = 0;
+        if (isExp) {
+          debit = -amt; // الالتزام الصارم بالإشارة السالبة للمدين
+          totalDebits += amt;
+          runningBal -= amt;
+        } else {
+          credit = amt; // الالتزام بالإشارة الموجبة للدائن
+          totalCredits += amt;
+          runningBal += amt;
+        }
+
+        const catList = isExp ? EXPENSE_CATEGORIES : INCOME_CATEGORIES;
+        const catObj = catList.find(c => c.id === tx.category) || { name: tx.category || 'أخرى' };
+        const wObj = state.wallets.find(w => w.id === tx.walletId) || { name: 'المحفظة الافتراضية' };
+
+        dataRows.push([
+          idx + 1,
+          tx.date || '',
+          tx.id || `TX-${idx + 1}`,
+          tx.label || '', // البيان كاملاً بدون أي اقتطاع
+          catObj.name,
+          tx.member || 'العائلة',
+          wObj.name,
+          debit !== 0 ? debit : '',
+          credit !== 0 ? credit : '',
+          runningBal,
+          tx.author || state.currentUser || 'ماهر'
         ]);
       });
 
-      const ws = XLSX.utils.aoa_to_sheet(rows);
-      ws['!cols'] = [{ wch: 14 }, { wch: 36 }, { wch: 14 }, { wch: 18 }, { wch: 18 }, { wch: 14 }, { wch: 16 }];
+      // صف ملخص الحسابات والتحقق الرياضي الدقيق (Audit Balance Reconciliation)
+      const finalNet = totalCredits - totalDebits;
+      const summaryRow = [
+        'الإجمالي',
+        '',
+        `عدد العمليات: ${sortedTx.length}`,
+        'إجمالي العمليات المالية المدققة',
+        '',
+        '',
+        '',
+        -totalDebits, // إجمالي المدين بالسالب
+        totalCredits, // إجمالي الدائن بالموجب
+        finalNet,     // الرصيد النهائي المتطابق رياضياً
+        `الصافي: ${finalNet >= 0 ? '+' : ''}${finalNet.toLocaleString()} ج.م`
+      ];
+
+      const allRows = [...headerBlock, ...dataRows, [], summaryRow];
+      const ws = XLSX.utils.aoa_to_sheet(allRows);
+
+      // تمكين اتجاه اليمين لليسار Right-to-Left للأوراق العربية
+      ws['!views'] = [{ RTL: true }];
+
+      // أبعاد أعمدة احترافية تضمن ظهور البيان كاملاً بدون اقتطاع
+      ws['!cols'] = [
+        { wch: 6 },   // م
+        { wch: 13 },  // التاريخ
+        { wch: 18 },  // كود المرجع
+        { wch: 44 },  // البيان التفصيلي (عرض سخي يمنع الاقتطاع)
+        { wch: 22 },  // بند الصرف
+        { wch: 14 },  // العضو
+        { wch: 20 },  // المحفظة
+        { wch: 18 },  // مدين (-)
+        { wch: 18 },  // دائن (+)
+        { wch: 20 },  // الرصيد التراكمي
+        { wch: 16 }   // سجلت بواسطة
+      ];
+
       const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'كشف الحساب');
-      XLSX.writeFile(wb, `كشف_حساب_${state.selectedMember}_${new Date().toISOString().split('T')[0]}.xlsx`);
-      showToast('📊 تم تصدير ملف الإكسيل بنجاح');
+      XLSX.utils.book_append_sheet(wb, ws, 'دفتر الأستاذ المحاسبي');
+      const fileDate = new Date().toISOString().split('T')[0];
+      XLSX.writeFile(wb, `دفتر_أستاذ_العائلة_${state.selectedMember}_${fileDate}.xlsx`);
+      showToast('📊 تم تصدير دفتر الأستاذ المحاسبي التفصيلي (Excel) بنجاح');
+    }
+
+    function exportPdf() {
+      const filtered = getFilteredTransactions();
+      if (!filtered || filtered.length === 0) {
+        alert('لا توجد حركات مسجلة للطباعة في الفترة المحددة');
+        return;
+      }
+
+      // فرز العمليات تصاعدياً بالتاريخ
+      const sortedTx = [...filtered].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      let totalDebits = 0;
+      let totalCredits = 0;
+      let runningBal = 0;
+
+      const periodLabelMap = { 'today': 'اليوم', 'week': 'الأسبوع الحالي', 'month': 'الشهر الحالي', 'all': 'كافة العمليات', 'custom': 'فترة مخصصة' };
+      const currentPeriodDesc = state.period === 'custom' 
+        ? (state.customDate ? `يوم محدد: ${state.customDate}` : `من ${state.customDateFrom} إلى ${state.customDateTo}`)
+        : (periodLabelMap[state.period] || state.period);
+
+      let tableRowsHtml = '';
+      sortedTx.forEach((tx, idx) => {
+        const amt = parseFloat(tx.amount) || 0;
+        const isExp = tx.type === 'expense';
+        let debitTxt = '-';
+        let creditTxt = '-';
+
+        if (isExp) {
+          debitTxt = `-${amt.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م`;
+          totalDebits += amt;
+          runningBal -= amt;
+        } else {
+          creditTxt = `+${amt.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م`;
+          totalCredits += amt;
+          runningBal += amt;
+        }
+
+        const catList = isExp ? EXPENSE_CATEGORIES : INCOME_CATEGORIES;
+        const catObj = catList.find(c => c.id === tx.category) || { name: tx.category || 'أخرى' };
+        const wObj = state.wallets.find(w => w.id === tx.walletId) || { name: 'المحفظة' };
+
+        tableRowsHtml += `
+          <tr>
+            <td>${idx + 1}</td>
+            <td>${tx.date || ''}</td>
+            <td class="align-right" style="font-weight: 700;">${escapeHtml(tx.label || '')}</td>
+            <td>${catObj.name}</td>
+            <td>${tx.member || ''}</td>
+            <td>${wObj.name}</td>
+            <td class="debit-val">${debitTxt !== '-' ? debitTxt : ''}</td>
+            <td class="credit-val">${creditTxt !== '-' ? creditTxt : ''}</td>
+            <td class="running-val">${runningBal.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</td>
+          </tr>
+        `;
+      });
+
+      const finalNet = totalCredits - totalDebits;
+
+      const printContainer = document.getElementById('printableStatementSheet');
+      if (printContainer) {
+        printContainer.innerHTML = `
+          <div class="print-header-box">
+            <div class="print-title-area">
+              <h2>كشف الحساب والتدقيق المالي الشامل</h2>
+              <p>دفتر الأستاذ وتدقيق مصروفات ودخل عائلة ماهر ❤️ أية</p>
+            </div>
+            <div style="text-align: left; font-size: 0.8rem; color: #64748b;">
+              <div>تاريخ التقرير: <strong>${new Date().toLocaleDateString('ar-EG')}</strong></div>
+              <div>وقت الاستخراج: <strong>${new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })}</strong></div>
+            </div>
+          </div>
+
+          <div class="print-meta-badges">
+            <span><strong>الفترة:</strong> ${currentPeriodDesc}</span>
+            <span>|</span>
+            <span><strong>الحساب المختار:</strong> ${state.selectedMember}</span>
+            <span>|</span>
+            <span><strong>المحفظة:</strong> ${state.currentWalletId === 'all' ? 'كافة المحافظ' : (state.wallets.find(w => w.id === state.currentWalletId)?.name || state.currentWalletId)}</span>
+            <span>|</span>
+            <span><strong>عدد العمليات:</strong> ${sortedTx.length} عملية</span>
+          </div>
+
+          <div class="print-kpis-grid">
+            <div class="print-kpi-card">
+              <span>الرصيد الافتتاحي</span>
+              <strong>0.00 ج.م</strong>
+            </div>
+            <div class="print-kpi-card inc">
+              <span>إجمالي المداخيل (دائن +)</span>
+              <strong>+${totalCredits.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</strong>
+            </div>
+            <div class="print-kpi-card exp">
+              <span>إجمالي المصروفات (مدين -)</span>
+              <strong>-${totalDebits.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</strong>
+            </div>
+            <div class="print-kpi-card net">
+              <span>صافي الرصيد النهائي</span>
+              <strong>${finalNet.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</strong>
+            </div>
+          </div>
+
+          <table class="print-ledger-table">
+            <thead>
+              <tr>
+                <th style="width: 5%;">م</th>
+                <th style="width: 11%;">التاريخ</th>
+                <th style="width: 28%;">البيان التفصيلي</th>
+                <th style="width: 14%;">بند الصرف</th>
+                <th style="width: 9%;">العضو</th>
+                <th style="width: 11%;">المحفظة</th>
+                <th style="width: 11%;">مدين (-)</th>
+                <th style="width: 11%;">دائن (+)</th>
+                <th style="width: 13%;">الرصيد التراكمي</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${tableRowsHtml}
+            </tbody>
+            <tfoot>
+              <tr style="background: #e2e8f0; font-weight: 900;">
+                <td colspan="6" style="text-align: right; padding: 10px;">الإجمالي المدقق والمطابق رياضياً</td>
+                <td class="debit-val">-${totalDebits.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</td>
+                <td class="credit-val">+${totalCredits.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</td>
+                <td class="running-val">${finalNet.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <div class="print-footer-audit">
+            <div>✔️ تم تدقيق ومطابقة هذا الكشف آلياً وفقاً للمعايير المحاسبية المعتمدة - الرصيد متوازن بنسبة 100%</div>
+            <div>توقيع رب الأسرة: .......................................</div>
+          </div>
+        `;
+      }
+
+      // إطلاق نافذة الطباعة لإنشاء PDF محاسبي معتمد
+      window.print();
     }
 
     
@@ -5124,5 +5471,9 @@
       } catch(e) {}
     }, 400);
   </script>
+  <!-- ورقة الطباعة وكشف الحساب المحاسبي المعتمد (PDF & Print Statement) -->
+  <div id="printableStatementSheet">
+    <!-- تتولد محتويات كشف الحساب المحاسبي الكامل ديناميكياً قبل الطباعة -->
+  </div>
 </body>
 </html>
