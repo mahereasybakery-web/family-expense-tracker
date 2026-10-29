@@ -3323,12 +3323,15 @@
     /* صفحات التطبيق */
     .page-view {
       display: none;
+      width: 100% !important;
+      box-sizing: border-box !important;
       animation: fadeInPage 0.22s ease-in-out;
-      padding-bottom: 78px; /* مسافة أمان فوق الشريط السفلي */
+      padding-bottom: 78px;
     }
 
     .page-view.active {
-      display: block;
+      display: block !important;
+      width: 100% !important;
     }
 
     @keyframes fadeInPage {
@@ -3787,6 +3790,420 @@
       box-shadow: 0 2px 10px rgba(2, 132, 199, 0.45);
     }
 
+
+    /* زر الضبط الموحد في الهيدر الرئيسي */
+    .header-settings-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(192, 132, 252, 0.2), rgba(168, 85, 247, 0.25));
+      border: 1px solid rgba(192, 132, 252, 0.5);
+      color: #e9d5ff;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .header-settings-btn:hover, .header-settings-btn:active {
+      background: linear-gradient(135deg, #a855f7, #9333ea);
+      color: #ffffff;
+      transform: scale(1.04);
+      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+    }
+    .header-settings-btn i {
+      font-size: 0.95rem;
+      color: #c084fc;
+      transition: transform 0.3s;
+    }
+    .header-settings-btn:hover i {
+      transform: rotate(60deg);
+      color: #ffffff;
+    }
+
+    /* زر إغلاق النوافذ المنبثقة (علامة X البارزة والسهلة على الجوال) */
+    .btn-modal-close {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 50%;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #ef4444;
+      font-size: 1.25rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      line-height: 1;
+      padding: 0;
+    }
+    .btn-modal-close:hover, .btn-modal-close:active {
+      background: #ef4444;
+      color: #ffffff;
+      transform: scale(1.08);
+      box-shadow: 0 3px 10px rgba(239, 68, 68, 0.4);
+    }
+    body.light-theme .btn-modal-close {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #dc2626;
+    }
+
+    /* زر الإلغاء والتراجع داخل المودال */
+    .btn-cancel-tx {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--text-muted);
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-cancel-tx:hover, .btn-cancel-tx:active {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    /* الآلة الحاسبة المدمجة فائقة الذكاء داخل نافذة تسجيل المصروف والدخل */
+    .tx-inline-calc-wrapper {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1.5px solid rgba(56, 189, 248, 0.35);
+      border-radius: 16px;
+      padding: 10px;
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      animation: fadeInDown 0.2s ease-out;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+    body.light-theme .tx-inline-calc-wrapper {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+
+    .tx-calc-screen {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 6px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      min-height: 48px;
+      justify-content: center;
+    }
+    body.light-theme .tx-calc-screen {
+      background: #ffffff;
+      border-color: #e2e8f0;
+    }
+    .tx-calc-formula {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      direction: ltr;
+      min-height: 14px;
+    }
+    .tx-calc-result-display {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #38bdf8;
+      direction: ltr;
+    }
+
+    .tx-calc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+    .calc-pad-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: var(--text-main);
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 9px 0;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .calc-pad-btn:active {
+      transform: scale(0.93);
+    }
+    .calc-pad-btn.btn-op {
+      background: rgba(2, 132, 199, 0.2);
+      border-color: rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+    }
+    .calc-pad-btn.btn-func {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #f87171;
+    }
+    .calc-pad-btn.btn-equals {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-color: #10b981;
+      color: #ffffff;
+      font-weight: 800;
+    }
+    body.light-theme .calc-pad-btn {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      color: #1e293b;
+    }
+
+    .btn-apply-calc-to-input {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      border: none;
+      border-radius: 12px;
+      color: #ffffff;
+      padding: 10px;
+      font-size: 0.86rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+    }
+    .btn-apply-calc-to-input:active {
+      transform: scale(0.98);
+    }
+
+    /* النافذة المنبثقة الذكية لتحديد فترة مخصصة (Custom Date Sheet) */
+    .custom-date-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      z-index: 10500;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      animation: fadeIn 0.2s ease-out;
+    }
+    .custom-date-sheet-card {
+      background: var(--bg-card);
+      width: 100%;
+      max-width: 480px;
+      border-radius: 24px 24px 0 0;
+      border: 1px solid var(--border-subtle);
+      border-bottom: none;
+      padding: 18px 16px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+      animation: slideUp 0.25s ease-out;
+    }
+    .custom-date-sheet-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .date-quick-presets-row {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 4px 0;
+    }
+    .date-quick-presets-row::-webkit-scrollbar { display: none; }
+    .preset-chip {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 6px 12px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .preset-chip:active, .preset-chip:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+    .date-pickers-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .date-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .date-field-group label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .modern-mobile-date-inp {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 8px 10px;
+      color: var(--text-main);
+      font-size: 0.82rem;
+      font-family: inherit;
+      outline: none;
+      direction: rtl;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .custom-date-sheet-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .btn-apply-period-main {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      border: none;
+      border-radius: 12px;
+      color: #ffffff;
+      padding: 10px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+    }
+    .btn-reset-period-sub {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text-muted);
+      padding: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* تحسين شبكة بطاقات المصروفات لتناسب الجوال دون أي تمرير أفقي */
+    .categories-monefy-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 6px !important;
+      padding: 0 8px 10px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    @media (max-width: 360px) {
+      .categories-monefy-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+    }
+    .cat-card {
+      padding: 7px 3px 6px !important;
+      border-radius: 14px !important;
+      min-height: 98px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      box-sizing: border-box !important;
+    }
+    .cat-icon-bubble {
+      width: 38px !important;
+      height: 38px !important;
+      border-radius: 11px !important;
+      font-size: 1.1rem !important;
+    }
+    .cat-name-label {
+      font-size: 0.69rem !important;
+      font-weight: 700 !important;
+      margin: 3px 0 2px !important;
+      line-height: 1.2 !important;
+      max-height: 2.4em !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      text-align: center !important;
+    }
+    .cat-card-val-btn {
+      font-size: 0.68rem !important;
+      padding: 2px 4px !important;
+      width: 96% !important;
+      border-radius: 7px !important;
+      white-space: nowrap !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+    }
+
+    /* ضبط صفحة تحليل المصروفات لتلائم الجوال 100% بدون تمرير أفقي */
+    .kpi-master-grid-lux {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 8px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      margin-bottom: 12px !important;
+    }
+    .kpi-lux-card {
+      padding: 10px 12px !important;
+      border-radius: 14px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
+    }
+    .kpi-lux-value {
+      font-size: 1.05rem !important;
+      font-weight: 800 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+    .analytics-section-nav {
+      display: flex !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      gap: 4px !important;
+      padding: 4px !important;
+      border-radius: 12px !important;
+      margin-bottom: 10px !important;
+      overflow-x: auto !important;
+    }
+    .analytics-sec-btn {
+      flex: 1 1 0 !important;
+      padding: 8px 3px !important;
+      font-size: 0.70rem !important;
+      font-weight: 700 !important;
+      white-space: nowrap !important;
+      text-align: center !important;
+    }
+
 </style>
 
   <script>
@@ -3821,12 +4238,14 @@
           </div>
         </div>
 
-        <!-- شارة الإيميل وحالة المزامنة السحابية -->
-        <button class="header-tool-icon-btn theme-toggle-btn" id="btnToggleTheme" onclick="toggleTheme()" title="تبديل المظهر الداكن / الفاتح" style="margin-left: 6px;"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
-        <div class="header-email-pill" id="headerEmailPill" onclick="openModal('authModal')" title="الحساب المسجل والمزامنة السحابية">
-          <i class="fa-solid fa-cloud" style="color: #10b981; font-size: 0.75rem;"></i>
-          <span id="headerUserEmailDisplay">maher@family.com</span>
-          <i class="fa-solid fa-circle-user" style="color: #38bdf8;"></i>
+        <!-- زر الضبط والإعدادات الموحد في الهيدر الرئيسي مع زر الثيم -->
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="header-tool-icon-btn theme-toggle-btn" id="btnToggleTheme" onclick="toggleTheme()" title="تبديل المظهر الداكن / الفاتح"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+          <button class="header-settings-btn" id="btnMainSettings" onclick="openSettingsModal()" title="الضبط والإعدادات (Drive والمظهر والحساب)">
+            <i class="fa-solid fa-gear"></i>
+            <span>الضبط</span>
+          </button>
+          <span id="headerUserEmailDisplay" style="display: none;">maher@family.com</span>
         </div>
       </div>
 
@@ -3893,62 +4312,51 @@
       </div>
     </header>
 
-    <!-- شريط التصفية والعملات ومفتاح الشارتات -->
-    <div class="filter-bar">
-      <div class="period-segmented-box">
-        <button class="period-seg-btn period-btn" data-period="today">اليوم</button>
-        <button class="period-seg-btn period-btn" data-period="week">الأسبوع</button>
-        <button class="period-seg-btn period-btn active" data-period="month">الشهر</button>
-        <button class="period-seg-btn period-btn" data-period="all">الكل</button>
-        <button class="period-seg-btn period-btn custom-date-toggle-btn" id="btnToggleCustomDate" onclick="toggleCustomDatePicker()" title="تحديد تاريخ معين أو فترة">
-          <i class="fa-regular fa-calendar-days"></i> تاريخ مخصص
-        </button>
-      </div>
-
-      <div class="filter-tools-cluster">
-        <button class="chart-view-toggle-btn" id="btnToggleAnalytics" title="لوحة التحاليل والشارتات المفصلة">
-          <i class="fa-solid fa-chart-pie"></i>
-          <span>الشارتات</span>
-        </button>
-
-        <div class="currency-pill-btn" id="btnToggleCurrency" title="تبديل العملة المعروضة">
-          <i class="fa-solid fa-coins"></i>
-          <span id="activeCurrencyText">EGP</span>
-        </div>
-      </div>
-    </div>
+    <!-- تم دمج أدوات التصفية والعملات في شريط أنيق موحد لمنع التكرار -->
 
     <!-- بطاقة منبثقة أنيقة ومتناسقة لتحديد تاريخ مخصص -->
-    <div class="custom-date-card-panel" id="customDatePickerDrawer" style="display: none;">
-      <div class="custom-date-card-head">
-        <div style="display: flex; align-items: center; gap: 7px;">
-          <i class="fa-regular fa-calendar-days" style="color: #38bdf8;"></i>
-          <span>تحديد فترة مالية مخصصة للتدقيق</span>
+    <!-- نافذة منبثقة سفلية ذكية ومبسطة للجوال لتحديد فترة مخصصة -->
+    <div class="custom-date-modal-overlay" id="customDatePickerDrawer" style="display: none;">
+      <div class="custom-date-sheet-card">
+        <div class="custom-date-sheet-head">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i class="fa-regular fa-calendar-check" style="color: #38bdf8; font-size: 1.1rem;"></i>
+            <span style="font-weight: 800; font-size: 0.95rem; color: var(--text-main);">📅 تحديد فترة زمنية مخصصة</span>
+          </div>
+          <button type="button" class="btn-modal-close" onclick="toggleCustomDatePicker(false)" aria-label="إغلاق">&times;</button>
         </div>
-        <button onclick="toggleCustomDatePicker()" style="background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer;">&times;</button>
-      </div>
-      
-      <div class="custom-date-grid">
-        <div class="custom-date-input-wrap">
-          <label><i class="fa-regular fa-calendar-check" style="color: #38bdf8;"></i> تحديد يوم معين:</label>
-          <input type="date" id="inpSpecificDate" class="modern-form-date" onchange="applySpecificDate(this.value)">
-        </div>
-        <div class="custom-date-input-wrap">
-          <label><i class="fa-solid fa-arrows-left-right" style="color: #10b981;"></i> أو من تاريخ:</label>
-          <input type="date" id="inpRangeFrom" class="modern-form-date" onchange="applyDateRange()">
-        </div>
-      </div>
-      <div class="custom-date-input-wrap" style="margin-top: 4px;">
-        <label>إلى تاريخ:</label>
-        <input type="date" id="inpRangeTo" class="modern-form-date" onchange="applyDateRange()">
-      </div>
 
-      <div class="custom-date-actions">
-        <button class="btn-secondary-custom" onclick="resetDateFilter()" style="padding: 6px 14px; font-size: 0.78rem;">
-          <i class="fa-solid fa-rotate-left"></i> إلغاء والعودة للشهر الحالي
-        </button>
+        <!-- كبسولات الاختيار السريع للفترات بنقرة واحدة -->
+        <div class="date-quick-presets-row">
+          <button type="button" class="preset-chip" onclick="applyPresetPeriod('today')">اليوم</button>
+          <button type="button" class="preset-chip" onclick="applyPresetPeriod('yesterday')">الأمس</button>
+          <button type="button" class="preset-chip" onclick="applyPresetPeriod('last7')">آخر 7 أيام</button>
+          <button type="button" class="preset-chip" onclick="applyPresetPeriod('this_month')">الشهر الحالي</button>
+          <button type="button" class="preset-chip" onclick="applyPresetPeriod('last_month')">الشهر السابق</button>
+        </div>
+
+        <div class="date-pickers-block">
+          <div class="date-field-group">
+            <label><i class="fa-regular fa-calendar-plus" style="color: #10b981;"></i> من تاريخ:</label>
+            <input type="date" id="inpRangeFrom" class="modern-mobile-date-inp">
+          </div>
+          <div class="date-field-group">
+            <label><i class="fa-regular fa-calendar-minus" style="color: #ef4444;"></i> إلى تاريخ:</label>
+            <input type="date" id="inpRangeTo" class="modern-mobile-date-inp">
+          </div>
+        </div>
+
+        <div class="custom-date-sheet-actions">
+          <button type="button" class="btn-apply-period-main" onclick="applyDateRange()">
+            <i class="fa-solid fa-check"></i> تطبيق الفترة المختارة
+          </button>
+          <button type="button" class="btn-reset-period-sub" onclick="resetDateFilter()">
+            <i class="fa-solid fa-rotate-left"></i> إلغاء والعودة للشهر الحالي
+          </button>
+        </div>
       </div>
     </div>
+
 
     <!-- جسم التطبيق القابل للتمرير -->
     <div class="app-scroll-body" id="appScrollBody">
@@ -3957,7 +4365,7 @@
            الصفحة 1: المصاريف وتسجيلها فقط (Page 1: Expenses & Logging)
            ================================================================ -->
       <div class="page-view active" id="viewExpenses">
-        <!-- شريط اختيار الفترة الزمنية في أعلى صفحة المصاريف -->
+        <!-- شريط اختيار الفترة الزمنية والعملة الموحد بدون أي تكرار -->
         <div class="period-selector-top-strip">
           <div class="period-buttons-group">
             <button class="period-filter-pill" id="pillPeriodToday" onclick="setAppPeriod('today')">
@@ -3975,6 +4383,10 @@
             <button class="period-filter-pill" id="pillPeriodCustom" onclick="toggleCustomDatePicker()">
               <i class="fa-solid fa-calendar-check"></i> مخصص
             </button>
+          </div>
+          <div class="currency-pill-btn" id="btnToggleCurrency" onclick="toggleCurrency()" title="تبديل العملة المعروضة (EGP / SAR / USD)">
+            <i class="fa-solid fa-coins"></i>
+            <span id="activeCurrencyText">EGP</span>
           </div>
         </div>
 
@@ -4570,7 +4982,7 @@
             <i class="fa-solid fa-circle-plus" id="txModalTitleIcon" style="color: var(--income);"></i>
             <span id="txModalTitleText">تسجيل دخل جديد</span>
           </h3>
-          <button class="btn-close-drawer" onclick="closeModal('txModal')">&times;</button>
+          <button type="button" class="btn-modal-close" onclick="closeModal('txModal')" aria-label="إغلاق">&times;</button>
         </div>
 
         <!-- شارة التوضيح البارزة لطبيعة الحركة (دخل أم مصروف) -->
@@ -4582,9 +4994,46 @@
         <div class="form-group-custom">
           <label class="form-label-custom">المبلغ (ج.م) <span class="req">*</span></label>
           <div style="display: flex; gap: 8px; align-items: center;">
-            <input type="number" step="0.01" class="form-input-custom" id="inpTxAmount" placeholder="0.00" style="flex: 1;">
-            <button type="button" class="btn-input-calc" id="btnTxInlineCalc" onclick="openInlineCalcForTx()" title="حساب المبلغ بالآلة الحاسبة السريعة">
+            <input type="number" step="0.01" class="form-input-custom" id="inpTxAmount" placeholder="0.00" style="flex: 1; font-size: 1.25rem; font-weight: 800; text-align: center;">
+            <button type="button" class="btn-input-calc" id="btnTxInlineCalc" onclick="toggleTxCalcPad()" title="فتح الآلة الحاسبة المدمجة">
               <i class="fa-solid fa-calculator"></i>
+            </button>
+          </div>
+
+          <!-- لوحة الآلة الحاسبة المدمجة فائقة السرعة والمصممة خصيصاً للجوال -->
+          <div id="txInlineCalcPad" class="tx-inline-calc-wrapper" style="display: none;">
+            <div class="tx-calc-screen">
+              <div class="tx-calc-formula" id="txCalcFormula">0</div>
+              <div class="tx-calc-result-display" id="txCalcResult">0.00</div>
+            </div>
+            <div class="tx-calc-grid">
+              <button type="button" class="calc-pad-btn btn-func" onclick="txCalcClear()">C</button>
+              <button type="button" class="calc-pad-btn btn-func" onclick="txCalcBackspace()"><i class="fa-solid fa-delete-left"></i></button>
+              <button type="button" class="calc-pad-btn btn-op" onclick="txCalcOp('%')">%</button>
+              <button type="button" class="calc-pad-btn btn-op" onclick="txCalcOp('/')">÷</button>
+
+              <button type="button" class="calc-pad-btn" onclick="txCalcNum('7')">7</button>
+              <button type="button" class="calc-pad-btn" onclick="txCalcNum('8')">8</button>
+              <button type="button" class="calc-pad-btn" onclick="txCalcNum('9')">9</button>
+              <button type="button" class="calc-pad-btn btn-op" onclick="txCalcOp('*')">×</button>
+
+              <button type="button" class="calc-pad-btn" onclick="txCalcNum('4')">4</button>
+              <button type="button" class="calc-pad-btn" onclick="txCalcNum('5')">5</button>
+              <button type="button" class="calc-pad-btn" onclick="txCalcNum('6')">6</button>
+              <button type="button" class="calc-pad-btn btn-op" onclick="txCalcOp('-')">-</button>
+
+              <button type="button" class="calc-pad-btn" onclick="txCalcNum('1')">1</button>
+              <button type="button" class="calc-pad-btn" onclick="txCalcNum('2')">2</button>
+              <button type="button" class="calc-pad-btn" onclick="txCalcNum('3')">3</button>
+              <button type="button" class="calc-pad-btn btn-op" onclick="txCalcOp('+')">+</button>
+
+              <button type="button" class="calc-pad-btn" onclick="txCalcNum('0')">0</button>
+              <button type="button" class="calc-pad-btn" onclick="txCalcNum('00')">00</button>
+              <button type="button" class="calc-pad-btn" onclick="txCalcNum('.')">.</button>
+              <button type="button" class="calc-pad-btn btn-equals" onclick="txCalcEquals()">=</button>
+            </div>
+            <button type="button" class="btn-apply-calc-to-input" onclick="applyTxCalcResult()">
+              <i class="fa-solid fa-check-double"></i> اعتماد الناتج في خانة المبلغ (<span id="txCalcBadgeVal">0.00</span> ج.م)
             </button>
           </div>
         </div>
@@ -4641,9 +5090,14 @@
           </div>
         </div>
 
-        <button class="btn-submit-tx" id="btnSaveTx">
-          <i class="fa-solid fa-check"></i> <span id="btnSaveTxText">حفظ الدخل فوراً</span>
-        </button>
+        <div style="display: flex; gap: 8px; margin-top: 6px;">
+          <button type="button" class="btn-submit-tx" id="btnSaveTx" style="flex: 2; margin: 0;">
+            <i class="fa-solid fa-check"></i> <span id="btnSaveTxText">حفظ المصروف فوراً</span>
+          </button>
+          <button type="button" class="btn-cancel-tx" onclick="closeModal('txModal')" style="flex: 1;">
+            <i class="fa-solid fa-xmark"></i> إلغاء
+          </button>
+        </div>
       </div>
     </div>
 
@@ -4654,7 +5108,7 @@
           <h3 class="modal-title-custom">
             <i class="fa-solid fa-vault" style="color: #38bdf8;"></i> إضافة محفظة جديدة
           </h3>
-          <button class="btn-close-drawer" onclick="closeModal('walletModal')">&times;</button>
+          <button type="button" class="btn-modal-close" onclick="closeModal('walletModal')" aria-label="إغلاق">&times;</button>
         </div>
 
         <div class="form-group-custom">
@@ -5284,10 +5738,29 @@
       <div class="modal-content-card" style="max-width: 500px;">
         <div class="modal-head">
           <h3 class="modal-title-custom"><i class="fa-solid fa-gear" style="color: #c084fc;"></i> إعدادات وضبط التطبيق</h3>
-          <button class="btn-close-drawer" onclick="closeModal('settingsModal')">&times;</button>
+          <button type="button" class="btn-modal-close" onclick="closeModal('settingsModal')" aria-label="إغلاق">&times;</button>
         </div>
         <div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 14px;">
-          
+          <!-- بطاقة الحساب والمستخدم الحالي (المدمجة مع الضبط والإعدادات) -->
+          <div class="app-card-panel" style="margin: 0; background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(56, 189, 248, 0.3);">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(56, 189, 248, 0.2); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: #38bdf8;">
+                  <i class="fa-solid fa-circle-user"></i>
+                </div>
+                <div>
+                  <div style="font-size: 0.88rem; font-weight: 800; color: var(--text-main);" id="settingsModalUserEmail">maher@family.com</div>
+                  <div style="font-size: 0.72rem; color: #10b981; display: flex; align-items: center; gap: 4px;">
+                    <i class="fa-solid fa-cloud-check"></i> حساب العائلة والمزامنة المشتركة
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn-export-tool" onclick="openModal('authModal'); closeModal('settingsModal');" style="padding: 5px 10px; font-size: 0.74rem;">
+                <i class="fa-solid fa-right-left"></i> تبديل الحساب
+              </button>
+            </div>
+          </div>
+
           <!-- مزامنة Google Drive -->
           <div class="app-card-panel" style="margin: 0;">
             <div class="app-card-title">
@@ -5841,8 +6314,10 @@
 
     function updateUserAndDefaultDisplay() {
       const defaultPerson = state.selectedMember !== 'الكل' ? state.selectedMember : state.currentUser;
-      document.getElementById('footerUserLabel').textContent = `المحمل عليه: ${defaultPerson}`;
-      document.getElementById('targetChargeHint').textContent = `يتم تسجيل أي حركة تلقائياً باسم: ${defaultPerson}`;
+      const ful = document.getElementById('footerUserLabel');
+      if (ful) ful.textContent = `المحمل عليه: ${defaultPerson}`;
+      const tch = document.getElementById('targetChargeHint');
+      if (tch) tch.textContent = `يتم تسجيل أي حركة تلقائياً باسم: ${defaultPerson}`;
     }
 
     // ==========================================
@@ -5889,40 +6364,75 @@
     // =========================================================================
     let currentChartTab = 'categories'; // 'categories', 'members', 'daily', 'monthly'
 
-    function toggleCustomDatePicker() {
+    function toggleCustomDatePicker(force) {
       const drawer = document.getElementById('customDatePickerDrawer');
-      if (drawer) {
-        drawer.style.display = drawer.style.display === 'none' ? 'flex' : 'none';
+      if (!drawer) return;
+      const isOpen = drawer.style.display !== 'none';
+      const willOpen = force !== undefined ? force : !isOpen;
+
+      if (willOpen) {
+        drawer.style.display = 'flex';
+        pushModalState('customDatePickerDrawer');
+        const inpFrom = document.getElementById('inpRangeFrom');
+        const inpTo = document.getElementById('inpRangeTo');
+        const todayStr = new Date().toISOString().split('T')[0];
+        if (inpTo && !inpTo.value) inpTo.value = todayStr;
+        if (inpFrom && !inpFrom.value) {
+          const d = new Date();
+          d.setDate(1);
+          inpFrom.value = d.toISOString().split('T')[0];
+        }
+      } else {
+        drawer.style.display = 'none';
+        popModalState('customDatePickerDrawer');
       }
     }
 
-    function applySpecificDate(val) {
-      if (!val) return;
-      state.period = 'custom';
-      state.customDate = val;
-      state.customDateFrom = null;
-      state.customDateTo = null;
+    function applyPresetPeriod(preset) {
+      const today = new Date();
+      const todayStr = today.toISOString().split('T')[0];
+      let fromStr = todayStr;
+      let toStr = todayStr;
 
-      // تحديث أزرار الفترات
-      document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
-      const customBtn = document.getElementById('btnToggleCustomDate');
-      if (customBtn) customBtn.classList.add('active');
+      if (preset === 'today') {
+        fromStr = todayStr;
+        toStr = todayStr;
+      } else if (preset === 'yesterday') {
+        const y = new Date(today);
+        y.setDate(y.getDate() - 1);
+        fromStr = y.toISOString().split('T')[0];
+        toStr = fromStr;
+      } else if (preset === 'last7') {
+        const l7 = new Date(today);
+        l7.setDate(l7.getDate() - 6);
+        fromStr = l7.toISOString().split('T')[0];
+        toStr = todayStr;
+      } else if (preset === 'this_month') {
+        const m1 = new Date(today.getFullYear(), today.getMonth(), 1);
+        fromStr = m1.toISOString().split('T')[0];
+        toStr = todayStr;
+      } else if (preset === 'last_month') {
+        const lmStart = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+        const lmEnd = new Date(today.getFullYear(), today.getMonth(), 0);
+        fromStr = lmStart.toISOString().split('T')[0];
+        toStr = lmEnd.toISOString().split('T')[0];
+      }
 
-      // ضبط الحقول
-      const inp = document.getElementById('inpSpecificDate');
-      if (inp) inp.value = val;
-      const chartInp = document.getElementById('chartDirectDateInp');
-      if (chartInp) chartInp.value = val;
+      const inpFrom = document.getElementById('inpRangeFrom');
+      const inpTo = document.getElementById('inpRangeTo');
+      if (inpFrom) inpFrom.value = fromStr;
+      if (inpTo) inpTo.value = toStr;
 
-      updatePeriodDisplayLabel();
-      renderUI();
-      showToast(`📅 تم تحديد تاريخ: ${val}`);
+      applyDateRange();
     }
 
     function applyDateRange() {
-      const from = document.getElementById('inpRangeFrom').value;
-      const to = document.getElementById('inpRangeTo').value;
-      if (!from || !to) return;
+      const from = document.getElementById('inpRangeFrom')?.value;
+      const to = document.getElementById('inpRangeTo')?.value;
+      if (!from || !to) {
+        showToast('⚠️ الرجاء اختيار تاريخي البداية والنهاية');
+        return;
+      }
       if (from > to) {
         showToast('⚠️ تاريخ البداية يجب أن يكون قبل أو يساوي تاريخ النهاية');
         return;
@@ -5932,13 +6442,14 @@
       state.customDateFrom = from;
       state.customDateTo = to;
 
-      document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
-      const customBtn = document.getElementById('btnToggleCustomDate');
-      if (customBtn) customBtn.classList.add('active');
+      document.querySelectorAll('.period-filter-pill').forEach(b => b.classList.remove('active'));
+      const customPill = document.getElementById('pillPeriodCustom');
+      if (customPill) customPill.classList.add('active');
 
+      toggleCustomDatePicker(false);
       updatePeriodDisplayLabel();
       renderUI();
-      showToast(`📅 تم تحديد الفترة: من ${from} إلى ${to}`);
+      showToast(`📅 تم تطبيق الفترة: من ${from} إلى ${to}`);
     }
 
     function resetDateFilter() {
@@ -5947,19 +6458,15 @@
       state.customDateFrom = null;
       state.customDateTo = null;
 
-      const drawer = document.getElementById('customDatePickerDrawer');
-      if (drawer) drawer.style.display = 'none';
+      toggleCustomDatePicker(false);
 
-      document.querySelectorAll('.period-btn').forEach(b => {
-        if (b.getAttribute('data-period') === 'month') b.classList.add('active');
+      document.querySelectorAll('.period-filter-pill').forEach(b => {
+        if (b.id === 'pillPeriodMonth') b.classList.add('active');
         else b.classList.remove('active');
       });
 
-      const inp = document.getElementById('inpSpecificDate');
-      if (inp) inp.value = '';
       const r1 = document.getElementById('inpRangeFrom'); if (r1) r1.value = '';
       const r2 = document.getElementById('inpRangeTo'); if (r2) r2.value = '';
-      const ci = document.getElementById('chartDirectDateInp'); if (ci) ci.value = '';
 
       updatePeriodDisplayLabel();
       renderUI();
@@ -6549,7 +7056,7 @@
     // =========================================================================
     // التنقل بين الصفحات الخمس الرئيسية (Page Switching)
     // =========================================================================
-    function switchAppPage(pageId) {
+    function switchAppPage(pageId, pushHistory = true) {
       state.activePage = pageId;
       document.querySelectorAll('.page-view').forEach(p => {
         p.classList.remove('active');
@@ -6585,6 +7092,10 @@
 
       const scrollBody = document.getElementById('appScrollBody');
       if (scrollBody) scrollBody.scrollTop = 0;
+
+      if (pushHistory && pageId !== 'expenses') {
+        window.history.pushState({ type: 'page', pageId: pageId }, '');
+      }
 
       renderUI();
     }
@@ -7357,31 +7868,129 @@
     // =========================================================================
     // الآلة الحاسبة المدمجة بجانب خانة المبلغ (Inline Calc Integration)
     // =========================================================================
-    function openInlineCalcForTx() {
-      toggleMiniCalc();
+    
+    // =========================================================================
+    // محرك الآلة الحاسبة المدمجة والذكية لتسجيل المصاريف والإيرادات
+    // =========================================================================
+    let txCalcExpr = '0';
+    let txCalcCurrentResult = 0;
+    let txCalcJustEvaluated = false;
+
+    function toggleTxCalcPad(force) {
+      const pad = document.getElementById('txInlineCalcPad');
+      if (!pad) return;
+      const isOpen = pad.style.display !== 'none';
+      const willOpen = force !== undefined ? force : !isOpen;
+
+      if (willOpen) {
+        pad.style.display = 'flex';
+        const currentAmt = document.getElementById('inpTxAmount')?.value;
+        if (currentAmt && !isNaN(parseFloat(currentAmt)) && parseFloat(currentAmt) > 0) {
+          txCalcExpr = currentAmt;
+          txCalcCurrentResult = parseFloat(currentAmt);
+        } else {
+          txCalcExpr = '0';
+          txCalcCurrentResult = 0;
+        }
+        txCalcJustEvaluated = false;
+        updateTxCalcScreen();
+      } else {
+        pad.style.display = 'none';
+      }
     }
 
-    function useCalcValInTx() {
-      const screenVal = document.getElementById('calcScreenVal');
-      if (!screenVal) return;
-      const num = parseFloat(screenVal.textContent);
-      if (!isNaN(num) && num > 0) {
+    function updateTxCalcScreen() {
+      const formulaEl = document.getElementById('txCalcFormula');
+      const resEl = document.getElementById('txCalcResult');
+      const badgeEl = document.getElementById('txCalcBadgeVal');
+
+      if (formulaEl) formulaEl.textContent = txCalcExpr;
+      const formatted = Number(txCalcCurrentResult || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      if (resEl) resEl.textContent = formatted;
+      if (badgeEl) badgeEl.textContent = formatted;
+    }
+
+    function evaluateTxExpr(expr) {
+      try {
+        const sanitized = expr.replace(/×/g, '*').replace(/÷/g, '/').replace(/%/g, '/100');
+        if (!/^[0-9+\-*/. ()]+$/.test(sanitized)) return 0;
+        const val = Function(`'use strict'; return (${sanitized});`)();
+        return isNaN(val) || !isFinite(val) ? 0 : val;
+      } catch (e) {
+        return 0;
+      }
+    }
+
+    function txCalcNum(num) {
+      if (txCalcJustEvaluated || txCalcExpr === '0') {
+        txCalcExpr = (num === '.') ? '0.' : num;
+        txCalcJustEvaluated = false;
+      } else {
+        if (num === '.' && txCalcExpr.endsWith('.')) return;
+        txCalcExpr += num;
+      }
+      txCalcCurrentResult = evaluateTxExpr(txCalcExpr);
+      updateTxCalcScreen();
+    }
+
+    function txCalcOp(op) {
+      txCalcJustEvaluated = false;
+      const lastChar = txCalcExpr.slice(-1);
+      if (['+', '-', '*', '/', '%'].includes(lastChar)) {
+        txCalcExpr = txCalcExpr.slice(0, -1) + op;
+      } else {
+        txCalcExpr += op;
+      }
+      updateTxCalcScreen();
+    }
+
+    function txCalcClear() {
+      txCalcExpr = '0';
+      txCalcCurrentResult = 0;
+      txCalcJustEvaluated = false;
+      updateTxCalcScreen();
+    }
+
+    function txCalcBackspace() {
+      if (txCalcExpr.length > 1) {
+        txCalcExpr = txCalcExpr.slice(0, -1);
+      } else {
+        txCalcExpr = '0';
+      }
+      txCalcCurrentResult = evaluateTxExpr(txCalcExpr);
+      updateTxCalcScreen();
+    }
+
+    function txCalcEquals() {
+      txCalcCurrentResult = evaluateTxExpr(txCalcExpr);
+      txCalcExpr = Number(txCalcCurrentResult).toFixed(2);
+      txCalcJustEvaluated = true;
+      updateTxCalcScreen();
+    }
+
+    function applyTxCalcResult() {
+      txCalcEquals();
+      const num = txCalcCurrentResult;
+      if (num > 0) {
         const inp = document.getElementById('inpTxAmount');
         if (inp) {
           inp.value = num.toFixed(2);
           inp.focus();
         }
-        toggleMiniCalc();
+        toggleTxCalcPad(false);
+        const labelInp = document.getElementById('inpTxLabel');
+        if (labelInp) labelInp.focus();
         showToast(`🔢 تم إدراج المبلغ (${num.toFixed(2)} ج.م) في خانة المبلغ`);
       } else {
-        showToast('⚠️ الرجاء حساب أو إدخال رقم صحيح أولاً في الآلة الحاسبة');
+        showToast('⚠️ الرجاء حساب أو كتابة مبلغ صحيح أكبر من الصفر أولاً');
       }
     }
 
-    // =========================================================================
-    // إدارة طلبات المصروف (Money Requests for Aya & Family)
-    // =========================================================================
-    function submitMoneyRequest() {
+    function openInlineCalcForTx() {
+      toggleTxCalcPad(true);
+    }
+
+function submitMoneyRequest() {
       const memSel = document.getElementById('inpReqMember');
       const amtInp = document.getElementById('inpReqAmount');
       const rsnInp = document.getElementById('inpReqReason');
@@ -8002,6 +8611,8 @@
 
       const emailDisplay = document.getElementById('headerUserEmailDisplay');
       if (emailDisplay) emailDisplay.textContent = savedEmail;
+      const sEmailDisp = document.getElementById('settingsModalUserEmail');
+      if (sEmailDisp) sEmailDisp.textContent = savedEmail;
 
       const authEmailInp = document.getElementById('authEmail');
       if (authEmailInp) authEmailInp.value = savedEmail;
@@ -8202,6 +8813,8 @@
 
       const emailDisplay = document.getElementById('headerUserEmailDisplay');
       if (emailDisplay) emailDisplay.textContent = email;
+      const sEmailDisp2 = document.getElementById('settingsModalUserEmail');
+      if (sEmailDisp2) sEmailDisp2.textContent = email;
 
       const activeLbl = document.getElementById('lblActiveEmailTxt');
       if (activeLbl) activeLbl.textContent = email;
@@ -8534,11 +9147,34 @@
       }
     }
 
-    // الاستماع لزر الرجوع من الجوال (Android/iOS Back Button)
+    // الاستماع لزر الرجوع من الجوال (Android / iOS Mobile Back Button)
+    // يغلق النوافذ المنبثقة أو الحاسبة أو يعود للصفحة الرئيسية دون الخروج من التطبيق
     window.addEventListener('popstate', (event) => {
+      // 1. إذا كان هناك أي نافذة أو مودال مفتوح
       if (activeModalsStack.length > 0) {
         const topId = activeModalsStack.pop();
         closeSpecificModalOrDrawer(topId, true);
+        return;
+      }
+
+      // 2. إذا كانت نافذة الفترة المخصصة مفتوحة
+      const customDrawer = document.getElementById('customDatePickerDrawer');
+      if (customDrawer && customDrawer.style.display !== 'none') {
+        toggleCustomDatePicker(false);
+        return;
+      }
+
+      // 3. إذا كانت الآلة الحاسبة المدمجة في تسجيل المصروف مفتوحة
+      const calcPad = document.getElementById('txInlineCalcPad');
+      if (calcPad && calcPad.style.display !== 'none') {
+        toggleTxCalcPad(false);
+        return;
+      }
+
+      // 4. إذا كان المستخدم في إحدى الصفحات الفرعية، يعود للشاشة الرئيسية
+      if (state.activePage && state.activePage !== 'expenses') {
+        switchAppPage('expenses', false);
+        return;
       }
     });
 
@@ -8592,9 +9228,10 @@
     // ==============================================================
     // 8. محرك سجل النشاطات والعمليات الشامل (Activity & Audit Log Engine)
     // ==============================================================
+    
     let currentActivityTab = 'all';
 
-    function initActivityLog() {
+        function initActivityLog() {
       const stored = localStorage.getItem('family_monefy_activity_log');
       if (stored) {
         try {
@@ -8604,22 +9241,18 @@
         }
       }
       if (!state.activityLog || state.activityLog.length === 0) {
-        // توليد سجل نشاطات تجريبي أولي مبني على الحركات
+        const todayStr = new Date().toISOString().split('T')[0];
         state.activityLog = [
-          { id: 'act-1', type: 'add_expense', action: 'إضافة مصروف', label: 'ملابس قطنية وسالوبيتات شتوية للنونو', amount: 1400, member: 'النونو', author: 'أية', date: '2026-10-18', time: '04:15 م', walletId: 'wallet-default' },
-          { id: 'act-2', type: 'add_expense', action: 'إضافة مصروف', label: 'كشف تطعيمات ومتابعة نمو طبيب أطفال', amount: 1850, member: 'النونو', author: 'ماهر', date: '2026-10-21', time: '11:30 ص', walletId: 'wallet-cash' },
-          { id: 'act-3', type: 'add_expense', action: 'إضافة مصروف', label: 'بامبرز وحليب مجفف ومستلزمات صيدلية', amount: 2200, member: 'النونو', author: 'أية', date: '2026-10-24', time: '07:20 م', walletId: 'wallet-default' },
-          { id: 'act-4', type: 'delete_tx', action: 'حذف حركة', label: 'طلب توصيل مطعم ملغي', amount: 350, member: 'ماهر', author: 'ماهر', date: '2026-10-25', time: '09:40 م', walletId: 'wallet-default' },
-          { id: 'act-5', type: 'add_wallet', action: 'إنشاء محفظة جديدة', label: 'إنشاء محفظة: حساب بنكي CIB', amount: 48000, member: 'ماهر', author: 'ماهر', date: '2026-10-01', time: '10:00 ص', walletId: 'wallet-bank' },
-          { id: 'act-6', type: 'add_income', action: 'إضافة دخل', label: 'راتب ماهر الشهري الأساسي', amount: 48000, member: 'ماهر', author: 'ماهر', date: '2026-10-01', time: '10:05 ص', walletId: 'wallet-bank' },
-          { id: 'act-7', type: 'add_expense', action: 'إضافة مصروف', label: 'سوبرماركت ولحوم وخضار الشهر', amount: 7600, member: 'أية', author: 'أية', date: '2026-10-03', time: '01:30 م', walletId: 'wallet-default' },
-          { id: 'act-8', type: 'add_expense', action: 'إضافة مصروف', label: 'قسط مدرسة وكتب دراسية', amount: 5200, member: 'محمد', author: 'ماهر', date: '2026-10-06', time: '12:00 م', walletId: 'wallet-bank' },
+          { id: 'act-1', type: 'add_expense', action: 'تسجيل مصروف', label: 'سوبرماركت ومستلزمات منزلية', amount: 850, member: 'العائلة', author: 'ماهر', date: todayStr, time: '11:30 ص' },
+          { id: 'act-2', type: 'add_expense', action: 'تسجيل مصروف', label: 'كشف وصيدلية وعلاج', amount: 420, member: 'النونو', author: 'أية', date: todayStr, time: '01:15 م' },
+          { id: 'act-3', type: 'add_income', action: 'إضافة دخل', label: 'تحويل نقدي وإيداع عائلي', amount: 5000, member: 'ماهر', author: 'ماهر', date: todayStr, time: '10:00 ص' },
+          { id: 'act-4', type: 'add_expense', action: 'تسجيل مصروف', label: 'مستلزمات دراسية وكتب', amount: 350, member: 'محمد', author: 'ماهر', date: todayStr, time: '02:45 م' }
         ];
         saveActivityLog();
       }
     }
 
-    function logActivity(entry) {
+        function logActivity(entry) {
       if (!state.activityLog) state.activityLog = [];
       const newEntry = {
         id: 'act-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
@@ -8633,35 +9266,45 @@
       if (state.activityLog.length > 600) state.activityLog.pop();
       saveActivityLog();
       try {
-        syncChannel.postMessage({ type: 'SYNC_ACTIVITY', activity: newEntry });
+        if (typeof syncChannel !== 'undefined' && syncChannel) {
+          syncChannel.postMessage({ type: 'SYNC_ACTIVITY', activity: newEntry });
+        }
       } catch(e) {}
     }
 
     function saveActivityLog() {
       try {
-        localStorage.setItem('family_monefy_activity_log', JSON.stringify(state.activityLog));
+        localStorage.setItem('family_monefy_activity_log', JSON.stringify(state.activityLog || []));
       } catch(e) {}
     }
 
-    function selectActivityTab(tab, btnEl) {
+    function filterArchiveType(tab, btnEl) {
       currentActivityTab = tab;
-      document.querySelectorAll('.activity-tab-chip').forEach(b => b.classList.remove('active'));
-      if (btnEl) btnEl.classList.add('active');
-      renderActivityLogUI();
-    }
-
-    function filterActivityLogUI() {
+      document.querySelectorAll('.archive-filter-row .btn-export-tool').forEach(b => {
+        b.classList.remove('active');
+        b.style.background = '';
+        b.style.color = '';
+      });
+      if (btnEl) {
+        btnEl.classList.add('active');
+        btnEl.style.background = 'rgba(56, 189, 248, 0.2)';
+        btnEl.style.color = '#38bdf8';
+      }
       renderActivityLogUI();
     }
 
     function renderActivityLogUI() {
-      const container = document.getElementById('activityListContainer');
+      const container = document.getElementById('archiveLogListContainer') || document.getElementById('activityListContainer');
       if (!container) return;
 
-      const searchVal = (document.getElementById('actSearchInput')?.value || '').trim().toLowerCase();
-      const memberVal = document.getElementById('actMemberSelect')?.value || 'all';
+      const searchVal = (document.getElementById('opsSearchInput')?.value || '').trim().toLowerCase();
 
       let list = state.activityLog || [];
+
+      if (!list || list.length === 0) {
+        initActivityLog();
+        list = state.activityLog || [];
+      }
 
       // 1. فلترة النوع
       if (currentActivityTab === 'expense') {
@@ -8670,16 +9313,9 @@
         list = list.filter(a => a.type === 'add_income');
       } else if (currentActivityTab === 'delete') {
         list = list.filter(a => a.type === 'delete_tx');
-      } else if (currentActivityTab === 'wallet') {
-        list = list.filter(a => a.type === 'add_wallet' || a.type === 'sync_drive');
       }
 
-      // 2. فلترة الشخص
-      if (memberVal !== 'all') {
-        list = list.filter(a => a.member === memberVal || a.author === memberVal);
-      }
-
-      // 3. فلترة البحث
+      // 2. فلترة البحث
       if (searchVal) {
         list = list.filter(a => 
           (a.label && a.label.toLowerCase().includes(searchVal)) ||
@@ -8690,21 +9326,17 @@
         );
       }
 
-      // تحديث عدادات الإحصاءات
-      const countEl = document.getElementById('actCountBadge');
-      if (countEl) countEl.textContent = `إجمالي الحركات المعروضة: ${list.length} حركة`;
-
       if (list.length === 0) {
         container.innerHTML = `
           <div style="text-align: center; padding: 40px 10px; color: var(--text-muted);">
             <i class="fa-solid fa-clock-rotate-left" style="font-size: 2.2rem; margin-bottom: 10px; opacity: 0.5;"></i>
-            <p style="font-size: 0.95rem; font-weight: 700;">لا توجد نشاطات مسجلة تطابق الفلتر المختار</p>
+            <p style="font-size: 0.95rem; font-weight: 700;">لا توجد نشاطات مسجلة في الأرشيف تطابق الفلتر</p>
           </div>
         `;
         return;
       }
 
-      const memberEmoji = { 'ماهر': '👨', 'أية': '👩', 'محمد': '👦', 'مريم': '👧', 'الحاجة': '👵', 'النونو': '👶' };
+      const memberEmoji = { 'ماهر': '👨', 'أية': '👩', 'محمد': '👦', 'مريم': '👧', 'الحاجة': '👵', 'النونو': '👶', 'العائلة': '👨‍👩‍👧‍👦' };
 
       container.innerHTML = list.map(item => {
         let borderClass = 'border-expense';
@@ -8725,36 +9357,30 @@
           badgeIcon = 'fa-trash-can';
           amtClass = 'del';
           amtPrefix = '🗑️ ';
-        } else if (item.type === 'add_wallet' || item.type === 'sync_drive') {
-          borderClass = 'border-wallet';
-          badgeClass = 'badge-sys';
-          badgeIcon = 'fa-vault';
-          amtClass = 'sys';
-          amtPrefix = '';
         }
 
-        const amtFormatted = item.amount ? `${amtPrefix}${parseFloat(item.amount).toLocaleString()} ج.م` : '';
+        const amtFormatted = item.amount ? `${amtPrefix}${parseFloat(item.amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ج.م` : '';
         const mEmoji = memberEmoji[item.member] || '👤';
 
         return `
-          <div class="activity-item-card ${borderClass}">
-            <div class="act-icon-box" style="background: ${item.type === 'add_income' ? 'rgba(16, 185, 129, 0.15)' : item.type === 'delete_tx' ? 'rgba(225, 29, 72, 0.15)' : 'rgba(244, 63, 94, 0.15)'};">
-              <span style="font-size: 1.2rem;">${item.member === 'النونو' ? '👶' : mEmoji}</span>
+          <div class="activity-item-card ${borderClass}" style="margin-bottom: 8px; background: var(--bg-card); border-radius: 14px; padding: 10px 12px; border: 1px solid var(--border-subtle); display: flex; gap: 10px; align-items: center;">
+            <div class="act-icon-box" style="width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: ${item.type === 'add_income' ? 'rgba(16, 185, 129, 0.15)' : item.type === 'delete_tx' ? 'rgba(225, 29, 72, 0.15)' : 'rgba(239, 68, 68, 0.15)'};">
+              <span style="font-size: 1.25rem;">${mEmoji}</span>
             </div>
-            <div class="act-content-box">
-              <div class="act-top-line">
-                <span class="act-action-badge ${badgeClass}">
+            <div class="act-content-box" style="flex: 1;">
+              <div class="act-top-line" style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="act-action-badge ${badgeClass}" style="font-size: 0.72rem; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); color: #38bdf8;">
                   <i class="fa-solid ${badgeIcon}"></i> ${item.action || 'حركة'}
                 </span>
-                <span class="act-time-stamp">${item.date || ''} ${item.time ? '• ' + item.time : ''}</span>
+                <span class="act-time-stamp" style="font-size: 0.72rem; color: #94a3b8;">${item.date || ''} ${item.time ? '• ' + item.time : ''}</span>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px;">
-                <span class="act-main-label">${escapeHtml(item.label || '')}</span>
-                <span class="act-amount-tag ${amtClass}">${amtFormatted}</span>
+                <span class="act-main-label" style="font-weight: 700; font-size: 0.85rem; color: var(--text-main);">${escapeHtml(item.label || '')}</span>
+                <span class="act-amount-tag ${amtClass}" style="font-weight: 800; font-size: 0.85rem; color: ${item.type === 'add_income' ? '#10b981' : '#ef4444'};">${amtFormatted}</span>
               </div>
-              <div class="act-sub-meta">
-                <span><i class="fa-solid fa-user"></i> العضو: ${item.member || 'العائلة'}</span>
-                <span><i class="fa-solid fa-user-pen"></i> تم بواسطة: ${item.author || 'ماهر'}</span>
+              <div class="act-sub-meta" style="font-size: 0.72rem; color: #64748b; display: flex; gap: 12px; margin-top: 4px;">
+                <span><i class="fa-solid fa-user"></i> العضو: <b style="color: var(--text-main);">${item.member || 'العائلة'}</b></span>
+                <span><i class="fa-solid fa-user-pen"></i> تم بواسطة: <b style="color: var(--text-main);">${item.author || 'ماهر'}</b></span>
               </div>
             </div>
           </div>
@@ -8762,7 +9388,7 @@
       }).join('');
     }
 
-    function exportActivityLogExcel() {
+function exportActivityLogExcel() {
       if (!state.activityLog || state.activityLog.length === 0) {
         alert('لا توجد حركات في السجل لتصديرها');
         return;
