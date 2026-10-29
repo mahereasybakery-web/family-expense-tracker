@@ -5109,6 +5109,9 @@
               <button class="analytics-sec-btn" data-sec="monthly" onclick="switchAnalyticsSection('monthly')">
                 <i class="fa-solid fa-chart-column"></i> مقارنة الشهور
               </button>
+              <button class="analytics-sec-btn" data-sec="requests" onclick="switchAnalyticsSection('requests')">
+                <i class="fa-solid fa-hand-holding-dollar"></i> مقارنة الطلبات
+              </button>
             </div>
 
             <!-- قسم تحليل التصنيفات -->
@@ -5132,6 +5135,9 @@
               <div class="chart-glass-panel">
                 <div class="chart-glass-head">
                   <div class="chart-glass-title"><i class="fa-solid fa-users"></i><span>نسب الصرف حسب أفراد العائلة</span></div>
+                </div>
+                <div class="chart-canvas-wrap" style="height: 220px; margin-bottom: 12px;">
+                  <canvas id="anaMembersCanvas"></canvas>
                 </div>
                 <div class="member-lux-grid" id="memberAnalyticsLuxGrid"></div>
               </div>
@@ -5159,6 +5165,31 @@
                   <canvas id="monthlyCompareCanvas"></canvas>
                 </div>
                 <div id="monthlyDigestNotesContainer" style="margin-top: 10px;"></div>
+              </div>
+            </div>
+
+            <!-- قسم مقارنة طلبات الأموال بالمصروف الفعلي -->
+            <div class="analytics-content-pane" id="paneRequests" style="display: none;">
+              <div class="chart-glass-panel">
+                <div class="chart-glass-head">
+                  <div class="chart-glass-title"><i class="fa-solid fa-hand-holding-dollar"></i><span>مقارنة طلبات الأموال بالمصروف الفعلي المحاسبي</span></div>
+                </div>
+                <div class="requests-analytics-kpis" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px;">
+                  <div class="kpi-lux-card" style="padding: 10px;">
+                    <div class="kpi-lux-head"><span style="font-size: 0.72rem;">الطلبات المعتمدة</span><i class="fa-solid fa-circle-check" style="color: #ec4899;"></i></div>
+                    <div class="kpi-lux-value" id="kpiReqApprovedAmt" style="font-size: 1.05rem; color: #ec4899;">0 ج.م</div>
+                    <div class="kpi-lux-sub" id="kpiReqApprovedCount" style="font-size: 0.65rem;">0 طلب معتمد</div>
+                  </div>
+                  <div class="kpi-lux-card" style="padding: 10px;">
+                    <div class="kpi-lux-head"><span style="font-size: 0.72rem;">نسبة الالتزام والامتثال</span><i class="fa-solid fa-shield-halved" style="color: #10b981;"></i></div>
+                    <div class="kpi-lux-value" id="kpiReqComplianceRate" style="font-size: 1.05rem; color: #10b981;">100%</div>
+                    <div class="kpi-lux-sub" id="kpiReqPendingNotice" style="font-size: 0.65rem;">0 قيد الانتظار</div>
+                  </div>
+                </div>
+                <div class="chart-canvas-wrap" style="height: 230px;">
+                  <canvas id="anaRequestsCompareCanvas"></canvas>
+                </div>
+                <div id="requestsVarianceTableContainer" style="margin-top: 14px;"></div>
               </div>
             </div>
 
@@ -6259,7 +6290,22 @@ class="kpi-three-strip">
          ============================================================== -->
     
 
-<div class="modal-overlay modal-overlay-custom" id="settingsModal">
+    <!-- عرض الفاتورة والصور المكبرة (Receipt Lightbox Modal) -->
+    <div class="modal-overlay modal-overlay-custom" id="receiptLightboxModal">
+      <div class="modal-content-card" style="max-width: 480px; text-align: center;">
+        <div class="modal-head">
+          <h3 class="modal-title-custom"><i class="fa-solid fa-file-invoice" style="color: #38bdf8;"></i> <span id="lightboxHeaderTitle">معاينة الصورة المرفقة</span></h3>
+          <button type="button" class="btn-modal-close" onclick="closeModal('receiptLightboxModal')" aria-label="إغلاق">&times;</button>
+        </div>
+        <div style="padding: 14px;">
+          <p id="lightboxTxLabel" style="font-size: 0.86rem; font-weight: 800; color: #38bdf8; margin-bottom: 10px;"></p>
+          <img id="lightboxImg" src="" style="width: 100%; max-height: 70vh; object-fit: contain; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
+        </div>
+      </div>
+    </div>
+
+    <!-- نافذة الإعدادات وضبط الحساب والمظهر -->
+    <div class="modal-overlay modal-overlay-custom" id="settingsModal">
       <div class="modal-content-card" style="max-width: 500px;">
         <div class="modal-head">
           <h3 class="modal-title-custom"><i class="fa-solid fa-gear" style="color: #c084fc;"></i> إعدادات وضبط التطبيق</h3>
@@ -6358,6 +6404,19 @@ class="kpi-three-strip">
             </div>
           </div>
 
+          <!-- مسح البيانات السابقة وتطبيق بيانات تجربة جديدة بالكامل -->
+          <div class="app-card-panel" style="margin: 0; border: 1px solid rgba(239, 68, 68, 0.35); background: rgba(239, 68, 68, 0.06);">
+            <div class="app-card-title" style="color: #f87171;">
+              <i class="fa-solid fa-arrows-rotate" style="color: #ef4444;"></i>
+              <span>إعادة ضبط ومسح البيانات السابقة</span>
+            </div>
+            <p style="font-size: 0.78rem; color: #94a3b8; line-height: 1.5; margin-bottom: 10px;">
+              تصفير كافة البيانات المحلية القديمة وتطبيق بيانات تجربة نموذجية متوازنة جديدة لمصروفات وسحب وطلبات العائلة.
+            </p>
+            <button type="button" class="btn-submit-tx" onclick="resetToDemoData()" style="background: linear-gradient(135deg, #ef4444, #dc2626); margin: 0; padding: 10px 14px; font-weight: 800;">
+              <i class="fa-solid fa-trash-can-arrow-up"></i> مسح البيانات القديمة وتطبيق التجربة الجديدة
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -6573,12 +6632,11 @@ class="kpi-three-strip">
     
 
       // 3. إدارة إصدار التطبيق وتحميل الحركات الغنية المتجددة بحسب تاريخ اليوم الحالي
-      // 3. إدارة إصدار التطبيق (مسح البيانات القديمة وتوليد حركات متوازنة)
-      const APP_VERSION = '3.5.0';
+      // 3. إدارة إصدار التطبيق (مسح البيانات القديمة تلقائياً وتوليد حركات متوازنة جديدة)
+      const APP_VERSION = '3.6.0';
       const storedVer = localStorage.getItem('family_monefy_version');
       const todayIsoStr = getLocalDateStr(new Date());
 
-      // إذا كان الإصدار قديماً، نقوم بمسح كامل فوري وتوليد بيانات واقعية متزنة
       if (storedVer !== APP_VERSION) {
         localStorage.removeItem('family_monefy_v2_tx');
         localStorage.removeItem('family_monefy_txs');
@@ -6586,6 +6644,7 @@ class="kpi-three-strip">
         localStorage.removeItem('family_monefy_notes');
         localStorage.removeItem('family_monefy_debts');
         localStorage.removeItem('family_monefy_wallets');
+        localStorage.removeItem('family_monefy_activity_log');
         localStorage.setItem('family_monefy_version', APP_VERSION);
 
         state.wallets = [
@@ -6621,6 +6680,7 @@ class="kpi-three-strip">
       const storedPerm = localStorage.getItem('family_monefy_perms');
       if (storedPerm) {
         try { state.permissions = JSON.parse(storedPerm); } catch(e) {}
+      }
 
       // تحميل طلبات المصروف وتهيئتها
       try {
@@ -6628,16 +6688,11 @@ class="kpi-three-strip">
         if (storedReqs) {
           state.moneyRequests = JSON.parse(storedReqs);
         } else {
-          state.moneyRequests = [
-            { id: 'req-demo-1', member: 'أية', amount: 1500, reason: 'شراء ملابس للأولاد وتجهيزات دراسية', date: todayIsoStr, category: 'clothes', status: 'pending', createdBy: 'أية', timestamp: 'اليوم 10:30 ص' },
-            { id: 'req-demo-2', member: 'أية', amount: 850, reason: 'أدوية ومستلزمات صيدلية وفيتامينات', date: todayIsoStr, category: 'health', status: 'approved', createdBy: 'أية', timestamp: 'اليوم 09:15 ص' },
-            { id: 'req-demo-3', member: 'محمد', amount: 450, reason: 'اشتراك كتب وباقات تعليمية', date: todayIsoStr, category: 'education', status: 'pending', createdBy: 'محمد', timestamp: 'أمس 08:00 م' },
-            { id: 'req-demo-4', member: 'مريم', amount: 300, reason: 'قصص وأدوات رسم ومستلزمات ترفيه', date: todayIsoStr, category: 'kids', status: 'approved', createdBy: 'مريم', timestamp: 'أمس 04:30 م' }
-          ];
+          state.moneyRequests = generateRichDemoRequests();
           localStorage.setItem('family_monefy_requests', JSON.stringify(state.moneyRequests));
         }
       } catch(e) {
-        state.moneyRequests = [];
+        state.moneyRequests = generateRichDemoRequests();
       }
 
       // تحميل الملاحظات المفتوحة وتهيئتها
@@ -6647,15 +6702,14 @@ class="kpi-three-strip">
           state.notes = JSON.parse(storedNotes);
         } else {
           state.notes = [
-            { id: 'note-demo-1', title: 'موعد تجديد اشتراك الإنترنت المنزلي', content: 'الدفع قبل يوم 5 من الشهر لضمان عدم انقطاع الخدمة والسرعة العالية', member: 'ماهر', priority: 'important', date: todayIsoStr, time: '11:00 ص' },
-            { id: 'note-demo-2', title: 'متابعة تطعيمات النونو عند طبيب الأطفال', content: 'جرعة التطعيم الدورية في المركز الصحي يوم الخميس القادم صباحاً', member: 'أية', priority: 'urgent', date: todayIsoStr, time: '10:15 ص' },
-            { id: 'note-demo-3', title: 'قائمة مستلزمات السوبرماركت الأسبوعية', content: 'شراء زيت زيتون، جبن قريش، شاي أخضر، ومنظفات غسيل للمنزل', member: 'العائلة', priority: 'normal', date: todayIsoStr, time: '09:00 ص' }
+            { id: 'note-demo-1', title: 'صيانة وتغيير فلاتر مياه', content: 'تم تركيب 5 شمعات جديدة للفلتر مع الضمان لمدة سنة كاملة', member: 'ماهر', priority: 'important', date: todayIsoStr, time: '11:00 ص' },
+            { id: 'note-demo-2', title: 'مستلزمات صيدلية أدوية للحاجة', content: 'أدوية الضغط والسكر الشهرية وفيتامينات كبار السن', member: 'أية', priority: 'urgent', date: todayIsoStr, time: '10:15 ص' },
+            { id: 'note-demo-3', title: 'اشتراك وملازم مدرسة محمد', content: 'سداد كتب اللغات والمذكرات الشهرية واستلام الإيصال', member: 'محمد', priority: 'normal', date: todayIsoStr, time: '09:00 ص' }
           ];
           localStorage.setItem('family_monefy_notes', JSON.stringify(state.notes));
         }
       } catch(e) {
         state.notes = [];
-      }
       }
 
       // تحديث قوائم المحافظ
@@ -6700,22 +6754,7 @@ class="kpi-three-strip">
         });
       });
 
-      // ربط البحث الشامل في البرنامج ككل بأمان تام
-      const searchInp = document.getElementById('globalSearchInput');
-      const clearBtn = document.getElementById('btnClearSearch');
-      if (searchInp && clearBtn) {
-        searchInp.addEventListener('input', (e) => {
-          state.searchQuery = e.target.value.trim();
-          clearBtn.style.display = state.searchQuery ? 'block' : 'none';
-          renderUI();
-        });
-        clearBtn.addEventListener('click', () => {
-          searchInp.value = '';
-          state.searchQuery = '';
-          clearBtn.style.display = 'none';
-          renderUI();
-        });
-      }
+
 
       // ربط قائمة تبديل المحفظة
       document.getElementById('activeWalletSelect').addEventListener('change', (e) => {
@@ -6947,23 +6986,17 @@ class="kpi-three-strip">
 
     function toggleCategoryChartType() {
       execCatChartType = (execCatChartType === 'doughnut') ? 'bar' : 'doughnut';
-      const labelEl = document.getElementById('catChartModeLabel');
-      if (labelEl) labelEl.textContent = (execCatChartType === 'doughnut') ? 'عرض أعمدة' : 'عرض دائري';
+      const iconEl = document.getElementById('categoryChartTypeIcon');
+      if (iconEl) {
+        iconEl.className = (execCatChartType === 'doughnut') ? 'fa-solid fa-chart-column' : 'fa-solid fa-chart-pie';
+      }
       renderCategoryChart();
     }
 
     function setAnalyticsPeriod(period) {
-      state.period = period;
-      document.querySelectorAll('.analytics-period-btn').forEach(b => b.classList.remove('active'));
-      const btnMap = { 'today': 'btnAnaPeriodToday', 'week': 'btnAnaPeriodWeek', 'month': 'btnAnaPeriodMonth', 'all': 'btnAnaPeriodAll' };
-      if (btnMap[period]) {
-        const b = document.getElementById(btnMap[period]);
-        if (b) b.classList.add('active');
-      }
+      setAppPeriod(period === 'day' ? 'today' : period);
       const customBox = document.getElementById('analyticsCustomRangeBox');
-      if (customBox) customBox.style.display = 'none';
-      renderUI();
-      updateAnalyticsChart();
+      if (customBox) customBox.style.display = (period === 'custom') ? 'block' : 'none';
     }
 
     function toggleAnalyticsCustomRange() {
@@ -6974,15 +7007,21 @@ class="kpi-three-strip">
     }
 
     function applyAnalyticsCustomDate() {
-      const dFrom = document.getElementById('inpAnaDateFrom')?.value;
-      const dTo = document.getElementById('inpAnaDateTo')?.value;
+      const inpFrom = document.getElementById('inpAnalyticsDateFrom') || document.getElementById('inpAnaDateFrom');
+      const inpTo = document.getElementById('inpAnalyticsDateTo') || document.getElementById('inpAnaDateTo');
+      const dFrom = inpFrom ? inpFrom.value : '';
+      const dTo = inpTo ? inpTo.value : '';
+
       if (!dFrom || !dTo) {
         showToast('يرجى تحديد تاريخ البداية والنهاية أولاً');
         return;
       }
+      if (dFrom > dTo) {
+        showToast('تاريخ البداية يجب أن يكون قبل أو يساوي تاريخ النهاية');
+        return;
+      }
       state.period = 'custom';
-      state.customDateFrom = dFrom;
-      state.customDateTo = dTo;
+      state.customDateRange = { from: dFrom, to: dTo };
       renderUI();
       updateAnalyticsChart();
       showToast(`✓ تم تطبيق فترة التحليل: من ${dFrom} إلى ${dTo}`);
@@ -7265,7 +7304,7 @@ class="kpi-three-strip">
         sortedDates = sortedDates.slice(-30);
       }
 
-      const canvas = document.getElementById('anaTimelineCanvas');
+      const canvas = document.getElementById('dailyTimelineCanvas') || document.getElementById('anaTimelineCanvas');
       if (canvas) {
         if (execTimeChart) execTimeChart.destroy();
         const ctx = canvas.getContext('2d');
@@ -7463,7 +7502,7 @@ class="kpi-three-strip">
 
       const sortedMonths = Object.keys(monthMap).sort().slice(-12);
 
-      const canvas = document.getElementById('anaMonthlyCanvas');
+      const canvas = document.getElementById('monthlyCompareCanvas') || document.getElementById('anaMonthlyCanvas');
       if (canvas) {
         if (execMonthChart) execMonthChart.destroy();
         const ctx = canvas.getContext('2d');
@@ -8179,13 +8218,15 @@ class="kpi-three-strip">
     }
 
     function resetToDemoData() {
+      if (!confirm('هل أنت متأكد من مسح البيانات السابقة وبدء تجربة جديدة متوازنة بالكامل؟')) return;
       localStorage.removeItem('family_monefy_v2_tx');
       localStorage.removeItem('family_monefy_txs');
       localStorage.removeItem('family_monefy_requests');
       localStorage.removeItem('family_monefy_notes');
       localStorage.removeItem('family_monefy_debts');
       localStorage.removeItem('family_monefy_wallets');
-      localStorage.setItem('family_monefy_version', '3.5.0');
+      localStorage.removeItem('family_monefy_activity_log');
+      localStorage.setItem('family_monefy_version', '3.6.0');
 
       state.wallets = [
         { id: 'wallet-ahly', name: 'البنك الأهلي المصري', type: 'bank', balance: 85400, icon: 'fa-building-columns', color: '#10b981' },
@@ -9006,16 +9047,28 @@ class="kpi-three-strip">
       if (clearBtn) clearBtn.style.display = 'none';
     }
 
-    function openReceiptLightbox(txId) {
-      const tx = state.transactions.find(t => t.id === txId);
-      if (!tx || !tx.receipt) {
-        showToast('عفواً، لا توجد صورة فاتورة مرفقة بهذه الحركة');
-        return;
-      }
+    function openReceiptLightbox(source, optionalTitle = '') {
       const lbl = document.getElementById('lightboxTxLabel');
       const img = document.getElementById('lightboxImg');
+      const header = document.getElementById('lightboxHeaderTitle');
+      if (!img) return;
+
+      if (typeof source === 'string' && (source.startsWith('data:image') || source.startsWith('http') || source.startsWith('blob:'))) {
+        if (header) header.textContent = 'معاينة الصورة المرفقة';
+        if (lbl) lbl.textContent = optionalTitle || 'مرفق مصور بالملاحظة';
+        img.src = source;
+        openModal('receiptLightboxModal');
+        return;
+      }
+
+      const tx = (state.transactions || []).find(t => t.id === source);
+      if (!tx || !tx.receipt) {
+        showToast('عفواً، لا توجد صورة مرفقة لعرضها');
+        return;
+      }
+      if (header) header.textContent = 'معاينة الفاتورة المرفقة';
       if (lbl) lbl.textContent = `${tx.label} (${formatMoney(tx.amount)})`;
-      if (img) img.src = tx.receipt;
+      img.src = tx.receipt;
       openModal('receiptLightboxModal');
     }
 
@@ -10814,14 +10867,8 @@ function submitMoneyRequest() {
     function closeSpecificModalOrDrawer(id, fromPopState = false) {
       popModalState(id);
       
-      if (id === 'goldDrawer' || id === 'tradingviewDrawer') {
+      if (id === 'goldDrawer') {
         closeGoldDrawer(true);
-      } else if (id === 'miniCalcWidget') {
-        const calc = document.getElementById('miniCalcWidget');
-        if (calc) calc.classList.remove('open');
-      } else if (id === 'tradingviewDrawer') {
-        const drawer = document.getElementById('tradingviewDrawer');
-        if (drawer) drawer.classList.remove('open');
       } else {
         const modal = document.getElementById(id);
         if (modal) modal.classList.remove('open');
@@ -11253,95 +11300,7 @@ function exportActivityLogExcel() {
       showToast('📱 تم تحميل ملف التطبيق المستقل (افتحه على هاتفك وسيعمل أوفلاين دائماً)');
     }
 
-    // ==========================================
-    // منطق الآلة الحاسبة الجانبية الصغيرة
-    // ==========================================
-    let calcState = {
-      currVal: '0',
-      prevVal: null,
-      op: null,
-      resetScreen: false
-    };
-
-    
-
-    function calcAction(type, val) {
-      const screen = document.getElementById('calcScreenVal');
-      const expr = document.getElementById('calcHistoryExpr');
-
-      if (type === 'num') {
-        if (calcState.resetScreen || calcState.currVal === '0') {
-          calcState.currVal = val === '.' ? '0.' : val;
-          calcState.resetScreen = false;
-        } else {
-          if (val === '.' && calcState.currVal.includes('.')) return;
-          calcState.currVal += val;
-        }
-      } else if (type === 'clear') {
-        calcState.currVal = '0';
-        calcState.prevVal = null;
-        calcState.op = null;
-        expr.innerHTML = '&nbsp;';
-      } else if (type === 'backspace') {
-        if (calcState.currVal.length > 1) {
-          calcState.currVal = calcState.currVal.slice(0, -1);
-        } else {
-          calcState.currVal = '0';
-        }
-      } else if (type === 'op') {
-        if (val === '%') {
-          calcState.currVal = (parseFloat(calcState.currVal) / 100).toString();
-        } else {
-          calcState.prevVal = parseFloat(calcState.currVal);
-          calcState.op = val;
-          calcState.resetScreen = true;
-          const opSymbol = val === '*' ? '×' : (val === '/' ? '÷' : val);
-          expr.textContent = `${calcState.prevVal} ${opSymbol}`;
-        }
-      } else if (type === 'equals') {
-        if (calcState.op && calcState.prevVal !== null) {
-          const current = parseFloat(calcState.currVal);
-          let res = 0;
-          switch (calcState.op) {
-            case '+': res = calcState.prevVal + current; break;
-            case '-': res = calcState.prevVal - current; break;
-            case '*': res = calcState.prevVal * current; break;
-            case '/': res = current !== 0 ? calcState.prevVal / current : 0; break;
-          }
-          const opSymbol = calcState.op === '*' ? '×' : (calcState.op === '/' ? '÷' : calcState.op);
-          expr.textContent = `${calcState.prevVal} ${opSymbol} ${current} =`;
-          calcState.currVal = (Math.round(res * 1000) / 1000).toString();
-          calcState.prevVal = null;
-          calcState.op = null;
-          calcState.resetScreen = true;
-        }
-      }
-
-      screen.textContent = calcState.currVal;
-    }
-
-    function useCalcValInTx() {
-      const val = parseFloat(calcState.currVal);
-      if (!val || isNaN(val) || val <= 0) {
-        showToast('⚠️ يرجى حساب قيمة صالحة أكبر من صفر');
-        return;
-      }
-
-      // إذا كانت نافذة تسجيل المصروف مفتوحة، نضع الناتج فيها
-      const txModal = document.getElementById('txModal');
-      if (txModal.classList.contains('open')) {
-        document.getElementById('inpTxAmount').value = val;
-      } else {
-        // نفتح نافذة المصروف ونضع المبلغ
-        openTxModal('expense');
-        document.getElementById('inpTxAmount').value = val;
-      }
-
-      document.getElementById('miniCalcWidget').classList.remove('open');
-      showToast(`🔢 تم إدراج المبلغ (${val} ج.م) في خانة المبلغ بنجاح`);
-    }
-
-        // تشغيل فوري بدون انتظار إذا كانت الصفحة قد تم تحميلها بالفعل
+    // تشغيل فوري بدون انتظار إذا كانت الصفحة قد تم تحميلها بالفعل
     if (document.readyState === 'loading') {
       window.addEventListener('DOMContentLoaded', initApp);
     } else {
@@ -11350,8 +11309,8 @@ function exportActivityLogExcel() {
     // احتياط إضافي لمتصفحات الهواتف لضمان التحديث التلقائي
     setTimeout(() => {
       try {
-        const amtEl = document.getElementById('wheelAmount');
-        if (amtEl && (amtEl.textContent === '0.00 ج.م' || amtEl.textContent === '0 ج.م') && state.transactions.length > 0) {
+        const topBal = document.getElementById('topCardBalance');
+        if (topBal && topBal.textContent.includes('0.00') && state.transactions && state.transactions.length > 0) {
           renderUI();
         }
       } catch(e) {}
