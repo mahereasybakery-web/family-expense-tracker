@@ -13,7 +13,7 @@
   <!-- الخطوط والأيقونات -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700;800&family=Readex+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&family=Readex+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- المكتبات: SheetJS للإكسيل و Chart.js للشارتات التوضيحية -->
@@ -327,7 +327,7 @@
       --border: #26334d;
       --gold: #f59e0b;
       --gold-dark: #d97706;
-      --font-family: 'IBM Plex Sans Arabic', 'Readex Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-family: 'Cairo', 'Tajawal', 'Readex Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     /* ==============================================================
@@ -3684,7 +3684,7 @@
        ========================================================================= */
 
     /* ألوان وهوية التطبيق الفاخرة */
-    body/* =========================================================================
+    /* =========================================================================
        محرك مظاهر وتصميمات التطبيق الملكية (Multi-Theme Styling Engine)
        ========================================================================= */
     :root, [data-app-theme="navy"], body[data-app-theme="navy"] {
@@ -5242,12 +5242,12 @@
       cursor: pointer !important;
     }
 
-    /* بطاقات الرصيد الثلاثة: نفس الترتيب تماماً وبمساحة أصغر وارتفاع مدمج */
+        /* بطاقات الرصيد الثلاثة المتناسقة بدقة: صف أول (إيداع وسحب)، صف ثان (رصيد حالي)، بحجم وتناسب مثالي */
     .kpi-three-strip {
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
-      gap: 5px !important;
-      margin: 4px 10px 6px !important;
+      gap: 6px !important;
+      margin: 6px 10px 8px !important;
       width: calc(100% - 20px) !important;
       box-sizing: border-box !important;
     }
@@ -5256,50 +5256,43 @@
       min-width: 0 !important;
       overflow: hidden !important;
       box-sizing: border-box !important;
-      padding: 4px 8px !important;
-      border-radius: 9px !important;
-      background: rgba(15, 23, 42, 0.75) !important;
+      padding: 6px 8px !important;
+      border-radius: 12px !important;
+      background: rgba(15, 23, 42, 0.78) !important;
       border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      text-align: center !important;
     }
 
     .kpi-three-card.card-balance {
       grid-column: 1 / -1 !important;
       background: linear-gradient(135deg, rgba(2, 132, 199, 0.22), rgba(15, 23, 42, 0.95)) !important;
       border-color: rgba(56, 189, 248, 0.45) !important;
-      padding: 4px 12px !important;
-      display: flex !important;
-      flex-direction: row !important;
-      justify-content: space-between !important;
-      align-items: center !important;
-      min-height: 28px !important;
-      border-radius: 9px !important;
+      padding: 6px 12px !important;
+      border-radius: 12px !important;
     }
 
     .kpi-three-label {
-      font-size: 0.68rem !important;
+      font-size: 0.70rem !important;
       white-space: nowrap !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
-      margin-bottom: 1px !important;
+      margin-bottom: 2px !important;
       font-weight: 800 !important;
       display: flex !important;
       align-items: center !important;
+      justify-content: center !important;
       gap: 4px !important;
     }
 
-    .card-balance .kpi-three-label {
-      margin-bottom: 0 !important;
-    }
-
     .kpi-three-value {
-      font-size: 0.88rem !important;
+      font-size: 0.92rem !important;
       white-space: nowrap !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
       direction: ltr !important;
       text-align: center !important;
       font-weight: 900 !important;
-      line-height: 1.15 !important;
+      line-height: 1.2 !important;
       font-variant-numeric: tabular-nums !important;
     }
 
@@ -5618,13 +5611,13 @@
         border-radius: 8px !important;
       }
 
-          /* بطاقات الرصيد الثلاثة: الحفاظ على نفس الترتيب (سطر أول: السحب والإيداع، سطر ثان: الرصيد الفعلي ممتد بالكامل) بمساحة مصغرة وأنيقة */
+              /* بطاقات الرصيد الثلاثة المتناسقة بدقة: صف أول (إيداع وسحب)، صف ثان (رصيد حالي)، بحجم وتناسب مثالي */
     .kpi-three-strip {
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
-      gap: 5px !important;
-      margin: 3px 8px 5px !important;
-      width: calc(100% - 16px) !important;
+      gap: 6px !important;
+      margin: 6px 10px 8px !important;
+      width: calc(100% - 20px) !important;
       box-sizing: border-box !important;
     }
 
@@ -5632,9 +5625,9 @@
       min-width: 0 !important;
       overflow: hidden !important;
       box-sizing: border-box !important;
-      padding: 4px 8px !important;
-      border-radius: 9px !important;
-      background: rgba(15, 23, 42, 0.75) !important;
+      padding: 6px 8px !important;
+      border-radius: 12px !important;
+      background: rgba(15, 23, 42, 0.78) !important;
       border: 1px solid rgba(255, 255, 255, 0.08) !important;
       text-align: center !important;
     }
@@ -5643,21 +5636,16 @@
       grid-column: 1 / -1 !important;
       background: linear-gradient(135deg, rgba(2, 132, 199, 0.22), rgba(15, 23, 42, 0.95)) !important;
       border-color: rgba(56, 189, 248, 0.45) !important;
-      padding: 4px 12px !important;
-      display: flex !important;
-      flex-direction: row !important;
-      justify-content: space-between !important;
-      align-items: center !important;
-      min-height: 28px !important;
-      border-radius: 9px !important;
+      padding: 6px 12px !important;
+      border-radius: 12px !important;
     }
 
     .kpi-three-label {
-      font-size: 0.68rem !important;
+      font-size: 0.70rem !important;
       white-space: nowrap !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
-      margin-bottom: 1px !important;
+      margin-bottom: 2px !important;
       font-weight: 800 !important;
       display: flex !important;
       align-items: center !important;
@@ -5665,19 +5653,15 @@
       gap: 4px !important;
     }
 
-    .card-balance .kpi-three-label {
-      margin-bottom: 0 !important;
-    }
-
     .kpi-three-value {
-      font-size: 0.88rem !important;
+      font-size: 0.92rem !important;
       white-space: nowrap !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
       direction: ltr !important;
       text-align: center !important;
       font-weight: 900 !important;
-      line-height: 1.15 !important;
+      line-height: 1.2 !important;
       font-variant-numeric: tabular-nums !important;
     }
 
@@ -5706,11 +5690,13 @@
       }
 
       .cat-card {
-        padding: 5px 3px 4px !important;
-        border-radius: 12px !important;
-        min-height: 62px !important;
-        max-height: 70px !important;
+        padding: 8px 4px 6px !important;
+        border-radius: 14px !important;
+        min-height: 82px !important;
         box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
         justify-content: space-between !important;
       }
 
@@ -5863,6 +5849,78 @@
     .archive-amount.amt-inc { color: #10b981; }
     .archive-amount.amt-exp { color: #f43f5e; }
 
+  
+    /* =========================================================================
+       منتقي أفراد العائلة بالصور الحقيقية (Horizontal Avatar Reel)
+       ========================================================================= */
+    .member-photo-picker-strip {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      gap: 8px !important;
+      padding: 6px 4px 10px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      scrollbar-width: thin !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    .member-photo-chip {
+      flex: 0 0 58px !important;
+      width: 58px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center !important;
+      cursor: pointer !important;
+      padding: 6px 3px !important;
+      border-radius: 12px !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.08) !important;
+      background: rgba(255, 255, 255, 0.03) !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      user-select: none !important;
+    }
+
+    .member-photo-chip.active {
+      border-color: #38bdf8 !important;
+      background: rgba(56, 189, 248, 0.16) !important;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.35) !important;
+    }
+
+    .member-photo-chip img, .member-chip-img {
+      width: 36px !important;
+      height: 36px !important;
+      min-width: 36px !important;
+      min-height: 36px !important;
+      max-width: 36px !important;
+      max-height: 36px !important;
+      border-radius: 50% !important;
+      object-fit: cover !important;
+      display: block !important;
+      margin-bottom: 3px !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+    }
+
+    .member-photo-chip.active img {
+      border-color: #38bdf8 !important;
+      transform: scale(1.05) !important;
+    }
+
+    .member-photo-chip-name {
+      font-size: 0.68rem !important;
+      font-weight: 800 !important;
+      color: #cbd5e1 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      width: 100% !important;
+    }
+
+    .member-photo-chip.active .member-photo-chip-name {
+      color: #38bdf8 !important;
+    }
+
   </style>
 
   <script>
@@ -5892,8 +5950,8 @@
             <i class="fa-solid fa-wallet"></i>
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
-            <h1 class="brand-title">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon"></i> أية</h1>
-            <span class="version-badge">v3.1.0</span>
+            <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
+            <span class="version-badge">v3.1.2</span>
           </div>
         </div>
 
@@ -10289,12 +10347,12 @@
         reqPicker.innerHTML = members.map(m => {
           const isActive = (m.id === currentReqVal);
           const avatarHtml = m.photo 
-            ? `<img src="${m.photo}" alt="${m.name}" class="member-chip-img">`
-            : `<div class="member-chip-icon" style="background: ${m.color || '#38bdf8'};"><i class="fa-solid ${m.icon}"></i></div>`;
+            ? `<img src="${m.photo}" alt="${m.name}" style="width: 36px; height: 36px; min-width: 36px; min-height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid ${isActive ? '#38bdf8' : 'rgba(255,255,255,0.15)'}; display: block;">`
+            : `<div style="width: 36px; height: 36px; min-width: 36px; min-height: 36px; border-radius: 50%; background: ${m.color || '#38bdf8'}; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; border: 2px solid ${isActive ? '#38bdf8' : 'rgba(255,255,255,0.15)'};"><i class="fa-solid ${m.icon}"></i></div>`;
           return `
-            <div class="member-photo-chip ${isActive ? 'active' : ''}" onclick="selectReqMemberPicker('${m.id}')" data-member-id="${m.id}">
+            <div class="member-photo-chip ${isActive ? 'active' : ''}" onclick="selectReqMemberPicker('${m.id}')" data-member-id="${m.id}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 4px; border-radius: 12px; cursor: pointer; background: ${isActive ? 'rgba(56, 189, 248, 0.15)' : 'rgba(255,255,255,0.03)'}; border: 1.5px solid ${isActive ? '#38bdf8' : 'rgba(255,255,255,0.08)'}; width: 62px; box-sizing: border-box; text-align: center;">
               ${avatarHtml}
-              <span class="member-chip-name">${m.name}</span>
+              <span style="font-size: 0.68rem; font-weight: 800; color: ${isActive ? '#38bdf8' : '#cbd5e1'}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">${m.name.split(' ')[0]}</span>
             </div>
           `;
         }).join('');
@@ -10307,12 +10365,12 @@
         txPicker.innerHTML = members.map(m => {
           const isActive = (m.id === currentTxVal);
           const avatarHtml = m.photo 
-            ? `<img src="${m.photo}" alt="${m.name}" class="member-chip-img">`
-            : `<div class="member-chip-icon" style="background: ${m.color || '#38bdf8'};"><i class="fa-solid ${m.icon}"></i></div>`;
+            ? `<img src="${m.photo}" alt="${m.name}" style="width: 34px; height: 34px; min-width: 34px; min-height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid ${isActive ? '#38bdf8' : 'rgba(255,255,255,0.15)'}; display: block;">`
+            : `<div style="width: 34px; height: 34px; min-width: 34px; min-height: 34px; border-radius: 50%; background: ${m.color || '#38bdf8'}; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.82rem; border: 2px solid ${isActive ? '#38bdf8' : 'rgba(255,255,255,0.15)'};"><i class="fa-solid ${m.icon}"></i></div>`;
           return `
-            <div class="member-photo-chip ${isActive ? 'active' : ''}" onclick="selectTxMemberPicker('${m.id}')" data-member-id="${m.id}">
+            <div class="member-photo-chip ${isActive ? 'active' : ''}" onclick="selectTxMemberPicker('${m.id}')" data-member-id="${m.id}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 5px 3px; border-radius: 10px; cursor: pointer; background: ${isActive ? 'rgba(56, 189, 248, 0.15)' : 'rgba(255,255,255,0.03)'}; border: 1.5px solid ${isActive ? '#38bdf8' : 'rgba(255,255,255,0.08)'}; width: 56px; box-sizing: border-box; text-align: center;">
               ${avatarHtml}
-              <span class="member-chip-name">${m.name}</span>
+              <span style="font-size: 0.65rem; font-weight: 800; color: ${isActive ? '#38bdf8' : '#cbd5e1'}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">${m.name.split(' ')[0]}</span>
             </div>
           `;
         }).join('');
@@ -10545,17 +10603,18 @@
         card.style.cssText = `
           background: ${isLight ? '#ffffff' : theme.bg} !important;
           border: 1.5px solid ${theme.border} !important;
-          border-radius: 16px !important;
-          padding: 12px 10px !important;
+          border-radius: 14px !important;
+          padding: 8px 4px 6px !important;
           display: flex !important;
           flex-direction: column !important;
           align-items: center !important;
           justify-content: space-between !important;
+          min-height: 84px !important;
           cursor: pointer !important;
-          box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4), 0 0 12px ${theme.accent}20 !important;
-          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3), 0 0 10px ${theme.accent}20 !important;
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
           position: relative !important;
-          overflow: hidden !important;
+          box-sizing: border-box !important;
         `;
 
         // عند النقر يتم فتح تسجيل مصروف مباشر للبند أو عرض تفاصيله
@@ -10580,22 +10639,22 @@
         const pillTextColor = spent > 0 ? '#ff4d6d' : '#94a3b8';
 
         card.innerHTML = `
-          <!-- 1. أيقونة التصنيف المتألقة عالية التباين مع الرمز التعبيري -->
+          <!-- 1. أيقونة التصنيف -->
           <div class="cat-icon-bubble" 
-               style="background: ${theme.gradient}; width: 44px; height: 44px; border-radius: 13px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px ${theme.accent}55; margin-bottom: 6px;">
-            <i class="fa-solid ${theme.icon}" style="color: #ffffff; font-size: 1.25rem;"></i>
+               style="background: ${theme.gradient}; width: 34px; height: 34px; min-width: 34px; min-height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px ${theme.accent}40; margin-bottom: 4px;">
+            <i class="fa-solid ${theme.icon}" style="color: #ffffff; font-size: 1.05rem;"></i>
           </div>
 
-          <!-- 2. اسم التصنيف مع الرمز التعبيري الدال عليه -->
+          <!-- 2. اسم التصنيف بدون أي بتر أو اختصار نهائياً -->
           <div class="cat-label-text" 
-               style="font-size: 0.82rem; font-weight: 800; color: #f8fafc; text-align: center; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">
+               style="font-size: 0.68rem; font-weight: 800; color: #f8fafc; text-align: center; margin-bottom: 3px; width: 100%; line-height: 1.15; height: 26px; display: flex; align-items: center; justify-content: center; word-break: break-word;">
             ${theme.emoji} ${theme.name}
           </div>
 
-          <!-- 3. كبسولة المبلغ المصروف عالية التباين والوضوح -->
+          <!-- 3. كبسولة المبلغ المصروف -->
           <div class="cat-amount-pill ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
-               style="background: ${pillBg}; border: 1px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 8px; border-radius: 8px; width: 100%; text-align: center; direction: rtl;">
-            <span style="font-size: ${fontSz}; font-weight: 900; letter-spacing: -0.2px;">${amtDisplay}</span>
+               style="background: ${pillBg}; border: 1px solid ${pillBorder}; color: ${pillTextColor}; padding: 2px 4px; border-radius: 6px; width: 94%; text-align: center; direction: rtl; box-sizing: border-box;">
+            <span style="font-size: 0.70rem; font-weight: 900; line-height: 1.2;">${amtDisplay}</span>
           </div>
         `;
 
