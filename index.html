@@ -4204,6 +4204,122 @@
       text-align: center !important;
     }
 
+
+    /* شريط الأدوات المالي الاحترافي أسفل اختيار التاريخ */
+    .sub-period-tools-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 10px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 8px;
+    }
+    .sub-period-tools-bar::-webkit-scrollbar { display: none; }
+
+    .wallet-select-cluster {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px 8px;
+      flex-shrink: 0;
+    }
+    .wallet-dropdown-compact {
+      background: transparent;
+      border: none;
+      color: #38bdf8;
+      font-weight: 800;
+      font-size: 0.76rem;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+      direction: rtl;
+      max-width: 125px;
+    }
+    .btn-add-wallet-mini {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.2s;
+    }
+    .btn-add-wallet-mini:hover {
+      background: #0284c7;
+      color: #ffffff;
+      transform: scale(1.08);
+    }
+
+    .tools-pills-cluster {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .tool-pill-action {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 9px;
+      border-radius: 10px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      background: var(--bg-input);
+      color: var(--text-main);
+    }
+    .tool-pill-action.gold-pill {
+      background: rgba(234, 179, 8, 0.12);
+      border-color: rgba(234, 179, 8, 0.35);
+      color: #fbbf24;
+    }
+    .tool-pill-action.gold-pill:hover, .tool-pill-action.gold-pill:active {
+      background: rgba(234, 179, 8, 0.25);
+      transform: scale(1.02);
+    }
+    .tool-pill-action.chart-pill {
+      background: rgba(2, 132, 199, 0.15);
+      border-color: rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+    }
+    .tool-pill-action.chart-pill:hover, .tool-pill-action.chart-pill:active {
+      background: rgba(2, 132, 199, 0.3);
+      transform: scale(1.02);
+    }
+
+    body.light-theme .wallet-select-cluster {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    body.light-theme .tool-pill-action.gold-pill {
+      background: #fef9c3;
+      border-color: #fde047;
+      color: #854d0e;
+    }
+    body.light-theme .tool-pill-action.chart-pill {
+      background: #e0f2fe;
+      border-color: #7dd3fc;
+      color: #0369a1;
+    }
+
 </style>
 
   <script>
@@ -4238,10 +4354,9 @@
           </div>
         </div>
 
-        <!-- زر الضبط والإعدادات الموحد في الهيدر الرئيسي مع زر الثيم -->
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <button class="header-tool-icon-btn theme-toggle-btn" id="btnToggleTheme" onclick="toggleTheme()" title="تبديل المظهر الداكن / الفاتح"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
-          <button class="header-settings-btn" id="btnMainSettings" onclick="openSettingsModal()" title="الضبط والإعدادات (Drive والمظهر والحساب)">
+        <!-- زر الضبط الموحد في الهيدر الرئيسي -->
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <button class="header-settings-btn" id="btnMainSettings" onclick="openSettingsModal()" title="الضبط والإعدادات والحساب">
             <i class="fa-solid fa-gear"></i>
             <span>الضبط</span>
           </button>
@@ -4365,7 +4480,7 @@
            الصفحة 1: المصاريف وتسجيلها فقط (Page 1: Expenses & Logging)
            ================================================================ -->
       <div class="page-view active" id="viewExpenses">
-        <!-- شريط اختيار الفترة الزمنية والعملة الموحد بدون أي تكرار -->
+        <!-- شريط اختيار الفترة الزمنية في أعلى صفحة المصاريف -->
         <div class="period-selector-top-strip">
           <div class="period-buttons-group">
             <button class="period-filter-pill" id="pillPeriodToday" onclick="setAppPeriod('today')">
@@ -4384,9 +4499,36 @@
               <i class="fa-solid fa-calendar-check"></i> مخصص
             </button>
           </div>
-          <div class="currency-pill-btn" id="btnToggleCurrency" onclick="toggleCurrency()" title="تبديل العملة المعروضة (EGP / SAR / USD)">
-            <i class="fa-solid fa-coins"></i>
-            <span id="activeCurrencyText">EGP</span>
+        </div>
+
+        <!-- شريط الأدوات المالي الاحترافي أسفل اختيار التاريخ (المحفظة، البورصة والذهب، الشارتات، تبديل العملات) -->
+        <div class="sub-period-tools-bar">
+          <!-- جزء اختيار المحفظة النشطة وإضافة محفظة -->
+          <div class="wallet-select-cluster">
+            <i class="fa-solid fa-vault" style="color: #38bdf8; font-size: 0.85rem;"></i>
+            <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700;">المحفظة:</span>
+            <select class="wallet-dropdown-compact" id="activeWalletSelect"></select>
+            <button type="button" class="btn-add-wallet-mini" id="btnOpenAddWallet" onclick="openModal('walletModal')" title="إضافة محفظة جديدة">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+
+          <!-- أدوات الشارتات وبورصة الذهب وتغير أسعار العملات -->
+          <div class="tools-pills-cluster">
+            <button type="button" class="tool-pill-action gold-pill" onclick="openGoldDrawer()" title="بورصة الذهب وتغير أسعار العملات المباشرة">
+              <i class="fa-solid fa-arrow-trend-up"></i>
+              <span>الذهب والبورصة</span>
+            </button>
+
+            <button type="button" class="tool-pill-action chart-pill" id="btnToggleAnalytics" onclick="switchAppPage('analytics')" title="لوحة التحاليل والشارتات المفصلة">
+              <i class="fa-solid fa-chart-pie"></i>
+              <span>الشارتات</span>
+            </button>
+
+            <div class="currency-pill-btn" id="btnToggleCurrency" onclick="toggleCurrency()" title="تبديل العملة المعروضة (EGP / SAR / USD)">
+              <i class="fa-solid fa-coins"></i>
+              <span id="activeCurrencyText">EGP</span>
+            </div>
           </div>
         </div>
 
@@ -4417,17 +4559,7 @@
           </button>
         </div>
 
-        <!-- شريط اختيار المحفظة الحالية بشكل مدمج وأنيق -->
-        <div class="wallet-selector-bar" style="margin: 0 12px 10px; border-radius: 12px;">
-          <div class="wallet-info-part">
-            <i class="fa-solid fa-vault" style="color: #38bdf8;"></i>
-            <span>المحفظة النشطة:</span>
-            <select class="wallet-dropdown" id="activeWalletSelect"></select>
-          </div>
-          <button class="btn-add-wallet" id="btnOpenAddWallet">
-            <i class="fa-solid fa-plus"></i> محفظة
-          </button>
-        </div>
+
 
         <!-- رأس قسم بنود المصاريف فقط -->
         <div class="expense-cat-header-strip">
@@ -5777,6 +5909,23 @@
             </div>
           </div>
 
+                    <!-- تبديل الوضع الداكن والفاتح مدمج داخل الضبط -->
+          <div class="app-card-panel" style="margin: 0; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 10px 14px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(251, 191, 36, 0.15); display: flex; align-items: center; justify-content: center; color: #fbbf24; font-size: 1.15rem;">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+              </div>
+              <div>
+                <div style="font-size: 0.88rem; font-weight: 800; color: var(--text-main);">الوضع الليلي والنهاري</div>
+                <div style="font-size: 0.72rem; color: #94a3b8;">التبديل الفوري بين المظهر الداكن والمظهر الفاتح</div>
+              </div>
+            </div>
+            <button type="button" class="btn-export-tool" id="btnToggleTheme" onclick="toggleTheme()" style="padding: 7px 14px; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-moon" id="themeIcon"></i>
+              <span id="themeToggleText">تبديل المظهر</span>
+            </button>
+          </div>
+
           <!-- لون وهوية وتصميم التطبيق -->
           <div class="app-card-panel" style="margin: 0;">
             <div class="app-card-title">
@@ -6299,19 +6448,6 @@
     // ==========================================
     // 3. اختيار الأفاتار وضبط الديفولت التلقائي
     // ==========================================
-    function selectMember(member) {
-      state.selectedMember = member;
-
-      // عند اختيار صورة ماهر يتم عمل الديفولت الذي يحمل عليه المصروف ماهر وهكذا لجميع الأفراد!
-      if (member !== 'الكل') {
-        state.currentUser = member;
-      }
-
-      updateUserAndDefaultDisplay();
-      renderUI();
-      showToast(`👤 تم اختيار: ${member} (الديفولت التلقائي للمصروف)`);
-    }
-
     function updateUserAndDefaultDisplay() {
       const defaultPerson = state.selectedMember !== 'الكل' ? state.selectedMember : state.currentUser;
       const ful = document.getElementById('footerUserLabel');
@@ -6578,25 +6714,35 @@
     }
 
     function updateAnalyticsHeaderBadge() {
-      const badge = document.getElementById('chartActivePeriodBadge');
-      if (!badge) return;
-
-      const p = currentAnalyticsPeriod;
-      if (p === 'today') {
-        const todayStr = new Date().toLocaleDateString('ar-EG', { day: 'numeric', month: 'long', year: 'numeric' });
-        badge.textContent = `اليوم (${todayStr})`;
+      const p = state.period || currentAnalyticsPeriod || 'month';
+      let periodName = '';
+      if (p === 'today' || p === 'day') {
+        const todayStr = new Date().toLocaleDateString('ar-EG', { day: 'numeric', month: 'long' });
+        periodName = `اليوم (${todayStr})`;
       } else if (p === 'week') {
-        badge.textContent = 'الأسبوع الحالي (السبت - الجمعة)';
+        periodName = 'الأسبوع الحالي';
       } else if (p === 'month') {
         const monthStr = new Date().toLocaleDateString('ar-EG', { month: 'long', year: 'numeric' });
-        badge.textContent = `الشهر الحالي (${monthStr})`;
+        periodName = `الشهر الحالي (${monthStr})`;
       } else if (p === 'all') {
-        badge.textContent = 'كافة العمليات والبيانات المسجلة';
+        periodName = 'كافة الفترات';
       } else if (p === 'custom') {
-        badge.textContent = `فترة مخصصة: من ${state.customDateFrom} إلى ${state.customDateTo}`;
+        periodName = 'فترة مخصصة';
       } else {
-        badge.textContent = p;
+        periodName = p;
       }
+
+      const memberTag = (!state.currentMemberFilter || state.currentMemberFilter === 'الكل')
+        ? 'الكل'
+        : state.currentMemberFilter;
+
+      const fullBadgeText = `${periodName} • تصفية: ${memberTag}`;
+
+      const b1 = document.getElementById('analyticsPeriodActivePill');
+      if (b1) b1.textContent = fullBadgeText;
+
+      const b2 = document.getElementById('chartActivePeriodBadge');
+      if (b2) b2.textContent = fullBadgeText;
     }
 
     // الدالة الرئيسية لتحديث وإعادة حساب كافة شارتات ومؤشرات لوحة التحليل
@@ -6615,19 +6761,23 @@
         } else {
           totalExp += amt;
           expCount++;
-          catTotals[tx.category] = (catTotals[tx.category] || 0) + amt;
-          catCounts[tx.category] = (catCounts[tx.category] || 0) + 1;
+          let catKey = tx.category;
+          if (catKey === 'shopping' || catKey === 'supermarket') catKey = 'food';
+          if (catKey === 'other') catKey = 'others';
+          catTotals[catKey] = (catTotals[catKey] || 0) + amt;
+          catCounts[catKey] = (catCounts[catKey] || 0) + 1;
 
           memberTotals[tx.member] = (memberTotals[tx.member] || 0) + amt;
           memberCounts[tx.member] = (memberCounts[tx.member] || 0) + 1;
           if (!memberTopCat[tx.member]) memberTopCat[tx.member] = {};
-          memberTopCat[tx.member][tx.category] = (memberTopCat[tx.member][tx.category] || 0) + amt;
+          memberTopCat[tx.member][catKey] = (memberTopCat[tx.member][catKey] || 0) + amt;
         }
       });
 
       const netSavings = totalInc - totalExp;
       const savingsRate = totalInc > 0 ? ((netSavings / totalInc) * 100).toFixed(1) : 0;
-      const daysCount = currentAnalyticsPeriod === 'today' ? 1 : (currentAnalyticsPeriod === 'week' ? 7 : 30);
+      const p = state.period || currentAnalyticsPeriod || 'month';
+      const daysCount = (p === 'today' || p === 'day') ? 1 : ((p === 'week') ? 7 : 30);
       const dailyAverage = totalExp > 0 ? Math.round(totalExp / daysCount) : 0;
 
       // أعلى بند صرف
@@ -6644,8 +6794,19 @@
         if (mAmt > maxMemAmt) { maxMemAmt = mAmt; topMem = m; }
       }
 
-      // تحديث مصفوفة المؤشرات المالية
+      // تحديث مصفوفة المؤشرات المالية الظاهرة في صفحة التحليلات
       const setEl = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+
+      // كروت الصفحة 3 الرئيسية الظاهرة (Lux KPIs)
+      setEl('kpiLuxExpense', `-${totalExp.toLocaleString()} ج.م`);
+      setEl('kpiLuxIncome', `+${totalInc.toLocaleString()} ج.م`);
+      setEl('kpiLuxBalance', `${netSavings >= 0 ? '+' : ''}${netSavings.toLocaleString()} ج.م`);
+      const balEl = document.getElementById('kpiLuxBalance');
+      if (balEl) balEl.style.color = netSavings >= 0 ? '#38bdf8' : '#ef4444';
+      setEl('kpiLuxSavingsRate', `نسبة الوفر: ${savingsRate}%`);
+      setEl('kpiLuxDailyAverage', `${dailyAverage.toLocaleString()} ج.م`);
+
+      // تحديث عناصر إضافية
       setEl('kpiTotalIncome', `+${totalInc.toLocaleString()} ج.م`);
       setEl('kpiIncomeCount', `${incCount} إيداع`);
       setEl('kpiTotalExpense', `-${totalExp.toLocaleString()} ج.م`);
@@ -6666,7 +6827,7 @@
       renderMonthlyCompareChart(totalInc, totalExp);
     }
 
-    // رسم شارت بنود المصروفات (شارت لكل مصروف)
+    // رسم شارت وتوزيع بنود المصروفات (شارت لكل مصروف)
     function renderCategoryChart(filtered, totalExp) {
       filtered = filtered || getFilteredTransactions();
       totalExp = totalExp !== undefined ? totalExp : (filtered.filter(t => t.type === 'expense').reduce((s, t) => s + (parseFloat(t.amount)||0), 0));
@@ -6674,9 +6835,12 @@
       const catMap = {};
       EXPENSE_CATEGORIES.forEach(c => catMap[c.id] = { name: c.name, color: c.color, icon: c.icon, sum: 0, count: 0 });
       filtered.filter(tx => tx.type === 'expense').forEach(tx => {
-        if (catMap[tx.category]) {
-          catMap[tx.category].sum += (parseFloat(tx.amount) || 0);
-          catMap[tx.category].count += 1;
+        let catKey = tx.category;
+        if (catKey === 'shopping' || catKey === 'supermarket') catKey = 'food';
+        if (catKey === 'other') catKey = 'others';
+        if (catMap[catKey]) {
+          catMap[catKey].sum += (parseFloat(tx.amount) || 0);
+          catMap[catKey].count += 1;
         }
       });
 
@@ -6685,7 +6849,7 @@
       const dataVals = activeCats.map(c => c.sum);
       const colors = activeCats.map(c => c.color);
 
-      const canvas = document.getElementById('categoryChartCanvas');
+      const canvas = document.getElementById('executiveCategoryCanvas') || document.getElementById('categoryChartCanvas');
       if (canvas) {
         if (catChartInstance) catChartInstance.destroy();
         const ctx = canvas.getContext('2d');
@@ -6693,7 +6857,7 @@
         catChartInstance = new Chart(ctx, {
           type: categoryChartMode,
           data: {
-            labels: labels.length > 0 ? labels : ['لا توجد مصروفات'],
+            labels: labels.length > 0 ? labels : ['لا توجد مصروفات مسجلة'],
             datasets: [{
               label: 'إجمالي المصروف (ج.م)',
               data: dataVals.length > 0 ? dataVals : [0],
@@ -6715,7 +6879,7 @@
               tooltip: {
                 rtl: true,
                 callbacks: {
-                  label: (ctx) => ` ${ctx.label}: -${ctx.parsed.toLocaleString ? ctx.parsed.toLocaleString() : ctx.parsed.y.toLocaleString()} ج.م`
+                  label: (ctx) => ` ${ctx.label}: -${ctx.parsed.toLocaleString ? ctx.parsed.toLocaleString() : (ctx.parsed.y ? ctx.parsed.y.toLocaleString() : ctx.parsed)} ج.م`
                 }
               }
             },
@@ -6727,50 +6891,32 @@
         });
       }
 
-      // جدول التقسيم التفصيلي لكل بند مصروف
-      const digestContainer = document.getElementById('categoryDigestTableContainer');
-      if (digestContainer) {
+      // قائمة توزيع البنود التفصيلية أسفل الشارت في صفحة التحليلات
+      const legendContainer = document.getElementById('categoryBreakdownLegend') || document.getElementById('categoryDigestTableContainer');
+      if (legendContainer) {
         if (activeCats.length === 0) {
-          digestContainer.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 16px; font-size: 0.8rem;">لا توجد مصروفات مسجلة في هذه الفترة</div>';
+          legendContainer.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 14px; font-size: 0.78rem;">لا توجد مصروفات مسجلة لهذا العضو في هذه الفترة</div>';
         } else {
-          let htmlTable = `
-            <table class="lux-digest-table">
-              <thead>
-                <tr>
-                  <th>بند المصروف</th>
-                  <th>إجمالي المبلغ المنصرف</th>
-                  <th>الحصة من الميزانية</th>
-                  <th>الرسم البياني</th>
-                  <th>عدد العمليات</th>
-                </tr>
-              </thead>
-              <tbody>
-          `;
+          let htmlLegend = '<div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">';
           activeCats.forEach(c => {
             const pct = totalExp > 0 ? ((c.sum / totalExp) * 100).toFixed(1) : 0;
-            htmlTable += `
-              <tr>
-                <td>
-                  <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 8px; background: ${c.color}22; color: ${c.color}; font-size: 0.85rem;">
-                      <i class="fa-solid ${c.icon}"></i>
-                    </span>
-                    <strong style="color: #f8fafc; font-size: 0.82rem;">${c.name}</strong>
-                  </div>
-                </td>
-                <td style="font-weight: 800; color: #ef4444; direction: ltr; text-align: right;">-${c.sum.toLocaleString()} ج.م</td>
-                <td style="font-weight: 800; color: #38bdf8;">${pct}%</td>
-                <td style="width: 25%;">
-                  <div class="lux-progress-track">
-                    <div class="lux-progress-fill" style="width: ${pct}%; background: ${c.color};"></div>
-                  </div>
-                </td>
-                <td style="color: #94a3b8;">${c.count} عملية</td>
-              </tr>
+            htmlLegend += `
+              <div style="display: flex; align-items: center; justify-content: space-between; padding: 7px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 10px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="width: 26px; height: 26px; border-radius: 8px; background: ${c.color}22; color: ${c.color}; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;">
+                    <i class="fa-solid ${c.icon}"></i>
+                  </span>
+                  <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-main);">${c.name}</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 800;">${pct}%</span>
+                  <strong style="font-size: 0.85rem; color: #ef4444; direction: ltr;">-${c.sum.toLocaleString()} ج.م</strong>
+                </div>
+              </div>
             `;
           });
-          htmlTable += '</tbody></table>';
-          digestContainer.innerHTML = htmlTable;
+          htmlLegend += '</div>';
+          legendContainer.innerHTML = htmlLegend;
         }
       }
     }
@@ -6789,62 +6935,25 @@
           const amt = parseFloat(tx.amount) || 0;
           memData[tx.member].sum += amt;
           memData[tx.member].count += 1;
-          memData[tx.member].topCat[tx.category] = (memData[tx.member].topCat[tx.category] || 0) + amt;
+          let catKey = tx.category;
+          if (catKey === 'shopping' || catKey === 'supermarket') catKey = 'food';
+          if (catKey === 'other') catKey = 'others';
+          memData[tx.member].topCat[catKey] = (memData[tx.member].topCat[catKey] || 0) + amt;
         }
       });
 
       const memberColors = ['#0284c7', '#db2777', '#0891b2', '#c026d3', '#d97706', '#38bdf8'];
-      const labels = membersList;
-      const dataVals = membersList.map(m => memData[m].sum);
 
-      const canvas = document.getElementById('membersChartCanvas');
-      if (canvas) {
-        if (membersChartInstance) membersChartInstance.destroy();
-        const ctx = canvas.getContext('2d');
-
-        membersChartInstance = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: labels,
-            datasets: [{
-              label: 'إجمالي مصروفات الفرد (ج.م)',
-              data: dataVals,
-              backgroundColor: memberColors,
-              borderColor: memberColors,
-              borderWidth: 1.5,
-              borderRadius: 8
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: { display: false },
-              tooltip: {
-                rtl: true,
-                callbacks: {
-                  label: (ctx) => ` ${ctx.label}: -${ctx.parsed.y.toLocaleString()} ج.م`
-                }
-              }
-            },
-            scales: {
-              x: { grid: { display: false }, ticks: { color: '#f1f5f9', font: { family: 'Segoe UI', weight: 'bold' } } },
-              y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: '#94a3b8', callback: v => v.toLocaleString() + ' ج.م' } }
-            }
-          }
-        });
-      }
-
-      // كروت أفراد العائلة الستة مع صورهم الواقعية المحسنة
-      const cardsContainer = document.getElementById('membersDigestCardsContainer');
-      if (cardsContainer) {
-        let htmlCards = '<div class="member-lux-grid">';
+      // كروت أفراد العائلة في صفحة التحليلات
+      const luxGrid = document.getElementById('memberAnalyticsLuxGrid') || document.getElementById('membersDigestCardsContainer');
+      if (luxGrid) {
+        let htmlCards = '<div class="member-lux-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">';
         membersList.forEach((m, idx) => {
           const mSum = memData[m].sum;
           const pct = totalExp > 0 ? ((mSum / totalExp) * 100).toFixed(1) : 0;
           const photo = MEMBER_AVATARS[m] || '';
+          const isSelected = (state.currentMemberFilter === m);
 
-          // أعلى بند
           let topCatName = 'لا يوجد';
           let maxAmt = 0;
           for (const [cId, cAmt] of Object.entries(memData[m].topCat)) {
@@ -6852,25 +6961,27 @@
           }
 
           htmlCards += `
-            <div class="member-lux-card">
-              <div class="member-lux-avatar-box" style="border-color: ${memberColors[idx]};">
-                <img src="${photo}" alt="${m}" class="member-lux-avatar-img" />
+            <div class="member-lux-card ${isSelected ? 'selected-member-highlight' : ''}" onclick="selectMember('${m}')" style="cursor: pointer; border-radius: 12px; padding: 10px; background: rgba(15, 23, 42, 0.65); border: 1.5px solid ${isSelected ? '#38bdf8' : 'rgba(255, 255, 255, 0.08)'}; ${isSelected ? 'background: rgba(2, 132, 199, 0.15); box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);' : ''}">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="member-lux-avatar-box" style="width: 36px; height: 36px; border-radius: 50%; overflow: hidden; border: 2px solid ${memberColors[idx]}; flex-shrink: 0;">
+                  <img src="${photo}" alt="${m}" class="member-lux-avatar-img" style="width: 100%; height: 100%; object-fit: cover;" />
+                </div>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <strong style="font-size: 0.84rem; color: #f8fafc;">${m} ${isSelected ? '✓' : ''}</strong>
+                    <span style="font-size: 0.72rem; color: #38bdf8; font-weight: 800;">${pct}%</span>
+                  </div>
+                  <div style="font-size: 0.88rem; font-weight: 900; color: #ef4444; margin: 1px 0; direction: ltr; text-align: right;">-${mSum.toLocaleString()} ج.م</div>
+                </div>
               </div>
-              <div style="flex: 1; min-width: 0;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <strong style="font-size: 0.88rem; color: #f8fafc;">${m}</strong>
-                  <span style="font-size: 0.74rem; color: #38bdf8; font-weight: 800;">${pct}%</span>
-                </div>
-                <div style="font-size: 0.95rem; font-weight: 900; color: #ef4444; margin: 2px 0; direction: ltr; text-align: right;">-${mSum.toLocaleString()} ج.م</div>
-                <div style="font-size: 0.7rem; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                  أعلى صرف: ${topCatName} (${memData[m].count} حركة)
-                </div>
+              <div style="font-size: 0.68rem; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 4px;">
+                أعلى صرف: ${topCatName} (${memData[m].count} حركة)
               </div>
             </div>
           `;
         });
         htmlCards += '</div>';
-        cardsContainer.innerHTML = htmlCards;
+        luxGrid.innerHTML = htmlCards;
       }
     }
 
@@ -7290,9 +7401,9 @@
     function getFilteredTransactions() {
       let list = [...(state.transactions || [])];
 
-      // 1. فلترة العضو المختار
+      // 1. فلترة العضو المختار بدقة تامة في كافة أنحاء البرنامج
       if (state.currentMemberFilter && state.currentMemberFilter !== 'الكل') {
-        list = list.filter(t => t.member === state.currentMemberFilter || t.member === 'العائلة');
+        list = list.filter(t => t.member === state.currentMemberFilter);
       }
 
       // 2. فلترة المحفظة
@@ -7377,17 +7488,25 @@
         }
       });
 
-      // 4. تحديث الصفحة النشطة حالياً
-      if (state.activePage === 'operations') {
-        renderOperationsList(filtered);
-        renderActivityLogUI();
-      } else if (state.activePage === 'analytics') {
-        try { updateAnalyticsChart(); } catch(e) {}
-      } else if (state.activePage === 'requests') {
-        renderRequestsList();
-      } else if (state.activePage === 'expected') {
-        renderExpectedList();
+      // 4. تحديث العمليات وقائمة السجلات والأرشيف
+      renderOperationsList(filtered);
+      renderActivityLogUI();
+
+      // 5. تحديث صفحة التحليلات والشارتات فوراً (سواء كانت الصفحة مفتوحة حالياً أو عند التبديل إليها)
+      try {
+        updateAnalyticsChart();
+      } catch(e) {
+        console.warn('updateAnalyticsChart error:', e);
       }
+
+      // إذا كانت تصفية تصنيف معينة مفتوحة، يتم تحديث البانر الخاص بها
+      if (state.activeCategoryFilter && typeof showCategoryDetailBanner === 'function') {
+        showCategoryDetailBanner(state.activeCategoryFilter);
+      }
+
+      // 6. تحديث الصفحتين 4 و 5
+      if (typeof renderRequestsList === 'function') renderRequestsList();
+      if (typeof renderExpectedList === 'function') renderExpectedList();
     }
 
     // =========================================================================
@@ -7635,15 +7754,27 @@
       state.currentMemberFilter = member;
       state.selectedMember = member;
 
-      // تحديث مظهر الأفاتار في الشريط العلوي
+      // عند اختيار شخص معين يتم تعيينه كعضو افتراضي لتسجيل العمليات
+      if (member !== 'الكل') {
+        state.currentUser = member;
+      }
+
+      // تحديث تمييز الأفاتار المختار في الشريط العلوي الثابت
       const cards = document.querySelectorAll('.avatar-card');
       cards.forEach(c => {
         if (c.getAttribute('data-member') === member) c.classList.add('active');
         else c.classList.remove('active');
       });
 
+      if (typeof updateUserAndDefaultDisplay === 'function') {
+        updateUserAndDefaultDisplay();
+      }
+
+      // إعادة رسم وتحديث كافة صفحات البرنامج فوراً
       renderUI();
-      showToast(`👤 تم تصفية العرض على: ${member}`);
+
+      const memberDisplayName = (member === 'الكل') ? 'كافة أفراد العائلة' : member;
+      showToast(`👤 تم تصفية العرض على: ${memberDisplayName}`);
     }
 
     // =========================================================================
