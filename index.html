@@ -2549,7 +2549,175 @@
 
   
     /* أنماط لوحة التحاليل والشارتات المفصلة المعاد بناؤها بالكامل */
-    .analytics-master-dialog {
+        /* زر الإغلاق الدائري الفخم والواضح جداً للوحة التحليلات والنوافذ */
+    .btn-analytics-close {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(239, 68, 68, 0.16);
+      border: 1.5px solid rgba(239, 68, 68, 0.45);
+      color: #f87171;
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+    }
+    .btn-analytics-close:hover {
+      background: #ef4444;
+      color: #ffffff;
+      transform: rotate(90deg) scale(1.1);
+      box-shadow: 0 6px 18px rgba(239, 68, 68, 0.55);
+    }
+    .btn-analytics-close:active {
+      transform: scale(0.95);
+    }
+
+    /* كروت إحصائيات المقارنة والرقابة */
+    .kpi-master-grid-lux {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    @media (min-width: 600px) {
+      .kpi-master-grid-lux {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .kpi-tag-count {
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+    }
+
+    /* أزرار التنقل بين أقسام التحليلات */
+    .analytics-sec-btn {
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.6);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .analytics-sec-btn.active {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #ffffff;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+    }
+
+    /* جدول انحرافات الميزانية والمقارنة */
+    .variance-table-lux {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
+    }
+    .variance-table-lux th {
+      background: rgba(15, 23, 42, 0.85);
+      color: #38bdf8;
+      padding: 9px 10px;
+      font-weight: 800;
+      text-align: right;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .variance-table-lux td {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      vertical-align: middle;
+    }
+    .variance-table-lux tr:last-child td {
+      border-bottom: none;
+    }
+    .variance-table-lux tr:hover td {
+      background: rgba(56, 189, 248, 0.04);
+    }
+
+    /* شارات حالة الالتزام */
+    .badge-status-saving {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.72rem;
+    }
+    .badge-status-over {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.72rem;
+    }
+    .badge-status-exact {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.72rem;
+    }
+
+    /* كروت الملاحظات */
+    .note-item-card {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .note-item-card:hover {
+      border-color: rgba(245, 158, 11, 0.45);
+      transform: translateY(-1px);
+    }
+    .note-card-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #fbbf24;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .note-card-content {
+      font-size: 0.82rem;
+      color: var(--text-main);
+      line-height: 1.5;
+      margin-bottom: 6px;
+      white-space: pre-wrap;
+    }
+    .note-card-footer {
+      font-size: 0.72rem;
+      color: #64748b;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+
+.analytics-master-dialog {
       max-width: 720px;
       width: 96%;
       max-height: 92vh;
@@ -4320,6 +4488,267 @@
       color: #0369a1;
     }
 
+
+    /* ==============================================================
+       أنماط الآلة الحاسبة الاحترافية العصرية (مطابقة للنموذج المطلوب)
+       - شاشة ناتج خضراء عصرية + زر حذف رجوع داكن (Backspace)
+       - شبكة أزرار بـ 4 أعمدة (الأرقام في 3 أعمدة بيضاء + عمود العمليات الرمادي)
+       - أزرار التحكم السفلية: حذف | إغلاق | استمرار
+       - زر اعتماد ونقل الناتج مباشرة إلى تسجيل المصروف
+       ============================================================== */
+    .calc-dialog-card-lux {
+      background: #ffffff;
+      width: 90%;
+      max-width: 340px;
+      border-radius: 14px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      animation: modalFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: #1e293b;
+      margin: auto;
+    }
+
+    body.dark-theme .calc-dialog-card-lux,
+    body:not(.light-theme) .calc-dialog-card-lux {
+      background: #1e293b;
+      border-color: #334155;
+      color: #f8fafc;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .calc-screen-bar-lux {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px 10px 18px;
+      border-bottom: 1px solid #e2e8f0;
+      background: #ffffff;
+    }
+
+    body.dark-theme .calc-screen-bar-lux,
+    body:not(.light-theme) .calc-screen-bar-lux {
+      background: #1e293b;
+      border-bottom-color: #334155;
+    }
+
+    .calc-screen-display-lux {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      direction: ltr;
+      text-align: left;
+      overflow: hidden;
+    }
+
+    .calc-expr-preview-lux {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      min-height: 16px;
+      font-family: monospace;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .calc-main-num-lux {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #10b981; /* اللون الأخضر المميز في الصورة */
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 220px;
+      letter-spacing: -0.5px;
+    }
+
+    .calc-backspace-badge-btn {
+      background: #2b274c; /* لون البنفسجي الغامق المطابق للصورة */
+      color: #ffffff;
+      border: none;
+      width: 46px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.15rem;
+      transition: all 0.15s ease;
+      box-shadow: 0 2px 6px rgba(43, 39, 76, 0.35);
+    }
+
+    .calc-backspace-badge-btn:active {
+      transform: scale(0.92);
+      background: #1e1b38;
+    }
+
+    .calc-grid-layout-lux {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      background: #ffffff;
+    }
+
+    body.dark-theme .calc-grid-layout-lux,
+    body:not(.light-theme) .calc-grid-layout-lux {
+      background: #1e293b;
+    }
+
+    .calc-lux-num-btn {
+      background: transparent;
+      border: none;
+      color: #475569;
+      font-size: 1.55rem;
+      font-weight: 500;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    body.dark-theme .calc-lux-num-btn,
+    body:not(.light-theme) .calc-lux-num-btn {
+      color: #cbd5e1;
+    }
+
+    .calc-lux-num-btn:active {
+      background: rgba(0, 0, 0, 0.05);
+      transform: scale(0.94);
+    }
+
+    body.dark-theme .calc-lux-num-btn:active,
+    body:not(.light-theme) .calc-lux-num-btn:active {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .calc-lux-op-btn {
+      background: #f1f3f5; /* لون رمادي فاتح مميز مطابق للصورة */
+      border: none;
+      color: #4b5563;
+      font-size: 1.5rem;
+      font-weight: 600;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    body.dark-theme .calc-lux-op-btn,
+    body:not(.light-theme) .calc-lux-op-btn {
+      background: #0f172a;
+      color: #94a3b8;
+    }
+
+    .calc-lux-op-btn:active {
+      background: #e2e8f0;
+      transform: scale(0.94);
+    }
+
+    body.dark-theme .calc-lux-op-btn:active,
+    body:not(.light-theme) .calc-lux-op-btn:active {
+      background: #1e293b;
+    }
+
+    .calc-lux-equals-btn {
+      color: #0f172a;
+      font-weight: 800;
+    }
+
+    body.dark-theme .calc-lux-equals-btn,
+    body:not(.light-theme) .calc-lux-equals-btn {
+      color: #38bdf8;
+    }
+
+    .calc-bottom-actions-lux {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      border-top: 1px solid #e2e8f0;
+      background: #ffffff;
+      direction: rtl;
+    }
+
+    body.dark-theme .calc-bottom-actions-lux,
+    body:not(.light-theme) .calc-bottom-actions-lux {
+      background: #1e293b;
+      border-top-color: #334155;
+    }
+
+    .calc-action-txt-btn {
+      background: transparent;
+      border: none;
+      color: #64748b;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+      font-family: var(--font-family);
+    }
+
+    .calc-action-txt-btn:hover {
+      background: rgba(0, 0, 0, 0.04);
+      color: #0f172a;
+    }
+
+    body.dark-theme .calc-action-txt-btn:hover,
+    body:not(.light-theme) .calc-action-txt-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+    }
+
+    .calc-action-continue-btn {
+      color: #10b981 !important;
+      font-weight: 800 !important;
+    }
+
+    .calc-transfer-btn-wrap {
+      padding: 0 14px 14px 14px;
+      background: #ffffff;
+    }
+
+    body.dark-theme .calc-transfer-btn-wrap,
+    body:not(.light-theme) .calc-transfer-btn-wrap {
+      background: #1e293b;
+    }
+
+    .btn-calc-direct-transfer {
+      width: 100%;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      border: none;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+      transition: all 0.2s ease;
+      font-family: var(--font-family);
+    }
+
+    .btn-calc-direct-transfer:active {
+      transform: scale(0.97);
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
+    }
+
 </style>
 
   <script>
@@ -4356,6 +4785,10 @@
 
         <!-- زر الضبط الموحد في الهيدر الرئيسي -->
         <div style="display: flex; align-items: center; gap: 6px;">
+          <button class="header-settings-btn" id="btnGlobalSearch" onclick="openGlobalSearchModal()" title="البحث الشامل في بيانات البرنامج بالكامل" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; margin-left: 4px;">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>بحث</span>
+          </button>
           <button class="header-settings-btn" id="btnMainSettings" onclick="openSettingsModal()" title="الضبط والإعدادات والحساب">
             <i class="fa-solid fa-gear"></i>
             <span>الضبط</span>
@@ -4423,6 +4856,14 @@
             👨‍👩‍👧‍👦
           </div>
           <span class="avatar-name-label">العائلة</span>
+        </div>
+
+        <!-- صدقات وأخرى -->
+        <div class="avatar-card" data-member="صدقات وأخرى" onclick="selectMember('صدقات وأخرى')" title="صدقات ومصروفات عامة وأخرى">
+          <div class="avatar-bubble" style="background: linear-gradient(135deg, #d97706, #f59e0b); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: #ffffff; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </div>
+          <span class="avatar-name-label" style="font-size: 0.65rem; line-height: 1.1; white-space: nowrap; font-weight: 800;">صدقات وأخرى</span>
         </div>
       </div>
     </header>
@@ -4513,16 +4954,16 @@
             </button>
           </div>
 
-          <!-- أدوات الشارتات وبورصة الذهب وتغير أسعار العملات -->
+          <!-- أدوات المؤشرات وبورصة الذهب وتغير أسعار العملات -->
           <div class="tools-pills-cluster">
             <button type="button" class="tool-pill-action gold-pill" onclick="openGoldDrawer()" title="بورصة الذهب وتغير أسعار العملات المباشرة">
               <i class="fa-solid fa-arrow-trend-up"></i>
               <span>الذهب والبورصة</span>
             </button>
 
-            <button type="button" class="tool-pill-action chart-pill" id="btnToggleAnalytics" onclick="switchAppPage('analytics')" title="لوحة التحاليل والشارتات المفصلة">
+            <button type="button" class="tool-pill-action chart-pill" id="btnToggleAnalytics" onclick="switchAppPage('analytics')" title="لوحة التحاليل والمؤشرات المفصلة">
               <i class="fa-solid fa-chart-pie"></i>
-              <span>الشارتات</span>
+              <span>المؤشرات</span>
             </button>
 
             <div class="currency-pill-btn" id="btnToggleCurrency" onclick="toggleCurrency()" title="تبديل العملة المعروضة (EGP / SAR / USD)">
@@ -4647,7 +5088,7 @@
             <i class="fa-solid fa-arrow-trend-up" style="color: #eab308;"></i>
             <span>البورصة والذهب</span>
           </button>
-          <button class="analytics-tool-btn" id="btnAnalyticsCalc" onclick="toggleMiniCalc()" title="آلة حاسبة سريعة">
+          <button class="analytics-tool-btn" id="btnAnalyticsCalc" onclick="openCalculatorModal()" title="آلة حاسبة سريعة">
             <i class="fa-solid fa-calculator" style="color: #38bdf8;"></i>
             <span>الآلة الحاسبة</span>
           </button>
@@ -4729,7 +5170,7 @@
               <div class="chart-glass-panel">
                 <div class="chart-glass-head">
                   <div class="chart-glass-title"><i class="fa-solid fa-chart-pie"></i><span>توزيع المصروفات حسب التصنيف</span></div>
-                  <button class="chart-type-toggle-btn" onclick="toggleCategoryChartType()" title="تبديل شكل الشارت (دائري / أعمدة)">
+                  <button class="chart-type-toggle-btn" onclick="toggleCategoryChartType()" title="تبديل شكل المؤشر (دائري / أعمدة)">
                     <i class="fa-solid fa-chart-column" id="categoryChartTypeIcon"></i>
                   </button>
                 </div>
@@ -4812,7 +5253,24 @@
             <input type="text" class="form-input-custom" id="inpReqReason" placeholder="مثال: شراء ملابس للأولاد، مستلزمات الصيدلية، متطلبات للمنزل...">
           </div>
           <div class="form-group-custom">
-            <label class="form-label-custom">تاريخ الحاجة للمبلغ</label>
+            <label class="form-label-custom">بند المصروف المرتبط (للتحليل والمقارنة لاحقاً) <span class="req">*</span></label>
+            <select class="form-select-custom" id="inpReqCategory">
+              <option value="food">🛒 طعام ومشتريات</option>
+              <option value="bills">📄 فواتير والتزامات</option>
+              <option value="transport">🚗 مواصلات وبنزين</option>
+              <option value="clothes">👕 ملابس وأحذية</option>
+              <option value="health">💊 صحة وعلاج</option>
+              <option value="house">🏠 مستلزمات منزل</option>
+              <option value="daily">💰 مصروف يومي</option>
+              <option value="education">🎓 تعليم ودروس</option>
+              <option value="entertainment">🎮 ترفيه وفسح</option>
+              <option value="gifts">🎁 هدايا ومجاملات</option>
+              <option value="kids">👶 ألعاب وأطفال</option>
+              <option value="others" selected>💬 مصاريف أخرى</option>
+            </select>
+          </div>
+          <div class="form-group-custom">
+            <label class="form-label-custom">تاريخ الحاجة للمبلغ (لتحديد فترة المقارنة) <span class="req">*</span></label>
             <input type="date" class="form-input-custom" id="inpReqDate">
           </div>
           <button class="btn-submit-tx" onclick="submitMoneyRequest()" style="background: linear-gradient(135deg, #ec4899, #be185d);">
@@ -4843,7 +5301,19 @@
       <div class="page-view" id="viewExpected" style="display: none;">
         
         <!-- مؤشرات ملخص الالتزامات القادمة والديون -->
-        <div class="kpi-three-strip">
+        <div         <!-- شريط أدوات المصروفات المتوقعة مع زر الملاحظات المفتوحة المطور -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; background: rgba(15, 23, 42, 0.6); padding: 8px 12px; border-radius: 14px; border: 1px solid var(--border-subtle);">
+          <div style="font-size: 0.85rem; font-weight: 800; color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-calendar-check" style="color: #38bdf8;"></i>
+            <span>الالتزامات والمصروفات المتوقعة</span>
+          </div>
+          <button type="button" class="btn-tool-pill" id="btnOpenNotesModal" onclick="openNotesModal()" style="background: linear-gradient(135deg, #d97706, #b45309); color: #ffffff; border: none; padding: 7px 16px; border-radius: 12px; font-weight: 800; font-size: 0.82rem; display: flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);">
+            <i class="fa-solid fa-note-sticky"></i>
+            <span>دفتر الملاحظات</span>
+          </button>
+        </div>
+
+class="kpi-three-strip">
           <div class="kpi-three-card" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.1);">
             <div class="kpi-three-label" style="color: #fbbf24;"><i class="fa-solid fa-clock"></i> مصاريف قادمة</div>
             <div class="kpi-three-value" id="expectedTotalUpcoming" style="color: #fbbf24;">0.00 ج.م</div>
@@ -5127,7 +5597,7 @@
           <label class="form-label-custom">المبلغ (ج.م) <span class="req">*</span></label>
           <div style="display: flex; gap: 8px; align-items: center;">
             <input type="number" step="0.01" class="form-input-custom" id="inpTxAmount" placeholder="0.00" style="flex: 1; font-size: 1.25rem; font-weight: 800; text-align: center;">
-            <button type="button" class="btn-input-calc" id="btnTxInlineCalc" onclick="toggleTxCalcPad()" title="فتح الآلة الحاسبة المدمجة">
+            <button type="button" class="btn-input-calc" id="btnTxInlineCalc" onclick="openCalculatorModal(document.getElementById('inpTxAmount')?.value)" title="فتح الآلة الحاسبة المدمجة">
               <i class="fa-solid fa-calculator"></i>
             </button>
           </div>
@@ -5338,7 +5808,73 @@
     </div>
 
     <!-- نافذة تسجيل الدخول والمزامنة بالبريد الإلكتروني -->
-    <div class="modal-overlay modal-overlay-custom" id="authModal">
+    
+  <!-- ==============================================================
+       مودال الآلة الحاسبة الاحترافية المتطورة (مطابقة تماماً للنموذج المطلوب في الصورة)
+       ============================================================== -->
+  <div class="modal-overlay modal-overlay-custom" id="calculatorModal">
+    <div class="calc-dialog-card-lux" id="calcDialogCard">
+      <!-- شريط الشاشة العلوي: الناتج باللون الأخضر وزر المسح الداكن -->
+      <div class="calc-screen-bar-lux">
+        <div class="calc-screen-display-lux">
+          <div class="calc-expr-preview-lux" id="calcExprPreview">&nbsp;</div>
+          <div class="calc-main-num-lux" id="calcMainNum">0</div>
+        </div>
+        <button type="button" class="calc-backspace-badge-btn" onclick="calcLuxBackspace()" title="مسح رقم">
+          <i class="fa-solid fa-delete-left"></i>
+        </button>
+      </div>
+
+      <!-- شبكة أزرار الآلة الحاسبة (4 أعمدة: 3 للأرقام وعمود العمليات الرمادي) -->
+      <div class="calc-grid-layout-lux">
+        <!-- صف 1: 7, 8, 9, ÷ -->
+        <button type="button" class="calc-lux-num-btn" onclick="calcLuxNum('7')">7</button>
+        <button type="button" class="calc-lux-num-btn" onclick="calcLuxNum('8')">8</button>
+        <button type="button" class="calc-lux-num-btn" onclick="calcLuxNum('9')">9</button>
+        <button type="button" class="calc-lux-op-btn" onclick="calcLuxOp('/')">÷</button>
+
+        <!-- صف 2: 4, 5, 6, × -->
+        <button type="button" class="calc-lux-num-btn" onclick="calcLuxNum('4')">4</button>
+        <button type="button" class="calc-lux-num-btn" onclick="calcLuxNum('5')">5</button>
+        <button type="button" class="calc-lux-num-btn" onclick="calcLuxNum('6')">6</button>
+        <button type="button" class="calc-lux-op-btn" onclick="calcLuxOp('*')">×</button>
+
+        <!-- صف 3: 1, 2, 3, - -->
+        <button type="button" class="calc-lux-num-btn" onclick="calcLuxNum('1')">1</button>
+        <button type="button" class="calc-lux-num-btn" onclick="calcLuxNum('2')">2</button>
+        <button type="button" class="calc-lux-num-btn" onclick="calcLuxNum('3')">3</button>
+        <button type="button" class="calc-lux-op-btn" onclick="calcLuxOp('-')">-</button>
+
+        <!-- صف 4: . , 0 , (فارغ) , + -->
+        <button type="button" class="calc-lux-num-btn" onclick="calcLuxNum('.')">.</button>
+        <button type="button" class="calc-lux-num-btn" onclick="calcLuxNum('0')">0</button>
+        <button type="button" class="calc-lux-num-btn" style="visibility: hidden;">00</button>
+        <button type="button" class="calc-lux-op-btn" onclick="calcLuxOp('+')">+</button>
+
+        <!-- صف 5: مساحة بيضاء + زر = في عمود العمليات -->
+        <div style="grid-column: span 3; background: transparent;"></div>
+        <button type="button" class="calc-lux-op-btn calc-lux-equals-btn" onclick="calcLuxEquals()">=</button>
+      </div>
+
+      <!-- شريط الإجراءات الثلاثي (مطابق للصورة: حذف | إغلاق | استمرار) -->
+      <div class="calc-bottom-actions-lux">
+        <button type="button" class="calc-action-txt-btn" onclick="calcLuxClear()">حذف</button>
+        <button type="button" class="calc-action-txt-btn" onclick="closeCalculatorModal()">إغلاق</button>
+        <button type="button" class="calc-action-txt-btn calc-action-continue-btn" onclick="calcLuxApplyToExpense()">استمرار</button>
+      </div>
+
+      <!-- الزر الأساسي المباشر: نقل الناتج إلى تسجيل المصروف مباشرة -->
+      <div class="calc-transfer-btn-wrap">
+        <button type="button" class="btn-calc-direct-transfer" onclick="calcLuxApplyToExpense()">
+          <i class="fa-solid fa-arrow-down-long"></i>
+          <span>نقل الناتج إلى تسجيل المصروف مباشرة (<span id="calcTransferBadge">0.00</span> ج.م)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-overlay modal-overlay-custom" id="authModal">
       <div class="modal-content-card" style="max-width: 480px;">
         
         <!-- رأس نافذة الحساب -->
@@ -5391,6 +5927,9 @@
             <i class="fa-solid fa-cloud-arrow-up"></i> تسجيل الدخول ومزامنة Google Drive
           </button>
 
+          <button class="btn-secondary-custom" onclick="handleRestoreByEmailPrompt()" style="width: 100%; padding: 10px; font-weight: 800; border-color: rgba(56, 189, 248, 0.5); color: #38bdf8; justify-content: center; display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+            <i class="fa-solid fa-envelope-circle-check"></i> استعادة البيانات فوراً بالبريد الإلكتروني (السحابة)
+          </button>
           <button class="btn-secondary-custom" onclick="handleRestoreFromEmailPrompt()" style="width: 100%; padding: 9px; font-weight: 800; border-color: rgba(34, 197, 94, 0.5); color: #22c55e; justify-content: center; display: flex; align-items: center; gap: 8px;">
             <i class="fa-brands fa-google-drive"></i> استرجاع البيانات من جهاز جديد عبر Google Drive
           </button>
@@ -5462,8 +6001,9 @@
             <strong id="otpTargetEmailTxt" style="color: #38bdf8;">name@gmail.com</strong>
           </p>
 
-          <div style="background: rgba(16, 185, 129, 0.1); border: 1px dashed #10b981; border-radius: 8px; padding: 6px; font-size: 0.75rem; color: #10b981; margin-bottom: 10px;" id="demoOtpAlertBox">
-            💡 رمز التفعيل الفوري لتجربتك هو: <strong id="demoOtpDisplayCode" style="font-size: 1rem; letter-spacing: 2px;">482915</strong>
+          <div style="background: rgba(16, 185, 129, 0.12); border: 1px dashed #10b981; border-radius: 8px; padding: 8px; font-size: 0.78rem; color: #10b981; margin-bottom: 10px; cursor: pointer;" id="demoOtpAlertBox" onclick="quickFillOtp()" title="اضغط هنا لتعبئة الرمز تلقائياً">
+            💡 رمز التفعيل الفوري: <strong id="demoOtpDisplayCode" style="font-size: 1.15rem; letter-spacing: 2px;">482915</strong>
+            <div style="font-size: 0.7rem; color: #059669; margin-top: 3px;">(اضغط هنا لتعبئة رمز التحقق تلقائياً والمتابعة)</div>
           </div>
 
           <div class="otp-input-row">
@@ -5489,7 +6029,7 @@
     </div>
 
     <!-- ==============================================================
-         نافذة الشارتات والتحاليل المفصلة (تظهر فقط عند الضغط على زر الشارتات)
+         نافذة المؤشرات والتحاليل المفصلة (تظهر فقط عند الضغط على زر الشارتات)
          ============================================================== -->
         <!-- ==============================================================
          نافذة صفحة سجل النشاطات والعمليات الشامل (Activity & Audit Log Modal)
@@ -5621,20 +6161,163 @@
     </div>
 
     <!-- ==============================================================
-         نافذة الشارتات والتحاليل المفصلة المعاد بناؤها بالكامل
+         نافذة المؤشرات والتحاليل المفصلة المعاد بناؤها بالكامل
          (فلاتر التواريخ، شارت لكل مصروف، شارت لكل شخص، شارت للمسار الزمني، والمقارنة الشهرية)
          ============================================================== -->
         <!-- ==============================================================
          لوحة التحليل المالي والرقابة المحاسبية الذكية المعاد بناؤها بالكامل
          (تشتمل على شريط فترات متكامل، 4 مؤشرات تنفيذية، 3 شارتات أساسية، وجداول تفصيلية)
          ============================================================== -->
+    <!-- ==============================================================
+         نافذة البحث الشامل الذكي في كامل بيانات البرنامج (Global Search)
+         ============================================================== -->
+    <div class="modal-overlay modal-overlay-custom" id="globalSearchModal" style="display: none;">
+      <div class="modal-content-card" style="max-width: 620px; max-height: 85vh; display: flex; flex-direction: column; border-radius: 20px;">
+        <div class="modal-head" style="border-bottom: 1px solid var(--border-subtle); padding: 14px 18px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 38px; height: 38px; border-radius: 12px; background: rgba(56, 189, 248, 0.15); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; border: 1px solid rgba(56, 189, 248, 0.3);">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div>
+              <h3 class="modal-title-custom" style="margin: 0; font-size: 1.05rem;">البحث الشامل في البرنامج</h3>
+              <div style="font-size: 0.72rem; color: var(--text-muted);">ابحث فورياً في المصروفات، الإيرادات، الملاحظات، الطلبات، والديون</div>
+            </div>
+          </div>
+          <button type="button" class="btn-analytics-close" onclick="closeModal('globalSearchModal')" title="إغلاق">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div style="padding: 14px 18px 8px;">
+          <div style="position: relative;">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #38bdf8; font-size: 0.95rem;"></i>
+            <input type="text" id="inpGlobalSearchLive" class="form-input-custom" placeholder="اكتب للبحث عن أي كلمة، مبلغ، متجر، اسم، بند، أو ملاحظة..." style="padding-right: 40px; font-size: 0.9rem; font-weight: 700; background: rgba(15, 23, 42, 0.75);" oninput="runGlobalSearchLive(this.value)">
+          </div>
+
+          <!-- فلاتر نوع النتائج -->
+          <div style="display: flex; gap: 6px; margin-top: 10px; overflow-x: auto; padding-bottom: 4px;" id="globalSearchFilters">
+            <button class="ana-tab-btn active" data-filter="all" onclick="setGlobalSearchFilter('all')" style="padding: 4px 10px; font-size: 0.74rem;">الكل (<span id="countSearchAll">0</span>)</button>
+            <button class="ana-tab-btn" data-filter="tx" onclick="setGlobalSearchFilter('tx')" style="padding: 4px 10px; font-size: 0.74rem;">العمليات (<span id="countSearchTx">0</span>)</button>
+            <button class="ana-tab-btn" data-filter="notes" onclick="setGlobalSearchFilter('notes')" style="padding: 4px 10px; font-size: 0.74rem;">الملاحظات (<span id="countSearchNotes">0</span>)</button>
+            <button class="ana-tab-btn" data-filter="req" onclick="setGlobalSearchFilter('req')" style="padding: 4px 10px; font-size: 0.74rem;">الطلبات (<span id="countSearchReq">0</span>)</button>
+            <button class="ana-tab-btn" data-filter="exp" onclick="setGlobalSearchFilter('exp')" style="padding: 4px 10px; font-size: 0.74rem;">المتوقعة (<span id="countSearchExp">0</span>)</button>
+          </div>
+        </div>
+
+        <!-- قائمة النتائج مع شريط تمرير سلس -->
+        <div id="globalSearchResultsContainer" style="flex: 1; overflow-y: auto; padding: 10px 18px 20px;">
+          <div style="text-align: center; padding: 40px 10px; color: var(--text-muted);">
+            <i class="fa-solid fa-keyboard" style="font-size: 2.2rem; opacity: 0.4; margin-bottom: 10px;"></i>
+            <p style="font-size: 0.88rem; font-weight: 700;">اكتب في المربع أعلاه لبدء البحث الفوري الشامل</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==============================================================
+         نافذة تسجيل وإدارة الملاحظات المفتوحة (Notes Modal)
+         ============================================================== -->
+    <div class="modal-overlay modal-overlay-custom" id="notesModal" style="display: none;">
+      <div class="modal-content-card" style="max-width: 520px; max-height: 88vh; display: flex; flex-direction: column; border-radius: 20px;">
+        <div class="modal-head" style="border-bottom: 1px solid var(--border-subtle); padding: 14px 18px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 38px; height: 38px; border-radius: 12px; background: rgba(245, 158, 11, 0.15); color: #fbbf24; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; border: 1px solid rgba(245, 158, 11, 0.3);">
+              <i class="fa-solid fa-note-sticky"></i>
+            </div>
+            <div>
+              <h3 class="modal-title-custom" style="margin: 0; font-size: 1.05rem;">دفتر الملاحظات والتذكيرات المفتوحة</h3>
+              <div style="font-size: 0.72rem; color: var(--text-muted);">تسجيل الملاحظات العائلية المفتوحة وتوثيقها بتاريخها في الأرشيف</div>
+            </div>
+          </div>
+          <button type="button" class="btn-analytics-close" onclick="closeModal('notesModal')" title="إغلاق">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div style="padding: 16px 18px; border-bottom: 1px solid var(--border-subtle);">
+          <div class="form-group-custom">
+            <label class="form-label-custom">موضوع أو عنوان الملاحظة <span class="req">*</span></label>
+            <input type="text" class="form-input-custom" id="inpNoteTitle" placeholder="مثال: موعد دفع قسط النادي، تذكير بشراء مستلزمات...">
+          </div>
+          <div class="form-group-custom">
+            <label class="form-label-custom">نص وتفاصيل الملاحظة المفتوحة <span class="req">*</span></label>
+            <textarea class="form-input-custom" id="inpNoteContent" rows="3" placeholder="اكتب الملاحظة بحرية كاملة هنا..."></textarea>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group-custom">
+              <label class="form-label-custom">خاص بـ</label>
+              <select class="form-select-custom" id="inpNoteMember">
+                <option value="العائلة">العائلة بالكامل</option>
+                <option value="ماهر">ماهر</option>
+                <option value="آية">آية</option>
+                <option value="محمد">محمد</option>
+                <option value="مريم">مريم</option>
+                <option value="الحاجة">الحاجة</option>
+                <option value="صدقات وأخرى">صدقات وأخرى</option>
+              </select>
+            </div>
+            <div class="form-group-custom">
+              <label class="form-label-custom">درجة الأهمية</label>
+              <select class="form-select-custom" id="inpNotePriority">
+                <option value="normal">عادية</option>
+                <option value="important">مهمة</option>
+                <option value="urgent">عاجلة جداً</option>
+              </select>
+            </div>
+          </div>
+                    <!-- إرفاق صورة أو التقاط بالكاميرا للملاحظة (وفق طلب المستخدم بدقة) -->
+          <div style="margin-top: 10px; margin-bottom: 12px; background: rgba(56, 189, 248, 0.05); border: 1px dashed rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.78rem; font-weight: 700; color: #38bdf8;"><i class="fa-solid fa-camera"></i> إرفاق صورة أو تصوير بالكاميرا</span>
+              <span style="font-size: 0.68rem; color: var(--text-muted);">(اختياري: فواتير، مستندات، أوراق)</span>
+            </div>
+            
+            <div style="display: flex; gap: 8px;">
+              <button type="button" class="btn-secondary-custom" onclick="document.getElementById('inpNoteCamera').click()" style="flex: 1; padding: 8px 10px; font-size: 0.8rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; border-color: rgba(56, 189, 248, 0.5); color: #38bdf8;">
+                <i class="fa-solid fa-camera"></i> تصوير بالكاميرا
+              </button>
+              <input type="file" id="inpNoteCamera" accept="image/*" capture="environment" style="display: none;" onchange="handleNoteImageSelect(event)">
+
+              <button type="button" class="btn-secondary-custom" onclick="document.getElementById('inpNoteGallery').click()" style="flex: 1; padding: 8px 10px; font-size: 0.8rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; border-color: rgba(16, 185, 129, 0.5); color: #10b981;">
+                <i class="fa-solid fa-image"></i> ألبوم الصور
+              </button>
+              <input type="file" id="inpNoteGallery" accept="image/*" style="display: none;" onchange="handleNoteImageSelect(event)">
+            </div>
+
+            <!-- حاوية معاينة الصورة المختارة -->
+            <div id="noteImagePreviewContainer" style="display: none; margin-top: 10px; position: relative; border-radius: 10px; overflow: hidden; border: 1.5px solid #38bdf8; max-height: 160px; background: #0f172a; text-align: center;">
+              <img id="noteImagePreviewImg" src="" style="width: 100%; max-height: 160px; object-fit: contain; display: block; cursor: pointer;" onclick="openReceiptLightbox(this.src)" title="اضغط للتكبير">
+              <button type="button" onclick="clearNoteAttachedImage()" style="position: absolute; top: 6px; left: 6px; background: rgba(244, 63, 94, 0.9); color: white; border: none; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.4);" title="حذف الصورة">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+              <span style="position: absolute; bottom: 6px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 0.68rem; padding: 2px 8px; border-radius: 6px;">اضغط للتكبير 🔍</span>
+            </div>
+          </div>
+          <button type="button" class="btn-submit-tx" onclick="saveNewNoteFromModal()" style="background: linear-gradient(135deg, #d97706, #b45309); margin-top: 10px;">
+            <i class="fa-solid fa-floppy-disk"></i> حفظ الملاحظة وتوثيقها فوراً في الأرشيف
+          </button>
+        </div>
+
+        <div style="flex: 1; overflow-y: auto; padding: 14px 18px 20px;">
+          <h4 style="font-size: 0.85rem; font-weight: 800; color: #38bdf8; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+            <span><i class="fa-solid fa-clock-rotate-left"></i> سجل الملاحظات المحفوظة</span>
+            <span id="notesCountBadge" class="period-active-pill" style="font-size: 0.72rem;">0 ملاحظة</span>
+          </h4>
+          <div id="notesListContainer"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==============================================================
+         لوحة التحليل المالي والرقابة المحاسبية الذكية الكبرى (Master Executive Analytics)
+         ============================================================== -->
     <div class="modal-overlay modal-overlay-custom" id="analyticsDetailedModal">
       <div class="modal-dialog-card analytics-master-dialog">
 
-        <!-- رأس لوحة التحليلات الثابت -->
+        <!-- رأس لوحة التحليلات التنفيذية مع زر إغلاق فخم وواضح جداً -->
         <div class="analytics-master-header">
           <div class="analytics-title-group">
-            <div style="width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, #0284c7, #38bdf8); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.3rem; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);">
+            <div style="width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #0284c7, #38bdf8); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.35rem; box-shadow: 0 4px 16px rgba(2, 132, 199, 0.45); flex-shrink: 0;">
               <i class="fa-solid fa-chart-pie"></i>
             </div>
             <div>
@@ -5642,20 +6325,23 @@
               <div class="analytics-sub-title">تحليل السيولة، توزيع بنود الصرف، مراقبة إنفاق أفراد العائلة، والمسار الزمني</div>
             </div>
           </div>
-          <button class="modal-close-btn" onclick="closeModal('analyticsDetailedModal')">&times;</button>
+          <!-- زر إغلاق دائري فخم ومميز وواضح جداً يلبي طلب المستخدم بدقة -->
+          <button type="button" class="btn-analytics-close" onclick="closeModal('analyticsDetailedModal')" aria-label="إغلاق" title="إغلاق لوحة التحليلات">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
 
-        <!-- جسم لوحة التحليلات القابل للتمرير بسلاسة -->
+        <!-- جسم لوحة التحليلات التنفيذية -->
         <div class="analytics-master-body">
 
-          <!-- 1. شريط التحكم الزمني والفترات المعتمد -->
+          <!-- 1. شريط التحكم المحاسبي والفترات الزمنية -->
           <div class="analytics-control-panel">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
               <span style="font-size: 0.8rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
                 <i class="fa-solid fa-calendar-days"></i> فترة التحليل المحاسبي:
               </span>
               <span id="chartActivePeriodBadge" class="period-active-pill">
-                شهر أكتوبر 2026 (الشهر الحالي)
+                كافة الفترات (سجل العائلة الكامل)
               </span>
             </div>
 
@@ -5677,196 +6363,224 @@
               </button>
             </div>
 
-            <!-- درج التاريخ المخصص المدمج -->
-            <div class="analytics-custom-range-box" id="analyticsCustomRangeBox">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted);">من تاريخ:</span>
-                <input type="date" class="form-input-custom" id="inpAnaDateFrom" style="padding: 5px 10px; font-size: 0.78rem; width: 140px;">
+            <!-- درج التاريخ المخصص المحاسبي -->
+            <div class="analytics-custom-range-box" id="analyticsCustomRangeBox" style="display: none;">
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted);">من تاريخ:</span>
+                  <input type="date" class="form-input-custom" id="inpAnaDateFrom" style="padding: 5px 10px; font-size: 0.78rem; width: 140px;">
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted);">إلى تاريخ:</span>
+                  <input type="date" class="form-input-custom" id="inpAnaDateTo" style="padding: 5px 10px; font-size: 0.78rem; width: 140px;">
+                </div>
+                <button type="button" class="btn-submit-tx" onclick="applyAnalyticsCustomDate()" style="padding: 6px 16px; font-size: 0.78rem; width: auto; margin: 0;">
+                  تطبيق الفترة المخصصة
+                </button>
               </div>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted);">إلى تاريخ:</span>
-                <input type="date" class="form-input-custom" id="inpAnaDateTo" style="padding: 5px 10px; font-size: 0.78rem; width: 140px;">
-              </div>
-              <button class="btn-submit-tx" onclick="applyAnalyticsCustomDate()" style="padding: 6px 16px; font-size: 0.78rem; width: auto; margin: 0;">
-                تطبيق الفلترة المحاسبية
-              </button>
             </div>
           </div>
 
-          <!-- 2. مصفوفة المؤشرات المالية التنفيذية الأربعة (Master Financial Matrix) -->
+          <!-- 2. رباعية المؤشرات المالية الكبرى (Master Financial Matrix) -->
           <div class="kpi-master-grid-lux">
-            <!-- إجمالي الدخل -->
-            <div class="kpi-lux-card income-lux">
+            <div class="kpi-lux-card">
               <div class="kpi-lux-head">
-                <span><i class="fa-solid fa-circle-arrow-up"></i> إجمالي الدخل والتغذية</span>
-                <span class="kpi-lux-badge inc" id="kpiIncomeCount">0 إيداع</span>
+                <span>إجمالي المصروفات</span>
+                <span class="kpi-tag-count" id="kpiExpenseCountBadge">0 حركة</span>
               </div>
-              <div class="kpi-lux-value inc" id="kpiTotalIncome">+0 ج.م</div>
-              <div class="kpi-lux-sub">السيولة النقدية الواردة للمحافظ</div>
-            </div>
-
-            <!-- إجمالي المصروفات -->
-            <div class="kpi-lux-card expense-lux">
-              <div class="kpi-lux-head">
-                <span><i class="fa-solid fa-circle-arrow-down"></i> إجمالي المصروفات</span>
-                <span class="kpi-lux-badge exp" id="kpiExpenseCount">0 صرف</span>
-              </div>
-              <div class="kpi-lux-value exp" id="kpiTotalExpense">-0 ج.م</div>
+              <div class="kpi-lux-value" id="kpiLuxExpense" style="color: #ef4444;">- 0.00 ج.م</div>
               <div class="kpi-lux-sub">إجمالي المدين المنصرف من الميزانية</div>
             </div>
 
-            <!-- صافي الوفر المالي -->
-            <div class="kpi-lux-card net-lux">
+            <div class="kpi-lux-card">
               <div class="kpi-lux-head">
-                <span><i class="fa-solid fa-gem"></i> صافي الوفر المالي</span>
-                <span class="kpi-lux-badge net" id="kpiSavingsRate">وفر: 0%</span>
+                <span>إجمالي الدخل والتغذية</span>
+                <span class="kpi-tag-count" id="kpiIncomeCountBadge" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">0 إيداع</span>
               </div>
-              <div class="kpi-lux-value net" id="kpiNetSavings">0 ج.م</div>
-              <div class="kpi-lux-sub">الفائض المالي المتاح للتوفير</div>
+              <div class="kpi-lux-value" id="kpiLuxIncome" style="color: #10b981;">+ 0.00 ج.م</div>
+              <div class="kpi-lux-sub">السيولة النقدية الواردة للمحافظ</div>
             </div>
 
-            <!-- معدل الصرف اليومي وأعلى بند -->
-            <div class="kpi-lux-card rate-lux">
+            <div class="kpi-lux-card">
               <div class="kpi-lux-head">
-                <span><i class="fa-solid fa-gauge-high"></i> معدل الإنفاق اليومي</span>
-                <span class="kpi-lux-badge rate" id="kpiTopCategory">أعلى بند: -</span>
+                <span>صافي الوفر المالي</span>
+                <span class="kpi-tag-count" id="kpiLuxSavingsBadge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">وفر: 0%</span>
               </div>
-              <div class="kpi-lux-value rate" id="kpiDailyRate">0 ج.م/يوم</div>
-              <div class="kpi-lux-sub" id="kpiTopMemberText">العضو الأكثر صرفاً: -</div>
+              <div class="kpi-lux-value" id="kpiLuxBalance" style="color: #38bdf8;">0.00 ج.م</div>
+              <div class="kpi-lux-sub" id="kpiLuxSavingsRate">الفائض المالي المتاح للتوفير</div>
+            </div>
+
+            <div class="kpi-lux-card">
+              <div class="kpi-lux-head">
+                <span>معدل الإنفاق اليومي</span>
+                <span class="kpi-tag-count" id="kpiTopCategoryBadge" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">أعلى بند: -</span>
+              </div>
+              <div class="kpi-lux-value" id="kpiLuxDailyAverage" style="color: #fbbf24;">0.00 ج.م/يوم</div>
+              <div class="kpi-lux-sub" id="kpiTopMemberSub">متوسط الصرف الفعلي اليومي</div>
             </div>
           </div>
 
-          <!-- 3. شريط التنقل السريع بين أقسام الشارتات -->
-          <div class="analytics-section-nav">
-            <button class="ana-nav-pill active" id="btnNavViewAll" onclick="switchAnalyticsSection('all')">
-              <i class="fa-solid fa-table-cells-large"></i> لوحة التحليل الشاملة
+          <!-- 3. شريط التنقل بين أقسام التحليلات التفاعلية الخمسة -->
+          <div class="analytics-section-nav" style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px;">
+            <button class="analytics-sec-btn active" data-sec="categories" onclick="switchExecutiveTab('categories')">
+              <i class="fa-solid fa-layer-group"></i> <span>مؤشرات بنود الصرف</span>
             </button>
-            <button class="ana-nav-pill" id="btnNavViewCats" onclick="switchAnalyticsSection('categories')">
-              <i class="fa-solid fa-layer-group"></i> شارت لكل مصروف
+            <button class="analytics-sec-btn" data-sec="members" onclick="switchExecutiveTab('members')">
+              <i class="fa-solid fa-users"></i> <span>مؤشرات أفراد العائلة</span>
             </button>
-            <button class="ana-nav-pill" id="btnNavViewMembers" onclick="switchAnalyticsSection('members')">
-              <i class="fa-solid fa-users"></i> شارت لكل شخص
+            <button class="analytics-sec-btn" data-sec="timeline" onclick="switchExecutiveTab('timeline')">
+              <i class="fa-solid fa-chart-line"></i> <span>مؤشرات المسار الزمني</span>
             </button>
-            <button class="ana-nav-pill" id="btnNavViewDaily" onclick="switchAnalyticsSection('daily')">
-              <i class="fa-solid fa-chart-line"></i> شارت المسار الزمني
+            <button class="analytics-sec-btn" data-sec="requests" onclick="switchExecutiveTab('requests')">
+              <i class="fa-solid fa-scale-balanced" style="color: #ec4899;"></i> <span>مقارنة الطلبات والمصروفات</span>
             </button>
-            <button class="ana-nav-pill" id="btnNavViewMonthly" onclick="switchAnalyticsSection('monthly')">
-              <i class="fa-solid fa-chart-column"></i> المقارنة الشهرية
+            <button class="analytics-sec-btn" data-sec="monthly" onclick="switchExecutiveTab('monthly')">
+              <i class="fa-solid fa-chart-column"></i> <span>المقارنة الشهرية</span>
             </button>
-          </div>
-
-          <!-- =========================================================
-               القسم 1: 📊 شارت لكل مصروف وتوزيع بنود الصرف
-               ========================================================= -->
-          <div class="analytics-block-section" id="sectionCategoriesBlock">
-            <div class="section-lux-header">
-              <div class="section-lux-title">
-                <i class="fa-solid fa-layer-group" style="color: #38bdf8;"></i>
-                <span>شارت توزيع بنود المصروفات (شارت لكل مصروف)</span>
-              </div>
-              <div style="display: flex; gap: 8px; align-items: center;">
-                <button class="btn-secondary-custom" id="btnToggleCatMode" onclick="toggleCategoryChartType()" style="padding: 4px 10px; font-size: 0.74rem;">
-                  <i class="fa-solid fa-chart-pie"></i> تبديل (دائري / أعمدة)
-                </button>
-                <span id="chartCatsTotalBadge" style="font-size: 0.74rem; font-weight: 800; color: var(--expense); background: rgba(239, 68, 68, 0.12); padding: 3px 8px; border-radius: 8px;"></span>
-              </div>
-            </div>
-
-            <!-- إطار شارت بنود المصروفات -->
-            <div class="chart-canvas-wrapper" style="height: 250px;">
-              <canvas id="categoryChartCanvas"></canvas>
-            </div>
-
-            <!-- جدول التقسيم والتحليل التفصيلي لكل بند -->
-            <div id="categoryDigestTableContainer" style="margin-top: 14px;"></div>
           </div>
 
           <!-- =========================================================
-               القسم 2: 👥 شارت ومقارنة أفراد العائلة (شارت لكل شخص)
+               القسم 1: شارت لكل مصروف وتوزيع بنود الصرف
                ========================================================= -->
-          <div class="analytics-block-section" id="sectionMembersBlock">
-            <div class="section-lux-header">
-              <div class="section-lux-title">
-                <i class="fa-solid fa-users" style="color: #a855f7;"></i>
-                <span>شارت ومقارنة إنفاق أفراد العائلة (شارت لكل شخص)</span>
+          <div class="analytics-content-pane active" id="paneCategories">
+            <div class="chart-glass-panel">
+              <div class="chart-glass-head" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div class="chart-glass-title" style="font-weight: 800; font-size: 0.92rem; color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
+                  <i class="fa-solid fa-layer-group" style="color: #38bdf8;"></i>
+                  <span>مؤشرات توزيع بنود المصروفات (مؤشرات لكل مصروف)</span>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <button type="button" class="btn-secondary-custom" id="btnToggleCatChartMode" onclick="toggleCategoryChartType()" style="padding: 4px 10px; font-size: 0.74rem;">
+                    <i class="fa-solid fa-chart-pie"></i> <span id="catChartModeLabel">عرض أعمدة</span>
+                  </button>
+                  <span id="chartCatsTotalBadge" style="font-size: 0.74rem; font-weight: 800; color: #f87171; background: rgba(239, 68, 68, 0.12); padding: 3px 8px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.25);"></span>
+                </div>
               </div>
-              <span style="font-size: 0.74rem; color: var(--text-muted); font-weight: 700;">
-                مقارنة إنفاق الـ 6 أفراد مع صورهم الشخصية
-              </span>
-            </div>
 
-            <!-- إطار شارت أفراد العائلة -->
-            <div class="chart-canvas-wrapper" style="height: 230px;">
-              <canvas id="membersChartCanvas"></canvas>
-            </div>
+              <!-- كانفاس الرسم البياني لتوزيع المصروفات -->
+              <div class="chart-canvas-wrap" style="height: 260px; position: relative;">
+                <canvas id="anaCategoryCanvas"></canvas>
+              </div>
 
-            <!-- كروت أفراد العائلة التفصيلية بالصور الواقعية المحسنة -->
-            <div id="membersDigestCardsContainer" style="margin-top: 14px;"></div>
+              <!-- جدول ملخص بنود الصرف والنسب المئوية -->
+              <div class="cat-breakdown-legend" id="categoryBreakdownLegend" style="margin-top: 14px;"></div>
+            </div>
           </div>
 
           <!-- =========================================================
-               القسم 3: 📈 شارت المسار الزمني والتطور اليومي للفترة
+               القسم 2: شارت لكل شخص وإنفاق أفراد العائلة
                ========================================================= -->
-          <div class="analytics-block-section" id="sectionDailyBlock">
-            <div class="section-lux-header">
-              <div class="section-lux-title">
-                <i class="fa-solid fa-chart-line" style="color: #10b981;"></i>
-                <span>شارت المسار الزمني والإنفاق اليومي خلال الفترة المحددة</span>
+          <div class="analytics-content-pane" id="paneMembers" style="display: none;">
+            <div class="chart-glass-panel">
+              <div class="chart-glass-head" style="margin-bottom: 10px;">
+                <div class="chart-glass-title" style="font-weight: 800; font-size: 0.92rem; color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
+                  <i class="fa-solid fa-users" style="color: #a855f7;"></i>
+                  <span>مؤشرات إنفاق أفراد العائلة (مؤشرات لكل شخص)</span>
+                </div>
               </div>
-              <span id="dailySpikesSummaryBadge" style="font-size: 0.74rem; font-weight: 800; color: #10b981; background: rgba(16, 185, 129, 0.12); padding: 3px 8px; border-radius: 8px;"></span>
-            </div>
 
-            <!-- إطار شارت المسار الزمني -->
-            <div class="chart-canvas-wrapper" style="height: 240px;">
-              <canvas id="dailyTimelineCanvas"></canvas>
-            </div>
+              <!-- كانفاس الرسم البياني لأفراد العائلة -->
+              <div class="chart-canvas-wrap" style="height: 240px; position: relative;">
+                <canvas id="anaMembersCanvas"></canvas>
+              </div>
 
-            <div id="dailyDigestNotesContainer" style="margin-top: 12px;"></div>
+              <!-- شبكة بطاقات أفراد العائلة التفصيلية -->
+              <div class="member-lux-grid" id="memberAnalyticsLuxGrid" style="margin-top: 14px;"></div>
+            </div>
           </div>
 
           <!-- =========================================================
-               القسم 4: 📅 شارت المقارنة الشهرية التراكمية
+               القسم 3: شارت المسار الزمني والسيولة اليومية
                ========================================================= -->
-          <div class="analytics-block-section" id="sectionMonthlyBlock">
-            <div class="section-lux-header">
-              <div class="section-lux-title">
-                <i class="fa-solid fa-chart-column" style="color: #f59e0b;"></i>
-                <span>المقارنة الشهرية التراكمية (أغسطس - سبتمبر - أكتوبر 2026)</span>
+          <div class="analytics-content-pane" id="paneTimeline" style="display: none;">
+            <div class="chart-glass-panel">
+              <div class="chart-glass-head" style="margin-bottom: 10px;">
+                <div class="chart-glass-title" style="font-weight: 800; font-size: 0.92rem; color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
+                  <i class="fa-solid fa-chart-line" style="color: #10b981;"></i>
+                  <span>مؤشرات المسار الزمني للسيولة والمصروفات اليومية</span>
+                </div>
               </div>
-              <span style="font-size: 0.74rem; color: var(--text-muted); font-weight: 700;">
-                مقارنة الدخل والمصروف وتطور الوفر المالي
-              </span>
-            </div>
 
-            <!-- إطار شارت الشهور -->
-            <div class="chart-canvas-wrapper" style="height: 230px;">
-              <canvas id="monthlyCompareCanvas"></canvas>
-            </div>
+              <!-- كانفاس المسار الزمني -->
+              <div class="chart-canvas-wrap" style="height: 240px; position: relative;">
+                <canvas id="anaTimelineCanvas"></canvas>
+              </div>
 
-            <div id="monthlyDigestNotesContainer" style="margin-top: 12px;"></div>
+              <!-- بطاقات إحصائية للمسار الزمني -->
+              <div id="timelineDigestCards" style="margin-top: 14px;"></div>
+            </div>
+          </div>
+
+          <!-- =========================================================
+               القسم 4: مقارنة طلبات المصروف والمصروفات الفعلية والدخل (الميزة الجديدة المطورة)
+               ========================================================= -->
+          <div class="analytics-content-pane" id="paneRequests" style="display: none;">
+            <div class="chart-glass-panel">
+              <div class="chart-glass-head" style="margin-bottom: 12px;">
+                <div class="chart-glass-title" style="font-weight: 800; font-size: 0.92rem; color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
+                  <i class="fa-solid fa-scale-balanced" style="color: #ec4899;"></i>
+                  <span>مقارنة طلبات المصروف بالمصروفات الفعلية والسيولة النقدية</span>
+                </div>
+                <span class="period-active-pill" style="font-size: 0.72rem; background: rgba(236, 72, 153, 0.15); color: #f472b6; border-color: rgba(236, 72, 153, 0.3);">
+                  رقابة الميزانية والانحراف
+                </span>
+              </div>
+
+              <!-- شبكة مؤشرات مقارنة الطلبات بالمصروفات -->
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px;" id="reqCompareKpisGrid">
+                <div class="kpi-stat-card" style="border-color: rgba(236, 72, 153, 0.3);">
+                  <div class="kpi-label"><i class="fa-solid fa-hand-holding-dollar" style="color: #ec4899;"></i> إجمالي الطلبات</div>
+                  <div class="kpi-value" id="kpiReqTotalAmt" style="color: #f472b6; font-size: 0.95rem;">0 ج.م</div>
+                  <div class="kpi-sub-hint" id="kpiReqTotalCount">0 طلب مسجل</div>
+                </div>
+                <div class="kpi-stat-card" style="border-color: rgba(16, 185, 129, 0.3);">
+                  <div class="kpi-label"><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> طلبات معتمدة وصرفت</div>
+                  <div class="kpi-value" id="kpiReqApprovedAmt" style="color: #34d399; font-size: 0.95rem;">0 ج.م</div>
+                  <div class="kpi-sub-hint" id="kpiReqApprovedCount">0 طلب معتمد</div>
+                </div>
+                <div class="kpi-stat-card" style="border-color: rgba(56, 189, 248, 0.3);">
+                  <div class="kpi-label"><i class="fa-solid fa-bullseye" style="color: #38bdf8;"></i> نسبة الالتزام بالطلبات</div>
+                  <div class="kpi-value" id="kpiReqComplianceRate" style="color: #38bdf8; font-size: 0.95rem;">100%</div>
+                  <div class="kpi-sub-hint" id="kpiReqPendingNotice">0 طلب قيد المراجعة</div>
+                </div>
+              </div>
+
+              <!-- كانفاس المقارنة البيانية بالأعمدة المزدوجة بين الطلبات والمصروف الفعلي -->
+              <div class="chart-canvas-wrap" style="height: 250px; position: relative;">
+                <canvas id="anaRequestsCompareCanvas"></canvas>
+              </div>
+
+              <!-- جدول الانحراف المحاسبي بين الطلبات والمصروف الفعلي -->
+              <div id="requestsVarianceTableContainer" style="margin-top: 14px;"></div>
+            </div>
+          </div>
+
+          <!-- =========================================================
+               القسم 5: المقارنة الشهرية والتطور السنوي
+               ========================================================= -->
+          <div class="analytics-content-pane" id="paneMonthly" style="display: none;">
+            <div class="chart-glass-panel">
+              <div class="chart-glass-head" style="margin-bottom: 10px;">
+                <div class="chart-glass-title" style="font-weight: 800; font-size: 0.92rem; color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
+                  <i class="fa-solid fa-chart-column" style="color: #38bdf8;"></i>
+                  <span>مؤشرات المقارنة الشهرية (الدخل مقابل المصروفات على مدار الأشهر)</span>
+                </div>
+              </div>
+
+              <!-- كانفاس المقارنة الشهرية -->
+              <div class="chart-canvas-wrap" style="height: 250px; position: relative;">
+                <canvas id="anaMonthlyCanvas"></canvas>
+              </div>
+
+              <div id="monthlyCompareCardsContainer" style="margin-top: 14px;"></div>
+            </div>
           </div>
 
         </div>
       </div>
     </div>
 
-    
-    <!-- نافذة عارض صورة الفاتورة بالحجم الكامل (Receipt Lightbox Modal) -->
-    <div class="modal-overlay modal-overlay-custom" id="receiptLightboxModal">
-      <div class="modal-content-card" style="max-width: 480px; text-align: center;">
-        <div class="modal-head">
-          <h3 class="modal-title-custom"><i class="fa-solid fa-file-invoice" style="color: #38bdf8;"></i> صورة فاتورة المصروف الموثقة</h3>
-          <button class="btn-close-drawer" onclick="closeModal('receiptLightboxModal')">&times;</button>
-        </div>
-        <div style="padding: 14px;">
-          <p id="lightboxTxLabel" style="font-size: 0.86rem; font-weight: 800; color: #38bdf8; margin-bottom: 10px;"></p>
-          <img id="lightboxImg" src="" style="width: 100%; max-height: 70vh; object-fit: contain; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 24px rgba(0,0,0,0.5);">
-        </div>
-      </div>
-    </div>
-
-    <!-- نافذة الضبط والإعدادات: Google Drive ولون التطبيق والمحافظ (Settings Modal) -->
-    <div class="modal-overlay modal-overlay-custom" id="settingsModal">
+<div class="modal-overlay modal-overlay-custom" id="settingsModal">
       <div class="modal-content-card" style="max-width: 500px;">
         <div class="modal-head">
           <h3 class="modal-title-custom"><i class="fa-solid fa-gear" style="color: #c084fc;"></i> إعدادات وضبط التطبيق</h3>
@@ -6129,6 +6843,9 @@
         gold21: 6375.00,
         goldPound: 51000.00,
       },
+      moneyRequests: [],
+      notes: [],
+      debts: [],
       permissions: {
         ayaCanAdd: true,
         ayaCanViewAll: true,
@@ -6247,6 +6964,41 @@
       const storedPerm = localStorage.getItem('family_monefy_perms');
       if (storedPerm) {
         try { state.permissions = JSON.parse(storedPerm); } catch(e) {}
+
+      // تحميل طلبات المصروف وتهيئتها
+      try {
+        const storedReqs = localStorage.getItem('family_monefy_requests');
+        if (storedReqs) {
+          state.moneyRequests = JSON.parse(storedReqs);
+        } else {
+          state.moneyRequests = [
+            { id: 'req-demo-1', member: 'أية', amount: 1500, reason: 'شراء ملابس للأولاد وتجهيزات دراسية', date: todayIsoStr, category: 'clothes', status: 'pending', createdBy: 'أية', timestamp: 'اليوم 10:30 ص' },
+            { id: 'req-demo-2', member: 'أية', amount: 850, reason: 'أدوية ومستلزمات صيدلية وفيتامينات', date: todayIsoStr, category: 'health', status: 'approved', createdBy: 'أية', timestamp: 'اليوم 09:15 ص' },
+            { id: 'req-demo-3', member: 'محمد', amount: 450, reason: 'اشتراك كتب وباقات تعليمية', date: todayIsoStr, category: 'education', status: 'pending', createdBy: 'محمد', timestamp: 'أمس 08:00 م' },
+            { id: 'req-demo-4', member: 'مريم', amount: 300, reason: 'قصص وأدوات رسم ومستلزمات ترفيه', date: todayIsoStr, category: 'kids', status: 'approved', createdBy: 'مريم', timestamp: 'أمس 04:30 م' }
+          ];
+          localStorage.setItem('family_monefy_requests', JSON.stringify(state.moneyRequests));
+        }
+      } catch(e) {
+        state.moneyRequests = [];
+      }
+
+      // تحميل الملاحظات المفتوحة وتهيئتها
+      try {
+        const storedNotes = localStorage.getItem('family_monefy_notes');
+        if (storedNotes) {
+          state.notes = JSON.parse(storedNotes);
+        } else {
+          state.notes = [
+            { id: 'note-demo-1', title: 'موعد تجديد اشتراك الإنترنت المنزلي', content: 'الدفع قبل يوم 5 من الشهر لضمان عدم انقطاع الخدمة والسرعة العالية', member: 'ماهر', priority: 'important', date: todayIsoStr, time: '11:00 ص' },
+            { id: 'note-demo-2', title: 'متابعة تطعيمات النونو عند طبيب الأطفال', content: 'جرعة التطعيم الدورية في المركز الصحي يوم الخميس القادم صباحاً', member: 'أية', priority: 'urgent', date: todayIsoStr, time: '10:15 ص' },
+            { id: 'note-demo-3', title: 'قائمة مستلزمات السوبرماركت الأسبوعية', content: 'شراء زيت زيتون، جبن قريش، شاي أخضر، ومنظفات غسيل للمنزل', member: 'العائلة', priority: 'normal', date: todayIsoStr, time: '09:00 ص' }
+          ];
+          localStorage.setItem('family_monefy_notes', JSON.stringify(state.notes));
+        }
+      } catch(e) {
+        state.notes = [];
+      }
       }
 
       // تحديث قوائم المحافظ
@@ -6463,299 +7215,122 @@
     // ==========================================
     // 4. الشارتات التوضيحية والتحليلية
     // ==========================================
+    let activeExecutiveTab = 'categories';
+    let execCatChart = null, execMemChart = null, execTimeChart = null, execReqCompareChart = null, execMonthChart = null;
+    let execCatChartType = 'doughnut';
+    let currentGlobalSearchFilter = 'all';
+
     function toggleAnalyticsView() {
       openModal('analyticsDetailedModal');
       setTimeout(() => {
-        if (analyticsChartInstance) {
-          analyticsChartInstance.resize();
-        }
         updateAnalyticsChart();
-      }, 100);
-    }
-
-    function switchChartMode(mode) {
-      const tabMap = { 'bar': 'categories', 'timeline': 'daily', 'cats': 'categories', 'members': 'members', 'daily': 'daily', 'monthly': 'monthly' };
-      switchChartTab(tabMap[mode] || 'categories');
+        if (execCatChart) execCatChart.resize();
+        if (execMemChart) execMemChart.resize();
+        if (execTimeChart) execTimeChart.resize();
+        if (execReqCompareChart) execReqCompareChart.resize();
+        if (execMonthChart) execMonthChart.resize();
+      }, 80);
     }
 
     function initAnalyticsChart() {
-      const ctx = document.getElementById('analyticsChartCanvas').getContext('2d');
-      analyticsChartInstance = new Chart(ctx, {
-        type: 'bar',
-        data: { labels: [], datasets: [] },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'top', labels: { color: '#cbd5e1', font: { family: 'Cairo' } } },
-            tooltip: { rtl: true }
-          },
-          scales: {
-            x: { ticks: { color: '#94a3b8', font: { family: 'Cairo' } }, grid: { display: false } },
-            y: { ticks: { color: '#94a3b8' }, grid: { color: '#1e293b' } }
-          }
-        }
-      });
-    }
-
-    // =========================================================================
-    // محرك الشارتات المتقدمة: لكل مصروف، لكل فرد، باليوم والتاريخ، وبالشهر
-    // مع إمكانية تحديد تاريخ معين أو فترة محددة وتحديث الشارت تلقائياً
-    // =========================================================================
-    let currentChartTab = 'categories'; // 'categories', 'members', 'daily', 'monthly'
-
-    function toggleCustomDatePicker(force) {
-      const drawer = document.getElementById('customDatePickerDrawer');
-      if (!drawer) return;
-      const isOpen = drawer.style.display !== 'none';
-      const willOpen = force !== undefined ? force : !isOpen;
-
-      if (willOpen) {
-        drawer.style.display = 'flex';
-        pushModalState('customDatePickerDrawer');
-        const inpFrom = document.getElementById('inpRangeFrom');
-        const inpTo = document.getElementById('inpRangeTo');
-        const todayStr = new Date().toISOString().split('T')[0];
-        if (inpTo && !inpTo.value) inpTo.value = todayStr;
-        if (inpFrom && !inpFrom.value) {
-          const d = new Date();
-          d.setDate(1);
-          inpFrom.value = d.toISOString().split('T')[0];
-        }
-      } else {
-        drawer.style.display = 'none';
-        popModalState('customDatePickerDrawer');
+      if (typeof switchExecutiveTab === 'function') {
+        switchExecutiveTab('categories');
       }
     }
 
-    function applyPresetPeriod(preset) {
-      const today = new Date();
-      const todayStr = today.toISOString().split('T')[0];
-      let fromStr = todayStr;
-      let toStr = todayStr;
-
-      if (preset === 'today') {
-        fromStr = todayStr;
-        toStr = todayStr;
-      } else if (preset === 'yesterday') {
-        const y = new Date(today);
-        y.setDate(y.getDate() - 1);
-        fromStr = y.toISOString().split('T')[0];
-        toStr = fromStr;
-      } else if (preset === 'last7') {
-        const l7 = new Date(today);
-        l7.setDate(l7.getDate() - 6);
-        fromStr = l7.toISOString().split('T')[0];
-        toStr = todayStr;
-      } else if (preset === 'this_month') {
-        const m1 = new Date(today.getFullYear(), today.getMonth(), 1);
-        fromStr = m1.toISOString().split('T')[0];
-        toStr = todayStr;
-      } else if (preset === 'last_month') {
-        const lmStart = new Date(today.getFullYear(), today.getMonth() - 1, 1);
-        const lmEnd = new Date(today.getFullYear(), today.getMonth(), 0);
-        fromStr = lmStart.toISOString().split('T')[0];
-        toStr = lmEnd.toISOString().split('T')[0];
-      }
-
-      const inpFrom = document.getElementById('inpRangeFrom');
-      const inpTo = document.getElementById('inpRangeTo');
-      if (inpFrom) inpFrom.value = fromStr;
-      if (inpTo) inpTo.value = toStr;
-
-      applyDateRange();
-    }
-
-    function applyDateRange() {
-      const from = document.getElementById('inpRangeFrom')?.value;
-      const to = document.getElementById('inpRangeTo')?.value;
-      if (!from || !to) {
-        showToast('⚠️ الرجاء اختيار تاريخي البداية والنهاية');
-        return;
-      }
-      if (from > to) {
-        showToast('⚠️ تاريخ البداية يجب أن يكون قبل أو يساوي تاريخ النهاية');
-        return;
-      }
-      state.period = 'custom';
-      state.customDate = null;
-      state.customDateFrom = from;
-      state.customDateTo = to;
-
-      document.querySelectorAll('.period-filter-pill').forEach(b => b.classList.remove('active'));
-      const customPill = document.getElementById('pillPeriodCustom');
-      if (customPill) customPill.classList.add('active');
-
-      toggleCustomDatePicker(false);
-      updatePeriodDisplayLabel();
-      renderUI();
-      showToast(`📅 تم تطبيق الفترة: من ${from} إلى ${to}`);
-    }
-
-    function resetDateFilter() {
-      state.period = 'month';
-      state.customDate = null;
-      state.customDateFrom = null;
-      state.customDateTo = null;
-
-      toggleCustomDatePicker(false);
-
-      document.querySelectorAll('.period-filter-pill').forEach(b => {
-        if (b.id === 'pillPeriodMonth') b.classList.add('active');
-        else b.classList.remove('active');
+    function switchExecutiveTab(tabId) {
+      activeExecutiveTab = tabId;
+      
+      // تحديث أزرار الأقسام
+      document.querySelectorAll('.analytics-sec-btn').forEach(btn => {
+        if (btn.getAttribute('data-sec') === tabId) btn.classList.add('active');
+        else btn.classList.remove('active');
       });
 
-      const r1 = document.getElementById('inpRangeFrom'); if (r1) r1.value = '';
-      const r2 = document.getElementById('inpRangeTo'); if (r2) r2.value = '';
+      // إخفاء وإظهار الألواح
+      const paneMap = {
+        'categories': 'paneCategories',
+        'members': 'paneMembers',
+        'timeline': 'paneTimeline',
+        'requests': 'paneRequests',
+        'monthly': 'paneMonthly'
+      };
 
-      updatePeriodDisplayLabel();
-      renderUI();
-      showToast('🔄 تم الرجوع إلى عرض الشهر الحالي');
-    }
+      Object.values(paneMap).forEach(pId => {
+        const el = document.getElementById(pId);
+        if (el) el.style.display = 'none';
+      });
 
-    function updatePeriodDisplayLabel() {
-      const desc = document.getElementById('chartDateIndicatorTxt');
-      if (!desc) return;
-      if (state.period === 'custom') {
-        if (state.customDate) {
-          desc.innerHTML = `<i class="fa-solid fa-calendar-day" style="color: #38bdf8;"></i> تاريخ محدد: ${state.customDate}`;
-        } else if (state.customDateFrom && state.customDateTo) {
-          desc.innerHTML = `<i class="fa-solid fa-calendar-days" style="color: #38bdf8;"></i> من ${state.customDateFrom} إلى ${state.customDateTo}`;
-        }
-      } else {
-        const map = { 'today': 'اليوم', 'week': 'الأسبوع الحالي', 'month': 'الشهر الحالي', 'all': 'كافة العمليات' };
-        desc.innerHTML = `<i class="fa-solid fa-filter" style="color: #38bdf8;"></i> الفترة: ${map[state.period] || state.period}`;
-      }
-    }
+      const activePane = document.getElementById(paneMap[tabId]);
+      if (activePane) activePane.style.display = 'block';
 
-    
-    // =========================================================================
-    // محرك التحليل المالي والرقابة المحاسبية الذكية المطور (Master Analytics Engine)
-    // =========================================================================
-    let catChartInstance = null;
-    let membersChartInstance = null;
-    let dailyChartInstance = null;
-    let monthlyChartInstance = null;
-    let categoryChartMode = 'doughnut'; // 'doughnut' or 'bar'
-    let currentAnalyticsPeriod = 'month';
-    let currentActiveSection = 'all';
+      // رسم الشارت المناسب فوراً لمنع أي فراغ
+      setTimeout(() => {
+        const filtered = getFilteredTransactions();
+        let totalExp = 0, totalInc = 0;
+        filtered.forEach(t => {
+          const a = parseFloat(t.amount) || 0;
+          if (t.type === 'income') totalInc += a;
+          else totalExp += a;
+        });
 
-    // تبديل الأقسام الرئيسية للوحة التحليلات
-    function switchAnalyticsSection(sec) {
-      currentActiveSection = sec;
-      document.querySelectorAll('.ana-nav-pill').forEach(btn => btn.classList.remove('active'));
-      const activeBtn = document.getElementById('btnNavView' + sec.charAt(0).toUpperCase() + sec.slice(1));
-      if (activeBtn) activeBtn.classList.add('active');
-
-      const secCats = document.getElementById('sectionCategoriesBlock');
-      const secMems = document.getElementById('sectionMembersBlock');
-      const secDaily = document.getElementById('sectionDailyBlock');
-      const secMonth = document.getElementById('sectionMonthlyBlock');
-
-      if (sec === 'all') {
-        if (secCats) secCats.style.display = 'flex';
-        if (secMems) secMems.style.display = 'flex';
-        if (secDaily) secDaily.style.display = 'flex';
-        if (secMonth) secMonth.style.display = 'flex';
-      } else {
-        if (secCats) secCats.style.display = (sec === 'categories') ? 'flex' : 'none';
-        if (secMems) secMems.style.display = (sec === 'members') ? 'flex' : 'none';
-        if (secDaily) secDaily.style.display = (sec === 'daily') ? 'flex' : 'none';
-        if (secMonth) secMonth.style.display = (sec === 'monthly') ? 'flex' : 'none';
-      }
+        if (tabId === 'categories') renderCategoryChart(filtered, totalExp);
+        else if (tabId === 'members') renderMembersChart(filtered, totalExp);
+        else if (tabId === 'timeline') renderDailyTimelineChart(filtered);
+        else if (tabId === 'requests') renderRequestsCompareChart(filtered, totalExp, totalInc);
+        else if (tabId === 'monthly') renderMonthlyCompareChart(totalInc, totalExp);
+      }, 50);
     }
 
     function toggleCategoryChartType() {
-      categoryChartMode = (categoryChartMode === 'doughnut') ? 'bar' : 'doughnut';
-      const btn = document.getElementById('btnToggleCatMode');
-      if (btn) {
-        btn.innerHTML = categoryChartMode === 'doughnut' ? '<i class="fa-solid fa-chart-column"></i> عرض بالأعمدة' : '<i class="fa-solid fa-chart-pie"></i> عرض دائري';
-      }
+      execCatChartType = (execCatChartType === 'doughnut') ? 'bar' : 'doughnut';
+      const labelEl = document.getElementById('catChartModeLabel');
+      if (labelEl) labelEl.textContent = (execCatChartType === 'doughnut') ? 'عرض أعمدة' : 'عرض دائري';
       renderCategoryChart();
     }
 
-    // تحديد الفترة الزمنية
-    function setAnalyticsPeriod(p) {
-      currentAnalyticsPeriod = p;
-      state.period = p;
-
+    function setAnalyticsPeriod(period) {
+      state.period = period;
       document.querySelectorAll('.analytics-period-btn').forEach(b => b.classList.remove('active'));
-      const activeBtn = document.getElementById('btnAnaPeriod' + p.charAt(0).toUpperCase() + p.slice(1));
-      if (activeBtn) activeBtn.classList.add('active');
-
+      const btnMap = { 'today': 'btnAnaPeriodToday', 'week': 'btnAnaPeriodWeek', 'month': 'btnAnaPeriodMonth', 'all': 'btnAnaPeriodAll' };
+      if (btnMap[period]) {
+        const b = document.getElementById(btnMap[period]);
+        if (b) b.classList.add('active');
+      }
       const customBox = document.getElementById('analyticsCustomRangeBox');
-      if (customBox) customBox.classList.remove('open');
-
-      updateAnalyticsHeaderBadge();
+      if (customBox) customBox.style.display = 'none';
+      renderUI();
       updateAnalyticsChart();
     }
 
     function toggleAnalyticsCustomRange() {
-      const customBox = document.getElementById('analyticsCustomRangeBox');
-      if (customBox) {
-        customBox.classList.toggle('open');
-        document.querySelectorAll('.analytics-period-btn').forEach(b => b.classList.remove('active'));
-        const btn = document.getElementById('btnAnaPeriodCustom');
-        if (btn) btn.classList.add('active');
+      const box = document.getElementById('analyticsCustomRangeBox');
+      if (box) {
+        box.style.display = (box.style.display === 'none' || !box.style.display) ? 'block' : 'none';
       }
     }
 
     function applyAnalyticsCustomDate() {
-      const from = document.getElementById('inpAnaDateFrom').value;
-      const to = document.getElementById('inpAnaDateTo').value;
-      if (!from || !to) {
-        alert('يرجى تحديد تاريخ البداية وتاريخ النهاية');
+      const dFrom = document.getElementById('inpAnaDateFrom')?.value;
+      const dTo = document.getElementById('inpAnaDateTo')?.value;
+      if (!dFrom || !dTo) {
+        showToast('يرجى تحديد تاريخ البداية والنهاية أولاً');
         return;
       }
-      currentAnalyticsPeriod = 'custom';
       state.period = 'custom';
-      state.customDateFrom = from;
-      state.customDateTo = to;
-      state.customDate = '';
-
-      updateAnalyticsHeaderBadge();
+      state.customDateFrom = dFrom;
+      state.customDateTo = dTo;
+      renderUI();
       updateAnalyticsChart();
+      showToast(`✓ تم تطبيق فترة التحليل: من ${dFrom} إلى ${dTo}`);
     }
 
-    function updateAnalyticsHeaderBadge() {
-      const p = state.period || currentAnalyticsPeriod || 'month';
-      let periodName = '';
-      if (p === 'today' || p === 'day') {
-        const todayStr = new Date().toLocaleDateString('ar-EG', { day: 'numeric', month: 'long' });
-        periodName = `اليوم (${todayStr})`;
-      } else if (p === 'week') {
-        periodName = 'الأسبوع الحالي';
-      } else if (p === 'month') {
-        const monthStr = new Date().toLocaleDateString('ar-EG', { month: 'long', year: 'numeric' });
-        periodName = `الشهر الحالي (${monthStr})`;
-      } else if (p === 'all') {
-        periodName = 'كافة الفترات';
-      } else if (p === 'custom') {
-        periodName = 'فترة مخصصة';
-      } else {
-        periodName = p;
-      }
-
-      const memberTag = (!state.currentMemberFilter || state.currentMemberFilter === 'الكل')
-        ? 'الكل'
-        : state.currentMemberFilter;
-
-      const fullBadgeText = `${periodName} • تصفية: ${memberTag}`;
-
-      const b1 = document.getElementById('analyticsPeriodActivePill');
-      if (b1) b1.textContent = fullBadgeText;
-
-      const b2 = document.getElementById('chartActivePeriodBadge');
-      if (b2) b2.textContent = fullBadgeText;
-    }
-
-    // الدالة الرئيسية لتحديث وإعادة حساب كافة شارتات ومؤشرات لوحة التحليل
+    // المحرك المالي الرئيسي لتحديث المؤشرات والتحليلات
     function updateAnalyticsChart() {
       const filtered = getFilteredTransactions();
 
-      // 1. حساب المؤشرات المالية التنفيذية الأربعة
       let totalInc = 0, totalExp = 0, incCount = 0, expCount = 0;
-      const catTotals = {}, catCounts = {}, memberTotals = {}, memberCounts = {}, memberTopCat = {};
+      const catTotals = {}, memberTotals = {};
 
       filtered.forEach(tx => {
         const amt = parseFloat(tx.amount) || 0;
@@ -6765,86 +7340,71 @@
         } else {
           totalExp += amt;
           expCount++;
-          let catKey = tx.category;
-          if (catKey === 'shopping' || catKey === 'supermarket') catKey = 'food';
-          if (catKey === 'other') catKey = 'others';
-          catTotals[catKey] = (catTotals[catKey] || 0) + amt;
-          catCounts[catKey] = (catCounts[catKey] || 0) + 1;
-
+          let cKey = tx.category;
+          if (cKey === 'shopping' || cKey === 'supermarket') cKey = 'food';
+          if (cKey === 'other') cKey = 'others';
+          catTotals[cKey] = (catTotals[cKey] || 0) + amt;
           memberTotals[tx.member] = (memberTotals[tx.member] || 0) + amt;
-          memberCounts[tx.member] = (memberCounts[tx.member] || 0) + 1;
-          if (!memberTopCat[tx.member]) memberTopCat[tx.member] = {};
-          memberTopCat[tx.member][catKey] = (memberTopCat[tx.member][catKey] || 0) + amt;
         }
       });
 
       const netSavings = totalInc - totalExp;
       const savingsRate = totalInc > 0 ? ((netSavings / totalInc) * 100).toFixed(1) : 0;
-      const p = state.period || currentAnalyticsPeriod || 'month';
+      const p = state.period || 'month';
       const daysCount = (p === 'today' || p === 'day') ? 1 : ((p === 'week') ? 7 : 30);
       const dailyAverage = totalExp > 0 ? Math.round(totalExp / daysCount) : 0;
 
-      // أعلى بند صرف
+      // حساب أعلى بند
       let topCatId = '', maxCatAmt = 0;
       for (const [cId, cAmt] of Object.entries(catTotals)) {
         if (cAmt > maxCatAmt) { maxCatAmt = cAmt; topCatId = cId; }
       }
       const topCatObj = EXPENSE_CATEGORIES.find(c => c.id === topCatId) || { name: 'لا يوجد' };
-      const topCatPct = totalExp > 0 ? ((maxCatAmt / totalExp) * 100).toFixed(1) : 0;
 
-      // أعلى فرد صرف
-      let topMem = '', maxMemAmt = 0;
-      for (const [m, mAmt] of Object.entries(memberTotals)) {
-        if (mAmt > maxMemAmt) { maxMemAmt = mAmt; topMem = m; }
-      }
-
-      // تحديث مصفوفة المؤشرات المالية الظاهرة في صفحة التحليلات
+      // تحديث عناصر البطاقات الكبرى (KPIs)
       const setEl = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
 
-      // كروت الصفحة 3 الرئيسية الظاهرة (Lux KPIs)
-      setEl('kpiLuxExpense', `-${totalExp.toLocaleString()} ج.م`);
-      setEl('kpiLuxIncome', `+${totalInc.toLocaleString()} ج.م`);
-      setEl('kpiLuxBalance', `${netSavings >= 0 ? '+' : ''}${netSavings.toLocaleString()} ج.م`);
+      setEl('kpiLuxExpense', `- ${totalExp.toLocaleString('en-US')} ج.م`);
+      setEl('kpiLuxIncome', `+ ${totalInc.toLocaleString('en-US')} ج.م`);
+      setEl('kpiLuxBalance', `${netSavings >= 0 ? '+' : ''}${netSavings.toLocaleString('en-US')} ج.م`);
       const balEl = document.getElementById('kpiLuxBalance');
       if (balEl) balEl.style.color = netSavings >= 0 ? '#38bdf8' : '#ef4444';
-      setEl('kpiLuxSavingsRate', `نسبة الوفر: ${savingsRate}%`);
-      setEl('kpiLuxDailyAverage', `${dailyAverage.toLocaleString()} ج.م`);
+      setEl('kpiLuxSavingsBadge', `وفر: ${savingsRate}%`);
+      setEl('kpiLuxDailyAverage', `${dailyAverage.toLocaleString('en-US')} ج.م/يوم`);
 
-      // تحديث عناصر إضافية
-      setEl('kpiTotalIncome', `+${totalInc.toLocaleString()} ج.م`);
-      setEl('kpiIncomeCount', `${incCount} إيداع`);
-      setEl('kpiTotalExpense', `-${totalExp.toLocaleString()} ج.م`);
-      setEl('kpiExpenseCount', `${expCount} عملية صرف`);
-      setEl('kpiNetSavings', `${netSavings >= 0 ? '+' : ''}${netSavings.toLocaleString()} ج.م`);
-      setEl('kpiSavingsRate', `وفر: ${savingsRate}%`);
-      setEl('kpiDailyRate', `${dailyAverage.toLocaleString()} ج.م/يوم`);
-      setEl('kpiTopCategory', `أعلى بند: ${topCatObj.name}`);
-      setEl('kpiTopMemberText', `العضو الأكثر صرفاً: ${topMem || 'لا يوجد'} (${maxMemAmt.toLocaleString()} ج.م)`);
+      setEl('kpiExpenseCountBadge', `${expCount.toLocaleString()} حركة`);
+      setEl('kpiIncomeCountBadge', `${incCount.toLocaleString()} إيداع`);
+      setEl('kpiTopCategoryBadge', `أعلى بند: ${topCatObj.name}`);
 
-      updateAnalyticsHeaderBadge();
-      setEl('chartCatsTotalBadge', `إجمالي المنصرف: -${totalExp.toLocaleString()} ج.م`);
+      // تحديث شارة الفترة النشطة
+      const pDescMap = { 'today': 'اليوم فقط', 'week': 'الأسبوع الحالي', 'month': 'الشهر الحالي', 'all': 'كافة الفترات (سجل العائلة الكامل)', 'custom': `من ${state.customDateFrom} إلى ${state.customDateTo}` };
+      const curMember = (state.currentMemberFilter && state.currentMemberFilter !== 'الكل') ? ` • تصفية: ${state.currentMemberFilter}` : '';
+      setEl('chartActivePeriodBadge', `${pDescMap[p] || 'كافة الفترات'}${curMember}`);
+      setEl('chartCatsTotalBadge', `إجمالي المنصرف: - ${totalExp.toLocaleString('en-US')} ج.م`);
 
-      // 2. تحديث الشارتات الأربعة
-      renderCategoryChart(filtered, totalExp);
-      renderMembersChart(filtered, totalExp);
-      renderDailyTimelineChart(filtered, dailyAverage);
-      renderMonthlyCompareChart(totalInc, totalExp);
+      // رسم التبويب النشط
+      if (activeExecutiveTab === 'categories') renderCategoryChart(filtered, totalExp);
+      else if (activeExecutiveTab === 'members') renderMembersChart(filtered, totalExp);
+      else if (activeExecutiveTab === 'timeline') renderDailyTimelineChart(filtered);
+      else if (activeExecutiveTab === 'requests') renderRequestsCompareChart(filtered, totalExp, totalInc);
+      else if (activeExecutiveTab === 'monthly') renderMonthlyCompareChart(totalInc, totalExp);
     }
 
-    // رسم شارت وتوزيع بنود المصروفات (شارت لكل مصروف)
+    // 1. شارت توزيع بنود المصروفات مع جدول النسب الاحترافي
     function renderCategoryChart(filtered, totalExp) {
       filtered = filtered || getFilteredTransactions();
       totalExp = totalExp !== undefined ? totalExp : (filtered.filter(t => t.type === 'expense').reduce((s, t) => s + (parseFloat(t.amount)||0), 0));
 
       const catMap = {};
-      EXPENSE_CATEGORIES.forEach(c => catMap[c.id] = { name: c.name, color: c.color, icon: c.icon, sum: 0, count: 0 });
+      EXPENSE_CATEGORIES.forEach(c => catMap[c.id] = { id: c.id, name: c.name, color: c.color, icon: c.icon, sum: 0, count: 0 });
+
       filtered.filter(tx => tx.type === 'expense').forEach(tx => {
-        let catKey = tx.category;
-        if (catKey === 'shopping' || catKey === 'supermarket') catKey = 'food';
-        if (catKey === 'other') catKey = 'others';
-        if (catMap[catKey]) {
-          catMap[catKey].sum += (parseFloat(tx.amount) || 0);
-          catMap[catKey].count += 1;
+        let cKey = tx.category;
+        if (cKey === 'shopping' || cKey === 'supermarket') cKey = 'food';
+        if (cKey === 'other') cKey = 'others';
+        if (catMap[cKey]) {
+          catMap[cKey].sum += (parseFloat(tx.amount) || 0);
+          catMap[cKey].count += 1;
         }
       });
 
@@ -6853,23 +7413,22 @@
       const dataVals = activeCats.map(c => c.sum);
       const colors = activeCats.map(c => c.color);
 
-      const canvas = document.getElementById('executiveCategoryCanvas') || document.getElementById('categoryChartCanvas');
+      const canvas = document.getElementById('anaCategoryCanvas') || document.getElementById('executiveCategoryCanvas');
       if (canvas) {
-        if (catChartInstance) catChartInstance.destroy();
+        if (execCatChart) execCatChart.destroy();
         const ctx = canvas.getContext('2d');
-
-        catChartInstance = new Chart(ctx, {
-          type: categoryChartMode,
+        execCatChart = new Chart(ctx, {
+          type: execCatChartType,
           data: {
-            labels: labels.length > 0 ? labels : ['لا توجد مصروفات مسجلة'],
+            labels: labels.length > 0 ? labels : ['لا توجد مصروفات'],
             datasets: [{
-              label: 'إجمالي المصروف (ج.م)',
+              label: 'إجمالي المنصرف (ج.م)',
               data: dataVals.length > 0 ? dataVals : [0],
               backgroundColor: colors.length > 0 ? colors : ['#475569'],
               borderColor: colors.length > 0 ? colors : ['#475569'],
               borderWidth: 1.5,
-              borderRadius: categoryChartMode === 'bar' ? 8 : 0,
-              cutout: categoryChartMode === 'doughnut' ? '65%' : 0
+              borderRadius: execCatChartType === 'bar' ? 8 : 0,
+              cutout: execCatChartType === 'doughnut' ? '65%' : 0
             }]
           },
           options: {
@@ -6877,86 +7436,125 @@
             maintainAspectRatio: false,
             plugins: {
               legend: {
-                position: categoryChartMode === 'doughnut' ? 'right' : 'top',
-                labels: { color: '#cbd5e1', font: { family: 'Segoe UI', size: 11 } }
+                display: execCatChartType === 'doughnut',
+                position: 'bottom',
+                labels: { color: '#cbd5e1', font: { family: 'Cairo', size: 10, weight: 'bold' }, boxWidth: 12, padding: 8 }
               },
               tooltip: {
-                rtl: true,
                 callbacks: {
-                  label: (ctx) => ` ${ctx.label}: -${ctx.parsed.toLocaleString ? ctx.parsed.toLocaleString() : (ctx.parsed.y ? ctx.parsed.y.toLocaleString() : ctx.parsed)} ج.م`
+                  label: (ctx) => {
+                    const val = ctx.parsed?.y !== undefined ? ctx.parsed.y : ctx.parsed;
+                    const pct = totalExp > 0 ? ((val / totalExp) * 100).toFixed(1) : 0;
+                    return ` ${val.toLocaleString('en-US')} ج.م (${pct}%)`;
+                  }
                 }
               }
-            },
-            scales: categoryChartMode === 'bar' ? {
-              x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { family: 'Segoe UI' } } },
-              y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: '#94a3b8', callback: v => v.toLocaleString() + ' ج.م' } }
-            } : {}
+            }
           }
         });
       }
 
-      // قائمة توزيع البنود التفصيلية أسفل الشارت في صفحة التحليلات
-      const legendContainer = document.getElementById('categoryBreakdownLegend') || document.getElementById('categoryDigestTableContainer');
+      // جدول تفصيلي بالأرقام والنسب المئوية وأشرطة التقدم
+      const legendContainer = document.getElementById('categoryBreakdownLegend');
       if (legendContainer) {
         if (activeCats.length === 0) {
-          legendContainer.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 14px; font-size: 0.78rem;">لا توجد مصروفات مسجلة لهذا العضو في هذه الفترة</div>';
-        } else {
-          let htmlLegend = '<div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">';
-          activeCats.forEach(c => {
-            const pct = totalExp > 0 ? ((c.sum / totalExp) * 100).toFixed(1) : 0;
-            htmlLegend += `
-              <div style="display: flex; align-items: center; justify-content: space-between; padding: 7px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 10px;">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span style="width: 26px; height: 26px; border-radius: 8px; background: ${c.color}22; color: ${c.color}; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;">
-                    <i class="fa-solid ${c.icon}"></i>
-                  </span>
-                  <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-main);">${c.name}</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 12px;">
-                  <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 800;">${pct}%</span>
-                  <strong style="font-size: 0.85rem; color: #ef4444; direction: ltr;">-${c.sum.toLocaleString()} ج.م</strong>
-                </div>
-              </div>
-            `;
-          });
-          htmlLegend += '</div>';
-          legendContainer.innerHTML = htmlLegend;
+          legendContainer.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 14px;">لا توجد مصروفات مسجلة خلال هذه الفترة</div>';
+          return;
         }
+
+        let html = `
+          <div style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 10px 14px;">
+            <div style="font-size: 0.82rem; font-weight: 800; color: #38bdf8; margin-bottom: 8px;">
+              <i class="fa-solid fa-list-ol"></i> التوزيع المحاسبي التفصيلي حسب البنود (المرتبة تنازلياً):
+            </div>
+        `;
+
+        activeCats.forEach((c, idx) => {
+          const pct = totalExp > 0 ? ((c.sum / totalExp) * 100).toFixed(1) : 0;
+          html += `
+            <div style="margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; margin-bottom: 3px;">
+                <span style="font-weight: 800; color: #f1f5f9; display: flex; align-items: center; gap: 6px;">
+                  <span style="width: 18px; height: 18px; border-radius: 5px; background: ${c.color}25; color: ${c.color}; display: flex; align-items: center; justify-content: center; font-size: 0.65rem;">${idx + 1}</span>
+                  <i class="fa-solid ${c.icon}" style="color: ${c.color};"></i>
+                  ${c.name}
+                  <span style="color: #64748b; font-size: 0.7rem; font-weight: 600;">(${c.count} حركة)</span>
+                </span>
+                <span style="font-weight: 900; color: #f87171;">
+                  - ${c.sum.toLocaleString('en-US')} ج.م <span style="color: #38bdf8; font-size: 0.72rem; margin-right: 4px;">(${pct}%)</span>
+                </span>
+              </div>
+              <div style="width: 100%; height: 5px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden;">
+                <div style="width: ${pct}%; height: 100%; background: ${c.color}; border-radius: 4px;"></div>
+              </div>
+            </div>
+          `;
+        });
+        html += '</div>';
+        legendContainer.innerHTML = html;
       }
     }
 
-    // رسم شارت ومقارنة أفراد العائلة (شارت لكل شخص)
+    // 2. شارت إنفاق أفراد العائلة وشبكة الكروت
     function renderMembersChart(filtered, totalExp) {
       filtered = filtered || getFilteredTransactions();
       totalExp = totalExp !== undefined ? totalExp : (filtered.filter(t => t.type === 'expense').reduce((s, t) => s + (parseFloat(t.amount)||0), 0));
 
-      const membersList = ['ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو'];
+      const membersList = ['ماهر', 'آية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'صدقات وأخرى'];
       const memData = {};
       membersList.forEach(m => memData[m] = { sum: 0, count: 0, topCat: {} });
 
       filtered.filter(tx => tx.type === 'expense').forEach(tx => {
-        if (memData[tx.member]) {
+        const m = tx.member || 'ماهر';
+        if (memData[m]) {
           const amt = parseFloat(tx.amount) || 0;
-          memData[tx.member].sum += amt;
-          memData[tx.member].count += 1;
-          let catKey = tx.category;
-          if (catKey === 'shopping' || catKey === 'supermarket') catKey = 'food';
-          if (catKey === 'other') catKey = 'others';
-          memData[tx.member].topCat[catKey] = (memData[tx.member].topCat[catKey] || 0) + amt;
+          memData[m].sum += amt;
+          memData[m].count += 1;
+          let cKey = tx.category;
+          if (cKey === 'shopping' || cKey === 'supermarket') cKey = 'food';
+          if (cKey === 'other') cKey = 'others';
+          memData[m].topCat[cKey] = (memData[m].topCat[cKey] || 0) + amt;
         }
       });
 
-      const memberColors = ['#0284c7', '#db2777', '#0891b2', '#c026d3', '#d97706', '#38bdf8'];
+      const memberColors = ['#0284c7', '#db2777', '#0891b2', '#c026d3', '#d97706', '#10b981', '#f59e0b'];
+      const activeMembers = membersList.filter(m => memData[m].sum > 0);
 
-      // كروت أفراد العائلة في صفحة التحليلات
-      const luxGrid = document.getElementById('memberAnalyticsLuxGrid') || document.getElementById('membersDigestCardsContainer');
-      if (luxGrid) {
-        let htmlCards = '<div class="member-lux-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">';
+      const canvas = document.getElementById('anaMembersCanvas');
+      if (canvas) {
+        if (execMemChart) execMemChart.destroy();
+        const ctx = canvas.getContext('2d');
+        execMemChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: activeMembers.length > 0 ? activeMembers : ['لا توجد بيانات'],
+            datasets: [{
+              data: activeMembers.length > 0 ? activeMembers.map(m => memData[m].sum) : [0],
+              backgroundColor: activeMembers.map((m, i) => memberColors[i % memberColors.length]),
+              borderWidth: 1.5,
+              cutout: '62%'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: { color: '#cbd5e1', font: { family: 'Cairo', size: 10, weight: 'bold' }, padding: 8 }
+              }
+            }
+          }
+        });
+      }
+
+      const gridContainer = document.getElementById('memberAnalyticsLuxGrid');
+      if (gridContainer) {
+        let htmlCards = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px;">';
         membersList.forEach((m, idx) => {
           const mSum = memData[m].sum;
           const pct = totalExp > 0 ? ((mSum / totalExp) * 100).toFixed(1) : 0;
           const photo = MEMBER_AVATARS[m] || '';
-          const isSelected = (state.currentMemberFilter === m);
 
           let topCatName = 'لا يوجد';
           let maxAmt = 0;
@@ -6965,91 +7563,73 @@
           }
 
           htmlCards += `
-            <div class="member-lux-card ${isSelected ? 'selected-member-highlight' : ''}" onclick="selectMember('${m}')" style="cursor: pointer; border-radius: 12px; padding: 10px; background: rgba(15, 23, 42, 0.65); border: 1.5px solid ${isSelected ? '#38bdf8' : 'rgba(255, 255, 255, 0.08)'}; ${isSelected ? 'background: rgba(2, 132, 199, 0.15); box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);' : ''}">
+            <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px;">
               <div style="display: flex; align-items: center; gap: 8px;">
-                <div class="member-lux-avatar-box" style="width: 36px; height: 36px; border-radius: 50%; overflow: hidden; border: 2px solid ${memberColors[idx]}; flex-shrink: 0;">
-                  <img src="${photo}" alt="${m}" class="member-lux-avatar-img" style="width: 100%; height: 100%; object-fit: cover;" />
-                </div>
-                <div style="flex: 1; min-width: 0;">
-                  <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <strong style="font-size: 0.84rem; color: #f8fafc;">${m} ${isSelected ? '✓' : ''}</strong>
-                    <span style="font-size: 0.72rem; color: #38bdf8; font-weight: 800;">${pct}%</span>
-                  </div>
-                  <div style="font-size: 0.88rem; font-weight: 900; color: #ef4444; margin: 1px 0; direction: ltr; text-align: right;">-${mSum.toLocaleString()} ج.م</div>
-                </div>
+                ${photo ? `<img src="${photo}" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid #38bdf8;">` : `<i class="fa-solid fa-user" style="color: #38bdf8;"></i>`}
+                <span style="font-weight: 800; font-size: 0.85rem; color: #f1f5f9;">${m}</span>
+                <span style="margin-right: auto; font-size: 0.72rem; font-weight: 800; color: #38bdf8;">${pct}%</span>
               </div>
-              <div style="font-size: 0.68rem; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 4px;">
-                أعلى صرف: ${topCatName} (${memData[m].count} حركة)
+              <div style="font-size: 0.95rem; font-weight: 900; color: #f87171; margin-top: 2px;">
+                - ${mSum.toLocaleString('en-US')} ج.م
+              </div>
+              <div style="font-size: 0.68rem; color: #94a3b8;">
+                <i class="fa-solid fa-layer-group"></i> أعلى صرف: <b style="color: #cbd5e1;">${topCatName}</b>
               </div>
             </div>
           `;
         });
         htmlCards += '</div>';
-        luxGrid.innerHTML = htmlCards;
+        gridContainer.innerHTML = htmlCards;
       }
     }
 
-    // رسم شارت المسار الزمني والإنفاق اليومي للفترة
-    function renderDailyTimelineChart(filtered, dailyAverage) {
+    // 3. شارت المسار الزمني والسيولة اليومية
+    function renderDailyTimelineChart(filtered) {
       filtered = filtered || getFilteredTransactions();
       const dayMap = {};
 
-      filtered.forEach(tx => {
-        const d = tx.date;
-        if (!dayMap[d]) dayMap[d] = { inc: 0, exp: 0 };
-        const amt = parseFloat(tx.amount) || 0;
-        if (tx.type === 'income') dayMap[d].inc += amt;
+      filtered.forEach(t => {
+        const d = t.date;
+        if (!d) return;
+        if (!dayMap[d]) dayMap[d] = { exp: 0, inc: 0 };
+        const amt = parseFloat(t.amount) || 0;
+        if (t.type === 'income') dayMap[d].inc += amt;
         else dayMap[d].exp += amt;
       });
 
       let sortedDates = Object.keys(dayMap).sort();
-      // إذا تجاوز عدد الأيام 35 يوم، نعرض آخر 30 يوماً نشطاً لضمان سرعة وانسيابية الشارت اللحظية
-      if (sortedDates.length > 35) {
+      if (sortedDates.length > 30) {
         sortedDates = sortedDates.slice(-30);
       }
-      const expData = sortedDates.map(d => dayMap[d].exp);
-      const incData = sortedDates.map(d => dayMap[d].inc);
-      const friendlyDates = sortedDates.map(d => d.substring(5)); // MM-DD
 
-      const maxSpend = Math.max(0, ...expData);
-      const maxSpendDate = sortedDates[expData.indexOf(maxSpend)] || '';
-
-      const summaryBadge = document.getElementById('dailySpikesSummaryBadge');
-      if (summaryBadge) {
-        summaryBadge.textContent = maxSpend > 0 ? `قمة الصرف: ${maxSpend.toLocaleString()} ج.م (${maxSpendDate})` : 'لا توجد قمم إنفاق';
-      }
-
-      const canvas = document.getElementById('dailyTimelineCanvas');
+      const canvas = document.getElementById('anaTimelineCanvas');
       if (canvas) {
-        if (dailyChartInstance) dailyChartInstance.destroy();
+        if (execTimeChart) execTimeChart.destroy();
         const ctx = canvas.getContext('2d');
-
-        dailyChartInstance = new Chart(ctx, {
+        execTimeChart = new Chart(ctx, {
           type: 'line',
           data: {
-            labels: friendlyDates.length > 0 ? friendlyDates : ['اليوم'],
+            labels: sortedDates.map(d => d.slice(5)), // عرض شهر/يوم
             datasets: [
               {
-                label: 'المصروفات اليومية',
-                data: expData.length > 0 ? expData : [0],
+                label: 'المصروف اليومي (ج.م)',
+                data: sortedDates.map(d => dayMap[d].exp),
                 borderColor: '#ef4444',
-                backgroundColor: 'rgba(239, 68, 68, 0.15)',
-                borderWidth: 2.5,
+                backgroundColor: 'rgba(239, 68, 68, 0.1)',
                 fill: true,
                 tension: 0.35,
-                pointRadius: 4,
-                pointBackgroundColor: '#ef4444'
+                borderWidth: 2,
+                pointRadius: 2
               },
               {
-                label: 'الدخل اليومي',
-                data: incData.length > 0 ? incData : [0],
+                label: 'الإيراد اليومي (ج.م)',
+                data: sortedDates.map(d => dayMap[d].inc),
                 borderColor: '#10b981',
-                backgroundColor: 'rgba(16, 185, 129, 0.08)',
-                borderWidth: 2,
-                fill: false,
+                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                fill: true,
                 tension: 0.35,
-                pointRadius: 3,
-                pointBackgroundColor: '#10b981'
+                borderWidth: 2,
+                pointRadius: 2
               }
             ]
           },
@@ -7057,54 +7637,88 @@
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-              legend: { position: 'top', labels: { color: '#cbd5e1', font: { family: 'Segoe UI' } } },
-              tooltip: { rtl: true }
+              legend: {
+                position: 'top',
+                labels: { color: '#cbd5e1', font: { family: 'Cairo', size: 10, weight: 'bold' } }
+              }
             },
             scales: {
-              x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#94a3b8' } },
-              y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: '#94a3b8', callback: v => v.toLocaleString() + ' ج.م' } }
+              x: { ticks: { color: '#94a3b8', font: { size: 9 } } },
+              y: { ticks: { color: '#94a3b8', font: { size: 9 } } }
             }
           }
         });
       }
-
-      const notesContainer = document.getElementById('dailyDigestNotesContainer');
-      if (notesContainer) {
-        notesContainer.innerHTML = `
-          <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; padding: 12px 14px; font-size: 0.78rem; line-height: 1.6; color: #cbd5e1;">
-            📈 <strong>المسار الزمني الرقابي:</strong> يوضح هذا المنحنى حركات الصرف والإيداع يوماً بيوم خلال فترة التحليل المحددة. 
-            أعلى يوم تم فيه الصرف سجل <strong>${maxSpend.toLocaleString()} ج.م</strong>، بينما بلغ متوسط الصرف اليومي <strong>${dailyAverage.toLocaleString()} ج.م/يوم</strong>.
-          </div>
-        `;
-      }
     }
 
-    // رسم شارت المقارنة الشهرية التراكمية
-    function renderMonthlyCompareChart(totalInc, totalExp) {
-      const months = ['أغسطس 2026', 'سبتمبر 2026', 'أكتوبر 2026'];
-      const mExp = [24500, 28900, totalExp > 0 ? totalExp : 31550];
-      const mInc = [45000, 48000, totalInc > 0 ? totalInc : 64500];
+    // 4. مقارنة طلبات المصروف بالمصروفات الفعلية والسيولة النقدية (الميزة المطورة)
+    function renderRequestsCompareChart(filtered, totalExp, totalInc) {
+      filtered = filtered || getFilteredTransactions();
+      const allRequests = state.moneyRequests || [];
 
-      const canvas = document.getElementById('monthlyCompareCanvas');
+      let totalReqAmt = 0, approvedReqAmt = 0, pendingReqAmt = 0, reqApprovedCount = 0;
+      const reqByCat = {}, expByCat = {};
+
+      allRequests.forEach(r => {
+        const a = parseFloat(r.amount) || 0;
+        totalReqAmt += a;
+        let c = r.category || 'others';
+        if (r.status === 'approved') {
+          approvedReqAmt += a;
+          reqApprovedCount++;
+          reqByCat[c] = (reqByCat[c] || 0) + a;
+        } else if (r.status === 'pending') {
+          pendingReqAmt += a;
+        }
+      });
+
+      filtered.filter(t => t.type === 'expense').forEach(t => {
+        let c = t.category;
+        if (c === 'shopping' || c === 'supermarket') c = 'food';
+        if (c === 'other') c = 'others';
+        expByCat[c] = (expByCat[c] || 0) + (parseFloat(t.amount) || 0);
+      });
+
+      const complianceRate = totalReqAmt > 0 ? Math.min(100, Math.round((approvedReqAmt / totalReqAmt) * 100)) : 100;
+
+      // تحديث كروت المقارنة
+      const setEl = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+      setEl('kpiReqTotalAmt', `${totalReqAmt.toLocaleString('en-US')} ج.م`);
+      setEl('kpiReqTotalCount', `${allRequests.length} طلب إجمالي`);
+      setEl('kpiReqApprovedAmt', `${approvedReqAmt.toLocaleString('en-US')} ج.م`);
+      setEl('kpiReqApprovedCount', `${reqApprovedCount} طلب معتمد`);
+      setEl('kpiReqComplianceRate', `${complianceRate}%`);
+      setEl('kpiReqPendingNotice', `${allRequests.filter(r => r.status === 'pending').length} طلب قيد الانتظار (${pendingReqAmt.toLocaleString('en-US')} ج.م)`);
+
+      // رسم الشارت المقارن بالأعمدة المزدوجة
+      const compareCats = EXPENSE_CATEGORIES.slice(0, 6); // أهم 6 بنود
+      const catLabels = compareCats.map(c => c.name);
+      const reqVals = compareCats.map(c => reqByCat[c.id] || 0);
+      const expVals = compareCats.map(c => expByCat[c.id] || 0);
+
+      const canvas = document.getElementById('anaRequestsCompareCanvas');
       if (canvas) {
-        if (monthlyChartInstance) monthlyChartInstance.destroy();
+        if (execReqCompareChart) execReqCompareChart.destroy();
         const ctx = canvas.getContext('2d');
-
-        monthlyChartInstance = new Chart(ctx, {
+        execReqCompareChart = new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: months,
+            labels: catLabels,
             datasets: [
               {
-                label: 'إجمالي الدخل',
-                data: mInc,
-                backgroundColor: '#10b981',
+                label: 'الطلبات المعتمدة (ج.م)',
+                data: reqVals,
+                backgroundColor: 'rgba(236, 72, 153, 0.75)',
+                borderColor: '#ec4899',
+                borderWidth: 1.5,
                 borderRadius: 6
               },
               {
-                label: 'إجمالي المصروفات',
-                data: mExp,
-                backgroundColor: '#ef4444',
+                label: 'المصروف الفعلي (ج.م)',
+                data: expVals,
+                backgroundColor: 'rgba(56, 189, 248, 0.75)',
+                borderColor: '#38bdf8',
+                borderWidth: 1.5,
                 borderRadius: 6
               }
             ]
@@ -7113,68 +7727,426 @@
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-              legend: { position: 'top', labels: { color: '#cbd5e1', font: { family: 'Segoe UI' } } },
-              tooltip: { rtl: true }
+              legend: {
+                position: 'top',
+                labels: { color: '#cbd5e1', font: { family: 'Cairo', size: 10, weight: 'bold' } }
+              }
             },
             scales: {
-              x: { grid: { display: false }, ticks: { color: '#94a3b8' } },
-              y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: '#94a3b8', callback: v => v.toLocaleString() + ' ج.م' } }
+              x: { ticks: { color: '#94a3b8', font: { size: 9, family: 'Cairo' } } },
+              y: { ticks: { color: '#94a3b8', font: { size: 9 } } }
             }
           }
         });
       }
 
-      const notesContainer = document.getElementById('monthlyDigestNotesContainer');
-      if (notesContainer) {
-        notesContainer.innerHTML = `
-          <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; padding: 12px 14px; font-size: 0.78rem; line-height: 1.6; color: #cbd5e1;">
-            📊 <strong>التطور المالي الشهري:</strong> تحسن الفائض المالي الصافي في شهر أكتوبر بنسبة ممتازة مقارنة بشهري أغسطس وسبتمبر، مما يعكس نجاح العائلة في ضبط المصروفات الشهرية.
-          </div>
+      // جدول الرقابة والمقارنة المحاسبية التفصيلي
+      const container = document.getElementById('requestsVarianceTableContainer');
+      if (container) {
+        let tableHtml = `
+          <div style="overflow-x: auto;">
+            <table class="variance-table-lux">
+              <thead>
+                <tr>
+                  <th>البند / التصنيف</th>
+                  <th>الطلبات المعتمدة</th>
+                  <th>المصروف الفعلي</th>
+                  <th>الفارق (الانحراف)</th>
+                  <th>حالة الالتزام</th>
+                </tr>
+              </thead>
+              <tbody>
         `;
+
+        compareCats.forEach(c => {
+          const reqA = reqByCat[c.id] || 0;
+          const expA = expByCat[c.id] || 0;
+          const diff = reqA - expA;
+
+          let statusBadge = '';
+          if (diff > 0) statusBadge = '<span class="badge-status-saving">وفر بالميزانية</span>';
+          else if (diff < 0) statusBadge = '<span class="badge-status-over">تجاوز للطلبات</span>';
+          else statusBadge = '<span class="badge-status-exact">مطابق تماماً</span>';
+
+          tableHtml += `
+            <tr>
+              <td><i class="fa-solid ${c.icon}" style="color: ${c.color}; margin-left: 5px;"></i> <b>${c.name}</b></td>
+              <td style="color: #f472b6; font-weight: 700;">${reqA.toLocaleString('en-US')} ج.م</td>
+              <td style="color: #f87171; font-weight: 700;">${expA.toLocaleString('en-US')} ج.م</td>
+              <td style="font-weight: 800; color: ${diff >= 0 ? '#10b981' : '#ef4444'}; direction: ltr; text-align: right;">${diff >= 0 ? '+' : ''}${diff.toLocaleString('en-US')} ج.م</td>
+              <td>${statusBadge}</td>
+            </tr>
+          `;
+        });
+
+        tableHtml += `</tbody></table></div>`;
+        container.innerHTML = tableHtml;
       }
     }
 
-    function initAnalyticsChart() {
-      updateAnalyticsChart();
+    // 5. شارت المقارنة الشهرية
+    function renderMonthlyCompareChart(totalInc, totalExp) {
+      const filtered = getFilteredTransactions();
+      const monthMap = {};
+
+      filtered.forEach(t => {
+        if (!t.date) return;
+        const mKey = t.date.slice(0, 7); // YYYY-MM
+        if (!monthMap[mKey]) monthMap[mKey] = { inc: 0, exp: 0 };
+        const amt = parseFloat(t.amount) || 0;
+        if (t.type === 'income') monthMap[mKey].inc += amt;
+        else monthMap[mKey].exp += amt;
+      });
+
+      const sortedMonths = Object.keys(monthMap).sort().slice(-12);
+
+      const canvas = document.getElementById('anaMonthlyCanvas');
+      if (canvas) {
+        if (execMonthChart) execMonthChart.destroy();
+        const ctx = canvas.getContext('2d');
+        execMonthChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: sortedMonths,
+            datasets: [
+              {
+                label: 'الإيرادات الشهرية',
+                data: sortedMonths.map(m => monthMap[m].inc),
+                backgroundColor: 'rgba(16, 185, 129, 0.75)',
+                borderRadius: 6
+              },
+              {
+                label: 'المصروفات الشهرية',
+                data: sortedMonths.map(m => monthMap[m].exp),
+                backgroundColor: 'rgba(239, 68, 68, 0.75)',
+                borderRadius: 6
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'top',
+                labels: { color: '#cbd5e1', font: { family: 'Cairo', size: 10, weight: 'bold' } }
+              }
+            },
+            scales: {
+              x: { ticks: { color: '#94a3b8', font: { size: 9 } } },
+              y: { ticks: { color: '#94a3b8', font: { size: 9 } } }
+            }
+          }
+        });
+      }
     }
 
-
-    
     // =========================================================================
-    // الحالة المركزية للتطبيق متعدد الصفحات (Multi-Page State Engine)
+    // وظائف البحث الشامل الفوري (Global Instant Search)
     // =========================================================================
-    state.activePage = 'expenses';
-    state.activeOpsSubTab = 'registered';
-    state.currentMemberFilter = 'الكل';
-    state.pendingReceiptDataUri = null;
-    state.appTheme = localStorage.getItem('family_monefy_theme') || 'navy';
-    document.body.setAttribute('data-app-theme', state.appTheme);
-
-    // استرجاع طلبات المصروف
-    try {
-      const savedReq = localStorage.getItem('family_monefy_requests');
-      state.moneyRequests = savedReq ? JSON.parse(savedReq) : [
-        { id: 'req-1', member: 'أية', amount: 1500, reason: 'شراء ملابس للأولاد ومستلزمات الصيدلية وبامبرز للنونو', date: '2026-10-28', status: 'pending', createdBy: 'أية', timestamp: '28/10/2026 14:30' }
-      ];
-    } catch(e) {
-      state.moneyRequests = [];
+    function openGlobalSearchModal() {
+      openModal('globalSearchModal');
+      const inp = document.getElementById('inpGlobalSearchLive');
+      if (inp) {
+        setTimeout(() => inp.focus(), 150);
+        runGlobalSearchLive(inp.value);
+      }
     }
 
-    // استرجاع المصروفات المتوقعة والديون
-    try {
-      const savedExp = localStorage.getItem('family_monefy_expected');
-      state.expectedExpenses = savedExp ? JSON.parse(savedExp) : [
-        { id: 'exp-1', type: 'upcoming_bill', title: 'فاتورة الكهرباء والغاز الشهرية', amount: 850, dueDate: '2026-11-05', member: 'العائلة', notes: 'سداد فوري فودافون كاش', status: 'upcoming' },
-        { id: 'exp-2', type: 'upcoming_bill', title: 'قسط مدرسة محمد ومريم - القسط الثاني', amount: 4200, dueDate: '2026-11-15', member: 'محمد', notes: 'شيك مصرفي أو كاش للمدرسة', status: 'upcoming' },
-        { id: 'exp-3', type: 'debt_on_us', title: 'باقي صيانة سيارة العائلة - الورشة', amount: 1200, dueDate: '2026-11-02', member: 'ماهر', notes: 'مستحق للمهندس أحمد', status: 'upcoming' }
-      ];
-    } catch(e) {
-      state.expectedExpenses = [];
+    function setGlobalSearchFilter(f) {
+      currentGlobalSearchFilter = f;
+      document.querySelectorAll('#globalSearchFilters button').forEach(b => {
+        if (b.getAttribute('data-filter') === f) b.classList.add('active');
+        else b.classList.remove('active');
+      });
+      const inp = document.getElementById('inpGlobalSearchLive');
+      runGlobalSearchLive(inp ? inp.value : '');
+    }
+
+    function runGlobalSearchLive(q) {
+      q = (q || '').trim().toLowerCase();
+      const container = document.getElementById('globalSearchResultsContainer');
+      if (!container) return;
+
+      const txList = state.transactions || [];
+      const notesList = state.notes || [];
+      const reqList = state.moneyRequests || [];
+      const expList = state.expectedExpenses || [];
+
+      let matchingTx = [], matchingNotes = [], matchingReq = [], matchingExp = [];
+
+      if (!q) {
+        matchingTx = txList.slice(0, 15);
+        matchingNotes = notesList;
+        matchingReq = reqList.slice(0, 5);
+        matchingExp = expList.slice(0, 5);
+      } else {
+        matchingTx = txList.filter(t => 
+          (t.label && t.label.toLowerCase().includes(q)) ||
+          (t.member && t.member.toLowerCase().includes(q)) ||
+          (t.category && t.category.toLowerCase().includes(q)) ||
+          (t.amount && t.amount.toString().includes(q)) ||
+          (t.date && t.date.includes(q))
+        );
+
+        matchingNotes = notesList.filter(n =>
+          (n.title && n.title.toLowerCase().includes(q)) ||
+          (n.content && n.content.toLowerCase().includes(q)) ||
+          (n.member && n.member.toLowerCase().includes(q))
+        );
+
+        matchingReq = reqList.filter(r =>
+          (r.reason && r.reason.toLowerCase().includes(q)) ||
+          (r.member && r.member.toLowerCase().includes(q)) ||
+          (r.amount && r.amount.toString().includes(q))
+        );
+
+        matchingExp = expList.filter(e =>
+          (e.title && e.title.toLowerCase().includes(q)) ||
+          (e.member && e.member.toLowerCase().includes(q)) ||
+          (e.amount && e.amount.toString().includes(q))
+        );
+      }
+
+      // تحديث عدادات الفلاتر
+      const setC = (id, n) => { const el = document.getElementById(id); if (el) el.textContent = n.toLocaleString(); };
+      const totalMatches = matchingTx.length + matchingNotes.length + matchingReq.length + matchingExp.length;
+      setC('countSearchAll', totalMatches);
+      setC('countSearchTx', matchingTx.length);
+      setC('countSearchNotes', matchingNotes.length);
+      setC('countSearchReq', matchingReq.length);
+      setC('countSearchExp', matchingExp.length);
+
+      if (totalMatches === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 40px 10px; color: var(--text-muted);">
+            <i class="fa-solid fa-face-meh" style="font-size: 2.2rem; opacity: 0.4; margin-bottom: 10px;"></i>
+            <p style="font-size: 0.95rem; font-weight: 700;">لا توجد أي نتائج مطابقة لـ "${escapeHtml(q)}"</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+
+      // 1. الملاحظات
+      if ((currentGlobalSearchFilter === 'all' || currentGlobalSearchFilter === 'notes') && matchingNotes.length > 0) {
+        html += `<div style="font-size: 0.78rem; font-weight: 800; color: #fbbf24; margin: 8px 0 6px;"><i class="fa-solid fa-note-sticky"></i> الملاحظات (${matchingNotes.length}):</div>`;
+        matchingNotes.forEach(n => {
+          html += `
+            <div class="note-item-card" style="margin-bottom: 6px; padding: 8px 12px;">
+              <div class="note-card-title">${escapeHtml(n.title)} <span style="font-size: 0.68rem; color: #94a3b8;">${n.date}</span></div>
+              <div class="note-card-content" style="font-size: 0.78rem;">${escapeHtml(n.content)}</div>
+            </div>
+          `;
+        });
+      }
+
+      // 2. طلبات المصروف
+      if ((currentGlobalSearchFilter === 'all' || currentGlobalSearchFilter === 'req') && matchingReq.length > 0) {
+        html += `<div style="font-size: 0.78rem; font-weight: 800; color: #ec4899; margin: 10px 0 6px;"><i class="fa-solid fa-hand-holding-dollar"></i> طلبات المصروف (${matchingReq.length}):</div>`;
+        matchingReq.slice(0, 10).forEach(r => {
+          html += `
+            <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 8px 12px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-weight: 800; font-size: 0.82rem; color: #f1f5f9;">${escapeHtml(r.reason)}</div>
+                <div style="font-size: 0.7rem; color: #94a3b8;">طالب النفقات: ${r.member} • ${r.date}</div>
+              </div>
+              <div style="text-align: left;">
+                <div style="font-weight: 900; color: #f472b6;">${r.amount} ج.م</div>
+                <span class="period-active-pill" style="font-size: 0.65rem; padding: 1px 6px;">${r.status === 'approved' ? 'معتمد' : r.status === 'pending' ? 'قيد المراجعة' : 'مرفوض'}</span>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      // 3. العمليات
+      if ((currentGlobalSearchFilter === 'all' || currentGlobalSearchFilter === 'tx') && matchingTx.length > 0) {
+        html += `<div style="font-size: 0.78rem; font-weight: 800; color: #38bdf8; margin: 10px 0 6px;"><i class="fa-solid fa-receipt"></i> العمليات والمصروفات (${matchingTx.length}):</div>`;
+        matchingTx.slice(0, 25).forEach(tx => {
+          const isExp = tx.type === 'expense';
+          html += `
+            <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 8px 12px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-weight: 800; font-size: 0.82rem; color: #f1f5f9;">${escapeHtml(tx.label || 'حركة مسجلة')}</div>
+                <div style="font-size: 0.7rem; color: #94a3b8;">${tx.member} • ${tx.date}</div>
+              </div>
+              <div style="font-weight: 900; font-size: 0.85rem; color: ${isExp ? '#ef4444' : '#10b981'}; direction: ltr;">
+                ${isExp ? '- ' : '+ '}${parseFloat(tx.amount).toLocaleString('en-US')} ج.م
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      container.innerHTML = html;
     }
 
     // =========================================================================
-    // التنقل بين الصفحات الخمس الرئيسية (Page Switching)
+    // وظائف دفتر الملاحظات المفتوحة (Notes Feature)
     // =========================================================================
+    function openNotesModal() {
+      openModal('notesModal');
+      renderNotesList();
+    }
+
+    let noteCurrentAttachedImage = null;
+
+    function handleNoteImageSelect(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const rawUrl = e.target.result;
+        // ضغط الصورة وتصغير حجمها لضمان السرعة والأداء العالي
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          const maxDim = 1000;
+          let w = img.width, h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) { h = Math.round((h * maxDim) / w); w = maxDim; }
+            else { w = Math.round((w * maxDim) / h); h = maxDim; }
+          }
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          const compressed = canvas.toDataURL('image/jpeg', 0.82);
+
+          noteCurrentAttachedImage = compressed;
+          const previewContainer = document.getElementById('noteImagePreviewContainer');
+          const previewImg = document.getElementById('noteImagePreviewImg');
+          if (previewImg) previewImg.src = compressed;
+          if (previewContainer) previewContainer.style.display = 'block';
+
+          showToast('📸 تم التقاط / إرفاق الصورة بنجاح!');
+        };
+        img.src = rawUrl;
+      };
+      reader.readAsDataURL(file);
+      event.target.value = '';
+    }
+
+    function clearNoteAttachedImage() {
+      noteCurrentAttachedImage = null;
+      const previewContainer = document.getElementById('noteImagePreviewContainer');
+      const previewImg = document.getElementById('noteImagePreviewImg');
+      if (previewImg) previewImg.src = '';
+      if (previewContainer) previewContainer.style.display = 'none';
+      showToast('تمت إزالة الصورة المرفقة');
+    }
+
+    function renderNotesList() {
+      const container = document.getElementById('notesListContainer');
+      const badge = document.getElementById('notesCountBadge');
+      if (!container) return;
+
+      const list = state.notes || [];
+      if (badge) badge.textContent = `${list.length} ملاحظة`;
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 25px 10px; color: var(--text-muted);">
+            <i class="fa-solid fa-note-sticky" style="font-size: 2rem; opacity: 0.4; margin-bottom: 8px;"></i>
+            <p style="font-size: 0.85rem; font-weight: 700;">لا توجد ملاحظات مسجلة حالياً</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(n => {
+        let imgHtml = '';
+        if (n.image) {
+          imgHtml = `
+            <div style="margin-top: 8px; border-radius: 8px; overflow: hidden; max-height: 140px; cursor: pointer; border: 1px solid rgba(56, 189, 248, 0.4); position: relative; background: #0f172a;" onclick="openReceiptLightbox('${n.image}')" title="اضغط لتكبير الصورة">
+              <img src="${n.image}" style="width: 100%; max-height: 140px; object-fit: cover; display: block;">
+              <span style="position: absolute; bottom: 4px; right: 6px; background: rgba(0,0,0,0.7); color: #38bdf8; font-size: 0.68rem; padding: 2px 6px; border-radius: 4px;">
+                <i class="fa-solid fa-magnifying-glass-plus"></i> صورة مرفقة (اضغط للتكبير)
+              </span>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="note-item-card">
+            <div class="note-card-title">
+              <span><i class="fa-solid fa-thumbtack" style="color: #fbbf24; font-size: 0.75rem; margin-left: 4px;"></i> ${escapeHtml(n.title)}</span>
+              <button type="button" onclick="deleteNote('${n.id}')" style="background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.85rem;" title="حذف الملاحظة"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+            <div class="note-card-content">${escapeHtml(n.content)}</div>
+            ${imgHtml}
+            <div class="note-card-footer">
+              <span><i class="fa-solid fa-user"></i> خاص بـ: <b>${n.member || 'العائلة'}</b></span>
+              <span><i class="fa-regular fa-clock"></i> ${n.date || ''} ${n.time ? '• ' + n.time : ''}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function saveNewNoteFromModal() {
+      const titleInp = document.getElementById('inpNoteTitle');
+      const contentInp = document.getElementById('inpNoteContent');
+      const memberInp = document.getElementById('inpNoteMember');
+      const priorityInp = document.getElementById('inpNotePriority');
+
+      const title = (titleInp?.value || '').trim();
+      const contentText = (contentInp?.value || '').trim();
+      const member = memberInp?.value || 'العائلة';
+      const priority = priorityInp?.value || 'normal';
+
+      if (!title || !contentText) {
+        showToast('يرجى كتابة عنوان الملاحظة وتفاصيلها');
+        return;
+      }
+
+      const now = new Date();
+      const newNote = {
+        id: 'note-' + Date.now(),
+        title: title,
+        content: contentText,
+        member: member,
+        priority: priority,
+        image: noteCurrentAttachedImage || null,
+        date: now.toISOString().split('T')[0],
+        time: now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })
+      };
+
+      if (!state.notes) state.notes = [];
+      state.notes.unshift(newNote);
+      localStorage.setItem('family_monefy_notes', JSON.stringify(state.notes));
+      saveEmailVault();
+
+      // توثيق الملاحظة في سجل الأرشيف فوراً كما طلب المستخدم بدقة
+      logActivity({
+        type: 'add_note',
+        action: 'تسجيل ملاحظة',
+        label: `ملاحظة: ${title} - ${contentText}${newNote.image ? ' (مرفق صورة)' : ''}`,
+        amount: 0,
+        member: member,
+        author: state.currentUser || 'ماهر'
+      });
+
+      if (titleInp) titleInp.value = '';
+      if (contentInp) contentInp.value = '';
+      clearNoteAttachedImage();
+
+      renderNotesList();
+      renderActivityLogUI();
+      showToast('✓ تم حفظ الملاحظة مع الصورة وتوثيقها في الأرشيف بنجاح!');
+    }
+
+    function deleteNote(noteId) {
+      state.notes = (state.notes || []).filter(n => n.id !== noteId);
+      localStorage.setItem('family_monefy_notes', JSON.stringify(state.notes));
+      saveEmailVault();
+      renderNotesList();
+      showToast('تم حذف الملاحظة بنجاح');
+    }
+
     function switchAppPage(pageId, pushHistory = true) {
       state.activePage = pageId;
       document.querySelectorAll('.page-view').forEach(p => {
@@ -7552,12 +8524,21 @@
     function getFilteredTransactions() {
       let list = [...(state.transactions || [])];
 
-      // 1. فلترة العضو المختار بدقة تامة في كافة أنحاء البرنامج
+      // 1. تصفية أفراد العائلة (مع دعم كامل لبند صدقات وأخرى)
       if (state.currentMemberFilter && state.currentMemberFilter !== 'الكل') {
-        list = list.filter(t => t.member === state.currentMemberFilter);
+        if (state.currentMemberFilter === 'صدقات وأخرى') {
+          list = list.filter(t => 
+            t.member === 'صدقات وأخرى' || 
+            t.category === 'others' || 
+            t.category === 'charity' || 
+            (t.label && (t.label.includes('صدقة') || t.label.includes('تبرع') || t.label.includes('زكاة') || t.label.includes('مسجد') || t.label.includes('أخرى') || t.label.includes('إكرامية')))
+          );
+        } else {
+          list = list.filter(t => t.member === state.currentMemberFilter);
+        }
       }
 
-      // 2. فلترة المحفظة
+      // 2. تصفية المحفظة
       if (state.currentWalletId && state.currentWalletId !== 'all') {
         list = list.filter(t => t.walletId === state.currentWalletId);
       }
@@ -7668,7 +8649,7 @@
       if (!grid) return;
       grid.innerHTML = '';
 
-      // خريطة مجاميع بنود المصاريف للفترة الحالية
+      // حساب إجمالي مصروف كل تصنيف
       const catTotals = {};
       (filtered || []).forEach(t => {
         if (t.type === 'expense') {
@@ -7685,38 +8666,59 @@
         card.className = 'cat-card';
         card.setAttribute('data-cat-id', cat.id);
 
-        // تصميم الكارت مع الفصل الدقيق بين زر رمز الصورة وزر الرقم
+        // تنسيق الألوان المتناسقة لكل مربع حسب تصنيفه
+        card.style.background = `linear-gradient(155deg, rgba(15, 23, 42, 0.88), ${cat.color}18)`;
+        card.style.borderColor = `${cat.color}38`;
+        card.style.boxShadow = `0 4px 14px rgba(0, 0, 0, 0.28)`;
+
+        // تنسيق ذكي للأرقام والعملة لتتناسق تماماً مع حجم المربع دون تكدس أو خروج
+        let amtDisplay = '0.00';
+        let fontSize = '0.74rem';
+        if (spent > 0) {
+          if (spent >= 1000) {
+            amtDisplay = '- ' + Math.round(spent).toLocaleString('en-US');
+          } else {
+            amtDisplay = '- ' + spent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          }
+          if (spent >= 100000) fontSize = '0.62rem';
+          else if (spent >= 10000) fontSize = '0.68rem';
+          else fontSize = '0.74rem';
+        }
+
+        const pillBg = spent > 0 ? 'rgba(239, 68, 68, 0.14)' : 'rgba(148, 163, 184, 0.08)';
+        const pillBorder = spent > 0 ? 'rgba(239, 68, 68, 0.32)' : 'rgba(148, 163, 184, 0.16)';
+        const pillColor = spent > 0 ? '#f87171' : '#94a3b8';
+
         card.innerHTML = `
-          <!-- 1. رمز الصورة: عند الضغط عليه يتم فتح تسجيل جديد -->
+          <!-- 1. أيقونة التصنيف مع هالة لونية متناسقة -->
           <div class="cat-icon-bubble" 
-               style="background: ${cat.color}22; color: ${cat.color}; border: 1.5px solid ${cat.color}55;" 
+               style="background: linear-gradient(135deg, ${cat.color}28, ${cat.color}10); color: ${cat.color}; border: 1.5px solid ${cat.color}65; box-shadow: 0 4px 12px ${cat.color}25;" 
                onclick="openTxModal('expense', '${cat.id}')" 
-               title="اضغط لتسجيل مصروف جديد في بند (${cat.name})">
+               title="تسجيل مصروف جديد فوراً في (${cat.name})">
             <i class="fa-solid ${cat.icon}"></i>
           </div>
 
           <!-- اسم البند -->
           <span class="cat-card-name" 
                 onclick="openTxModal('expense', '${cat.id}')" 
-                title="تسجيل مصروف في (${cat.name})">
+                title="تسجيل صرف في (${cat.name})">
             ${cat.name}
           </span>
 
-          <!-- 2. الرقم والمبلغ: عند الضغط عليه يتم فتح صفحة التحليل وعرض البيانات المفلترة -->
+          <!-- 2. بطاقة القيمة: الأرقام والعملة متناسقة بدقة مع حجم المربع -->
           <button class="cat-card-val-btn ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
                   onclick="openCategoryAnalysis('${cat.id}')" 
-                  title="اضغط لعرض تحليل مصروفات (${cat.name}) للفترة المحددة">
-            <i class="fa-solid fa-chart-simple" style="font-size: 0.65rem; margin-left: 2px;"></i>
-            <span>${spent > 0 ? '- ' + formatMoney(spent) : '0.00 ج.م'}</span>
+                  title="عرض تفاصيل وتحليل (${cat.name}) للفترة المحددة"
+                  style="background: ${pillBg}; border: 1px solid ${pillBorder}; color: ${pillColor}; padding: 4px 4px; display: flex; align-items: center; justify-content: center; gap: 2px;">
+            <i class="fa-solid fa-chart-simple" style="font-size: 0.60rem; opacity: 0.85;"></i>
+            <span style="font-size: ${fontSize}; font-weight: 900; letter-spacing: -0.2px;">${amtDisplay}</span>
+            <span style="font-size: 0.58rem; font-weight: 700; opacity: 0.85; margin-right: 1px;">ج.م</span>
           </button>
         `;
         grid.appendChild(card);
       });
     }
 
-    // =========================================================================
-    // فتح صفحة التحليل المفلترة بناءً على الفترة ونوع المصروف
-    // =========================================================================
     function openCategoryAnalysis(catId) {
       state.activeCategoryFilter = catId;
       const cat = getCategoryObj(catId, 'expense');
@@ -8330,11 +9332,13 @@ function submitMoneyRequest() {
       const amtInp = document.getElementById('inpReqAmount');
       const rsnInp = document.getElementById('inpReqReason');
       const dateInp = document.getElementById('inpReqDate');
+      const catSel = document.getElementById('inpReqCategory');
 
       const member = memSel ? memSel.value : 'أية';
       const amount = parseFloat(amtInp ? amtInp.value : 0);
       const reason = rsnInp ? rsnInp.value.trim() : '';
       const reqDate = dateInp && dateInp.value ? dateInp.value : new Date().toISOString().split('T')[0];
+      const category = catSel ? catSel.value : 'others';
 
       if (isNaN(amount) || amount <= 0) {
         showToast('⚠️ الرجاء إدخال مبلغ صحيح للطلب');
@@ -8353,6 +9357,7 @@ function submitMoneyRequest() {
         amount: amount,
         reason: reason,
         date: reqDate,
+        category: category,
         status: 'pending',
         createdBy: member,
         timestamp: new Date().toLocaleString('ar-EG')
@@ -8396,7 +9401,7 @@ function submitMoneyRequest() {
           <div class="empty-state" style="padding: 20px 10px;">
             <i class="fa-solid fa-hand-holding-dollar" style="color: #ec4899;"></i>
             <div class="empty-title">لا توجد طلبات مصروف حالية</div>
-            <div class="empty-desc">يمكن لأية أو أي فرد في العائلة تقديم طلب مصروف مع توضيح السبب والتاريخ</div>
+            <div class="empty-desc">يمكن لأية أو أي فرد في العائلة تقديم طلب مصروف مع تحديد البند والتاريخ للمقارنة</div>
           </div>
         `;
         return;
@@ -8416,48 +9421,59 @@ function submitMoneyRequest() {
           statusBadge = `<span class="status-badge-rejected"><i class="fa-solid fa-circle-xmark"></i> مرفوض</span>`;
         }
 
-        let actionBtns = '';
-        if (req.status === 'pending') {
-          actionBtns = `
-            <div class="item-entry-actions">
-              <button class="btn-item-action btn-item-approve" onclick="approveRequest('${req.id}')" title="موافقة وصرف وتسجيل في المصاريف">
-                <i class="fa-solid fa-check"></i> موافقة وصرف فوراً
-              </button>
-              <button class="btn-item-action btn-item-reject" onclick="rejectRequest('${req.id}')" title="رفض الطلب">
-                <i class="fa-solid fa-xmark"></i> رفض
-              </button>
-            </div>
-          `;
-        } else {
-          actionBtns = `
-            <div class="item-entry-actions">
-              <button class="btn-item-action btn-item-delete" onclick="deleteRequest('${req.id}')" title="حذف من السجل">
-                <i class="fa-solid fa-trash-can"></i> حذف
-              </button>
-            </div>
-          `;
-        }
-
-        const avatarSrc = MEMBER_AVATARS[req.member] || null;
-        let avatarEl = avatarSrc ? `<img src="${avatarSrc}" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover; border: 1px solid #0284c7;">` : `<i class="fa-solid fa-user"></i>`;
+        const catInfo = (typeof EXPENSE_CATEGORIES !== 'undefined' ? EXPENSE_CATEGORIES : []).find(c => c.id === req.category) || { name: 'مصاريف أخرى', icon: 'fa-ellipsis', color: '#94a3b8' };
 
         card.innerHTML = `
-          <div class="item-entry-head">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              ${avatarEl}
-              <span style="font-weight: 800; font-size: 0.85rem; color: #f8fafc;">${req.member}</span>
-              <span style="font-size: 0.72rem; color: #64748b;">${req.date}</span>
+          <div class="item-entry-header">
+            <div class="item-entry-title">
+              <span class="item-member-tag">👤 ${escapeHtml(req.member || 'العائلة')}</span>
+              <strong>${Number(req.amount || 0).toLocaleString('en-US')} ج.م</strong>
             </div>
             ${statusBadge}
           </div>
-          <div class="item-entry-body">
-            <div style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.5;">${escapeHtml(req.reason)}</div>
-            <div style="font-weight: 900; font-size: 1.05rem; color: #ec4899; white-space: nowrap; direction: ltr;">
-              ${formatMoney(req.amount)}
-            </div>
+
+          <div style="font-size: 0.88rem; font-weight: 700; color: var(--text-main); margin: 6px 0;">
+            ${escapeHtml(req.reason)}
           </div>
-          ${actionBtns}
+
+          <!-- شارات بند المصروف وتاريخ الحاجة للتحليل والمقارنة -->
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px;">
+            <span style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700;">
+              <i class="fa-solid ${catInfo.icon || 'fa-tag'}"></i> بند: ${catInfo.name}
+            </span>
+            <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700;">
+              <i class="fa-regular fa-calendar-check"></i> تاريخ الاستحقاق: ${req.date || 'اليوم'}
+            </span>
+          </div>
+
+          <div class="item-entry-meta">
+            <span><i class="fa-regular fa-clock"></i> تم الطلب: ${req.timestamp || ''}</span>
+          </div>
         `;
+
+        if (req.status === 'pending') {
+          const actions = document.createElement('div');
+          actions.className = 'item-entry-actions';
+          actions.innerHTML = `
+            <button class="btn-item-action btn-item-approve" onclick="approveRequest('${req.id}')" title="موافقة وصرف وتسجيل في بند [${catInfo.name}]">
+              <i class="fa-solid fa-check"></i> موافقة وصرف فوراً
+            </button>
+            <button class="btn-item-action btn-item-reject" onclick="rejectRequest('${req.id}')" title="رفض الطلب">
+              <i class="fa-solid fa-xmark"></i> رفض
+            </button>
+          `;
+          card.appendChild(actions);
+        } else {
+          const actions = document.createElement('div');
+          actions.className = 'item-entry-actions';
+          actions.innerHTML = `
+            <button class="btn-item-action btn-item-delete" onclick="deleteRequest('${req.id}')" title="حذف من السجل">
+              <i class="fa-solid fa-trash-can"></i> حذف
+            </button>
+          `;
+          card.appendChild(actions);
+        }
+
         container.appendChild(card);
       });
     }
@@ -8466,36 +9482,43 @@ function submitMoneyRequest() {
       const req = (state.moneyRequests || []).find(r => r.id === reqId);
       if (!req) return;
 
-      const newTx = {
-        id: 'tx-req-' + Date.now(),
+      const catInfo = (typeof EXPENSE_CATEGORIES !== 'undefined' ? EXPENSE_CATEGORIES : []).find(c => c.id === req.category) || { name: 'مصاريف أخرى', id: 'others' };
+
+      const tx = {
+        id: 'tx-' + Date.now(),
         type: 'expense',
         amount: req.amount,
-        label: `طلب مصروف معتمد: ${req.reason}`,
-        category: 'shopping',
-        member: req.member,
-        walletId: state.currentWalletId && state.currentWalletId !== 'all' ? state.currentWalletId : 'wallet-default',
-        date: new Date().toISOString().split('T')[0],
-        receipt: null
+        label: `صرف طلب معتمد: ${req.reason}`,
+        category: req.category || 'others',
+        member: req.member || 'أية',
+        author: state.currentUser || 'ماهر',
+        walletId: state.currentWalletId || (state.wallets[0] ? state.wallets[0].id : 'w_main'),
+        date: req.date || new Date().toISOString().split('T')[0],
+        time: new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }),
+        notes: `تم الصرف بموجب طلب رقم: ${req.id}`
       };
 
-      state.transactions.unshift(newTx);
+      state.transactions.unshift(tx);
       saveTx();
 
       req.status = 'approved';
+      req.approvedAt = new Date().toISOString();
+      req.approvedBy = state.currentUser || 'ماهر';
       localStorage.setItem('family_monefy_requests', JSON.stringify(state.moneyRequests));
 
       logActivity({
         type: 'request_approved',
         action: 'موافقة وصرف طلب',
-        label: `تمت الموافقة وصرف مبلغ ${req.amount} ج.م لـ ${req.member}: ${req.reason}`,
+        label: `تمت الموافقة وصرف ${req.amount} ج.م لـ (${req.member}) بند [${catInfo.name}]`,
         amount: req.amount,
         member: req.member,
         author: state.currentUser || 'ماهر'
       });
 
-      playNotificationChime();
+      renderRequestsList();
       renderUI();
-      showToast(`✨ تم اعتماد وصرف الطلب (${req.amount} ج.م) وتسجيله في المصاريف بنجاح!`);
+      saveEmailVault();
+      showToast(`✅ تمت الموافقة وتسجيل حركة الصرف (${req.amount} ج.م) في بند [${catInfo.name}] بنجاح`);
     }
 
     function rejectRequest(reqId) {
@@ -8941,6 +9964,19 @@ function submitMoneyRequest() {
     }
 
     function initUserEmailAuth() {
+      // 1. تهيئة قائمة الحسابات المسجلة
+      let users = getRegisteredUsers();
+      if (!users || users.length === 0) {
+        users = [
+          { name: 'ماهر', email: 'maher@family.com', pass: 'maher123', member: 'ماهر' },
+          { name: 'أية', email: 'aya@family.com', pass: 'aya123', member: 'أية' },
+          { name: 'محمد', email: 'mohamed@family.com', pass: 'mohamed123', member: 'محمد' },
+          { name: 'مريم', email: 'mariam@family.com', pass: 'mariam123', member: 'مريم' }
+        ];
+        localStorage.setItem('family_registered_users', JSON.stringify(users));
+      }
+
+      // 2. استرجاع الإيميل المحفوظ
       const savedEmail = localStorage.getItem('family_user_email') || 'maher@family.com';
       state.userEmail = savedEmail;
 
@@ -8954,6 +9990,49 @@ function submitMoneyRequest() {
 
       const activeLbl = document.getElementById('lblActiveEmailTxt');
       if (activeLbl) activeLbl.textContent = savedEmail;
+
+      // 3. التحقق من وجود سحابة مشتركة وتحديث البيانات
+      const masterSync = localStorage.getItem('family_master_cloud_sync');
+      if (masterSync) {
+        try {
+          const syncData = JSON.parse(masterSync);
+          if (syncData.transactions && syncData.transactions.length > 0 && (!state.transactions || state.transactions.length === 0)) {
+            state.transactions = syncData.transactions;
+            if (syncData.wallets) state.wallets = syncData.wallets;
+            if (syncData.debts) state.debts = syncData.debts;
+            if (syncData.moneyRequests) state.moneyRequests = syncData.moneyRequests;
+            if (syncData.notes) state.notes = syncData.notes;
+          }
+        } catch(e) {}
+      }
+    }
+
+    function getRegisteredUsers() {
+      try {
+        const str = localStorage.getItem('family_registered_users');
+        return str ? JSON.parse(str) : [];
+      } catch(e) {
+        return [];
+      }
+    }
+
+    function saveRegisteredUsers(users) {
+      try {
+        localStorage.setItem('family_registered_users', JSON.stringify(users));
+      } catch(e) {}
+    }
+
+    // حفظ خزانة الحساب والسحابة المركزية المشتركة لكافة أفراد العائلة
+    function saveDebts() {
+      try { localStorage.setItem('family_monefy_debts', JSON.stringify(state.debts || [])); } catch(e) {}
+    }
+
+    function saveMoneyRequests() {
+      try { localStorage.setItem('family_monefy_requests', JSON.stringify(state.moneyRequests || [])); } catch(e) {}
+    }
+
+    function saveNotes() {
+      try { localStorage.setItem('family_monefy_notes', JSON.stringify(state.notes || [])); } catch(e) {}
     }
 
     function saveEmailVault() {
@@ -8961,29 +10040,44 @@ function submitMoneyRequest() {
       const vault = {
         email: state.userEmail,
         updatedAt: new Date().toISOString(),
-        transactions: state.transactions,
-        wallets: state.wallets,
+        transactions: state.transactions || [],
+        wallets: state.wallets || [],
+        debts: state.debts || [],
+        moneyRequests: state.moneyRequests || [],
+        notes: state.notes || [],
         activityLog: state.activityLog || [],
-        permissions: state.permissions
+        permissions: state.permissions,
+        currency: state.currency || 'EGP'
       };
       try {
-        localStorage.setItem('family_vault_' + state.userEmail, JSON.stringify(vault));
+        const vaultStr = JSON.stringify(vault);
+        localStorage.setItem('family_vault_' + state.userEmail, vaultStr);
+        localStorage.setItem('family_master_cloud_sync', vaultStr);
         localStorage.setItem('family_user_email', state.userEmail);
       } catch(e) {}
     }
 
-    
+    // مزامنة مركزية لكافة الحسابات
+    function syncToFamilyCloud() {
+      saveEmailVault();
+    }
+
     // ==============================================================
-    // 10. نظام الحسابات والمزامنة وتأكيد الإيميل (Email Confirmation & OTP)
+    // 10. نظام الحسابات والمزامنة وتأكيد الإيميل واستعادة البيانات
     // ==============================================================
     let currentAuthOtp = '482915';
     let pendingAuthData = null;
 
     function switchAuthTab(tab) {
-      document.getElementById('authViewSignIn').style.display = tab === 'signin' ? 'block' : 'none';
-      document.getElementById('authViewSignUp').style.display = tab === 'signup' ? 'block' : 'none';
-      document.getElementById('authViewForgot').style.display = tab === 'forgot' ? 'block' : 'none';
-      document.getElementById('authViewOtp').style.display = tab === 'otp' ? 'block' : 'none';
+      const vSignIn = document.getElementById('authViewSignIn');
+      const vSignUp = document.getElementById('authViewSignUp');
+      const vForgot = document.getElementById('authViewForgot');
+      const vOtp = document.getElementById('authViewOtp');
+
+      if (vSignIn) vSignIn.style.display = tab === 'signin' ? 'block' : 'none';
+      if (vSignUp) vSignUp.style.display = tab === 'signup' ? 'block' : 'none';
+      if (vForgot) vForgot.style.display = tab === 'forgot' ? 'block' : 'none';
+      if (vOtp) vOtp.style.display = tab === 'otp' ? 'block' : 'none';
 
       document.querySelectorAll('.auth-tab-btn').forEach(b => b.classList.remove('active'));
       if (tab === 'signin') document.getElementById('tabBtnSignIn')?.classList.add('active');
@@ -8995,6 +10089,16 @@ function submitMoneyRequest() {
       return Math.floor(100000 + Math.random() * 900000).toString();
     }
 
+    function quickFillOtp(code) {
+      code = code || currentAuthOtp;
+      const inp = document.getElementById('inpOtpCode');
+      if (inp) {
+        inp.value = code;
+        inp.focus();
+        showToast(`✅ تم تعبئة كود التحقق (${code}) تلقائياً! اضغط تأكيد الحساب`);
+      }
+    }
+
     function sendEmailConfirmationSimulated(email, code, type = 'account') {
       currentAuthOtp = code;
       const targetTxt = document.getElementById('otpTargetEmailTxt');
@@ -9003,25 +10107,42 @@ function submitMoneyRequest() {
       const codeDisplay = document.getElementById('demoOtpDisplayCode');
       if (codeDisplay) codeDisplay.textContent = code;
 
-      // إشعار فوري في التطبيق لسرعة التفعيل
       const subject = type === 'account' ? 'تأكيد حسابك في ميزانية العائلة' : 'رمز استرجاع كلمة المرور';
       const msg = `✉️ تم إرسال رسالة إلى (${email}). رمز التأكيد الخاص بك هو: ${code}`;
-      
+
       triggerSystemNotification(subject, `رمز التحقق الخاص بك هو: ${code}`);
       showToast(msg);
-      
       console.log(`[EMAIL DISPATCH] To: ${email} | Subject: ${subject} | Code: ${code}`);
     }
 
+    // إنشاء حساب جديد
     function handleCreateAccountSubmit() {
-      const name = document.getElementById('regName').value.trim();
-      const email = document.getElementById('regEmail').value.trim().toLowerCase();
-      const pass = document.getElementById('regPass').value.trim();
-      const member = document.getElementById('regMember').value;
+      const nameInp = document.getElementById('regName');
+      const emailInp = document.getElementById('regEmail');
+      const passInp = document.getElementById('regPass');
+      const memberInp = document.getElementById('regMember');
 
-      if (!name) { alert('يرجى كتابة الاسم'); return; }
-      if (!email || !email.includes('@')) { alert('يرجى إدخال بريد إلكتروني صحيح'); return; }
-      if (!pass || pass.length < 4) { alert('كلمة المرور يجب ألا تقل عن 4 خانات'); return; }
+      const name = (nameInp?.value || '').trim();
+      const email = (emailInp?.value || '').trim().toLowerCase();
+      const pass = (passInp?.value || '').trim();
+      const member = memberInp ? memberInp.value : 'العائلة';
+
+      if (!name) { alert('يرجى كتابة الاسم'); nameInp?.focus(); return; }
+      if (!email || !email.includes('@') || !email.includes('.')) { alert('يرجى إدخال بريد إلكتروني صحيح'); emailInp?.focus(); return; }
+      if (!pass || pass.length < 4) { alert('كلمة المرور يجب ألا تقل عن 4 خانات'); passInp?.focus(); return; }
+
+      const users = getRegisteredUsers();
+      const existingUser = users.find(u => u.email === email);
+      if (existingUser) {
+        if (confirm(`البريد الإلكتروني (${email}) مسجل مسبقاً باسم (${existingUser.name}). هل تريد الانتقال إلى تسجيل الدخول به؟`)) {
+          switchAuthTab('signin');
+          const aEmail = document.getElementById('authEmail');
+          if (aEmail) aEmail.value = email;
+          const aPass = document.getElementById('authPass');
+          if (aPass) aPass.value = existingUser.pass || '';
+          return;
+        }
+      }
 
       pendingAuthData = { type: 'signup', name, email, pass, member };
       const code = generateOtp();
@@ -9030,8 +10151,9 @@ function submitMoneyRequest() {
     }
 
     function handleSendPasswordResetCode() {
-      const email = document.getElementById('forgotEmail').value.trim().toLowerCase();
-      if (!email || !email.includes('@')) { alert('يرجى إدخال البريد الإلكتروني المسجل'); return; }
+      const emailInp = document.getElementById('forgotEmail');
+      const email = (emailInp?.value || '').trim().toLowerCase();
+      if (!email || !email.includes('@')) { alert('يرجى إدخال البريد الإلكتروني المسجل'); emailInp?.focus(); return; }
 
       pendingAuthData = { type: 'forgot', email };
       const code = generateOtp();
@@ -9046,8 +10168,9 @@ function submitMoneyRequest() {
       showToast('🔄 تم إعادة إرسال رمز التأكيد إلى بريدك الإلكتروني');
     }
 
+    // التحقق من كود التأكيد OTP وتفعيل الحساب والمزامنة
     function handleVerifyOtpCode() {
-      const enteredCode = (document.getElementById('inpOtpCode').value || '').trim();
+      const enteredCode = (document.getElementById('inpOtpCode')?.value || '').trim();
       if (!enteredCode) {
         alert('يرجى إدخال رمز التأكيد المكون من 6 أرقام');
         return;
@@ -9059,17 +10182,38 @@ function submitMoneyRequest() {
       }
 
       if (pendingAuthData && pendingAuthData.type === 'signup') {
-        // إنشاء الحساب بنجاح
+        // 1. تسجيل الحساب في قائمة المستخدمين
+        const users = getRegisteredUsers();
+        const existingIdx = users.findIndex(u => u.email === pendingAuthData.email);
+        const newUserObj = {
+          name: pendingAuthData.name,
+          email: pendingAuthData.email,
+          pass: pendingAuthData.pass,
+          member: pendingAuthData.member,
+          createdAt: new Date().toISOString()
+        };
+
+        if (existingIdx !== -1) {
+          users[existingIdx] = newUserObj;
+        } else {
+          users.push(newUserObj);
+        }
+        saveRegisteredUsers(users);
+
+        // 2. تعيين الحالة النشطة
         state.userEmail = pendingAuthData.email;
         state.currentUser = pendingAuthData.member;
         localStorage.setItem('family_user_email', state.userEmail);
         localStorage.setItem('family_monefy_auth', JSON.stringify({ user: pendingAuthData.member, email: state.userEmail }));
-        
+
+        // 3. ربط ومزامنة البيانات في خزانة الحساب
         saveEmailVault();
 
-        // تحديث واجهات الإيميل
+        // 4. تحديث النصوص في الهيدر والضبط
         const emailDisp = document.getElementById('headerUserEmailDisplay');
         if (emailDisp) emailDisp.textContent = state.userEmail;
+        const sEmailDisp = document.getElementById('settingsModalUserEmail');
+        if (sEmailDisp) sEmailDisp.textContent = state.userEmail;
         const actLbl = document.getElementById('lblActiveEmailTxt');
         if (actLbl) actLbl.textContent = state.userEmail;
 
@@ -9080,94 +10224,242 @@ function submitMoneyRequest() {
         logActivity({
           type: 'sync_drive',
           action: 'إنشاء حساب وتأكيد إيميل',
-          label: `تم تأكيد وتفعيل الحساب الجديد: ${state.userEmail}`,
+          label: `تم إنشاء وتأكيد الحساب الجديد: ${state.userEmail} بنجاح ومزامنته مع سحابة العائلة`,
           amount: 0,
           member: pendingAuthData.member,
           author: pendingAuthData.member
         });
 
-        showToast(`🎉 تم تأكيد البريد الإلكتروني وتفعيل الحساب ومزامنة Google Drive بنجاح!`);
+        showToast(`🎉 تم إنشاء الحساب بنجاح وتأكيد البريد الإلكتروني ومزامنة بيانات العائلة!`);
 
       } else if (pendingAuthData && pendingAuthData.type === 'forgot') {
-        // استرجاع الباسورد
         const newPass = prompt('أدخل كلمة المرور الجديدة لحسابك:');
-        if (newPass) {
+        if (newPass && newPass.trim().length >= 4) {
+          const users = getRegisteredUsers();
+          const uIdx = users.findIndex(u => u.email === pendingAuthData.email);
+          if (uIdx !== -1) {
+            users[uIdx].pass = newPass.trim();
+            saveRegisteredUsers(users);
+          }
           alert('تم إعادة تعيين كلمة المرور بنجاح. يمكنك تسجيل الدخول الآن.');
           switchAuthTab('signin');
-          document.getElementById('authEmail').value = pendingAuthData.email;
-          document.getElementById('authPass').value = newPass;
+          const aEmail = document.getElementById('authEmail');
+          if (aEmail) aEmail.value = pendingAuthData.email;
+          const aPass = document.getElementById('authPass');
+          if (aPass) aPass.value = newPass.trim();
+        } else if (newPass) {
+          alert('كلمة المرور يجب ألا تقل عن 4 خانات');
         }
       }
       pendingAuthData = null;
     }
 
+    // تسجيل الدخول والربط والمزامنة
     function handleLoginAndSync() {
       const emailInp = document.getElementById('authEmail');
       const passInp = document.getElementById('authPass');
-      const email = emailInp.value.trim().toLowerCase();
+      const email = (emailInp?.value || '').trim().toLowerCase();
+      const pass = (passInp?.value || '').trim();
 
       if (!email || !email.includes('@')) {
         alert('يرجى إدخال بريد إلكتروني صحيح');
-        emailInp.focus();
+        emailInp?.focus();
+        return;
+      }
+
+      // التحقق من كلمة المرور إذا كان المستخدم مسجلاً
+      const users = getRegisteredUsers();
+      const userMatch = users.find(u => u.email === email);
+      if (userMatch && userMatch.pass && pass && userMatch.pass !== pass) {
+        alert('كلمة المرور غير صحيحة! يرجى إعادة المحاولة أو الضغط على "نسيت كلمة المرور".');
+        passInp?.focus();
         return;
       }
 
       state.userEmail = email;
       localStorage.setItem('family_user_email', email);
 
-      // فحص وجود خزانة بيانات محلية لهذا الإيميل
-      const localVault = localStorage.getItem('family_vault_' + email);
+      // تحديد العضو المناسب
+      let memberName = userMatch ? userMatch.member : (email.includes('aya') ? 'أية' : (email.includes('mohamed') ? 'محمد' : (email.includes('mariam') ? 'مريم' : 'ماهر')));
+      state.currentUser = memberName;
+
+      // فحص واستعادة خزانة هذا الإيميل أو السحابة المركزية
+      let restoredCount = 0;
+      const localVault = localStorage.getItem('family_vault_' + email) || localStorage.getItem('family_master_cloud_sync');
       if (localVault) {
         try {
           const vData = JSON.parse(localVault);
           if (vData.transactions && vData.transactions.length > 0) {
             state.transactions = vData.transactions;
+            restoredCount = vData.transactions.length;
             saveTx();
           }
-          if (vData.wallets) {
+          if (vData.wallets && vData.wallets.length > 0) {
             state.wallets = vData.wallets;
             localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
             populateWalletDropdowns();
           }
-          if (vData.activityLog) {
+          if (vData.debts) {
+            state.debts = vData.debts;
+            saveDebts();
+          }
+          if (vData.moneyRequests) {
+            state.moneyRequests = vData.moneyRequests;
+            saveMoneyRequests();
+          }
+          if (vData.notes) {
+            state.notes = vData.notes;
+            saveNotes();
+          }
+          if (vData.activityLog && vData.activityLog.length > 0) {
             state.activityLog = vData.activityLog;
             saveActivityLog();
           }
-        } catch(e) {}
+          if (vData.permissions) {
+            state.permissions = vData.permissions;
+            localStorage.setItem('family_monefy_perms', JSON.stringify(state.permissions));
+          }
+        } catch(e) {
+          console.error('Error loading email vault:', e);
+        }
       } else {
-        // حفظ البيانات الحالية في خزانة هذا الإيميل
+        // إنشاء خزانة فورية لهذا الحساب من بيانات الجلسة الحالية
         saveEmailVault();
       }
 
-      const u = email.includes('aya') ? 'أية' : 'ماهر';
-      state.currentUser = u;
-
-      if (document.getElementById('authRemember').checked) {
-        localStorage.setItem('family_monefy_auth', JSON.stringify({ user: u, email: email }));
+      const rememberCheck = document.getElementById('authRemember');
+      if (rememberCheck && rememberCheck.checked) {
+        localStorage.setItem('family_monefy_auth', JSON.stringify({ user: memberName, email: email }));
       }
 
+      // تحديث واجهات الإيميل في التطبيق
       const emailDisplay = document.getElementById('headerUserEmailDisplay');
       if (emailDisplay) emailDisplay.textContent = email;
       const sEmailDisp2 = document.getElementById('settingsModalUserEmail');
       if (sEmailDisp2) sEmailDisp2.textContent = email;
-
       const activeLbl = document.getElementById('lblActiveEmailTxt');
       if (activeLbl) activeLbl.textContent = email;
 
       closeModal('authModal');
-      selectMember(u);
+      selectMember(memberName);
       renderUI();
 
       logActivity({
         type: 'sync_drive',
         action: 'تسجيل دخول وتزامن',
-        label: `تسجيل الدخول بحساب البريد: ${email}`,
+        label: `تسجيل الدخول بحساب البريد: ${email} وتزامن (${restoredCount || state.transactions.length}) حركة ومحافظ العائلة`,
         amount: 0,
-        member: u,
-        author: u
+        member: memberName,
+        author: memberName
       });
 
-      showToast(`☁️ تم ربط وتزامن الحساب بالبريد: ${email}`);
+      showToast(`☁️ تم تسجيل الدخول والمزامنة بنجاح: (${email})`);
+    }
+
+    // استعادة البيانات الفورية بالبريد الإلكتروني
+    function handleRestoreByEmail(email) {
+      email = (email || '').trim().toLowerCase();
+      if (!email || !email.includes('@')) {
+        alert('يرجى كتابة بريد إلكتروني صحيح');
+        return;
+      }
+
+      const vaultKey = 'family_vault_' + email;
+      let vaultRaw = localStorage.getItem(vaultKey) || localStorage.getItem('family_master_cloud_sync');
+
+      let vault = null;
+      if (vaultRaw) {
+        try { vault = JSON.parse(vaultRaw); } catch(e) {}
+      }
+
+      // إذا لم توجد خزانة سابقة، نقوم بتهيئتها من بيانات العائلة المتاحة تلقائياً
+      if (!vault || !vault.transactions || vault.transactions.length === 0) {
+        vault = {
+          email: email,
+          transactions: state.transactions || [],
+          wallets: state.wallets || [],
+          debts: state.debts || [],
+          moneyRequests: state.moneyRequests || [],
+          notes: state.notes || [],
+          activityLog: state.activityLog || [],
+          permissions: state.permissions,
+          currency: state.currency || 'EGP'
+        };
+      }
+
+      try {
+        if (vault.transactions && vault.transactions.length > 0) {
+          state.transactions = vault.transactions;
+          saveTx();
+        }
+        if (vault.wallets && vault.wallets.length > 0) {
+          state.wallets = vault.wallets;
+          localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
+          populateWalletDropdowns();
+        }
+        if (vault.debts) {
+          state.debts = vault.debts;
+          saveDebts();
+        }
+        if (vault.moneyRequests) {
+          state.moneyRequests = vault.moneyRequests;
+          saveMoneyRequests();
+        }
+        if (vault.notes) {
+          state.notes = vault.notes;
+          saveNotes();
+        }
+        if (vault.activityLog) {
+          state.activityLog = vault.activityLog;
+          saveActivityLog();
+        }
+
+        state.userEmail = email;
+        const users = getRegisteredUsers();
+        const matched = users.find(u => u.email === email);
+        if (matched) {
+          state.currentUser = matched.member;
+          selectMember(matched.member);
+        } else {
+          state.currentUser = email.includes('aya') ? 'أية' : 'ماهر';
+          selectMember(state.currentUser);
+        }
+
+        localStorage.setItem('family_user_email', email);
+        saveEmailVault();
+
+        const emailDisplay = document.getElementById('headerUserEmailDisplay');
+        if (emailDisplay) emailDisplay.textContent = email;
+        const sEmailDisp2 = document.getElementById('settingsModalUserEmail');
+        if (sEmailDisp2) sEmailDisp2.textContent = email;
+        const activeLbl = document.getElementById('lblActiveEmailTxt');
+        if (activeLbl) activeLbl.textContent = email;
+
+        renderUI();
+
+        logActivity({
+          type: 'sync_drive',
+          action: 'استعادة بيانات بالإيميل',
+          label: `تم استعادة وتحديث بيانات الحساب بالبريد: ${email} (${state.transactions.length} حركة، ${state.wallets.length} محفظة)`,
+          amount: 0,
+          member: state.currentUser,
+          author: state.currentUser
+        });
+
+        showToast(`✅ تم استعادة كافة البيانات بالإيميل بنجاح: (${state.transactions.length.toLocaleString('en-US')} حركة و ${state.wallets.length} محافظ و ${state.notes.length} ملاحظات)!`);
+        closeModal('authModal');
+      } catch(e) {
+        alert('حدث خطأ أثناء استعادة بيانات الإيميل: ' + e.message);
+      }
+    }
+
+    function handleRestoreByEmailPrompt() {
+      const emailInp = document.getElementById('authEmail');
+      const curEmail = emailInp ? emailInp.value.trim() : (state.userEmail || 'maher@family.com');
+      const targetEmail = prompt('أدخل البريد الإلكتروني الذي ترغب في استعادة بياناته ومحفظته:', curEmail);
+      if (targetEmail) {
+        handleRestoreByEmail(targetEmail);
+      }
     }
 
     function handleRestoreFromEmailPrompt() {
@@ -9182,11 +10474,202 @@ function submitMoneyRequest() {
         state.currentUser = 'ماهر';
         showToast('🚪 تم تسجيل الخروج بنجاح');
         closeModal('authModal');
+        selectMember('ماهر');
+        renderUI();
       }
     }
 
-    
+    // ==============================================================
+    // 11. محرك الآلة الحاسبة الاحترافية المتطورة (مطابقة للصورة بدقة)
+    // ==============================================================
+    let calcLuxCurrentVal = '0';
+    let calcLuxPendingOp = null;
+    let calcLuxFirstOperand = null;
+    let calcLuxResetNext = false;
 
+    function openCalculatorModal(initialVal) {
+      if (initialVal !== undefined && initialVal !== null && initialVal !== '' && !isNaN(parseFloat(initialVal))) {
+        calcLuxCurrentVal = parseFloat(initialVal).toString();
+      } else {
+        const txAmtInp = document.getElementById('inpTxAmount');
+        if (txAmtInp && txAmtInp.value && !isNaN(parseFloat(txAmtInp.value))) {
+          calcLuxCurrentVal = parseFloat(txAmtInp.value).toString();
+        } else {
+          calcLuxCurrentVal = '0';
+        }
+      }
+      calcLuxPendingOp = null;
+      calcLuxFirstOperand = null;
+      calcLuxResetNext = false;
+      updateCalcLuxScreen();
+
+      openModal('calculatorModal');
+    }
+
+    function closeCalculatorModal() {
+      closeModal('calculatorModal');
+    }
+
+    function updateCalcLuxScreen() {
+      const numEl = document.getElementById('calcMainNum');
+      const prevEl = document.getElementById('calcExprPreview');
+      const badgeEl = document.getElementById('calcTransferBadge');
+
+      if (numEl) {
+        // تنسيق الأرقام مع فواصل الآلاف
+        const parsed = parseFloat(calcLuxCurrentVal);
+        if (!isNaN(parsed) && !calcLuxCurrentVal.endsWith('.')) {
+          numEl.textContent = parsed.toLocaleString('en-US', { maximumFractionDigits: 6 });
+        } else {
+          numEl.textContent = calcLuxCurrentVal || '0';
+        }
+      }
+
+      if (prevEl) {
+        if (calcLuxFirstOperand !== null && calcLuxPendingOp) {
+          const opSymbol = calcLuxPendingOp === '*' ? '×' : (calcLuxPendingOp === '/' ? '÷' : calcLuxPendingOp);
+          prevEl.textContent = `${Number(calcLuxFirstOperand).toLocaleString('en-US')} ${opSymbol}`;
+        } else {
+          prevEl.innerHTML = '&nbsp;';
+        }
+      }
+
+      if (badgeEl) {
+        const val = parseFloat(calcLuxCurrentVal) || 0;
+        badgeEl.textContent = val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+    }
+
+    function calcLuxNum(digit) {
+      if (calcLuxResetNext) {
+        calcLuxCurrentVal = digit === '.' ? '0.' : digit;
+        calcLuxResetNext = false;
+      } else {
+        if (digit === '.') {
+          if (!calcLuxCurrentVal.includes('.')) {
+            calcLuxCurrentVal += '.';
+          }
+        } else {
+          if (calcLuxCurrentVal === '0') {
+            calcLuxCurrentVal = digit;
+          } else {
+            if (calcLuxCurrentVal.length < 12) {
+              calcLuxCurrentVal += digit;
+            }
+          }
+        }
+      }
+      updateCalcLuxScreen();
+    }
+
+    function calcLuxOp(op) {
+      if (calcLuxFirstOperand !== null && calcLuxPendingOp && !calcLuxResetNext) {
+        calcLuxEquals();
+      }
+      calcLuxFirstOperand = parseFloat(calcLuxCurrentVal) || 0;
+      calcLuxPendingOp = op;
+      calcLuxResetNext = true;
+      updateCalcLuxScreen();
+    }
+
+    function calcLuxEquals() {
+      if (calcLuxFirstOperand === null || !calcLuxPendingOp) return;
+      const secondOperand = parseFloat(calcLuxCurrentVal) || 0;
+      let result = 0;
+
+      switch(calcLuxPendingOp) {
+        case '+': result = calcLuxFirstOperand + secondOperand; break;
+        case '-': result = calcLuxFirstOperand - secondOperand; break;
+        case '*': result = calcLuxFirstOperand * secondOperand; break;
+        case '/':
+          if (secondOperand === 0) {
+            alert('لا يمكن القسمة على صفر');
+            return;
+          }
+          result = calcLuxFirstOperand / secondOperand;
+          break;
+        default: return;
+      }
+
+      // تقريب إلى خانات معقولة لتجنب الكسور العشرية الفضفاضة
+      result = Math.round(result * 10000) / 10000;
+      calcLuxCurrentVal = result.toString();
+      calcLuxFirstOperand = null;
+      calcLuxPendingOp = null;
+      calcLuxResetNext = true;
+      updateCalcLuxScreen();
+    }
+
+    function calcLuxBackspace() {
+      if (calcLuxResetNext) {
+        calcLuxResetNext = false;
+      }
+      if (calcLuxCurrentVal.length > 1) {
+        calcLuxCurrentVal = calcLuxCurrentVal.slice(0, -1);
+        if (calcLuxCurrentVal === '-' || calcLuxCurrentVal === '') {
+          calcLuxCurrentVal = '0';
+        }
+      } else {
+        calcLuxCurrentVal = '0';
+      }
+      updateCalcLuxScreen();
+    }
+
+    function calcLuxClear() {
+      calcLuxCurrentVal = '0';
+      calcLuxPendingOp = null;
+      calcLuxFirstOperand = null;
+      calcLuxResetNext = false;
+      updateCalcLuxScreen();
+    }
+
+    // نقل الناتج مباشرة إلى تسجيل المصروف
+    function calcLuxApplyToExpense() {
+      if (calcLuxFirstOperand !== null && calcLuxPendingOp) {
+        calcLuxEquals();
+      }
+
+      const finalAmount = Math.abs(parseFloat(calcLuxCurrentVal) || 0);
+      if (finalAmount <= 0) {
+        alert('يرجى إدخال مبلغ صحيح أكبر من صفر');
+        return;
+      }
+
+      const txModal = document.getElementById('txModal');
+      const isTxModalOpen = txModal && (txModal.style.display !== 'none' && txModal.classList.contains('open') || window.getComputedStyle(txModal).display !== 'none');
+
+      if (!isTxModalOpen) {
+        openTxModal('expense');
+      }
+
+      const amtInp = document.getElementById('inpTxAmount');
+      if (amtInp) {
+        amtInp.value = finalAmount;
+        if (typeof formatTxAmountInput === 'function') {
+          formatTxAmountInput(amtInp);
+        }
+      }
+
+      closeCalculatorModal();
+      showToast(`✅ تم نقل المبلغ (${finalAmount.toLocaleString('en-US')} ج.م) مباشرة إلى تسجيل المصروف!`);
+
+      // تركيز حقل البيان لراحة المستخدم
+      setTimeout(() => {
+        const lblInp = document.getElementById('inpTxLabel');
+        if (lblInp) lblInp.focus();
+      }, 300);
+    }
+
+    // توافق مع الاستدعاءات القديمة
+    function toggleTxCalcPad() {
+      openCalculatorModal(document.getElementById('inpTxAmount')?.value);
+    }
+
+    function toggleMiniCalc() {
+      openCalculatorModal();
+    }
+
+    
     function toggleCurrency() {
       if (state.currency === 'EGP') state.currency = 'SAR';
       else if (state.currency === 'SAR') state.currency = 'USD';
@@ -9685,7 +11168,7 @@ function submitMoneyRequest() {
       const endIndex = Math.min(archiveRenderLimit, totalArchiveCount);
       const itemsToRender = list.slice(startIndex, endIndex);
 
-      const memberEmoji = { 'ماهر': '👨', 'أية': '👩', 'محمد': '👦', 'مريم': '👧', 'الحاجة': '👵', 'النونو': '👶', 'العائلة': '👨‍👩‍👧‍👦' };
+      const memberEmoji = { 'ماهر': '👨', 'أية': '👩', 'محمد': '👦', 'مريم': '👧', 'الحاجة': '👵', 'النونو': '👶', 'العائلة': '👨‍👩‍👧‍👦', 'صدقات وأخرى': '🤲' };
 
       const htmlCards = itemsToRender.map(item => {
         let borderClass = 'border-expense';
@@ -9701,6 +11184,11 @@ function submitMoneyRequest() {
           borderClass = 'border-delete';
           badgeClass = 'badge-del';
           badgeIcon = 'fa-trash-can';
+          sign = '';
+        } else if (item.type === 'add_note') {
+          borderClass = 'border-note';
+          badgeClass = 'badge-note';
+          badgeIcon = 'fa-note-sticky';
           sign = '';
         }
 
@@ -9795,10 +11283,14 @@ function exportActivityLogExcel() {
         app: 'FamilyExpenseTrackerMonefy',
         version: APP_VERSION,
         exportDate: new Date().toISOString(),
-        transactions: state.transactions,
-        wallets: state.wallets,
-        activityLog: state.activityLog,
-        permissions: state.permissions
+        transactions: state.transactions || [],
+        wallets: state.wallets || [],
+        debts: state.debts || [],
+        moneyRequests: state.moneyRequests || [],
+        notes: state.notes || [],
+        activityLog: state.activityLog || [],
+        permissions: state.permissions,
+        currency: state.currency || 'EGP'
       };
 
       const jsonStr = JSON.stringify(backupData, null, 2);
@@ -9881,10 +11373,23 @@ function exportActivityLogExcel() {
               saveActivityLog();
             }
 
+            if (data.debts) {
+              state.debts = data.debts;
+              saveDebts();
+            }
+            if (data.moneyRequests) {
+              state.moneyRequests = data.moneyRequests;
+              saveMoneyRequests();
+            }
+            if (data.notes) {
+              state.notes = data.notes;
+              saveNotes();
+            }
             if (data.permissions) {
               state.permissions = data.permissions;
               localStorage.setItem('family_monefy_perms', JSON.stringify(state.permissions));
             }
+            saveEmailVault();
 
             logActivity({
               type: 'sync_drive',
