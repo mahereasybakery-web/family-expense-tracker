@@ -13,7 +13,7 @@
   <!-- الخطوط والأيقونات -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700;800&family=Readex+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- المكتبات: SheetJS للإكسيل و Chart.js للشارتات التوضيحية -->
@@ -327,7 +327,7 @@
       --border: #26334d;
       --gold: #f59e0b;
       --gold-dark: #d97706;
-      --font-family: 'Cairo', 'Tajawal', sans-serif;
+      --font-family: 'IBM Plex Sans Arabic', 'Readex Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     /* ==============================================================
@@ -3684,21 +3684,100 @@
        ========================================================================= */
 
     /* ألوان وهوية التطبيق الفاخرة */
-    body[data-app-theme="navy"] {
-      --bg-gradient: linear-gradient(135deg, #090e17 0%, #0d1527 50%, #090e17 100%);
-      --card-bg: rgba(15, 23, 42, 0.75);
+    body/* =========================================================================
+       محرك مظاهر وتصميمات التطبيق الملكية (Multi-Theme Styling Engine)
+       ========================================================================= */
+    :root, [data-app-theme="navy"], body[data-app-theme="navy"] {
+      --bg-app: #090d16;
+      --bg-card: #131b2e;
+      --bg-card-sub: #1e293b;
+      --border: #26334d;
+      --accent: #0284c7;
+      --accent-light: #38bdf8;
+      --header-bg: rgba(11, 19, 38, 0.96);
+      --nav-bg: rgba(11, 17, 30, 0.96);
+      --body-bg: radial-gradient(circle at top, #162035 0%, #090d16 100%);
     }
-    body[data-app-theme="black"] {
-      --bg-gradient: linear-gradient(135deg, #030712 0%, #0b0f19 50%, #030712 100%);
-      --card-bg: rgba(11, 15, 25, 0.85);
+
+    [data-app-theme="black"], body[data-app-theme="black"] {
+      --bg-app: #000000 !important;
+      --bg-card: #0f0f13 !important;
+      --bg-card-sub: #191922 !important;
+      --border: #2c2c38 !important;
+      --accent: #38bdf8 !important;
+      --accent-light: #7dd3fc !important;
+      --header-bg: rgba(10, 10, 13, 0.98) !important;
+      --nav-bg: rgba(10, 10, 13, 0.98) !important;
+      --body-bg: radial-gradient(circle at top, #181820 0%, #000000 100%) !important;
     }
-    body[data-app-theme="emerald"] {
-      --bg-gradient: linear-gradient(135deg, #041a14 0%, #082d24 50%, #041a14 100%);
-      --card-bg: rgba(6, 30, 24, 0.85);
+
+    [data-app-theme="emerald"], body[data-app-theme="emerald"] {
+      --bg-app: #031510 !important;
+      --bg-card: #08261e !important;
+      --bg-card-sub: #0f382c !important;
+      --border: #185240 !important;
+      --accent: #10b981 !important;
+      --accent-light: #34d399 !important;
+      --header-bg: rgba(4, 22, 16, 0.98) !important;
+      --nav-bg: rgba(4, 20, 15, 0.98) !important;
+      --body-bg: radial-gradient(circle at top, #0b3b2c 0%, #031510 100%) !important;
     }
-    body[data-app-theme="purple"] {
-      --bg-gradient: linear-gradient(135deg, #13091f 0%, #201035 50%, #13091f 100%);
-      --card-bg: rgba(22, 12, 36, 0.85);
+
+    [data-app-theme="purple"], body[data-app-theme="purple"] {
+      --bg-app: #0c0617 !important;
+      --bg-card: #190c2e !important;
+      --bg-card-sub: #271445 !important;
+      --border: #441f6e !important;
+      --accent: #a855f7 !important;
+      --accent-light: #c084fc !important;
+      --header-bg: rgba(15, 7, 26, 0.98) !important;
+      --nav-bg: rgba(15, 7, 24, 0.98) !important;
+      --body-bg: radial-gradient(circle at top, #2b1147 0%, #0c0617 100%) !important;
+    }
+
+    [data-app-theme="gold"], body[data-app-theme="gold"] {
+      --bg-app: #0e0c06 !important;
+      --bg-card: #1f1a0c !important;
+      --bg-card-sub: #2f2713 !important;
+      --border: #4f3f1a !important;
+      --accent: #f59e0b !important;
+      --accent-light: #fbbf24 !important;
+      --header-bg: rgba(18, 15, 8, 0.98) !important;
+      --nav-bg: rgba(18, 14, 7, 0.98) !important;
+      --body-bg: radial-gradient(circle at top, #36290e 0%, #0e0c06 100%) !important;
+    }
+
+    [data-app-theme="ocean"], body[data-app-theme="ocean"] {
+      --bg-app: #041421 !important;
+      --bg-card: #0a253a !important;
+      --bg-card-sub: #103653 !important;
+      --border: #165077 !important;
+      --accent: #06b6d4 !important;
+      --accent-light: #22d3ee !important;
+      --header-bg: rgba(5, 23, 37, 0.98) !important;
+      --nav-bg: rgba(5, 21, 34, 0.98) !important;
+      --body-bg: radial-gradient(circle at top, #0c395c 0%, #041421 100%) !important;
+    }
+
+    body {
+      background: var(--body-bg, radial-gradient(circle at top, #162035, #090d16)) !important;
+    }
+    .mobile-frame {
+      background-color: var(--bg-app) !important;
+    }
+    .app-header {
+      background: var(--header-bg) !important;
+    }
+    .app-bottom-nav {
+      background: var(--nav-bg) !important;
+    }
+    .app-card-panel {
+      background: var(--bg-card) !important;
+      border-color: var(--border) !important;
+    }
+    .modal-box-lux {
+      background: var(--bg-card) !important;
+      border-color: var(--border) !important;
     }
 
     /* الشريط السفلي المتطور للتنقل بين الصفحات */
@@ -3801,9 +3880,18 @@
     /* بنود الرصيد الثلاثة في الصفحة الأولى (بدلاً من الشارت الدائري) */
     .kpi-three-strip {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin: 10px 12px 14px;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      margin: 4px 10px 6px;
+    }
+    .kpi-three-card.card-balance {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 12px;
+      min-height: 28px;
     }
 
     .kpi-three-card {
@@ -5154,47 +5242,65 @@
       cursor: pointer !important;
     }
 
-    /* بنود الرصيد الثلاثة: ترتيب ذكي يمنع خروج الأرقام والكلمات إطلاقاً */
+    /* بطاقات الرصيد الثلاثة: نفس الترتيب تماماً وبمساحة أصغر وارتفاع مدمج */
     .kpi-three-strip {
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
-      gap: 8px !important;
-      margin: 8px 10px 12px !important;
+      gap: 5px !important;
+      margin: 4px 10px 6px !important;
       width: calc(100% - 20px) !important;
       box-sizing: border-box !important;
-    }
-
-    .kpi-three-card.card-balance {
-      grid-column: 1 / -1 !important;
-      background: linear-gradient(135deg, rgba(2, 132, 199, 0.22), rgba(15, 23, 42, 0.95)) !important;
-      border-color: rgba(56, 189, 248, 0.45) !important;
-      padding: 10px 12px !important;
     }
 
     .kpi-three-card {
       min-width: 0 !important;
       overflow: hidden !important;
       box-sizing: border-box !important;
-      padding: 8px 10px !important;
-      border-radius: 14px !important;
+      padding: 4px 8px !important;
+      border-radius: 9px !important;
+      background: rgba(15, 23, 42, 0.75) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .kpi-three-card.card-balance {
+      grid-column: 1 / -1 !important;
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.22), rgba(15, 23, 42, 0.95)) !important;
+      border-color: rgba(56, 189, 248, 0.45) !important;
+      padding: 4px 12px !important;
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      min-height: 28px !important;
+      border-radius: 9px !important;
     }
 
     .kpi-three-label {
-      font-size: clamp(0.68rem, 2.6vw, 0.78rem) !important;
+      font-size: 0.68rem !important;
       white-space: nowrap !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
-      margin-bottom: 3px !important;
+      margin-bottom: 1px !important;
+      font-weight: 800 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+    }
+
+    .card-balance .kpi-three-label {
+      margin-bottom: 0 !important;
     }
 
     .kpi-three-value {
-      font-size: clamp(0.82rem, 3.4vw, 1.12rem) !important;
+      font-size: 0.88rem !important;
       white-space: nowrap !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
       direction: ltr !important;
       text-align: center !important;
       font-weight: 900 !important;
+      line-height: 1.15 !important;
+      font-variant-numeric: tabular-nums !important;
     }
 
     /* شبكة البنود الـ 9 الأساسية بتنسيق 3x3 متوازن ومتقن */
@@ -5370,6 +5476,392 @@
       padding: 4px 6px !important;
       min-width: 0 !important;
     }
+
+  
+    /* =========================================================================
+       تصميم الصفحة الأولى المتكامل بدون أي حاجة للتمرير الرأسي أو الأفقي
+       (Zero-Scroll Single-View Architecture on Mobile)
+       ========================================================================= */
+    body, html {
+      font-family: var(--font-family) !important;
+      letter-spacing: -0.15px;
+      overflow-x: hidden !important;
+    }
+
+    @media (max-width: 480px) {
+      .mobile-frame {
+        height: 100vh !important;
+        max-height: 100vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
+      }
+
+      .app-header {
+        padding: 5px 8px 3px !important;
+        gap: 3px !important;
+        flex-shrink: 0 !important;
+      }
+
+      .header-brand-row {
+        gap: 4px !important;
+      }
+
+      .brand-box {
+        gap: 5px !important;
+      }
+
+      .brand-icon {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        font-size: 0.85rem !important;
+        border-radius: 8px !important;
+      }
+
+      .brand-title {
+        font-size: 0.82rem !important;
+        font-weight: 800 !important;
+      }
+
+      .header-settings-btn {
+        padding: 3px 6px !important;
+        font-size: 0.68rem !important;
+        border-radius: 10px !important;
+      }
+
+      .avatars-container {
+        padding: 2px 0 1px !important;
+        gap: 6px !important;
+      }
+
+      .avatar-card {
+        min-width: 38px !important;
+      }
+
+      .avatar-bubble {
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 50% !important;
+      }
+
+      .avatar-name-label {
+        font-size: 0.62rem !important;
+        margin-top: 1px !important;
+      }
+
+      .app-scroll-body {
+        flex: 1 1 auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        padding-bottom: 56px !important;
+      }
+
+      /* الصفحة الأولى تناسب الشاشة 100% دون تمرير */
+            /* الصفحة الأولى فليكس 100% فقط عندما تكون نشطة، وإخفاء أي صفحة غير نشطة فوراً لمنع التداخل والتمرير */
+      #viewExpenses.active {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 !important;
+        width: 100% !important;
+      }
+      .page-view:not(.active) {
+        display: none !important;
+      }
+
+      .period-selector-top-strip {
+        padding: 2px 8px !important;
+        margin: 0 !important;
+      }
+
+      .period-buttons-group {
+        gap: 3px !important;
+      }
+
+      .period-filter-pill {
+        padding: 3px 4px !important;
+        font-size: 0.68rem !important;
+        border-radius: 8px !important;
+      }
+
+      .sub-period-tools-bar {
+        padding: 3px 8px !important;
+        margin-bottom: 2px !important;
+        gap: 4px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+      }
+
+      .wallet-select-cluster {
+        padding: 2px 6px !important;
+        border-radius: 8px !important;
+      }
+
+      .wallet-dropdown-compact {
+        font-size: 0.68rem !important;
+        max-width: 85px !important;
+        padding: 1px 2px !important;
+      }
+
+      .tool-pill-action.gold-pill {
+        padding: 3px 6px !important;
+        font-size: 0.68rem !important;
+        border-radius: 8px !important;
+      }
+
+      .currency-pill-btn {
+        padding: 3px 6px !important;
+        font-size: 0.68rem !important;
+        border-radius: 8px !important;
+      }
+
+          /* بطاقات الرصيد الثلاثة: الحفاظ على نفس الترتيب (سطر أول: السحب والإيداع، سطر ثان: الرصيد الفعلي ممتد بالكامل) بمساحة مصغرة وأنيقة */
+    .kpi-three-strip {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 5px !important;
+      margin: 3px 8px 5px !important;
+      width: calc(100% - 16px) !important;
+      box-sizing: border-box !important;
+    }
+
+    .kpi-three-card {
+      min-width: 0 !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+      padding: 4px 8px !important;
+      border-radius: 9px !important;
+      background: rgba(15, 23, 42, 0.75) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      text-align: center !important;
+    }
+
+    .kpi-three-card.card-balance {
+      grid-column: 1 / -1 !important;
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.22), rgba(15, 23, 42, 0.95)) !important;
+      border-color: rgba(56, 189, 248, 0.45) !important;
+      padding: 4px 12px !important;
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      min-height: 28px !important;
+      border-radius: 9px !important;
+    }
+
+    .kpi-three-label {
+      font-size: 0.68rem !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      margin-bottom: 1px !important;
+      font-weight: 800 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 4px !important;
+    }
+
+    .card-balance .kpi-three-label {
+      margin-bottom: 0 !important;
+    }
+
+    .kpi-three-value {
+      font-size: 0.88rem !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      direction: ltr !important;
+      text-align: center !important;
+      font-weight: 900 !important;
+      line-height: 1.15 !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+
+
+      /* شريط الإجراءات السريعة */
+      .quick-actions-bar {
+        padding: 0 8px 4px !important;
+        gap: 6px !important;
+        margin: 0 !important;
+      }
+
+      .btn-quick-action {
+        height: 28px !important;
+        padding: 2px 6px !important;
+        font-size: 0.72rem !important;
+        border-radius: 8px !important;
+      }
+
+      /* شبكة البنود الـ 9 المربعة فائقة التناسق والانضباط الرأسي والأفقي */
+      .categories-monefy-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 5px !important;
+        margin: 2px 8px 4px !important;
+        width: calc(100% - 16px) !important;
+      }
+
+      .cat-card {
+        padding: 5px 3px 4px !important;
+        border-radius: 12px !important;
+        min-height: 62px !important;
+        max-height: 70px !important;
+        box-sizing: border-box !important;
+        justify-content: space-between !important;
+      }
+
+      .cat-icon-bubble {
+        width: 28px !important;
+        height: 28px !important;
+        border-radius: 8px !important;
+        margin-bottom: 2px !important;
+      }
+
+      .cat-icon-bubble i {
+        font-size: 0.95rem !important;
+      }
+
+      .cat-label-text {
+        font-size: clamp(0.64rem, 2.1vw, 0.74rem) !important;
+        font-weight: 800 !important;
+        margin-bottom: 2px !important;
+        line-height: 1.1 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+
+      .cat-amount-pill {
+        padding: 1px 4px !important;
+        border-radius: 6px !important;
+        text-align: center !important;
+      }
+
+      .cat-amount-pill span {
+        font-size: clamp(0.58rem, 1.9vw, 0.7rem) !important;
+        font-weight: 800 !important;
+        white-space: nowrap !important;
+      }
+
+      /* شريط التنقل السفلي */
+      .app-bottom-nav {
+        height: 50px !important;
+        padding-bottom: 2px !important;
+      }
+
+      .nav-tab-item i {
+        font-size: 1rem !important;
+      }
+
+      .nav-tab-item span {
+        font-size: 0.64rem !important;
+        margin-top: 1px !important;
+      }
+    }
+
+  
+    /* =========================================================================
+       تنسيقات سجل الأرشيف والعمليات المتقدمة (Luxury Archive & Ledger Styling)
+       ========================================================================= */
+    .archive-item {
+      background: rgba(19, 27, 46, 0.85);
+      border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+      border-right: 4px solid var(--accent, #38bdf8);
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .archive-item:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+    .archive-item.border-income { border-right-color: #10b981; }
+    .archive-item.border-expense { border-right-color: #f43f5e; }
+    .archive-item.border-delete { border-right-color: #f59e0b; }
+    .archive-item.border-note { border-right-color: #38bdf8; }
+
+    .archive-item-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .archive-badge {
+      font-size: 0.70rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .archive-badge.badge-inc { background: rgba(16, 185, 129, 0.16); color: #34d399; }
+    .archive-badge.badge-exp { background: rgba(244, 63, 94, 0.16); color: #fb7185; }
+    .archive-badge.badge-del { background: rgba(245, 158, 11, 0.16); color: #fbbf24; }
+    .archive-badge.badge-note { background: rgba(56, 189, 248, 0.16); color: #38bdf8; }
+
+    .archive-time {
+      font-size: 0.68rem;
+      color: #94a3b8;
+      direction: ltr;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .archive-item-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .archive-label {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #f8fafc;
+      line-height: 1.35;
+    }
+
+    .archive-sub-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 5px;
+      align-items: center;
+    }
+
+    .archive-meta-chip {
+      font-size: 0.68rem;
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 2px 7px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .archive-amount {
+      font-size: 0.95rem;
+      font-weight: 900;
+      direction: ltr;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    .archive-amount.amt-inc { color: #10b981; }
+    .archive-amount.amt-exp { color: #f43f5e; }
 
   </style>
 
@@ -5620,14 +6112,7 @@
 
 
 
-        <!-- رأس قسم بنود المصاريف فقط -->
-        <div class="expense-cat-header-strip">
-          <div class="expense-cat-header-title">
-            <i class="fa-solid fa-tags" style="color: #38bdf8;"></i>
-            <span>بنود المصاريف (اضغط للتسجيل الفوري)</span>
-          </div>
-          <div class="expense-cat-header-hint" id="activeCategoryPeriodHint">الشهر الحالي</div>
-        </div>
+
 
         <!-- شبكة بنود المصاريف فقط -->
         <div class="categories-monefy-grid" id="catGrid" style="margin-top: 8px;">
@@ -5718,21 +6203,7 @@
            ================================================================ -->
       <div class="page-view" id="viewAnalytics" style="display: none;">
         
-        <!-- شريط أدوات المؤشرات والضبط: البورصة والذهب، الحاسبة، الضبط ⚙️ -->
-        <div class="analytics-tools-strip">
-          <button class="analytics-tool-btn" id="btnAnalyticsGold" onclick="openGoldDrawer()" title="بورصة الذهب والعملات المباشرة (TradingView)">
-            <i class="fa-solid fa-arrow-trend-up" style="color: #eab308;"></i>
-            <span>البورصة والذهب</span>
-          </button>
-          <button class="analytics-tool-btn" id="btnAnalyticsCalc" onclick="openCalculatorModal()" title="آلة حاسبة سريعة">
-            <i class="fa-solid fa-calculator" style="color: #38bdf8;"></i>
-            <span>الآلة الحاسبة</span>
-          </button>
-          <button class="analytics-tool-btn settings-btn" id="btnAnalyticsSettings" onclick="openSettingsModal()" title="الضبط والإعدادات (Drive ولون التطبيق)">
-            <i class="fa-solid fa-gear"></i>
-            <span>الضبط</span>
-          </button>
-        </div>
+
 
         <!-- زران رئيسيان كبيران في أعلى الصفحة: تحليل المصروفات الفعلية / مقارنات -->
         <div class="analytics-main-tabs-bar">
@@ -5746,35 +6217,35 @@
           </button>
         </div>
 
+        <!-- لوحة التحكم بالفترة الزمنية للمؤشرات: ثابتة دائماً لجميع الأقسام والمقارنات دون أن تختفي مطلقاً -->
+        <div class="analytics-control-panel" style="margin: 8px 10px 10px; background: rgba(15, 23, 42, 0.85); border: 1.5px solid var(--border); border-radius: 14px; padding: 8px 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span style="font-size: 0.78rem; font-weight: 800; color: #cbd5e1;">📅 الفترة الزمنية للمؤشرات:</span>
+            <span class="period-active-pill" id="analyticsPeriodActivePill">الشهر الحالي</span>
+          </div>
+          <div class="analytics-period-bar" style="display: flex; gap: 4px; width: 100%;">
+            <button class="analytics-period-btn" data-period="day" onclick="setAnalyticsPeriod('day')">اليوم</button>
+            <button class="analytics-period-btn" data-period="week" onclick="setAnalyticsPeriod('week')">الأسبوع</button>
+            <button class="analytics-period-btn active" data-period="month" onclick="setAnalyticsPeriod('month')">الشهر</button>
+            <button class="analytics-period-btn" data-period="all" onclick="setAnalyticsPeriod('all')">الكل</button>
+            <button class="analytics-period-btn" data-period="custom" onclick="toggleAnalyticsCustomRange()">مخصص ▾</button>
+          </div>
+          <div class="analytics-custom-range-box" id="analyticsCustomRangeBox" style="display: none; margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.08);">
+            <div style="display: flex; gap: 6px; align-items: center; width: 100%;">
+              <input type="date" id="inpAnalyticsDateFrom" class="form-input-custom" style="padding: 4px 8px; font-size: 0.72rem; flex: 1;">
+              <span style="color: #64748b; font-size: 0.72rem;">إلى</span>
+              <input type="date" id="inpAnalyticsDateTo" class="form-input-custom" style="padding: 4px 8px; font-size: 0.72rem; flex: 1;">
+              <button class="btn-export-tool" onclick="applyAnalyticsCustomDate()" style="background: #0284c7; color: #fff; padding: 4px 10px; font-size: 0.72rem; font-weight: 800;">تطبيق</button>
+            </div>
+          </div>
+        </div>
+
         <!-- ============================================================
              القسم الأول: تحليل المصروفات الفعلية (Actual Expenses Suite)
              ============================================================ -->
         <div id="sectionActualAnalytics" style="display: block;">
           <div class="analytics-master-dialog" style="width: 100%; max-width: 100%; border-radius: 16px; margin: 0; box-shadow: none; border: none; background: transparent;">
-            <div class="analytics-master-body" style="padding: 0 12px 20px;">
-              
-              <!-- لوحة التحكم بالفترة الزمنية -->
-              <div class="analytics-control-panel">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                  <span style="font-size: 0.78rem; font-weight: 800; color: #cbd5e1;">📅 الفترة الزمنية للمؤشرات:</span>
-                  <span class="period-active-pill" id="analyticsPeriodActivePill">الشهر الحالي</span>
-                </div>
-                <div class="analytics-period-bar">
-                  <button class="analytics-period-btn" data-period="day" onclick="setAnalyticsPeriod('day')">اليوم</button>
-                  <button class="analytics-period-btn" data-period="week" onclick="setAnalyticsPeriod('week')">الأسبوع</button>
-                  <button class="analytics-period-btn active" data-period="month" onclick="setAnalyticsPeriod('month')">الشهر</button>
-                  <button class="analytics-period-btn" data-period="all" onclick="setAnalyticsPeriod('all')">الكل</button>
-                  <button class="analytics-period-btn" data-period="custom" onclick="toggleAnalyticsCustomRange()">مخصص ▾</button>
-                </div>
-                <div class="analytics-custom-range-box" id="analyticsCustomRangeBox">
-                  <div style="display: flex; gap: 8px; align-items: center; width: 100%;">
-                    <input type="date" id="inpAnalyticsDateFrom" class="form-input-custom" style="padding: 6px 10px; font-size: 0.75rem;">
-                    <span style="color: #64748b; font-size: 0.75rem;">إلى</span>
-                    <input type="date" id="inpAnalyticsDateTo" class="form-input-custom" style="padding: 6px 10px; font-size: 0.75rem;">
-                    <button class="btn-export-tool" onclick="applyAnalyticsCustomDate()" style="background: #0284c7; color: #fff; padding: 6px 12px;">تطبيق</button>
-                  </div>
-                </div>
-              </div>
+            <div class="analytics-master-body" style="padding: 0 10px 20px;">
 
               <!-- شبكة المؤشرات المالية الستة التنفيذية المتطورة -->
               <div class="kpi-master-grid-lux-6">
@@ -6058,15 +6529,11 @@
             <span>طلب مبلغ مالي (مخصص لأية والعائلة)</span>
           </div>
           <div class="form-group-custom">
-            <label class="form-label-custom">مقدم الطلب</label>
-            <select class="form-select-custom" id="inpReqMember">
-              <option value="أية" selected>👩 أية (أم العيال)</option>
-              <option value="ماهر">👨 ماهر</option>
-              <option value="محمد">👦 محمد</option>
-              <option value="مريم">👧 مريم</option>
-              <option value="الحاجة">👵 الحاجة</option>
-              <option value="العائلة">👨‍👩‍👧‍👦 العائلة</option>
-            </select>
+            <label class="form-label-custom"><i class="fa-solid fa-user-check" style="color: #ec4899;"></i> مقدم الطلب (بالصور الفعلية للأفراد):</label>
+            <input type="hidden" id="inpReqMember" value="أية">
+            <div class="member-photo-picker-strip" id="reqMemberPhotoPicker">
+              <!-- تتولد تلقائياً بالصور الفعلية الحقيقية لأفراد العائلة -->
+            </div>
           </div>
           <div class="form-group-custom">
             <label class="form-label-custom">المبلغ المطلوب (ج.م) <span class="req">*</span></label>
@@ -6482,16 +6949,11 @@
         </div>
 
         <div class="form-group-custom">
-          <label class="form-label-custom">يخص من في العائلة؟ (الديفولت التلقائي)</label>
-          <select class="form-select-custom" id="inpTxMember">
-            <option value="العائلة" selected>👨‍👩‍👧‍👦 العائلة (عام للجميع)</option>
-            <option value="ماهر">👨 ماهر</option>
-            <option value="أية">👩 أية</option>
-            <option value="محمد">👦 محمد</option>
-            <option value="مريم">👧 مريم</option>
-            <option value="الحاجة">👵 الحاجة</option>
-            <option value="النونو">👶 النونو</option>
-          </select>
+          <label class="form-label-custom"><i class="fa-solid fa-user-tag" style="color: #38bdf8;"></i> يخص من في العائلة؟ (بالصور الفعلية):</label>
+          <input type="hidden" id="inpTxMember" value="العائلة">
+          <div class="member-photo-picker-strip" id="txMemberPhotoPicker">
+            <!-- تتولد تلقائياً بالصور الفعلية الحقيقية لأفراد العائلة -->
+          </div>
         </div>
 
         <div class="form-group-custom">
@@ -7223,13 +7685,13 @@
               <i class="fa-solid fa-palette" style="color: #38bdf8;"></i>
               <span>لون وتصميم مظهر التطبيق</span>
             </div>
-            <div class="theme-color-palette">
+            <div class="theme-color-palette" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
               <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')">
                 <div class="theme-color-dot" style="background: #0284c7;"></div>
                 <span>كحلي ملكي</span>
               </div>
               <div class="theme-pill-option" id="themeOptBlack" onclick="setAppTheme('black')">
-                <div class="theme-color-dot" style="background: #1e293b;"></div>
+                <div class="theme-color-dot" style="background: #111116; border: 1.5px solid #64748b;"></div>
                 <span>أسود أسطوري</span>
               </div>
               <div class="theme-pill-option" id="themeOptEmerald" onclick="setAppTheme('emerald')">
@@ -7237,8 +7699,16 @@
                 <span>زمردي فاخر</span>
               </div>
               <div class="theme-pill-option" id="themeOptPurple" onclick="setAppTheme('purple')">
-                <div class="theme-color-dot" style="background: #9333ea;"></div>
+                <div class="theme-color-dot" style="background: #a855f7;"></div>
                 <span>بنفسجي فخم</span>
+              </div>
+              <div class="theme-pill-option" id="themeOptGold" onclick="setAppTheme('gold')">
+                <div class="theme-color-dot" style="background: #f59e0b;"></div>
+                <span>ذهبي ملكي</span>
+              </div>
+              <div class="theme-pill-option" id="themeOptOcean" onclick="setAppTheme('ocean')">
+                <div class="theme-color-dot" style="background: #06b6d4;"></div>
+                <span>أزرق سماوي</span>
               </div>
             </div>
           </div>
@@ -7372,13 +7842,13 @@
     // ==========================================
     const EXPENSE_CATEGORIES = [
       { id: 'food', name: 'طعام ومشتريات', icon: 'fa-cart-shopping', color: '#10b981', emoji: '🛒' },
-      { id: 'daily', name: 'مصروف يومي', icon: 'fa-wallet', color: '#f59e0b', emoji: '☕' },
+      { id: 'daily', name: 'مصروف يومي', icon: 'fa-mug-hot', color: '#f59e0b', emoji: '☕' },
       { id: 'bills', name: 'فواتير والتزامات', icon: 'fa-bolt-lightning', color: '#f97316', emoji: '⚡' },
-      { id: 'transport', name: 'مواصلات وبنزين', icon: 'fa-car-side', color: '#0284c7', emoji: '🚗' },
-      { id: 'house', name: 'مستلزمات منزل', icon: 'fa-house-chimney', color: '#8b5cf6', emoji: '🏠' },
-      { id: 'health', name: 'صحة وعلاج', icon: 'fa-notes-medical', color: '#f43f5e', emoji: '💊' },
-      { id: 'clothes', name: 'ملابس وأحذية', icon: 'fa-shirt', color: '#ec4899', emoji: '👗' },
-      { id: 'education', name: 'تعليم ودروس', icon: 'fa-graduation-cap', color: '#3b82f6', emoji: '🎓' },
+      { id: 'transport', name: 'مواصلات وبنزين', icon: 'fa-gas-pump', color: '#0284c7', emoji: '⛽' },
+      { id: 'house', name: 'مستلزمات منزل', icon: 'fa-couch', color: '#8b5cf6', emoji: '🛋️' },
+      { id: 'health', name: 'صحة وعلاج', icon: 'fa-stethoscope', color: '#f43f5e', emoji: '🩺' },
+      { id: 'clothes', name: 'ملابس وأحذية', icon: 'fa-shirt', color: '#ec4899', emoji: '👔' },
+      { id: 'education', name: 'تعليم ودروس', icon: 'fa-book-open-reader', color: '#3b82f6', emoji: '📚' },
       { id: 'entertainment', name: 'ترفيه وألعاب', icon: 'fa-gamepad', color: '#14b8a6', emoji: '🎡' }
     ];
 
@@ -7645,6 +8115,7 @@
       safeEvent('btnOpenActivityLog', 'click', () => {
         openModal('activityLogModal');
         renderActivityLogUI();
+      initMemberPhotoPickers();
       });
       safeEvent('btnOpenDriveSync', 'click', () => openModal('driveSyncModal'));
 
@@ -9273,6 +9744,7 @@
 
       renderNotesList();
       renderActivityLogUI();
+      initMemberPhotoPickers();
       showToast('✓ تم حفظ الملاحظة مع الصورة وتوثيقها في الأرشيف بنجاح!');
     }
 
@@ -9355,6 +9827,7 @@
         if (viewReg) viewReg.style.display = 'none';
         if (viewArc) viewArc.style.display = 'block';
         renderActivityLogUI();
+      initMemberPhotoPickers();
       }
     }
 
@@ -9761,6 +10234,109 @@
       return list;
     }
 
+    
+    // =========================================================================
+    // محرك الصور الفعلية لأفراد العائلة في كافة النماذج والاختيارات
+    // =========================================================================
+    function getActivePeriodDisplay() {
+      const p = state.period || 'month';
+      const now = new Date();
+      
+      let periodTxt = '';
+      if (p === 'today' || p === 'day') {
+        periodTxt = 'اليوم (' + now.toLocaleDateString('ar-EG', { day: 'numeric', month: 'long' }) + ')';
+      } else if (p === 'yesterday') {
+        periodTxt = 'الأمس';
+      } else if (p === 'week') {
+        periodTxt = 'الأسبوع الحالي (آخر 7 أيام)';
+      } else if (p === 'month') {
+        periodTxt = 'الشهر الحالي (' + now.toLocaleDateString('ar-EG', { month: 'long', year: 'numeric' }) + ')';
+      } else if (p === 'last_month') {
+        periodTxt = 'الشهر السابق';
+      } else if (p === 'all') {
+        periodTxt = 'كافة الفترات (سجل العائلة بالكامل)';
+      } else if (p === 'custom') {
+        const from = state.customDateRange?.from || state.customDateFrom || state.customDate || '';
+        const to = state.customDateRange?.to || state.customDateTo || state.customDate || '';
+        periodTxt = (from && to && from !== to) ? `من ${from} إلى ${to}` : (from ? `تاريخ: ${from}` : 'فترة مخصصة');
+      } else {
+        periodTxt = 'الشهر الحالي';
+      }
+      
+      const curMember = (state.currentMemberFilter && state.currentMemberFilter !== 'الكل') 
+        ? ` • 👤 ${state.currentMemberFilter}` 
+        : '';
+        
+      return `${periodTxt}${curMember}`;
+    }
+
+    function initMemberPhotoPickers() {
+      const members = [
+        { id: 'أية', name: 'أية (أم العيال)', photo: MEMBER_AVATARS['أية'] },
+        { id: 'ماهر', name: 'ماهر', photo: MEMBER_AVATARS['ماهر'] },
+        { id: 'محمد', name: 'محمد', photo: MEMBER_AVATARS['محمد'] },
+        { id: 'مريم', name: 'مريم', photo: MEMBER_AVATARS['مريم'] },
+        { id: 'الحاجة', name: 'الحاجة', photo: MEMBER_AVATARS['الحاجة'] },
+        { id: 'النونو', name: 'النونو', photo: MEMBER_AVATARS['النونو'] },
+        { id: 'العائلة', name: 'العائلة', icon: 'fa-users', color: '#14b8a6' },
+        { id: 'أخرى', name: 'أخرى', icon: 'fa-hand-holding-heart', color: '#f59e0b' }
+      ];
+
+      // 1. منتقي مقدم الطلب (viewRequests)
+      const reqPicker = document.getElementById('reqMemberPhotoPicker');
+      if (reqPicker) {
+        const currentReqVal = (document.getElementById('inpReqMember') ? document.getElementById('inpReqMember').value : 'أية') || 'أية';
+        reqPicker.innerHTML = members.map(m => {
+          const isActive = (m.id === currentReqVal);
+          const avatarHtml = m.photo 
+            ? `<img src="${m.photo}" alt="${m.name}" class="member-chip-img">`
+            : `<div class="member-chip-icon" style="background: ${m.color || '#38bdf8'};"><i class="fa-solid ${m.icon}"></i></div>`;
+          return `
+            <div class="member-photo-chip ${isActive ? 'active' : ''}" onclick="selectReqMemberPicker('${m.id}')" data-member-id="${m.id}">
+              ${avatarHtml}
+              <span class="member-chip-name">${m.name}</span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // 2. منتقي عضو الحركة في نافذة تسجيل المصروف (txModal)
+      const txPicker = document.getElementById('txMemberPhotoPicker');
+      if (txPicker) {
+        const currentTxVal = (document.getElementById('inpTxMember') ? document.getElementById('inpTxMember').value : 'العائلة') || 'العائلة';
+        txPicker.innerHTML = members.map(m => {
+          const isActive = (m.id === currentTxVal);
+          const avatarHtml = m.photo 
+            ? `<img src="${m.photo}" alt="${m.name}" class="member-chip-img">`
+            : `<div class="member-chip-icon" style="background: ${m.color || '#38bdf8'};"><i class="fa-solid ${m.icon}"></i></div>`;
+          return `
+            <div class="member-photo-chip ${isActive ? 'active' : ''}" onclick="selectTxMemberPicker('${m.id}')" data-member-id="${m.id}">
+              ${avatarHtml}
+              <span class="member-chip-name">${m.name}</span>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    function selectReqMemberPicker(memberId) {
+      const inp = document.getElementById('inpReqMember');
+      if (inp) inp.value = memberId;
+      document.querySelectorAll('#reqMemberPhotoPicker .member-photo-chip').forEach(chip => {
+        if (chip.getAttribute('data-member-id') === memberId) chip.classList.add('active');
+        else chip.classList.remove('active');
+      });
+    }
+
+    function selectTxMemberPicker(memberId) {
+      const inp = document.getElementById('inpTxMember');
+      if (inp) inp.value = memberId;
+      document.querySelectorAll('#txMemberPhotoPicker .member-photo-chip').forEach(chip => {
+        if (chip.getAttribute('data-member-id') === memberId) chip.classList.add('active');
+        else chip.classList.remove('active');
+      });
+    }
+
     function renderUI() {
       // 1. حساب الرصيد الفعلي الحالي وإجمالي السحب والإيداع (ثابت لكافة الفترات دون فلترة زمنية إطلاقاً)
       let allTxs = state.transactions || [];
@@ -9828,6 +10404,7 @@
       // 5. تحديث العمليات وقائمة السجلات والأرشيف
       renderOperationsList(filtered);
       renderActivityLogUI();
+      initMemberPhotoPickers();
 
       // 6. تحديث صفحة المؤشرات والشارتات فوراً
       try {
@@ -9870,16 +10447,16 @@
           emoji: '🛒',
           accent: '#10b981',
           gradient: 'linear-gradient(135deg, #10b981, #059669)',
-          bg: 'linear-gradient(145deg, rgba(16, 185, 129, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(16, 185, 129, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#10b981'
         },
         daily: {
           name: 'مصروف يومي',
-          icon: 'fa-wallet',
+          icon: 'fa-mug-hot',
           emoji: '☕',
           accent: '#f59e0b',
           gradient: 'linear-gradient(135deg, #f59e0b, #d97706)',
-          bg: 'linear-gradient(145deg, rgba(245, 158, 11, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(245, 158, 11, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#f59e0b'
         },
         bills: {
@@ -9888,52 +10465,52 @@
           emoji: '⚡',
           accent: '#f97316',
           gradient: 'linear-gradient(135deg, #f97316, #ea580c)',
-          bg: 'linear-gradient(145deg, rgba(249, 115, 22, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(249, 115, 22, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#f97316'
         },
         transport: {
           name: 'مواصلات وبنزين',
-          icon: 'fa-car-side',
-          emoji: '🚗',
+          icon: 'fa-gas-pump',
+          emoji: '⛽',
           accent: '#0284c7',
           gradient: 'linear-gradient(135deg, #0284c7, #0369a1)',
-          bg: 'linear-gradient(145deg, rgba(2, 132, 199, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(2, 132, 199, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#0284c7'
         },
         house: {
           name: 'مستلزمات منزل',
-          icon: 'fa-house-chimney',
-          emoji: '🏠',
+          icon: 'fa-couch',
+          emoji: '🛋️',
           accent: '#8b5cf6',
           gradient: 'linear-gradient(135deg, #8b5cf6, #6d28d9)',
-          bg: 'linear-gradient(145deg, rgba(139, 92, 246, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(139, 92, 246, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#8b5cf6'
         },
         health: {
           name: 'صحة وعلاج',
-          icon: 'fa-notes-medical',
-          emoji: '💊',
+          icon: 'fa-stethoscope',
+          emoji: '🩺',
           accent: '#f43f5e',
           gradient: 'linear-gradient(135deg, #f43f5e, #be123c)',
-          bg: 'linear-gradient(145deg, rgba(244, 63, 94, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(244, 63, 94, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#f43f5e'
         },
         clothes: {
           name: 'ملابس وأحذية',
           icon: 'fa-shirt',
-          emoji: '👗',
+          emoji: '👔',
           accent: '#ec4899',
           gradient: 'linear-gradient(135deg, #ec4899, #be185d)',
-          bg: 'linear-gradient(145deg, rgba(236, 72, 153, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(236, 72, 153, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#ec4899'
         },
         education: {
           name: 'تعليم ودروس',
-          icon: 'fa-graduation-cap',
-          emoji: '🎓',
+          icon: 'fa-book-open-reader',
+          emoji: '📚',
           accent: '#3b82f6',
           gradient: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-          bg: 'linear-gradient(145deg, rgba(59, 130, 246, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(59, 130, 246, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#3b82f6'
         },
         entertainment: {
@@ -9942,7 +10519,7 @@
           emoji: '🎡',
           accent: '#14b8a6',
           gradient: 'linear-gradient(135deg, #14b8a6, #0f766e)',
-          bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#14b8a6'
         }
       };
@@ -11288,10 +11865,11 @@
 
     function setAppTheme(theme) {
       state.appTheme = theme;
+      document.documentElement.setAttribute('data-app-theme', theme);
       document.body.setAttribute('data-app-theme', theme);
       localStorage.setItem('family_monefy_theme', theme);
 
-      const opts = ['Navy', 'Black', 'Emerald', 'Purple'];
+      const opts = ['Navy', 'Black', 'Emerald', 'Purple', 'Gold', 'Ocean'];
       opts.forEach(o => {
         const el = document.getElementById('themeOpt' + o);
         if (el) {
@@ -11299,7 +11877,17 @@
           else el.classList.remove('active');
         }
       });
-      showToast(`🎨 تم تفعيل مظهر التطبيق: ${theme === 'navy' ? 'كحلي ملكي' : theme === 'black' ? 'أسود أسطوري' : theme === 'emerald' ? 'زمردي فاخر' : 'بنفسجي فخم'}`);
+      const names = {
+        'navy': 'كحلي ملكي 🔵',
+        'black': 'أسود أسطوري ⚫',
+        'emerald': 'زمردي فاخر 🟢',
+        'purple': 'بنفسجي فخم 🟣',
+        'gold': 'ذهبي ملكي 👑',
+        'ocean': 'أزرق سماوي 🌊'
+      };
+      if (typeof showToast === 'function') {
+        showToast(`🎨 تم تفعيل مظهر التطبيق: ${names[theme] || theme}`);
+      }
     }
 
 
@@ -12651,6 +13239,7 @@
         btnEl.style.color = '#38bdf8';
       }
       renderActivityLogUI();
+      initMemberPhotoPickers();
     }
 
     function selectActivityTab(type, el) {
@@ -12658,10 +13247,12 @@
       document.querySelectorAll('.activity-tab-chip').forEach(b => b.classList.remove('active'));
       if (el) el.classList.add('active');
       renderActivityLogUI();
+      initMemberPhotoPickers();
     }
 
     function filterActivityLogUI() {
       renderActivityLogUI();
+      initMemberPhotoPickers();
     }
 
     let archiveRenderLimit = 50;
@@ -12746,6 +13337,14 @@
         }
 
         const dateStr = item.timestamp ? new Date(item.timestamp).toLocaleString('ar-EG', { dateStyle: 'short', timeStyle: 'short' }) : (item.date || '');
+        const authorImg = MEMBER_AVATARS[item.author] || null;
+        const memberImg = MEMBER_AVATARS[item.member] || null;
+        const authorAvatar = authorImg 
+          ? `<img src="${authorImg}" style="width: 17px; height: 17px; border-radius: 50%; object-fit: cover;">`
+          : `<i class="fa-solid fa-user" style="font-size: 0.68rem; color: #38bdf8;"></i>`;
+        const memberAvatar = memberImg
+          ? `<img src="${memberImg}" style="width: 17px; height: 17px; border-radius: 50%; object-fit: cover;">`
+          : `<i class="fa-solid fa-users" style="font-size: 0.68rem; color: #fbbf24;"></i>`;
 
         return `
           <div class="archive-item ${borderClass}">
@@ -12756,12 +13355,21 @@
               <span class="archive-time"><i class="fa-regular fa-clock"></i> ${dateStr}</span>
             </div>
             <div class="archive-item-body">
-              <span class="archive-label">${item.label || 'بدون بيان'}</span>
+              <div style="flex: 1; min-width: 0;">
+                <div class="archive-label">${escapeHtml(item.label || 'بدون بيان')}</div>
+                <div class="archive-sub-meta">
+                  <span class="archive-meta-chip">
+                    ${authorAvatar}
+                    <span>منفذ: <strong>${escapeHtml(item.author || 'ماهر')}</strong></span>
+                  </span>
+                  <span class="archive-meta-chip">
+                    ${memberAvatar}
+                    <span>المحمل: <strong>${escapeHtml(item.member || 'العائلة')}</strong></span>
+                  </span>
+                  ${item.wallet ? `<span class="archive-meta-chip"><i class="fa-solid fa-vault" style="color: #f59e0b;"></i> <span>${escapeHtml(item.wallet)}</span></span>` : ''}
+                </div>
+              </div>
               ${item.amount ? `<span class="archive-amount ${item.type === 'add_income' ? 'amt-inc' : 'amt-exp'}">${sign}${formatMoney(item.amount)}</span>` : ''}
-            </div>
-            <div class="archive-item-footer">
-              <span><i class="fa-solid fa-user-pen"></i> منفذ العملية: <strong>${item.author || 'ماهر'}</strong></span>
-              <span>${memberEmoji[item.member] || '👤'} المحمل عليه: <strong>${item.member || 'العائلة'}</strong></span>
             </div>
           </div>
         `;
@@ -12824,6 +13432,7 @@ function exportActivityLogExcel() {
         state.activityLog = [];
         saveActivityLog();
         renderActivityLogUI();
+      initMemberPhotoPickers();
         showToast('🗑️ تم مسح سجل النشاطات');
       }
     }
