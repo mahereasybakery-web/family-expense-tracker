@@ -4987,7 +4987,391 @@
       box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
     }
 
-</style>
+
+    /* =========================================================================
+       نظام التجاوب الجوالي الشامل والمتقدم (Mobile Master Responsive Architecture)
+       معالجة انعدام التمرير الأفقي تماماً (0px Horizontal Overflow) وتناسق الأرقام
+       ========================================================================= */
+    html, body {
+      width: 100% !important;
+      max-width: 100vw !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box !important;
+    }
+
+    .mobile-frame {
+      width: 100% !important;
+      max-width: 480px !important;
+      margin: 0 auto !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    .app-header {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
+      padding: 10px 10px 6px !important;
+    }
+
+    .header-brand-row {
+      width: 100% !important;
+      max-width: 100% !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      min-width: 0 !important;
+      gap: 6px !important;
+      box-sizing: border-box !important;
+    }
+
+    .brand-box {
+      min-width: 0 !important;
+      flex: 1 1 auto !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      overflow: hidden !important;
+    }
+
+    .brand-icon {
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px !important;
+      font-size: 0.95rem !important;
+      border-radius: 9px !important;
+      flex-shrink: 0 !important;
+    }
+
+    .brand-title {
+      font-size: clamp(0.75rem, 3.2vw, 0.95rem) !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      min-width: 0 !important;
+      letter-spacing: -0.2px !important;
+    }
+
+    .version-badge {
+      font-size: 0.62rem !important;
+      padding: 1px 5px !important;
+      flex-shrink: 0 !important;
+    }
+
+    .header-settings-btn {
+      padding: 4px 8px !important;
+      font-size: 0.72rem !important;
+      border-radius: 14px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+      gap: 4px !important;
+    }
+
+    .avatars-container {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      scrollbar-width: none !important;
+      box-sizing: border-box !important;
+      padding: 4px 2px 2px !important;
+      gap: 8px !important;
+    }
+
+    .avatar-card {
+      flex: 0 0 auto !important;
+      min-width: 44px !important;
+    }
+
+    .avatar-bubble {
+      width: 44px !important;
+      height: 44px !important;
+    }
+
+    .avatar-name-label {
+      font-size: 0.68rem !important;
+    }
+
+    .app-scroll-body, .page-view {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    /* شريط الأدوات المالي في صفحة المصاريف */
+    .sub-period-tools-bar {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      gap: 6px !important;
+      padding: 6px 8px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+    }
+
+    .wallet-select-cluster {
+      flex: 1 1 auto !important;
+      min-width: 130px !important;
+      max-width: 60% !important;
+      box-sizing: border-box !important;
+      padding: 3px 6px !important;
+    }
+
+    .wallet-dropdown-compact {
+      max-width: 95px !important;
+      font-size: 0.72rem !important;
+    }
+
+    .tools-pills-cluster {
+      flex: 0 0 auto !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+    }
+
+    .tool-pill-action.gold-pill {
+      font-size: 0.72rem !important;
+      padding: 4px 8px !important;
+      border-radius: 12px !important;
+      white-space: nowrap !important;
+    }
+
+    .currency-pill-btn {
+      padding: 4px 8px !important;
+      font-size: 0.72rem !important;
+      border-radius: 12px !important;
+      white-space: nowrap !important;
+      cursor: pointer !important;
+    }
+
+    /* بنود الرصيد الثلاثة: ترتيب ذكي يمنع خروج الأرقام والكلمات إطلاقاً */
+    .kpi-three-strip {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 8px !important;
+      margin: 8px 10px 12px !important;
+      width: calc(100% - 20px) !important;
+      box-sizing: border-box !important;
+    }
+
+    .kpi-three-card.card-balance {
+      grid-column: 1 / -1 !important;
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.22), rgba(15, 23, 42, 0.95)) !important;
+      border-color: rgba(56, 189, 248, 0.45) !important;
+      padding: 10px 12px !important;
+    }
+
+    .kpi-three-card {
+      min-width: 0 !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+      padding: 8px 10px !important;
+      border-radius: 14px !important;
+    }
+
+    .kpi-three-label {
+      font-size: clamp(0.68rem, 2.6vw, 0.78rem) !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      margin-bottom: 3px !important;
+    }
+
+    .kpi-three-value {
+      font-size: clamp(0.82rem, 3.4vw, 1.12rem) !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      direction: ltr !important;
+      text-align: center !important;
+      font-weight: 900 !important;
+    }
+
+    /* شبكة البنود الـ 9 الأساسية بتنسيق 3x3 متوازن ومتقن */
+    .categories-monefy-grid {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 8px !important;
+      margin: 6px 10px 14px !important;
+      width: calc(100% - 20px) !important;
+      box-sizing: border-box !important;
+    }
+
+    .cat-card {
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+      padding: 10px 6px 8px !important;
+      border-radius: 16px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+    }
+
+    .cat-icon-bubble {
+      width: 40px !important;
+      height: 40px !important;
+      border-radius: 12px !important;
+      margin-bottom: 4px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .cat-icon-bubble i {
+      font-size: 1.15rem !important;
+    }
+
+    .cat-label-text {
+      font-size: clamp(0.68rem, 2.3vw, 0.8rem) !important;
+      font-weight: 800 !important;
+      color: #f8fafc !important;
+      text-align: center !important;
+      margin-bottom: 4px !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      width: 100% !important;
+    }
+
+    .cat-amount-pill {
+      width: 100% !important;
+      box-sizing: border-box !important;
+      text-align: center !important;
+      padding: 3px 4px !important;
+      overflow: hidden !important;
+      white-space: nowrap !important;
+      text-overflow: ellipsis !important;
+      direction: rtl !important;
+      border-radius: 8px !important;
+    }
+
+    .cat-amount-pill span {
+      font-size: clamp(0.62rem, 2.2vw, 0.74rem) !important;
+      font-weight: 900 !important;
+      white-space: nowrap !important;
+    }
+
+    /* شريط الأقسام التحليلية المثبت */
+    .analytics-section-nav {
+      display: flex !important;
+      gap: 6px !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      scrollbar-width: none !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      padding: 6px 8px !important;
+    }
+
+    .analytics-nav-pill {
+      flex-shrink: 0 !important;
+      white-space: nowrap !important;
+      font-size: 0.74rem !important;
+      padding: 6px 12px !important;
+    }
+
+    /* بطاقات المؤشرات الستة */
+    .kpi-master-grid-lux-6 {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 8px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .kpi-lux-card {
+      min-width: 0 !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+      padding: 8px 10px !important;
+    }
+
+    .kpi-lux-value {
+      font-size: clamp(0.8rem, 3.2vw, 1.05rem) !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      direction: ltr !important;
+    }
+
+    /* جداول المقارنات والانحرافات المحاسبية */
+    .table-responsive-wrapper, #comparisonsCatTableContainer, #comparisonsMemberTableContainer {
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      display: block !important;
+      box-sizing: border-box !important;
+    }
+
+    .variance-table-lux {
+      min-width: 440px !important;
+      width: 100% !important;
+    }
+
+    /* كروت العمليات */
+    .ops-tx-card-lux {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      gap: 6px !important;
+      padding: 8px 10px !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+      width: 100% !important;
+    }
+
+    .ops-tx-right-cluster {
+      min-width: 0 !important;
+      flex: 1 1 auto !important;
+      overflow: hidden !important;
+    }
+
+    .ops-tx-label-text {
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      font-size: clamp(0.76rem, 2.6vw, 0.88rem) !important;
+    }
+
+    .ops-tx-amount-text {
+      white-space: nowrap !important;
+      font-size: clamp(0.8rem, 2.8vw, 0.95rem) !important;
+      font-weight: 900 !important;
+      direction: ltr !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* أسطر التوزيع لطلبات الصرف */
+    .req-alloc-row {
+      display: grid !important;
+      grid-template-columns: 80px 1fr 1fr 28px !important;
+      gap: 4px !important;
+      padding: 5px !important;
+      box-sizing: border-box !important;
+      width: 100% !important;
+    }
+
+    .req-alloc-inp {
+      font-size: 0.72rem !important;
+      padding: 4px 6px !important;
+      min-width: 0 !important;
+    }
+
+  </style>
 
   <script>
     // إلغاء أي Service Worker قديم ومسح التخزين المؤقت فوراً
@@ -5201,7 +5585,7 @@
 
 
 
-            <div class="currency-pill-btn" id="btnToggleCurrency" onclick="toggleCurrency()" title="تبديل العملة المعروضة (EGP / SAR / USD)">
+            <div class="currency-pill-btn" id="btnToggleCurrency" title="تبديل العملة المعروضة (EGP / SAR / USD)">
               <i class="fa-solid fa-coins"></i>
               <span id="activeCurrencyText">EGP</span>
             </div>
@@ -6987,18 +7371,15 @@
     // 1. تصنيفات Monefy للبنود
     // ==========================================
     const EXPENSE_CATEGORIES = [
-      { id: 'daily', name: 'مصروف يومي', icon: 'fa-hand-holding-dollar', color: '#f59e0b' },
-      { id: 'food', name: 'طعام ومشتريات', icon: 'fa-basket-shopping', color: '#10b981' },
-      { id: 'bills', name: 'فواتير والتزامات', icon: 'fa-file-invoice-dollar', color: '#f59e0b' },
-      { id: 'transport', name: 'مواصلات وبنزين', icon: 'fa-car', color: '#3b82f6' },
-      { id: 'house', name: 'مستلزمات منزل', icon: 'fa-house-chimney', color: '#8b5cf6' },
-      { id: 'health', name: 'صحة وعلاج', icon: 'fa-kit-medical', color: '#f43f5e' },
-      { id: 'clothes', name: 'ملابس وأحذية', icon: 'fa-shirt', color: '#ec4899' },
-      { id: 'kids', name: 'ألعاب وأطفال', icon: 'fa-baby', color: '#06b6d4' },
-            { id: 'entertainment', name: 'ترفيه وفسح', icon: 'fa-gamepad', color: '#14b8a6' },
-      { id: 'gifts', name: 'هدايا ومجاملات', icon: 'fa-gift', color: '#a855f7' },
-      { id: 'education', name: 'تعليم ودروس', icon: 'fa-graduation-cap', color: '#0284c7' },
-      { id: 'others', name: 'مصاريف أخرى', icon: 'fa-ellipsis', color: '#64748b' },
+      { id: 'food', name: 'طعام ومشتريات', icon: 'fa-cart-shopping', color: '#10b981', emoji: '🛒' },
+      { id: 'daily', name: 'مصروف يومي', icon: 'fa-wallet', color: '#f59e0b', emoji: '☕' },
+      { id: 'bills', name: 'فواتير والتزامات', icon: 'fa-bolt-lightning', color: '#f97316', emoji: '⚡' },
+      { id: 'transport', name: 'مواصلات وبنزين', icon: 'fa-car-side', color: '#0284c7', emoji: '🚗' },
+      { id: 'house', name: 'مستلزمات منزل', icon: 'fa-house-chimney', color: '#8b5cf6', emoji: '🏠' },
+      { id: 'health', name: 'صحة وعلاج', icon: 'fa-notes-medical', color: '#f43f5e', emoji: '💊' },
+      { id: 'clothes', name: 'ملابس وأحذية', icon: 'fa-shirt', color: '#ec4899', emoji: '👗' },
+      { id: 'education', name: 'تعليم ودروس', icon: 'fa-graduation-cap', color: '#3b82f6', emoji: '🎓' },
+      { id: 'entertainment', name: 'ترفيه وألعاب', icon: 'fa-gamepad', color: '#14b8a6', emoji: '🎡' }
     ];
 
     const INCOME_CATEGORIES = [
@@ -7640,24 +8021,24 @@
             labels: labels,
             datasets: [
               {
-                label: 'المبالغ المستلمة (الوارد)',
-                data: dataReceived,
+                label: 'المبالغ المستلمة (' + getCurrencySymbol() + ')',
+                data: dataReceived.map(v => convertAmount(v)),
                 backgroundColor: 'rgba(16, 185, 129, 0.75)',
                 borderColor: '#10b981',
                 borderWidth: 1.5,
                 borderRadius: 6
               },
               {
-                label: 'المصروف التقديري (الطلبات)',
-                data: dataEstimated,
+                label: 'المصروف التقديري (' + getCurrencySymbol() + ')',
+                data: dataEstimated.map(v => convertAmount(v)),
                 backgroundColor: 'rgba(245, 158, 11, 0.75)',
                 borderColor: '#f59e0b',
                 borderWidth: 1.5,
                 borderRadius: 6
               },
               {
-                label: 'المنصرف الفعلي الموثق',
-                data: dataActual,
+                label: 'المنصرف الفعلي (' + getCurrencySymbol() + ')',
+                data: dataActual.map(v => convertAmount(v)),
                 backgroundColor: 'rgba(244, 63, 94, 0.75)',
                 borderColor: '#f43f5e',
                 borderWidth: 1.5,
@@ -7947,7 +8328,9 @@
       filtered.filter(tx => tx.type === 'expense').forEach(tx => {
         let cKey = tx.category;
         if (cKey === 'shopping' || cKey === 'supermarket') cKey = 'food';
-        if (cKey === 'other') cKey = 'others';
+        if (cKey === 'kids') cKey = 'entertainment';
+        if (cKey === 'gifts') cKey = 'entertainment';
+        if (cKey === 'others' || cKey === 'other') cKey = 'daily';
         if (catMap[cKey]) {
           catMap[cKey].sum += (parseFloat(tx.amount) || 0);
           catMap[cKey].count += 1;
@@ -7956,7 +8339,7 @@
 
       const activeCats = Object.values(catMap).filter(c => c.sum > 0).sort((a, b) => b.sum - a.sum);
       const labels = activeCats.map(c => c.name);
-      const dataVals = activeCats.map(c => c.sum);
+      const dataVals = activeCats.map(c => convertAmount(c.sum));
       const colors = activeCats.map(c => c.color);
 
       const canvas = document.getElementById('anaCategoryCanvas') || document.getElementById('executiveCategoryCanvas');
@@ -7968,7 +8351,7 @@
           data: {
             labels: labels.length > 0 ? labels : ['لا توجد مصروفات'],
             datasets: [{
-              label: 'إجمالي المنصرف (ج.م)',
+              label: 'إجمالي المنصرف (' + getCurrencySymbol() + ')',
               data: dataVals.length > 0 ? dataVals : [0],
               backgroundColor: colors.length > 0 ? colors : ['#475569'],
               borderColor: colors.length > 0 ? colors : ['#475569'],
@@ -7989,9 +8372,9 @@
               tooltip: {
                 callbacks: {
                   label: (ctx) => {
-                    const val = ctx.parsed?.y !== undefined ? ctx.parsed.y : ctx.parsed;
-                    const pct = totalExp > 0 ? ((val / totalExp) * 100).toFixed(1) : 0;
-                    return ` ${val.toLocaleString('en-US')} ج.م (${pct}%)`;
+                    const rawVal = activeCats[ctx.dataIndex] ? activeCats[ctx.dataIndex].sum : 0;
+                    const pct = totalExp > 0 ? ((rawVal / totalExp) * 100).toFixed(1) : 0;
+                    return ` ${formatMoney(rawVal)} (${pct}%)`;
                   }
                 }
               }
@@ -8027,7 +8410,7 @@
                   <span style="color: #64748b; font-size: 0.7rem; font-weight: 600;">(${c.count} حركة)</span>
                 </span>
                 <span style="font-weight: 900; color: #f87171;">
-                  - ${c.sum.toLocaleString('en-US')} ج.م <span style="color: #38bdf8; font-size: 0.72rem; margin-right: 4px;">(${pct}%)</span>
+                  - ${formatMoney(c.sum)} <span style="color: #38bdf8; font-size: 0.72rem; margin-right: 4px;">(${pct}%)</span>
                 </span>
               </div>
               <div style="width: 100%; height: 5px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden;">
@@ -8141,10 +8524,10 @@
                 <span style="margin-right: auto; font-size: 0.75rem; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 2px 6px; border-radius: 6px;">${pct}%</span>
               </div>
               <div style="font-size: 1.05rem; font-weight: 900; color: #f87171; margin-top: 2px;">
-                - ${mSum.toLocaleString('en-US')} ج.م
+                - ${formatMoney(mSum)}
               </div>
               <div style="display: flex; justify-content: space-between; font-size: 0.68rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 4px;">
-                <span>متوسط: <b style="color: #10b981;">${avgPerTx.toLocaleString('en-US')} ج.م</b></span>
+                <span>متوسط: <b style="color: #10b981;">${formatMoney(avgPerTx)}</b></span>
                 <span>أعلى: <b style="color: #cbd5e1;">${topCatName}</b></span>
               </div>
               <div style="font-size: 0.64rem; color: #38bdf8; text-align: center; margin-top: 2px; font-weight: 700;">
@@ -8204,9 +8587,11 @@
       });
 
       memberTxs.forEach(t => {
-        let cId = t.category || 'others';
+        let cId = t.category || 'daily';
         if (cId === 'shopping' || cId === 'supermarket') cId = 'food';
-        if (cId === 'other') cId = 'others';
+        if (cId === 'kids') cId = 'entertainment';
+        if (cId === 'gifts') cId = 'entertainment';
+        if (cId === 'others' || cId === 'other') cId = 'daily';
         if (!catBreakdown[cId]) {
           catBreakdown[cId] = { id: cId, name: cId, icon: 'fa-tag', color: '#64748b', sum: 0, count: 0 };
         }
@@ -8236,13 +8621,13 @@
                 <div style="font-size: 0.72rem; color: #94a3b8; display: flex; gap: 8px; margin-top: 2px;">
                   <span><i class="fa-solid fa-receipt"></i> ${memberTxCount} حركة</span>
                   <span>•</span>
-                  <span><i class="fa-solid fa-calculator"></i> متوسط: ${avgPerTx.toLocaleString('en-US')} ج.م / حركة</span>
+                  <span><i class="fa-solid fa-calculator"></i> متوسط: ${formatMoney(avgPerTx)} / حركة</span>
                 </div>
               </div>
             </div>
             <div style="text-align: left;">
               <div style="font-size: 1.15rem; font-weight: 900; color: #f87171;">
-                - ${memberTotalExp.toLocaleString('en-US')} ج.م
+                - ${formatMoney(memberTotalExp)}
               </div>
               <div style="font-size: 0.72rem; color: #38bdf8; font-weight: 700;">
                 يمثل ${familyPct}% من ميزانية العائلة
@@ -8260,7 +8645,7 @@
         }
         const ctx = memberCanvas.getContext('2d');
         const chartLabels = sortedCats.map(c => c.name);
-        const chartData = sortedCats.map(c => c.sum);
+        const chartData = sortedCats.map(c => convertAmount(c.sum));
         const chartColors = sortedCats.map(c => c.color);
 
         execMemberCatChart = new Chart(ctx, {
@@ -8268,7 +8653,7 @@
           data: {
             labels: chartLabels.length > 0 ? chartLabels : ['لا توجد مصروفات'],
             datasets: [{
-              label: 'المصروف (ج.م)',
+              label: 'المصروف (' + getCurrencySymbol() + ')',
               data: chartData.length > 0 ? chartData : [0],
               backgroundColor: chartColors.length > 0 ? chartColors : ['#475569'],
               borderRadius: 6,
@@ -8364,8 +8749,8 @@
             labels: sortedDates.map(d => d.slice(5)), // عرض شهر/يوم
             datasets: [
               {
-                label: 'المصروف اليومي (ج.م)',
-                data: sortedDates.map(d => dayMap[d].exp),
+                label: 'المصروف اليومي (' + getCurrencySymbol() + ')',
+                data: sortedDates.map(d => convertAmount(dayMap[d].exp)),
                 borderColor: '#ef4444',
                 backgroundColor: 'rgba(239, 68, 68, 0.1)',
                 fill: true,
@@ -8374,8 +8759,8 @@
                 pointRadius: 2
               },
               {
-                label: 'الإيراد اليومي (ج.م)',
-                data: sortedDates.map(d => dayMap[d].inc),
+                label: 'الإيراد اليومي (' + getCurrencySymbol() + ')',
+                data: sortedDates.map(d => convertAmount(dayMap[d].inc)),
                 borderColor: '#10b981',
                 backgroundColor: 'rgba(16, 185, 129, 0.1)',
                 fill: true,
@@ -8435,12 +8820,12 @@
 
       // تحديث كروت المقارنة
       const setEl = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
-      setEl('kpiReqTotalAmt', `${totalReqAmt.toLocaleString('en-US')} ج.م`);
+      setEl('kpiReqTotalAmt', formatMoney(totalReqAmt));
       setEl('kpiReqTotalCount', `${allRequests.length} طلب إجمالي`);
-      setEl('kpiReqApprovedAmt', `${approvedReqAmt.toLocaleString('en-US')} ج.م`);
+      setEl('kpiReqApprovedAmt', formatMoney(approvedReqAmt));
       setEl('kpiReqApprovedCount', `${reqApprovedCount} طلب معتمد`);
       setEl('kpiReqComplianceRate', `${complianceRate}%`);
-      setEl('kpiReqPendingNotice', `${allRequests.filter(r => r.status === 'pending').length} طلب قيد الانتظار (${pendingReqAmt.toLocaleString('en-US')} ج.م)`);
+      setEl('kpiReqPendingNotice', `${allRequests.filter(r => r.status === 'pending').length} طلب قيد الانتظار (${formatMoney(pendingReqAmt)})`);
 
       // رسم الشارت المقارن بالأعمدة المزدوجة
       const compareCats = EXPENSE_CATEGORIES.slice(0, 6); // أهم 6 بنود
@@ -8458,16 +8843,16 @@
             labels: catLabels,
             datasets: [
               {
-                label: 'الطلبات المعتمدة (ج.م)',
-                data: reqVals,
+                label: 'الطلبات المعتمدة (' + getCurrencySymbol() + ')',
+                data: reqVals.map(v => convertAmount(v)),
                 backgroundColor: 'rgba(236, 72, 153, 0.75)',
                 borderColor: '#ec4899',
                 borderWidth: 1.5,
                 borderRadius: 6
               },
               {
-                label: 'المصروف الفعلي (ج.م)',
-                data: expVals,
+                label: 'المصروف الفعلي (' + getCurrencySymbol() + ')',
+                data: expVals.map(v => convertAmount(v)),
                 backgroundColor: 'rgba(56, 189, 248, 0.75)',
                 borderColor: '#38bdf8',
                 borderWidth: 1.5,
@@ -8523,9 +8908,9 @@
           tableHtml += `
             <tr>
               <td><i class="fa-solid ${c.icon}" style="color: ${c.color}; margin-left: 5px;"></i> <b>${c.name}</b></td>
-              <td style="color: #f472b6; font-weight: 700;">${reqA.toLocaleString('en-US')} ج.م</td>
-              <td style="color: #f87171; font-weight: 700;">${expA.toLocaleString('en-US')} ج.م</td>
-              <td style="font-weight: 800; color: ${diff >= 0 ? '#10b981' : '#ef4444'}; direction: ltr; text-align: right;">${diff >= 0 ? '+' : ''}${diff.toLocaleString('en-US')} ج.م</td>
+              <td style="color: #f472b6; font-weight: 700;">${formatMoney(reqA)}</td>
+              <td style="color: #f87171; font-weight: 700;">${formatMoney(expA)}</td>
+              <td style="font-weight: 800; color: ${diff >= 0 ? '#10b981' : '#ef4444'}; direction: ltr; text-align: right;">${diff >= 0 ? '+' : ''}${formatMoney(diff)}</td>
               <td>${statusBadge}</td>
             </tr>
           `;
@@ -8562,14 +8947,14 @@
             labels: sortedMonths,
             datasets: [
               {
-                label: 'الإيرادات الشهرية',
-                data: sortedMonths.map(m => monthMap[m].inc),
+                label: 'الإيرادات الشهرية (' + getCurrencySymbol() + ')',
+                data: sortedMonths.map(m => convertAmount(monthMap[m].inc)),
                 backgroundColor: 'rgba(16, 185, 129, 0.75)',
                 borderRadius: 6
               },
               {
-                label: 'المصروفات الشهرية',
-                data: sortedMonths.map(m => monthMap[m].exp),
+                label: 'المصروفات الشهرية (' + getCurrencySymbol() + ')',
+                data: sortedMonths.map(m => convertAmount(monthMap[m].exp)),
                 backgroundColor: 'rgba(239, 68, 68, 0.75)',
                 borderRadius: 6
               }
@@ -8974,17 +9359,33 @@
     }
 
     // =========================================================================
-    // التنسيق المالي والعملات
+    // التنسيق المالي والعملات الشامل
     // =========================================================================
-    function formatMoney(n) {
+    function convertAmount(n) {
       const num = Number(n) || 0;
-      if (state.currency === 'SAR') {
-        return (num * (state.rates.SAR || 0.067)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ر.س';
+      if (state.currency === 'SAR') return num * (state.rates.SAR || 0.067);
+      if (state.currency === 'USD') return num * (state.rates.USD || 0.0178);
+      return num;
+    }
+
+    function getCurrencySymbol() {
+      if (state.currency === 'SAR') return 'ر.س';
+      if (state.currency === 'USD') return '$';
+      return 'ج.م';
+    }
+
+    function formatMoney(n, compact = false) {
+      const num = Number(n) || 0;
+      const converted = convertAmount(num);
+      const isUSD = state.currency === 'USD';
+      
+      if (compact) {
+        let formatted = Math.round(converted).toLocaleString('en-US');
+        return isUSD ? `$${formatted}` : `${formatted} ${getCurrencySymbol()}`;
       }
-      if (state.currency === 'USD') {
-        return '$' + (num * (state.rates.USD || 0.0178)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      }
-      return num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ج.م';
+      
+      let formatted = converted.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      return isUSD ? `$${formatted}` : `${formatted} ${getCurrencySymbol()}`;
     }
 
     // =========================================================================
@@ -9003,9 +9404,11 @@
       found = all.find(c => c.id === catId);
       if (found) return found;
 
-      // معالجة المسميات المترادفة (Aliases)
-      if (catId === 'shopping' || catId === 'supermarket') return { id: 'food', name: 'طعام ومشتريات', icon: 'fa-basket-shopping', color: '#10b981' };
-      if (catId === 'other') return { id: 'others', name: 'مصاريف أخرى', icon: 'fa-ellipsis', color: '#64748b' };
+      // معالجة المسميات المندمجة والمترادفة (9 بنود أساسية)
+      if (catId === 'shopping' || catId === 'supermarket') return EXPENSE_CATEGORIES.find(c => c.id === 'food') || { id: 'food', name: 'طعام ومشتريات', icon: 'fa-cart-shopping', color: '#10b981' };
+      if (catId === 'kids' || catId === 'games') return EXPENSE_CATEGORIES.find(c => c.id === 'entertainment') || { id: 'entertainment', name: 'ترفيه وألعاب', icon: 'fa-gamepad', color: '#14b8a6' };
+      if (catId === 'gifts') return EXPENSE_CATEGORIES.find(c => c.id === 'entertainment') || { id: 'entertainment', name: 'ترفيه وألعاب', icon: 'fa-gamepad', color: '#14b8a6' };
+      if (catId === 'others' || catId === 'other') return EXPENSE_CATEGORIES.find(c => c.id === 'daily') || { id: 'daily', name: 'مصروف يومي', icon: 'fa-wallet', color: '#f59e0b' };
       if (catId === 'salary') return { id: 'salary', name: 'راتب شهري', icon: 'fa-money-bill-transfer', color: '#10b981' };
       if (catId === 'invest') return { id: 'invest', name: 'استثمار وأرباح', icon: 'fa-chart-line', color: '#0284c7' };
       if (catId === 'bonus') return { id: 'bonus', name: 'حافز ومكافأة', icon: 'fa-gift', color: '#f59e0b' };
@@ -9446,18 +9849,20 @@
       if (!grid) return;
       grid.innerHTML = '';
 
-      // حساب إجمالي مصروف كل تصنيف خلال الفترة المحددة
+      // حساب إجمالي مصروف كل تصنيف خلال الفترة المحددة مع دمج البنود المحدثة (9 بنود أساسية)
       const catTotals = {};
       (filtered || []).forEach(t => {
         if (t.type === 'expense') {
           let c = t.category;
           if (c === 'shopping' || c === 'supermarket') c = 'food';
-          if (c === 'other') c = 'others';
+          if (c === 'kids') c = 'entertainment';
+          if (c === 'gifts') c = 'entertainment';
+          if (c === 'others' || c === 'other') c = 'daily';
           catTotals[c] = (catTotals[c] || 0) + (Number(t.amount) || 0);
         }
       });
 
-      // باليت ألوان عالية التباين ورموز تعبيرية غنية وأكثر احترافية لكل فئة
+      // باليت ألوان عالية التباين ورموز تعبيرية غنية وأكثر احترافية للـ 9 بنود الأساسية
       const HIGH_CONTRAST_THEMES = {
         food: {
           name: 'طعام ومشتريات',
@@ -9465,7 +9870,7 @@
           emoji: '🛒',
           accent: '#10b981',
           gradient: 'linear-gradient(135deg, #10b981, #059669)',
-          bg: 'linear-gradient(145deg, rgba(16, 185, 129, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(16, 185, 129, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#10b981'
         },
         daily: {
@@ -9474,7 +9879,7 @@
           emoji: '☕',
           accent: '#f59e0b',
           gradient: 'linear-gradient(135deg, #f59e0b, #d97706)',
-          bg: 'linear-gradient(145deg, rgba(245, 158, 11, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(245, 158, 11, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#f59e0b'
         },
         bills: {
@@ -9483,7 +9888,7 @@
           emoji: '⚡',
           accent: '#f97316',
           gradient: 'linear-gradient(135deg, #f97316, #ea580c)',
-          bg: 'linear-gradient(145deg, rgba(249, 115, 22, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(249, 115, 22, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#f97316'
         },
         transport: {
@@ -9492,7 +9897,7 @@
           emoji: '🚗',
           accent: '#0284c7',
           gradient: 'linear-gradient(135deg, #0284c7, #0369a1)',
-          bg: 'linear-gradient(145deg, rgba(2, 132, 199, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(2, 132, 199, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#0284c7'
         },
         house: {
@@ -9501,16 +9906,16 @@
           emoji: '🏠',
           accent: '#8b5cf6',
           gradient: 'linear-gradient(135deg, #8b5cf6, #6d28d9)',
-          bg: 'linear-gradient(145deg, rgba(139, 92, 246, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(139, 92, 246, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#8b5cf6'
         },
         health: {
           name: 'صحة وعلاج',
-          icon: 'fa-heart-pulse',
+          icon: 'fa-notes-medical',
           emoji: '💊',
           accent: '#f43f5e',
           gradient: 'linear-gradient(135deg, #f43f5e, #be123c)',
-          bg: 'linear-gradient(145deg, rgba(244, 63, 94, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(244, 63, 94, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#f43f5e'
         },
         clothes: {
@@ -9519,35 +9924,8 @@
           emoji: '👗',
           accent: '#ec4899',
           gradient: 'linear-gradient(135deg, #ec4899, #be185d)',
-          bg: 'linear-gradient(145deg, rgba(236, 72, 153, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(236, 72, 153, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#ec4899'
-        },
-        kids: {
-          name: 'ألعاب وأطفال',
-          icon: 'fa-baby',
-          emoji: '👶',
-          accent: '#06b6d4',
-          gradient: 'linear-gradient(135deg, #06b6d4, #0e7490)',
-          bg: 'linear-gradient(145deg, rgba(6, 182, 212, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%)',
-          border: '#06b6d4'
-        },
-        entertainment: {
-          name: 'ترفيه وفسح',
-          icon: 'fa-masks-theater',
-          emoji: '🎡',
-          accent: '#14b8a6',
-          gradient: 'linear-gradient(135deg, #14b8a6, #0f766e)',
-          bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%)',
-          border: '#14b8a6'
-        },
-        gifts: {
-          name: 'هدايا ومجاملات',
-          icon: 'fa-gift',
-          emoji: '🎁',
-          accent: '#a855f7',
-          gradient: 'linear-gradient(135deg, #a855f7, #7e22ce)',
-          bg: 'linear-gradient(145deg, rgba(168, 85, 247, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%)',
-          border: '#a855f7'
         },
         education: {
           name: 'تعليم ودروس',
@@ -9555,17 +9933,17 @@
           emoji: '🎓',
           accent: '#3b82f6',
           gradient: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-          bg: 'linear-gradient(145deg, rgba(59, 130, 246, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(59, 130, 246, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#3b82f6'
         },
-        others: {
-          name: 'مصاريف أخرى',
-          icon: 'fa-layer-group',
-          emoji: '💬',
-          accent: '#94a3b8',
-          gradient: 'linear-gradient(135deg, #94a3b8, #475569)',
-          bg: 'linear-gradient(145deg, rgba(148, 163, 184, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%)',
-          border: '#94a3b8'
+        entertainment: {
+          name: 'ترفيه وألعاب',
+          icon: 'fa-gamepad',
+          emoji: '🎡',
+          accent: '#14b8a6',
+          gradient: 'linear-gradient(135deg, #14b8a6, #0f766e)',
+          bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          border: '#14b8a6'
         }
       };
 
@@ -9608,13 +9986,15 @@
           openQuickCategoryExpense(cat.id);
         };
 
-        // تنسيق ذكي متناسق للأرقام والعملة مع حجم المربع
-        let amtDisplay = '0.00 ج.م';
+        // تنسيق ذكي متناسق للأرقام والعملة المحولة ديناميكياً مع حجم المربع
+        let amtDisplay = '0.00 ' + getCurrencySymbol();
+        if (state.currency === 'USD') amtDisplay = '$0.00';
         let fontSz = '0.78rem';
         if (spent > 0) {
-          amtDisplay = '- ' + Math.round(spent).toLocaleString('en-US') + ' ج.م';
-          if (spent >= 100000) fontSz = '0.62rem';
-          else if (spent >= 10000) fontSz = '0.68rem';
+          const conv = convertAmount(spent);
+          amtDisplay = '- ' + formatMoney(spent, true);
+          if (conv >= 100000) fontSz = '0.62rem';
+          else if (conv >= 10000) fontSz = '0.68rem';
           else fontSz = '0.74rem';
         }
 
@@ -11833,8 +12213,19 @@
       else state.currency = 'EGP';
       const el = document.getElementById('activeCurrencyText');
       if (el) el.textContent = state.currency;
+      
+      // إعادة رسم كامل الواجهة والبطاقات والرسوم البيانية بالعملة الجديدة
       renderUI();
-      showToast(`💱 العملة الحالية: ${state.currency}`);
+      try {
+        if (typeof renderExecutiveKPIs === 'function') renderExecutiveKPIs();
+        if (typeof renderAnalyticsRankings === 'function') renderAnalyticsRankings();
+        if (typeof renderDailyTimelineChart === 'function') renderDailyTimelineChart();
+        if (typeof renderMonthlyComparison === 'function') renderMonthlyComparison();
+        if (typeof renderRequestsCompareChart === 'function') renderRequestsCompareChart();
+        if (typeof renderComparisonsSection === 'function') renderComparisonsSection();
+      } catch(e) { console.error('Error refreshing charts on currency change:', e); }
+
+      showToast(`💱 تم التبديل إلى: ${state.currency} (${getCurrencySymbol()})`);
     }
 
     function initDonutChart() {
