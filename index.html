@@ -4496,44 +4496,40 @@
        - أزرار التحكم السفلية: حذف | إغلاق | استمرار
        - زر اعتماد ونقل الناتج مباشرة إلى تسجيل المصروف
        ============================================================== */
+    /* الآلة الحاسبة الاحترافية الذكية (تطابق لقطة الشاشة الأصلية بالكامل) */
     .calc-dialog-card-lux {
-      background: #ffffff;
-      width: 90%;
-      max-width: 340px;
-      border-radius: 14px;
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+      background: #ffffff !important;
+      width: 92%;
+      max-width: 330px;
+      border-radius: 16px !important;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5) !important;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       animation: modalFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      color: #1e293b;
+      border: 1px solid rgba(0, 0, 0, 0.12) !important;
+      color: #1e293b !important;
       margin: auto;
     }
-
     body.dark-theme .calc-dialog-card-lux,
     body:not(.light-theme) .calc-dialog-card-lux {
-      background: #1e293b;
-      border-color: #334155;
-      color: #f8fafc;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      color: #1e293b !important;
     }
-
     .calc-screen-bar-lux {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 18px 10px 18px;
-      border-bottom: 1px solid #e2e8f0;
-      background: #ffffff;
+      padding: 16px 20px 12px 20px;
+      border-bottom: 1px solid #f1f5f9 !important;
+      background: #ffffff !important;
     }
-
     body.dark-theme .calc-screen-bar-lux,
     body:not(.light-theme) .calc-screen-bar-lux {
-      background: #1e293b;
-      border-bottom-color: #334155;
+      background: #ffffff !important;
+      border-bottom-color: #f1f5f9 !important;
     }
-
     .calc-screen-display-lux {
       flex: 1;
       display: flex;
@@ -4543,10 +4539,9 @@
       text-align: left;
       overflow: hidden;
     }
-
     .calc-expr-preview-lux {
       font-size: 0.8rem;
-      color: #94a3b8;
+      color: #94a3b8 !important;
       min-height: 16px;
       font-family: monospace;
       white-space: nowrap;
@@ -4554,177 +4549,129 @@
       overflow: hidden;
       width: 100%;
     }
-
     .calc-main-num-lux {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 700;
-      color: #10b981; /* اللون الأخضر المميز في الصورة */
+      color: #10b981 !important;
       line-height: 1.1;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 220px;
+      max-width: 210px;
       letter-spacing: -0.5px;
     }
-
     .calc-backspace-badge-btn {
-      background: #2b274c; /* لون البنفسجي الغامق المطابق للصورة */
-      color: #ffffff;
+      background: #2b274c !important;
+      color: #ffffff !important;
       border: none;
-      width: 46px;
-      height: 34px;
+      width: 44px;
+      height: 32px;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       transition: all 0.15s ease;
       box-shadow: 0 2px 6px rgba(43, 39, 76, 0.35);
     }
-
     .calc-backspace-badge-btn:active {
       transform: scale(0.92);
-      background: #1e1b38;
+      background: #1e1b38 !important;
     }
-
     .calc-grid-layout-lux {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      background: #ffffff;
+      grid-template-columns: repeat(4, 1fr);
+      background: #ffffff !important;
     }
-
     body.dark-theme .calc-grid-layout-lux,
     body:not(.light-theme) .calc-grid-layout-lux {
-      background: #1e293b;
+      background: #ffffff !important;
     }
-
     .calc-lux-num-btn {
-      background: transparent;
+      background: #ffffff !important;
       border: none;
-      color: #475569;
-      font-size: 1.55rem;
+      border-right: 1px solid #f8fafc;
+      border-bottom: 1px solid #f8fafc;
+      color: #4b5563 !important;
+      font-size: 1.45rem;
       font-weight: 500;
-      height: 56px;
+      font-family: 'Cairo', sans-serif;
+      padding: 16px 0;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      transition: background 0.1s ease;
       user-select: none;
-      transition: background 0.15s ease, transform 0.1s ease;
     }
-
-    body.dark-theme .calc-lux-num-btn,
-    body:not(.light-theme) .calc-lux-num-btn {
-      color: #cbd5e1;
+    .calc-lux-num-btn:hover {
+      background: #f1f5f9 !important;
     }
-
     .calc-lux-num-btn:active {
-      background: rgba(0, 0, 0, 0.05);
-      transform: scale(0.94);
+      background: #e2e8f0 !important;
     }
-
-    body.dark-theme .calc-lux-num-btn:active,
-    body:not(.light-theme) .calc-lux-num-btn:active {
-      background: rgba(255, 255, 255, 0.08);
-    }
-
     .calc-lux-op-btn {
-      background: #f1f3f5; /* لون رمادي فاتح مميز مطابق للصورة */
+      background: #f3f4f6 !important;
       border: none;
-      color: #4b5563;
-      font-size: 1.5rem;
+      border-bottom: 1px solid #e5e7eb;
+      color: #374151 !important;
+      font-size: 1.35rem;
       font-weight: 600;
-      height: 56px;
+      font-family: 'Cairo', sans-serif;
+      padding: 16px 0;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      transition: background 0.1s ease;
       user-select: none;
-      transition: background 0.15s ease, transform 0.1s ease;
     }
-
-    body.dark-theme .calc-lux-op-btn,
-    body:not(.light-theme) .calc-lux-op-btn {
-      background: #0f172a;
-      color: #94a3b8;
+    .calc-lux-op-btn:hover {
+      background: #e5e7eb !important;
     }
-
     .calc-lux-op-btn:active {
-      background: #e2e8f0;
-      transform: scale(0.94);
+      background: #d1d5db !important;
     }
-
-    body.dark-theme .calc-lux-op-btn:active,
-    body:not(.light-theme) .calc-lux-op-btn:active {
-      background: #1e293b;
-    }
-
     .calc-lux-equals-btn {
-      color: #0f172a;
-      font-weight: 800;
+      background: #f3f4f6 !important;
+      color: #1f2937 !important;
+      font-size: 1.4rem;
+      font-weight: bold;
     }
-
-    body.dark-theme .calc-lux-equals-btn,
-    body:not(.light-theme) .calc-lux-equals-btn {
-      color: #38bdf8;
-    }
-
     .calc-bottom-actions-lux {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 18px;
-      border-top: 1px solid #e2e8f0;
-      background: #ffffff;
-      direction: rtl;
+      padding: 14px 20px;
+      border-top: 1px solid #f3f4f6;
+      background: #ffffff !important;
     }
-
     body.dark-theme .calc-bottom-actions-lux,
     body:not(.light-theme) .calc-bottom-actions-lux {
-      background: #1e293b;
-      border-top-color: #334155;
+      background: #ffffff !important;
+      border-top-color: #f3f4f6 !important;
     }
-
     .calc-action-txt-btn {
-      background: transparent;
+      background: none;
       border: none;
-      color: #64748b;
-      font-size: 1.05rem;
+      font-size: 0.92rem;
       font-weight: 700;
+      color: #64748b !important;
       cursor: pointer;
+      font-family: 'Cairo', sans-serif;
       padding: 6px 12px;
-      border-radius: 6px;
+      border-radius: 8px;
       transition: all 0.15s ease;
-      font-family: var(--font-family);
     }
-
     .calc-action-txt-btn:hover {
-      background: rgba(0, 0, 0, 0.04);
-      color: #0f172a;
+      background: #f1f5f9 !important;
+      color: #0f172a !important;
     }
-
-    body.dark-theme .calc-action-txt-btn:hover,
-    body:not(.light-theme) .calc-action-txt-btn:hover {
-      background: rgba(255, 255, 255, 0.06);
-      color: #ffffff;
-    }
-
     .calc-action-continue-btn {
       color: #10b981 !important;
-      font-weight: 800 !important;
+      font-weight: 800;
     }
-
-    .calc-transfer-btn-wrap {
-      padding: 0 14px 14px 14px;
-      background: #ffffff;
-    }
-
-    body.dark-theme .calc-transfer-btn-wrap,
-    body:not(.light-theme) .calc-transfer-btn-wrap {
-      background: #1e293b;
-    }
-
     .btn-calc-direct-transfer {
       width: 100%;
       background: linear-gradient(135deg, #10b981, #059669);
@@ -4859,11 +4806,11 @@
         </div>
 
         <!-- صدقات وأخرى -->
-        <div class="avatar-card" data-member="صدقات وأخرى" onclick="selectMember('صدقات وأخرى')" title="صدقات ومصروفات عامة وأخرى">
+        <div class="avatar-card" data-member="أخرى" onclick="selectMember('أخرى')" title="مصروفات ونثريات أخرى">
           <div class="avatar-bubble" style="background: linear-gradient(135deg, #d97706, #f59e0b); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: #ffffff; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);">
             <i class="fa-solid fa-hand-holding-heart"></i>
           </div>
-          <span class="avatar-name-label" style="font-size: 0.65rem; line-height: 1.1; white-space: nowrap; font-weight: 800;">صدقات وأخرى</span>
+          <span class="avatar-name-label" style="font-size: 0.72rem; line-height: 1.1; white-space: nowrap; font-weight: 800;">أخرى</span>
         </div>
       </div>
     </header>
@@ -4975,22 +4922,21 @@
 
         
         <!-- بنود الرصيد الثلاثة: دخل أخضر، مصروف أحمر، رصيد حالي أزرق -->
+        <!-- بنود الرصيد الفعلي الحالي (ثابتة وتعرض دائماً إجمالي العمليات دون تأثر بالفلترة الزمنية) -->
         <div class="kpi-three-strip">
-          <div class="kpi-three-card card-income">
-            <div class="kpi-three-label"><i class="fa-solid fa-arrow-down-left"></i> إجمالي الدخل</div>
+          <div class="kpi-three-card card-income" title="إجمالي عمليات الإيداع والدخل الفعلي لكافة الفترات">
+            <div class="kpi-three-label"><i class="fa-solid fa-arrow-down-left"></i> إجمالي الإيداعات</div>
             <div class="kpi-three-value" id="topCardIncome">+ 0.00 ج.م</div>
           </div>
-          <div class="kpi-three-card card-expense">
-            <div class="kpi-three-label"><i class="fa-solid fa-arrow-up-right"></i> إجمالي المصروف</div>
+          <div class="kpi-three-card card-expense" title="إجمالي عمليات السحب والمصروفات الفعلية لكافة الفترات">
+            <div class="kpi-three-label"><i class="fa-solid fa-arrow-up-right"></i> إجمالي السحب</div>
             <div class="kpi-three-value" id="topCardExpense">- 0.00 ج.م</div>
           </div>
-          <div class="kpi-three-card card-balance">
-            <div class="kpi-three-label"><i class="fa-solid fa-wallet"></i> الرصيد الحالي</div>
+          <div class="kpi-three-card card-balance" title="الرصيد الفعلي الحالي المتوفر في المحافظ">
+            <div class="kpi-three-label"><i class="fa-solid fa-wallet"></i> الرصيد الفعلي الحالي</div>
             <div class="kpi-three-value" id="topCardBalance">0.00 ج.م</div>
           </div>
         </div>
-
-        <!-- أزرار التسجيل السريع للمصروف والدخل -->
         <div class="quick-actions-bar">
           <button class="btn-quick-action btn-quick-expense" onclick="openTxModal('expense')" id="btnQuickExpense">
             <i class="fa-solid fa-minus"></i> تسجيل مصروف جديد
@@ -6253,7 +6199,7 @@ class="kpi-three-strip">
                 <option value="محمد">محمد</option>
                 <option value="مريم">مريم</option>
                 <option value="الحاجة">الحاجة</option>
-                <option value="صدقات وأخرى">صدقات وأخرى</option>
+                <option value="أخرى">أخرى</option>
               </select>
             </div>
             <div class="form-group-custom">
@@ -6311,274 +6257,7 @@ class="kpi-three-strip">
     <!-- ==============================================================
          لوحة التحليل المالي والرقابة المحاسبية الذكية الكبرى (Master Executive Analytics)
          ============================================================== -->
-    <div class="modal-overlay modal-overlay-custom" id="analyticsDetailedModal">
-      <div class="modal-dialog-card analytics-master-dialog">
-
-        <!-- رأس لوحة التحليلات التنفيذية مع زر إغلاق فخم وواضح جداً -->
-        <div class="analytics-master-header">
-          <div class="analytics-title-group">
-            <div style="width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #0284c7, #38bdf8); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.35rem; box-shadow: 0 4px 16px rgba(2, 132, 199, 0.45); flex-shrink: 0;">
-              <i class="fa-solid fa-chart-pie"></i>
-            </div>
-            <div>
-              <div class="analytics-main-title">لوحة التحليل المالي والرقابة المحاسبية الذكية</div>
-              <div class="analytics-sub-title">تحليل السيولة، توزيع بنود الصرف، مراقبة إنفاق أفراد العائلة، والمسار الزمني</div>
-            </div>
-          </div>
-          <!-- زر إغلاق دائري فخم ومميز وواضح جداً يلبي طلب المستخدم بدقة -->
-          <button type="button" class="btn-analytics-close" onclick="closeModal('analyticsDetailedModal')" aria-label="إغلاق" title="إغلاق لوحة التحليلات">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-
-        <!-- جسم لوحة التحليلات التنفيذية -->
-        <div class="analytics-master-body">
-
-          <!-- 1. شريط التحكم المحاسبي والفترات الزمنية -->
-          <div class="analytics-control-panel">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <span style="font-size: 0.8rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
-                <i class="fa-solid fa-calendar-days"></i> فترة التحليل المحاسبي:
-              </span>
-              <span id="chartActivePeriodBadge" class="period-active-pill">
-                كافة الفترات (سجل العائلة الكامل)
-              </span>
-            </div>
-
-            <div class="analytics-period-bar">
-              <button class="analytics-period-btn" id="btnAnaPeriodToday" onclick="setAnalyticsPeriod('today')">
-                <i class="fa-solid fa-clock"></i> اليوم
-              </button>
-              <button class="analytics-period-btn" id="btnAnaPeriodWeek" onclick="setAnalyticsPeriod('week')">
-                <i class="fa-solid fa-calendar-week"></i> الأسبوع الحالي
-              </button>
-              <button class="analytics-period-btn active" id="btnAnaPeriodMonth" onclick="setAnalyticsPeriod('month')">
-                <i class="fa-solid fa-calendar-days"></i> الشهر الحالي
-              </button>
-              <button class="analytics-period-btn" id="btnAnaPeriodAll" onclick="setAnalyticsPeriod('all')">
-                <i class="fa-solid fa-infinity"></i> كافة الفترات
-              </button>
-              <button class="analytics-period-btn" id="btnAnaPeriodCustom" onclick="toggleAnalyticsCustomRange()">
-                <i class="fa-solid fa-calendar-check"></i> تحديد تاريخ مخصص 📅
-              </button>
-            </div>
-
-            <!-- درج التاريخ المخصص المحاسبي -->
-            <div class="analytics-custom-range-box" id="analyticsCustomRangeBox" style="display: none;">
-              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                <div style="display: flex; align-items: center; gap: 6px;">
-                  <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted);">من تاريخ:</span>
-                  <input type="date" class="form-input-custom" id="inpAnaDateFrom" style="padding: 5px 10px; font-size: 0.78rem; width: 140px;">
-                </div>
-                <div style="display: flex; align-items: center; gap: 6px;">
-                  <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted);">إلى تاريخ:</span>
-                  <input type="date" class="form-input-custom" id="inpAnaDateTo" style="padding: 5px 10px; font-size: 0.78rem; width: 140px;">
-                </div>
-                <button type="button" class="btn-submit-tx" onclick="applyAnalyticsCustomDate()" style="padding: 6px 16px; font-size: 0.78rem; width: auto; margin: 0;">
-                  تطبيق الفترة المخصصة
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2. رباعية المؤشرات المالية الكبرى (Master Financial Matrix) -->
-          <div class="kpi-master-grid-lux">
-            <div class="kpi-lux-card">
-              <div class="kpi-lux-head">
-                <span>إجمالي المصروفات</span>
-                <span class="kpi-tag-count" id="kpiExpenseCountBadge">0 حركة</span>
-              </div>
-              <div class="kpi-lux-value" id="kpiLuxExpense" style="color: #ef4444;">- 0.00 ج.م</div>
-              <div class="kpi-lux-sub">إجمالي المدين المنصرف من الميزانية</div>
-            </div>
-
-            <div class="kpi-lux-card">
-              <div class="kpi-lux-head">
-                <span>إجمالي الدخل والتغذية</span>
-                <span class="kpi-tag-count" id="kpiIncomeCountBadge" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">0 إيداع</span>
-              </div>
-              <div class="kpi-lux-value" id="kpiLuxIncome" style="color: #10b981;">+ 0.00 ج.م</div>
-              <div class="kpi-lux-sub">السيولة النقدية الواردة للمحافظ</div>
-            </div>
-
-            <div class="kpi-lux-card">
-              <div class="kpi-lux-head">
-                <span>صافي الوفر المالي</span>
-                <span class="kpi-tag-count" id="kpiLuxSavingsBadge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">وفر: 0%</span>
-              </div>
-              <div class="kpi-lux-value" id="kpiLuxBalance" style="color: #38bdf8;">0.00 ج.م</div>
-              <div class="kpi-lux-sub" id="kpiLuxSavingsRate">الفائض المالي المتاح للتوفير</div>
-            </div>
-
-            <div class="kpi-lux-card">
-              <div class="kpi-lux-head">
-                <span>معدل الإنفاق اليومي</span>
-                <span class="kpi-tag-count" id="kpiTopCategoryBadge" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">أعلى بند: -</span>
-              </div>
-              <div class="kpi-lux-value" id="kpiLuxDailyAverage" style="color: #fbbf24;">0.00 ج.م/يوم</div>
-              <div class="kpi-lux-sub" id="kpiTopMemberSub">متوسط الصرف الفعلي اليومي</div>
-            </div>
-          </div>
-
-          <!-- 3. شريط التنقل بين أقسام التحليلات التفاعلية الخمسة -->
-          <div class="analytics-section-nav" style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px;">
-            <button class="analytics-sec-btn active" data-sec="categories" onclick="switchExecutiveTab('categories')">
-              <i class="fa-solid fa-layer-group"></i> <span>مؤشرات بنود الصرف</span>
-            </button>
-            <button class="analytics-sec-btn" data-sec="members" onclick="switchExecutiveTab('members')">
-              <i class="fa-solid fa-users"></i> <span>مؤشرات أفراد العائلة</span>
-            </button>
-            <button class="analytics-sec-btn" data-sec="timeline" onclick="switchExecutiveTab('timeline')">
-              <i class="fa-solid fa-chart-line"></i> <span>مؤشرات المسار الزمني</span>
-            </button>
-            <button class="analytics-sec-btn" data-sec="requests" onclick="switchExecutiveTab('requests')">
-              <i class="fa-solid fa-scale-balanced" style="color: #ec4899;"></i> <span>مقارنة الطلبات والمصروفات</span>
-            </button>
-            <button class="analytics-sec-btn" data-sec="monthly" onclick="switchExecutiveTab('monthly')">
-              <i class="fa-solid fa-chart-column"></i> <span>المقارنة الشهرية</span>
-            </button>
-          </div>
-
-          <!-- =========================================================
-               القسم 1: شارت لكل مصروف وتوزيع بنود الصرف
-               ========================================================= -->
-          <div class="analytics-content-pane active" id="paneCategories">
-            <div class="chart-glass-panel">
-              <div class="chart-glass-head" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <div class="chart-glass-title" style="font-weight: 800; font-size: 0.92rem; color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
-                  <i class="fa-solid fa-layer-group" style="color: #38bdf8;"></i>
-                  <span>مؤشرات توزيع بنود المصروفات (مؤشرات لكل مصروف)</span>
-                </div>
-                <div style="display: flex; gap: 8px; align-items: center;">
-                  <button type="button" class="btn-secondary-custom" id="btnToggleCatChartMode" onclick="toggleCategoryChartType()" style="padding: 4px 10px; font-size: 0.74rem;">
-                    <i class="fa-solid fa-chart-pie"></i> <span id="catChartModeLabel">عرض أعمدة</span>
-                  </button>
-                  <span id="chartCatsTotalBadge" style="font-size: 0.74rem; font-weight: 800; color: #f87171; background: rgba(239, 68, 68, 0.12); padding: 3px 8px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.25);"></span>
-                </div>
-              </div>
-
-              <!-- كانفاس الرسم البياني لتوزيع المصروفات -->
-              <div class="chart-canvas-wrap" style="height: 260px; position: relative;">
-                <canvas id="anaCategoryCanvas"></canvas>
-              </div>
-
-              <!-- جدول ملخص بنود الصرف والنسب المئوية -->
-              <div class="cat-breakdown-legend" id="categoryBreakdownLegend" style="margin-top: 14px;"></div>
-            </div>
-          </div>
-
-          <!-- =========================================================
-               القسم 2: شارت لكل شخص وإنفاق أفراد العائلة
-               ========================================================= -->
-          <div class="analytics-content-pane" id="paneMembers" style="display: none;">
-            <div class="chart-glass-panel">
-              <div class="chart-glass-head" style="margin-bottom: 10px;">
-                <div class="chart-glass-title" style="font-weight: 800; font-size: 0.92rem; color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
-                  <i class="fa-solid fa-users" style="color: #a855f7;"></i>
-                  <span>مؤشرات إنفاق أفراد العائلة (مؤشرات لكل شخص)</span>
-                </div>
-              </div>
-
-              <!-- كانفاس الرسم البياني لأفراد العائلة -->
-              <div class="chart-canvas-wrap" style="height: 240px; position: relative;">
-                <canvas id="anaMembersCanvas"></canvas>
-              </div>
-
-              <!-- شبكة بطاقات أفراد العائلة التفصيلية -->
-              <div class="member-lux-grid" id="memberAnalyticsLuxGrid" style="margin-top: 14px;"></div>
-            </div>
-          </div>
-
-          <!-- =========================================================
-               القسم 3: شارت المسار الزمني والسيولة اليومية
-               ========================================================= -->
-          <div class="analytics-content-pane" id="paneTimeline" style="display: none;">
-            <div class="chart-glass-panel">
-              <div class="chart-glass-head" style="margin-bottom: 10px;">
-                <div class="chart-glass-title" style="font-weight: 800; font-size: 0.92rem; color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
-                  <i class="fa-solid fa-chart-line" style="color: #10b981;"></i>
-                  <span>مؤشرات المسار الزمني للسيولة والمصروفات اليومية</span>
-                </div>
-              </div>
-
-              <!-- كانفاس المسار الزمني -->
-              <div class="chart-canvas-wrap" style="height: 240px; position: relative;">
-                <canvas id="anaTimelineCanvas"></canvas>
-              </div>
-
-              <!-- بطاقات إحصائية للمسار الزمني -->
-              <div id="timelineDigestCards" style="margin-top: 14px;"></div>
-            </div>
-          </div>
-
-          <!-- =========================================================
-               القسم 4: مقارنة طلبات المصروف والمصروفات الفعلية والدخل (الميزة الجديدة المطورة)
-               ========================================================= -->
-          <div class="analytics-content-pane" id="paneRequests" style="display: none;">
-            <div class="chart-glass-panel">
-              <div class="chart-glass-head" style="margin-bottom: 12px;">
-                <div class="chart-glass-title" style="font-weight: 800; font-size: 0.92rem; color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
-                  <i class="fa-solid fa-scale-balanced" style="color: #ec4899;"></i>
-                  <span>مقارنة طلبات المصروف بالمصروفات الفعلية والسيولة النقدية</span>
-                </div>
-                <span class="period-active-pill" style="font-size: 0.72rem; background: rgba(236, 72, 153, 0.15); color: #f472b6; border-color: rgba(236, 72, 153, 0.3);">
-                  رقابة الميزانية والانحراف
-                </span>
-              </div>
-
-              <!-- شبكة مؤشرات مقارنة الطلبات بالمصروفات -->
-              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px;" id="reqCompareKpisGrid">
-                <div class="kpi-stat-card" style="border-color: rgba(236, 72, 153, 0.3);">
-                  <div class="kpi-label"><i class="fa-solid fa-hand-holding-dollar" style="color: #ec4899;"></i> إجمالي الطلبات</div>
-                  <div class="kpi-value" id="kpiReqTotalAmt" style="color: #f472b6; font-size: 0.95rem;">0 ج.م</div>
-                  <div class="kpi-sub-hint" id="kpiReqTotalCount">0 طلب مسجل</div>
-                </div>
-                <div class="kpi-stat-card" style="border-color: rgba(16, 185, 129, 0.3);">
-                  <div class="kpi-label"><i class="fa-solid fa-circle-check" style="color: #10b981;"></i> طلبات معتمدة وصرفت</div>
-                  <div class="kpi-value" id="kpiReqApprovedAmt" style="color: #34d399; font-size: 0.95rem;">0 ج.م</div>
-                  <div class="kpi-sub-hint" id="kpiReqApprovedCount">0 طلب معتمد</div>
-                </div>
-                <div class="kpi-stat-card" style="border-color: rgba(56, 189, 248, 0.3);">
-                  <div class="kpi-label"><i class="fa-solid fa-bullseye" style="color: #38bdf8;"></i> نسبة الالتزام بالطلبات</div>
-                  <div class="kpi-value" id="kpiReqComplianceRate" style="color: #38bdf8; font-size: 0.95rem;">100%</div>
-                  <div class="kpi-sub-hint" id="kpiReqPendingNotice">0 طلب قيد المراجعة</div>
-                </div>
-              </div>
-
-              <!-- كانفاس المقارنة البيانية بالأعمدة المزدوجة بين الطلبات والمصروف الفعلي -->
-              <div class="chart-canvas-wrap" style="height: 250px; position: relative;">
-                <canvas id="anaRequestsCompareCanvas"></canvas>
-              </div>
-
-              <!-- جدول الانحراف المحاسبي بين الطلبات والمصروف الفعلي -->
-              <div id="requestsVarianceTableContainer" style="margin-top: 14px;"></div>
-            </div>
-          </div>
-
-          <!-- =========================================================
-               القسم 5: المقارنة الشهرية والتطور السنوي
-               ========================================================= -->
-          <div class="analytics-content-pane" id="paneMonthly" style="display: none;">
-            <div class="chart-glass-panel">
-              <div class="chart-glass-head" style="margin-bottom: 10px;">
-                <div class="chart-glass-title" style="font-weight: 800; font-size: 0.92rem; color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
-                  <i class="fa-solid fa-chart-column" style="color: #38bdf8;"></i>
-                  <span>مؤشرات المقارنة الشهرية (الدخل مقابل المصروفات على مدار الأشهر)</span>
-                </div>
-              </div>
-
-              <!-- كانفاس المقارنة الشهرية -->
-              <div class="chart-canvas-wrap" style="height: 250px; position: relative;">
-                <canvas id="anaMonthlyCanvas"></canvas>
-              </div>
-
-              <div id="monthlyCompareCardsContainer" style="margin-top: 14px;"></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
+    
 
 <div class="modal-overlay modal-overlay-custom" id="settingsModal">
       <div class="modal-content-card" style="max-width: 500px;">
@@ -6889,75 +6568,53 @@ class="kpi-three-strip">
       
     // ==============================================================
     // بيانات وعمليات صرف ودخل تجريبية غنية لتوضيح أثر الشارتات بالكامل
-    // ==============================================================
-    const RICH_DEMO_TRANSACTIONS = [
-      // دخل أغسطس 2026
-      { id: 'tx-inc-aug-1', type: 'income', amount: 48000, label: 'راتب ماهر لشهر أغسطس', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-08-01' },
-      { id: 'tx-inc-aug-2', type: 'income', amount: 15000, label: 'أرباح استثمار وتداول', category: 'invest', member: 'ماهر', walletId: 'wallet-default', date: '2026-08-10' },
-      // مصروفات أغسطس 2026
-      { id: 'tx-exp-aug-1', type: 'expense', amount: 18500, label: 'مصاريف وإيجار مصيف الساحل', category: 'entertainment', member: 'ماهر', walletId: 'wallet-bank', date: '2026-08-12' },
-      { id: 'tx-exp-aug-2', type: 'expense', amount: 7200, label: 'سوبرماركت ومشتريات أغسطس', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-08-05' },
-      { id: 'tx-exp-aug-3', type: 'expense', amount: 4100, label: 'صيانة السيارة وتغيير زيوت', category: 'transport', member: 'ماهر', walletId: 'wallet-cash', date: '2026-08-20' },
-      
-      // دخل سبتمبر 2026
-      { id: 'tx-inc-sep-1', type: 'income', amount: 48000, label: 'راتب ماهر لشهر سبتمبر', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-09-01' },
-      { id: 'tx-inc-sep-2', type: 'income', amount: 10000, label: 'عائد شهادة استثمار', category: 'invest', member: 'ماهر', walletId: 'wallet-bank', date: '2026-09-15' },
-      { id: 'tx-inc-sep-3', type: 'income', amount: 8000, label: 'جمعية شهرية عائلية', category: 'other_inc', member: 'أية', walletId: 'wallet-cash', date: '2026-09-10' },
-      // مصروفات سبتمبر 2026
-      { id: 'tx-exp-sep-1', type: 'expense', amount: 12000, label: 'أقساط ومستلزمات مدارس وباصات', category: 'education', member: 'محمد', walletId: 'wallet-bank', date: '2026-09-05' },
-      { id: 'tx-exp-sep-2', type: 'expense', amount: 8200, label: 'سوبرماركت ومستلزمات منزل سبتمبر', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-09-08' },
-      { id: 'tx-exp-sep-3', type: 'expense', amount: 5500, label: 'ملابس وشنط مدرسية', category: 'clothes', member: 'أية', walletId: 'wallet-default', date: '2026-09-12' },
-      { id: 'tx-exp-sep-4', type: 'expense', amount: 3100, label: 'مستلزمات صيدلية وفيتامينات', category: 'health', member: 'الحاجة', walletId: 'wallet-cash', date: '2026-09-22' },
+    
 
-      // دخل وارد
-      { id: 'tx-inc-1', type: 'income', amount: 48000, label: 'راتب ماهر الشهري الأساسي', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-01' },
-      { id: 'tx-inc-2', type: 'income', amount: 12000, label: 'أرباح استثمار وتداول ذهب', category: 'invest', member: 'ماهر', walletId: 'wallet-default', date: '2026-10-05' },
-      { id: 'tx-inc-3', type: 'income', amount: 8000, label: 'قبض جمعية شهرية عائلية', category: 'other_inc', member: 'أية', walletId: 'wallet-cash', date: '2026-10-10' },
-      { id: 'tx-inc-4', type: 'income', amount: 4500, label: 'مكافأة تميز وإنتاجية', category: 'bonus', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-15' },
-
-      // مصروفات شاملة لكافة أفراد العائلة وبنود الصرف
-      { id: 'tx-exp-1', type: 'expense', amount: 7600, label: 'سوبرماركت ولحوم وخضار الشهر', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-10-03' },
-      { id: 'tx-exp-2', type: 'expense', amount: 5200, label: 'قسط مدرسة وكتب دراسية', category: 'education', member: 'محمد', walletId: 'wallet-bank', date: '2026-10-06' },
-      { id: 'tx-exp-3', type: 'expense', amount: 4300, label: 'كشف واستشارة وأدوية شهرية', category: 'health', member: 'الحاجة', walletId: 'wallet-cash', date: '2026-10-08' },
-      { id: 'tx-exp-4', type: 'expense', amount: 3800, label: 'صيانة دورية وتفويل بنزين السيارة', category: 'transport', member: 'ماهر', walletId: 'wallet-default', date: '2026-10-11' },
-      { id: 'tx-exp-5', type: 'expense', amount: 3400, label: 'ملابس وأحذية شتوية للأولاد', category: 'clothes', member: 'أية', walletId: 'wallet-default', date: '2026-10-14' },
-      { id: 'tx-exp-6', type: 'expense', amount: 2750, label: 'مصروف يومي ونثريات شخصية', category: 'daily', member: 'ماهر', walletId: 'wallet-cash', date: '2026-10-16' },
-      { id: 'tx-exp-7', type: 'expense', amount: 2400, label: 'فواتير كهرباء وغاز وإنترنت منزلي', category: 'bills', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-18' },
-      { id: 'tx-exp-8', type: 'expense', amount: 2100, label: 'مستلزمات نظافة وأجهزة للمنزل', category: 'house', member: 'أية', walletId: 'wallet-default', date: '2026-10-20' },
-      { id: 'tx-exp-9', type: 'expense', amount: 1800, label: 'ألعاب تعليمية وقصص لمريم', category: 'kids', member: 'مريم', walletId: 'wallet-default', date: '2026-10-22' },
-      { id: 'tx-exp-10', type: 'expense', amount: 1650, label: 'فسحة عائلية وترفيه نهاية الأسبوع', category: 'entertainment', member: 'مريم', walletId: 'wallet-cash', date: '2026-10-25' },
-      { id: 'tx-exp-11', type: 'expense', amount: 1250, label: 'هدايا ومجاملات للأقارب', category: 'gifts', member: 'الحاجة', walletId: 'wallet-cash', date: '2026-10-26' },
-      { id: 'tx-exp-12', type: 'expense', amount: 950, label: 'نثريات ومصاريف طارئة أخرى', category: 'others', member: 'محمد', walletId: 'wallet-default', date: '2026-10-27' },
-      { id: 'tx-exp-13', type: 'expense', amount: 2200, label: 'بامبرز وحليب مجفف ومستلزمات صيدلية', category: 'kids', member: 'النونو', walletId: 'wallet-default', date: '2026-10-24' },
-      { id: 'tx-exp-14', type: 'expense', amount: 1850, label: 'كشف تطعيمات ومتابعة نمو طبيب أطفال', category: 'health', member: 'النونو', walletId: 'wallet-cash', date: '2026-10-21' },
-      { id: 'tx-exp-15', type: 'expense', amount: 1400, label: 'ملابس قطنية وسالوبيتات شتوية للنونو', category: 'clothes', member: 'النونو', walletId: 'wallet-default', date: '2026-10-18' },
-    ];
-
-    function resetToDemoData() {
-      state.transactions = generateRichDemoTransactions();
-      saveTx();
-      renderUI();
-      showToast('✨ تم تحميل وتفعيل كافة المصروفات والدخل التجريبي بنجاح!');
-    }
+    
 
       // 3. إدارة إصدار التطبيق وتحميل الحركات الغنية المتجددة بحسب تاريخ اليوم الحالي
-      const APP_VERSION = '3.3.0';
+      // 3. إدارة إصدار التطبيق (مسح البيانات القديمة وتوليد حركات متوازنة)
+      const APP_VERSION = '3.5.0';
       const storedVer = localStorage.getItem('family_monefy_version');
-      const todayIsoStr = new Date().toISOString().split('T')[0];
-      const storedTx = localStorage.getItem('family_monefy_v2_tx') || localStorage.getItem('family_monefy_txs');
+      const todayIsoStr = getLocalDateStr(new Date());
 
-      let parsedTx = null;
-      if (storedTx) {
-        try { parsedTx = JSON.parse(storedTx); } catch(e) {}
-      }
+      // إذا كان الإصدار قديماً، نقوم بمسح كامل فوري وتوليد بيانات واقعية متزنة
+      if (storedVer !== APP_VERSION) {
+        localStorage.removeItem('family_monefy_v2_tx');
+        localStorage.removeItem('family_monefy_txs');
+        localStorage.removeItem('family_monefy_requests');
+        localStorage.removeItem('family_monefy_notes');
+        localStorage.removeItem('family_monefy_debts');
+        localStorage.removeItem('family_monefy_wallets');
+        localStorage.setItem('family_monefy_version', APP_VERSION);
 
-      // إذا كان الإصدار محدثاً أو لم تكن هناك حركات مسجلة لليوم، نقوم بتحميل باقة الحركات التجريبية الشاملة فوراً
-      if (storedVer !== APP_VERSION || !parsedTx || parsedTx.length <= 5 || !parsedTx.some(t => t.date === todayIsoStr)) {
+        state.wallets = [
+          { id: 'wallet-ahly', name: 'البنك الأهلي المصري', type: 'bank', balance: 85400, icon: 'fa-building-columns', color: '#10b981' },
+          { id: 'wallet-bank-misr', name: 'بنك مصر (شهادات وادخار)', type: 'bank', balance: 42500, icon: 'fa-landmark', color: '#f59e0b' },
+          { id: 'wallet-instapay', name: 'إنستاباي InstaPay', type: 'digital', balance: 14200, icon: 'fa-bolt', color: '#8b5cf6' },
+          { id: 'wallet-vodafone', name: 'فودافون كاش', type: 'wallet', balance: 6800, icon: 'fa-mobile-screen', color: '#ef4444' },
+          { id: 'wallet-cash-safe', name: 'الخزينة النقدية (كاش البيت)', type: 'cash', balance: 8500, icon: 'fa-money-bill-1-wave', color: '#06b6d4' },
+          { id: 'wallet-cib-credit', name: 'فيزا مشتريات CIB', type: 'credit', balance: 15000, icon: 'fa-credit-card', color: '#3b82f6' }
+        ];
+        localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
+
         state.transactions = generateRichDemoTransactions();
         saveTx();
-        localStorage.setItem('family_monefy_version', APP_VERSION);
+
+        state.moneyRequests = generateRichDemoRequests();
+        localStorage.setItem('family_monefy_requests', JSON.stringify(state.moneyRequests));
       } else {
-        state.transactions = parsedTx;
+        const storedTx = localStorage.getItem('family_monefy_v2_tx') || localStorage.getItem('family_monefy_txs');
+        let parsedTx = null;
+        if (storedTx) {
+          try { parsedTx = JSON.parse(storedTx); } catch(e) {}
+        }
+        if (!parsedTx || parsedTx.length <= 5 || !parsedTx.some(t => t.date === todayIsoStr)) {
+          state.transactions = generateRichDemoTransactions();
+          saveTx();
+        } else {
+          state.transactions = parsedTx;
+        }
       }
 
       // تحميل الصلاحيات
@@ -8316,222 +7973,164 @@ class="kpi-three-strip">
     }
 
     // =========================================================================
-    // مولد الحركات التجريبية الغنية المتجددة تلقائياً بحسب تاريخ اليوم الحالي
+
     // =========================================================================
+    // مساعدات التواريخ الصارمة بتوقيت المتصفح المحلي (تمنع فارق التوقيت UTC)
+    // =========================================================================
+    function getLocalDateStr(d = new Date()) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${y}-${m}-${day}`;
+    }
+
     function generateRichDemoTransactions() {
-      const today = new Date();
-      const fmtDate = (d) => d.toISOString().split('T')[0];
-      const todayStr = fmtDate(today);
+      const now = new Date();
+      const todayStr = getLocalDateStr(now);
 
-      const membersList = ['ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'العائلة'];
-      const walletIds = [
-        'wallet-default', 'wallet-bank-misr', 'wallet-ahly', 
-        'wallet-vodafone', 'wallet-instapay', 'wallet-cash-safe', 'wallet-cib-credit'
+      const getDateOffset = (daysAgo) => {
+        const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - daysAgo);
+        return getLocalDateStr(d);
+      };
+
+      const txs = [
+        // ===================== اليوم (dayOffset = 0) =====================
+        { id: 'tx-today-1', type: 'expense', amount: 380, label: 'سوبرماركت كارفور - فطار وبقالة طازجة', category: 'food', member: 'ماهر', walletId: 'wallet-ahly', date: todayStr },
+        { id: 'tx-today-2', type: 'expense', amount: 55, label: 'قهوة ونثريات العمل', category: 'daily', member: 'ماهر', walletId: 'wallet-cash-safe', date: todayStr },
+        { id: 'tx-today-3', type: 'expense', amount: 350, label: 'بنزين 95 للسيارة محطة وطنية', category: 'transport', member: 'ماهر', walletId: 'wallet-ahly', date: todayStr },
+        { id: 'tx-today-4', type: 'expense', amount: 190, label: 'صيدلية العزبي - فيتامينات ومسكن', category: 'health', member: 'أية', walletId: 'wallet-instapay', date: todayStr },
+        { id: 'tx-today-5', type: 'expense', amount: 310, label: 'بامبرز وحفاضات وسيريلاك النونو', category: 'kids', member: 'أية', walletId: 'wallet-vodafone', date: todayStr },
+        { id: 'tx-today-6', type: 'expense', amount: 80, label: 'مصروف مدرسي محمد ومريم', category: 'daily', member: 'محمد', walletId: 'wallet-cash-safe', date: todayStr },
+        { id: 'tx-today-7', type: 'expense', amount: 65, label: 'مخبوزات وفينو طازج للبيت', category: 'food', member: 'أية', walletId: 'wallet-cash-safe', date: todayStr },
+        { id: 'tx-today-8', type: 'expense', amount: 175, label: 'سوق الخضار والفاكهة الطازجة', category: 'food', member: 'الحاجة', walletId: 'wallet-cash-safe', date: todayStr },
+        { id: 'tx-today-9', type: 'expense', amount: 40, label: 'شحن كروت فكة وباقة مكالمات', category: 'daily', member: 'ماهر', walletId: 'wallet-vodafone', date: todayStr },
+        { id: 'tx-today-10', type: 'expense', amount: 75, label: 'مشوار أوبر عائلي سريع', category: 'transport', member: 'أية', walletId: 'wallet-instapay', date: todayStr },
+        { id: 'tx-today-inc-1', type: 'income', amount: 2500, label: 'أرباح استثمار وتداول إنستاباي', category: 'invest', member: 'ماهر', walletId: 'wallet-instapay', date: todayStr },
+        { id: 'tx-today-wth-1', type: 'expense', amount: 2000, label: '[سحب نقدي ATM] تحويل من الأهلي للخزينة النقدية', category: 'others', member: 'ماهر', walletId: 'wallet-ahly', date: todayStr },
+
+        // ===================== أمس (dayOffset = 1) =====================
+        { id: 'tx-yest-1', type: 'expense', amount: 850, label: 'لحوم ودواجن بلدي طازجة للأسبوع', category: 'food', member: 'أية', walletId: 'wallet-ahly', date: getDateOffset(1) },
+        { id: 'tx-yest-2', type: 'expense', amount: 260, label: 'منظفات ومطهرات للبيت ومستلزمات', category: 'house', member: 'أية', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
+        { id: 'tx-yest-3', type: 'expense', amount: 140, label: 'كشاكيل وألوان وأدوات مدرسة مريم', category: 'education', member: 'مريم', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
+        { id: 'tx-yest-4', type: 'expense', amount: 320, label: 'صيدلية 19011 - علاج سكر وضغط للحاجة', category: 'health', member: 'الحاجة', walletId: 'wallet-instapay', date: getDateOffset(1) },
+        { id: 'tx-yest-5', type: 'expense', amount: 95, label: 'مصروف شخصي ونثريات يومية', category: 'daily', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
+        { id: 'tx-yest-6', type: 'expense', amount: 150, label: 'غسيل وتلميع السيارة دوري', category: 'transport', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
+        { id: 'tx-yest-7', type: 'expense', amount: 180, label: 'طلبات بقالة وألبان وسوبرماركت', category: 'food', member: 'محمد', walletId: 'wallet-vodafone', date: getDateOffset(1) },
+
+        // ===================== هذا الأسبوع (dayOffset = 2 to 6) =====================
+        { id: 'tx-wk-1', type: 'expense', amount: 780, label: 'فاتورة الكهرباء الشهرية للمنزل', category: 'bills', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(2) },
+        { id: 'tx-wk-2', type: 'expense', amount: 430, label: 'اشتراك الإنترنت المنزلي WE VDSL', category: 'bills', member: 'ماهر', walletId: 'wallet-vodafone', date: getDateOffset(2) },
+        { id: 'tx-wk-3', type: 'expense', amount: 110, label: 'فاتورة الغاز الطبيعي', category: 'bills', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(3) },
+        { id: 'tx-wk-4', type: 'expense', amount: 700, label: 'دروس خصوصية ومذكرات لغات محمد', category: 'education', member: 'محمد', walletId: 'wallet-instapay', date: getDateOffset(3) },
+        { id: 'tx-wk-5', type: 'expense', amount: 950, label: 'اشتراك نادي وتدريب سباحة للأولاد', category: 'entertainment', member: 'محمد', walletId: 'wallet-bank-misr', date: getDateOffset(4) },
+        { id: 'tx-wk-6', type: 'expense', amount: 1480, label: 'عشاء ومطعم عائلي نهاية الأسبوع', category: 'entertainment', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(4) },
+        { id: 'tx-wk-7', type: 'expense', amount: 2400, label: 'شراء ملابس شتوية أطفال زارا', category: 'clothes', member: 'أية', walletId: 'wallet-cib-credit', date: getDateOffset(5) },
+        { id: 'tx-wk-8', type: 'expense', amount: 420, label: 'تصليح سباكة وفلاتر مياه بالمنزل', category: 'house', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(5) },
+        { id: 'tx-wk-9', type: 'expense', amount: 850, label: 'تغيير زيت وفلتر السيارة صيانة', category: 'transport', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(6) },
+        { id: 'tx-wk-10', type: 'expense', amount: 1650, label: 'طلبات سوبرماركت هايبر وان الأسبوعية', category: 'food', member: 'أية', walletId: 'wallet-ahly', date: getDateOffset(6) },
+        { id: 'tx-wk-11', type: 'expense', amount: 650, label: 'هدية ومجاملة زيارة عائلية', category: 'gifts', member: 'أية', walletId: 'wallet-instapay', date: getDateOffset(6) },
+        { id: 'tx-wk-12', type: 'expense', amount: 480, label: 'قصص ومستلزمات ألعاب تعليمية كيدز', category: 'kids', member: 'مريم', walletId: 'wallet-cash-safe', date: getDateOffset(3) },
+        { id: 'tx-wk-13', type: 'expense', amount: 500, label: 'عيادة أطفال واستشارة طبية', category: 'health', member: 'أية', walletId: 'wallet-instapay', date: getDateOffset(5) },
+        { id: 'tx-wk-inc-1', type: 'income', amount: 7500, label: 'مستحقات استشارات تقنية حرة', category: 'business', member: 'ماهر', walletId: 'wallet-instapay', date: getDateOffset(3) },
+        { id: 'tx-wk-wth-1', type: 'expense', amount: 4000, label: '[سحب نقدي ATM] سحب كاش لمصروف البيت والدروس', category: 'others', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(4) },
+
+        // ===================== باقي الشهر الحالي (dayOffset = 7 to 28) =====================
+        { id: 'tx-mo-1', type: 'expense', amount: 14000, label: 'قسط مدرسة تجريبي لغات سنوي', category: 'education', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(10) },
+        { id: 'tx-mo-2', type: 'expense', amount: 4500, label: 'شراء أحذية وبدل عمل ماهر', category: 'clothes', member: 'ماهر', walletId: 'wallet-cib-credit', date: getDateOffset(12) },
+        { id: 'tx-mo-3', type: 'expense', amount: 6800, label: 'طلبات تموين وبقالة شهرية كارفور', category: 'food', member: 'أية', walletId: 'wallet-ahly', date: getDateOffset(14) },
+        { id: 'tx-mo-4', type: 'expense', amount: 2200, label: 'قسط أجهزة منزلية بي تك', category: 'house', member: 'ماهر', walletId: 'wallet-bank-misr', date: getDateOffset(16) },
+        { id: 'tx-mo-5', type: 'expense', amount: 1400, label: 'تحاليل معمل البرج وفحوصات', category: 'health', member: 'أية', walletId: 'wallet-ahly', date: getDateOffset(18) },
+        { id: 'tx-mo-6', type: 'expense', amount: 3200, label: 'صيانة دورية للسيارة وتيل فرامل', category: 'transport', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(20) },
+        { id: 'tx-mo-7', type: 'expense', amount: 1500, label: 'هدية عيد ميلاد عائلي مجاملات', category: 'gifts', member: 'أية', walletId: 'wallet-instapay', date: getDateOffset(22) },
+        { id: 'tx-mo-8', type: 'expense', amount: 950, label: 'مستلزمات صيانة ونثريات منزلية', category: 'house', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(24) },
+        { id: 'tx-mo-9', type: 'expense', amount: 1800, label: 'كورسات لغات وتدريب برمجة محمد', category: 'education', member: 'محمد', walletId: 'wallet-instapay', date: getDateOffset(26) },
+        { id: 'tx-mo-10', type: 'expense', amount: 850, label: 'نثريات طوارئ وإكراميات أخرى', category: 'others', member: 'أخرى', walletId: 'wallet-cash-safe', date: getDateOffset(27) },
+
+        // إيداعات ودخل الشهر الحالي
+        { id: 'tx-mo-inc-1', type: 'income', amount: 52000, label: 'راتب ماهر الشهري الأساسي', category: 'salary', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(1) },
+        { id: 'tx-mo-inc-2', type: 'income', amount: 14000, label: 'مستحقات استشارات برمجية حرة', category: 'business', member: 'ماهر', walletId: 'wallet-instapay', date: getDateOffset(8) },
+        { id: 'tx-mo-inc-3', type: 'income', amount: 7500, label: 'عائد شهادات استثمار وبنك مصر', category: 'invest', member: 'ماهر', walletId: 'wallet-bank-misr', date: getDateOffset(15) },
+        { id: 'tx-mo-inc-4', type: 'income', amount: 10000, label: 'قبض جمعية عائلية شهرية', category: 'other_inc', member: 'أية', walletId: 'wallet-vodafone', date: getDateOffset(20) },
+
+        // ===================== حركات شهور سابقة للعمق الإحصائي (dayOffset = 30 to 75) =====================
+        { id: 'tx-prev-1', type: 'expense', amount: 12000, label: 'مصاريف وإيجار مصيف عائلي', category: 'entertainment', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(35) },
+        { id: 'tx-prev-2', type: 'expense', amount: 8500, label: 'شراء ملابس ومستلزمات خريف', category: 'clothes', member: 'أية', walletId: 'wallet-cib-credit', date: getDateOffset(42) },
+        { id: 'tx-prev-3', type: 'expense', amount: 5400, label: 'تجديد رخصة وتأمين السيارة', category: 'transport', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(50) },
+        { id: 'tx-prev-4', type: 'expense', amount: 15000, label: 'قسط مدرسة تجريبي لغات ترم أول', category: 'education', member: 'ماهر', walletId: 'wallet-bank-misr', date: getDateOffset(60) },
+        { id: 'tx-prev-5', type: 'expense', amount: 7200, label: 'مشتريات وبقالة شهرية كبرى', category: 'food', member: 'أية', walletId: 'wallet-ahly', date: getDateOffset(68) },
+        
+        { id: 'tx-prev-inc-1', type: 'income', amount: 52000, label: 'راتب ماهر للشهر السابق', category: 'salary', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(32) },
+        { id: 'tx-prev-inc-2', type: 'income', amount: 18000, label: 'مكافأة أداء ربع سنوية استثنائية', category: 'bonus', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(45) },
+        { id: 'tx-prev-inc-3', type: 'income', amount: 52000, label: 'راتب ماهر قبل شهرين', category: 'salary', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(62) },
+        { id: 'tx-prev-inc-4', type: 'income', amount: 8000, label: 'أرباح تداول واستثمار إضافية', category: 'invest', member: 'ماهر', walletId: 'wallet-instapay', date: getDateOffset(70) }
       ];
 
-      const catList = [
-        { id: 'food', name: 'طعام ومشتريات', labels: ['سوبرماركت كارفور', 'سعودي ماركت', 'خضروات وفواكه طازجة', 'لحوم ودواجن بلدي', 'أسماك ومأكولات بحرية', 'مخبوزات وحلويات', 'طلبات بقالة وسوبرماركت'] },
-        { id: 'transport', name: 'مواصلات وبنزين', labels: ['بنزين 95 للسيارة', 'تغيير زيت وصيانة دورية', 'أوبر ومشاوير عائلية', 'غسيل وتلميع السيارة', 'مترو ومواصلات عامة', 'كارتة ورسوم طريق'] },
-        { id: 'bills', name: 'فواتير والتزامات', labels: ['فاتورة الكهرباء الشهرية', 'فاتورة الغاز الطبيعي', 'فاتورة المياه', 'اشتراك الإنترنت المنزلي VDSL', 'شحن باقات الموبايل والمكالمات', 'صيانة وحراسة العمارة'] },
-        { id: 'daily', name: 'مصروف يومي', labels: ['مصروف يومي مدرسي', 'قهوة ونثريات العمل', 'فطار يومي ومخبوزات', 'مصروف شخصي ونثريات', 'شحن كارت فكة'] },
-        { id: 'house', name: 'مستلزمات منزل', labels: ['منظفات ومطهرات للمنزل', 'أدوات مطبخ وأواني', 'لمبات وصيانة كهرباء', 'أغطية ومفروشات غرف', 'صيانة سباكة وفلاتر'] },
-        { id: 'health', name: 'صحة وعلاج', labels: ['صيدلية العزبي أدوية شهرية', 'كشف عيادة أطفال', 'تحاليل معمل البرج', 'فيتامينات ومكملات غذائية', 'مستلزمات علاج الحاجة'] },
-        { id: 'clothes', name: 'ملابس وأحذية', labels: ['ملابس صيفية أطفال', 'أحذية رياضية محمد', 'ملابس بيت أية', 'شراء بدل وقمصان ماهر', 'ملابس ومستلزمات مريم'] },
-        { id: 'kids', name: 'ألعاب وأطفال', labels: ['بامبرز وحفاضات النونو', 'ألبان وسيريلاك أطفال', 'ألعاب تعليمية وتنمية مهارات', 'قصص وكتب أطفال', 'مستلزمات بيبي ونونو'] },
-        { id: 'entertainment', name: 'ترفيه وفسح', labels: ['فسحة وخروجة نهاية الأسبوع', 'مطعم وكافيه عائلي', 'سينما وملاهي للأولاد', 'اشتراك نادي ورياضة', 'ألعاب أطفال كيدزانيا'] },
-        { id: 'gifts', name: 'هدايا ومجاملات', labels: ['هدية عيد ميلاد عائلي', 'مجاملة وزيارة أقارب', 'عيدية ومناسبات أعياد', 'هدية نجاح وتفوق مدرسي'] },
-        { id: 'education', name: 'تعليم ودروس', labels: ['قسط مدرسة تجريبي لغات', 'دروس خصوصية محمد ومريم', 'كتب وملازم ومذكرات', 'كورسات لغات وتدريب', 'أدوات وكشاكيل دراسية'] },
-        { id: 'others', name: 'مصاريف أخرى', labels: ['نثريات متنوعة وطارئة', 'صدقات وزكاة مال', 'تصليح أجهزة منزلية', 'طوارئ وصيانة عامة'] }
-      ];
-
-      const incomeSources = [
-        { cat: 'salary', label: 'راتب ماهر الشهري الأساسي', minAmt: 45000, maxAmt: 52000, mems: ['ماهر'], w: 'wallet-ahly' },
-        { cat: 'invest', label: 'أرباح استثمار وبورصة وتداول', minAmt: 8000, maxAmt: 25000, mems: ['ماهر'], w: 'wallet-bank-misr' },
-        { cat: 'freelance', label: 'مستحقات استشارات تقنية وبرمجة', minAmt: 5000, maxAmt: 18000, mems: ['ماهر'], w: 'wallet-instapay' },
-        { cat: 'other_inc', label: 'قبض جمعية شهرية عائلية', minAmt: 6000, maxAmt: 12000, mems: ['أية'], w: 'wallet-vodafone' },
-        { cat: 'bonus', label: 'مكافأة أداء ربع سنوية', minAmt: 7000, maxAmt: 20000, mems: ['ماهر'], w: 'wallet-ahly' },
-        { cat: 'dividend', label: 'عائد شهادات ادخار واستثمار', minAmt: 3500, maxAmt: 9000, mems: ['الحاجة', 'ماهر'], w: 'wallet-bank-misr' }
-      ];
-
-      const merchants = [
-        'سوبرماركت كارفور سيتي سنتر', 'سعودي ماركت الشيخ زايد', 'هايبر وان 6 أكتوبر',
-        'صيدليات العزبي', 'صيدليات 19011', 'محطة وقود وطنية مصر',
-        'محطة وقود تشيل أوت ChillOut', 'متاجر زارا Zara للملابس', 'مكتبة سمير وعلي',
-        'مطاعم وكافيهات أروما', 'مستشفى الشروق التخصصي', 'بي تك للأجهزة المنزلية'
-      ];
-
-      function makeReceiptSvg(txId, label, amount, date, member, merchant) {
-        return "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 560' width='400' height='560'>" +
-          "<rect width='400' height='560' fill='%23ffffff' rx='12'/>" +
-          "<rect x='15' y='15' width='370' height='530' fill='none' stroke='%23e2e8f0' stroke-width='2' rx='8'/>" +
-          "<path d='M 20 40 L 380 40' stroke='%230284c7' stroke-width='3'/>" +
-          "<text x='200' y='32' font-family='Segoe UI, sans-serif' font-size='16' font-weight='bold' fill='%230f172a' text-anchor='middle'>فاتورة مشتريات إلكترونية ضريبية</text>" +
-          "<text x='200' y='70' font-family='Segoe UI, sans-serif' font-size='20' font-weight='900' fill='%230284c7' text-anchor='middle'>" + merchant + "</text>" +
-          "<text x='200' y='92' font-family='Segoe UI, sans-serif' font-size='11' fill='%2364748b' text-anchor='middle'>الرقم الضريبي: 301294819200003 | فرع العائلة المعتمد</text>" +
-          "<line x1='30' y1='108' x2='370' y2='108' stroke='%23cbd5e1' stroke-dasharray='4'/>" +
-          "<text x='360' y='130' font-family='Segoe UI, sans-serif' font-size='12' fill='%23475569' text-anchor='end'>رقم العملية: #" + txId + "</text>" +
-          "<text x='40' y='130' font-family='Segoe UI, sans-serif' font-size='12' fill='%23475569' text-anchor='start'>التاريخ: " + date + "</text>" +
-          "<text x='360' y='150' font-family='Segoe UI, sans-serif' font-size='12' fill='%23475569' text-anchor='end'>المسؤول: " + member + "</text>" +
-          "<text x='40' y='150' font-family='Segoe UI, sans-serif' font-size='12' fill='%2310b981' font-weight='bold' text-anchor='start'>الحالة: مسدد بالكامل ✓</text>" +
-          "<line x1='30' y1='165' x2='370' y2='165' stroke='%23cbd5e1' stroke-width='1.5'/>" +
-          "<rect x='30' y='175' width='340' height='28' fill='%23f8fafc' rx='4'/>" +
-          "<text x='350' y='194' font-family='Segoe UI, sans-serif' font-size='12' font-weight='bold' fill='%23334155' text-anchor='end'>البيان / الصنف</text>" +
-          "<text x='50' y='194' font-family='Segoe UI, sans-serif' font-size='12' font-weight='bold' fill='%23334155' text-anchor='start'>المبلغ (ج.م)</text>" +
-          "<text x='350' y='230' font-family='Segoe UI, sans-serif' font-size='13' font-weight='600' fill='%231e293b' text-anchor='end'>" + label.slice(0, 30) + "</text>" +
-          "<text x='50' y='230' font-family='Segoe UI, sans-serif' font-size='13' font-weight='bold' fill='%23ef4444' text-anchor='start'>" + amount.toFixed(2) + "</text>" +
-          "<text x='350' y='260' font-family='Segoe UI, sans-serif' font-size='11' fill='%2364748b' text-anchor='end'>رسوم خدمة وتغليف إلكتروني</text>" +
-          "<text x='50' y='260' font-family='Segoe UI, sans-serif' font-size='11' fill='%2364748b' text-anchor='start'>0.00</text>" +
-          "<text x='350' y='290' font-family='Segoe UI, sans-serif' font-size='11' fill='%2364748b' text-anchor='end'>ضريبة القيمة المضافة (14% مشمولة)</text>" +
-          "<text x='50' y='290' font-family='Segoe UI, sans-serif' font-size='11' fill='%2364748b' text-anchor='start'>" + (amount * 0.14 / 1.14).toFixed(2) + "</text>" +
-          "<line x1='30' y1='315' x2='370' y2='315' stroke='%23cbd5e1' stroke-width='2'/>" +
-          "<rect x='30' y='325' width='340' height='45' fill='%23f0fdf4' stroke='%2386efac' rx='6'/>" +
-          "<text x='350' y='352' font-family='Segoe UI, sans-serif' font-size='14' font-weight='bold' fill='%23166534' text-anchor='end'>الإجمالي الكلي المدفوع:</text>" +
-          "<text x='50' y='354' font-family='Segoe UI, sans-serif' font-size='18' font-weight='900' fill='%2315803d' text-anchor='start'>" + amount.toFixed(2) + " ج.م</text>" +
-          "<circle cx='310' cy='440' r='30' fill='none' stroke='%23dc2626' stroke-width='2' stroke-dasharray='3' opacity='0.75'/>" +
-          "<text x='310' y='437' font-family='Segoe UI, sans-serif' font-size='8' font-weight='bold' fill='%23dc2626' text-anchor='middle'>ختم الدفع الإلكتروني</text>" +
-          "<text x='310' y='448' font-family='Segoe UI, sans-serif' font-size='8' fill='%23dc2626' text-anchor='middle'>معتمد - تم التدقيق</text>" +
-          "<text x='200' y='510' font-family='Segoe UI, sans-serif' font-size='11' fill='%2394a3b8' text-anchor='middle'>شكراً لتعاملكم - تطبيق إدارة مصروفات العائلة</text>" +
-          "</svg>";
-      }
-
-      // مولد أرقام شبه عشوائي حتمي (Deterministic PRNG) لضمان ثبات البيانات وتكرارها السريع
-      let seed = 1234567;
-      function pseudoRandom() {
-        seed = (seed * 9301 + 49297) % 233280;
-        return seed / 233280;
-      }
-      function randInt(min, max) {
-        return Math.floor(min + pseudoRandom() * (max - min + 1));
-      }
-
-      const txs = [];
-      const TOTAL_COUNT = 10000;
-      const RECEIPTS_COUNT = 100;
-
-      // اختيار 100 مؤشر حتمي للحركات التي تحمل فواتير مصورة
-      // 1200 حركة دخل و 8800 حركة مصروف
-      const incomeIndices = new Set();
-      while (incomeIndices.size < 1200) {
-        incomeIndices.add(randInt(0, TOTAL_COUNT - 1));
-      }
-
-      // اختيار 100 حركة مصروف عشوائية بالضبط لربطها بفواتير ضريبية إلكترونية واقعية
-      const receiptIndices = new Set();
-      // ضمان وجود 10 فواتير إلكترونية في أول 30 حركة لظهورها مباشرة في واجهة العمليات والأرشيف
-      for (let i = 0; i < 30 && receiptIndices.size < 10; i++) {
-        if (!incomeIndices.has(i)) {
-          receiptIndices.add(i);
-        }
-      }
-      // وتوزيع باقي الفواتير بالتساوي حتى اكتمال 100 فاتورة ضريبية بالضبط
-      while (receiptIndices.size < RECEIPTS_COUNT) {
-        const candidate = randInt(0, TOTAL_COUNT - 1);
-        if (!incomeIndices.has(candidate)) {
-          receiptIndices.add(candidate);
-        }
-      }
-
-      const totalDaysSpan = 660; // من مطلع 2025 حتى أكتوبر 2026
-
-      for (let i = 0; i < TOTAL_COUNT; i++) {
-        let dayOffset = randInt(0, totalDaysSpan);
-        // تخصيص أول 60 حركة لليوم والأمس والأسبوع الحالي لضمان امتلاء فلاتر اليوم والأسبوع
-        if (i < 20) {
-          dayOffset = 0; // اليوم
-        } else if (i < 40) {
-          dayOffset = 1; // أمس
-        } else if (i < 100) {
-          dayOffset = randInt(2, 6); // هذا الأسبوع
-        } else if (i < 500) {
-          dayOffset = randInt(7, 28); // هذا الشهر
-        }
-
-        const txDate = new Date(today);
-        txDate.setDate(txDate.getDate() - dayOffset);
-        const dateStr = fmtDate(txDate);
-
-        const txId = 'tx-' + (i + 1);
-        const isReceipt = receiptIndices.has(i);
-
-        if (incomeIndices.has(i)) {
-          const incObj = incomeSources[i % incomeSources.length];
-          const amt = Math.round((incObj.minAmt + pseudoRandom() * (incObj.maxAmt - incObj.minAmt)) * 100) / 100;
-          const mem = incObj.mems[i % incObj.mems.length];
-          const w = incObj.w;
-
-          txs.push({
-            id: txId,
-            type: 'income',
-            amount: amt,
-            label: incObj.label,
-            category: incObj.cat,
-            member: mem,
-            walletId: w,
-            date: dateStr
-          });
-        } else {
-          const cat = catList[i % catList.length];
-          const label = cat.labels[i % cat.labels.length];
-          const w = walletIds[i % walletIds.length];
-          const mem = membersList[i % membersList.length];
-
-          let baseAmt = 120;
-          if (cat.id === 'food' || cat.id === 'house') baseAmt = 450 + (i % 1800);
-          else if (cat.id === 'transport') baseAmt = 90 + (i % 650);
-          else if (cat.id === 'bills') baseAmt = 350 + (i % 1400);
-          else if (cat.id === 'health') baseAmt = 220 + (i % 1600);
-          else if (cat.id === 'clothes') baseAmt = 400 + (i % 2500);
-          else if (cat.id === 'kids') baseAmt = 180 + (i % 950);
-          else if (cat.id === 'education') baseAmt = 500 + (i % 3200);
-          else if (cat.id === 'entertainment') baseAmt = 250 + (i % 1800);
-          else baseAmt = 80 + (i % 600);
-
-          const amt = Math.round(baseAmt * 100) / 100;
-
-          const txItem = {
-            id: txId,
-            type: 'expense',
-            amount: amt,
-            label: label,
-            category: cat.id,
-            member: mem,
-            walletId: w,
-            date: dateStr
-          };
-
-          if (isReceipt) {
-            const merch = merchants[i % merchants.length];
-            txItem.receipt = makeReceiptSvg(txId, label, amt, dateStr, mem, merch);
-          }
-
-          txs.push(txItem);
-        }
-      }
-
-      // ترتيب الحركات من الأحدث إلى الأقدم
+      // ترتيب الحركات تنازلياً من الأحدث إلى الأقدم
       txs.sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
       return txs;
     }
 
-    function resetToDemoData() {
-      state.transactions = generateRichDemoTransactions();
-      saveTx();
-      renderUI();
-      showToast('✨ تم تحميل وتفعيل 10,000 عملية منوعة مع 100 فاتورة موثقة بنجاح!');
+    function generateRichDemoRequests() {
+      const now = new Date();
+      const todayStr = getLocalDateStr(now);
+      const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+      const tomorrowStr = getLocalDateStr(tomorrow);
+      const nextWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 5);
+      const nextWeekStr = getLocalDateStr(nextWeek);
+
+      return [
+        { id: 'req-1', member: 'أية', amount: 1800, reason: 'شراء ملابس شتوية للأولاد وتجهيزات', date: tomorrowStr, category: 'clothes', status: 'pending', createdBy: 'أية', timestamp: 'اليوم 10:30 ص' },
+        { id: 'req-2', member: 'محمد', amount: 350, reason: 'أدوات هندسية ومجسمات دراسية للمدرسة', date: todayStr, category: 'kids', status: 'pending', createdBy: 'محمد', timestamp: 'اليوم 09:15 ص' },
+        { id: 'req-3', member: 'مريم', amount: 650, reason: 'مذكرات لغات ومراجعات شهرية وملازم', date: todayStr, category: 'education', status: 'approved', createdBy: 'مريم', timestamp: 'أمس 04:30 م' },
+        { id: 'req-4', member: 'أية', amount: 3200, reason: 'تجديد شمعات فلتر مياه ومفروشات منزل', date: nextWeekStr, category: 'house', status: 'approved', createdBy: 'أية', timestamp: 'أمس 01:15 م' },
+        { id: 'req-5', member: 'الحاجة', amount: 950, reason: 'أدوية صيدلية العزبي الشهرية سكر وضغط', date: tomorrowStr, category: 'health', status: 'pending', createdBy: 'الحاجة', timestamp: 'اليوم 11:00 ص' },
+        { id: 'req-6', member: 'ماهر', amount: 1400, reason: 'صيانة دورية وتغيير تيل فرامل للسيارة', date: nextWeekStr, category: 'transport', status: 'pending', createdBy: 'ماهر', timestamp: 'اليوم 08:00 ص' }
+      ];
     }
 
+    function resetToDemoData() {
+      localStorage.removeItem('family_monefy_v2_tx');
+      localStorage.removeItem('family_monefy_txs');
+      localStorage.removeItem('family_monefy_requests');
+      localStorage.removeItem('family_monefy_notes');
+      localStorage.removeItem('family_monefy_debts');
+      localStorage.removeItem('family_monefy_wallets');
+      localStorage.setItem('family_monefy_version', '3.5.0');
+
+      state.wallets = [
+        { id: 'wallet-ahly', name: 'البنك الأهلي المصري', type: 'bank', balance: 85400, icon: 'fa-building-columns', color: '#10b981' },
+        { id: 'wallet-bank-misr', name: 'بنك مصر (شهادات وادخار)', type: 'bank', balance: 42500, icon: 'fa-landmark', color: '#f59e0b' },
+        { id: 'wallet-instapay', name: 'إنستاباي InstaPay', type: 'digital', balance: 14200, icon: 'fa-bolt', color: '#8b5cf6' },
+        { id: 'wallet-vodafone', name: 'فودافون كاش', type: 'wallet', balance: 6800, icon: 'fa-mobile-screen', color: '#ef4444' },
+        { id: 'wallet-cash-safe', name: 'الخزينة النقدية (كاش البيت)', type: 'cash', balance: 8500, icon: 'fa-money-bill-1-wave', color: '#06b6d4' },
+        { id: 'wallet-cib-credit', name: 'فيزا مشتريات CIB', type: 'credit', balance: 15000, icon: 'fa-credit-card', color: '#3b82f6' }
+      ];
+      localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
+
+      state.transactions = generateRichDemoTransactions();
+      saveTx();
+
+      state.moneyRequests = generateRichDemoRequests();
+      localStorage.setItem('family_monefy_requests', JSON.stringify(state.moneyRequests));
+
+      state.period = 'month';
+      setAppPeriod('month');
+      renderUI();
+      showToast('✨ تم مسح وتجديد بيانات النظام بالكامل وتوليد حركات وطلبات وسحب واقعية بنجاح!');
+    }
 
     function getFilteredTransactions() {
       let list = [...(state.transactions || [])];
 
-      // 1. تصفية أفراد العائلة (مع دعم كامل لبند صدقات وأخرى)
+      // 1. تصفية أفراد العائلة (مع دعم كامل لبند أخرى)
       if (state.currentMemberFilter && state.currentMemberFilter !== 'الكل') {
-        if (state.currentMemberFilter === 'صدقات وأخرى') {
+        if (state.currentMemberFilter === 'أخرى' || state.currentMemberFilter === 'صدقات وأخرى') {
           list = list.filter(t => 
-            t.member === 'صدقات وأخرى' || 
+            t.member === 'أخرى' || 
+            t.member === 'صدقات وأخرى' ||
             t.category === 'others' || 
             t.category === 'charity' || 
-            (t.label && (t.label.includes('صدقة') || t.label.includes('تبرع') || t.label.includes('زكاة') || t.label.includes('مسجد') || t.label.includes('أخرى') || t.label.includes('إكرامية')))
+            (t.label && (t.label.includes('صدقة') || t.label.includes('تبرع') || t.label.includes('زكاة') || t.label.includes('مسجد') || t.label.includes('أخرى') || t.label.includes('إكرامية') || t.label.includes('نثريات')))
           );
         } else {
           list = list.filter(t => t.member === state.currentMemberFilter);
@@ -8543,73 +8142,88 @@ class="kpi-three-strip">
         list = list.filter(t => t.walletId === state.currentWalletId);
       }
 
-      // 3. فلترة الفترة الزمنية بدقة تامة ودعم اليوم والأسبوع والشهر
+      // 3. فلترة الفترة الزمنية بدقة تامة بتوقيت التقويم المحلي
       const now = new Date();
-      const todayStr = now.toISOString().split('T')[0];
+      const todayStr = getLocalDateStr(now);
 
       if (state.period === 'day' || state.period === 'today') {
         list = list.filter(t => t.date === todayStr);
       } else if (state.period === 'week') {
-        const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-        const sevenDaysAgoStr = sevenDaysAgo.toISOString().split('T')[0];
+        const sevenDaysAgo = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 7);
+        const sevenDaysAgoStr = getLocalDateStr(sevenDaysAgo);
         list = list.filter(t => t.date && t.date >= sevenDaysAgoStr && t.date <= todayStr);
       } else if (state.period === 'month') {
-        const curYearMonth = now.toISOString().slice(0, 7);
+        const curYearMonth = todayStr.slice(0, 7);
         list = list.filter(t => t.date && t.date.startsWith(curYearMonth));
       } else if (state.period === 'custom' && state.customDateRange) {
         const { from, to } = state.customDateRange;
         if (from && to) {
-          list = list.filter(t => t.date >= from && t.date <= to);
+          list = list.filter(t => t.date && t.date >= from && t.date <= to);
+        } else if (from) {
+          list = list.filter(t => t.date && t.date >= from);
+        } else if (to) {
+          list = list.filter(t => t.date && t.date <= to);
         }
       }
+      // إذا كانت الفترة 'all' تترك القائمة كاملة
 
-      // 4. فلترة البحث
-      if (state.searchQuery && state.searchQuery.trim() !== '') {
-        const q = state.searchQuery.trim().toLowerCase();
-        list = list.filter(t => {
-          const catName = getCategoryName(t.category).toLowerCase();
-          const lbl = (t.label || '').toLowerCase();
-          const mem = (t.member || '').toLowerCase();
-          const amt = String(t.amount || '');
-          return catName.includes(q) || lbl.includes(q) || mem.includes(q) || amt.includes(q);
-        });
-      }
-
-      return list.sort((a, b) => new Date(b.date) - new Date(a.date));
+      return list;
     }
 
-    // =========================================================================
-    // دالة التحديث الشامل للواجهة (Render UI)
-    // =========================================================================
     function renderUI() {
-      const filtered = getFilteredTransactions();
-
-      // 1. حساب الإجماليات الثلاثة: دخل، مصروف، رصيد
-      let totalInc = 0;
-      let totalExp = 0;
-      filtered.forEach(t => {
+      // 1. حساب الرصيد الفعلي الحالي وإجمالي السحب والإيداع (ثابت لكافة الفترات دون فلترة زمنية إطلاقاً)
+      let allTxs = state.transactions || [];
+      if (state.currentWalletId && state.currentWalletId !== 'all') {
+        allTxs = allTxs.filter(t => t.walletId === state.currentWalletId);
+      }
+      let actualTotalInc = 0;
+      let actualTotalExp = 0;
+      allTxs.forEach(t => {
         const amt = Number(t.amount) || 0;
-        if (t.type === 'income') totalInc += amt;
-        else totalExp += amt;
+        if (t.type === 'income') actualTotalInc += amt;
+        else actualTotalExp += amt;
       });
-      const balance = totalInc - totalExp;
+      const actualBalance = actualTotalInc - actualTotalExp;
 
-      // تحديث بنود الرصيد الثلاثة في الصفحة الأولى
+      // تحديث البطاقات الثلاث أعلى الصفحة (تعرض الرصيد الفعلي الحالي الدائم)
       const elInc = document.getElementById('topCardIncome');
       const elExp = document.getElementById('topCardExpense');
       const elBal = document.getElementById('topCardBalance');
 
-      if (elInc) elInc.textContent = '+ ' + formatMoney(totalInc);
-      if (elExp) elExp.textContent = '- ' + formatMoney(totalExp);
+      if (elInc) elInc.textContent = '+ ' + formatMoney(actualTotalInc);
+      if (elExp) elExp.textContent = '- ' + formatMoney(actualTotalExp);
       if (elBal) {
-        elBal.textContent = (balance >= 0 ? '' : '- ') + formatMoney(Math.abs(balance));
-        elBal.style.color = balance >= 0 ? '#38bdf8' : '#ef4444';
+        elBal.textContent = (actualBalance >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(actualBalance));
+        elBal.style.color = actualBalance >= 0 ? '#10b981' : '#f43f5e';
       }
 
-      // 2. تحديث شبكة بنود المصاريف فقط
+      // 2. الحركات المفلترة بحسب الفترة الزمنية وباقي الفلاتر (تطبق على شبكة البنود وسجل العمليات والشارتات)
+      const filtered = getFilteredTransactions();
+      let periodExp = 0;
+      filtered.forEach(t => {
+        if (t.type === 'expense') periodExp += (Number(t.amount) || 0);
+      });
+
+      // تحديث شارة اسم الفترة وإجمالي مصروفها في شريط رأس البنود
+      const p = state.period || 'month';
+      const now = new Date();
+      const periodLabels = {
+        'today': 'اليوم (' + now.toLocaleDateString('ar-EG', { day: 'numeric', month: 'long' }) + ')',
+        'day': 'اليوم',
+        'week': 'الأسبوع الحالي (آخر 7 أيام)',
+        'month': 'الشهر الحالي (' + now.toLocaleDateString('ar-EG', { month: 'long', year: 'numeric' }) + ')',
+        'all': 'كافة الفترات (سجل العائلة الكامل)',
+        'custom': 'فترة مخصصة'
+      };
+      const hintEl = document.getElementById('activeCategoryPeriodHint');
+      if (hintEl) {
+        hintEl.textContent = `${periodLabels[p] || p}: - ${formatMoney(periodExp)}`;
+      }
+
+      // 3. تحديث شبكة بنود المصاريف بألوانها وتفاصيلها الموزونة
       renderCategoriesGrid(filtered);
 
-      // 3. تمييز الأفاتار المختار في الشريط العلوي الثابت
+      // 4. تمييز الأفاتار المختار في الشريط العلوي
       const memberCards = document.querySelectorAll('.avatar-card');
       memberCards.forEach(card => {
         const m = card.getAttribute('data-member');
@@ -8620,36 +8234,31 @@ class="kpi-three-strip">
         }
       });
 
-      // 4. تحديث العمليات وقائمة السجلات والأرشيف
+      // 5. تحديث العمليات وقائمة السجلات والأرشيف
       renderOperationsList(filtered);
       renderActivityLogUI();
 
-      // 5. تحديث صفحة التحليلات والشارتات فوراً (سواء كانت الصفحة مفتوحة حالياً أو عند التبديل إليها)
+      // 6. تحديث صفحة المؤشرات والشارتات فوراً
       try {
         updateAnalyticsChart();
       } catch(e) {
         console.warn('updateAnalyticsChart error:', e);
       }
 
-      // إذا كانت تصفية تصنيف معينة مفتوحة، يتم تحديث البانر الخاص بها
       if (state.activeCategoryFilter && typeof showCategoryDetailBanner === 'function') {
         showCategoryDetailBanner(state.activeCategoryFilter);
       }
 
-      // 6. تحديث الصفحتين 4 و 5
       if (typeof renderRequestsList === 'function') renderRequestsList();
       if (typeof renderExpectedList === 'function') renderExpectedList();
     }
 
-    // =========================================================================
-    // شبكة بنود المصاريف فقط (Expense Categories Grid)
-    // =========================================================================
     function renderCategoriesGrid(filtered) {
       const grid = document.getElementById('catGrid');
       if (!grid) return;
       grid.innerHTML = '';
 
-      // حساب إجمالي مصروف كل تصنيف
+      // حساب إجمالي مصروف كل تصنيف خلال الفترة المحددة
       const catTotals = {};
       (filtered || []).forEach(t => {
         if (t.type === 'expense') {
@@ -8660,59 +8269,177 @@ class="kpi-three-strip">
         }
       });
 
+      // باليت ألوان وتنسيقات ودية واحترافية فريدة لكل بند (Friendly & Professional)
+      const CATEGORY_THEMES = {
+        food: {
+          darkBg: 'linear-gradient(150deg, #09281e 0%, #0d382c 100%)',
+          lightBg: 'linear-gradient(150deg, #ecfdf5 0%, #d1fae5 100%)',
+          border: '#10b981',
+          iconBg: 'linear-gradient(135deg, #10b981, #059669)',
+          pillBg: 'rgba(16, 185, 129, 0.22)',
+          pillBorder: 'rgba(16, 185, 129, 0.5)',
+          pillText: '#34d399'
+        },
+        daily: {
+          darkBg: 'linear-gradient(150deg, #2e1c07 0%, #42280a 100%)',
+          lightBg: 'linear-gradient(150deg, #fffbeb 0%, #fef3c7 100%)',
+          border: '#f59e0b',
+          iconBg: 'linear-gradient(135deg, #f59e0b, #d97706)',
+          pillBg: 'rgba(245, 158, 11, 0.22)',
+          pillBorder: 'rgba(245, 158, 11, 0.5)',
+          pillText: '#fbbf24'
+        },
+        transport: {
+          darkBg: 'linear-gradient(150deg, #07223b 0%, #0b3459 100%)',
+          lightBg: 'linear-gradient(150deg, #f0f9ff 0%, #e0f2fe 100%)',
+          border: '#0284c7',
+          iconBg: 'linear-gradient(135deg, #0284c7, #0369a1)',
+          pillBg: 'rgba(2, 132, 199, 0.22)',
+          pillBorder: 'rgba(2, 132, 199, 0.5)',
+          pillText: '#38bdf8'
+        },
+        bills: {
+          darkBg: 'linear-gradient(150deg, #2e1506 0%, #421e08 100%)',
+          lightBg: 'linear-gradient(150deg, #fff7ed 0%, #ffedd5 100%)',
+          border: '#f97316',
+          iconBg: 'linear-gradient(135deg, #f97316, #ea580c)',
+          pillBg: 'rgba(249, 115, 22, 0.22)',
+          pillBorder: 'rgba(249, 115, 22, 0.5)',
+          pillText: '#fb923c'
+        },
+        house: {
+          darkBg: 'linear-gradient(150deg, #1c0e3a 0%, #291454 100%)',
+          lightBg: 'linear-gradient(150deg, #f5f3ff 0%, #ede9fe 100%)',
+          border: '#8b5cf6',
+          iconBg: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+          pillBg: 'rgba(139, 92, 246, 0.22)',
+          pillBorder: 'rgba(139, 92, 246, 0.5)',
+          pillText: '#a78bfa'
+        },
+        health: {
+          darkBg: 'linear-gradient(150deg, #300814 0%, #440c1d 100%)',
+          lightBg: 'linear-gradient(150deg, #fff1f2 0%, #ffe4e6 100%)',
+          border: '#f43f5e',
+          iconBg: 'linear-gradient(135deg, #f43f5e, #e11d48)',
+          pillBg: 'rgba(244, 63, 94, 0.22)',
+          pillBorder: 'rgba(244, 63, 94, 0.5)',
+          pillText: '#fb7185'
+        },
+        clothes: {
+          darkBg: 'linear-gradient(150deg, #2e0a24 0%, #440e35 100%)',
+          lightBg: 'linear-gradient(150deg, #fdf2f8 0%, #fce7f3 100%)',
+          border: '#ec4899',
+          iconBg: 'linear-gradient(135deg, #ec4899, #db2777)',
+          pillBg: 'rgba(236, 72, 153, 0.22)',
+          pillBorder: 'rgba(236, 72, 153, 0.5)',
+          pillText: '#f472b6'
+        },
+        kids: {
+          darkBg: 'linear-gradient(150deg, #06242c 0%, #0b3844 100%)',
+          lightBg: 'linear-gradient(150deg, #ecfeff 0%, #cffafe 100%)',
+          border: '#06b6d4',
+          iconBg: 'linear-gradient(135deg, #06b6d4, #0891b2)',
+          pillBg: 'rgba(6, 182, 212, 0.22)',
+          pillBorder: 'rgba(6, 182, 212, 0.5)',
+          pillText: '#22d3ee'
+        },
+        entertainment: {
+          darkBg: 'linear-gradient(150deg, #082622 0%, #0c3c35 100%)',
+          lightBg: 'linear-gradient(150deg, #f0fdfa 0%, #ccfbf1 100%)',
+          border: '#14b8a6',
+          iconBg: 'linear-gradient(135deg, #14b8a6, #0d9488)',
+          pillBg: 'rgba(20, 184, 166, 0.22)',
+          pillBorder: 'rgba(20, 184, 166, 0.5)',
+          pillText: '#2dd4bf'
+        },
+        gifts: {
+          darkBg: 'linear-gradient(150deg, #220b38 0%, #341054 100%)',
+          lightBg: 'linear-gradient(150deg, #faf5ff 0%, #f3e8ff 100%)',
+          border: '#a855f7',
+          iconBg: 'linear-gradient(135deg, #a855f7, #9333ea)',
+          pillBg: 'rgba(168, 85, 247, 0.22)',
+          pillBorder: 'rgba(168, 85, 247, 0.5)',
+          pillText: '#c084fc'
+        },
+        education: {
+          darkBg: 'linear-gradient(150deg, #09173a 0%, #0e2456 100%)',
+          lightBg: 'linear-gradient(150deg, #eff6ff 0%, #dbeafe 100%)',
+          border: '#3b82f6',
+          iconBg: 'linear-gradient(135deg, #3b82f6, #2563eb)',
+          pillBg: 'rgba(59, 130, 246, 0.22)',
+          pillBorder: 'rgba(59, 130, 246, 0.5)',
+          pillText: '#60a5fa'
+        },
+        others: {
+          darkBg: 'linear-gradient(150deg, #151d2a 0%, #202b3d 100%)',
+          lightBg: 'linear-gradient(150deg, #f8fafc 0%, #f1f5f9 100%)',
+          border: '#64748b',
+          iconBg: 'linear-gradient(135deg, #64748b, #475569)',
+          pillBg: 'rgba(100, 116, 139, 0.22)',
+          pillBorder: 'rgba(100, 116, 139, 0.5)',
+          pillText: '#94a3b8'
+        }
+      };
+
+      const isLight = document.body.classList.contains('light-theme');
+
       EXPENSE_CATEGORIES.forEach(cat => {
         const spent = catTotals[cat.id] || 0;
+        const theme = CATEGORY_THEMES[cat.id] || {
+          darkBg: 'linear-gradient(150deg, #151d2a 0%, #202b3d 100%)',
+          lightBg: 'linear-gradient(150deg, #f8fafc 0%, #f1f5f9 100%)',
+          border: cat.color,
+          iconBg: `linear-gradient(135deg, ${cat.color}, #334155)`,
+          pillBg: 'rgba(255,255,255,0.1)',
+          pillBorder: 'rgba(255,255,255,0.2)',
+          pillText: '#ffffff'
+        };
+
         const card = document.createElement('div');
-        card.className = 'cat-card';
+        card.className = `cat-card cat-theme-${cat.id}`;
         card.setAttribute('data-cat-id', cat.id);
 
-        // تنسيق الألوان المتناسقة لكل مربع حسب تصنيفه
-        card.style.background = `linear-gradient(155deg, rgba(15, 23, 42, 0.88), ${cat.color}18)`;
-        card.style.borderColor = `${cat.color}38`;
-        card.style.boxShadow = `0 4px 14px rgba(0, 0, 0, 0.28)`;
+        card.style.background = isLight ? theme.lightBg : theme.darkBg;
+        card.style.borderColor = `${theme.border}77`;
+        card.style.boxShadow = isLight ? '0 3px 10px rgba(0,0,0,0.06)' : `0 4px 16px rgba(0,0,0,0.35)`;
 
-        // تنسيق ذكي للأرقام والعملة لتتناسق تماماً مع حجم المربع دون تكدس أو خروج
+        // تنسيق ذكي متناسق للأرقام والعملة مع حجم المربع
         let amtDisplay = '0.00';
-        let fontSize = '0.74rem';
+        let fontSz = '0.78rem';
         if (spent > 0) {
-          if (spent >= 1000) {
-            amtDisplay = '- ' + Math.round(spent).toLocaleString('en-US');
-          } else {
-            amtDisplay = '- ' + spent.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-          }
-          if (spent >= 100000) fontSize = '0.62rem';
-          else if (spent >= 10000) fontSize = '0.68rem';
-          else fontSize = '0.74rem';
+          amtDisplay = '- ' + Math.round(spent).toLocaleString('en-US');
+          if (spent >= 100000) fontSz = '0.62rem';
+          else if (spent >= 10000) fontSz = '0.68rem';
+          else fontSz = '0.74rem';
         }
 
-        const pillBg = spent > 0 ? 'rgba(239, 68, 68, 0.14)' : 'rgba(148, 163, 184, 0.08)';
-        const pillBorder = spent > 0 ? 'rgba(239, 68, 68, 0.32)' : 'rgba(148, 163, 184, 0.16)';
-        const pillColor = spent > 0 ? '#f87171' : '#94a3b8';
+        const pillBg = spent > 0 ? theme.pillBg : (isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255, 255, 255, 0.05)');
+        const pillBorder = spent > 0 ? theme.pillBorder : (isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255, 255, 255, 0.12)');
+        const pillTextColor = spent > 0 ? (isLight ? '#0f172a' : '#ffffff') : '#94a3b8';
 
         card.innerHTML = `
-          <!-- 1. أيقونة التصنيف مع هالة لونية متناسقة -->
+          <!-- 1. أيقونة التصنيف المتألقة بلونها الخاص -->
           <div class="cat-icon-bubble" 
-               style="background: linear-gradient(135deg, ${cat.color}28, ${cat.color}10); color: ${cat.color}; border: 1.5px solid ${cat.color}65; box-shadow: 0 4px 12px ${cat.color}25;" 
+               style="background: ${theme.iconBg}; box-shadow: 0 4px 12px ${theme.border}45;" 
                onclick="openTxModal('expense', '${cat.id}')" 
-               title="تسجيل مصروف جديد فوراً في (${cat.name})">
+               title="تسجيل مصروف سريع في (${cat.name})">
             <i class="fa-solid ${cat.icon}"></i>
           </div>
 
-          <!-- اسم البند -->
+          <!-- 2. اسم البند -->
           <span class="cat-card-name" 
                 onclick="openTxModal('expense', '${cat.id}')" 
                 title="تسجيل صرف في (${cat.name})">
             ${cat.name}
           </span>
 
-          <!-- 2. بطاقة القيمة: الأرقام والعملة متناسقة بدقة مع حجم المربع -->
+          <!-- 3. زر القيمة المنسق بدقة مع العملة والحجم دون تكدس -->
           <button class="cat-card-val-btn ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
                   onclick="openCategoryAnalysis('${cat.id}')" 
                   title="عرض تفاصيل وتحليل (${cat.name}) للفترة المحددة"
-                  style="background: ${pillBg}; border: 1px solid ${pillBorder}; color: ${pillColor}; padding: 4px 4px; display: flex; align-items: center; justify-content: center; gap: 2px;">
-            <i class="fa-solid fa-chart-simple" style="font-size: 0.60rem; opacity: 0.85;"></i>
-            <span style="font-size: ${fontSize}; font-weight: 900; letter-spacing: -0.2px;">${amtDisplay}</span>
-            <span style="font-size: 0.58rem; font-weight: 700; opacity: 0.85; margin-right: 1px;">ج.م</span>
+                  style="background: ${pillBg}; border: 1px solid ${pillBorder}; color: ${pillTextColor};">
+            <span style="font-size: ${fontSz}; font-weight: 800; letter-spacing: -0.2px;">${amtDisplay}</span>
+            <span style="font-size: 0.58rem; font-weight: 700; opacity: 0.85; margin-right: 2px;">ج.م</span>
           </button>
         `;
         grid.appendChild(card);
@@ -10661,9 +10388,7 @@ function submitMoneyRequest() {
     }
 
     // توافق مع الاستدعاءات القديمة
-    function toggleTxCalcPad() {
-      openCalculatorModal(document.getElementById('inpTxAmount')?.value);
-    }
+    
 
     function toggleMiniCalc() {
       openCalculatorModal();
@@ -11437,13 +11162,7 @@ function exportActivityLogExcel() {
       resetScreen: false
     };
 
-    function toggleMiniCalc() {
-      const widget = document.getElementById('miniCalcWidget');
-      const willOpen = !widget.classList.contains('open');
-      widget.classList.toggle('open');
-      if (willOpen) pushModalState('miniCalcWidget');
-      else popModalState('miniCalcWidget');
-    }
+    
 
     function calcAction(type, val) {
       const screen = document.getElementById('calcScreenVal');
