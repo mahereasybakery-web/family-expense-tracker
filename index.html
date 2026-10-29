@@ -5300,9 +5300,9 @@
     .categories-monefy-grid {
       display: grid !important;
       grid-template-columns: repeat(3, 1fr) !important;
-      gap: 8px !important;
-      margin: 6px 10px 14px !important;
-      width: calc(100% - 20px) !important;
+      gap: 4px !important;
+      margin: 3px 8px 6px !important;
+      width: calc(100% - 16px) !important;
       box-sizing: border-box !important;
     }
 
@@ -5559,6 +5559,10 @@
         flex-direction: column !important;
         padding: 0 !important;
         width: 100% !important;
+        max-height: calc(100vh - 60px) !important;
+        overflow-y: hidden !important;
+        overflow-x: hidden !important;
+        justify-content: flex-start !important;
       }
       .page-view:not(.active) {
         display: none !important;
@@ -5919,6 +5923,549 @@
 
     .member-photo-chip.active .member-photo-chip-name {
       color: #38bdf8 !important;
+    }
+
+  
+    /* =========================================================================
+       مقياس الخطوط المتناسق والمضغوط لجميع شاشات الجوال (Harmonious Mobile Scale)
+       ========================================================================= */
+    html {
+      font-size: 14px !important;
+      -webkit-text-size-adjust: 100% !important;
+    }
+
+    body {
+      font-family: 'Cairo', 'Tajawal', 'Readex Pro', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      font-size: 14px !important;
+      line-height: 1.5 !important;
+    }
+
+    /* كروت الطلبات المتناسقة والأنيقة (معالجة لقطة الشاشة) */
+    .item-entry-card {
+      background: rgba(15, 23, 42, 0.75) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-radius: 12px !important;
+      padding: 10px 12px !important;
+      margin-bottom: 8px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 5px !important;
+      transition: all 0.2s !important;
+    }
+    .item-entry-card:hover {
+      border-color: rgba(56, 189, 248, 0.35) !important;
+    }
+    .item-entry-header {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+    }
+    .item-entry-title {
+      font-size: 0.82rem !important;
+      font-weight: 800 !important;
+      color: #f1f5f9 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+    }
+    .item-member-tag {
+      background: rgba(56, 189, 248, 0.15) !important;
+      color: #38bdf8 !important;
+      padding: 2px 6px !important;
+      border-radius: 6px !important;
+      font-size: 0.70rem !important;
+      font-weight: 800 !important;
+    }
+    .status-badge-pending {
+      background: rgba(245, 158, 11, 0.15) !important;
+      color: #fbbf24 !important;
+      border: 1px solid rgba(245, 158, 11, 0.3) !important;
+      padding: 2px 6px !important;
+      border-radius: 6px !important;
+      font-size: 0.65rem !important;
+      font-weight: 800 !important;
+    }
+    .status-badge-approved {
+      background: rgba(16, 185, 129, 0.15) !important;
+      color: #34d399 !important;
+      border: 1px solid rgba(16, 185, 129, 0.3) !important;
+      padding: 2px 6px !important;
+      border-radius: 6px !important;
+      font-size: 0.65rem !important;
+      font-weight: 800 !important;
+    }
+    .status-badge-rejected {
+      background: rgba(244, 63, 94, 0.15) !important;
+      color: #fb7185 !important;
+      border: 1px solid rgba(244, 63, 94, 0.3) !important;
+      padding: 2px 6px !important;
+      border-radius: 6px !important;
+      font-size: 0.65rem !important;
+      font-weight: 800 !important;
+    }
+    .item-entry-reason {
+      font-size: 0.78rem !important;
+      font-weight: 700 !important;
+      color: #f8fafc !important;
+      line-height: 1.35 !important;
+      margin: 2px 0 4px !important;
+    }
+    .item-entry-meta {
+      font-size: 0.66rem !important;
+      color: #94a3b8 !important;
+      display: flex !important;
+      gap: 8px !important;
+      align-items: center !important;
+    }
+    .item-entry-actions {
+      display: flex !important;
+      gap: 6px !important;
+      margin-top: 4px !important;
+    }
+    .btn-item-action {
+      flex: 1 !important;
+      padding: 5px 8px !important;
+      font-size: 0.72rem !important;
+      font-weight: 800 !important;
+      border-radius: 8px !important;
+      border: none !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 4px !important;
+    }
+    .btn-item-approve {
+      background: rgba(16, 185, 129, 0.2) !important;
+      color: #34d399 !important;
+      border: 1px solid rgba(16, 185, 129, 0.4) !important;
+    }
+    .btn-item-reject {
+      background: rgba(244, 63, 94, 0.18) !important;
+      color: #fb7185 !important;
+      border: 1px solid rgba(244, 63, 94, 0.35) !important;
+    }
+
+    /* شريط فلاتر المؤشرات الثابت والمستقر تماماً (Sticky Navigation Bar) */
+    .analytics-section-nav {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 40 !important;
+      background: rgba(11, 17, 30, 0.94) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border: 1px solid rgba(56, 189, 248, 0.25) !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+      display: flex !important;
+      gap: 5px !important;
+      padding: 4px 6px !important;
+      border-radius: 12px !important;
+      margin: 6px 10px 10px !important;
+      overflow-x: auto !important;
+      scrollbar-width: none !important;
+    }
+    .analytics-section-nav::-webkit-scrollbar { display: none !important; }
+
+    .analytics-sec-btn {
+      flex: 0 0 auto !important;
+      padding: 6px 10px !important;
+      font-size: 0.70rem !important;
+      font-weight: 800 !important;
+      white-space: nowrap !important;
+      border-radius: 8px !important;
+      border: 1px solid transparent !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+      color: #94a3b8 !important;
+      cursor: pointer !important;
+      transition: all 0.2s !important;
+    }
+    .analytics-sec-btn.active {
+      background: linear-gradient(135deg, #0284c7, #0369a1) !important;
+      color: #ffffff !important;
+      border-color: rgba(56, 189, 248, 0.5) !important;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4) !important;
+    }
+
+  
+    /* =========================================================================
+       محرك السمات والتصاميم الشامل (Multi-Theme & Dynamic Design System)
+       استجابة لطلب المستخدم: تطبيق أكثر من شكل وتصميم وتأثير لوني فوري
+       ========================================================================= */
+    /* 1. السمة: كحلي ملكي (Navy) */
+    html[data-app-theme="navy"], body[data-app-theme="navy"] {
+      --bg-app: #090d16 !important;
+      --bg-card: #131b2e !important;
+      --bg-card-sub: #1e293b !important;
+      --border: #26334d !important;
+      --accent: #0284c7 !important;
+      --accent-light: #38bdf8 !important;
+      background: radial-gradient(circle at top, #162035 0%, #090d16 100%) !important;
+    }
+    [data-app-theme="navy"] .mobile-frame { background: #090d16 !important; }
+    [data-app-theme="navy"] .app-header { background: rgba(11, 19, 38, 0.96) !important; border-bottom: 1px solid rgba(56, 189, 248, 0.25) !important; }
+    [data-app-theme="navy"] .app-bottom-nav { background: rgba(11, 17, 30, 0.96) !important; border-top: 1px solid rgba(56, 189, 248, 0.25) !important; }
+    [data-app-theme="navy"] .kpi-three-card,
+    [data-app-theme="navy"] .cat-card,
+    [data-app-theme="navy"] .item-entry-card,
+    [data-app-theme="navy"] .kpi-lux-card,
+    [data-app-theme="navy"] .chart-glass-panel,
+    [data-app-theme="navy"] .modal-content-card,
+    [data-app-theme="navy"] .side-drawer-panel {
+      background: rgba(15, 23, 42, 0.88) !important;
+      border-color: rgba(56, 189, 248, 0.22) !important;
+    }
+
+    /* 2. السمة: أسود أسطوري (AMOLED Pitch Black) */
+    html[data-app-theme="black"], body[data-app-theme="black"] {
+      --bg-app: #000000 !important;
+      --bg-card: #0c0c0e !important;
+      --bg-card-sub: #16161a !important;
+      --border: #27272a !important;
+      --accent: #38bdf8 !important;
+      --accent-light: #7dd3fc !important;
+      background: #000000 !important;
+    }
+    [data-app-theme="black"] .mobile-frame { background: #000000 !important; }
+    [data-app-theme="black"] .app-header { background: #09090b !important; border-bottom: 1px solid #27272a !important; }
+    [data-app-theme="black"] .app-bottom-nav { background: #09090b !important; border-top: 1px solid #27272a !important; }
+    [data-app-theme="black"] .kpi-three-card,
+    [data-app-theme="black"] .cat-card,
+    [data-app-theme="black"] .item-entry-card,
+    [data-app-theme="black"] .kpi-lux-card,
+    [data-app-theme="black"] .chart-glass-panel,
+    [data-app-theme="black"] .modal-content-card,
+    [data-app-theme="black"] .side-drawer-panel {
+      background: #0c0c0f !important;
+      border-color: #27272a !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.9) !important;
+    }
+    [data-app-theme="black"] .kpi-three-card.card-balance {
+      background: linear-gradient(135deg, #1c1c24, #0c0c0f) !important;
+      border-color: #52525b !important;
+    }
+
+    /* 3. السمة: زمردي فاخر (Luxury Emerald Green) */
+    html[data-app-theme="emerald"], body[data-app-theme="emerald"] {
+      --bg-app: #021a13 !important;
+      --bg-card: #063024 !important;
+      --bg-card-sub: #0c4333 !important;
+      --border: #145943 !important;
+      --accent: #10b981 !important;
+      --accent-light: #34d399 !important;
+      background: radial-gradient(circle at top, #064e3b 0%, #021a13 100%) !important;
+    }
+    [data-app-theme="emerald"] .mobile-frame { background: #021a13 !important; }
+    [data-app-theme="emerald"] .app-header { background: rgba(3, 31, 23, 0.97) !important; border-bottom: 1px solid rgba(16, 185, 129, 0.35) !important; }
+    [data-app-theme="emerald"] .app-bottom-nav { background: rgba(3, 31, 23, 0.97) !important; border-top: 1px solid rgba(16, 185, 129, 0.35) !important; }
+    [data-app-theme="emerald"] .kpi-three-card,
+    [data-app-theme="emerald"] .cat-card,
+    [data-app-theme="emerald"] .item-entry-card,
+    [data-app-theme="emerald"] .kpi-lux-card,
+    [data-app-theme="emerald"] .chart-glass-panel,
+    [data-app-theme="emerald"] .modal-content-card,
+    [data-app-theme="emerald"] .side-drawer-panel {
+      background: rgba(5, 42, 31, 0.92) !important;
+      border-color: rgba(16, 185, 129, 0.35) !important;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.12) !important;
+    }
+    [data-app-theme="emerald"] .kpi-three-card.card-balance {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(4, 34, 25, 0.95)) !important;
+      border-color: #10b981 !important;
+    }
+
+    /* 4. السمة: بنفسجي فخم (Royal Amethyst Purple) */
+    html[data-app-theme="purple"], body[data-app-theme="purple"] {
+      --bg-app: #0e071a !important;
+      --bg-card: #1c0e33 !important;
+      --bg-card-sub: #2d1650 !important;
+      --border: #4a2185 !important;
+      --accent: #a855f7 !important;
+      --accent-light: #c084fc !important;
+      background: radial-gradient(circle at top, #3b0764 0%, #0e071a 100%) !important;
+    }
+    [data-app-theme="purple"] .mobile-frame { background: #0e071a !important; }
+    [data-app-theme="purple"] .app-header { background: rgba(20, 10, 36, 0.97) !important; border-bottom: 1px solid rgba(168, 85, 247, 0.35) !important; }
+    [data-app-theme="purple"] .app-bottom-nav { background: rgba(20, 10, 36, 0.97) !important; border-top: 1px solid rgba(168, 85, 247, 0.35) !important; }
+    [data-app-theme="purple"] .kpi-three-card,
+    [data-app-theme="purple"] .cat-card,
+    [data-app-theme="purple"] .item-entry-card,
+    [data-app-theme="purple"] .kpi-lux-card,
+    [data-app-theme="purple"] .chart-glass-panel,
+    [data-app-theme="purple"] .modal-content-card,
+    [data-app-theme="purple"] .side-drawer-panel {
+      background: rgba(30, 15, 54, 0.92) !important;
+      border-color: rgba(168, 85, 247, 0.35) !important;
+      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.12) !important;
+    }
+    [data-app-theme="purple"] .kpi-three-card.card-balance {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(22, 10, 40, 0.95)) !important;
+      border-color: #a855f7 !important;
+    }
+
+    /* 5. السمة: ذهبي ملكي (Obsidian Royal Gold) */
+    html[data-app-theme="gold"], body[data-app-theme="gold"] {
+      --bg-app: #120e06 !important;
+      --bg-card: #221b0e !important;
+      --bg-card-sub: #332815 !important;
+      --border: #57431e !important;
+      --accent: #f59e0b !important;
+      --accent-light: #fbbf24 !important;
+      background: radial-gradient(circle at top, #451a03 0%, #120e06 100%) !important;
+    }
+    [data-app-theme="gold"] .mobile-frame { background: #120e06 !important; }
+    [data-app-theme="gold"] .app-header { background: rgba(24, 18, 9, 0.97) !important; border-bottom: 1px solid rgba(245, 158, 11, 0.35) !important; }
+    [data-app-theme="gold"] .app-bottom-nav { background: rgba(24, 18, 9, 0.97) !important; border-top: 1px solid rgba(245, 158, 11, 0.35) !important; }
+    [data-app-theme="gold"] .kpi-three-card,
+    [data-app-theme="gold"] .cat-card,
+    [data-app-theme="gold"] .item-entry-card,
+    [data-app-theme="gold"] .kpi-lux-card,
+    [data-app-theme="gold"] .chart-glass-panel,
+    [data-app-theme="gold"] .modal-content-card,
+    [data-app-theme="gold"] .side-drawer-panel {
+      background: rgba(36, 28, 14, 0.92) !important;
+      border-color: rgba(245, 158, 11, 0.35) !important;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.12) !important;
+    }
+    [data-app-theme="gold"] .kpi-three-card.card-balance {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(24, 18, 9, 0.95)) !important;
+      border-color: #f59e0b !important;
+    }
+
+    /* 6. السمة: أزرق سماوي (Ocean Blue) */
+    html[data-app-theme="ocean"], body[data-app-theme="ocean"] {
+      --bg-app: #041624 !important;
+      --bg-card: #082942 !important;
+      --bg-card-sub: #0e3b5e !important;
+      --border: #145585 !important;
+      --accent: #06b6d4 !important;
+      --accent-light: #22d3ee !important;
+      background: radial-gradient(circle at top, #083344 0%, #041624 100%) !important;
+    }
+    [data-app-theme="ocean"] .mobile-frame { background: #041624 !important; }
+    [data-app-theme="ocean"] .app-header { background: rgba(6, 27, 44, 0.97) !important; border-bottom: 1px solid rgba(6, 182, 212, 0.35) !important; }
+    [data-app-theme="ocean"] .app-bottom-nav { background: rgba(6, 27, 44, 0.97) !important; border-top: 1px solid rgba(6, 182, 212, 0.35) !important; }
+    [data-app-theme="ocean"] .kpi-three-card,
+    [data-app-theme="ocean"] .cat-card,
+    [data-app-theme="ocean"] .item-entry-card,
+    [data-app-theme="ocean"] .kpi-lux-card,
+    [data-app-theme="ocean"] .chart-glass-panel,
+    [data-app-theme="ocean"] .modal-content-card,
+    [data-app-theme="ocean"] .side-drawer-panel {
+      background: rgba(8, 41, 66, 0.92) !important;
+      border-color: rgba(6, 182, 212, 0.35) !important;
+      box-shadow: 0 4px 14px rgba(6, 182, 212, 0.12) !important;
+    }
+    [data-app-theme="ocean"] .kpi-three-card.card-balance {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(6, 27, 44, 0.95)) !important;
+      border-color: #06b6d4 !important;
+    }
+
+    /* أنماط وتصاميم عرض الكروت (Card Design Styles) */
+    [data-card-style="glass"] .kpi-three-card,
+    [data-card-style="glass"] .cat-card,
+    [data-card-style="glass"] .item-entry-card {
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border-radius: 14px !important;
+    }
+    [data-card-style="minimal"] .kpi-three-card,
+    [data-card-style="minimal"] .cat-card,
+    [data-card-style="minimal"] .item-entry-card {
+      border-radius: 6px !important;
+      box-shadow: none !important;
+    }
+
+  
+    /* =========================================================================
+       تعبئة وتناسق الشاشة الرئيسية 100% ومنع الفراغ السفلي لجميع الهواتف الحديثة
+       (Perfect Vertical Screen Fill & Zero Empty Gap Engine)
+       ========================================================================= */
+    .app-viewport {
+      height: 100vh !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+    }
+
+    .app-scroll-body {
+      flex: 1 1 auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    #viewExpenses.active {
+      flex: 1 1 auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      height: calc(100% - 54px) !important;
+      min-height: calc(100% - 54px) !important;
+      max-height: calc(100% - 54px) !important;
+      padding: 0 4px 4px !important;
+      box-sizing: border-box !important;
+      overflow-y: hidden !important;
+      overflow-x: hidden !important;
+    }
+
+    /* تكبير الجزء العلوي بتناسق وأناقة فائقة */
+    .period-selector-top-strip {
+      padding: 4px 8px !important;
+      margin: 2px 0 3px !important;
+    }
+    .period-filter-pill {
+      padding: 4px 6px !important;
+      font-size: 0.72rem !important;
+      font-weight: 800 !important;
+      border-radius: 9px !important;
+    }
+
+    .sub-period-tools-bar {
+      padding: 4px 8px !important;
+      margin-bottom: 4px !important;
+      min-height: 32px !important;
+    }
+    .wallet-select-cluster {
+      padding: 3px 8px !important;
+      border-radius: 9px !important;
+    }
+    .wallet-dropdown-compact {
+      font-size: 0.72rem !important;
+      max-width: 110px !important;
+    }
+    .tool-pill-action.gold-pill {
+      padding: 4px 8px !important;
+      font-size: 0.72rem !important;
+      border-radius: 9px !important;
+    }
+
+    /* تكبير بطاقات الرصيد الثلاثة قليلاً لملء الشاشة بفخامة واحترافية */
+    .kpi-three-strip {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 5px !important;
+      margin: 3px 6px 5px !important;
+      width: calc(100% - 12px) !important;
+      box-sizing: border-box !important;
+    }
+
+    .kpi-three-card {
+      padding: 6px 8px !important;
+      border-radius: 11px !important;
+      min-height: 48px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+    }
+
+    .kpi-three-card.card-balance {
+      grid-column: 1 / -1 !important;
+      min-height: 34px !important;
+      padding: 5px 12px !important;
+      border-radius: 11px !important;
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+    }
+
+    .kpi-three-label {
+      font-size: 0.72rem !important;
+      font-weight: 800 !important;
+      margin-bottom: 2px !important;
+    }
+
+    .kpi-three-value {
+      font-size: 0.95rem !important;
+      font-weight: 900 !important;
+      line-height: 1.2 !important;
+    }
+
+    /* تكبير أزرار الإجراءات السريعة قليلاً */
+    .quick-actions-bar {
+      padding: 0 6px 4px !important;
+      gap: 6px !important;
+      margin: 0 !important;
+    }
+
+    .btn-quick-action {
+      height: 36px !important;
+      padding: 4px 8px !important;
+      font-size: 0.80rem !important;
+      font-weight: 800 !important;
+      border-radius: 10px !important;
+    }
+
+    /* تكبير وتوسيع شبكة بنود المصروفات الـ 9 لملء الفراغ السفلي بالكامل */
+    .categories-monefy-grid {
+      flex: 1 1 auto !important;
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      grid-template-rows: repeat(3, 1fr) !important;
+      gap: 6px !important;
+      margin: 2px 6px 4px !important;
+      width: calc(100% - 12px) !important;
+      box-sizing: border-box !important;
+    }
+
+    .cat-card {
+      height: 100% !important;
+      box-sizing: border-box !important;
+      padding: 6px 5px !important;
+      border-radius: 13px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      min-height: 0 !important;
+      max-height: none !important;
+    }
+
+    .cat-icon-bubble {
+      width: clamp(32px, 9vw, 42px) !important;
+      height: clamp(32px, 9vw, 42px) !important;
+      border-radius: 10px !important;
+      margin-bottom: 2px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+    }
+
+    .cat-icon-bubble i {
+      font-size: clamp(1rem, 3.2vw, 1.25rem) !important;
+    }
+
+    .cat-label-text {
+      font-size: clamp(0.68rem, 2.3vw, 0.82rem) !important;
+      font-weight: 800 !important;
+      color: #f8fafc !important;
+      text-align: center !important;
+      line-height: 1.15 !important;
+      margin: 1px 0 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      width: 100% !important;
+    }
+
+    .cat-amount-pill {
+      width: 100% !important;
+      box-sizing: border-box !important;
+      text-align: center !important;
+      padding: 2px 4px !important;
+      border-radius: 7px !important;
+      margin-top: 1px !important;
+      flex-shrink: 0 !important;
+    }
+
+    .cat-amount-pill span {
+      font-size: clamp(0.64rem, 2.2vw, 0.78rem) !important;
+      font-weight: 900 !important;
+      white-space: nowrap !important;
     }
 
   </style>
@@ -6305,6 +6852,25 @@
           <div class="analytics-master-dialog" style="width: 100%; max-width: 100%; border-radius: 16px; margin: 0; box-shadow: none; border: none; background: transparent;">
             <div class="analytics-master-body" style="padding: 0 10px 20px;">
 
+              <!-- شريط التنقل بين أقسام التحليل الفعلي (ثابت ومثبت بأعلى الشاشة ولا يختفي أبداً) -->
+              <div class="analytics-section-nav" id="analyticsStickyNav">
+                <button class="analytics-sec-btn active" data-sec="categories" onclick="switchAnalyticsSection('categories')">
+                  <i class="fa-solid fa-chart-pie"></i> التصنيفات
+                </button>
+                <button class="analytics-sec-btn" data-sec="members" onclick="switchAnalyticsSection('members')">
+                  <i class="fa-solid fa-users"></i> أفراد العائلة
+                </button>
+                <button class="analytics-sec-btn" data-sec="timeline" onclick="switchAnalyticsSection('timeline')">
+                  <i class="fa-solid fa-chart-area"></i> المنحنى اليومي
+                </button>
+                <button class="analytics-sec-btn" data-sec="monthly" onclick="switchAnalyticsSection('monthly')">
+                  <i class="fa-solid fa-chart-column"></i> مقارنة الشهور
+                </button>
+                <button class="analytics-sec-btn" data-sec="wallets" onclick="switchAnalyticsSection('wallets')">
+                  <i class="fa-solid fa-wallet"></i> قنوات الدفع
+                </button>
+              </div>
+
               <!-- شبكة المؤشرات المالية الستة التنفيذية المتطورة -->
               <div class="kpi-master-grid-lux-6">
                 <!-- 1. إجمالي المصروفات -->
@@ -6343,25 +6909,6 @@
                   <div class="kpi-lux-value" id="kpiLuxCoverageRate" style="color: #10b981;">100%</div>
                   <div class="kpi-lux-sub" id="kpiLuxCoverageSub">تغطية الإيراد للمصروف</div>
                 </div>
-              </div>
-
-              <!-- شريط التنقل بين أقسام التحليل الفعلي (ثابت ومثبت بأعلى الشاشة ولا يختفي أبداً) -->
-              <div class="analytics-section-nav" id="analyticsStickyNav">
-                <button class="analytics-sec-btn active" data-sec="categories" onclick="switchAnalyticsSection('categories')">
-                  <i class="fa-solid fa-chart-pie"></i> التصنيفات
-                </button>
-                <button class="analytics-sec-btn" data-sec="members" onclick="switchAnalyticsSection('members')">
-                  <i class="fa-solid fa-users"></i> أفراد العائلة
-                </button>
-                <button class="analytics-sec-btn" data-sec="timeline" onclick="switchAnalyticsSection('timeline')">
-                  <i class="fa-solid fa-chart-area"></i> المنحنى اليومي
-                </button>
-                <button class="analytics-sec-btn" data-sec="monthly" onclick="switchAnalyticsSection('monthly')">
-                  <i class="fa-solid fa-chart-column"></i> مقارنة الشهور
-                </button>
-                <button class="analytics-sec-btn" data-sec="wallets" onclick="switchAnalyticsSection('wallets')">
-                  <i class="fa-solid fa-wallet"></i> قنوات الدفع
-                </button>
               </div>
 
               <!-- (أ) لوح تحليل التصنيفات -->
@@ -6579,55 +7126,87 @@
       </div>
 
 <div class="page-view" id="viewRequests" style="display: none;">
-        
         <!-- نموذج تقديم طلب جديد (مخصص لأية والعائلة) -->
         <div class="app-card-panel">
-          <div class="app-card-title">
-            <i class="fa-solid fa-hand-holding-dollar" style="color: #ec4899;"></i>
-            <span>طلب مبلغ مالي (مخصص لأية والعائلة)</span>
+        
+        
+          <div class="app-card-title" style="margin-bottom: 8px; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(236, 72, 153, 0.15); display: flex; align-items: center; justify-content: center; color: #ec4899; font-size: 1rem;">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+              </div>
+              <div>
+                <div style="font-size: 0.90rem; font-weight: 800; color: #f8fafc;">طلب مبلغ مالي جديد</div>
+                <div style="font-size: 0.68rem; color: #94a3b8;">تحديد المبلغ المطلوب وتوزيعه التقديري على البنود والأفراد</div>
+              </div>
+            </div>
+            <span style="background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); padding: 2px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800;">
+              مخصص للعائلة
+            </span>
           </div>
-          <div class="form-group-custom">
-            <label class="form-label-custom"><i class="fa-solid fa-user-check" style="color: #ec4899;"></i> مقدم الطلب (بالصور الفعلية للأفراد):</label>
+
+          <!-- مقدم الطلب بالأفاتار التفاعلي -->
+          <div class="form-group-custom" style="margin-bottom: 8px;">
+            <label class="form-label-custom" style="font-size: 0.72rem; margin-bottom: 3px; display: block; font-weight: 800;">
+              <i class="fa-solid fa-user-check" style="color: #ec4899;"></i> مقدم الطلب (بالصور الفعلية للأفراد):
+            </label>
             <input type="hidden" id="inpReqMember" value="أية">
-            <div class="member-photo-picker-strip" id="reqMemberPhotoPicker">
+            <div class="member-photo-picker-strip" id="reqMemberPhotoPicker" style="gap: 5px; padding-bottom: 2px;">
               <!-- تتولد تلقائياً بالصور الفعلية الحقيقية لأفراد العائلة -->
             </div>
           </div>
-          <div class="form-group-custom">
-            <label class="form-label-custom">المبلغ المطلوب (ج.م) <span class="req">*</span></label>
-            <input type="number" step="0.01" class="form-input-custom" id="inpReqAmount" placeholder="0.00" oninput="initRequestAllocations()">
-          </div>
-          <div class="form-group-custom">
-            <label class="form-label-custom">سبب وتفاصيل الطلب <span class="req">*</span></label>
-            <input type="text" class="form-input-custom" id="inpReqReason" placeholder="مثال: شراء ملابس للأولاد، مستلزمات الصيدلية، متطلبات للمنزل...">
-          </div>
-          <!-- قسم التوزيع والتخصيص المتعدد التقديري (الميزة المطورة) -->
-          <div class="req-alloc-block" id="reqAllocationsBlock">
-            <div class="req-alloc-status-bar">
-              <span><i class="fa-solid fa-diagram-project" style="color: #ec4899;"></i> توزيع وتوجيه المبلغ التقديري:</span>
-              <span id="reqAllocSummaryTxt" style="color: #10b981;">المتبقي غير موزع: 0.00 ج.م</span>
+
+          <!-- المبلغ المطلوب وتاريخ الحاجة في صف واحد مقسم لعمودين متوازنين -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+            <div class="form-group-custom" style="margin-bottom: 0;">
+              <label class="form-label-custom" style="font-size: 0.72rem; margin-bottom: 2px; font-weight: 800;">
+                المبلغ المطلوب (ج.م) <span class="req">*</span>
+              </label>
+              <input type="number" step="0.01" class="form-input-custom" id="inpReqAmount" placeholder="0.00" oninput="initRequestAllocations()" style="height: 38px; font-size: 1.15rem; font-weight: 900; text-align: center; color: #ec4899; box-sizing: border-box;">
             </div>
-            <div class="req-alloc-progress-wrap">
-              <div class="req-alloc-progress-bar" id="reqAllocProgressBar" style="width: 100%;"></div>
+            <div class="form-group-custom" style="margin-bottom: 0;">
+              <label class="form-label-custom" style="font-size: 0.72rem; margin-bottom: 2px; font-weight: 800;">
+                تاريخ الحاجة للمبلغ <span class="req">*</span>
+              </label>
+              <input type="date" class="form-input-custom" id="inpReqDate" style="height: 38px; font-size: 0.80rem; padding: 4px 8px; box-sizing: border-box;">
+            </div>
+          </div>
+
+          <!-- سبب وتفاصيل الطلب -->
+          <div class="form-group-custom" style="margin-bottom: 8px;">
+            <label class="form-label-custom" style="font-size: 0.72rem; margin-bottom: 2px; font-weight: 800;">
+              سبب وتفاصيل الطلب <span class="req">*</span>
+            </label>
+            <input type="text" class="form-input-custom" id="inpReqReason" placeholder="مثال: شراء ملابس للأولاد، مستلزمات الصيدلية، متطلبات للمنزل..." style="height: 36px; font-size: 0.80rem; padding: 4px 10px; box-sizing: border-box;">
+          </div>
+
+          <!-- قسم التوزيع والتوجيه التقديري المنظم والواضح جداً -->
+          <div class="req-alloc-block" id="reqAllocationsBlock" style="background: rgba(15, 23, 42, 0.65); border: 1.5px solid rgba(236, 72, 153, 0.25); border-radius: 12px; padding: 10px; margin-bottom: 8px;">
+            <div class="req-alloc-status-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span style="font-size: 0.76rem; font-weight: 800; color: #cbd5e1;">
+                <i class="fa-solid fa-diagram-project" style="color: #ec4899;"></i> توزيع وتوجيه المبلغ التقديري:
+              </span>
+              <span id="reqAllocSummaryTxt" style="font-size: 0.72rem; font-weight: 800; color: #10b981;">المتبقي غير موزع: 0.00 ج.م</span>
             </div>
 
-            <!-- قائمة أسطر التوزيعات الديناميكية -->
-            <div id="reqAllocationsRowsContainer">
-              <!-- تتولد الأسطر ديناميكياً مع المبلغ والبند والشخص المستفيد -->
+            <div class="req-alloc-progress-wrap" style="height: 6px; border-radius: 4px; background: rgba(255,255,255,0.08); overflow: hidden; margin-bottom: 8px;">
+              <div class="req-alloc-progress-bar" id="reqAllocProgressBar" style="width: 100%; height: 100%; transition: all 0.3s;"></div>
             </div>
 
-            <button type="button" class="btn-export-tool" onclick="addRequestAllocationRow()" style="width: 100%; border-radius: 10px; padding: 7px; margin-top: 6px; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px dashed rgba(56, 189, 248, 0.4); font-weight: 800;">
+            <!-- قائمة كروت التوزيع الديناميكية المرتبة -->
+            <div id="reqAllocationsRowsContainer" style="display: flex; flex-direction: column; gap: 6px;">
+              <!-- تتولد الأسطر ديناميكياً بتصميم الكرت المرتب -->
+            </div>
+
+            <button type="button" class="btn-export-tool" onclick="addRequestAllocationRow()" style="width: 100%; border-radius: 10px; padding: 8px; margin-top: 6px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px dashed rgba(56, 189, 248, 0.45); font-weight: 800; font-size: 0.76rem; cursor: pointer;">
               <i class="fa-solid fa-plus-circle"></i> + إضافة تخصيص لبند / شخص آخر
             </button>
           </div>
 
           <!-- حقل احتياطي للتوافقية الكاملة -->
           <input type="hidden" id="inpReqCategory" value="others">
-          <div class="form-group-custom">
-            <label class="form-label-custom">تاريخ الحاجة للمبلغ (لتحديد فترة المقارنة) <span class="req">*</span></label>
-            <input type="date" class="form-input-custom" id="inpReqDate">
-          </div>
-          <button class="btn-submit-tx" onclick="submitMoneyRequest()" style="background: linear-gradient(135deg, #ec4899, #be185d);">
+          
+          <button class="btn-submit-tx" onclick="submitMoneyRequest()" style="background: linear-gradient(135deg, #ec4899, #be185d); height: 42px; border-radius: 12px; font-size: 0.90rem; font-weight: 800; margin-top: 6px; box-shadow: 0 4px 14px rgba(236, 72, 153, 0.35);">
             <i class="fa-solid fa-paper-plane"></i> إرسال طلب المصروف لماهر 💌
           </button>
         </div>
@@ -6770,133 +7349,134 @@
          القائمة الجانبية المنفصلة: الذهب والعملات (TradingView)
          ============================================== -->
     <div class="side-drawer-backdrop" id="goldDrawerBackdrop"></div>
-    <div class="side-drawer-panel" id="goldDrawerPanel">
+    <div class="side-drawer-panel" id="goldDrawerPanel" style="max-height: 96vh; border-radius: 20px 20px 0 0; padding: 0; display: flex; flex-direction: column;">
       
-      <div class="drawer-top-bar">
+      <div class="drawer-top-bar" style="padding: 10px 14px 6px;">
         <div class="drawer-top-header">
-          <div class="drawer-main-title">
+          <div class="drawer-main-title" style="font-size: 0.95rem;">
             <i class="fa-solid fa-coins"></i>
-            <span>بورصة الذهب والعملات</span>
+            <span>بورصة الذهب والعملات المباشرة</span>
           </div>
-          <button class="btn-close-drawer" id="btnCloseDrawer">&times;</button>
+          <button class="btn-close-drawer" id="btnCloseDrawer" style="font-size: 1.2rem; width: 28px; height: 28px; line-height: 26px;">&times;</button>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: #cbd5e1;">
-          <span style="background: #2962ff; color: #fff; padding: 2px 7px; border-radius: 6px; font-weight: 800;">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: #cbd5e1; margin-top: 2px;">
+          <span style="background: #2962ff; color: #fff; padding: 1px 6px; border-radius: 5px; font-weight: 800; font-size: 0.65rem;">
             TradingView Live
           </span>
-          <span style="color: #34d399; font-weight: 700;">
-            <i class="fa-solid fa-circle" style="font-size: 0.5rem;"></i> بيانات حية لحظية
+          <span style="color: #34d399; font-weight: 700; font-size: 0.68rem;">
+            <i class="fa-solid fa-circle" style="font-size: 0.45rem;"></i> بيانات حية لحظية
           </span>
-        </div>
-      </div>
-
-      <div class="drawer-scroll-body">
-        
-        <!-- زر التحديث اللحظي -->
-        <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-card-sub); padding: 8px 12px; border-radius: 12px; border: 1px solid var(--border);">
-          <span style="font-size: 0.72rem; color: var(--text-muted);" id="tvUpdateTime">محدث الآن</span>
-          <button class="period-btn active" id="btnRefreshTv" style="font-size: 0.7rem; padding: 4px 10px;">
+          <button class="period-btn active" id="btnRefreshTv" style="font-size: 0.65rem; padding: 2px 8px; border-radius: 6px;">
             <i class="fa-solid fa-arrows-rotate" id="iconSpin"></i> تحديث
           </button>
         </div>
+      </div>
 
-        <!-- أسعار الذهب -->
-        <div>
-          <div style="font-size: 0.8rem; font-weight: 800; color: #f8fafc; margin-bottom: 8px;">
+      <div class="drawer-scroll-body" style="padding: 6px 12px 14px; gap: 6px; overflow-y: auto;">
+        
+        <!-- أسعار الذهب (شبكة 2x2 فائقة التناسق) -->
+        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 8px 10px;">
+          <div style="font-size: 0.74rem; font-weight: 800; color: #fde047; margin-bottom: 6px; display: flex; align-items: center; gap: 5px;">
             <i class="fa-solid fa-gem" style="color: var(--gold);"></i> أسعار الذهب في الصاغة (مصر)
           </div>
 
-          <div class="gold-grid-cards">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
             <!-- عيار 21 -->
-            <div class="market-box gold-21-box">
-              <div class="market-box-title">
+            <div class="market-box gold-21-box" style="padding: 6px 8px; border-radius: 8px;">
+              <div class="market-box-title" style="font-size: 0.68rem;">
                 <i class="fa-solid fa-ring" style="color: var(--gold);"></i>
                 <span>عيار 21 (الأكثر طلباً)</span>
               </div>
-              <div class="market-box-val" id="tvGold21Val">6,375 ج.م</div>
-              <div class="market-box-sub">
+              <div class="market-box-val" id="tvGold21Val" style="font-size: 0.88rem; font-weight: 900; margin: 2px 0;">6,375 ج.م</div>
+              <div class="market-box-sub" style="font-size: 0.62rem; display: flex; justify-content: space-between;">
                 <span>جرام</span>
-                <span class="change-tag down" id="tvGold21Chg">-0.40%</span>
+                <span class="change-tag down" id="tvGold21Chg" style="font-size: 0.60rem; padding: 1px 4px;">-0.40%</span>
               </div>
             </div>
 
             <!-- عيار 24 -->
-            <div class="market-box">
-              <div class="market-box-title">
+            <div class="market-box" style="padding: 6px 8px; border-radius: 8px;">
+              <div class="market-box-title" style="font-size: 0.68rem;">
                 <i class="fa-solid fa-bars" style="color: #d97706;"></i>
                 <span>عيار 24 (السبائك)</span>
               </div>
-              <div class="market-box-val" id="tvGold24Val">7,286 ج.م</div>
-              <div class="market-box-sub">
+              <div class="market-box-val" id="tvGold24Val" style="font-size: 0.88rem; font-weight: 900; margin: 2px 0;">7,286 ج.م</div>
+              <div class="market-box-sub" style="font-size: 0.62rem; display: flex; justify-content: space-between;">
                 <span>جرام نقاء 99.9%</span>
-                <span class="change-tag down" id="tvGold24Chg">-0.40%</span>
+                <span class="change-tag down" id="tvGold24Chg" style="font-size: 0.60rem; padding: 1px 4px;">-0.40%</span>
               </div>
             </div>
 
             <!-- جنيه الذهب -->
-            <div class="market-box full-span" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), var(--bg-card-sub)); border-color: var(--gold);">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                  <div style="font-size: 0.8rem; font-weight: 800; color: #fde047;">جنيه الذهب (BTC لازوردي)</div>
-                  <div style="font-size: 0.65rem; color: #94a3b8;">وزن 8 جرام - ذهب عيار 21</div>
-                </div>
-                <div class="market-box-val" style="color: #fde047;" id="tvGoldPoundVal">51,000 ج.م</div>
+            <div class="market-box" style="padding: 6px 8px; border-radius: 8px; background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), var(--bg-card-sub)); border-color: var(--gold);">
+              <div class="market-box-title" style="font-size: 0.68rem; color: #fde047;">
+                <i class="fa-solid fa-coins"></i>
+                <span>جنيه الذهب (BTC لازوردي)</span>
               </div>
+              <div class="market-box-val" id="tvGoldPoundVal" style="font-size: 0.88rem; font-weight: 900; color: #fde047; margin: 2px 0;">51,000 ج.م</div>
+              <div class="market-box-sub" style="font-size: 0.60rem; color: #94a3b8;">وزن 8 جرام - عيار 21</div>
             </div>
 
             <!-- أونصة الذهب عالمياً -->
-            <div class="market-box full-span">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 0.72rem; color: var(--text-muted);">أونصة الذهب عالمياً (TVC:GOLD)</span>
-                <span style="font-size: 0.95rem; font-weight: 900; color: #fff;" id="tvGoldOunceVal">$4,043.83</span>
+            <div class="market-box" style="padding: 6px 8px; border-radius: 8px;">
+              <div class="market-box-title" style="font-size: 0.68rem; color: #94a3b8;">
+                <i class="fa-solid fa-globe"></i>
+                <span>أونصة الذهب عالمياً</span>
               </div>
+              <div class="market-box-val" id="tvGoldOunceVal" style="font-size: 0.88rem; font-weight: 900; color: #fff; margin: 2px 0;">$4,043.83</div>
+              <div class="market-box-sub" style="font-size: 0.60rem; color: #94a3b8;">TVC:GOLD</div>
             </div>
           </div>
         </div>
 
-        <!-- أسعار العملات -->
-        <div>
-          <div style="font-size: 0.8rem; font-weight: 800; color: #f8fafc; margin-bottom: 8px;">
+        <!-- أسعار العملات في صفين متجاورين -->
+        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 8px 10px;">
+          <div style="font-size: 0.74rem; font-weight: 800; color: #34d399; margin-bottom: 6px; display: flex; align-items: center; gap: 5px;">
             <i class="fa-solid fa-money-bill-transfer" style="color: #10b981;"></i> أسعار العملات (TradingView FX)
           </div>
 
-          <div class="gold-grid-cards">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
             <!-- دولار -->
-            <div class="market-box">
-              <div class="market-box-title">
+            <div class="market-box" style="padding: 6px 8px; border-radius: 8px;">
+              <div class="market-box-title" style="font-size: 0.68rem;">
                 <i class="fa-solid fa-dollar-sign" style="color: #10b981;"></i>
                 <span>الدولار الأمريكي</span>
               </div>
-              <div class="market-box-val" id="tvUsdVal">56.04 ج.م</div>
-              <div class="market-box-sub">
+              <div class="market-box-val" id="tvUsdVal" style="font-size: 0.88rem; font-weight: 900; margin: 2px 0;">56.04 ج.م</div>
+              <div class="market-box-sub" style="font-size: 0.62rem; display: flex; justify-content: space-between;">
                 <span>USDEGP</span>
-                <span class="change-tag up" id="tvUsdChg">+0.12%</span>
+                <span class="change-tag up" id="tvUsdChg" style="font-size: 0.60rem; padding: 1px 4px;">+0.12%</span>
               </div>
             </div>
 
             <!-- ريال -->
-            <div class="market-box">
-              <div class="market-box-title">
+            <div class="market-box" style="padding: 6px 8px; border-radius: 8px;">
+              <div class="market-box-title" style="font-size: 0.68rem;">
                 <i class="fa-solid fa-money-bill-1" style="color: #059669;"></i>
                 <span>الريال السعودي</span>
               </div>
-              <div class="market-box-val" id="tvSarVal">14.93 ج.م</div>
-              <div class="market-box-sub">
+              <div class="market-box-val" id="tvSarVal" style="font-size: 0.88rem; font-weight: 900; margin: 2px 0;">14.93 ج.م</div>
+              <div class="market-box-sub" style="font-size: 0.62rem; display: flex; justify-content: space-between;">
                 <span>SAREGP</span>
-                <span class="change-tag down" id="tvSarChg">-0.01%</span>
+                <span class="change-tag down" id="tvSarChg" style="font-size: 0.60rem; padding: 1px 4px;">-0.01%</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- حاسبة الذهب السريعة -->
-        <div class="gold-calc-card">
-          <div style="font-size: 0.8rem; font-weight: 800; color: #fde047;">
-            <i class="fa-solid fa-calculator"></i> حاسبة الذهب والعملات للمصروفات
+        <!-- حاسبة الذهب السريعة المدمجة في صف واحد -->
+        <div class="gold-calc-card" style="padding: 8px 10px; border-radius: 12px; gap: 6px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 0.74rem; font-weight: 800; color: #fde047;">
+              <i class="fa-solid fa-calculator"></i> حاسبة الذهب والعملات للمصروفات
+            </div>
+            <div class="calc-result-badge" style="padding: 2px 8px; border-radius: 6px; font-size: 0.72rem; margin: 0;">
+              <span id="calcResultDisplay" style="font-weight: 900; color: #fde047;">63,750.00 ج.م</span>
+            </div>
           </div>
-          <div class="calc-row-inputs">
-            <input type="number" class="calc-input-qty" id="calcQty" value="10">
-            <select class="calc-select-asset" id="calcAsset">
+          <div class="calc-row-inputs" style="display: grid; grid-template-columns: 70px 1fr; gap: 6px; margin: 2px 0;">
+            <input type="number" class="calc-input-qty" id="calcQty" value="10" style="height: 32px; font-size: 0.82rem; padding: 2px 6px; text-align: center; border-radius: 8px;">
+            <select class="calc-select-asset" id="calcAsset" style="height: 32px; font-size: 0.75rem; padding: 2px 6px; border-radius: 8px;">
               <option value="gold21">جرام ذهب عيار 21</option>
               <option value="gold24">جرام ذهب عيار 24</option>
               <option value="goldPound">جنيه ذهب (8 جرام)</option>
@@ -6904,21 +7484,22 @@
               <option value="sar">ريال سعودي (ر.س)</option>
             </select>
           </div>
-          <div class="calc-result-badge">
-            <span>القيمة الإجمالية:</span>
-            <span class="calc-result-num" id="calcResultDisplay">63,750.00 ج.م</span>
-          </div>
-          <button class="btn-import-calc" id="btnImportCalc">
+          <button class="btn-import-calc" id="btnImportCalc" style="padding: 6px 10px; font-size: 0.75rem; border-radius: 8px; font-weight: 800;">
             <i class="fa-solid fa-plus-circle"></i> إضافة المبلغ للمصروفات فوراً
           </button>
         </div>
 
-        <!-- شارت TradingView التفاعلي المصغر -->
-        <div style="background: var(--bg-card-sub); border-radius: 14px; padding: 10px; border: 1px solid var(--border);">
-          <div style="font-size: 0.72rem; font-weight: 800; color: #94a3b8; margin-bottom: 6px;">
-            مؤشر الذهب المباشر (TradingView Mini Chart)
+        <!-- شارت TradingView المصغر مع إمكانية الطي والإظهار -->
+        <div style="background: var(--bg-card-sub); border-radius: 10px; padding: 6px 8px; border: 1px solid var(--border);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.68rem; font-weight: 800; color: #94a3b8;">
+              <i class="fa-solid fa-chart-line"></i> مؤشر الذهب المباشر (TVC:GOLD)
+            </span>
+            <button type="button" onclick="toggleTradingViewChart()" id="btnToggleTvChart" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #38bdf8; font-size: 0.62rem; padding: 2px 6px; border-radius: 6px; cursor: pointer;">
+              طي / إظهار
+            </button>
           </div>
-          <div style="width: 100%; height: 180px; border-radius: 10px; overflow: hidden;">
+          <div id="tvChartContainer" style="width: 100%; height: 110px; border-radius: 8px; overflow: hidden; transition: all 0.3s;">
             <iframe 
               src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=ar_AE#%7B%22symbol%22%3A%22TVC%3AGOLD%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22dateRange%22%3A%221M%22%2C%22colorTheme%22%3A%22dark%22%2C%22trendLineColor%22%3A%22rgba(245%2C%20158%2C%2011%2C%201)%22%2C%22underLineColor%22%3A%22rgba(245%2C%20158%2C%2011%2C%200.3)%22%2C%22underLineBottomColor%22%3A%22rgba(245%2C%20158%2C%2011%2C%200)%22%2C%22isTransparent%22%3Afalse%2C%22autosize%22%3Atrue%7D" 
               style="width: 100%; height: 100%; border: none;" 
@@ -6930,34 +7511,36 @@
       </div>
     </div>
 
-    <!-- نافذة إضافة حركة جديدة (مصروف أو دخل مع توضيح كامل) -->
+    <!-- نافذة إضافة حركة جديدة (مصروف أو دخل مع توضيح كامل - تصميم مدمج بدون تمرير) -->
     <div class="modal-overlay modal-overlay-custom" id="txModal">
-      <div class="modal-content-card">
-        <div class="modal-head">
-          <h3 class="modal-title-custom" id="txModalTitle">
+      <div class="modal-content-card" id="txModalCard" style="max-height: 95vh; padding: 10px 14px 12px; border-radius: 20px 20px 0 0; gap: 3px; overflow-y: hidden;">
+        <div class="modal-head" style="margin-bottom: 2px; padding-bottom: 3px;">
+          <h3 class="modal-title-custom" id="txModalTitle" style="font-size: 0.92rem; margin: 0; display: flex; align-items: center; gap: 6px;">
             <i class="fa-solid fa-circle-plus" id="txModalTitleIcon" style="color: var(--income);"></i>
             <span id="txModalTitleText">تسجيل دخل جديد</span>
           </h3>
-          <button type="button" class="btn-modal-close" onclick="closeModal('txModal')" aria-label="إغلاق">&times;</button>
+          <button type="button" class="btn-modal-close" onclick="closeModal('txModal')" aria-label="إغلاق" style="font-size: 1.2rem; width: 26px; height: 26px; line-height: 24px; padding: 0;">&times;</button>
         </div>
 
-        <!-- شارة التوضيح البارزة لطبيعة الحركة (دخل أم مصروف) -->
-        <div class="tx-nature-banner income-nature" id="txNatureBanner">
+        <!-- شارة التوضيح البارزة لطبيعة الحركة (دخل أم مصروف) مدمجة في سطر واحد أنيق -->
+        <div class="tx-nature-banner income-nature" id="txNatureBanner" style="padding: 3px 8px; font-size: 0.68rem; margin-bottom: 4px; border-radius: 6px; line-height: 1.2;">
           <i class="fa-solid fa-arrow-trend-up" id="txNatureIcon"></i>
           <span id="txNatureText">أنت الآن تسجل (دخل / إيداع وارد) - يضاف إلى الرصيد والمحفظة</span>
         </div>
 
-        <div class="form-group-custom">
-          <label class="form-label-custom">المبلغ (ج.م) <span class="req">*</span></label>
-          <div style="display: flex; gap: 8px; align-items: center;">
-            <input type="number" step="0.01" class="form-input-custom" id="inpTxAmount" placeholder="0.00" style="flex: 1; font-size: 1.25rem; font-weight: 800; text-align: center;">
-            <button type="button" class="btn-input-calc" id="btnTxInlineCalc" onclick="openCalculatorModal(document.getElementById('inpTxAmount')?.value)" title="فتح الآلة الحاسبة المدمجة">
+        <!-- المبلغ + الآلة الحاسبة المدمجة في صف أفقي واحد -->
+        <div class="form-group-custom" style="margin-bottom: 4px;">
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <div style="flex: 1; position: relative;">
+              <input type="number" step="0.01" class="form-input-custom" id="inpTxAmount" placeholder="0.00 ج.م" style="width: 100%; height: 36px; font-size: 1.15rem; font-weight: 900; text-align: center; padding: 4px 8px; box-sizing: border-box;">
+            </div>
+            <button type="button" class="btn-input-calc" id="btnTxInlineCalc" onclick="openCalculatorModal(document.getElementById('inpTxAmount')?.value)" title="فتح الآلة الحاسبة المدمجة" style="width: 36px; height: 36px; min-width: 36px; padding: 0; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; border-radius: 8px;">
               <i class="fa-solid fa-calculator"></i>
             </button>
           </div>
 
           <!-- لوحة الآلة الحاسبة المدمجة فائقة السرعة والمصممة خصيصاً للجوال -->
-          <div id="txInlineCalcPad" class="tx-inline-calc-wrapper" style="display: none;">
+          <div id="txInlineCalcPad" class="tx-inline-calc-wrapper" style="display: none; margin-top: 4px;">
             <div class="tx-calc-screen">
               <div class="tx-calc-formula" id="txCalcFormula">0</div>
               <div class="tx-calc-result-display" id="txCalcResult">0.00</div>
@@ -6994,58 +7577,64 @@
           </div>
         </div>
 
-        <!-- الشرط الصارم: بيان المصروف إلزامي -->
-        <div class="form-group-custom">
-          <label class="form-label-custom">بيان الحركة (ملاحظات تفصيلية) <span class="req">* إلزامي</span></label>
-          <input type="text" class="form-input-custom" id="inpTxLabel" placeholder="مثال: راتب شهري، حافز، أو شراء مستلزمات">
-          <span class="error-hint" id="txLabelError">عفواً، لا يتم قبول الإضافة الا بتسجيل بيان الحركة!</span>
+        <!-- بيان الحركة (ملاحظات تفصيلية) إلزامي -->
+        <div class="form-group-custom" style="margin-bottom: 4px;">
+          <input type="text" class="form-input-custom" id="inpTxLabel" placeholder="بيان الحركة تفصيلياً (إلزامي) *" style="height: 34px; font-size: 0.78rem; padding: 4px 8px; box-sizing: border-box;">
+          <span class="error-hint" id="txLabelError" style="font-size: 0.65rem; padding: 2px 4px; margin-top: 1px;">عفواً، لا يتم قبول الإضافة الا بتسجيل بيان الحركة!</span>
         </div>
 
-        <div class="form-group-custom">
-          <label class="form-label-custom">التصنيف</label>
-          <select class="form-select-custom" id="inpTxCategory"></select>
+        <!-- التصنيف + المحفظة في صف أفقي مقسم لعمودين متساويين -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 4px;">
+          <div class="form-group-custom" style="margin-bottom: 0;">
+            <label class="form-label-custom" style="font-size: 0.68rem; margin-bottom: 1px; display: block; font-weight: 700;">التصنيف <span class="req">*</span></label>
+            <select class="form-select-custom" id="inpTxCategory" style="height: 34px; font-size: 0.78rem; padding: 3px 6px; width: 100%; box-sizing: border-box;"></select>
+          </div>
+          <div class="form-group-custom" style="margin-bottom: 0;">
+            <label class="form-label-custom" style="font-size: 0.68rem; margin-bottom: 1px; display: block; font-weight: 700;">المحفظة <span class="req">*</span></label>
+            <select class="form-select-custom" id="inpTxWallet" style="height: 34px; font-size: 0.78rem; padding: 3px 6px; width: 100%; box-sizing: border-box;"></select>
+          </div>
         </div>
 
-        <div class="form-group-custom">
-          <label class="form-label-custom"><i class="fa-solid fa-user-tag" style="color: #38bdf8;"></i> يخص من في العائلة؟ (بالصور الفعلية):</label>
+        <!-- يخص من في العائلة؟ (شريط أفقي مضغوط وأنيق بالصور الحقيقية) -->
+        <div class="form-group-custom" style="margin-bottom: 4px;">
+          <label class="form-label-custom" style="font-size: 0.68rem; margin-bottom: 2px; display: block; font-weight: 700;">
+            <i class="fa-solid fa-user-tag" style="color: #38bdf8;"></i> يخص من في العائلة؟ (بالصور الفعلية):
+          </label>
           <input type="hidden" id="inpTxMember" value="العائلة">
-          <div class="member-photo-picker-strip" id="txMemberPhotoPicker">
+          <div class="member-photo-picker-strip" id="txMemberPhotoPicker" style="display: flex; gap: 5px; overflow-x: auto; padding-bottom: 2px;">
             <!-- تتولد تلقائياً بالصور الفعلية الحقيقية لأفراد العائلة -->
           </div>
         </div>
 
-        <div class="form-group-custom">
-          <label class="form-label-custom">تودع في / تخصم من أي محفظة؟</label>
-          <select class="form-select-custom" id="inpTxWallet"></select>
-        </div>
-
-        <div class="form-group-custom">
-          <label class="form-label-custom">التاريخ</label>
-          <input type="date" class="form-input-custom" id="inpTxDate">
-        </div>
-
-        <!-- إمكانية التصوير أو رفع صورة فاتورة المصروف -->
-        <div class="form-group-custom">
-          <label class="form-label-custom">📷 صورة الفاتورة / الإيصال (تصوير بالكاميرا أو رفع ملف)</label>
-          <div class="receipt-upload-box">
-            <input type="file" id="inpTxReceipt" accept="image/*" capture="environment" style="display:none;" onchange="handleReceiptUpload(event)">
-            <button type="button" class="btn-receipt-action" onclick="document.getElementById('inpTxReceipt').click()">
-              <i class="fa-solid fa-camera"></i> تصوير أو رفع فاتورة
-            </button>
-            <button type="button" class="btn-receipt-action clear-receipt-btn" id="btnClearReceipt" style="display:none;" onclick="clearReceiptUpload()">
-              <i class="fa-solid fa-trash"></i> حذف
-            </button>
+        <!-- التاريخ + تصوير الفاتورة في صف أفقي مقسم لعمودين متساويين -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; align-items: end;">
+          <div class="form-group-custom" style="margin-bottom: 0;">
+            <label class="form-label-custom" style="font-size: 0.68rem; margin-bottom: 1px; display: block; font-weight: 700;">التاريخ</label>
+            <input type="date" class="form-input-custom" id="inpTxDate" style="height: 34px; font-size: 0.78rem; padding: 3px 6px; width: 100%; box-sizing: border-box;">
           </div>
-          <div id="receiptPreviewContainer" style="display:none; margin-top:8px; text-align: center;">
-            <img id="receiptPreviewImg" src="" style="max-height: 120px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+          <div class="form-group-custom" style="margin-bottom: 0;">
+            <label class="form-label-custom" style="font-size: 0.68rem; margin-bottom: 1px; display: block; font-weight: 700;">📷 صورة الفاتورة</label>
+            <div class="receipt-upload-box" style="display: flex; gap: 4px;">
+              <input type="file" id="inpTxReceipt" accept="image/*" capture="environment" style="display:none;" onchange="handleReceiptUpload(event)">
+              <button type="button" class="btn-receipt-action" onclick="document.getElementById('inpTxReceipt').click()" style="height: 34px; font-size: 0.72rem; padding: 3px 6px; flex: 1; margin: 0; white-space: nowrap; border-radius: 8px;">
+                <i class="fa-solid fa-camera"></i> تصوير/رفع
+              </button>
+              <button type="button" class="btn-receipt-action clear-receipt-btn" id="btnClearReceipt" style="display:none; height: 34px; padding: 3px 6px; border-radius: 8px;" onclick="clearReceiptUpload()">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
           </div>
         </div>
+        <div id="receiptPreviewContainer" style="display:none; margin-bottom: 4px; text-align: center;">
+          <img id="receiptPreviewImg" src="" style="max-height: 80px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); object-fit: cover;">
+        </div>
 
-        <div style="display: flex; gap: 8px; margin-top: 6px;">
-          <button type="button" class="btn-submit-tx" id="btnSaveTx" style="flex: 2; margin: 0;">
+        <!-- زرا التأكيد والإلغاء في الأسفل بحجم مثالي وواضح جداً -->
+        <div style="display: flex; gap: 6px; margin-top: 4px;">
+          <button type="button" class="btn-submit-tx" id="btnSaveTx" style="flex: 2; margin: 0; height: 38px; font-size: 0.84rem; font-weight: 800; border-radius: 10px;">
             <i class="fa-solid fa-check"></i> <span id="btnSaveTxText">حفظ المصروف فوراً</span>
           </button>
-          <button type="button" class="btn-cancel-tx" onclick="closeModal('txModal')" style="flex: 1;">
+          <button type="button" class="btn-cancel-tx" onclick="closeModal('txModal')" style="flex: 1; height: 38px; font-size: 0.84rem; font-weight: 800; border-radius: 10px;">
             <i class="fa-solid fa-xmark"></i> إلغاء
           </button>
         </div>
@@ -7737,11 +8326,26 @@
             </button>
           </div>
 
-          <!-- لون وهوية وتصميم التطبيق -->
+          <!-- لون وهوية وتصميم التطبيق (مع تعدد الأشكال والتصاميم) -->
           <div class="app-card-panel" style="margin: 0;">
             <div class="app-card-title">
               <i class="fa-solid fa-palette" style="color: #38bdf8;"></i>
               <span>لون وتصميم مظهر التطبيق</span>
+            </div>
+
+            <!-- محدد نمط وشكل التصميم (Design Style) -->
+            <div style="margin-bottom: 10px; background: rgba(255,255,255,0.03); padding: 6px 8px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06);">
+              <div style="font-size: 0.72rem; font-weight: 800; color: #cbd5e1; margin-bottom: 6px;">
+                <i class="fa-solid fa-shapes" style="color: #38bdf8;"></i> نمط وشكل الكروت:
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                <button type="button" class="analytics-sec-btn active" id="designStyleGlass" onclick="setAppDesignStyle('glass')" style="padding: 6px 8px; font-size: 0.72rem;">
+                  ✨ زجاجي فخم ونيون
+                </button>
+                <button type="button" class="analytics-sec-btn" id="designStyleMin" onclick="setAppDesignStyle('minimal')" style="padding: 6px 8px; font-size: 0.72rem;">
+                  📐 عصري مدمج هادئ
+                </button>
+              </div>
             </div>
             <div class="theme-color-palette" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
               <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')">
@@ -7988,6 +8592,13 @@
     let currentModalType = 'expense';
 
     function initApp() {
+
+      // تعيين التاريخ الافتراضي لطلب المصروف إلى اليوم
+      const reqDateInp = document.getElementById('inpReqDate');
+      if (reqDateInp && !reqDateInp.value) {
+        reqDateInp.value = new Date().toISOString().split('T')[0];
+      }
+
       // 1. فحص حفظ تسجيل الدخول
       const savedAuth = localStorage.getItem('family_monefy_auth');
       if (savedAuth) {
@@ -11439,34 +12050,43 @@
       ).join('');
 
       currentRequestAllocations.forEach((alloc, idx) => {
-        const row = document.createElement('div');
-        row.className = 'req-alloc-row';
-        row.innerHTML = `
-          <div>
-            <input type="number" step="0.01" class="form-input-custom" value="${alloc.amount > 0 ? alloc.amount : ''}" placeholder="المبلغ" style="padding: 5px 8px; font-size: 0.78rem; text-align: center; border-radius: 8px;" oninput="updateRequestAllocationRow(${idx}, 'amount', this.value)">
+        const card = document.createElement('div');
+        card.className = 'req-alloc-card-item';
+        card.style.cssText = 'background: rgba(30, 41, 59, 0.65); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 10px; padding: 7px 9px; display: flex; flex-direction: column; gap: 5px;';
+        
+        card.innerHTML = `
+          <!-- السطر الأول: التصنيف والمستفيد -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+            <div>
+              <div style="font-size: 0.64rem; color: #94a3b8; font-weight: 700; margin-bottom: 1px;">التصنيف:</div>
+              <select class="form-select-custom" style="height: 32px; font-size: 0.75rem; padding: 2px 6px; border-radius: 7px; width: 100%; box-sizing: border-box;" onchange="updateRequestAllocationRow(${idx}, 'category', this.value)">
+                ${catOptions}
+              </select>
+            </div>
+            <div>
+              <div style="font-size: 0.64rem; color: #94a3b8; font-weight: 700; margin-bottom: 1px;">يخص من:</div>
+              <select class="form-select-custom" style="height: 32px; font-size: 0.75rem; padding: 2px 6px; border-radius: 7px; width: 100%; box-sizing: border-box;" onchange="updateRequestAllocationRow(${idx}, 'member', this.value)">
+                ${memberOptions}
+              </select>
+            </div>
           </div>
-          <div>
-            <select class="form-select-custom" style="padding: 5px 6px; font-size: 0.75rem; border-radius: 8px;" onchange="updateRequestAllocationRow(${idx}, 'category', this.value)">
-              ${catOptions}
-            </select>
-          </div>
-          <div>
-            <select class="form-select-custom" style="padding: 5px 6px; font-size: 0.75rem; border-radius: 8px;" onchange="updateRequestAllocationRow(${idx}, 'member', this.value)">
-              ${memberOptions}
-            </select>
-          </div>
-          <div>
-            <button type="button" onclick="removeRequestAllocationRow(${idx})" class="ops-tx-del-btn" style="width: 26px; height: 26px; font-size: 0.7rem;" title="حذف السطر">
-              <i class="fa-solid fa-xmark"></i>
+          <!-- السطر الثاني: المبلغ المخصص وزر الحذف -->
+          <div style="display: flex; gap: 6px; align-items: flex-end;">
+            <div style="flex: 1;">
+              <div style="font-size: 0.64rem; color: #94a3b8; font-weight: 700; margin-bottom: 1px;">المبلغ المخصص (ج.م):</div>
+              <input type="number" step="0.01" class="form-input-custom" value="${alloc.amount > 0 ? alloc.amount : ''}" placeholder="0.00 ج.م" style="height: 32px; font-size: 0.95rem; font-weight: 900; text-align: center; padding: 2px 8px; border-radius: 7px; color: #38bdf8; width: 100%; box-sizing: border-box;" oninput="updateRequestAllocationRow(${idx}, 'amount', this.value)">
+            </div>
+            <button type="button" onclick="removeRequestAllocationRow(${idx})" class="btn-item-action btn-item-reject" style="height: 32px; padding: 0 10px; font-size: 0.72rem; border-radius: 7px; flex: 0 0 auto; gap: 4px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;" title="حذف هذا التخصيص">
+              <i class="fa-solid fa-trash-can"></i> حذف
             </button>
           </div>
         `;
 
-        const selects = row.querySelectorAll('select');
+        const selects = card.querySelectorAll('select');
         if (selects[0]) selects[0].value = alloc.category || 'daily';
         if (selects[1]) selects[1].value = alloc.member || 'أية';
 
-        container.appendChild(row);
+        container.appendChild(card);
       });
 
       updateRequestAllocationBalances();
@@ -11596,14 +12216,14 @@
             ${statusBadge}
           </div>
 
-          <div style="font-size: 0.88rem; font-weight: 700; color: var(--text-main); margin: 6px 0;">
+          <div class="item-entry-reason">
             ${escapeHtml(req.reason)}
           </div>
 
-          <!-- شارات بنود التوزيع التقديرية -->
-          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px;">
+          <!-- شارات بنود التوزيع التقديرية المدمجة -->
+          <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 4px;">
             ${allocChipsHtml}
-            <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700;">
+            <span style="background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.25); padding: 2px 6px; border-radius: 6px; font-size: 0.65rem; font-weight: 700;">
               <i class="fa-regular fa-calendar-check"></i> تاريخ الحاجة: ${req.date || 'اليوم'}
             </span>
           </div>
@@ -11946,6 +12566,44 @@
       };
       if (typeof showToast === 'function') {
         showToast(`🎨 تم تفعيل مظهر التطبيق: ${names[theme] || theme}`);
+      }
+    }
+
+
+    
+    // تبديل إظهار وطي شارت TradingView المصغر في بورصة الذهب
+    function toggleTradingViewChart() {
+      const container = document.getElementById('tvChartContainer');
+      const btn = document.getElementById('btnToggleTvChart');
+      if (!container) return;
+      if (container.style.display === 'none') {
+        container.style.display = 'block';
+        if (btn) btn.textContent = 'طي الشارت';
+      } else {
+        container.style.display = 'none';
+        if (btn) btn.textContent = 'إظهار الشارت';
+      }
+    }
+
+    // تطبيق نمط وتصميم الكروت (Design Style Engine)
+    function setAppDesignStyle(style) {
+      document.documentElement.setAttribute('data-card-style', style);
+      document.body.setAttribute('data-card-style', style);
+      localStorage.setItem('family_monefy_design_style', style);
+      
+      const btnGlass = document.getElementById('designStyleGlass');
+      const btnMin = document.getElementById('designStyleMin');
+      if (btnGlass && btnMin) {
+        if (style === 'glass') {
+          btnGlass.classList.add('active');
+          btnMin.classList.remove('active');
+        } else {
+          btnMin.classList.add('active');
+          btnGlass.classList.remove('active');
+        }
+      }
+      if (typeof showToast === 'function') {
+        showToast(style === 'glass' ? '✨ تم تفعيل نمط الزجاجي الفخم' : '📐 تم تفعيل نمط العصري المدمج');
       }
     }
 
