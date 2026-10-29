@@ -6135,9 +6135,13 @@
         ayaCanExport: true,
       },
       wallets: [
-        { id: 'wallet-default', name: 'محفظة البيت الرئيسية', icon: 'fa-money-bill-wave', initialBalance: 0 },
-        { id: 'wallet-bank', name: 'حساب بنك مصر', icon: 'fa-building-columns', initialBalance: 0 },
-        { id: 'wallet-vodafone', name: 'فودافون كاش', icon: 'fa-mobile-screen', initialBalance: 0 }
+        { id: 'wallet-default', name: 'محفظة البيت الرئيسية (كاش)', icon: 'fa-money-bill-wave', initialBalance: 15000 },
+        { id: 'wallet-bank-misr', name: 'بنك مصر - الحساب الجاري', icon: 'fa-building-columns', initialBalance: 85000 },
+        { id: 'wallet-ahly', name: 'البنك الأهلي - حساب الراتب', icon: 'fa-landmark', initialBalance: 120000 },
+        { id: 'wallet-vodafone', name: 'فودافون كاش - فواتير ومدفوعات', icon: 'fa-mobile-screen', initialBalance: 8500 },
+        { id: 'wallet-instapay', name: 'انستاباي InstaPay', icon: 'fa-bolt', initialBalance: 25000 },
+        { id: 'wallet-cash-safe', name: 'خزينة كاش الطوارئ بالمنزل', icon: 'fa-vault', initialBalance: 50000 },
+        { id: 'wallet-cib-credit', name: 'بطاقة CIB الائتمانية', icon: 'fa-credit-card', initialBalance: 30000 }
       ],
       transactions: [],
     };
@@ -6220,7 +6224,7 @@
     }
 
       // 3. إدارة إصدار التطبيق وتحميل الحركات الغنية المتجددة بحسب تاريخ اليوم الحالي
-      const APP_VERSION = '3.1.0';
+      const APP_VERSION = '3.3.0';
       const storedVer = localStorage.getItem('family_monefy_version');
       const todayIsoStr = new Date().toISOString().split('T')[0];
       const storedTx = localStorage.getItem('family_monefy_v2_tx') || localStorage.getItem('family_monefy_txs');
@@ -6998,7 +7002,11 @@
         else dayMap[d].exp += amt;
       });
 
-      const sortedDates = Object.keys(dayMap).sort();
+      let sortedDates = Object.keys(dayMap).sort();
+      // إذا تجاوز عدد الأيام 35 يوم، نعرض آخر 30 يوماً نشطاً لضمان سرعة وانسيابية الشارت اللحظية
+      if (sortedDates.length > 35) {
+        sortedDates = sortedDates.slice(-30);
+      }
       const expData = sortedDates.map(d => dayMap[d].exp);
       const incData = sortedDates.map(d => dayMap[d].inc);
       const friendlyDates = sortedDates.map(d => d.substring(5)); // MM-DD
@@ -7340,61 +7348,204 @@
     // =========================================================================
     function generateRichDemoTransactions() {
       const today = new Date();
-      const fmt = (d) => d.toISOString().split('T')[0];
-      const subDays = (n) => {
-        const d = new Date(today);
-        d.setDate(d.getDate() - n);
-        return fmt(d);
-      };
+      const fmtDate = (d) => d.toISOString().split('T')[0];
+      const todayStr = fmtDate(today);
 
-      return [
-        // اليوم الحالي (Today) - دخل ومصروفات لكافة أفراد العائلة
-        { id: 'tx-td-1', type: 'income', amount: 3500, label: 'أرباح عمل حر إضافي - ماهر', category: 'bonus', member: 'ماهر', walletId: 'wallet-bank', date: subDays(0) },
-        { id: 'tx-td-2', type: 'expense', amount: 480, label: 'طلبات سوبرماركت وخضار وفاكهة اليوم', category: 'food', member: 'أية', walletId: 'wallet-default', date: subDays(0) },
-        { id: 'tx-td-3', type: 'expense', amount: 250, label: 'بنزين وتفويل سيارة العائلة', category: 'transport', member: 'ماهر', walletId: 'wallet-default', date: subDays(0) },
-        { id: 'tx-td-4', type: 'expense', amount: 320, label: 'بامبرز ومستلزمات صيدلية للنونو', category: 'kids', member: 'النونو', walletId: 'wallet-default', date: subDays(0) },
-        { id: 'tx-td-5', type: 'expense', amount: 180, label: 'علاج وفيتامينات الضغط للحاجة', category: 'health', member: 'الحاجة', walletId: 'wallet-default', date: subDays(0) },
-        { id: 'tx-td-6', type: 'expense', amount: 150, label: 'مصروف مدرسة ونثريات محمد ومريم', category: 'daily', member: 'محمد', walletId: 'wallet-default', date: subDays(0) },
-
-        // الأمس (Yesterday)
-        { id: 'tx-yest-1', type: 'expense', amount: 850, label: 'مشتريات لحوم ودواجن أسبوعية', category: 'food', member: 'أية', walletId: 'wallet-default', date: subDays(1) },
-        { id: 'tx-yest-2', type: 'expense', amount: 420, label: 'ملابس وسالوبيتات شتوية للنونو', category: 'clothes', member: 'النونو', walletId: 'wallet-default', date: subDays(1) },
-        { id: 'tx-yest-3', type: 'expense', amount: 350, label: 'كتب خارجية ومذكرات دراسية لمحمد', category: 'education', member: 'محمد', walletId: 'wallet-default', date: subDays(1) },
-
-        // باقي الأسبوع الحالي (Past 2-6 days)
-        { id: 'tx-w-1', type: 'income', amount: 8000, label: 'قبض جمعية شهرية عائلية لأية', category: 'other_inc', member: 'أية', walletId: 'wallet-vodafone', date: subDays(3) },
-        { id: 'tx-w-2', type: 'expense', amount: 1200, label: 'صيانة دورية وتغيير زيت سيارة ماهر', category: 'transport', member: 'ماهر', walletId: 'wallet-bank', date: subDays(2) },
-        { id: 'tx-w-3', type: 'expense', amount: 650, label: 'فسحة عائلية وعشاء بالخارج للأولاد', category: 'entertainment', member: 'مريم', walletId: 'wallet-default', date: subDays(4) },
-        { id: 'tx-w-4', type: 'expense', amount: 550, label: 'ألعاب تعليمية وقصص لمريم', category: 'kids', member: 'مريم', walletId: 'wallet-default', date: subDays(5) },
-        { id: 'tx-w-5', type: 'expense', amount: 750, label: 'هدايا ومجاملات عائلية للحاجة', category: 'gifts', member: 'الحاجة', walletId: 'wallet-default', date: subDays(6) },
-
-        // خلال الشهر الحالي (أكتوبر 2026)
-        { id: 'tx-m-1', type: 'income', amount: 48000, label: 'راتب ماهر الشهري الأساسي', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-01' },
-        { id: 'tx-m-2', type: 'income', amount: 12000, label: 'أرباح استثمار وتداول ذهب', category: 'invest', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-05' },
-        { id: 'tx-m-3', type: 'income', amount: 4500, label: 'مكافأة تميز وإنتاجية لماهر', category: 'bonus', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-15' },
-        { id: 'tx-m-4', type: 'expense', amount: 7600, label: 'تموين السوبرماركت والمجمدات الشهري', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-10-03' },
-        { id: 'tx-m-5', type: 'expense', amount: 5200, label: 'قسط مدرسة محمد وكتب الترم الأول', category: 'education', member: 'محمد', walletId: 'wallet-bank', date: '2026-10-06' },
-        { id: 'tx-m-6', type: 'expense', amount: 4300, label: 'كشوفات وتحاليل واستشارة أدوية للحاجة', category: 'health', member: 'الحاجة', walletId: 'wallet-bank', date: '2026-10-08' },
-        { id: 'tx-m-7', type: 'expense', amount: 3400, label: 'شراء ملابس وأحذية شتوية للأولاد', category: 'clothes', member: 'أية', walletId: 'wallet-default', date: '2026-10-14' },
-        { id: 'tx-m-8', type: 'expense', amount: 2750, label: 'مصروف يومي ونثريات ومستلزمات ماهر', category: 'daily', member: 'ماهر', walletId: 'wallet-default', date: '2026-10-16' },
-        { id: 'tx-m-9', type: 'expense', amount: 2400, label: 'فواتير كهرباء وغاز وإنترنت منزلي فايبر', category: 'bills', member: 'ماهر', walletId: 'wallet-vodafone', date: '2026-10-18' },
-        { id: 'tx-m-10', type: 'expense', amount: 2100, label: 'أجهزة ومستلزمات نظافة للمنزل', category: 'house', member: 'أية', walletId: 'wallet-default', date: '2026-10-20' },
-        { id: 'tx-m-11', type: 'expense', amount: 1850, label: 'تطعيمات ومتابعة نمو طبيب أطفال للنونو', category: 'health', member: 'النونو', walletId: 'wallet-default', date: '2026-10-21' },
-        { id: 'tx-m-12', type: 'expense', amount: 950, label: 'نثريات وطوارئ مدرسية لمحمد', category: 'others', member: 'محمد', walletId: 'wallet-default', date: '2026-10-22' },
-
-        // شهور سابقة للمقارنة والتحليلات (سبتمبر 2026)
-        { id: 'tx-sep-1', type: 'income', amount: 48000, label: 'راتب ماهر لشهر سبتمبر', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-09-01' },
-        { id: 'tx-sep-2', type: 'income', amount: 10000, label: 'عائد شهادة استثمار بنكية', category: 'invest', member: 'ماهر', walletId: 'wallet-bank', date: '2026-09-15' },
-        { id: 'tx-sep-3', type: 'expense', amount: 12000, label: 'أقساط ومستلزمات مدارس وباصات', category: 'education', member: 'محمد', walletId: 'wallet-bank', date: '2026-09-05' },
-        { id: 'tx-sep-4', type: 'expense', amount: 8200, label: 'سوبرماركت ومستلزمات منزل سبتمبر', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-09-08' },
-        { id: 'tx-sep-5', type: 'expense', amount: 5500, label: 'ملابس وشنط مدرسية للأولاد', category: 'clothes', member: 'أية', walletId: 'wallet-default', date: '2026-09-12' },
-        { id: 'tx-sep-6', type: 'expense', amount: 3100, label: 'مستلزمات صيدلية وفيتامينات للحاجة', category: 'health', member: 'الحاجة', walletId: 'wallet-default', date: '2026-09-22' },
-
-        // أغسطس 2026
-        { id: 'tx-aug-1', type: 'income', amount: 48000, label: 'راتب ماهر لشهر أغسطس', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-08-01' },
-        { id: 'tx-aug-2', type: 'expense', amount: 18500, label: 'مصاريف وإيجار مصيف الساحل الشمالي', category: 'entertainment', member: 'ماهر', walletId: 'wallet-bank', date: '2026-08-12' },
-        { id: 'tx-aug-3', type: 'expense', amount: 7200, label: 'سوبرماركت ومشتريات أغسطس', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-08-05' }
+      const membersList = ['ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'العائلة'];
+      const walletIds = [
+        'wallet-default', 'wallet-bank-misr', 'wallet-ahly', 
+        'wallet-vodafone', 'wallet-instapay', 'wallet-cash-safe', 'wallet-cib-credit'
       ];
+
+      const catList = [
+        { id: 'food', name: 'طعام ومشتريات', labels: ['سوبرماركت كارفور', 'سعودي ماركت', 'خضروات وفواكه طازجة', 'لحوم ودواجن بلدي', 'أسماك ومأكولات بحرية', 'مخبوزات وحلويات', 'طلبات بقالة وسوبرماركت'] },
+        { id: 'transport', name: 'مواصلات وبنزين', labels: ['بنزين 95 للسيارة', 'تغيير زيت وصيانة دورية', 'أوبر ومشاوير عائلية', 'غسيل وتلميع السيارة', 'مترو ومواصلات عامة', 'كارتة ورسوم طريق'] },
+        { id: 'bills', name: 'فواتير والتزامات', labels: ['فاتورة الكهرباء الشهرية', 'فاتورة الغاز الطبيعي', 'فاتورة المياه', 'اشتراك الإنترنت المنزلي VDSL', 'شحن باقات الموبايل والمكالمات', 'صيانة وحراسة العمارة'] },
+        { id: 'daily', name: 'مصروف يومي', labels: ['مصروف يومي مدرسي', 'قهوة ونثريات العمل', 'فطار يومي ومخبوزات', 'مصروف شخصي ونثريات', 'شحن كارت فكة'] },
+        { id: 'house', name: 'مستلزمات منزل', labels: ['منظفات ومطهرات للمنزل', 'أدوات مطبخ وأواني', 'لمبات وصيانة كهرباء', 'أغطية ومفروشات غرف', 'صيانة سباكة وفلاتر'] },
+        { id: 'health', name: 'صحة وعلاج', labels: ['صيدلية العزبي أدوية شهرية', 'كشف عيادة أطفال', 'تحاليل معمل البرج', 'فيتامينات ومكملات غذائية', 'مستلزمات علاج الحاجة'] },
+        { id: 'clothes', name: 'ملابس وأحذية', labels: ['ملابس صيفية أطفال', 'أحذية رياضية محمد', 'ملابس بيت أية', 'شراء بدل وقمصان ماهر', 'ملابس ومستلزمات مريم'] },
+        { id: 'kids', name: 'ألعاب وأطفال', labels: ['بامبرز وحفاضات النونو', 'ألبان وسيريلاك أطفال', 'ألعاب تعليمية وتنمية مهارات', 'قصص وكتب أطفال', 'مستلزمات بيبي ونونو'] },
+        { id: 'entertainment', name: 'ترفيه وفسح', labels: ['فسحة وخروجة نهاية الأسبوع', 'مطعم وكافيه عائلي', 'سينما وملاهي للأولاد', 'اشتراك نادي ورياضة', 'ألعاب أطفال كيدزانيا'] },
+        { id: 'gifts', name: 'هدايا ومجاملات', labels: ['هدية عيد ميلاد عائلي', 'مجاملة وزيارة أقارب', 'عيدية ومناسبات أعياد', 'هدية نجاح وتفوق مدرسي'] },
+        { id: 'education', name: 'تعليم ودروس', labels: ['قسط مدرسة تجريبي لغات', 'دروس خصوصية محمد ومريم', 'كتب وملازم ومذكرات', 'كورسات لغات وتدريب', 'أدوات وكشاكيل دراسية'] },
+        { id: 'others', name: 'مصاريف أخرى', labels: ['نثريات متنوعة وطارئة', 'صدقات وزكاة مال', 'تصليح أجهزة منزلية', 'طوارئ وصيانة عامة'] }
+      ];
+
+      const incomeSources = [
+        { cat: 'salary', label: 'راتب ماهر الشهري الأساسي', minAmt: 45000, maxAmt: 52000, mems: ['ماهر'], w: 'wallet-ahly' },
+        { cat: 'invest', label: 'أرباح استثمار وبورصة وتداول', minAmt: 8000, maxAmt: 25000, mems: ['ماهر'], w: 'wallet-bank-misr' },
+        { cat: 'freelance', label: 'مستحقات استشارات تقنية وبرمجة', minAmt: 5000, maxAmt: 18000, mems: ['ماهر'], w: 'wallet-instapay' },
+        { cat: 'other_inc', label: 'قبض جمعية شهرية عائلية', minAmt: 6000, maxAmt: 12000, mems: ['أية'], w: 'wallet-vodafone' },
+        { cat: 'bonus', label: 'مكافأة أداء ربع سنوية', minAmt: 7000, maxAmt: 20000, mems: ['ماهر'], w: 'wallet-ahly' },
+        { cat: 'dividend', label: 'عائد شهادات ادخار واستثمار', minAmt: 3500, maxAmt: 9000, mems: ['الحاجة', 'ماهر'], w: 'wallet-bank-misr' }
+      ];
+
+      const merchants = [
+        'سوبرماركت كارفور سيتي سنتر', 'سعودي ماركت الشيخ زايد', 'هايبر وان 6 أكتوبر',
+        'صيدليات العزبي', 'صيدليات 19011', 'محطة وقود وطنية مصر',
+        'محطة وقود تشيل أوت ChillOut', 'متاجر زارا Zara للملابس', 'مكتبة سمير وعلي',
+        'مطاعم وكافيهات أروما', 'مستشفى الشروق التخصصي', 'بي تك للأجهزة المنزلية'
+      ];
+
+      function makeReceiptSvg(txId, label, amount, date, member, merchant) {
+        return "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 560' width='400' height='560'>" +
+          "<rect width='400' height='560' fill='%23ffffff' rx='12'/>" +
+          "<rect x='15' y='15' width='370' height='530' fill='none' stroke='%23e2e8f0' stroke-width='2' rx='8'/>" +
+          "<path d='M 20 40 L 380 40' stroke='%230284c7' stroke-width='3'/>" +
+          "<text x='200' y='32' font-family='Segoe UI, sans-serif' font-size='16' font-weight='bold' fill='%230f172a' text-anchor='middle'>فاتورة مشتريات إلكترونية ضريبية</text>" +
+          "<text x='200' y='70' font-family='Segoe UI, sans-serif' font-size='20' font-weight='900' fill='%230284c7' text-anchor='middle'>" + merchant + "</text>" +
+          "<text x='200' y='92' font-family='Segoe UI, sans-serif' font-size='11' fill='%2364748b' text-anchor='middle'>الرقم الضريبي: 301294819200003 | فرع العائلة المعتمد</text>" +
+          "<line x1='30' y1='108' x2='370' y2='108' stroke='%23cbd5e1' stroke-dasharray='4'/>" +
+          "<text x='360' y='130' font-family='Segoe UI, sans-serif' font-size='12' fill='%23475569' text-anchor='end'>رقم العملية: #" + txId + "</text>" +
+          "<text x='40' y='130' font-family='Segoe UI, sans-serif' font-size='12' fill='%23475569' text-anchor='start'>التاريخ: " + date + "</text>" +
+          "<text x='360' y='150' font-family='Segoe UI, sans-serif' font-size='12' fill='%23475569' text-anchor='end'>المسؤول: " + member + "</text>" +
+          "<text x='40' y='150' font-family='Segoe UI, sans-serif' font-size='12' fill='%2310b981' font-weight='bold' text-anchor='start'>الحالة: مسدد بالكامل ✓</text>" +
+          "<line x1='30' y1='165' x2='370' y2='165' stroke='%23cbd5e1' stroke-width='1.5'/>" +
+          "<rect x='30' y='175' width='340' height='28' fill='%23f8fafc' rx='4'/>" +
+          "<text x='350' y='194' font-family='Segoe UI, sans-serif' font-size='12' font-weight='bold' fill='%23334155' text-anchor='end'>البيان / الصنف</text>" +
+          "<text x='50' y='194' font-family='Segoe UI, sans-serif' font-size='12' font-weight='bold' fill='%23334155' text-anchor='start'>المبلغ (ج.م)</text>" +
+          "<text x='350' y='230' font-family='Segoe UI, sans-serif' font-size='13' font-weight='600' fill='%231e293b' text-anchor='end'>" + label.slice(0, 30) + "</text>" +
+          "<text x='50' y='230' font-family='Segoe UI, sans-serif' font-size='13' font-weight='bold' fill='%23ef4444' text-anchor='start'>" + amount.toFixed(2) + "</text>" +
+          "<text x='350' y='260' font-family='Segoe UI, sans-serif' font-size='11' fill='%2364748b' text-anchor='end'>رسوم خدمة وتغليف إلكتروني</text>" +
+          "<text x='50' y='260' font-family='Segoe UI, sans-serif' font-size='11' fill='%2364748b' text-anchor='start'>0.00</text>" +
+          "<text x='350' y='290' font-family='Segoe UI, sans-serif' font-size='11' fill='%2364748b' text-anchor='end'>ضريبة القيمة المضافة (14% مشمولة)</text>" +
+          "<text x='50' y='290' font-family='Segoe UI, sans-serif' font-size='11' fill='%2364748b' text-anchor='start'>" + (amount * 0.14 / 1.14).toFixed(2) + "</text>" +
+          "<line x1='30' y1='315' x2='370' y2='315' stroke='%23cbd5e1' stroke-width='2'/>" +
+          "<rect x='30' y='325' width='340' height='45' fill='%23f0fdf4' stroke='%2386efac' rx='6'/>" +
+          "<text x='350' y='352' font-family='Segoe UI, sans-serif' font-size='14' font-weight='bold' fill='%23166534' text-anchor='end'>الإجمالي الكلي المدفوع:</text>" +
+          "<text x='50' y='354' font-family='Segoe UI, sans-serif' font-size='18' font-weight='900' fill='%2315803d' text-anchor='start'>" + amount.toFixed(2) + " ج.م</text>" +
+          "<circle cx='310' cy='440' r='30' fill='none' stroke='%23dc2626' stroke-width='2' stroke-dasharray='3' opacity='0.75'/>" +
+          "<text x='310' y='437' font-family='Segoe UI, sans-serif' font-size='8' font-weight='bold' fill='%23dc2626' text-anchor='middle'>ختم الدفع الإلكتروني</text>" +
+          "<text x='310' y='448' font-family='Segoe UI, sans-serif' font-size='8' fill='%23dc2626' text-anchor='middle'>معتمد - تم التدقيق</text>" +
+          "<text x='200' y='510' font-family='Segoe UI, sans-serif' font-size='11' fill='%2394a3b8' text-anchor='middle'>شكراً لتعاملكم - تطبيق إدارة مصروفات العائلة</text>" +
+          "</svg>";
+      }
+
+      // مولد أرقام شبه عشوائي حتمي (Deterministic PRNG) لضمان ثبات البيانات وتكرارها السريع
+      let seed = 1234567;
+      function pseudoRandom() {
+        seed = (seed * 9301 + 49297) % 233280;
+        return seed / 233280;
+      }
+      function randInt(min, max) {
+        return Math.floor(min + pseudoRandom() * (max - min + 1));
+      }
+
+      const txs = [];
+      const TOTAL_COUNT = 10000;
+      const RECEIPTS_COUNT = 100;
+
+      // اختيار 100 مؤشر حتمي للحركات التي تحمل فواتير مصورة
+      // 1200 حركة دخل و 8800 حركة مصروف
+      const incomeIndices = new Set();
+      while (incomeIndices.size < 1200) {
+        incomeIndices.add(randInt(0, TOTAL_COUNT - 1));
+      }
+
+      // اختيار 100 حركة مصروف عشوائية بالضبط لربطها بفواتير ضريبية إلكترونية واقعية
+      const receiptIndices = new Set();
+      // ضمان وجود 10 فواتير إلكترونية في أول 30 حركة لظهورها مباشرة في واجهة العمليات والأرشيف
+      for (let i = 0; i < 30 && receiptIndices.size < 10; i++) {
+        if (!incomeIndices.has(i)) {
+          receiptIndices.add(i);
+        }
+      }
+      // وتوزيع باقي الفواتير بالتساوي حتى اكتمال 100 فاتورة ضريبية بالضبط
+      while (receiptIndices.size < RECEIPTS_COUNT) {
+        const candidate = randInt(0, TOTAL_COUNT - 1);
+        if (!incomeIndices.has(candidate)) {
+          receiptIndices.add(candidate);
+        }
+      }
+
+      const totalDaysSpan = 660; // من مطلع 2025 حتى أكتوبر 2026
+
+      for (let i = 0; i < TOTAL_COUNT; i++) {
+        let dayOffset = randInt(0, totalDaysSpan);
+        // تخصيص أول 60 حركة لليوم والأمس والأسبوع الحالي لضمان امتلاء فلاتر اليوم والأسبوع
+        if (i < 20) {
+          dayOffset = 0; // اليوم
+        } else if (i < 40) {
+          dayOffset = 1; // أمس
+        } else if (i < 100) {
+          dayOffset = randInt(2, 6); // هذا الأسبوع
+        } else if (i < 500) {
+          dayOffset = randInt(7, 28); // هذا الشهر
+        }
+
+        const txDate = new Date(today);
+        txDate.setDate(txDate.getDate() - dayOffset);
+        const dateStr = fmtDate(txDate);
+
+        const txId = 'tx-' + (i + 1);
+        const isReceipt = receiptIndices.has(i);
+
+        if (incomeIndices.has(i)) {
+          const incObj = incomeSources[i % incomeSources.length];
+          const amt = Math.round((incObj.minAmt + pseudoRandom() * (incObj.maxAmt - incObj.minAmt)) * 100) / 100;
+          const mem = incObj.mems[i % incObj.mems.length];
+          const w = incObj.w;
+
+          txs.push({
+            id: txId,
+            type: 'income',
+            amount: amt,
+            label: incObj.label,
+            category: incObj.cat,
+            member: mem,
+            walletId: w,
+            date: dateStr
+          });
+        } else {
+          const cat = catList[i % catList.length];
+          const label = cat.labels[i % cat.labels.length];
+          const w = walletIds[i % walletIds.length];
+          const mem = membersList[i % membersList.length];
+
+          let baseAmt = 120;
+          if (cat.id === 'food' || cat.id === 'house') baseAmt = 450 + (i % 1800);
+          else if (cat.id === 'transport') baseAmt = 90 + (i % 650);
+          else if (cat.id === 'bills') baseAmt = 350 + (i % 1400);
+          else if (cat.id === 'health') baseAmt = 220 + (i % 1600);
+          else if (cat.id === 'clothes') baseAmt = 400 + (i % 2500);
+          else if (cat.id === 'kids') baseAmt = 180 + (i % 950);
+          else if (cat.id === 'education') baseAmt = 500 + (i % 3200);
+          else if (cat.id === 'entertainment') baseAmt = 250 + (i % 1800);
+          else baseAmt = 80 + (i % 600);
+
+          const amt = Math.round(baseAmt * 100) / 100;
+
+          const txItem = {
+            id: txId,
+            type: 'expense',
+            amount: amt,
+            label: label,
+            category: cat.id,
+            member: mem,
+            walletId: w,
+            date: dateStr
+          };
+
+          if (isReceipt) {
+            const merch = merchants[i % merchants.length];
+            txItem.receipt = makeReceiptSvg(txId, label, amt, dateStr, mem, merch);
+          }
+
+          txs.push(txItem);
+        }
+      }
+
+      // ترتيب الحركات من الأحدث إلى الأقدم
+      txs.sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
+      return txs;
+    }
+
+    function resetToDemoData() {
+      state.transactions = generateRichDemoTransactions();
+      saveTx();
+      renderUI();
+      showToast('✨ تم تحميل وتفعيل 10,000 عملية منوعة مع 100 فاتورة موثقة بنجاح!');
     }
 
 
@@ -7664,10 +7815,16 @@
     // =========================================================================
     // قائمة العمليات المسجلة (Registered Transactions List)
     // =========================================================================
-    function renderOperationsList(filtered) {
+    let opsRenderLimit = 50;
+
+    function renderOperationsList(filtered, appendMore = false) {
       const container = document.getElementById('txOperationsList');
       if (!container) return;
-      container.innerHTML = '';
+
+      if (!appendMore) {
+        container.innerHTML = '';
+        opsRenderLimit = 50;
+      }
 
       if (!filtered || filtered.length === 0) {
         container.innerHTML = `
@@ -7680,7 +7837,29 @@
         return;
       }
 
-      filtered.forEach(tx => {
+      const prevBtn = document.getElementById('btnLoadMoreOps');
+      if (prevBtn) prevBtn.remove();
+
+      const totalCount = filtered.length;
+
+      // شريط العداد الإحصائي في أعلى القائمة
+      if (!appendMore) {
+        const counterBar = document.createElement('div');
+        counterBar.id = 'opsListCounterHeader';
+        counterBar.className = 'ops-counter-bar';
+        counterBar.style.cssText = 'display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; margin-bottom: 10px; font-size: 0.76rem; font-weight: 700; color: var(--text-muted);';
+        counterBar.innerHTML = `
+          <span><i class="fa-solid fa-layer-group" style="color: #38bdf8;"></i> إجمالي الحركات المفلترة: <strong style="color: #38bdf8; font-size: 0.85rem;">${totalCount.toLocaleString()}</strong></span>
+          <span>معروض حالياً: <strong style="color: #10b981;">${Math.min(opsRenderLimit, totalCount).toLocaleString()}</strong></span>
+        `;
+        container.appendChild(counterBar);
+      }
+
+      const startIndex = appendMore ? (opsRenderLimit - 50) : 0;
+      const endIndex = Math.min(opsRenderLimit, totalCount);
+      const itemsToRender = filtered.slice(startIndex, endIndex);
+
+      itemsToRender.forEach(tx => {
         const cat = getCategoryObj(tx.category, tx.type);
         const isExp = tx.type === 'expense';
         const amt = Number(tx.amount) || 0;
@@ -7738,7 +7917,28 @@
         `;
         container.appendChild(item);
       });
+
+      // زر عرض المزيد إن وجد عمليات إضافية
+      if (totalCount > opsRenderLimit) {
+        const remaining = totalCount - opsRenderLimit;
+        const loadMoreBox = document.createElement('div');
+        loadMoreBox.id = 'btnLoadMoreOps';
+        loadMoreBox.style.cssText = 'text-align: center; margin: 14px 0 24px;';
+        loadMoreBox.innerHTML = `
+          <button type="button" class="btn-export-tool" onclick="loadMoreOperations()" style="padding: 10px 22px; font-size: 0.82rem; font-weight: 800; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35); transition: all 0.2s;">
+            <i class="fa-solid fa-angles-down"></i> عرض 50 حركة إضافية (المتبقي: ${remaining.toLocaleString()} عملية)
+          </button>
+        `;
+        container.appendChild(loadMoreBox);
+      }
     }
+
+    function loadMoreOperations() {
+      opsRenderLimit += 50;
+      const filtered = getFilteredTransactions();
+      renderOperationsList(filtered, true);
+    }
+
 
     function filterOperationsList() {
       const inp = document.getElementById('opsSearchInput');
@@ -7922,11 +8122,15 @@
     }
 
     function saveTx() {
-      localStorage.setItem('family_monefy_v2_tx', JSON.stringify(state.transactions));
+      try {
+        localStorage.setItem('family_monefy_v2_tx', JSON.stringify(state.transactions));
+      } catch(e) {
+        console.warn('LocalStorage limit exceeded, data retained in active memory state:', e);
+      }
       try {
         syncChannel.postMessage({
           type: 'SYNC_TRANSACTIONS',
-          transactions: state.transactions,
+          transactions: state.transactions.slice(0, 500),
           sender: state.currentUser
         });
       } catch(e) {}
@@ -9424,14 +9628,20 @@ function submitMoneyRequest() {
       renderActivityLogUI();
     }
 
-    function renderActivityLogUI() {
+    let archiveRenderLimit = 50;
+
+    function renderActivityLogUI(appendMore = false) {
       const container = document.getElementById('archiveLogListContainer') || document.getElementById('activityListContainer');
       if (!container) return;
+
+      if (!appendMore) {
+        container.innerHTML = '';
+        archiveRenderLimit = 50;
+      }
 
       const searchVal = (document.getElementById('opsSearchInput')?.value || '').trim().toLowerCase();
 
       let list = state.activityLog || [];
-
       if (!list || list.length === 0) {
         initActivityLog();
         list = state.activityLog || [];
@@ -9467,57 +9677,80 @@ function submitMoneyRequest() {
         return;
       }
 
+      const prevBtn = document.getElementById('btnLoadMoreArchive');
+      if (prevBtn) prevBtn.remove();
+
+      const totalArchiveCount = list.length;
+      const startIndex = appendMore ? (archiveRenderLimit - 50) : 0;
+      const endIndex = Math.min(archiveRenderLimit, totalArchiveCount);
+      const itemsToRender = list.slice(startIndex, endIndex);
+
       const memberEmoji = { 'ماهر': '👨', 'أية': '👩', 'محمد': '👦', 'مريم': '👧', 'الحاجة': '👵', 'النونو': '👶', 'العائلة': '👨‍👩‍👧‍👦' };
 
-      container.innerHTML = list.map(item => {
+      const htmlCards = itemsToRender.map(item => {
         let borderClass = 'border-expense';
         let badgeClass = 'badge-exp';
         let badgeIcon = 'fa-circle-minus';
-        let amtClass = 'exp';
-        let amtPrefix = '-';
-
+        let sign = '-';
         if (item.type === 'add_income') {
           borderClass = 'border-income';
           badgeClass = 'badge-inc';
           badgeIcon = 'fa-circle-plus';
-          amtClass = 'inc';
-          amtPrefix = '+';
+          sign = '+';
         } else if (item.type === 'delete_tx') {
           borderClass = 'border-delete';
           badgeClass = 'badge-del';
           badgeIcon = 'fa-trash-can';
-          amtClass = 'del';
-          amtPrefix = '🗑️ ';
+          sign = '';
         }
 
-        const amtFormatted = item.amount ? `${amtPrefix}${parseFloat(item.amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ج.م` : '';
-        const mEmoji = memberEmoji[item.member] || '👤';
+        const dateStr = item.timestamp ? new Date(item.timestamp).toLocaleString('ar-EG', { dateStyle: 'short', timeStyle: 'short' }) : (item.date || '');
 
         return `
-          <div class="activity-item-card ${borderClass}" style="margin-bottom: 8px; background: var(--bg-card); border-radius: 14px; padding: 10px 12px; border: 1px solid var(--border-subtle); display: flex; gap: 10px; align-items: center;">
-            <div class="act-icon-box" style="width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: ${item.type === 'add_income' ? 'rgba(16, 185, 129, 0.15)' : item.type === 'delete_tx' ? 'rgba(225, 29, 72, 0.15)' : 'rgba(239, 68, 68, 0.15)'};">
-              <span style="font-size: 1.25rem;">${mEmoji}</span>
+          <div class="archive-item ${borderClass}">
+            <div class="archive-item-head">
+              <span class="archive-badge ${badgeClass}">
+                <i class="fa-solid ${badgeIcon}"></i> ${item.action || 'عملية'}
+              </span>
+              <span class="archive-time"><i class="fa-regular fa-clock"></i> ${dateStr}</span>
             </div>
-            <div class="act-content-box" style="flex: 1;">
-              <div class="act-top-line" style="display: flex; justify-content: space-between; align-items: center;">
-                <span class="act-action-badge ${badgeClass}" style="font-size: 0.72rem; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); color: #38bdf8;">
-                  <i class="fa-solid ${badgeIcon}"></i> ${item.action || 'حركة'}
-                </span>
-                <span class="act-time-stamp" style="font-size: 0.72rem; color: #94a3b8;">${item.date || ''} ${item.time ? '• ' + item.time : ''}</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px;">
-                <span class="act-main-label" style="font-weight: 700; font-size: 0.85rem; color: var(--text-main);">${escapeHtml(item.label || '')}</span>
-                <span class="act-amount-tag ${amtClass}" style="font-weight: 800; font-size: 0.85rem; color: ${item.type === 'add_income' ? '#10b981' : '#ef4444'};">${amtFormatted}</span>
-              </div>
-              <div class="act-sub-meta" style="font-size: 0.72rem; color: #64748b; display: flex; gap: 12px; margin-top: 4px;">
-                <span><i class="fa-solid fa-user"></i> العضو: <b style="color: var(--text-main);">${item.member || 'العائلة'}</b></span>
-                <span><i class="fa-solid fa-user-pen"></i> تم بواسطة: <b style="color: var(--text-main);">${item.author || 'ماهر'}</b></span>
-              </div>
+            <div class="archive-item-body">
+              <span class="archive-label">${item.label || 'بدون بيان'}</span>
+              ${item.amount ? `<span class="archive-amount ${item.type === 'add_income' ? 'amt-inc' : 'amt-exp'}">${sign}${formatMoney(item.amount)}</span>` : ''}
+            </div>
+            <div class="archive-item-footer">
+              <span><i class="fa-solid fa-user-pen"></i> منفذ العملية: <strong>${item.author || 'ماهر'}</strong></span>
+              <span>${memberEmoji[item.member] || '👤'} المحمل عليه: <strong>${item.member || 'العائلة'}</strong></span>
             </div>
           </div>
         `;
       }).join('');
+
+      if (!appendMore) {
+        container.innerHTML = htmlCards;
+      } else {
+        container.insertAdjacentHTML('beforeend', htmlCards);
+      }
+
+      if (totalArchiveCount > archiveRenderLimit) {
+        const remaining = totalArchiveCount - archiveRenderLimit;
+        const loadMoreBox = document.createElement('div');
+        loadMoreBox.id = 'btnLoadMoreArchive';
+        loadMoreBox.style.cssText = 'text-align: center; margin: 14px 0 24px;';
+        loadMoreBox.innerHTML = `
+          <button type="button" class="btn-export-tool" onclick="loadMoreArchive()" style="padding: 10px 22px; font-size: 0.82rem; font-weight: 800; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: none; border-radius: 12px; cursor: pointer;">
+            <i class="fa-solid fa-angles-down"></i> عرض 50 سجل إضافي (المتبقي: ${remaining.toLocaleString()})
+          </button>
+        `;
+        container.appendChild(loadMoreBox);
+      }
     }
+
+    function loadMoreArchive() {
+      archiveRenderLimit += 50;
+      renderActivityLogUI(true);
+    }
+
 
 function exportActivityLogExcel() {
       if (!state.activityLog || state.activityLog.length === 0) {
