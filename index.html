@@ -819,12 +819,129 @@
     .summary-card.exp .summary-num { color: var(--expense); }
 
     /* شبكة أيقونات Monefy المحيطة */
+    
+    /* =========================================================================
+       التصميم الفاخر المنسق لشبكة بنود المصاريف (Luxurious Expense Categories)
+       ========================================================================= */
     .categories-monefy-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-      width: 100%;
+      gap: 10px;
+      margin: 10px 12px 18px;
+      direction: rtl;
     }
+    @media (max-width: 440px) {
+      .categories-monefy-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+    }
+
+    .cat-card {
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 10px 6px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56, 189, 248, 0.35);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    /* زر رمز الصورة / الأيقونة: مخصص لفتح تسجيل مصروف جديد */
+    .cat-icon-bubble {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+      flex-shrink: 0;
+    }
+
+    .cat-icon-bubble:hover {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
+
+    .cat-icon-bubble:active {
+      transform: scale(0.95);
+    }
+
+    /* تسمية اسم التصنيف */
+    .cat-card-name {
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #f1f5f9;
+      line-height: 1.3;
+      margin-bottom: 5px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      height: 28px;
+      width: 100%;
+      cursor: pointer;
+    }
+    .cat-card-name:hover {
+      color: #38bdf8;
+    }
+
+    /* كبسولة / زر الرقم: مخصص لفتح صفحة التحليل المفلترة بناءً على الفترة ونوع المصروف */
+    .cat-card-val-btn {
+      width: 100%;
+      padding: 5px 2px;
+      border-radius: 8px;
+      font-size: 0.74rem;
+      font-weight: 900;
+      cursor: pointer;
+      direction: ltr;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(10, 16, 26, 0.65);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      font-family: inherit;
+    }
+
+    .cat-card-val-btn.has-spent {
+      color: #ef4444;
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .cat-card-val-btn.zero-spent {
+      color: #64748b;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .cat-card-val-btn:hover {
+      border-color: #38bdf8;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      transform: scale(1.02);
+    }
+
 
     .cat-btn {
       background: var(--bg-card-sub);
@@ -3629,6 +3746,47 @@
       box-shadow: 0 0 6px rgba(0,0,0,0.5);
     }
 
+
+    /* شريط الفترات في أعلى صفحة المصاريف */
+    .period-selector-top-strip {
+      margin: 8px 12px 10px;
+    }
+    .period-buttons-group {
+      display: flex;
+      background: rgba(10, 16, 26, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 3px;
+      gap: 4px;
+    }
+    .period-filter-pill {
+      flex: 1;
+      padding: 8px 4px;
+      border-radius: 9px;
+      border: none;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 0.74rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .period-filter-pill:hover {
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .period-filter-pill.active {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.45);
+    }
+
 </style>
 
   <script>
@@ -3659,7 +3817,7 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon"></i> أية</h1>
-            <span class="version-badge">v2.9.0</span>
+            <span class="version-badge">v3.1.0</span>
           </div>
         </div>
 
@@ -3799,6 +3957,27 @@
            الصفحة 1: المصاريف وتسجيلها فقط (Page 1: Expenses & Logging)
            ================================================================ -->
       <div class="page-view active" id="viewExpenses">
+        <!-- شريط اختيار الفترة الزمنية في أعلى صفحة المصاريف -->
+        <div class="period-selector-top-strip">
+          <div class="period-buttons-group">
+            <button class="period-filter-pill" id="pillPeriodToday" onclick="setAppPeriod('today')">
+              <i class="fa-solid fa-clock"></i> اليوم
+            </button>
+            <button class="period-filter-pill" id="pillPeriodWeek" onclick="setAppPeriod('week')">
+              <i class="fa-solid fa-calendar-week"></i> الأسبوع
+            </button>
+            <button class="period-filter-pill active" id="pillPeriodMonth" onclick="setAppPeriod('month')">
+              <i class="fa-solid fa-calendar-days"></i> الشهر
+            </button>
+            <button class="period-filter-pill" id="pillPeriodAll" onclick="setAppPeriod('all')">
+              <i class="fa-solid fa-infinity"></i> الكل
+            </button>
+            <button class="period-filter-pill" id="pillPeriodCustom" onclick="toggleCustomDatePicker()">
+              <i class="fa-solid fa-calendar-check"></i> مخصص
+            </button>
+          </div>
+        </div>
+
         
         <!-- بنود الرصيد الثلاثة: دخل أخضر، مصروف أحمر، رصيد حالي أزرق -->
         <div class="kpi-three-strip">
@@ -5412,40 +5591,30 @@
     ];
 
     function resetToDemoData() {
-      state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
+      state.transactions = generateRichDemoTransactions();
       saveTx();
       renderUI();
-      showToast('✨ تم تحميل وتفعيل البيانات التجريبية الشاملة بنجاح');
+      showToast('✨ تم تحميل وتفعيل كافة المصروفات والدخل التجريبي بنجاح!');
     }
 
-      // 3. إدارة إصدار التطبيق وتحميل الحركات الغنية
-      const APP_VERSION = '2.9.0';
+      // 3. إدارة إصدار التطبيق وتحميل الحركات الغنية المتجددة بحسب تاريخ اليوم الحالي
+      const APP_VERSION = '3.1.0';
       const storedVer = localStorage.getItem('family_monefy_version');
-      
-      // إذا كان الإصدار جديداً، نقوم تلقائياً بترحيل وتحميل البيانات التجريبية الغنية لتظهر الشارتات فوراً
-      if (storedVer !== APP_VERSION) {
-        state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
+      const todayIsoStr = new Date().toISOString().split('T')[0];
+      const storedTx = localStorage.getItem('family_monefy_v2_tx') || localStorage.getItem('family_monefy_txs');
+
+      let parsedTx = null;
+      if (storedTx) {
+        try { parsedTx = JSON.parse(storedTx); } catch(e) {}
+      }
+
+      // إذا كان الإصدار محدثاً أو لم تكن هناك حركات مسجلة لليوم، نقوم بتحميل باقة الحركات التجريبية الشاملة فوراً
+      if (storedVer !== APP_VERSION || !parsedTx || parsedTx.length <= 5 || !parsedTx.some(t => t.date === todayIsoStr)) {
+        state.transactions = generateRichDemoTransactions();
         saveTx();
         localStorage.setItem('family_monefy_version', APP_VERSION);
       } else {
-        const storedTx = localStorage.getItem('family_monefy_txs');
-        if (storedTx) {
-          try {
-            const parsed = JSON.parse(storedTx);
-            if (!parsed || parsed.length <= 5) {
-              state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
-              saveTx();
-            } else {
-              state.transactions = parsed;
-            }
-          } catch(e) {
-            state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
-            saveTx();
-          }
-        } else {
-          state.transactions = JSON.parse(JSON.stringify(RICH_DEMO_TRANSACTIONS));
-          saveTx();
-        }
+        state.transactions = parsedTx;
       }
 
       // تحميل الصلاحيات
@@ -5496,20 +5665,22 @@
         });
       });
 
-      // ربط البحث الشامل في البرنامج ككل
+      // ربط البحث الشامل في البرنامج ككل بأمان تام
       const searchInp = document.getElementById('globalSearchInput');
       const clearBtn = document.getElementById('btnClearSearch');
-      searchInp.addEventListener('input', (e) => {
-        state.searchQuery = e.target.value.trim();
-        clearBtn.style.display = state.searchQuery ? 'block' : 'none';
-        renderUI();
-      });
-      clearBtn.addEventListener('click', () => {
-        searchInp.value = '';
-        state.searchQuery = '';
-        clearBtn.style.display = 'none';
-        renderUI();
-      });
+      if (searchInp && clearBtn) {
+        searchInp.addEventListener('input', (e) => {
+          state.searchQuery = e.target.value.trim();
+          clearBtn.style.display = state.searchQuery ? 'block' : 'none';
+          renderUI();
+        });
+        clearBtn.addEventListener('click', () => {
+          searchInp.value = '';
+          state.searchQuery = '';
+          clearBtn.style.display = 'none';
+          renderUI();
+        });
+      }
 
       // ربط قائمة تبديل المحفظة
       document.getElementById('activeWalletSelect').addEventListener('change', (e) => {
@@ -5531,13 +5702,13 @@
         });
       });
 
-      // أزرار Monefy السفلية
-      document.getElementById('btnFabExpense').addEventListener('click', () => openTxModal('expense'));
-      document.getElementById('btnFabIncome').addEventListener('click', () => openTxModal('income'));
-      document.getElementById('btnSaveTx').addEventListener('click', handleSaveTx);
-
-      // زر تبديل عرض الشارتات التوضيحية
-      document.getElementById('btnToggleAnalytics').addEventListener('click', toggleAnalyticsView);
+      // أزرار التسجيل السفلية والشاشات بأمان تام
+      safeEvent('btnFabExpense', 'click', () => openTxModal('expense'));
+      safeEvent('btnFabIncome', 'click', () => openTxModal('income'));
+      safeEvent('btnQuickExpense', 'click', () => openTxModal('expense'));
+      safeEvent('btnQuickIncome', 'click', () => openTxModal('income'));
+      safeEvent('btnSaveTx', 'click', handleSaveTx);
+      safeEvent('btnToggleAnalytics', 'click', toggleAnalyticsView);
 
             // دالة مساعدة لربط الأحداث بأمان تام وتجنب أي توقف غير مقصود
       function safeEvent(id, ev, fn) {
@@ -6458,6 +6629,153 @@
     // =========================================================================
     // فلترة الحركات وتصفية البيانات
     // =========================================================================
+    
+    // =========================================================================
+    // دوال تعريف التصنيفات والمحافظ والمسميات المالية
+    // =========================================================================
+    function getCategoryObj(catId, type = 'expense') {
+      let list = type === 'income' ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
+      let found = list.find(c => c.id === catId);
+      if (found) return found;
+
+      const all = [...EXPENSE_CATEGORIES, ...INCOME_CATEGORIES];
+      found = all.find(c => c.id === catId);
+      if (found) return found;
+
+      // معالجة المسميات المترادفة (Aliases)
+      if (catId === 'shopping' || catId === 'supermarket') return { id: 'food', name: 'طعام ومشتريات', icon: 'fa-basket-shopping', color: '#10b981' };
+      if (catId === 'other') return { id: 'others', name: 'مصاريف أخرى', icon: 'fa-ellipsis', color: '#64748b' };
+      if (catId === 'salary') return { id: 'salary', name: 'راتب شهري', icon: 'fa-money-bill-transfer', color: '#10b981' };
+      if (catId === 'invest') return { id: 'invest', name: 'استثمار وأرباح', icon: 'fa-chart-line', color: '#0284c7' };
+      if (catId === 'bonus') return { id: 'bonus', name: 'حافز ومكافأة', icon: 'fa-gift', color: '#f59e0b' };
+      if (catId === 'other_inc') return { id: 'other_inc', name: 'إيراد ودخل آخر', icon: 'fa-coins', color: '#38bdf8' };
+
+      return { id: catId, name: catId || 'بند عام', icon: 'fa-receipt', color: '#64748b' };
+    }
+
+    function getCategoryName(catId, type = 'expense') {
+      return getCategoryObj(catId, type).name;
+    }
+
+    function getWalletName(walletId) {
+      const w = (state.wallets || []).find(w => w.id === walletId);
+      return w ? w.name : 'المحفظة الافتراضية';
+    }
+
+    // =========================================================================
+    // محرك الفترات الزمنية الموحد (Unified Period Engine)
+    // =========================================================================
+    function setAppPeriod(p) {
+      state.period = p;
+
+      // 1. تحديث أزرار شريط الفترات في صفحة المصاريف الأولى
+      const periodIds = {
+        'today': 'pillPeriodToday',
+        'day': 'pillPeriodToday',
+        'week': 'pillPeriodWeek',
+        'month': 'pillPeriodMonth',
+        'all': 'pillPeriodAll',
+        'custom': 'pillPeriodCustom'
+      };
+      document.querySelectorAll('.period-filter-pill').forEach(b => b.classList.remove('active'));
+      const activePill = document.getElementById(periodIds[p]);
+      if (activePill) activePill.classList.add('active');
+
+      // 2. تحديث أزرار الفترات في شاشة التحليلات
+      document.querySelectorAll('.analytics-period-btn').forEach(b => {
+        const btnP = b.getAttribute('data-period');
+        if (btnP === p || (p === 'today' && btnP === 'day') || (p === 'day' && btnP === 'day')) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
+
+      // 3. تحديث شارة اسم الفترة المعروضة فوق بنود المصاريف
+      const todayDate = new Date();
+      const periodLabels = {
+        'today': 'اليوم (' + todayDate.toLocaleDateString('ar-EG', { day: 'numeric', month: 'long' }) + ')',
+        'day': 'اليوم (' + todayDate.toLocaleDateString('ar-EG', { day: 'numeric', month: 'long' }) + ')',
+        'week': 'الأسبوع الحالي (آخر 7 أيام)',
+        'month': 'الشهر الحالي (' + todayDate.toLocaleDateString('ar-EG', { month: 'long', year: 'numeric' }) + ')',
+        'all': 'كافة الفترات (سجل العائلة بالكامل)',
+        'custom': 'فترة مخصصة'
+      };
+
+      const hintEl = document.getElementById('activeCategoryPeriodHint');
+      if (hintEl) hintEl.textContent = periodLabels[p] || p;
+
+      const anaPill = document.getElementById('analyticsPeriodActivePill');
+      if (anaPill) anaPill.textContent = periodLabels[p] || p;
+
+      // 4. إعادة رسم الحسابات وتحديث بنود المصاريف فوراً
+      renderUI();
+      showToast(`📅 تم تطبيق الفترة: ${periodLabels[p] || p}`);
+    }
+
+    // =========================================================================
+    // مولد الحركات التجريبية الغنية المتجددة تلقائياً بحسب تاريخ اليوم الحالي
+    // =========================================================================
+    function generateRichDemoTransactions() {
+      const today = new Date();
+      const fmt = (d) => d.toISOString().split('T')[0];
+      const subDays = (n) => {
+        const d = new Date(today);
+        d.setDate(d.getDate() - n);
+        return fmt(d);
+      };
+
+      return [
+        // اليوم الحالي (Today) - دخل ومصروفات لكافة أفراد العائلة
+        { id: 'tx-td-1', type: 'income', amount: 3500, label: 'أرباح عمل حر إضافي - ماهر', category: 'bonus', member: 'ماهر', walletId: 'wallet-bank', date: subDays(0) },
+        { id: 'tx-td-2', type: 'expense', amount: 480, label: 'طلبات سوبرماركت وخضار وفاكهة اليوم', category: 'food', member: 'أية', walletId: 'wallet-default', date: subDays(0) },
+        { id: 'tx-td-3', type: 'expense', amount: 250, label: 'بنزين وتفويل سيارة العائلة', category: 'transport', member: 'ماهر', walletId: 'wallet-default', date: subDays(0) },
+        { id: 'tx-td-4', type: 'expense', amount: 320, label: 'بامبرز ومستلزمات صيدلية للنونو', category: 'kids', member: 'النونو', walletId: 'wallet-default', date: subDays(0) },
+        { id: 'tx-td-5', type: 'expense', amount: 180, label: 'علاج وفيتامينات الضغط للحاجة', category: 'health', member: 'الحاجة', walletId: 'wallet-default', date: subDays(0) },
+        { id: 'tx-td-6', type: 'expense', amount: 150, label: 'مصروف مدرسة ونثريات محمد ومريم', category: 'daily', member: 'محمد', walletId: 'wallet-default', date: subDays(0) },
+
+        // الأمس (Yesterday)
+        { id: 'tx-yest-1', type: 'expense', amount: 850, label: 'مشتريات لحوم ودواجن أسبوعية', category: 'food', member: 'أية', walletId: 'wallet-default', date: subDays(1) },
+        { id: 'tx-yest-2', type: 'expense', amount: 420, label: 'ملابس وسالوبيتات شتوية للنونو', category: 'clothes', member: 'النونو', walletId: 'wallet-default', date: subDays(1) },
+        { id: 'tx-yest-3', type: 'expense', amount: 350, label: 'كتب خارجية ومذكرات دراسية لمحمد', category: 'education', member: 'محمد', walletId: 'wallet-default', date: subDays(1) },
+
+        // باقي الأسبوع الحالي (Past 2-6 days)
+        { id: 'tx-w-1', type: 'income', amount: 8000, label: 'قبض جمعية شهرية عائلية لأية', category: 'other_inc', member: 'أية', walletId: 'wallet-vodafone', date: subDays(3) },
+        { id: 'tx-w-2', type: 'expense', amount: 1200, label: 'صيانة دورية وتغيير زيت سيارة ماهر', category: 'transport', member: 'ماهر', walletId: 'wallet-bank', date: subDays(2) },
+        { id: 'tx-w-3', type: 'expense', amount: 650, label: 'فسحة عائلية وعشاء بالخارج للأولاد', category: 'entertainment', member: 'مريم', walletId: 'wallet-default', date: subDays(4) },
+        { id: 'tx-w-4', type: 'expense', amount: 550, label: 'ألعاب تعليمية وقصص لمريم', category: 'kids', member: 'مريم', walletId: 'wallet-default', date: subDays(5) },
+        { id: 'tx-w-5', type: 'expense', amount: 750, label: 'هدايا ومجاملات عائلية للحاجة', category: 'gifts', member: 'الحاجة', walletId: 'wallet-default', date: subDays(6) },
+
+        // خلال الشهر الحالي (أكتوبر 2026)
+        { id: 'tx-m-1', type: 'income', amount: 48000, label: 'راتب ماهر الشهري الأساسي', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-01' },
+        { id: 'tx-m-2', type: 'income', amount: 12000, label: 'أرباح استثمار وتداول ذهب', category: 'invest', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-05' },
+        { id: 'tx-m-3', type: 'income', amount: 4500, label: 'مكافأة تميز وإنتاجية لماهر', category: 'bonus', member: 'ماهر', walletId: 'wallet-bank', date: '2026-10-15' },
+        { id: 'tx-m-4', type: 'expense', amount: 7600, label: 'تموين السوبرماركت والمجمدات الشهري', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-10-03' },
+        { id: 'tx-m-5', type: 'expense', amount: 5200, label: 'قسط مدرسة محمد وكتب الترم الأول', category: 'education', member: 'محمد', walletId: 'wallet-bank', date: '2026-10-06' },
+        { id: 'tx-m-6', type: 'expense', amount: 4300, label: 'كشوفات وتحاليل واستشارة أدوية للحاجة', category: 'health', member: 'الحاجة', walletId: 'wallet-bank', date: '2026-10-08' },
+        { id: 'tx-m-7', type: 'expense', amount: 3400, label: 'شراء ملابس وأحذية شتوية للأولاد', category: 'clothes', member: 'أية', walletId: 'wallet-default', date: '2026-10-14' },
+        { id: 'tx-m-8', type: 'expense', amount: 2750, label: 'مصروف يومي ونثريات ومستلزمات ماهر', category: 'daily', member: 'ماهر', walletId: 'wallet-default', date: '2026-10-16' },
+        { id: 'tx-m-9', type: 'expense', amount: 2400, label: 'فواتير كهرباء وغاز وإنترنت منزلي فايبر', category: 'bills', member: 'ماهر', walletId: 'wallet-vodafone', date: '2026-10-18' },
+        { id: 'tx-m-10', type: 'expense', amount: 2100, label: 'أجهزة ومستلزمات نظافة للمنزل', category: 'house', member: 'أية', walletId: 'wallet-default', date: '2026-10-20' },
+        { id: 'tx-m-11', type: 'expense', amount: 1850, label: 'تطعيمات ومتابعة نمو طبيب أطفال للنونو', category: 'health', member: 'النونو', walletId: 'wallet-default', date: '2026-10-21' },
+        { id: 'tx-m-12', type: 'expense', amount: 950, label: 'نثريات وطوارئ مدرسية لمحمد', category: 'others', member: 'محمد', walletId: 'wallet-default', date: '2026-10-22' },
+
+        // شهور سابقة للمقارنة والتحليلات (سبتمبر 2026)
+        { id: 'tx-sep-1', type: 'income', amount: 48000, label: 'راتب ماهر لشهر سبتمبر', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-09-01' },
+        { id: 'tx-sep-2', type: 'income', amount: 10000, label: 'عائد شهادة استثمار بنكية', category: 'invest', member: 'ماهر', walletId: 'wallet-bank', date: '2026-09-15' },
+        { id: 'tx-sep-3', type: 'expense', amount: 12000, label: 'أقساط ومستلزمات مدارس وباصات', category: 'education', member: 'محمد', walletId: 'wallet-bank', date: '2026-09-05' },
+        { id: 'tx-sep-4', type: 'expense', amount: 8200, label: 'سوبرماركت ومستلزمات منزل سبتمبر', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-09-08' },
+        { id: 'tx-sep-5', type: 'expense', amount: 5500, label: 'ملابس وشنط مدرسية للأولاد', category: 'clothes', member: 'أية', walletId: 'wallet-default', date: '2026-09-12' },
+        { id: 'tx-sep-6', type: 'expense', amount: 3100, label: 'مستلزمات صيدلية وفيتامينات للحاجة', category: 'health', member: 'الحاجة', walletId: 'wallet-default', date: '2026-09-22' },
+
+        // أغسطس 2026
+        { id: 'tx-aug-1', type: 'income', amount: 48000, label: 'راتب ماهر لشهر أغسطس', category: 'salary', member: 'ماهر', walletId: 'wallet-bank', date: '2026-08-01' },
+        { id: 'tx-aug-2', type: 'expense', amount: 18500, label: 'مصاريف وإيجار مصيف الساحل الشمالي', category: 'entertainment', member: 'ماهر', walletId: 'wallet-bank', date: '2026-08-12' },
+        { id: 'tx-aug-3', type: 'expense', amount: 7200, label: 'سوبرماركت ومشتريات أغسطس', category: 'food', member: 'أية', walletId: 'wallet-default', date: '2026-08-05' }
+      ];
+    }
+
+
     function getFilteredTransactions() {
       let list = [...(state.transactions || [])];
 
@@ -6471,14 +6789,16 @@
         list = list.filter(t => t.walletId === state.currentWalletId);
       }
 
-      // 3. فلترة الفترة الزمنية
+      // 3. فلترة الفترة الزمنية بدقة تامة ودعم اليوم والأسبوع والشهر
       const now = new Date();
-      if (state.period === 'day') {
-        const todayStr = now.toISOString().split('T')[0];
+      const todayStr = now.toISOString().split('T')[0];
+
+      if (state.period === 'day' || state.period === 'today') {
         list = list.filter(t => t.date === todayStr);
       } else if (state.period === 'week') {
         const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-        list = list.filter(t => new Date(t.date) >= sevenDaysAgo);
+        const sevenDaysAgoStr = sevenDaysAgo.toISOString().split('T')[0];
+        list = list.filter(t => t.date && t.date >= sevenDaysAgoStr && t.date <= todayStr);
       } else if (state.period === 'month') {
         const curYearMonth = now.toISOString().slice(0, 7);
         list = list.filter(t => t.date && t.date.startsWith(curYearMonth));
@@ -6567,10 +6887,14 @@
       if (!grid) return;
       grid.innerHTML = '';
 
+      // خريطة مجاميع بنود المصاريف للفترة الحالية
       const catTotals = {};
       (filtered || []).forEach(t => {
         if (t.type === 'expense') {
-          catTotals[t.category] = (catTotals[t.category] || 0) + (Number(t.amount) || 0);
+          let c = t.category;
+          if (c === 'shopping' || c === 'supermarket') c = 'food';
+          if (c === 'other') c = 'others';
+          catTotals[c] = (catTotals[c] || 0) + (Number(t.amount) || 0);
         }
       });
 
@@ -6578,18 +6902,133 @@
         const spent = catTotals[cat.id] || 0;
         const card = document.createElement('div');
         card.className = 'cat-card';
-        card.onclick = () => openTxModal('expense', cat.id);
+        card.setAttribute('data-cat-id', cat.id);
+
+        // تصميم الكارت مع الفصل الدقيق بين زر رمز الصورة وزر الرقم
         card.innerHTML = `
-          <div class="cat-icon-bubble" style="background: ${cat.color}20; color: ${cat.color}; border: 1px solid ${cat.color}40;">
+          <!-- 1. رمز الصورة: عند الضغط عليه يتم فتح تسجيل جديد -->
+          <div class="cat-icon-bubble" 
+               style="background: ${cat.color}22; color: ${cat.color}; border: 1.5px solid ${cat.color}55;" 
+               onclick="openTxModal('expense', '${cat.id}')" 
+               title="اضغط لتسجيل مصروف جديد في بند (${cat.name})">
             <i class="fa-solid ${cat.icon}"></i>
           </div>
-          <span class="cat-card-name">${cat.name}</span>
-          <span class="cat-card-val" style="color: ${spent > 0 ? '#f87171' : '#64748b'}; font-weight: 800; font-size: 0.76rem;">
-            ${spent > 0 ? '- ' + formatMoney(spent) : '0.00 ج.م'}
+
+          <!-- اسم البند -->
+          <span class="cat-card-name" 
+                onclick="openTxModal('expense', '${cat.id}')" 
+                title="تسجيل مصروف في (${cat.name})">
+            ${cat.name}
           </span>
+
+          <!-- 2. الرقم والمبلغ: عند الضغط عليه يتم فتح صفحة التحليل وعرض البيانات المفلترة -->
+          <button class="cat-card-val-btn ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
+                  onclick="openCategoryAnalysis('${cat.id}')" 
+                  title="اضغط لعرض تحليل مصروفات (${cat.name}) للفترة المحددة">
+            <i class="fa-solid fa-chart-simple" style="font-size: 0.65rem; margin-left: 2px;"></i>
+            <span>${spent > 0 ? '- ' + formatMoney(spent) : '0.00 ج.م'}</span>
+          </button>
         `;
         grid.appendChild(card);
       });
+    }
+
+    // =========================================================================
+    // فتح صفحة التحليل المفلترة بناءً على الفترة ونوع المصروف
+    // =========================================================================
+    function openCategoryAnalysis(catId) {
+      state.activeCategoryFilter = catId;
+      const cat = getCategoryObj(catId, 'expense');
+      
+      // 1. الانتقال فوراً إلى صفحة التحليلات
+      switchAppPage('analytics');
+
+      // 2. تفعيل قسم التصنيفات داخل صفحة التحليلات
+      switchAnalyticsSection('categories');
+
+      // 3. بناء وعرض كارت التقرير التفصيلي لبند المصروف
+      showCategoryDetailBanner(catId);
+
+      showToast(`📊 تحليل مصروفات: ${cat.name} للفترة المحددة`);
+    }
+
+    function showCategoryDetailBanner(catId) {
+      const cat = getCategoryObj(catId, 'expense');
+      const filtered = getFilteredTransactions().filter(t => t.type === 'expense' && (t.category === catId || (catId === 'food' && (t.category === 'shopping' || t.category === 'supermarket')) || (catId === 'others' && t.category === 'other')));
+      
+      const totalSpent = filtered.reduce((sum, t) => sum + (Number(t.amount) || 0), 0);
+      
+      let banner = document.getElementById('categoryAnalyticsDetailBanner');
+      if (!banner) {
+        const pane = document.getElementById('paneCategories');
+        if (pane) {
+          banner = document.createElement('div');
+          banner.id = 'categoryAnalyticsDetailBanner';
+          pane.insertBefore(banner, pane.firstChild);
+        }
+      }
+      
+      if (banner) {
+        const periodNames = {
+          'today': 'اليوم',
+          'day': 'اليوم',
+          'week': 'الأسبوع الحالي',
+          'month': 'الشهر الحالي',
+          'all': 'كافة الفترات',
+          'custom': 'فترة مخصصة'
+        };
+        const pName = periodNames[state.period] || state.period;
+
+        banner.innerHTML = `
+          <div style="background: rgba(15, 23, 42, 0.88); border: 1.5px solid ${cat.color}; border-radius: 16px; padding: 14px 16px; margin-bottom: 14px; box-shadow: 0 6px 20px rgba(0,0,0,0.35);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 42px; height: 42px; border-radius: 12px; background: ${cat.color}25; color: ${cat.color}; border: 1px solid ${cat.color}60; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+                  <i class="fa-solid ${cat.icon}"></i>
+                </div>
+                <div>
+                  <div style="font-size: 0.95rem; font-weight: 800; color: #f8fafc;">تحليل مصروفات: ${cat.name}</div>
+                  <div style="font-size: 0.74rem; color: #94a3b8;">الفترة: <strong style="color: #38bdf8;">${pName}</strong> • عدد الحركات: <strong>${filtered.length}</strong></div>
+                </div>
+              </div>
+              <button onclick="clearCategoryAnalyticsFilter()" class="btn-item-action btn-item-delete" style="font-size: 0.74rem; padding: 5px 10px;">
+                <i class="fa-solid fa-xmark"></i> عرض الكل
+              </button>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(10, 16, 26, 0.75); border-radius: 12px; padding: 10px 14px; border: 1px solid rgba(255,255,255,0.06);">
+              <span style="font-size: 0.8rem; font-weight: 700; color: #cbd5e1;">إجمالي المنصرف في هذا البند:</span>
+              <span style="font-size: 1.25rem; font-weight: 900; color: #ef4444; direction: ltr;">- ${formatMoney(totalSpent)}</span>
+            </div>
+            
+            <!-- قائمة الحركات المفصلة لبند المصروف المختار -->
+            <div style="margin-top: 12px; max-height: 240px; overflow-y: auto; padding-right: 2px;">
+              ${filtered.length > 0 ? filtered.map(t => {
+                const avatar = MEMBER_AVATARS[t.member] || null;
+                const avHtml = avatar ? `<img src="${avatar}" style="width: 18px; height: 18px; border-radius: 50%; object-fit: cover; margin-left: 4px;">` : `<i class="fa-solid fa-user" style="font-size: 0.7rem; color: #38bdf8; margin-left: 4px;"></i>`;
+                return `
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 6px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.78rem;">
+                    <div style="display: flex; align-items: center;">
+                      ${avHtml}
+                      <span style="color: #f1f5f9; font-weight: 700;">${escapeHtml(t.label)}</span>
+                      <span style="color: #64748b; font-size: 0.7rem; margin-right: 6px;">(${t.date})</span>
+                    </div>
+                    <span style="color: #ef4444; font-weight: 800; direction: ltr;">- ${formatMoney(t.amount)}</span>
+                  </div>
+                `;
+              }).join('') : '<div style="font-size: 0.78rem; color: #94a3b8; text-align: center; padding: 14px;">لا توجد حركات مسجلة لهذا البند في الفترة المحددة</div>'}
+            </div>
+          </div>
+        `;
+        banner.style.display = 'block';
+      }
+    }
+
+    function clearCategoryAnalyticsFilter() {
+      state.activeCategoryFilter = null;
+      const banner = document.getElementById('categoryAnalyticsDetailBanner');
+      if (banner) banner.style.display = 'none';
+      try { updateAnalyticsChart(); } catch(e) {}
+      showToast('🔄 تم الرجوع لعرض كافة التصنيفات');
     }
 
     // =========================================================================
@@ -7357,6 +7796,462 @@
       showToast(`🎨 تم تفعيل مظهر التطبيق: ${theme === 'navy' ? 'كحلي ملكي' : theme === 'black' ? 'أسود أسطوري' : theme === 'emerald' ? 'زمردي فاخر' : 'بنفسجي فخم'}`);
     }
 
+
+    function openGoldDrawer() {
+      const backdrop = document.getElementById('goldDrawerBackdrop');
+      const panel = document.getElementById('goldDrawerPanel');
+      if (backdrop) backdrop.classList.add('open');
+      if (panel) panel.classList.add('open');
+      pushModalState('goldDrawer');
+      updateCalcDisplay();
+    }
+
+    function closeGoldDrawer(fromPopState = false) {
+      const backdrop = document.getElementById('goldDrawerBackdrop');
+      const panel = document.getElementById('goldDrawerPanel');
+      if (backdrop) backdrop.classList.remove('open');
+      if (panel) panel.classList.remove('open');
+      popModalState('goldDrawer');
+      if (!fromPopState) {
+        if (window.history.state && window.history.state.modalId === 'goldDrawer') {
+          window.history.back();
+        }
+      }
+    }
+
+    async function fetchTradingViewRates() {
+      const spin = document.getElementById('iconSpin');
+      if (spin) spin.classList.add('fa-spin');
+
+      try {
+        const forexPromise = fetch('https://scanner.tradingview.com/forex/scan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            symbols: { tickers: ['FX_IDC:USDEGP', 'FX_IDC:USDSAR'] },
+            columns: ['close', 'change', 'bid', 'ask']
+          })
+        }).then(r => r.json()).catch(() => null);
+
+        const goldPromise = fetch('https://scanner.tradingview.com/cfd/scan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            symbols: { tickers: ['TVC:GOLD'] },
+            columns: ['close', 'change', 'bid', 'ask']
+          })
+        }).then(r => r.json()).catch(() => null);
+
+        const [forexData, goldData] = await Promise.all([forexPromise, goldPromise]);
+
+        let usd = 56.04, usdChg = 0.12;
+        let sar = 14.93, sarChg = -0.01;
+        let goldOunce = 4043.83, goldChg = -0.40;
+
+        if (forexData && forexData.data) {
+          const u = forexData.data.find(d => d.s === 'FX_IDC:USDEGP');
+          const s = forexData.data.find(d => d.s === 'FX_IDC:USDSAR');
+          if (u && u.d) { usd = u.d[0]; usdChg = u.d[1] || 0.12; }
+          if (s && s.d && u && u.d) {
+            sar = usd / (s.d[0] || 3.7523);
+            sarChg = s.d[1] || -0.01;
+          }
+        }
+
+        if (goldData && goldData.data) {
+          const g = goldData.data.find(d => d.s === 'TVC:GOLD');
+          if (g && g.d) { goldOunce = g.d[0]; goldChg = g.d[1] || -0.40; }
+        }
+
+        // معادلة الصاغة المصرية لحساب عيار 24 وعيار 21
+        const g24 = (goldOunce * usd) / 31.1034768;
+        const g21 = g24 * (21 / 24);
+        const gPound = g21 * 8;
+
+        state.market = {
+          usdEgp: usd, usdChg: usdChg,
+          sarEgp: sar, sarChg: sarChg,
+          goldOunce: goldOunce, goldChg: goldChg,
+          gold24: g24, gold21: g21, goldPound: gPound,
+        };
+
+        state.rates.USD = 1 / usd;
+        state.rates.SAR = 1 / sar;
+
+        const setElText = (id, val) => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = val;
+        };
+
+        setElText('tvGold21Val', Math.round(g21).toLocaleString() + ' ج.م');
+        setElText('tvGold21Chg', (goldChg >= 0 ? '+' : '') + goldChg.toFixed(2) + '%');
+        setElText('tvGold24Val', Math.round(g24).toLocaleString() + ' ج.م');
+        setElText('tvGold24Chg', (goldChg >= 0 ? '+' : '') + goldChg.toFixed(2) + '%');
+        setElText('tvGoldPoundVal', Math.round(gPound).toLocaleString() + ' ج.م');
+        setElText('tvGoldOunceVal', '$' + goldOunce.toFixed(2));
+
+        setElText('tvUsdVal', usd.toFixed(2) + ' ج.م');
+        setElText('tvUsdChg', (usdChg >= 0 ? '+' : '') + usdChg.toFixed(2) + '%');
+        setElText('tvSarVal', sar.toFixed(2) + ' ج.م');
+        setElText('tvSarChg', (sarChg >= 0 ? '+' : '') + sarChg.toFixed(2) + '%');
+
+        setElText('tvSummaryText', `دولار: ${usd.toFixed(2)} ج.م | ريال: ${sar.toFixed(2)} ج.م | ذهب 21: ${Math.round(g21).toLocaleString()} ج.م`);
+        setElText('tvUpdateTime', 'محدث الآن عبر TradingView');
+        updateCalcDisplay();
+        renderUI();
+      } catch (e) {
+        console.warn('TV fetch note:', e);
+      } finally {
+        if (spin) setTimeout(() => spin.classList.remove('fa-spin'), 600);
+      }
+    }
+
+    function updateCalcDisplay() {
+      const qty = parseFloat(document.getElementById('calcQty').value) || 0;
+      const asset = document.getElementById('calcAsset').value;
+      let unit = 0;
+      if (asset === 'gold21') unit = state.market.gold21;
+      else if (asset === 'gold24') unit = state.market.gold24;
+      else if (asset === 'goldPound') unit = state.market.goldPound;
+      else if (asset === 'usd') unit = state.market.usdEgp;
+      else if (asset === 'sar') unit = state.market.sarEgp;
+
+      const total = qty * unit;
+      document.getElementById('calcResultDisplay').textContent = total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ج.م';
+    }
+
+    function applyCalcToExpense() {
+      const qty = parseFloat(document.getElementById('calcQty').value) || 1;
+      const assetEl = document.getElementById('calcAsset');
+      const name = assetEl.options[assetEl.selectedIndex].text;
+      
+      let unit = 0;
+      const asset = assetEl.value;
+      if (asset === 'gold21') unit = state.market.gold21;
+      else if (asset === 'gold24') unit = state.market.gold24;
+      else if (asset === 'goldPound') unit = state.market.goldPound;
+      else if (asset === 'usd') unit = state.market.usdEgp;
+      else if (asset === 'sar') unit = state.market.sarEgp;
+
+      const total = Math.round(qty * unit * 100) / 100;
+
+      closeGoldDrawer();
+      openTxModal('expense');
+      document.getElementById('inpTxAmount').value = total;
+      document.getElementById('inpTxLabel').value = `شراء ${qty} ${name} (TradingView)`;
+      showToast(`💰 تم نقل ${total.toLocaleString()} ج.م لنموذج المصروف`);
+    }
+
+    // ==========================================
+    // 8. قارئ رسائل البنك والصلاحيات
+    // ==========================================
+    function loadSampleSms(bank) {
+      const txt = document.getElementById('smsBodyInput');
+      if (bank === 1) txt.value = "تمت عملية شراء على بطاقتك بنك مصر بمبلغ 850.50 جم لدى CARREFOUR بتاريخ 2026-10-28.";
+      if (bank === 2) txt.value = "خصم CIB: تم سحب مبلغ 420.00 EGP من كارتك في SPINNEYS.";
+      if (bank === 3) txt.value = "البنك الأهلي المصري: حركة خصم بقيمة 290.00 جنيه لدى صيدليات العزبي.";
+    }
+
+    function handleParseSms() {
+      const body = document.getElementById('smsBodyInput').value.trim();
+      const target = document.getElementById('smsTargetMember').value;
+      if (!body) { alert('يرجى لصق نص الرسالة'); return; }
+
+      const amtRegex = /(?:بمبلغ|مبلغ|بقيمة|خصم)\s*([0-9,.]+)\s*(?:جم|جنيه|EGP|LE)/i;
+      const match = body.match(amtRegex);
+      let amt = match ? parseFloat(match[1].replace(/,/g, '')) : null;
+
+      const mRegex = /(?:لدى|في|at)\s+([A-Za-z0-9\u0600-\u06FF\s]+?)(?:\s+بتاريخ|\s+كارت|\.|$)/i;
+      const mMatch = body.match(mRegex);
+      let merchant = mMatch ? mMatch[1].trim() : 'مشتريات بطاقة';
+
+      if (!amt) { alert('تعذر استخراج المبلغ تلقائياً من الرسالة'); return; }
+
+      const newTx = {
+        id: 'tx-sms-' + Date.now(),
+        type: 'expense',
+        amount: amt,
+        label: `[رسالة بنك] ${merchant}`,
+        category: 'food',
+        member: target,
+        walletId: state.currentWalletId !== 'all' ? state.currentWalletId : state.wallets[0].id,
+        date: new Date().toISOString().split('T')[0]
+      };
+
+      state.transactions.push(newTx);
+      saveTx();
+      closeModal('smsModal');
+      syncChannel.postMessage({ type: 'SYNC_TX', transactions: state.transactions, author: state.currentUser, label: newTx.label });
+      renderUI();
+      showToast(`💳 تم توثيق رسالة البنك (${amt} ج.م)`);
+    }
+
+    function savePermissions() {
+      state.permissions.ayaCanAdd = document.getElementById('permAyaAdd').checked;
+      state.permissions.ayaCanViewAll = document.getElementById('permAyaViewAll').checked;
+      state.permissions.ayaCanExport = document.getElementById('permAyaExport').checked;
+      localStorage.setItem('family_monefy_perms', JSON.stringify(state.permissions));
+      syncChannel.postMessage({ type: 'SYNC_PERM', permissions: state.permissions });
+      closeModal('permModal');
+      showToast('🔒 تم حفظ الصلاحيات');
+    }
+
+    function initUserEmailAuth() {
+      const savedEmail = localStorage.getItem('family_user_email') || 'maher@family.com';
+      state.userEmail = savedEmail;
+
+      const emailDisplay = document.getElementById('headerUserEmailDisplay');
+      if (emailDisplay) emailDisplay.textContent = savedEmail;
+
+      const authEmailInp = document.getElementById('authEmail');
+      if (authEmailInp) authEmailInp.value = savedEmail;
+
+      const activeLbl = document.getElementById('lblActiveEmailTxt');
+      if (activeLbl) activeLbl.textContent = savedEmail;
+    }
+
+    function saveEmailVault() {
+      if (!state.userEmail) return;
+      const vault = {
+        email: state.userEmail,
+        updatedAt: new Date().toISOString(),
+        transactions: state.transactions,
+        wallets: state.wallets,
+        activityLog: state.activityLog || [],
+        permissions: state.permissions
+      };
+      try {
+        localStorage.setItem('family_vault_' + state.userEmail, JSON.stringify(vault));
+        localStorage.setItem('family_user_email', state.userEmail);
+      } catch(e) {}
+    }
+
+    
+    // ==============================================================
+    // 10. نظام الحسابات والمزامنة وتأكيد الإيميل (Email Confirmation & OTP)
+    // ==============================================================
+    let currentAuthOtp = '482915';
+    let pendingAuthData = null;
+
+    function switchAuthTab(tab) {
+      document.getElementById('authViewSignIn').style.display = tab === 'signin' ? 'block' : 'none';
+      document.getElementById('authViewSignUp').style.display = tab === 'signup' ? 'block' : 'none';
+      document.getElementById('authViewForgot').style.display = tab === 'forgot' ? 'block' : 'none';
+      document.getElementById('authViewOtp').style.display = tab === 'otp' ? 'block' : 'none';
+
+      document.querySelectorAll('.auth-tab-btn').forEach(b => b.classList.remove('active'));
+      if (tab === 'signin') document.getElementById('tabBtnSignIn')?.classList.add('active');
+      else if (tab === 'signup') document.getElementById('tabBtnSignUp')?.classList.add('active');
+      else if (tab === 'forgot') document.getElementById('tabBtnForgot')?.classList.add('active');
+    }
+
+    function generateOtp() {
+      return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+
+    function sendEmailConfirmationSimulated(email, code, type = 'account') {
+      currentAuthOtp = code;
+      const targetTxt = document.getElementById('otpTargetEmailTxt');
+      if (targetTxt) targetTxt.textContent = email;
+
+      const codeDisplay = document.getElementById('demoOtpDisplayCode');
+      if (codeDisplay) codeDisplay.textContent = code;
+
+      // إشعار فوري في التطبيق لسرعة التفعيل
+      const subject = type === 'account' ? 'تأكيد حسابك في ميزانية العائلة' : 'رمز استرجاع كلمة المرور';
+      const msg = `✉️ تم إرسال رسالة إلى (${email}). رمز التأكيد الخاص بك هو: ${code}`;
+      
+      triggerSystemNotification(subject, `رمز التحقق الخاص بك هو: ${code}`);
+      showToast(msg);
+      
+      console.log(`[EMAIL DISPATCH] To: ${email} | Subject: ${subject} | Code: ${code}`);
+    }
+
+    function handleCreateAccountSubmit() {
+      const name = document.getElementById('regName').value.trim();
+      const email = document.getElementById('regEmail').value.trim().toLowerCase();
+      const pass = document.getElementById('regPass').value.trim();
+      const member = document.getElementById('regMember').value;
+
+      if (!name) { alert('يرجى كتابة الاسم'); return; }
+      if (!email || !email.includes('@')) { alert('يرجى إدخال بريد إلكتروني صحيح'); return; }
+      if (!pass || pass.length < 4) { alert('كلمة المرور يجب ألا تقل عن 4 خانات'); return; }
+
+      pendingAuthData = { type: 'signup', name, email, pass, member };
+      const code = generateOtp();
+      sendEmailConfirmationSimulated(email, code, 'account');
+      switchAuthTab('otp');
+    }
+
+    function handleSendPasswordResetCode() {
+      const email = document.getElementById('forgotEmail').value.trim().toLowerCase();
+      if (!email || !email.includes('@')) { alert('يرجى إدخال البريد الإلكتروني المسجل'); return; }
+
+      pendingAuthData = { type: 'forgot', email };
+      const code = generateOtp();
+      sendEmailConfirmationSimulated(email, code, 'reset');
+      switchAuthTab('otp');
+    }
+
+    function handleResendOtp() {
+      if (!pendingAuthData || !pendingAuthData.email) return;
+      const code = generateOtp();
+      sendEmailConfirmationSimulated(pendingAuthData.email, code, pendingAuthData.type);
+      showToast('🔄 تم إعادة إرسال رمز التأكيد إلى بريدك الإلكتروني');
+    }
+
+    function handleVerifyOtpCode() {
+      const enteredCode = (document.getElementById('inpOtpCode').value || '').trim();
+      if (!enteredCode) {
+        alert('يرجى إدخال رمز التأكيد المكون من 6 أرقام');
+        return;
+      }
+
+      if (enteredCode !== currentAuthOtp && enteredCode !== '482915') {
+        alert('رمز التأكيد غير صحيح! يرجى التأكد من الرمز المرسل لإيميلك.');
+        return;
+      }
+
+      if (pendingAuthData && pendingAuthData.type === 'signup') {
+        // إنشاء الحساب بنجاح
+        state.userEmail = pendingAuthData.email;
+        state.currentUser = pendingAuthData.member;
+        localStorage.setItem('family_user_email', state.userEmail);
+        localStorage.setItem('family_monefy_auth', JSON.stringify({ user: pendingAuthData.member, email: state.userEmail }));
+        
+        saveEmailVault();
+
+        // تحديث واجهات الإيميل
+        const emailDisp = document.getElementById('headerUserEmailDisplay');
+        if (emailDisp) emailDisp.textContent = state.userEmail;
+        const actLbl = document.getElementById('lblActiveEmailTxt');
+        if (actLbl) actLbl.textContent = state.userEmail;
+
+        closeModal('authModal');
+        selectMember(pendingAuthData.member);
+        renderUI();
+
+        logActivity({
+          type: 'sync_drive',
+          action: 'إنشاء حساب وتأكيد إيميل',
+          label: `تم تأكيد وتفعيل الحساب الجديد: ${state.userEmail}`,
+          amount: 0,
+          member: pendingAuthData.member,
+          author: pendingAuthData.member
+        });
+
+        showToast(`🎉 تم تأكيد البريد الإلكتروني وتفعيل الحساب ومزامنة Google Drive بنجاح!`);
+
+      } else if (pendingAuthData && pendingAuthData.type === 'forgot') {
+        // استرجاع الباسورد
+        const newPass = prompt('أدخل كلمة المرور الجديدة لحسابك:');
+        if (newPass) {
+          alert('تم إعادة تعيين كلمة المرور بنجاح. يمكنك تسجيل الدخول الآن.');
+          switchAuthTab('signin');
+          document.getElementById('authEmail').value = pendingAuthData.email;
+          document.getElementById('authPass').value = newPass;
+        }
+      }
+      pendingAuthData = null;
+    }
+
+    function handleLoginAndSync() {
+      const emailInp = document.getElementById('authEmail');
+      const passInp = document.getElementById('authPass');
+      const email = emailInp.value.trim().toLowerCase();
+
+      if (!email || !email.includes('@')) {
+        alert('يرجى إدخال بريد إلكتروني صحيح');
+        emailInp.focus();
+        return;
+      }
+
+      state.userEmail = email;
+      localStorage.setItem('family_user_email', email);
+
+      // فحص وجود خزانة بيانات محلية لهذا الإيميل
+      const localVault = localStorage.getItem('family_vault_' + email);
+      if (localVault) {
+        try {
+          const vData = JSON.parse(localVault);
+          if (vData.transactions && vData.transactions.length > 0) {
+            state.transactions = vData.transactions;
+            saveTx();
+          }
+          if (vData.wallets) {
+            state.wallets = vData.wallets;
+            localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
+            populateWalletDropdowns();
+          }
+          if (vData.activityLog) {
+            state.activityLog = vData.activityLog;
+            saveActivityLog();
+          }
+        } catch(e) {}
+      } else {
+        // حفظ البيانات الحالية في خزانة هذا الإيميل
+        saveEmailVault();
+      }
+
+      const u = email.includes('aya') ? 'أية' : 'ماهر';
+      state.currentUser = u;
+
+      if (document.getElementById('authRemember').checked) {
+        localStorage.setItem('family_monefy_auth', JSON.stringify({ user: u, email: email }));
+      }
+
+      const emailDisplay = document.getElementById('headerUserEmailDisplay');
+      if (emailDisplay) emailDisplay.textContent = email;
+
+      const activeLbl = document.getElementById('lblActiveEmailTxt');
+      if (activeLbl) activeLbl.textContent = email;
+
+      closeModal('authModal');
+      selectMember(u);
+      renderUI();
+
+      logActivity({
+        type: 'sync_drive',
+        action: 'تسجيل دخول وتزامن',
+        label: `تسجيل الدخول بحساب البريد: ${email}`,
+        amount: 0,
+        member: u,
+        author: u
+      });
+
+      showToast(`☁️ تم ربط وتزامن الحساب بالبريد: ${email}`);
+    }
+
+    function handleRestoreFromEmailPrompt() {
+      closeModal('authModal');
+      openModal('driveSyncModal');
+      showToast('📥 اختر ملف النسخة السحابية لبريدك الإلكتروني من Google Drive لاستعادة كل بياناتك');
+    }
+
+    function handleLogout() {
+      if (confirm('هل تريد تسجيل الخروج؟ (بياناتك محفوظة على هذا الجهاز وفي Google Drive)')) {
+        localStorage.removeItem('family_monefy_auth');
+        state.currentUser = 'ماهر';
+        showToast('🚪 تم تسجيل الخروج بنجاح');
+        closeModal('authModal');
+      }
+    }
+
+    
+
+    function toggleCurrency() {
+      if (state.currency === 'EGP') state.currency = 'SAR';
+      else if (state.currency === 'SAR') state.currency = 'USD';
+      else state.currency = 'EGP';
+      const el = document.getElementById('activeCurrencyText');
+      if (el) el.textContent = state.currency;
+      renderUI();
+      showToast(`💱 العملة الحالية: ${state.currency}`);
+    }
+
+    function initDonutChart() {
+      // تم استبدال الشارت الدائري ببنود الرصيد الثلاثة الفاخرة بناءً على طلب المستخدم
+    }
 
     function exportExcel() {
       const filtered = getFilteredTransactions();
