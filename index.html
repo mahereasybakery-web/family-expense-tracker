@@ -6276,12 +6276,21 @@
     }
 
   
+    
     /* =========================================================================
-       تعبئة وتناسق الشاشة الرئيسية 100% ومنع الفراغ السفلي لجميع الهواتف الحديثة
-       (Perfect Vertical Screen Fill & Zero Empty Gap Engine)
+       ضبط الشاشة الرئيسية بنظام (Zero-Scroll Mobile Engine)
+       بحيث تناسب الشاشة 100% تماماً دون أي حاجة للتمرير الرأسي نهائياً
+       مع تكبير الأرقام لتتناسب بفخامة مع حجم البطاقات
        ========================================================================= */
+    html, body {
+      height: 100% !important;
+      max-height: 100% !important;
+      overflow: hidden !important;
+    }
+
     .app-viewport {
       height: 100vh !important;
+      max-height: 100vh !important;
       display: flex !important;
       flex-direction: column !important;
       overflow: hidden !important;
@@ -6291,81 +6300,116 @@
       flex: 1 1 auto !important;
       display: flex !important;
       flex-direction: column !important;
-      overflow-y: auto !important;
+      overflow-y: hidden !important;
       overflow-x: hidden !important;
       padding: 0 !important;
       margin: 0 !important;
+    }
+
+    /* عندما تكون صفحة العمليات أو التقارير نشطة نسمح لها بالتمرير، بينما المصاريف بدون أي تمرير */
+    .page-view {
+      overflow-y: auto !important;
     }
 
     #viewExpenses.active {
       flex: 1 1 auto !important;
       display: flex !important;
       flex-direction: column !important;
-      justify-content: space-between !important;
-      height: calc(100% - 54px) !important;
-      min-height: calc(100% - 54px) !important;
-      max-height: calc(100% - 54px) !important;
-      padding: 0 4px 4px !important;
+      justify-content: flex-start !important;
+      height: 100% !important;
+      max-height: 100% !important;
+      padding: 0 4px !important;
       box-sizing: border-box !important;
-      overflow-y: hidden !important;
-      overflow-x: hidden !important;
+      overflow: hidden !important;
+      gap: 2px !important;
     }
 
-    /* تكبير الجزء العلوي بتناسق وأناقة فائقة */
+    /* شريط الأفاتار المدمج */
+    .avatars-container {
+      padding: 1px 0 !important;
+      gap: 4px !important;
+    }
+    .avatar-card {
+      min-width: 32px !important;
+    }
+    .avatar-bubble {
+      width: 30px !important;
+      height: 30px !important;
+      min-width: 30px !important;
+      min-height: 30px !important;
+      border-radius: 50% !important;
+    }
+    .avatar-name-label {
+      font-size: 0.58rem !important;
+      margin-top: 1px !important;
+    }
+
+    /* شريط اختيار الفترة */
     .period-selector-top-strip {
-      padding: 4px 8px !important;
-      margin: 2px 0 3px !important;
+      padding: 2px 6px !important;
+      margin: 1px 0 2px !important;
     }
     .period-filter-pill {
-      padding: 4px 6px !important;
-      font-size: 0.72rem !important;
+      padding: 2px 6px !important;
+      font-size: 0.68rem !important;
       font-weight: 800 !important;
-      border-radius: 9px !important;
+      border-radius: 7px !important;
     }
 
+    /* شريط أدوات المحفظة والبورصة والعملة */
     .sub-period-tools-bar {
-      padding: 4px 8px !important;
-      margin-bottom: 4px !important;
-      min-height: 32px !important;
+      padding: 2px 6px !important;
+      margin-bottom: 2px !important;
+      min-height: 26px !important;
     }
     .wallet-select-cluster {
-      padding: 3px 8px !important;
-      border-radius: 9px !important;
+      padding: 2px 6px !important;
+      border-radius: 7px !important;
     }
     .wallet-dropdown-compact {
-      font-size: 0.72rem !important;
-      max-width: 110px !important;
+      font-size: 0.68rem !important;
+      height: 24px !important;
+      max-width: 100px !important;
     }
     .tool-pill-action.gold-pill {
-      padding: 4px 8px !important;
-      font-size: 0.72rem !important;
-      border-radius: 9px !important;
+      padding: 2px 6px !important;
+      font-size: 0.66rem !important;
+      height: 24px !important;
+      border-radius: 7px !important;
+    }
+    .currency-pill-btn {
+      height: 24px !important;
+      font-size: 0.66rem !important;
+      padding: 2px 6px !important;
+      border-radius: 7px !important;
     }
 
-    /* تكبير بطاقات الرصيد الثلاثة قليلاً لملء الشاشة بفخامة واحترافية */
+    /* بطاقات الرصيد الثلاثة المدمجة بدقة مع أرقام مكبرة وواضحة جداً */
     .kpi-three-strip {
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
-      gap: 5px !important;
-      margin: 3px 6px 5px !important;
+      gap: 4px !important;
+      margin: 2px 6px 3px !important;
       width: calc(100% - 12px) !important;
       box-sizing: border-box !important;
     }
 
     .kpi-three-card {
-      padding: 6px 8px !important;
-      border-radius: 11px !important;
-      min-height: 48px !important;
+      padding: 3px 6px !important;
+      border-radius: 9px !important;
+      min-height: 38px !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
     }
 
     .kpi-three-card.card-balance {
       grid-column: 1 / -1 !important;
-      min-height: 34px !important;
-      padding: 5px 12px !important;
-      border-radius: 11px !important;
+      min-height: 28px !important;
+      padding: 2px 10px !important;
+      border-radius: 9px !important;
       display: flex !important;
       flex-direction: row !important;
       justify-content: space-between !important;
@@ -6373,49 +6417,56 @@
     }
 
     .kpi-three-label {
-      font-size: 0.72rem !important;
+      font-size: 0.64rem !important;
       font-weight: 800 !important;
-      margin-bottom: 2px !important;
+      margin-bottom: 1px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 3px !important;
     }
 
+    /* تكبير أرقام الرصيد والسحب والإيداع */
     .kpi-three-value {
-      font-size: 0.95rem !important;
+      font-size: 0.90rem !important;
       font-weight: 900 !important;
-      line-height: 1.2 !important;
+      line-height: 1.15 !important;
+      letter-spacing: -0.2px !important;
     }
 
-    /* تكبير أزرار الإجراءات السريعة قليلاً */
+    /* أزرار الإجراءات السريعة (مصروف / دخل) */
     .quick-actions-bar {
-      padding: 0 6px 4px !important;
-      gap: 6px !important;
+      padding: 0 6px 3px !important;
+      gap: 5px !important;
       margin: 0 !important;
     }
 
     .btn-quick-action {
-      height: 36px !important;
-      padding: 4px 8px !important;
-      font-size: 0.80rem !important;
+      height: 32px !important;
+      padding: 2px 6px !important;
+      font-size: 0.76rem !important;
       font-weight: 800 !important;
-      border-radius: 10px !important;
+      border-radius: 8px !important;
     }
 
-    /* تكبير وتوسيع شبكة بنود المصروفات الـ 9 لملء الفراغ السفلي بالكامل */
+    /* شبكة بنود المصروفات الـ 9 بحجم متناسق دون تمرير وأرقام واضحة ومكبرة */
     .categories-monefy-grid {
-      flex: 1 1 auto !important;
       display: grid !important;
       grid-template-columns: repeat(3, 1fr) !important;
       grid-template-rows: repeat(3, 1fr) !important;
-      gap: 6px !important;
-      margin: 2px 6px 4px !important;
-      width: calc(100% - 12px) !important;
+      gap: 4px !important;
+      margin: 1px 4px 2px !important;
+      width: calc(100% - 8px) !important;
       box-sizing: border-box !important;
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
     }
 
     .cat-card {
       height: 100% !important;
       box-sizing: border-box !important;
-      padding: 6px 5px !important;
-      border-radius: 13px !important;
+      padding: 3px 2px 2px !important;
+      border-radius: 11px !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
@@ -6425,10 +6476,12 @@
     }
 
     .cat-icon-bubble {
-      width: clamp(32px, 9vw, 42px) !important;
-      height: clamp(32px, 9vw, 42px) !important;
-      border-radius: 10px !important;
-      margin-bottom: 2px !important;
+      width: 28px !important;
+      height: 28px !important;
+      min-width: 28px !important;
+      min-height: 28px !important;
+      border-radius: 8px !important;
+      margin-bottom: 1px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -6436,15 +6489,15 @@
     }
 
     .cat-icon-bubble i {
-      font-size: clamp(1rem, 3.2vw, 1.25rem) !important;
+      font-size: 0.92rem !important;
     }
 
     .cat-label-text {
-      font-size: clamp(0.68rem, 2.3vw, 0.82rem) !important;
+      font-size: clamp(0.66rem, 2.1vw, 0.74rem) !important;
       font-weight: 800 !important;
       color: #f8fafc !important;
       text-align: center !important;
-      line-height: 1.15 !important;
+      line-height: 1.1 !important;
       margin: 1px 0 !important;
       white-space: nowrap !important;
       overflow: hidden !important;
@@ -6452,20 +6505,49 @@
       width: 100% !important;
     }
 
+    /* تكبير أرقام مبالغ المصروفات في البطاقات */
     .cat-amount-pill {
       width: 100% !important;
       box-sizing: border-box !important;
       text-align: center !important;
       padding: 2px 4px !important;
-      border-radius: 7px !important;
-      margin-top: 1px !important;
+      border-radius: 6px !important;
       flex-shrink: 0 !important;
     }
 
     .cat-amount-pill span {
-      font-size: clamp(0.64rem, 2.2vw, 0.78rem) !important;
+      font-size: clamp(0.78rem, 2.7vw, 0.88rem) !important;
       font-weight: 900 !important;
       white-space: nowrap !important;
+      display: inline-block !important;
+      letter-spacing: -0.25px !important;
+    }
+
+
+    /* فلاتر الفترات الزمنية لشاشتي العمليات والأرشيف */
+    .ops-period-pill, .archive-period-pill {
+      flex: 1;
+      padding: 5px 4px !important;
+      font-size: 0.70rem !important;
+      font-weight: 800 !important;
+      border-radius: 8px !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      background: rgba(255, 255, 255, 0.04) !important;
+      color: #94a3b8 !important;
+      cursor: pointer !important;
+      text-align: center !important;
+      transition: all 0.2s ease !important;
+      white-space: nowrap !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 3px !important;
+    }
+    .ops-period-pill.active, .archive-period-pill.active {
+      background: linear-gradient(135deg, #0284c7, #0369a1) !important;
+      color: #ffffff !important;
+      border-color: #38bdf8 !important;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35) !important;
     }
 
   </style>
@@ -6770,6 +6852,25 @@
                 <i class="fa-solid fa-arrow-down-left"></i> الإيداعات والدخل
               </button>
             </div>
+
+            <!-- فلاتر الفترات الزمنية للعمليات المسجلة -->
+            <div class="ops-period-strip" id="opsPeriodFilterStrip" style="display: flex; gap: 4px; align-items: center; justify-content: space-between; background: rgba(15, 23, 42, 0.7); padding: 4px 6px; border-radius: 12px; border: 1px solid var(--border-subtle); margin-top: 4px;">
+              <button type="button" class="ops-period-pill" data-period="today" onclick="setAppPeriod('day')">
+                <i class="fa-solid fa-clock"></i> اليوم
+              </button>
+              <button type="button" class="ops-period-pill" data-period="week" onclick="setAppPeriod('week')">
+                <i class="fa-solid fa-calendar-week"></i> الأسبوع
+              </button>
+              <button type="button" class="ops-period-pill active" data-period="month" onclick="setAppPeriod('month')">
+                <i class="fa-solid fa-calendar-days"></i> الشهر
+              </button>
+              <button type="button" class="ops-period-pill" data-period="all" onclick="setAppPeriod('all')">
+                <i class="fa-solid fa-infinity"></i> الكل
+              </button>
+              <button type="button" class="ops-period-pill" data-period="custom" onclick="toggleCustomDatePicker(true)">
+                <i class="fa-solid fa-calendar-check"></i> مخصص 📅
+              </button>
+            </div>
           </div>
 
           <!-- قائمة الحركات المسجلة المقسمة زمنياً ومصممة بأناقة دون سكرول بار أبيض -->
@@ -6788,6 +6889,25 @@
             <button class="btn-export-tool" onclick="filterArchiveType('delete', this)">حذف</button>
             <button class="btn-export-tool excel-btn" onclick="exportActivityLogExcel()" style="margin-right: auto;">
               <i class="fa-solid fa-file-excel"></i> تصدير الأرشيف
+            </button>
+          </div>
+
+          <!-- فلاتر الفترات الزمنية لصفحة الأرشيف وسجل النشاط -->
+          <div class="archive-period-strip" id="archivePeriodFilterStrip" style="display: flex; gap: 4px; align-items: center; justify-content: space-between; background: rgba(15, 23, 42, 0.7); padding: 4px 6px; border-radius: 12px; border: 1px solid var(--border-subtle); margin: 0 12px 10px;">
+            <button type="button" class="archive-period-pill" data-period="today" onclick="setAppPeriod('day')">
+              <i class="fa-solid fa-clock"></i> اليوم
+            </button>
+            <button type="button" class="archive-period-pill" data-period="week" onclick="setAppPeriod('week')">
+              <i class="fa-solid fa-calendar-week"></i> الأسبوع
+            </button>
+            <button type="button" class="archive-period-pill active" data-period="month" onclick="setAppPeriod('month')">
+              <i class="fa-solid fa-calendar-days"></i> الشهر
+            </button>
+            <button type="button" class="archive-period-pill" data-period="all" onclick="setAppPeriod('all')">
+              <i class="fa-solid fa-infinity"></i> الكل
+            </button>
+            <button type="button" class="archive-period-pill" data-period="custom" onclick="toggleCustomDatePicker(true)">
+              <i class="fa-solid fa-calendar-check"></i> مخصص 📅
             </button>
           </div>
 
@@ -7125,9 +7245,23 @@
 
       </div>
 
-<div class="page-view" id="viewRequests" style="display: none;">
-        <!-- نموذج تقديم طلب جديد (مخصص لأية والعائلة) -->
-        <div class="app-card-panel">
+      <div class="page-view" id="viewRequests" style="display: none;">
+        
+        <!-- شريط التبديل بين إنشاء طلب جديد وعرض الطلبات السابقة -->
+        <div class="requests-view-switcher" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; background: rgba(15, 23, 42, 0.7); padding: 5px; border-radius: 14px; border: 1px solid var(--border-subtle);">
+          <button type="button" id="btnTabNewRequest" onclick="switchRequestTab('new')" class="req-tab-btn active" style="padding: 9px 12px; border-radius: 10px; font-weight: 800; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; transition: all 0.25s; border: none; background: linear-gradient(135deg, #ec4899, #be185d); color: #fff; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.35);">
+            <i class="fa-solid fa-plus-circle"></i>
+            <span>إنشاء طلب جديد</span>
+          </button>
+          <button type="button" id="btnTabListRequests" onclick="switchRequestTab('list')" class="req-tab-btn" style="padding: 9px 12px; border-radius: 10px; font-weight: 800; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; transition: all 0.25s; border: none; background: transparent; color: #94a3b8;">
+            <i class="fa-solid fa-list-check"></i>
+            <span>عرض الطلبات</span>
+            <span class="badge-req-counter" id="reqPendingBadgeTab" style="background: rgba(236,72,153,0.25); color: #f472b6; border: 1px solid rgba(236,72,153,0.4); padding: 1px 7px; border-radius: 10px; font-size: 0.68rem; margin-right: 4px;">0</span>
+          </button>
+        </div>
+
+        <!-- 1. لوحة نموذج إنشاء طلب جديد -->
+        <div id="panelNewRequest" class="app-card-panel">
         
         
           <div class="app-card-title" style="margin-bottom: 8px; justify-content: space-between; align-items: center;">
@@ -7212,7 +7346,7 @@
         </div>
 
         <!-- سجل الطلبات وقائمة الحالات -->
-        <div class="app-card-panel" style="margin-top: 14px;">
+        <div id="panelListRequests" class="app-card-panel" style="display: none; margin-top: 6px;">
           <div class="app-card-title" style="justify-content: space-between;">
             <div style="display: flex; align-items: center; gap: 8px;">
               <i class="fa-solid fa-list-check" style="color: #38bdf8;"></i>
@@ -7262,7 +7396,20 @@
         </div>
 
         <!-- نموذج تسجيل مصروف متوقع أو دين -->
-        <div class="app-card-panel">
+                <!-- شريط التبديل بين إضافة التزام جديد وجدول الالتزامات (مع بقاء دفتر الملاحظات مستقلاً بأعلى الصفحة) -->
+        <div class="expected-view-switcher" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0 12px; background: rgba(15, 23, 42, 0.7); padding: 5px; border-radius: 14px; border: 1px solid var(--border-subtle);">
+          <button type="button" id="btnTabNewExpected" onclick="switchExpectedTab('new')" class="exp-tab-btn active" style="padding: 9px 12px; border-radius: 10px; font-weight: 800; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; transition: all 0.25s; border: none; background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);">
+            <i class="fa-solid fa-plus-circle"></i>
+            <span>إضافة التزام جديد</span>
+          </button>
+          <button type="button" id="btnTabListExpected" onclick="switchExpectedTab('list')" class="exp-tab-btn" style="padding: 9px 12px; border-radius: 10px; font-weight: 800; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; transition: all 0.25s; border: none; background: transparent; color: #94a3b8;">
+            <i class="fa-solid fa-table-list"></i>
+            <span>جدول الالتزامات</span>
+            <span class="badge-req-counter" id="expectedPendingBadgeTab" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 1px 7px; border-radius: 10px; font-size: 0.68rem; margin-right: 4px;">0</span>
+          </button>
+        </div>
+
+        <div id="panelNewExpected" class="app-card-panel">
           <div class="app-card-title">
             <i class="fa-solid fa-calendar-plus" style="color: #38bdf8;"></i>
             <span>تسجيل التزام مالي أو دين قادم</span>
@@ -7304,7 +7451,7 @@
         </div>
 
         <!-- قائمة الالتزامات والديون -->
-        <div class="app-card-panel" style="margin-top: 14px;">
+        <div id="panelListExpected" class="app-card-panel" style="display: none; margin-top: 6px;">
           <div class="app-card-title">
             <i class="fa-solid fa-clock-rotate-left" style="color: #fbbf24;"></i>
             <span>جدول الالتزامات والديون القادمة</span>
@@ -9503,6 +9650,15 @@
           options: {
             responsive: true,
             maintainAspectRatio: false,
+            onClick: (event, elements) => {
+              if (elements && elements.length > 0) {
+                const idx = elements[0].index;
+                const cat = activeCats[idx];
+                if (cat) {
+                  openOperationsFiltered({ category: cat.key, categoryName: cat.name, type: 'expense' });
+                }
+              }
+            },
             plugins: {
               legend: {
                 display: execCatChartType === 'doughnut',
@@ -9514,7 +9670,7 @@
                   label: (ctx) => {
                     const rawVal = activeCats[ctx.dataIndex] ? activeCats[ctx.dataIndex].sum : 0;
                     const pct = totalExp > 0 ? ((rawVal / totalExp) * 100).toFixed(1) : 0;
-                    return ` ${formatMoney(rawVal)} (${pct}%)`;
+                    return ` ${formatMoney(rawVal)} (${pct}%) - اضغط للفتح في العمليات`;
                   }
                 }
               }
@@ -9541,7 +9697,7 @@
         activeCats.forEach((c, idx) => {
           const pct = totalExp > 0 ? ((c.sum / totalExp) * 100).toFixed(1) : 0;
           html += `
-            <div style="margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+            <div class="cat-rank-item clickable-cat-item" onclick="openOperationsFiltered({ category: '${c.key}', categoryName: '${c.name}', type: 'expense' })" style="margin-bottom: 8px; padding: 6px 8px; border-radius: 10px; cursor: pointer; transition: all 0.2s; border-bottom: 1px solid rgba(255,255,255,0.05);" onmouseover="this.style.background='rgba(56, 189, 248, 0.12)'" onmouseout="this.style.background='transparent'">
               <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; margin-bottom: 3px;">
                 <span style="font-weight: 800; color: #f1f5f9; display: flex; align-items: center; gap: 6px;">
                   <span style="width: 18px; height: 18px; border-radius: 5px; background: ${c.color}25; color: ${c.color}; display: flex; align-items: center; justify-content: center; font-size: 0.65rem;">${idx + 1}</span>
@@ -9624,6 +9780,15 @@
             }]
           },
           options: {
+            onClick: (event, elements) => {
+              if (elements && elements.length > 0) {
+                const idx = elements[0].index;
+                const memName = activeMembers[idx];
+                if (memName) {
+                  openOperationsFiltered({ member: memName });
+                }
+              }
+            },
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
@@ -9807,6 +9972,15 @@
             plugins: {
               legend: { display: false }
             },
+            onClick: (event, elements) => {
+              if (elements && elements.length > 0) {
+                const idx = elements[0].index;
+                const cat = sortedCats[idx];
+                if (cat) {
+                  openOperationsFiltered({ category: cat.key, categoryName: cat.name, member: currentAnalyticsMember, type: 'expense' });
+                }
+              }
+            },
             scales: {
               x: { ticks: { color: '#94a3b8', font: { size: 9 } } },
               y: { ticks: { color: '#cbd5e1', font: { family: 'Cairo', size: 9, weight: 'bold' } } }
@@ -9837,7 +10011,7 @@
           const rank = idx + 1;
           const pct = memberTotalExp > 0 ? ((cat.sum / memberTotalExp) * 100).toFixed(1) : 0;
           return `
-            <div class="cat-rank-item" style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; transition: all 0.2s;">
+            <div class="cat-rank-item clickable-cat-item" onclick="openOperationsFiltered({ category: '${cat.key}', categoryName: '${cat.name}', member: '${currentAnalyticsMember}', type: 'expense' })" style="background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; transition: all 0.2s; cursor: pointer;" onmouseover="this.style.background='rgba(56, 189, 248, 0.12)'" onmouseout="this.style.background='rgba(15, 23, 42, 0.65)'">
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <span class="cat-rank-badge" style="background: ${cat.color}25; color: ${cat.color}; border: 1px solid ${cat.color}60; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 900;">${rank}</span>
@@ -10490,6 +10664,7 @@
         if (viewReg) viewReg.style.display = 'block';
         if (viewArc) viewArc.style.display = 'none';
         filterOperationsList();
+      if (typeof renderActivityLogUI === 'function') renderActivityLogUI();
       } else {
         if (btnReg) btnReg.classList.remove('active');
         if (btnArc) btnArc.classList.add('active');
@@ -10672,6 +10847,15 @@
       if (activePill) activePill.classList.add('active');
 
       // 2. تحديث أزرار الفترات في شاشة التحليلات
+      document.querySelectorAll('.ops-period-pill, .archive-period-pill').forEach(b => {
+        const btnP = b.getAttribute('data-period');
+        if (btnP === p || (p === 'today' && btnP === 'day') || (p === 'day' && btnP === 'today')) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
+
       document.querySelectorAll('.analytics-period-btn').forEach(b => {
         const btnP = b.getAttribute('data-period');
         if (btnP === p || (p === 'today' && btnP === 'day') || (p === 'day' && btnP === 'day')) {
@@ -11379,6 +11563,59 @@
     let opsRenderLimit = 50;
     let opsTypeFilterState = 'all'; // 'all' | 'expense' | 'income'
 
+    
+    // =========================================================================
+    // الانتقال للعمليات مع فلترة حية دقيقة للمؤشر أو العمود أو البند المضغوط
+    // =========================================================================
+    function openOperationsFiltered({ category = null, categoryName = null, member = null, type = 'all', date = null } = {}) {
+      // 1. الانتقال إلى شاشة العمليات
+      switchAppPage('operations');
+
+      // 2. تفعيل تبويب العمليات المسجلة
+      switchOperationsSubTab('registered');
+
+      // 3. ضبط نوع العملية (مصروفات / إيداعات / الكل)
+      setOpsTypeFilter(type);
+
+      // 4. ضبط فلترة العضو إذا تم اختياره
+      if (member && member !== 'الكل' && member !== 'العائلة') {
+        selectMember(member);
+      }
+
+      // 5. ضبط الفلترة النصية لتصفية التصنيف أو العضو أو البيان
+      const searchInp = document.getElementById('opsSearchInput');
+      let targetQuery = '';
+      if (categoryName) {
+        targetQuery = categoryName;
+      } else if (category) {
+        const catObj = (typeof getCategoryObj === 'function') ? getCategoryObj(category, type) : null;
+        targetQuery = catObj ? catObj.name : category;
+      } else if (date) {
+        targetQuery = date;
+      }
+
+      if (searchInp) {
+        searchInp.value = targetQuery;
+      }
+
+      // 6. تحديث قائمة العمليات وتطبيق الفلترة المباشرة
+      filterOperationsList();
+      if (typeof renderActivityLogUI === 'function') renderActivityLogUI();
+
+      // 7. إشعار فوري لطيف للمستخدم
+      const label = targetQuery || member || (type === 'expense' ? 'المصروفات' : (type === 'income' ? 'الإيداعات' : 'العمليات'));
+      showToast(`🔍 تم فتح العمليات المفلترة: ${label}`);
+    }
+
+    function clearOpsFilter() {
+      const searchInp = document.getElementById('opsSearchInput');
+      if (searchInp) searchInp.value = '';
+      setOpsTypeFilter('all');
+      filterOperationsList();
+      if (typeof renderActivityLogUI === 'function') renderActivityLogUI();
+      showToast('تمت إعادة ضبط فلاتر العمليات');
+    }
+
     function setOpsTypeFilter(type, btn) {
       opsTypeFilterState = type;
       const pillBox = document.getElementById('opsTypeFilterPills');
@@ -11393,6 +11630,7 @@
         btn.style.background = (type === 'expense') ? 'rgba(244, 63, 94, 0.2)' : ((type === 'income') ? 'rgba(16, 185, 129, 0.2)' : 'rgba(56, 189, 248, 0.2)');
       }
       filterOperationsList();
+      if (typeof renderActivityLogUI === 'function') renderActivityLogUI();
     }
 
     function renderOperationsList(filtered, appendMore = false) {
@@ -11419,10 +11657,12 @@
         list = list.filter(t => {
           const l = (t.label || '').toLowerCase();
           const c = (t.category || '').toLowerCase();
+          const cName = (typeof getCategoryName === 'function' ? (getCategoryName(t.category, t.type) || '') : '').toLowerCase();
           const m = (t.member || '').toLowerCase();
           const a = String(t.amount || '');
-          const w = getWalletName(t.walletId).toLowerCase();
-          return l.includes(q) || c.includes(q) || m.includes(q) || a.includes(q) || w.includes(q);
+          const w = (typeof getWalletName === 'function' ? getWalletName(t.walletId) : '').toLowerCase();
+          const d = (t.date || '').toLowerCase();
+          return l.includes(q) || c.includes(q) || cName.includes(q) || m.includes(q) || a.includes(q) || w.includes(q) || d.includes(q);
         });
       }
 
@@ -12092,6 +12332,86 @@
       updateRequestAllocationBalances();
     }
 
+    
+    // =========================================================================
+    // إدارة تبويبات طلبات المصروف والالتزامات المتوقعة (Two-Button Switchers)
+    // =========================================================================
+    function switchRequestTab(tab) {
+      const pNew = document.getElementById('panelNewRequest');
+      const pList = document.getElementById('panelListRequests');
+      const bNew = document.getElementById('btnTabNewRequest');
+      const bList = document.getElementById('btnTabListRequests');
+
+      if (tab === 'new') {
+        if (pNew) pNew.style.display = 'block';
+        if (pList) pList.style.display = 'none';
+        if (bNew) {
+          bNew.style.background = 'linear-gradient(135deg, #ec4899, #be185d)';
+          bNew.style.color = '#fff';
+          bNew.style.boxShadow = '0 4px 12px rgba(236, 72, 153, 0.35)';
+        }
+        if (bList) {
+          bList.style.background = 'transparent';
+          bList.style.color = '#94a3b8';
+          bList.style.boxShadow = 'none';
+        }
+      } else {
+        if (pNew) pNew.style.display = 'none';
+        if (pList) pList.style.display = 'block';
+        if (bList) {
+          bList.style.background = 'linear-gradient(135deg, #0284c7, #0369a1)';
+          bList.style.color = '#fff';
+          bList.style.boxShadow = '0 4px 12px rgba(2, 132, 199, 0.35)';
+        }
+        if (bNew) {
+          bNew.style.background = 'transparent';
+          bNew.style.color = '#94a3b8';
+          bNew.style.boxShadow = 'none';
+        }
+        if (typeof renderRequestsList === 'function') {
+          renderRequestsList();
+        }
+      }
+    }
+
+    function switchExpectedTab(tab) {
+      const pNew = document.getElementById('panelNewExpected');
+      const pList = document.getElementById('panelListExpected');
+      const bNew = document.getElementById('btnTabNewExpected');
+      const bList = document.getElementById('btnTabListExpected');
+
+      if (tab === 'new') {
+        if (pNew) pNew.style.display = 'block';
+        if (pList) pList.style.display = 'none';
+        if (bNew) {
+          bNew.style.background = 'linear-gradient(135deg, #0284c7, #0369a1)';
+          bNew.style.color = '#fff';
+          bNew.style.boxShadow = '0 4px 12px rgba(2, 132, 199, 0.35)';
+        }
+        if (bList) {
+          bList.style.background = 'transparent';
+          bList.style.color = '#94a3b8';
+          bList.style.boxShadow = 'none';
+        }
+      } else {
+        if (pNew) pNew.style.display = 'none';
+        if (pList) pList.style.display = 'block';
+        if (bList) {
+          bList.style.background = 'linear-gradient(135deg, #0284c7, #0369a1)';
+          bList.style.color = '#fff';
+          bList.style.boxShadow = '0 4px 12px rgba(2, 132, 199, 0.35)';
+        }
+        if (bNew) {
+          bNew.style.background = 'transparent';
+          bNew.style.color = '#94a3b8';
+          bNew.style.boxShadow = 'none';
+        }
+        if (typeof renderExpectedExpensesList === 'function') {
+          renderExpectedExpensesList();
+        }
+      }
+    }
+
     function submitMoneyRequest() {
       const memSel = document.getElementById('inpReqMember');
       const amtInp = document.getElementById('inpReqAmount');
@@ -12168,6 +12488,8 @@
 
       const pendingCount = list.filter(r => r.status === 'pending').length;
       if (badge) badge.textContent = `${pendingCount} معلق`;
+      const tabBadge = document.getElementById('reqPendingBadgeTab');
+      if (tabBadge) tabBadge.textContent = `${pendingCount}`;
 
       if (list.length === 0) {
         container.innerHTML = `
@@ -12731,7 +13053,7 @@
       document.getElementById('calcResultDisplay').textContent = total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ج.م';
     }
 
-    function applyCalcToExpense() {
+        function applyCalcToExpense() {
       const qty = parseFloat(document.getElementById('calcQty').value) || 1;
       const assetEl = document.getElementById('calcAsset');
       const name = assetEl.options[assetEl.selectedIndex].text;
@@ -12748,9 +13070,17 @@
 
       closeGoldDrawer();
       openTxModal('expense');
-      document.getElementById('inpTxAmount').value = total;
-      document.getElementById('inpTxLabel').value = `شراء ${qty} ${name} (TradingView)`;
-      showToast(`💰 تم نقل ${total.toLocaleString()} ج.م لنموذج المصروف`);
+      const amtInp = document.getElementById('inpTxAmount');
+      if (amtInp) {
+        amtInp.value = total;
+        amtInp.dispatchEvent(new Event('input', { bubbles: true }));
+        amtInp.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      const lblInp = document.getElementById('inpTxLabel');
+      if (lblInp) {
+        lblInp.value = `شراء ${qty} ${name}`;
+      }
+      showToast(`✅ تم تحويل القيمة (${total.toLocaleString('en-US')} ج.م) لشاشة تسجيل المصروف`);
     }
 
     // ==========================================
@@ -13468,40 +13798,54 @@
     }
 
     // نقل الناتج مباشرة إلى تسجيل المصروف
-    function calcLuxApplyToExpense() {
+        function calcLuxApplyToExpense() {
       if (calcLuxFirstOperand !== null && calcLuxPendingOp) {
         calcLuxEquals();
       }
 
       const finalAmount = Math.abs(parseFloat(calcLuxCurrentVal) || 0);
       if (finalAmount <= 0) {
-        alert('يرجى إدخال مبلغ صحيح أكبر من صفر');
+        showToast('[WARN]️ يرجى إدخال مبلغ صحيح أكبر من صفر');
         return;
       }
 
       const txModal = document.getElementById('txModal');
-      const isTxModalOpen = txModal && (txModal.style.display !== 'none' && txModal.classList.contains('open') || window.getComputedStyle(txModal).display !== 'none');
+      const wasTxModalOpen = txModal && (txModal.classList.contains('open') || (txModal.style.display && txModal.style.display !== 'none'));
 
-      if (!isTxModalOpen) {
+      // 1. إغلاق مودال الآلة الحاسبة فقط
+      closeCalculatorModal();
+
+      // 2. الحفاظ على نافذة تسجيل المصروف مفتوحة وبارزة بنسبة 100%
+      if (!wasTxModalOpen) {
         openTxModal('expense');
+      } else {
+        if (txModal) {
+          txModal.classList.add('open');
+          txModal.style.display = '';
+        }
+        if (!activeModalsStack.includes('txModal')) {
+          activeModalsStack.push('txModal');
+        }
       }
 
+      // 3. وضع المبلغ المعتمد في حقل المبلغ وإطلاق أحداث الإدخال
       const amtInp = document.getElementById('inpTxAmount');
       if (amtInp) {
         amtInp.value = finalAmount;
         if (typeof formatTxAmountInput === 'function') {
           formatTxAmountInput(amtInp);
         }
+        amtInp.dispatchEvent(new Event('input', { bubbles: true }));
+        amtInp.dispatchEvent(new Event('change', { bubbles: true }));
       }
 
-      closeCalculatorModal();
-      showToast(`✅ تم نقل المبلغ (${finalAmount.toLocaleString('en-US')} ج.م) مباشرة إلى تسجيل المصروف!`);
+      showToast(`✅ تم اعتماد المبلغ (${finalAmount.toLocaleString('en-US')} ج.م) في تسجيل المصروف بنجاح`);
 
-      // تركيز حقل البيان لراحة المستخدم
+      // 4. التركيز على حقل البيان مباشرة
       setTimeout(() => {
         const lblInp = document.getElementById('inpTxLabel');
         if (lblInp) lblInp.focus();
-      }, 300);
+      }, 150);
     }
 
     // توافق مع الاستدعاءات القديمة
@@ -13802,7 +14146,8 @@
     // عند فتح أي شاشة (دخل/مصروف/حاسبة/ذهب/إلخ)، الضغط على رجوع من الجوال
     // يعود للصفحة السابقة دون الخروج من التطبيق - يطبق على كامل التطبيق
     // =========================================================================
-    let activeModalsStack = [];
+        let activeModalsStack = [];
+    let programmaticBackCount = 0;
 
     function pushModalState(id) {
       if (!activeModalsStack.includes(id)) {
@@ -13818,31 +14163,37 @@
       }
     }
 
-    // الاستماع لزر الرجوع من الجوال (Android / iOS Mobile Back Button)
-    // يغلق النوافذ المنبثقة أو الحاسبة أو يعود للصفحة الرئيسية دون الخروج من التطبيق
+    // إدارة زر الرجوع في الهواتف الذكية (Android / iOS Mobile Back Button)
+    // يدعم إغلاق النوافذ المنبثقة بالترتيب مع منع إغلاق شاشة تسجيل المعاملة عند تطبيق الآلة الحاسبة
     window.addEventListener('popstate', (event) => {
-      // 1. إذا كان هناك أي نافذة أو مودال مفتوح
+      // إذا كان الرجوع تم برمجياً (عبر إغلاق نافذة داخلية مثل الآلة الحاسبة) نتجاهل إغلاق أي نافذة أخرى
+      if (programmaticBackCount > 0) {
+        programmaticBackCount--;
+        return;
+      }
+
+      // 1. إغلاق أعلى نافذة منبثقة أو درج في المكدس
       if (activeModalsStack.length > 0) {
         const topId = activeModalsStack.pop();
         closeSpecificModalOrDrawer(topId, true);
         return;
       }
 
-      // 2. إذا كانت نافذة الفترة المخصصة مفتوحة
+      // 2. درج التواريخ المخصص
       const customDrawer = document.getElementById('customDatePickerDrawer');
       if (customDrawer && customDrawer.style.display !== 'none') {
         toggleCustomDatePicker(false);
         return;
       }
 
-      // 3. إذا كانت الآلة الحاسبة المدمجة في تسجيل المصروف مفتوحة
+      // 3. الآلة الحاسبة المضمنة السريعة
       const calcPad = document.getElementById('txInlineCalcPad');
       if (calcPad && calcPad.style.display !== 'none') {
         toggleTxCalcPad(false);
         return;
       }
 
-      // 4. إذا كان المستخدم في إحدى الصفحات الفرعية، يعود للشاشة الرئيسية
+      // 4. الرجوع للشاشة الرئيسية إذا كنا في صفحة فرعية
       if (state.activePage && state.activePage !== 'expenses') {
         switchAppPage('expenses', false);
         return;
@@ -13860,8 +14211,9 @@
       }
 
       if (!fromPopState) {
-        // إذا تم الإغلاق من داخل واجهة التطبيق، نرجع خطوة في history ليظل متزناً
+        // إذا أغلق المستخدم المودال برمجياً، نسحب حالة history مع حماية المودالات الأبوية
         if (window.history.state && window.history.state.modalId === id) {
+          programmaticBackCount++;
           window.history.back();
         }
       }
