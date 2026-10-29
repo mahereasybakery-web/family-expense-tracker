@@ -4805,7 +4805,7 @@
           <span class="avatar-name-label">العائلة</span>
         </div>
 
-        <!-- صدقات وأخرى -->
+        <!-- أخرى -->
         <div class="avatar-card" data-member="أخرى" onclick="selectMember('أخرى')" title="مصروفات ونثريات أخرى">
           <div class="avatar-bubble" style="background: linear-gradient(135deg, #d97706, #f59e0b); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: #ffffff; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);">
             <i class="fa-solid fa-hand-holding-heart"></i>
@@ -6878,7 +6878,7 @@ class="kpi-three-strip">
     let currentGlobalSearchFilter = 'all';
 
     function toggleAnalyticsView() {
-      openModal('analyticsDetailedModal');
+      switchAppPage('analytics');
       setTimeout(() => {
         updateAnalyticsChart();
         if (execCatChart) execCatChart.resize();
@@ -6887,6 +6887,12 @@ class="kpi-three-strip">
         if (execReqCompareChart) execReqCompareChart.resize();
         if (execMonthChart) execMonthChart.resize();
       }, 80);
+    }
+
+    function switchAnalyticsSection(tabId) {
+      if (typeof switchExecutiveTab === 'function') {
+        switchExecutiveTab(tabId);
+      }
     }
 
     function initAnalyticsChart() {
@@ -7157,7 +7163,7 @@ class="kpi-three-strip">
       filtered = filtered || getFilteredTransactions();
       totalExp = totalExp !== undefined ? totalExp : (filtered.filter(t => t.type === 'expense').reduce((s, t) => s + (parseFloat(t.amount)||0), 0));
 
-      const membersList = ['ماهر', 'آية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'صدقات وأخرى'];
+      const membersList = ['ماهر', 'آية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
       const memData = {};
       membersList.forEach(m => memData[m] = { sum: 0, count: 0, topCat: {} });
 
@@ -7919,6 +7925,90 @@ class="kpi-three-strip">
     function getWalletName(walletId) {
       const w = (state.wallets || []).find(w => w.id === walletId);
       return w ? w.name : 'المحفظة الافتراضية';
+    }
+
+    // =========================================================================
+    // وظائف النافذة المنبثقة لتحديد فترة زمنية مخصصة
+    // =========================================================================
+    function toggleCustomDatePicker(open = true) {
+      const drawer = document.getElementById('customDatePickerDrawer');
+      if (!drawer) return;
+      if (open) {
+        drawer.style.display = 'flex';
+        const inpFrom = document.getElementById('inpRangeFrom');
+        const inpTo = document.getElementById('inpRangeTo');
+        const today = typeof getLocalDateStr === 'function' ? getLocalDateStr(new Date()) : new Date().toISOString().split('T')[0];
+        if (inpFrom && !inpFrom.value) {
+          inpFrom.value = state.customDateRange?.from || today;
+        }
+        if (inpTo && !inpTo.value) {
+          inpTo.value = state.customDateRange?.to || today;
+        }
+        if (typeof pushModalState === 'function') pushModalState('customDatePickerDrawer');
+      } else {
+        drawer.style.display = 'none';
+        if (typeof popModalState === 'function') popModalState('customDatePickerDrawer');
+      }
+    }
+
+    function applyPresetPeriod(preset) {
+      const now = new Date();
+      const todayStr = typeof getLocalDateStr === 'function' ? getLocalDateStr(now) : now.toISOString().split('T')[0];
+      const inpFrom = document.getElementById('inpRangeFrom');
+      const inpTo = document.getElementById('inpRangeTo');
+      let from = todayStr, to = todayStr;
+
+      if (preset === 'today') {
+        from = todayStr;
+        to = todayStr;
+      } else if (preset === 'yesterday') {
+        const yest = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+        from = typeof getLocalDateStr === 'function' ? getLocalDateStr(yest) : yest.toISOString().split('T')[0];
+        to = from;
+      } else if (preset === 'last7') {
+        const d7 = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 6);
+        from = typeof getLocalDateStr === 'function' ? getLocalDateStr(d7) : d7.toISOString().split('T')[0];
+        to = todayStr;
+      } else if (preset === 'this_month') {
+        const startMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+        const endMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+        from = typeof getLocalDateStr === 'function' ? getLocalDateStr(startMonth) : startMonth.toISOString().split('T')[0];
+        to = typeof getLocalDateStr === 'function' ? getLocalDateStr(endMonth) : endMonth.toISOString().split('T')[0];
+      } else if (preset === 'last_month') {
+        const startPrev = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+        const endPrev = new Date(now.getFullYear(), now.getMonth(), 0);
+        from = typeof getLocalDateStr === 'function' ? getLocalDateStr(startPrev) : startPrev.toISOString().split('T')[0];
+        to = typeof getLocalDateStr === 'function' ? getLocalDateStr(endPrev) : endPrev.toISOString().split('T')[0];
+      }
+
+      if (inpFrom) inpFrom.value = from;
+      if (inpTo) inpTo.value = to;
+    }
+
+    function applyDateRange() {
+      const inpFrom = document.getElementById('inpRangeFrom');
+      const inpTo = document.getElementById('inpRangeTo');
+      const from = inpFrom ? inpFrom.value : '';
+      const to = inpTo ? inpTo.value : '';
+
+      if (!from && !to) {
+        showToast('⚠️ يرجى تحديد تاريخ البداية أو النهاية');
+        return;
+      }
+      if (from && to && from > to) {
+        showToast('⚠️ تاريخ البداية يجب أن يكون قبل أو يساوي تاريخ النهاية');
+        return;
+      }
+
+      state.customDateRange = { from: from || to, to: to || from };
+      toggleCustomDatePicker(false);
+      setAppPeriod('custom');
+    }
+
+    function resetDateFilter() {
+      state.customDateRange = null;
+      toggleCustomDatePicker(false);
+      setAppPeriod('month');
     }
 
     // =========================================================================
@@ -10836,6 +10926,17 @@ function submitMoneyRequest() {
       renderActivityLogUI();
     }
 
+    function selectActivityTab(type, el) {
+      currentActivityTab = type;
+      document.querySelectorAll('.activity-tab-chip').forEach(b => b.classList.remove('active'));
+      if (el) el.classList.add('active');
+      renderActivityLogUI();
+    }
+
+    function filterActivityLogUI() {
+      renderActivityLogUI();
+    }
+
     let archiveRenderLimit = 50;
 
     function renderActivityLogUI(appendMore = false) {
@@ -10893,7 +10994,7 @@ function submitMoneyRequest() {
       const endIndex = Math.min(archiveRenderLimit, totalArchiveCount);
       const itemsToRender = list.slice(startIndex, endIndex);
 
-      const memberEmoji = { 'ماهر': '👨', 'أية': '👩', 'محمد': '👦', 'مريم': '👧', 'الحاجة': '👵', 'النونو': '👶', 'العائلة': '👨‍👩‍👧‍👦', 'صدقات وأخرى': '🤲' };
+      const memberEmoji = { 'ماهر': '👨', 'أية': '👩', 'آية': '👩', 'محمد': '👦', 'مريم': '👧', 'الحاجة': '👵', 'النونو': '👶', 'العائلة': '👨‍👩‍👧‍👦', 'أخرى': '🤲', 'صدقات وأخرى': '🤲' };
 
       const htmlCards = itemsToRender.map(item => {
         let borderClass = 'border-expense';
