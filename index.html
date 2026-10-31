@@ -6796,18 +6796,57 @@
     
 
   <style id="kpiAndCatHarmonizationStyles">
+    /* حاوية المحتوى الرئيسي وصفحة المصاريف لضمان عدم اختفاء أي جزء أسفل الشريط إطلاقاً */
+    .app-scroll-body {
+      flex: 1 1 auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      padding: 0 0 76px 0 !important;
+      margin: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    #viewExpenses.active {
+      display: flex !important;
+      flex-direction: column !important;
+      min-height: 100% !important;
+      height: auto !important;
+      overflow-y: visible !important;
+      padding: 0 4px 76px 4px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* ضغط الشريط الزمني ليعطي مساحة أكبر للشبكة */
+    .period-selector-top-strip {
+      padding: 2px 6px !important;
+      margin: 2px 6px 4px !important;
+    }
+    .period-filter-pill {
+      padding: 4px 9px !important;
+      font-size: 0.78rem !important;
+      min-height: 30px !important;
+    }
+
+    /* ضغط شريط الأدوات والمحفظة */
+    .sub-period-tools-bar {
+      padding: 3px 6px !important;
+      margin: 2px 6px 4px !important;
+    }
+
     /* ضمان تناسق كروت المؤشرات الثلاثة في صف واحد على كافة الشاشات */
     .kpi-three-strip {
       display: grid !important;
       grid-template-columns: repeat(3, 1fr) !important;
       gap: 5px !important;
-      margin: 4px 8px 8px !important;
-      width: calc(100% - 16px) !important;
+      margin: 2px 6px 5px !important;
+      width: calc(100% - 12px) !important;
       box-sizing: border-box !important;
     }
     .kpi-three-card {
-      padding: 7px 4px !important;
-      min-height: 54px !important;
+      padding: 5px 3px !important;
+      min-height: 48px !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
@@ -6817,9 +6856,9 @@
       box-sizing: border-box !important;
     }
     .kpi-three-card .kpi-three-label {
-      font-size: 0.68rem !important;
+      font-size: 0.67rem !important;
       font-weight: 800 !important;
-      margin-bottom: 2px !important;
+      margin-bottom: 1px !important;
       white-space: nowrap !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
@@ -6830,7 +6869,7 @@
       gap: 3px !important;
     }
     .kpi-three-card .kpi-three-value {
-      font-size: 0.80rem !important;
+      font-size: 0.78rem !important;
       font-weight: 900 !important;
       white-space: nowrap !important;
       direction: rtl !important;
@@ -6914,51 +6953,42 @@
     }
 
     /* ملء وتناسب شبكة بنود المصروفات مع شاشة الجوال بالكامل دون أي فراغات سفلية ميتة */
-    #viewExpenses.active {
-      display: flex !important;
-      flex-direction: column !important;
-      height: 100% !important;
-      overflow: hidden !important;
-    }
     .categories-monefy-grid, #catGrid {
-      flex: 1 1 0% !important;
       display: grid !important;
       grid-template-columns: repeat(3, 1fr) !important;
-      grid-template-rows: repeat(3, 1fr) !important;
-      gap: 7px !important;
-      width: calc(100% - 14px) !important;
-      margin: 4px 7px 8px !important;
+      grid-template-rows: repeat(3, minmax(98px, 1fr)) !important;
+      gap: 6px !important;
+      width: calc(100% - 12px) !important;
+      margin: 2px 6px 8px !important;
       padding: 0 !important;
       box-sizing: border-box !important;
-      overflow: visible !important;
     }
     .cat-card {
       height: 100% !important;
-      min-height: 0 !important;
+      min-height: 98px !important;
       box-sizing: border-box !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
       justify-content: space-evenly !important;
-      padding: 8px 6px 6px !important;
-      border-radius: 16px !important;
+      padding: 6px 4px 5px !important;
+      border-radius: 14px !important;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     .cat-icon-bubble {
-      width: 48px !important;
-      height: 48px !important;
-      min-width: 48px !important;
-      min-height: 48px !important;
-      border-radius: 14px !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      border-radius: 13px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      font-size: 1.45rem !important;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35) !important;
     }
     .cat-label-text {
       font-family: inherit !important;
-      font-size: 0.86rem !important;
+      font-size: 0.84rem !important;
       font-weight: 800 !important;
       color: #f8fafc !important;
       margin: 2px 0 !important;
@@ -6970,8 +7000,8 @@
       line-height: 1.2 !important;
     }
     .cat-amount-pill {
-      padding: 4px 6px !important;
-      border-radius: 8px !important;
+      padding: 3px 6px !important;
+      border-radius: 7px !important;
       width: 94% !important;
       text-align: center !important;
       box-sizing: border-box !important;
@@ -6980,7 +7010,7 @@
       justify-content: center !important;
     }
     .cat-amount-pill span {
-      font-size: 0.86rem !important;
+      font-size: 0.85rem !important;
       font-weight: 900 !important;
       line-height: 1.2 !important;
       white-space: nowrap !important;
@@ -7001,7 +7031,7 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
-            <span class="version-badge">v3.1.2</span>
+            <span class="version-badge">v3.1.3</span>
           </div>
         </div>
 
@@ -11790,7 +11820,6 @@
       if (!grid) return;
       grid.innerHTML = '';
 
-      // حساب إجمالي مصروف كل تصنيف خلال الفترة المحددة مع دمج البنود المحدثة (9 بنود أساسية)
       const catTotals = {};
       (filtered || []).forEach(t => {
         if (t.type === 'expense') {
@@ -11802,11 +11831,11 @@
         }
       });
 
-      // باليت ألوان فاخرة ومتنوعة ذات تباين عالي وأيقونات واضحة معبرة عن كل بند
+      // باليت ألوان وصور مجسمة ثلاثية الأبعاد واضحة وفائقة الدقة والجمال لكل بند
       const HIGH_CONTRAST_THEMES = {
         food: {
           name: 'طعام ومشتريات',
-          icon: 'fa-basket-shopping',
+          emoji: '🛒',
           accent: '#10b981',
           gradient: 'linear-gradient(135deg, #10b981, #047857)',
           bg: 'linear-gradient(145deg, rgba(16, 185, 129, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
@@ -11814,7 +11843,7 @@
         },
         daily: {
           name: 'مصروف يومي',
-          icon: 'fa-mug-hot',
+          emoji: '☕',
           accent: '#f59e0b',
           gradient: 'linear-gradient(135deg, #f59e0b, #b45309)',
           bg: 'linear-gradient(145deg, rgba(245, 158, 11, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
@@ -11822,7 +11851,7 @@
         },
         bills: {
           name: 'فواتير والتزامات',
-          icon: 'fa-receipt',
+          emoji: '⚡',
           accent: '#f97316',
           gradient: 'linear-gradient(135deg, #f97316, #c2410c)',
           bg: 'linear-gradient(145deg, rgba(249, 115, 22, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
@@ -11830,7 +11859,7 @@
         },
         transport: {
           name: 'مواصلات وبنزين',
-          icon: 'fa-car-side',
+          emoji: '🚗',
           accent: '#0284c7',
           gradient: 'linear-gradient(135deg, #0284c7, #075985)',
           bg: 'linear-gradient(145deg, rgba(2, 132, 199, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
@@ -11838,7 +11867,7 @@
         },
         house: {
           name: 'مستلزمات منزل',
-          icon: 'fa-couch',
+          emoji: '🛋️',
           accent: '#8b5cf6',
           gradient: 'linear-gradient(135deg, #8b5cf6, #5b21b6)',
           bg: 'linear-gradient(145deg, rgba(139, 92, 246, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
@@ -11846,7 +11875,7 @@
         },
         health: {
           name: 'صحة وعلاج',
-          icon: 'fa-heart-pulse',
+          emoji: '💊',
           accent: '#ef4444',
           gradient: 'linear-gradient(135deg, #ef4444, #991b1b)',
           bg: 'linear-gradient(145deg, rgba(239, 68, 68, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
@@ -11854,7 +11883,7 @@
         },
         clothes: {
           name: 'ملابس وأحذية',
-          icon: 'fa-shirt',
+          emoji: '👔',
           accent: '#ec4899',
           gradient: 'linear-gradient(135deg, #ec4899, #9d174d)',
           bg: 'linear-gradient(145deg, rgba(236, 72, 153, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
@@ -11862,7 +11891,7 @@
         },
         education: {
           name: 'تعليم ودروس',
-          icon: 'fa-graduation-cap',
+          emoji: '🎓',
           accent: '#3b82f6',
           gradient: 'linear-gradient(135deg, #3b82f6, #1e40af)',
           bg: 'linear-gradient(145deg, rgba(59, 130, 246, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
@@ -11870,7 +11899,7 @@
         },
         other: {
           name: 'أخرى',
-          icon: 'fa-cubes-stacked',
+          emoji: '🎁',
           accent: '#14b8a6',
           gradient: 'linear-gradient(135deg, #14b8a6, #115e59)',
           bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
@@ -11878,7 +11907,7 @@
         },
         entertainment: {
           name: 'أخرى',
-          icon: 'fa-cubes-stacked',
+          emoji: '🎁',
           accent: '#14b8a6',
           gradient: 'linear-gradient(135deg, #14b8a6, #115e59)',
           bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
@@ -11892,7 +11921,7 @@
         const spent = catTotals[cat.id] || (cat.id === 'other' ? (catTotals['entertainment'] || 0) : 0);
         const theme = HIGH_CONTRAST_THEMES[cat.id] || {
           name: cat.name,
-          icon: cat.icon || 'fa-tag',
+          emoji: '📦',
           accent: cat.color || '#38bdf8',
           gradient: `linear-gradient(135deg, ${cat.color}, #334155)`,
           bg: 'rgba(15, 23, 42, 0.9)',
@@ -11906,22 +11935,21 @@
         card.style.cssText = `
           background: ${isLight ? '#ffffff' : theme.bg} !important;
           border: 1.8px solid ${theme.border} !important;
-          border-radius: 16px !important;
-          padding: 8px 6px 6px !important;
+          border-radius: 14px !important;
+          padding: 6px 4px 5px !important;
           display: flex !important;
           flex-direction: column !important;
           align-items: center !important;
           justify-content: space-evenly !important;
           height: 100% !important;
-          min-height: 0 !important;
+          min-height: 98px !important;
           cursor: pointer !important;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px ${theme.accent}30 !important;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 10px ${theme.accent}30 !important;
           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
           position: relative !important;
           box-sizing: border-box !important;
         `;
 
-        // عند النقر يتم فتح تسجيل مصروف مباشر للبند
         card.onclick = () => {
           openQuickCategoryExpense(cat.id);
         };
@@ -11937,22 +11965,22 @@
         const pillTextColor = spent > 0 ? '#ff4d6d' : '#94a3b8';
 
         card.innerHTML = `
-          <!-- 1. أيقونة التصنيف الفاخرة الكبيرة ثلاثية الأبعاد -->
+          <!-- 1. صورة/أيقونة التصنيف ثلاثية الأبعاد الفاخرة والمعبرة عن البند -->
           <div class="cat-icon-bubble" 
-               style="background: ${theme.gradient}; width: 48px; height: 48px; min-width: 48px; min-height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 10px ${theme.accent}40;">
-            <i class="fa-solid ${theme.icon}" style="color: #ffffff; font-size: 1.45rem;"></i>
+               style="background: ${theme.gradient}; width: 44px; height: 44px; min-width: 44px; min-height: 44px; border-radius: 13px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), 0 0 10px ${theme.accent}35;">
+            <span style="font-size: 2.1rem; line-height: 1; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.35));">${theme.emoji}</span>
           </div>
 
           <!-- 2. اسم التصنيف بخط عربي نقي وواضح تماماً -->
           <div class="cat-label-text" 
-               style="font-family: inherit; font-size: 0.86rem; font-weight: 800; color: #f8fafc; text-align: center; margin: 3px 0 2px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+               style="font-family: inherit; font-size: 0.84rem; font-weight: 800; color: #f8fafc; text-align: center; margin: 2px 0; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
             ${theme.name}
           </div>
 
           <!-- 3. كبسولة المبلغ المصروف بخط وأرقام أكبر وأكثر وضوحاً -->
           <div class="cat-amount-pill ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
                style="background: ${pillBg}; border: 1.2px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 6px; border-radius: 8px; width: 94%; text-align: center; direction: rtl; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 0.86rem; font-weight: 900; line-height: 1.2; white-space: nowrap;">${amtDisplay}</span>
+            <span style="font-size: 0.85rem; font-weight: 900; line-height: 1.2; white-space: nowrap;">${amtDisplay}</span>
           </div>
         `;
 
