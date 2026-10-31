@@ -3778,15 +3778,11 @@
 
     /* كروت أفراد العائلة */
     .member-lux-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    @media (max-width: 650px) {
-      .member-lux-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 420px) {
-      .member-lux-grid { grid-template-columns: 1fr; }
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
     }
 
     .member-lux-card {
@@ -6661,36 +6657,43 @@
       border-radius: 8px !important;
     }
 
-    /* 2. تكبير جزء المحافظ وتغيير العملة في سطر واحد متناسق */
+    /* 2. شريط أدوات المحافظ والذهب والعملات الفاخر البارز (v3.1.7) */
     .sub-period-tools-bar {
       display: flex !important;
       flex-wrap: nowrap !important;
-      justify-content: space-evenly !important;
+      justify-content: space-between !important;
       align-items: center !important;
-      gap: 4px !important;
-      height: 32px !important;
-      min-height: 32px !important;
-      padding: 0 4px !important;
-      margin-bottom: 2px !important;
+      gap: 6px !important;
+      height: 44px !important;
+      min-height: 44px !important;
+      padding: 0 !important;
+      margin: 4px 6px 7px !important;
+      width: calc(100% - 12px) !important;
       box-sizing: border-box !important;
     }
     .wallet-select-cluster {
       display: flex !important;
       align-items: center !important;
-      gap: 4px !important;
-      padding: 2px 6px !important;
-      border-radius: 8px !important;
-      height: 30px !important;
-      max-width: 58% !important;
-      background: rgba(15, 23, 42, 0.75) !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      gap: 6px !important;
+      padding: 4px 10px 4px 8px !important;
+      border-radius: 13px !important;
+      height: 42px !important;
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+      border: 1.5px solid rgba(56, 189, 248, 0.5) !important;
+      box-shadow: 0 3px 12px rgba(56, 189, 248, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
       box-sizing: border-box !important;
+      transition: all 0.22s ease !important;
+    }
+    .wallet-select-cluster:hover {
+      border-color: #38bdf8 !important;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.35) !important;
     }
     .wallet-dropdown-compact {
-      font-size: 0.74rem !important;
-      font-weight: 800 !important;
-      height: 26px !important;
-      max-width: 130px !important;
+      font-size: 0.92rem !important;
+      font-weight: 900 !important;
+      height: 36px !important;
       background: transparent !important;
       border: none !important;
       color: #38bdf8 !important;
@@ -6699,27 +6702,99 @@
       white-space: nowrap !important;
       text-overflow: ellipsis !important;
       overflow: hidden !important;
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+      font-family: inherit !important;
+      outline: none !important;
+    }
+    .wallet-dropdown-compact option {
+      background: #0f172a !important;
+      color: #f8fafc !important;
+      font-weight: 700 !important;
+      font-size: 0.88rem !important;
+    }
+    .btn-add-wallet-mini {
+      width: 26px !important;
+      height: 26px !important;
+      min-width: 26px !important;
+      border-radius: 50% !important;
+      background: rgba(56, 189, 248, 0.25) !important;
+      border: 1px solid rgba(56, 189, 248, 0.55) !important;
+      color: #38bdf8 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 0.78rem !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25) !important;
+    }
+    .btn-add-wallet-mini:hover {
+      background: #38bdf8 !important;
+      color: #0f172a !important;
+      transform: scale(1.1) !important;
+    }
+    .tools-pills-cluster {
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      flex-shrink: 0 !important;
     }
     .tool-pill-action.gold-pill {
-      padding: 3px 8px !important;
-      font-size: 0.70rem !important;
-      font-weight: 800 !important;
-      height: 28px !important;
-      border-radius: 8px !important;
+      height: 42px !important;
+      padding: 0 12px !important;
+      font-size: 0.88rem !important;
+      font-weight: 900 !important;
+      border-radius: 13px !important;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.24) 0%, rgba(217, 119, 6, 0.14) 100%) !important;
+      border: 1.5px solid rgba(245, 158, 11, 0.65) !important;
+      box-shadow: 0 3px 12px rgba(245, 158, 11, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      color: #fbbf24 !important;
       white-space: nowrap !important;
       display: inline-flex !important;
       align-items: center !important;
-      gap: 3px !important;
+      gap: 6px !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      box-sizing: border-box !important;
+    }
+    .tool-pill-action.gold-pill:hover {
+      border-color: #fbbf24 !important;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.35) 0%, rgba(217, 119, 6, 0.25) 100%) !important;
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4) !important;
+      transform: translateY(-1px) !important;
+    }
+    .tool-pill-action.gold-pill i {
+      font-size: 0.95rem !important;
+      color: #fbbf24 !important;
     }
     .currency-pill-btn {
-      height: 28px !important;
-      font-size: 0.70rem !important;
+      height: 42px !important;
+      padding: 0 12px !important;
+      font-size: 0.88rem !important;
       font-weight: 900 !important;
-      padding: 3px 8px !important;
-      border-radius: 8px !important;
+      border-radius: 13px !important;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.24) 0%, rgba(217, 119, 6, 0.14) 100%) !important;
+      border: 1.5px solid rgba(245, 158, 11, 0.65) !important;
+      box-shadow: 0 3px 12px rgba(245, 158, 11, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      color: #fbbf24 !important;
       white-space: nowrap !important;
       display: inline-flex !important;
       align-items: center !important;
+      gap: 6px !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      box-sizing: border-box !important;
+    }
+    .currency-pill-btn:hover {
+      border-color: #fbbf24 !important;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.35) 0%, rgba(217, 119, 6, 0.25) 100%) !important;
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4) !important;
+      transform: translateY(-1px) !important;
+    }
+    .currency-pill-btn i {
+      font-size: 0.95rem !important;
+      color: #fbbf24 !important;
     }
 
     /* 3. تكبير أرقام الصرف والإيداع والرصيد الفعلي */
@@ -6899,7 +6974,7 @@
     }
   
 
-    /* === MODERN FINTECH FONTS & LUXURY TYPOGRAPHY (v3.1.6) === */
+    /* === MODERN FINTECH FONTS & LUXURY TYPOGRAPHY (v3.1.7) === */
     :root {
       --font-family: 'Alexandria', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
       --font-numbers: 'Plus Jakarta Sans', 'Alexandria', sans-serif !important;
@@ -7666,7 +7741,7 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
-            <span class="version-badge">v3.1.6</span>
+            <span class="version-badge">v3.1.7</span>
           </div>
         </div>
 
@@ -8626,217 +8701,252 @@
     <!-- ==============================================
          القائمة الجانبية المنفصلة: الذهب والعملات (TradingView)
          ============================================== -->
-    <div class="side-drawer-backdrop" id="goldDrawerBackdrop"></div>
-    <div class="side-drawer-panel" id="goldDrawerPanel" style="max-height: 96vh; border-radius: 20px 20px 0 0; padding: 0; display: flex; flex-direction: column;">
+    <div class="side-drawer-backdrop" id="goldDrawerBackdrop" onclick="closeGoldDrawer()"></div>
+    <div class="side-drawer-panel" id="goldDrawerPanel" style="max-height: 98vh; height: 98vh; border-radius: 20px 20px 0 0; padding: 0; display: flex; flex-direction: column; overflow: hidden; box-shadow: -10px 0 35px rgba(0,0,0,0.7);">
       
-      <div class="drawer-top-bar" style="padding: 10px 14px 6px;">
-        <div class="drawer-top-header">
-          <div class="drawer-main-title" style="font-size: 0.95rem;">
+      <!-- ترويسة البورصة العلوية الفاخرة -->
+      <div class="drawer-top-bar" style="padding: 10px 14px 8px; background: linear-gradient(135deg, #1e293b, #0f172a); border-bottom: 1.5px solid var(--gold); flex-shrink: 0;">
+        <div class="drawer-top-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="drawer-main-title" style="font-size: 0.96rem; font-weight: 800; color: #fbbf24; display: flex; align-items: center; gap: 6px;">
             <i class="fa-solid fa-coins"></i>
             <span>بورصة الذهب والعملات المباشرة</span>
           </div>
-          <button class="btn-close-drawer" id="btnCloseDrawer" style="font-size: 1.2rem; width: 28px; height: 28px; line-height: 26px;">&times;</button>
+          <button class="btn-close-drawer" id="btnCloseDrawer" onclick="closeGoldDrawer()" style="font-size: 1.3rem; width: 30px; height: 30px; line-height: 28px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; cursor: pointer;">&times;</button>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: #cbd5e1; margin-top: 2px;">
-          <span style="background: #2962ff; color: #fff; padding: 1px 6px; border-radius: 5px; font-weight: 800; font-size: 0.65rem;">
-            TradingView Live
-          </span>
-          <span style="color: #34d399; font-weight: 700; font-size: 0.68rem;">
-            <i class="fa-solid fa-circle" style="font-size: 0.45rem;"></i> بيانات حية لحظية
-          </span>
-          <button class="period-btn active" id="btnRefreshTv" style="font-size: 0.65rem; padding: 2px 8px; border-radius: 6px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.70rem; color: #cbd5e1; margin-top: 5px;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="background: #2962ff; color: #fff; padding: 2px 7px; border-radius: 6px; font-weight: 800; font-size: 0.65rem;">
+              TradingView Live
+            </span>
+            <span style="color: #34d399; font-weight: 700; font-size: 0.70rem; display: flex; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-circle" style="font-size: 0.45rem;"></i> بيانات حية لحظية
+            </span>
+          </div>
+          <button class="period-btn active" id="btnRefreshTv" onclick="fetchTradingViewRates()" style="font-size: 0.70rem; padding: 3px 10px; border-radius: 8px; background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24; font-weight: 800; cursor: pointer;">
             <i class="fa-solid fa-arrows-rotate" id="iconSpin"></i> تحديث
+          </button>
+        </div>
+
+        <!-- أزرار التبويب الثلاثية المبتكرة بدون تمرير رأسي نهائياً (Zero-Scroll 3 Tabs) -->
+        <div class="gold-drawer-tabs-strip" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 8px; background: rgba(15, 23, 42, 0.75); padding: 3px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.08);">
+          <button type="button" class="gold-tab-btn active" id="tabBtnGoldRates" onclick="switchGoldDrawerTab('rates')" style="padding: 6px 4px; border-radius: 8px; font-size: 0.76rem; font-weight: 800; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; transition: all 0.2s; background: linear-gradient(135deg, #f59e0b, #d97706); color: #0f172a; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);">
+            <i class="fa-solid fa-coins"></i> <span>الأسعار</span>
+          </button>
+          <button type="button" class="gold-tab-btn" id="tabBtnGoldCalc" onclick="switchGoldDrawerTab('calc')" style="padding: 6px 4px; border-radius: 8px; font-size: 0.76rem; font-weight: 800; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; transition: all 0.2s; background: transparent; color: #94a3b8;">
+            <i class="fa-solid fa-calculator"></i> <span>حاسبة الصاغة</span>
+          </button>
+          <button type="button" class="gold-tab-btn" id="tabBtnGoldChart" onclick="switchGoldDrawerTab('chart')" style="padding: 6px 4px; border-radius: 8px; font-size: 0.76rem; font-weight: 800; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; transition: all 0.2s; background: transparent; color: #94a3b8;">
+            <i class="fa-solid fa-chart-line"></i> <span>الشارت الحي</span>
           </button>
         </div>
       </div>
 
-      <div class="drawer-scroll-body" style="padding: 6px 12px 14px; gap: 6px; overflow-y: auto;">
+      <!-- جسم القائمة المتكيف بدون تمرير رأسي (Zero-Scroll Body Container) -->
+      <div class="drawer-view-container" style="flex: 1; overflow-y: auto; padding: 10px 12px 14px; display: flex; flex-direction: column;">
         
-        <!-- أسعار الذهب (شبكة 2x2 فائقة التناسق) -->
-        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 8px 10px;">
-          <div style="font-size: 0.74rem; font-weight: 800; color: #fde047; margin-bottom: 6px; display: flex; align-items: center; gap: 5px;">
-            <i class="fa-solid fa-gem" style="color: var(--gold);"></i> أسعار الذهب في الصاغة (مصر)
+        <!-- التبويب 1: أسعار الذهب والعملات الفورية والتقويم المالي -->
+        <div id="viewGoldRates" style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+          
+          <!-- شبكة أسعار الذهب في الصاغة (2x2) -->
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1.5px solid rgba(245, 158, 11, 0.3); border-radius: 13px; padding: 8px 10px;">
+            <div style="font-size: 0.76rem; font-weight: 800; color: #fde047; margin-bottom: 6px; display: flex; align-items: center; gap: 5px;">
+              <i class="fa-solid fa-gem" style="color: var(--gold);"></i> أسعار الذهب في الصاغة بمصر
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+              <!-- عيار 21 -->
+              <div class="market-box gold-21-box" style="padding: 6px 8px; border-radius: 9px; background: rgba(30, 41, 59, 0.7); border: 1.2px solid rgba(245, 158, 11, 0.4);">
+                <div class="market-box-title" style="font-size: 0.70rem; color: #fbbf24; font-weight: 800; display: flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-ring"></i> <span>عيار 21 (الأكثر طلباً)</span>
+                </div>
+                <div class="market-box-val" id="tvGold21Val" style="font-size: 0.94rem; font-weight: 900; color: #fff; margin: 3px 0;">6,375 ج.م</div>
+                <div class="market-box-sub" style="font-size: 0.64rem; display: flex; justify-content: space-between; color: #94a3b8;">
+                  <span>سعر الجرام</span>
+                  <span class="change-tag down" id="tvGold21Chg" style="font-size: 0.62rem; padding: 1px 5px; border-radius: 4px;">-0.40%</span>
+                </div>
+              </div>
+
+              <!-- عيار 24 -->
+              <div class="market-box" style="padding: 6px 8px; border-radius: 9px; background: rgba(30, 41, 59, 0.7); border: 1.2px solid rgba(255, 255, 255, 0.08);">
+                <div class="market-box-title" style="font-size: 0.70rem; color: #f59e0b; font-weight: 800; display: flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-bars"></i> <span>عيار 24 (السبائك)</span>
+                </div>
+                <div class="market-box-val" id="tvGold24Val" style="font-size: 0.94rem; font-weight: 900; color: #fff; margin: 3px 0;">7,286 ج.م</div>
+                <div class="market-box-sub" style="font-size: 0.64rem; display: flex; justify-content: space-between; color: #94a3b8;">
+                  <span>نقاء 99.9%</span>
+                  <span class="change-tag down" id="tvGold24Chg" style="font-size: 0.62rem; padding: 1px 5px; border-radius: 4px;">-0.40%</span>
+                </div>
+              </div>
+
+              <!-- جنيه الذهب -->
+              <div class="market-box" style="padding: 6px 8px; border-radius: 9px; background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(15, 23, 42, 0.8)); border: 1.2px solid rgba(245, 158, 11, 0.5);">
+                <div class="market-box-title" style="font-size: 0.70rem; color: #fde047; font-weight: 800; display: flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-coins"></i> <span>جنيه الذهب (BTC)</span>
+                </div>
+                <div class="market-box-val" id="tvGoldPoundVal" style="font-size: 0.94rem; font-weight: 900; color: #fde047; margin: 3px 0;">51,001 ج.م</div>
+                <div class="market-box-sub" style="font-size: 0.64rem; color: #cbd5e1;">وزن 8 جرام - عيار 21</div>
+              </div>
+
+              <!-- أونصة الذهب عالمياً -->
+              <div class="market-box" style="padding: 6px 8px; border-radius: 9px; background: rgba(30, 41, 59, 0.7); border: 1.2px solid rgba(255, 255, 255, 0.08);">
+                <div class="market-box-title" style="font-size: 0.70rem; color: #94a3b8; font-weight: 800; display: flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-globe"></i> <span>أونصة الذهب عالمياً</span>
+                </div>
+                <div class="market-box-val" id="tvGoldOunceVal" style="font-size: 0.94rem; font-weight: 900; color: #38bdf8; margin: 3px 0;">$4,043.83</div>
+                <div class="market-box-sub" style="font-size: 0.64rem; color: #94a3b8;">رمز: TVC:GOLD</div>
+              </div>
+            </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-            <!-- عيار 21 -->
-            <div class="market-box gold-21-box" style="padding: 6px 8px; border-radius: 8px;">
-              <div class="market-box-title" style="font-size: 0.68rem;">
-                <i class="fa-solid fa-ring" style="color: var(--gold);"></i>
-                <span>عيار 21 (الأكثر طلباً)</span>
-              </div>
-              <div class="market-box-val" id="tvGold21Val" style="font-size: 0.88rem; font-weight: 900; margin: 2px 0;">6,375 ج.م</div>
-              <div class="market-box-sub" style="font-size: 0.62rem; display: flex; justify-content: space-between;">
-                <span>جرام</span>
-                <span class="change-tag down" id="tvGold21Chg" style="font-size: 0.60rem; padding: 1px 4px;">-0.40%</span>
-              </div>
+          <!-- شبكة أسعار العملات الفورية -->
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1.5px solid rgba(16, 185, 129, 0.3); border-radius: 13px; padding: 8px 10px;">
+            <div style="font-size: 0.76rem; font-weight: 800; color: #34d399; margin-bottom: 6px; display: flex; align-items: center; gap: 5px;">
+              <i class="fa-solid fa-money-bill-transfer" style="color: #10b981;"></i> أسعار العملات (TradingView FX)
             </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+              <!-- دولار -->
+              <div class="market-box" style="padding: 6px 8px; border-radius: 9px; background: rgba(30, 41, 59, 0.7); border: 1.2px solid rgba(16, 185, 129, 0.25);">
+                <div class="market-box-title" style="font-size: 0.70rem; color: #10b981; font-weight: 800; display: flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-dollar-sign"></i> <span>الدولار الأمريكي</span>
+                </div>
+                <div class="market-box-val" id="tvUsdVal" style="font-size: 0.94rem; font-weight: 900; color: #fff; margin: 3px 0;">56.04 ج.م</div>
+                <div class="market-box-sub" style="font-size: 0.64rem; display: flex; justify-content: space-between; color: #94a3b8;">
+                  <span>USDEGP</span>
+                  <span class="change-tag up" id="tvUsdChg" style="font-size: 0.62rem; padding: 1px 5px; border-radius: 4px;">+0.12%</span>
+                </div>
+              </div>
 
-            <!-- عيار 24 -->
-            <div class="market-box" style="padding: 6px 8px; border-radius: 8px;">
-              <div class="market-box-title" style="font-size: 0.68rem;">
-                <i class="fa-solid fa-bars" style="color: #d97706;"></i>
-                <span>عيار 24 (السبائك)</span>
+              <!-- ريال سعودي -->
+              <div class="market-box" style="padding: 6px 8px; border-radius: 9px; background: rgba(30, 41, 59, 0.7); border: 1.2px solid rgba(16, 185, 129, 0.25);">
+                <div class="market-box-title" style="font-size: 0.70rem; color: #059669; font-weight: 800; display: flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-money-bill-1"></i> <span>الريال السعودي</span>
+                </div>
+                <div class="market-box-val" id="tvSarVal" style="font-size: 0.94rem; font-weight: 900; color: #fff; margin: 3px 0;">14.93 ج.م</div>
+                <div class="market-box-sub" style="font-size: 0.64rem; display: flex; justify-content: space-between; color: #94a3b8;">
+                  <span>SAREGP</span>
+                  <span class="change-tag down" id="tvSarChg" style="font-size: 0.62rem; padding: 1px 5px; border-radius: 4px;">-0.01%</span>
+                </div>
               </div>
-              <div class="market-box-val" id="tvGold24Val" style="font-size: 0.88rem; font-weight: 900; margin: 2px 0;">7,286 ج.م</div>
-              <div class="market-box-sub" style="font-size: 0.62rem; display: flex; justify-content: space-between;">
-                <span>جرام نقاء 99.9%</span>
-                <span class="change-tag down" id="tvGold24Chg" style="font-size: 0.60rem; padding: 1px 4px;">-0.40%</span>
-              </div>
-            </div>
-
-            <!-- جنيه الذهب -->
-            <div class="market-box" style="padding: 6px 8px; border-radius: 8px; background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), var(--bg-card-sub)); border-color: var(--gold);">
-              <div class="market-box-title" style="font-size: 0.68rem; color: #fde047;">
-                <i class="fa-solid fa-coins"></i>
-                <span>جنيه الذهب (BTC لازوردي)</span>
-              </div>
-              <div class="market-box-val" id="tvGoldPoundVal" style="font-size: 0.88rem; font-weight: 900; color: #fde047; margin: 2px 0;">51,000 ج.م</div>
-              <div class="market-box-sub" style="font-size: 0.60rem; color: #94a3b8;">وزن 8 جرام - عيار 21</div>
-            </div>
-
-            <!-- أونصة الذهب عالمياً -->
-            <div class="market-box" style="padding: 6px 8px; border-radius: 8px;">
-              <div class="market-box-title" style="font-size: 0.68rem; color: #94a3b8;">
-                <i class="fa-solid fa-globe"></i>
-                <span>أونصة الذهب عالمياً</span>
-              </div>
-              <div class="market-box-val" id="tvGoldOunceVal" style="font-size: 0.88rem; font-weight: 900; color: #fff; margin: 2px 0;">$4,043.83</div>
-              <div class="market-box-sub" style="font-size: 0.60rem; color: #94a3b8;">TVC:GOLD</div>
             </div>
           </div>
+
+          <!-- بطاقة تقويم الرصيد الفعلي الحالي بالذهب -->
+          <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.14), rgba(15, 23, 42, 0.9)); border: 1.5px solid rgba(245, 158, 11, 0.4); border-radius: 13px; padding: 9px 12px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.5); display: flex; align-items: center; justify-content: center; color: #fbbf24; font-size: 0.90rem;">
+                <i class="fa-solid fa-scale-balanced"></i>
+              </div>
+              <div>
+                <div style="font-size: 0.74rem; font-weight: 800; color: #fbbf24;">تقويم رصيد العائلة بالذهب:</div>
+                <div style="font-size: 0.65rem; color: #94a3b8;">معادلة الرصيد الحالي بسعر عيار 21</div>
+              </div>
+            </div>
+            <div id="drawerGoldEquivBal" style="font-size: 0.95rem; font-weight: 900; color: #fde047; text-align: left;">0.00 جم ذهب 21</div>
+          </div>
+
+          <!-- زر الاختصار الذكي للانتقال للحاسبة مباشرة -->
+          <button type="button" onclick="switchGoldDrawerTab('calc')" style="width: 100%; height: 40px; border-radius: 11px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.9)); border: 1.5px solid #38bdf8; color: #38bdf8; font-weight: 900; font-size: 0.84rem; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);">
+            <i class="fa-solid fa-calculator"></i>
+            <span>فتح حاسبة الصاغة والمصنعية التقديرية ⬅</span>
+          </button>
         </div>
 
-        <!-- أسعار العملات في صفين متجاورين -->
-        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 8px 10px;">
-          <div style="font-size: 0.74rem; font-weight: 800; color: #34d399; margin-bottom: 6px; display: flex; align-items: center; gap: 5px;">
-            <i class="fa-solid fa-money-bill-transfer" style="color: #10b981;"></i> أسعار العملات (TradingView FX)
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-            <!-- دولار -->
-            <div class="market-box" style="padding: 6px 8px; border-radius: 8px;">
-              <div class="market-box-title" style="font-size: 0.68rem;">
-                <i class="fa-solid fa-dollar-sign" style="color: #10b981;"></i>
-                <span>الدولار الأمريكي</span>
+        <!-- التبويب 2: حاسبة الذهب والمصنعية التقديرية (بدون تمرير رأسي) -->
+        <div id="viewGoldCalc" style="display: none; flex-direction: column; gap: 7px; width: 100%;">
+          
+          <div style="background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(245, 158, 11, 0.4); border-radius: 13px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="font-size: 0.82rem; font-weight: 800; color: #fde047; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-calculator" style="color: var(--gold);"></i>
+                <span>حاسبة الشراء التقديرية بالصاغة</span>
               </div>
-              <div class="market-box-val" id="tvUsdVal" style="font-size: 0.88rem; font-weight: 900; margin: 2px 0;">56.04 ج.م</div>
-              <div class="market-box-sub" style="font-size: 0.62rem; display: flex; justify-content: space-between;">
-                <span>USDEGP</span>
-                <span class="change-tag up" id="tvUsdChg" style="font-size: 0.60rem; padding: 1px 4px;">+0.12%</span>
-              </div>
+              <span style="background: rgba(245, 158, 11, 0.18); color: #fde047; border: 1px solid rgba(245, 158, 11, 0.4); padding: 2px 7px; border-radius: 6px; font-size: 0.65rem; font-weight: 800;">
+                شامل المصنعية والدمغة
+              </span>
             </div>
 
-            <!-- ريال -->
-            <div class="market-box" style="padding: 6px 8px; border-radius: 8px;">
-              <div class="market-box-title" style="font-size: 0.68rem;">
-                <i class="fa-solid fa-money-bill-1" style="color: #059669;"></i>
-                <span>الريال السعودي</span>
-              </div>
-              <div class="market-box-val" id="tvSarVal" style="font-size: 0.88rem; font-weight: 900; margin: 2px 0;">14.93 ج.م</div>
-              <div class="market-box-sub" style="font-size: 0.62rem; display: flex; justify-content: space-between;">
-                <span>SAREGP</span>
-                <span class="change-tag down" id="tvSarChg" style="font-size: 0.60rem; padding: 1px 4px;">-0.01%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- حاسبة الذهب والمصنعية المتقدمة بالصاغة المصرية (v3.1.6) -->
-        <div class="gold-calc-card" style="padding: 10px 12px; border-radius: 14px; background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(245, 158, 11, 0.4); margin-bottom: 8px; display: flex; flex-direction: column; gap: 7px;">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div style="font-size: 0.80rem; font-weight: 800; color: #fde047; display: flex; align-items: center; gap: 6px;">
-              <i class="fa-solid fa-calculator" style="color: var(--gold);"></i>
-              <span>حاسبة الذهب والمصنعية التقديرية (الصاغة بمصر)</span>
-            </div>
-            <span style="background: rgba(245, 158, 11, 0.18); color: #fde047; border: 1px solid rgba(245, 158, 11, 0.4); padding: 2px 7px; border-radius: 6px; font-size: 0.65rem; font-weight: 800;">
-              شامل المصنعية والدمغة
-            </span>
-          </div>
-
-          <!-- اختيار نوع الذهب / العيار / السبيكة -->
-          <div>
-            <label style="font-size: 0.68rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px; display: block;">نوع الذهب أو العملة:</label>
-            <select class="calc-select-asset" id="calcAsset" onchange="onGoldAssetChange()" style="width: 100%; height: 34px; font-size: 0.78rem; padding: 4px 8px; border-radius: 8px; background: rgba(30, 41, 59, 0.85); color: #f8fafc; border: 1px solid rgba(255,255,255,0.12); cursor: pointer;">
-              <option value="gold21_jewelry" selected>💍 مشغولات ذهبية عيار 21 (الأكثر طلباً)</option>
-              <option value="gold18_jewelry">💎 مشغولات ذهبية عيار 18 (تصاميم وماركات)</option>
-              <option value="gold_pound">🪙 جنيه ذهب عيار 21 (BTC / لازوردي - 8 جرام)</option>
-              <option value="gold24_bar_small">🧱 سبيكة عيار 24 (أوزان صغيرة 1 - 5 جرام)</option>
-              <option value="gold24_bar_large">🧱 سبيكة عيار 24 (أوزان 10 - 100 جرام)</option>
-              <option value="gold21_raw">🟡 ذهب عيار 21 خام (سعر الشاشة بدون مصنعية)</option>
-              <option value="gold24_raw">🟡 ذهب عيار 24 خام (سبائك خام بدون مصنعية)</option>
-              <option value="usd">💵 دولار أمريكي (USDEGP)</option>
-              <option value="sar">🇸🇦 ريال سعودي (SAREGP)</option>
-            </select>
-          </div>
-
-          <!-- المدخلات: الوزن / الكمية والمصنعية للجرام -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <!-- قائمة الاختيار الذكي -->
             <div>
-              <label id="lblCalcQty" style="font-size: 0.68rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px; display: block;">الوزن بالجرام:</label>
-              <input type="number" step="0.1" class="calc-input-qty" id="calcQty" value="10" oninput="recalcGoldTotal()" style="width: 100%; height: 34px; font-size: 0.88rem; font-weight: 800; padding: 4px 8px; text-align: center; border-radius: 8px; background: rgba(30, 41, 59, 0.85); color: #f8fafc; border: 1px solid rgba(255,255,255,0.12); box-sizing: border-box;">
+              <label style="font-size: 0.68rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px; display: block;">نوع الذهب أو السبيكة:</label>
+              <select class="calc-select-asset" id="calcAsset" onchange="onGoldAssetChange()" style="width: 100%; height: 34px; font-size: 0.80rem; font-weight: 800; padding: 4px 8px; border-radius: 8px; background: rgba(30, 41, 59, 0.95); color: #f8fafc; border: 1px solid rgba(255,255,255,0.15); cursor: pointer;">
+                <option value="gold21_jewelry" selected>💍 مشغولات ذهبية عيار 21 (الأكثر طلباً)</option>
+                <option value="gold18_jewelry">💎 مشغولات ذهبية عيار 18 (تصاميم وماركات)</option>
+                <option value="gold_pound">🪙 جنيه ذهب عيار 21 (BTC / لازوردي - 8 جرام)</option>
+                <option value="gold24_bar_small">🧱 سبيكة عيار 24 (أوزان صغيرة 1 - 5 جرام)</option>
+                <option value="gold24_bar_large">🧱 سبيكة عيار 24 (أوزان 10 - 100 جرام)</option>
+                <option value="gold21_raw">🟡 ذهب عيار 21 خام (سعر الشاشة بدون مصنعية)</option>
+                <option value="gold24_raw">🟡 ذهب عيار 24 خام (سبائك خام بدون مصنعية)</option>
+                <option value="usd">💵 دولار أمريكي (USDEGP)</option>
+                <option value="sar">🇸🇦 ريال سعودي (SAREGP)</option>
+              </select>
             </div>
-            <div id="colCalcWorkmanship">
-              <label style="font-size: 0.68rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px; display: block;">المصنعية والدمغة (ج.م/جرام):</label>
-              <input type="number" step="1" id="calcWorkmanshipPerGram" value="90" oninput="recalcGoldTotal()" style="width: 100%; height: 34px; font-size: 0.88rem; font-weight: 800; padding: 4px 8px; text-align: center; border-radius: 8px; background: rgba(30, 41, 59, 0.85); color: #fde047; border: 1px solid rgba(245,158,11,0.3); box-sizing: border-box;">
-            </div>
-          </div>
 
-          <!-- كشف الحساب التقديري الشفاف بالصاغة -->
-          <div style="background: rgba(10, 15, 29, 0.85); border-radius: 10px; padding: 8px 10px; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.72rem; display: flex; flex-direction: column; gap: 4px;">
-            <div style="display: flex; justify-content: space-between; color: #94a3b8;">
-              <span>قيمة الذهب الخام (سعر الشاشة):</span>
-              <span id="calcRawVal" style="font-weight: 800; color: #cbd5e1;">63,750.00 ج.م</span>
+            <!-- أزرار الاختيار السريع بنقرة واحدة (Quick 1-Tap Presets) -->
+            <div style="display: flex; gap: 4px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none;">
+              <button type="button" onclick="applyGoldPreset('gold21_jewelry', 3, 90)" style="flex-shrink: 0; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; font-size: 0.65rem; font-weight: 800; cursor: pointer;">💍 خاتم 3ج</button>
+              <button type="button" onclick="applyGoldPreset('gold21_jewelry', 12, 85)" style="flex-shrink: 0; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; font-size: 0.65rem; font-weight: 800; cursor: pointer;">✨ غويشة 12ج</button>
+              <button type="button" onclick="applyGoldPreset('gold_pound', 1, 50)" style="flex-shrink: 0; padding: 3px 8px; border-radius: 6px; background: rgba(245,158,11,0.18); border: 1px solid rgba(245,158,11,0.4); color: #fbbf24; font-size: 0.65rem; font-weight: 800; cursor: pointer;">🪙 جنيه BTC</button>
+              <button type="button" onclick="applyGoldPreset('gold24_bar_small', 5, 55)" style="flex-shrink: 0; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; font-size: 0.65rem; font-weight: 800; cursor: pointer;">🧱 سبيكة 5ج</button>
+              <button type="button" onclick="applyGoldPreset('gold24_bar_large', 10, 40)" style="flex-shrink: 0; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; font-size: 0.65rem; font-weight: 800; cursor: pointer;">🧱 سبيكة 10ج</button>
             </div>
-            <div id="rowCalcWorkmanshipTotal" style="display: flex; justify-content: space-between; color: #94a3b8;">
-              <span>إجمالي المصنعية والدمغة المقدرة:</span>
-              <span id="calcWorkmanshipTotal" style="font-weight: 800; color: #fde047;">900.00 ج.م</span>
+
+            <!-- المدخلات: الوزن والمصنعية جنباً إلى جنب -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <div>
+                <label id="lblCalcQty" style="font-size: 0.68rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px; display: block;">الوزن بالجرام:</label>
+                <input type="number" step="0.1" class="calc-input-qty" id="calcQty" value="10" oninput="recalcGoldTotal()" style="width: 100%; height: 34px; font-size: 0.90rem; font-weight: 800; padding: 4px 8px; text-align: center; border-radius: 8px; background: rgba(30, 41, 59, 0.9); color: #f8fafc; border: 1px solid rgba(255,255,255,0.15); box-sizing: border-box;">
+              </div>
+              <div id="colCalcWorkmanship">
+                <label style="font-size: 0.68rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px; display: block;">المصنعية والدمغة (ج.م/جرام):</label>
+                <input type="number" step="1" id="calcWorkmanshipPerGram" value="90" oninput="recalcGoldTotal()" style="width: 100%; height: 34px; font-size: 0.90rem; font-weight: 800; padding: 4px 8px; text-align: center; border-radius: 8px; background: rgba(30, 41, 59, 0.9); color: #fde047; border: 1.2px solid rgba(245,158,11,0.4); box-sizing: border-box;">
+              </div>
             </div>
-            <div id="rowCalcCashback" style="display: none; justify-content: space-between; color: #34d399; font-size: 0.68rem;">
-              <span>كاش باك مسترد عند البيع (تقريبي):</span>
-              <span id="calcCashbackVal" style="font-weight: 800;">0.00 ج.م</span>
+
+            <!-- فاتورة الحساب الشفافة بالصاغة -->
+            <div style="background: rgba(10, 15, 29, 0.9); border-radius: 10px; padding: 8px 10px; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.72rem; display: flex; flex-direction: column; gap: 4px;">
+              <div style="display: flex; justify-content: space-between; color: #94a3b8;">
+                <span>قيمة الذهب الخام (سعر الشاشة):</span>
+                <span id="calcRawVal" style="font-weight: 800; color: #cbd5e1;">63,750.00 ج.م</span>
+              </div>
+              <div id="rowCalcWorkmanshipTotal" style="display: flex; justify-content: space-between; color: #94a3b8;">
+                <span>إجمالي المصنعية والدمغة المقدرة:</span>
+                <span id="calcWorkmanshipTotal" style="font-weight: 800; color: #fde047;">900.00 ج.م</span>
+              </div>
+              <div id="rowCalcCashback" style="display: none; justify-content: space-between; color: #34d399; font-size: 0.68rem;">
+                <span>كاش باك مسترد عند البيع (تقريبي):</span>
+                <span id="calcCashbackVal" style="font-weight: 800;">0.00 ج.م</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 5px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.84rem;">
+                <span style="font-weight: 800; color: #f8fafc;">الإجمالي المطلوب للشراء:</span>
+                <span id="calcFinalTotal" style="font-size: 1.12rem; font-weight: 900; color: #10b981;">64,650.00 ج.م</span>
+              </div>
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 5px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.82rem;">
-              <span style="font-weight: 800; color: #f8fafc;">الإجمالي المطلوب للشراء:</span>
-              <span id="calcFinalTotal" style="font-size: 1.05rem; font-weight: 900; color: #10b981;">64,650.00 ج.م</span>
+
+            <!-- زر تسجيل كمصروف فوري في التطبيق -->
+            <button type="button" onclick="importGoldCalcToExpense()" style="width: 100%; height: 38px; border-radius: 10px; background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; font-weight: 800; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);">
+              <i class="fa-solid fa-cart-plus"></i>
+              <span>تسجيل هذا المبلغ كمصروف ذهب في التطبيق</span>
+            </button>
+
+            <div style="font-size: 0.62rem; color: #64748b; line-height: 1.4;">
+              💡 <span id="calcWorkmanshipNote">متوسط مصنعية مشغولات عيار 21 بالسوق المصري تتراوح بين 70 إلى 150 ج.م/جرام حسب الصانع.</span>
             </div>
-          </div>
-          <div style="font-size: 0.62rem; color: #64748b; line-height: 1.4;">
-            💡 <span id="calcWorkmanshipNote">متوسط مصنعية مشغولات عيار 21 بالسوق المصري تتراوح بين 70 إلى 150 ج.م/جرام حسب الصانع، وتطبق ضريبة الدمغة على قيمة المصنعية فقط.</span>
           </div>
         </div>
 
-        <!-- شارت TradingView المصغر مع إمكانية الطي والإظهار -->
-        <div style="background: var(--bg-card-sub); border-radius: 10px; padding: 6px 8px; border: 1px solid var(--border);">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-            <span style="font-size: 0.68rem; font-weight: 800; color: #94a3b8;">
+        <!-- التبويب 3: شارت TradingView الحي (مساحة مريحة بدون تمرير خارجي) -->
+        <div id="viewGoldChart" style="display: none; flex-direction: column; gap: 6px; width: 100%; height: 100%;">
+          <div style="background: rgba(15, 23, 42, 0.8); border-radius: 12px; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.72rem; font-weight: 800; color: #fbbf24;">
               <i class="fa-solid fa-chart-line"></i> مؤشر الذهب المباشر (TVC:GOLD)
             </span>
-            <button type="button" onclick="toggleTradingViewChart()" id="btnToggleTvChart" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #38bdf8; font-size: 0.62rem; padding: 2px 6px; border-radius: 6px; cursor: pointer;">
-              طي / إظهار
-            </button>
+            <span style="font-size: 0.65rem; color: #34d399; font-weight: 700;">لحظي عبر TradingView</span>
           </div>
-          <div id="tvChartContainer" style="width: 100%; height: 160px; border-radius: 8px; overflow: hidden; transition: all 0.3s;">
+          <div style="flex: 1; min-height: 340px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08);">
             <iframe 
               src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=ar_AE#%7B%22symbol%22%3A%22TVC%3AGOLD%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22dateRange%22%3A%221M%22%2C%22colorTheme%22%3A%22dark%22%2C%22trendLineColor%22%3A%22rgba(245%2C%20158%2C%2011%2C%201)%22%2C%22underLineColor%22%3A%22rgba(245%2C%20158%2C%2011%2C%200.3)%22%2C%22underLineBottomColor%22%3A%22rgba(245%2C%20158%2C%2011%2C%200)%22%2C%22isTransparent%22%3Afalse%2C%22autosize%22%3Atrue%7D" 
               style="width: 100%; height: 100%; border: none;" 
               title="TradingView Gold Chart">
             </iframe>
-          </div>
-        </div>
-
-        <!-- ملخص أصول العائلة بالذهب والعملات لإلغاء أي فراغات سفلية -->
-        <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 10px 12px; margin-top: 4px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-            <div style="font-size: 0.76rem; font-weight: 800; color: #fbbf24; display: flex; align-items: center; gap: 6px;">
-              <i class="fa-solid fa-scale-balanced"></i>
-              <span>تقويم الرصيد الفعلي الحالي بالذهب</span>
-            </div>
-            <span style="font-size: 0.65rem; color: #34d399; font-weight: 700;">عيار 21 مباشر</span>
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-size: 0.72rem; color: #94a3b8;">ما يعادله الرصيد الحالي:</span>
-            <span id="drawerGoldEquivBal" style="font-size: 0.86rem; font-weight: 900; color: #fde047;">0.00 جم ذهب 21</span>
           </div>
         </div>
 
@@ -9806,6 +9916,14 @@
         icon.style.color = isLight ? '#f59e0b' : '#94a3b8';
       }
       showToast(isLight ? 'تم تفعيل المظهر الفاتح ☀️' : 'تم تفعيل المظهر الداكن 🌙');
+
+      // إعادة رسم وتحديث كافة الكروت والرسوم البيانية فوراً بالتباين المناسب
+      if (typeof renderUI === 'function') {
+        renderUI();
+      }
+      if (typeof updateAnalyticsChart === 'function') {
+        updateAnalyticsChart();
+      }
 
       // تحديث شارت العجلة وشارت الرسوم
       if (donutChartInstance && donutChartInstance.data && donutChartInstance.data.datasets.length) {
@@ -11065,7 +11183,7 @@
         // كروت المنفقين الفعليين (Active Spenders Leaderboard)
         if (activeMembers.length > 0) {
           html += '<div style="font-size: 0.80rem; font-weight: 800; color: #fde047; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-trophy" style="color: var(--gold);"></i> ترتيب المنفقين الأكثر صرفاً خلال الفترة:</div>';
-          html += '<div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px;">';
+          html += '<div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; width: 100%; box-sizing: border-box;">';
 
           activeMembers.forEach((m, rankIdx) => {
             const mSum = memData[m].sum;
@@ -11081,23 +11199,36 @@
               if (cAmt > maxAmt) { maxAmt = cAmt; topCatName = (EXPENSE_CATEGORIES.find(c => c.id === cId) || {}).name || cId; }
             }
 
+            const isLight = document.body.classList.contains('light-theme');
+            const cardBg = isLight ? '#ffffff' : 'rgba(15, 23, 42, 0.75)';
+            const cardBorder = isLight ? '1.5px solid #cbd5e1' : '1.5px solid rgba(255, 255, 255, 0.08)';
+            const cardShadow = isLight ? '0 2px 8px rgba(0,0,0,0.04)' : 'none';
+            const mNameColor = isLight ? '#0f172a' : '#f8fafc';
+            const subTextColor = isLight ? '#475569' : '#94a3b8';
+            const topCatColor = isLight ? '#0284c7' : '#38bdf8';
+            const sumColor = isLight ? '#b91c1c' : '#ff4d6d';
+            const badgeBg = isLight ? '#e0f2fe' : 'rgba(56, 189, 248, 0.15)';
+            const badgeColor = isLight ? '#0369a1' : '#38bdf8';
+            const badgeBorder = isLight ? '1px solid #bae6fd' : '1px solid rgba(56, 189, 248, 0.3)';
+            const trackBg = isLight ? '#e2e8f0' : 'rgba(255,255,255,0.06)';
+
             html += `
-              <div onclick="selectAnalyticsMemberBreakdown('${m}')" style="background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px 12px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.08)';">
+              <div onclick="selectAnalyticsMemberBreakdown('${m}')" style="background: ${cardBg}; border: ${cardBorder}; box-shadow: ${cardShadow}; border-radius: 14px; padding: 10px 12px; cursor: pointer; transition: all 0.2s; width: 100%; box-sizing: border-box;" onmouseover="this.style.borderColor='#38bdf8';" onmouseout="this.style.borderColor='${isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.08)'}';">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
                   <div style="display: flex; align-items: center; gap: 8px;">
-                    ${photo ? `<img src="${photo}" style="width: 36px; height: 36px; min-width: 36px; border-radius: 50%; object-fit: cover; border: 2px solid #38bdf8;">` : `<div style="width: 36px; height: 36px; border-radius: 50%; background: #0284c7; display: flex; align-items: center; justify-content: center; color: #fff;"><i class="fa-solid fa-house-chimney"></i></div>`}
+                    ${photo ? `<img src="${photo}" style="width: 38px; height: 38px; min-width: 38px; border-radius: 50%; object-fit: cover; border: 2px solid #38bdf8; box-shadow: 0 2px 6px rgba(56,189,248,0.25);">` : `<div style="width: 38px; height: 38px; border-radius: 50%; background: #0284c7; display: flex; align-items: center; justify-content: center; color: #fff;"><i class="fa-solid fa-house-chimney"></i></div>`}
                     <div>
-                      <div style="font-weight: 800; font-size: 0.88rem; color: #f8fafc;">${m}</div>
-                      <div style="font-size: 0.65rem; color: #94a3b8;">${count} حركات مسجلة • أعلى بند: <strong style="color: #38bdf8;">${topCatName}</strong></div>
+                      <div style="font-weight: 800; font-size: 0.90rem; color: ${mNameColor};">${m}</div>
+                      <div style="font-size: 0.67rem; color: ${subTextColor};">${count} حركات مسجلة • أعلى بند: <strong style="color: ${topCatColor};">${topCatName}</strong></div>
                     </div>
                   </div>
                   <div style="text-align: left;">
-                    <div style="font-size: 0.95rem; font-weight: 900; color: #ff4d6d; font-variant-numeric: tabular-nums;">- ${formatMoney(mSum)}</div>
-                    <span style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); padding: 1px 6px; border-radius: 6px; font-size: 0.62rem; font-weight: 800;">${rankBadge} (%${pct})</span>
+                    <div style="font-size: 0.95rem; font-weight: 900; color: ${sumColor}; font-variant-numeric: tabular-nums;">- ${formatMoney(mSum)}</div>
+                    <span style="background: ${badgeBg}; color: ${badgeColor}; border: ${badgeBorder}; padding: 1px 6px; border-radius: 6px; font-size: 0.62rem; font-weight: 800;">${rankBadge} (%${pct})</span>
                   </div>
                 </div>
                 <!-- شريط نسبة المساهمة المالي الفردي -->
-                <div style="width: 100%; height: 5px; border-radius: 3px; background: rgba(255,255,255,0.06); overflow: hidden;">
+                <div style="width: 100%; height: 5px; border-radius: 3px; background: ${trackBg}; overflow: hidden;">
                   <div style="width: ${pct}%; height: 100%; background: linear-gradient(90deg, #38bdf8, #0284c7); border-radius: 3px;"></div>
                 </div>
               </div>
@@ -12717,20 +12848,27 @@
           amtDisplay = '- ' + formatMoney(spent, true);
         }
 
-        const pillBg = spent > 0 ? 'rgba(244, 63, 94, 0.22)' : 'rgba(255, 255, 255, 0.05)';
-        const pillBorder = spent > 0 ? 'rgba(244, 63, 94, 0.6)' : 'rgba(255, 255, 255, 0.12)';
-        const pillTextColor = spent > 0 ? '#ff4d6d' : '#94a3b8';
+        const pillBg = spent > 0 
+          ? (isLight ? 'rgba(239, 68, 68, 0.09)' : 'rgba(244, 63, 94, 0.22)') 
+          : (isLight ? '#f1f5f9' : 'rgba(255, 255, 255, 0.05)');
+        const pillBorder = spent > 0 
+          ? (isLight ? 'rgba(239, 68, 68, 0.35)' : 'rgba(244, 63, 94, 0.6)') 
+          : (isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.12)');
+        const pillTextColor = spent > 0 
+          ? (isLight ? '#b91c1c' : '#ff4d6d') 
+          : (isLight ? '#475569' : '#94a3b8');
+        const catLabelColor = isLight ? '#0f172a' : '#f8fafc';
 
         card.innerHTML = `
           <!-- 1. صورة/أيقونة التصنيف ثلاثية الأبعاد الفاخرة تملأ الجزء العلوي -->
           <div class="cat-icon-bubble" 
-               style="background: ${theme.gradient}; width: 52px; height: 52px; min-width: 52px; min-height: 52px; border-radius: 15px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 12px ${theme.accent}45; margin-top: 1px;">
+               style="background: ${theme.gradient}; width: 52px; height: 52px; min-width: 52px; min-height: 52px; border-radius: 15px; display: flex; align-items: center; justify-content: center; box-shadow: ${isLight ? '0 2px 8px rgba(0,0,0,0.1)' : '0 4px 14px rgba(0, 0, 0, 0.4), 0 0 12px ' + theme.accent + '45'}; margin-top: 1px;">
             <span style="font-size: 2.5rem; line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.45));">${theme.emoji}</span>
           </div>
 
-          <!-- 2. اسم التصنيف بخط عربي فخم وواضح -->
+          <!-- 2. اسم التصنيف بخط عربي فخم وواضح متناسق بين الفاتح والداكن -->
           <div class="cat-label-text" 
-               style="font-size: 0.86rem; font-weight: 800; color: #f8fafc; text-align: center; margin: 3px 0 2px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: clip;">
+               style="font-size: 0.86rem; font-weight: 800; color: ${catLabelColor}; text-align: center; margin: 3px 0 2px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: clip;">
             ${theme.name}
           </div>
 
@@ -14244,6 +14382,75 @@
     }
 
 
+    
+    // تبديل تبويبات بورصة الذهب والعملات (Zero-Scroll 3 Tabs)
+    function switchGoldDrawerTab(tabName) {
+      const tabs = ['rates', 'calc', 'chart'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('tabBtnGold' + t.charAt(0).toUpperCase() + t.slice(1));
+        const view = document.getElementById('viewGold' + t.charAt(0).toUpperCase() + t.slice(1));
+        const isActive = (t === tabName);
+        if (btn) {
+          btn.classList.toggle('active', isActive);
+          if (isActive) {
+            btn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+            btn.style.color = '#0f172a';
+            btn.style.boxShadow = '0 2px 8px rgba(245, 158, 11, 0.35)';
+          } else {
+            btn.style.background = 'transparent';
+            btn.style.color = '#94a3b8';
+            btn.style.boxShadow = 'none';
+          }
+        }
+        if (view) {
+          view.style.display = isActive ? 'flex' : 'none';
+        }
+      });
+      if (tabName === 'calc') updateCalcDisplay();
+    }
+
+    // تطبيق اختيارات الصاغة السريعة بنقرة واحدة
+    function applyGoldPreset(asset, qty, workmanship) {
+      const sel = document.getElementById('calcAsset');
+      const inpQty = document.getElementById('calcQty');
+      const inpWork = document.getElementById('calcWorkmanshipPerGram');
+      if (sel) sel.value = asset;
+      onGoldAssetChange();
+      if (inpQty) inpQty.value = qty;
+      if (inpWork) inpWork.value = workmanship;
+      recalcGoldTotal();
+    }
+
+    // تسجيل مبلغ حاسبة الذهب مباشرة كمصروف
+    function importGoldCalcToExpense() {
+      const finalEl = document.getElementById('calcFinalTotal');
+      const assetSel = document.getElementById('calcAsset');
+      const qtyInp = document.getElementById('calcQty');
+      if (!finalEl) return;
+      const totalStr = finalEl.textContent.replace(/[^0-9.]/g, '');
+      const amount = parseFloat(totalStr) || 0;
+      if (amount <= 0) return;
+
+      closeGoldDrawer();
+      if (typeof openTxModal === 'function') {
+        openTxModal('expense');
+        const amtInput = document.getElementById('txAmount');
+        const noteInput = document.getElementById('txNote');
+        const catSelect = document.getElementById('txCategory');
+        if (amtInput) { amtInput.value = amount; }
+        if (noteInput && assetSel && qtyInp) {
+          const assetName = assetSel.options[assetSel.selectedIndex] ? assetSel.options[assetSel.selectedIndex].text : 'ذهب';
+          noteInput.value = `شراء ${assetName} (كمية ${qtyInp.value})`;
+        }
+        if (catSelect) {
+          // محاولة اختيار تصنيف مناسب كالاستثمار أو المشتريات
+          const opts = Array.from(catSelect.options).map(o => o.value);
+          if (opts.includes('shopping')) catSelect.value = 'shopping';
+          else if (opts.includes('others')) catSelect.value = 'others';
+        }
+      }
+    }
+
     function openGoldDrawer() {
       const backdrop = document.getElementById('goldDrawerBackdrop');
       const panel = document.getElementById('goldDrawerPanel');
@@ -14355,7 +14562,7 @@
 
     
     // =========================================================================
-    // حاسبة الذهب والمصنعية التقديرية بالصاغة المصرية (v3.1.6)
+    // حاسبة الذهب والمصنعية التقديرية بالصاغة المصرية (v3.1.7)
     // =========================================================================
     const WORKMANSHIP_PRESETS = {
       'gold21_jewelry': { fee: 90, unit: 'gram', isGold: true, karat: 21, cashback: 0, note: 'متوسط مصنعية مشغولات عيار 21 بالسوق المصري تتراوح بين 70 إلى 150 ج.م/جرام حسب الصانع والماركة.' },
@@ -16465,3 +16672,232 @@ function exportActivityLogExcel() {
 </script>
 </body>
 </html>
+
+    /* ==============================================================
+       المظهر الفاتح الشامل المتناسق هندسياً وفائق الوضوح (v3.1.7)
+       يحافظ على نفس الأحجام بدقة 100% ويحل مشكلة تباين الأرقام والبيانات
+       ============================================================== */
+    body.light-theme {
+      --bg-app: #f1f5f9 !important;
+      --bg-card: #ffffff !important;
+      --bg-card-sub: #f8fafc !important;
+      --text-main: #0f172a !important;
+      --text-muted: #475569 !important;
+      --border: #cbd5e1 !important;
+      background: radial-gradient(circle at top, #e2e8f0 0%, #cbd5e1 100%) !important;
+      color: #0f172a !important;
+    }
+
+    body.light-theme .mobile-frame {
+      background-color: #f1f5f9 !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    body.light-theme .app-header {
+      background: #ffffff !important;
+      border-bottom: 1.5px solid #e2e8f0 !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03) !important;
+    }
+    body.light-theme .brand-title { color: #0f172a !important; }
+    body.light-theme .version-badge { background: #e2e8f0 !important; color: #0284c7 !important; }
+
+    /* أزرار الهيدر */
+    body.light-theme .btn-action-header {
+      background: #f1f5f9 !important;
+      border-color: #cbd5e1 !important;
+      color: #334155 !important;
+    }
+    body.light-theme .btn-action-header:hover {
+      background: #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+
+    /* أفاتارات أفراد الأسرة */
+    body.light-theme .avatar-name-label { color: #334155 !important; font-weight: 800 !important; }
+    body.light-theme .avatar-item.active .avatar-name-label { color: #0284c7 !important; }
+
+    /* شريط الفترات الزمنية */
+    body.light-theme .period-group {
+      background: #e2e8f0 !important;
+      border: 1px solid #cbd5e1 !important;
+    }
+    body.light-theme .period-btn { color: #475569 !important; font-weight: 700 !important; }
+    body.light-theme .period-btn.active {
+      background: #ffffff !important;
+      color: #0284c7 !important;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
+    }
+
+    /* شريط أدوات المحافظ والذهب بالوضع الفاتح */
+    body.light-theme .wallet-select-cluster {
+      background: #ffffff !important;
+      border-color: #38bdf8 !important;
+      box-shadow: 0 2px 8px rgba(56, 189, 248, 0.15) !important;
+    }
+    body.light-theme .wallet-dropdown-compact {
+      color: #0284c7 !important;
+    }
+    body.light-theme .wallet-dropdown-compact option {
+      background: #ffffff !important;
+      color: #0f172a !important;
+    }
+    body.light-theme .tool-pill-action.gold-pill {
+      background: #fffbeb !important;
+      border-color: #f59e0b !important;
+      color: #b45309 !important;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15) !important;
+    }
+    body.light-theme .currency-pill-btn {
+      background: #fffbeb !important;
+      border-color: #f59e0b !important;
+      color: #b45309 !important;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15) !important;
+    }
+
+    /* كروت المؤشرات الثلاثية (KPI Cards) في الوضع الفاتح - وضوح تام للأرقام */
+    body.light-theme .kpi-three-card {
+      background: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+    }
+    body.light-theme .kpi-three-card.card-income {
+      border-color: rgba(16, 185, 129, 0.4) !important;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), #ffffff) !important;
+    }
+    body.light-theme .kpi-three-card.card-income .kpi-three-label { color: #047857 !important; }
+    body.light-theme .kpi-three-card.card-income .kpi-three-val { color: #047857 !important; }
+
+    body.light-theme .kpi-three-card.card-expense {
+      border-color: rgba(239, 68, 68, 0.4) !important;
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), #ffffff) !important;
+    }
+    body.light-theme .kpi-three-card.card-expense .kpi-three-label { color: #b91c1c !important; }
+    body.light-theme .kpi-three-card.card-expense .kpi-three-val { color: #b91c1c !important; }
+
+    body.light-theme .kpi-three-card.card-balance {
+      border-color: rgba(2, 132, 199, 0.4) !important;
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.08), #ffffff) !important;
+    }
+    body.light-theme .kpi-three-card.card-balance .kpi-three-label { color: #0369a1 !important; }
+    body.light-theme .kpi-three-card.card-balance .kpi-three-val { color: #0284c7 !important; }
+
+    /* كروت التصنيفات الـ 52px في الوضع الفاتح */
+    body.light-theme .cat-card {
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+    }
+    body.light-theme .cat-card:hover {
+      border-color: #0284c7 !important;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.15) !important;
+    }
+    body.light-theme .cat-card-name {
+      color: #0f172a !important;
+      font-weight: 800 !important;
+    }
+    body.light-theme .cat-card-val-btn.has-spent {
+      color: #b91c1c !important;
+      background: rgba(239, 68, 68, 0.08) !important;
+      border-color: rgba(239, 68, 68, 0.3) !important;
+    }
+    body.light-theme .cat-card-val-btn.zero-spent {
+      color: #64748b !important;
+      background: #f1f5f9 !important;
+      border-color: #e2e8f0 !important;
+    }
+
+    /* كروت لوحة المؤشرات (Analytics Tab) في الوضع الفاتح */
+    body.light-theme .chart-glass-panel,
+    body.light-theme .kpi-lux-card,
+    body.light-theme .analytics-control-panel {
+      background: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04) !important;
+    }
+    body.light-theme .kpi-lux-head span { color: #475569 !important; }
+    body.light-theme .kpi-lux-sub { color: #64748b !important; }
+    body.light-theme .chart-glass-title { color: #0f172a !important; }
+    body.light-theme .analytics-section-nav {
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+    }
+    body.light-theme .analytics-sec-btn {
+      color: #475569 !important;
+    }
+    body.light-theme .analytics-sec-btn.active {
+      background: #0284c7 !important;
+      color: #ffffff !important;
+    }
+
+    /* كروت أفراد العائلة في المؤشرات (حل مشكلة الوضوح) */
+    body.light-theme #memberAnalyticsLuxGrid > div {
+      border-color: #e2e8f0 !important;
+    }
+    body.light-theme #memberAnalyticsLuxGrid div[onclick] {
+      background: #ffffff !important;
+      border: 1.5px solid #cbd5e1 !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03) !important;
+    }
+    body.light-theme #memberAnalyticsLuxGrid div[onclick]:hover {
+      border-color: #0284c7 !important;
+    }
+    body.light-theme #memberAnalyticsLuxGrid div[onclick] div {
+      color: #0f172a !important;
+    }
+    body.light-theme #memberAnalyticsLuxGrid div[onclick] .rank-tag {
+      background: #e0f2fe !important;
+      color: #0284c7 !important;
+      border-color: #bae6fd !important;
+    }
+
+    /* نافذة بورصة الذهب والعملات في الوضع الفاتح */
+    body.light-theme .side-drawer-panel {
+      background: #ffffff !important;
+      box-shadow: -10px 0 35px rgba(0,0,0,0.15) !important;
+    }
+    body.light-theme .drawer-top-bar {
+      background: #f8fafc !important;
+      border-bottom-color: #f59e0b !important;
+    }
+    body.light-theme .drawer-main-title { color: #b45309 !important; }
+    body.light-theme .btn-close-drawer {
+      background: #e2e8f0 !important;
+      color: #0f172a !important;
+      border-color: #cbd5e1 !important;
+    }
+    body.light-theme .gold-drawer-tabs-strip {
+      background: #e2e8f0 !important;
+    }
+    body.light-theme .market-box {
+      background: #f8fafc !important;
+      border-color: #cbd5e1 !important;
+    }
+    body.light-theme .market-box-val { color: #0f172a !important; }
+    body.light-theme .calc-select-asset,
+    body.light-theme .calc-input-qty,
+    body.light-theme #calcWorkmanshipPerGram {
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      color: #0f172a !important;
+    }
+
+    /* شريط التنقل السفلي في الوضع الفاتح */
+    body.light-theme .bottom-dock-nav {
+      background: rgba(255, 255, 255, 0.98) !important;
+      border-top: 1.5px solid #e2e8f0 !important;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.06) !important;
+    }
+    body.light-theme .nav-tab-item {
+      color: #64748b !important;
+    }
+    body.light-theme .nav-tab-item svg {
+      stroke: #64748b !important;
+    }
+    body.light-theme .nav-tab-item.active {
+      color: #0284c7 !important;
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.14), rgba(2, 132, 199, 0.04)) !important;
+      border: 1.5px solid #0284c7 !important;
+    }
+    body.light-theme .nav-tab-item.active svg {
+      stroke: #0284c7 !important;
+    }
