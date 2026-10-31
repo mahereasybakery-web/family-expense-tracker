@@ -6278,9 +6278,10 @@
   
     
     /* =========================================================================
-       ضبط الشاشة الرئيسية بنظام (Zero-Scroll Mobile Engine)
-       بحيث تناسب الشاشة 100% تماماً دون أي حاجة للتمرير الرأسي نهائياً
-       مع تكبير الأرقام لتتناسب بفخامة مع حجم البطاقات
+       ضبط الشاشة الرئيسية بنظام (Zero-Scroll Mobile Engine - التنسيق المتقن الفاخر)
+       - تكبير الجزء العلوي والصور لملء الفراغ بفخامة
+       - تكبير المحافظ وتغيير العملة وأرقام الصرف والإيداع والرصيد
+       - تصغير بنود المصاريف لتتناسق تماماً مع بقاء مسافة أمان فوق الشريط السفلي
        ========================================================================= */
     html, body {
       height: 100% !important;
@@ -6289,8 +6290,8 @@
     }
 
     .app-viewport {
-      height: 100vh !important;
-      max-height: 100vh !important;
+      height: 100dvh !important;
+      max-height: 100dvh !important;
       display: flex !important;
       flex-direction: column !important;
       overflow: hidden !important;
@@ -6300,15 +6301,16 @@
       flex: 1 1 auto !important;
       display: flex !important;
       flex-direction: column !important;
-      overflow-y: hidden !important;
-      overflow-x: hidden !important;
-      padding: 0 !important;
+      overflow: hidden !important;
+      padding: 0 0 52px 0 !important;
       margin: 0 !important;
+      box-sizing: border-box !important;
     }
 
-    /* عندما تكون صفحة العمليات أو التقارير نشطة نسمح لها بالتمرير، بينما المصاريف بدون أي تمرير */
     .page-view {
       overflow-y: auto !important;
+      height: 100% !important;
+      box-sizing: border-box !important;
     }
 
     #viewExpenses.active {
@@ -6321,226 +6323,275 @@
       padding: 0 4px !important;
       box-sizing: border-box !important;
       overflow: hidden !important;
-      gap: 2px !important;
+      gap: 3px !important;
     }
 
-    /* شريط الأفاتار المدمج */
+    /* 1. تكبير الجزء العلوي والصور لملء الفراغ بالأناقة والفخامة */
     .avatars-container {
-      padding: 1px 0 !important;
-      gap: 4px !important;
+      padding: 3px 0 !important;
+      gap: 6px !important;
     }
     .avatar-card {
-      min-width: 32px !important;
+      min-width: 44px !important;
     }
     .avatar-bubble {
-      width: 30px !important;
-      height: 30px !important;
-      min-width: 30px !important;
-      min-height: 30px !important;
+      width: 38px !important;
+      height: 38px !important;
+      min-width: 38px !important;
+      min-height: 38px !important;
       border-radius: 50% !important;
+      border: 2px solid rgba(255, 255, 255, 0.14) !important;
+    }
+    .avatar-card.active .avatar-bubble {
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.5) !important;
     }
     .avatar-name-label {
-      font-size: 0.58rem !important;
-      margin-top: 1px !important;
+      font-size: 0.65rem !important;
+      font-weight: 800 !important;
+      margin-top: 2px !important;
     }
 
     /* شريط اختيار الفترة */
     .period-selector-top-strip {
-      padding: 2px 6px !important;
+      padding: 3px 6px !important;
       margin: 1px 0 2px !important;
     }
     .period-filter-pill {
-      padding: 2px 6px !important;
-      font-size: 0.68rem !important;
+      padding: 3px 6px !important;
+      font-size: 0.70rem !important;
       font-weight: 800 !important;
-      border-radius: 7px !important;
+      border-radius: 8px !important;
     }
 
-    /* شريط أدوات المحفظة والبورصة والعملة */
+    /* 2. تكبير جزء المحافظ وتغيير العملة في سطر واحد متناسق */
     .sub-period-tools-bar {
-      padding: 2px 6px !important;
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      gap: 4px !important;
+      height: 32px !important;
+      min-height: 32px !important;
+      padding: 0 4px !important;
       margin-bottom: 2px !important;
-      min-height: 26px !important;
+      box-sizing: border-box !important;
     }
     .wallet-select-cluster {
+      display: flex !important;
+      align-items: center !important;
+      gap: 4px !important;
       padding: 2px 6px !important;
-      border-radius: 7px !important;
+      border-radius: 8px !important;
+      height: 30px !important;
+      max-width: 58% !important;
+      background: rgba(15, 23, 42, 0.75) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      box-sizing: border-box !important;
     }
     .wallet-dropdown-compact {
-      font-size: 0.68rem !important;
-      height: 24px !important;
-      max-width: 100px !important;
+      font-size: 0.74rem !important;
+      font-weight: 800 !important;
+      height: 26px !important;
+      max-width: 130px !important;
+      background: transparent !important;
+      border: none !important;
+      color: #38bdf8 !important;
+      padding: 0 2px !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+      text-overflow: ellipsis !important;
+      overflow: hidden !important;
     }
     .tool-pill-action.gold-pill {
-      padding: 2px 6px !important;
-      font-size: 0.66rem !important;
-      height: 24px !important;
-      border-radius: 7px !important;
+      padding: 3px 8px !important;
+      font-size: 0.70rem !important;
+      font-weight: 800 !important;
+      height: 28px !important;
+      border-radius: 8px !important;
+      white-space: nowrap !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 3px !important;
     }
     .currency-pill-btn {
-      height: 24px !important;
-      font-size: 0.66rem !important;
-      padding: 2px 6px !important;
-      border-radius: 7px !important;
+      height: 28px !important;
+      font-size: 0.70rem !important;
+      font-weight: 900 !important;
+      padding: 3px 8px !important;
+      border-radius: 8px !important;
+      white-space: nowrap !important;
+      display: inline-flex !important;
+      align-items: center !important;
     }
 
-    /* بطاقات الرصيد الثلاثة المدمجة بدقة مع أرقام مكبرة وواضحة جداً */
+    /* 3. تكبير أرقام الصرف والإيداع والرصيد الفعلي */
     .kpi-three-strip {
       display: grid !important;
       grid-template-columns: 1fr 1fr !important;
-      gap: 4px !important;
-      margin: 2px 6px 3px !important;
-      width: calc(100% - 12px) !important;
+      gap: 5px !important;
+      margin: 2px 4px !important;
+      width: calc(100% - 8px) !important;
       box-sizing: border-box !important;
     }
 
     .kpi-three-card {
-      padding: 3px 6px !important;
-      border-radius: 9px !important;
-      min-height: 38px !important;
+      padding: 3px 8px !important;
+      border-radius: 10px !important;
+      min-height: 42px !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
-      text-align: center !important;
-      box-sizing: border-box !important;
+      align-items: center !important;
     }
 
-    .kpi-three-card.card-balance {
-      grid-column: 1 / -1 !important;
-      min-height: 28px !important;
-      padding: 2px 10px !important;
-      border-radius: 9px !important;
+    .balance-kpi-col .balance-kpi-lbl {
+      font-size: 0.68rem !important;
+      font-weight: 800 !important;
+      margin-bottom: 2px !important;
+    }
+
+    .balance-kpi-col .balance-kpi-val {
+      font-size: 1.05rem !important;
+      font-weight: 900 !important;
+      letter-spacing: -0.3px !important;
+      line-height: 1.1 !important;
+    }
+
+    .balance-main-banner-compact {
+      margin: 2px 4px !important;
+      padding: 4px 10px !important;
+      border-radius: 10px !important;
+      min-height: 32px !important;
       display: flex !important;
-      flex-direction: row !important;
       justify-content: space-between !important;
       align-items: center !important;
     }
 
-    .kpi-three-label {
-      font-size: 0.64rem !important;
+    .balance-main-banner-compact .actual-balance-lbl {
+      font-size: 0.72rem !important;
       font-weight: 800 !important;
-      margin-bottom: 1px !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 3px !important;
     }
 
-    /* تكبير أرقام الرصيد والسحب والإيداع */
-    .kpi-three-value {
-      font-size: 0.90rem !important;
+    .balance-main-banner-compact .actual-balance-val {
+      font-size: 1.10rem !important;
       font-weight: 900 !important;
-      line-height: 1.15 !important;
-      letter-spacing: -0.2px !important;
+      letter-spacing: -0.3px !important;
     }
 
-    /* أزرار الإجراءات السريعة (مصروف / دخل) */
-    .quick-actions-bar {
-      padding: 0 6px 3px !important;
+    /* أزرار تسجيل المصروف والدخل السريعة */
+    .quick-actions-pair-row {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
       gap: 5px !important;
-      margin: 0 !important;
+      margin: 2px 4px !important;
+      width: calc(100% - 8px) !important;
+      box-sizing: border-box !important;
     }
-
-    .btn-quick-action {
-      height: 32px !important;
-      padding: 2px 6px !important;
-      font-size: 0.76rem !important;
+    .btn-quick-expense, .btn-quick-income {
+      padding: 5px 8px !important;
+      font-size: 0.74rem !important;
       font-weight: 800 !important;
-      border-radius: 8px !important;
+      border-radius: 10px !important;
+      min-height: 32px !important;
     }
 
-    /* شبكة بنود المصروفات الـ 9 بحجم متناسق دون تمرير وأرقام واضحة ومكبرة */
+    /* 4. تصغير وتنسيق بنود المصاريف التسعة لضمان الظهور 100% دون تمرير نهائياً */
     .categories-monefy-grid {
       display: grid !important;
       grid-template-columns: repeat(3, 1fr) !important;
-      grid-template-rows: repeat(3, 1fr) !important;
-      gap: 4px !important;
-      margin: 1px 4px 2px !important;
-      width: calc(100% - 8px) !important;
+      grid-template-rows: repeat(3, minmax(68px, 86px)) !important;
+      gap: 5px !important;
+      width: 100% !important;
+      flex: 0 1 auto !important;
+      margin: 2px 0 0 !important;
+      padding: 0 !important;
       box-sizing: border-box !important;
-      flex: 1 1 auto !important;
-      min-height: 0 !important;
+      overflow: hidden !important;
     }
 
-    .cat-card {
+    .category-monefy-card {
+      padding: 3px 2px !important;
+      max-height: 86px !important;
+      min-height: 68px !important;
       height: 100% !important;
-      box-sizing: border-box !important;
-      padding: 3px 2px 2px !important;
-      border-radius: 11px !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
-      justify-content: space-between !important;
-      min-height: 0 !important;
-      max-height: none !important;
+      justify-content: space-evenly !important;
+      gap: 1px !important;
+      box-sizing: border-box !important;
+      border-radius: 12px !important;
     }
 
-    .cat-icon-bubble {
-      width: 28px !important;
-      height: 28px !important;
-      min-width: 28px !important;
-      min-height: 28px !important;
-      border-radius: 8px !important;
-      margin-bottom: 1px !important;
+    .category-card-icon-bubble {
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px !important;
+      min-height: 32px !important;
+      font-size: 0.95rem !important;
+      border-radius: 10px !important;
+    }
+
+    .category-card-name-label {
+      font-size: 0.68rem !important;
+      font-weight: 800 !important;
+      line-height: 1.1 !important;
+      margin: 0 !important;
+      white-space: nowrap !important;
+      text-align: center !important;
+    }
+
+    .category-card-amount-pill {
+      font-size: 0.65rem !important;
+      padding: 1px 4px !important;
+      border-radius: 6px !important;
+      font-weight: 900 !important;
+      line-height: 1.1 !important;
+    }
+
+    .bottom-nav {
+      height: 48px !important;
+      min-height: 48px !important;
+      padding: 0 4px !important;
+      z-index: 100 !important;
+      position: relative !important;
+    }
+    .bottom-nav .nav-item {
+      padding: 2px 4px !important;
+      gap: 1px !important;
+    }
+    .bottom-nav .nav-icon {
+      font-size: 0.95rem !important;
+    }
+    .bottom-nav .nav-label {
+      font-size: 0.62rem !important;
+    }
+
+    .ops-period-filter-strip, .archive-period-filter-strip {
       display: flex !important;
       align-items: center !important;
-      justify-content: center !important;
-      flex-shrink: 0 !important;
+      gap: 5px !important;
+      padding: 4px 6px !important;
+      margin: 4px 0 8px !important;
+      overflow-x: auto !important;
+      background: rgba(15, 23, 42, 0.6) !important;
+      border-radius: 12px !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
     }
-
-    .cat-icon-bubble i {
-      font-size: 0.92rem !important;
-    }
-
-    .cat-label-text {
-      font-size: clamp(0.66rem, 2.1vw, 0.74rem) !important;
-      font-weight: 800 !important;
-      color: #f8fafc !important;
-      text-align: center !important;
-      line-height: 1.1 !important;
-      margin: 1px 0 !important;
-      white-space: nowrap !important;
-      overflow: hidden !important;
-      text-overflow: ellipsis !important;
-      width: 100% !important;
-    }
-
-    /* تكبير أرقام مبالغ المصروفات في البطاقات */
-    .cat-amount-pill {
-      width: 100% !important;
-      box-sizing: border-box !important;
-      text-align: center !important;
-      padding: 2px 4px !important;
-      border-radius: 6px !important;
-      flex-shrink: 0 !important;
-    }
-
-    .cat-amount-pill span {
-      font-size: clamp(0.78rem, 2.7vw, 0.88rem) !important;
-      font-weight: 900 !important;
-      white-space: nowrap !important;
-      display: inline-block !important;
-      letter-spacing: -0.25px !important;
-    }
-
-
-    /* فلاتر الفترات الزمنية لشاشتي العمليات والأرشيف */
     .ops-period-pill, .archive-period-pill {
-      flex: 1;
-      padding: 5px 4px !important;
-      font-size: 0.70rem !important;
+      padding: 3px 9px !important;
+      font-size: 0.72rem !important;
       font-weight: 800 !important;
       border-radius: 8px !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
-      background: rgba(255, 255, 255, 0.04) !important;
+      background: rgba(255, 255, 255, 0.06) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
       color: #94a3b8 !important;
       cursor: pointer !important;
-      text-align: center !important;
-      transition: all 0.2s ease !important;
       white-space: nowrap !important;
-      display: flex !important;
+      transition: all 0.2s ease !important;
+      display: inline-flex !important;
       align-items: center !important;
-      justify-content: center !important;
       gap: 3px !important;
     }
     .ops-period-pill.active, .archive-period-pill.active {
@@ -6549,7 +6600,6 @@
       border-color: #38bdf8 !important;
       box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35) !important;
     }
-
   </style>
 
   <script>
@@ -6611,6 +6661,14 @@
           <span class="avatar-name-label">ماهر</span>
         </div>
 
+        <!-- الكل -->
+        <div class="avatar-card" data-member="الكل" onclick="selectMember('الكل')">
+          <div class="avatar-bubble" style="background: linear-gradient(135deg, #0f766e, #14b8a6); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+            👨‍👩‍👧‍👦
+          </div>
+          <span class="avatar-name-label">العائلة</span>
+        </div>
+
         <!-- أية -->
         <div class="avatar-card" data-member="أية" onclick="selectMember('أية')">
           <div class="avatar-bubble">
@@ -6651,13 +6709,7 @@
           <span class="avatar-name-label">النونو</span>
         </div>
 
-        <!-- الكل -->
-        <div class="avatar-card" data-member="الكل" onclick="selectMember('الكل')">
-          <div class="avatar-bubble" style="background: linear-gradient(135deg, #0f766e, #14b8a6); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
-            👨‍👩‍👧‍👦
-          </div>
-          <span class="avatar-name-label">العائلة</span>
-        </div>
+
 
         <!-- أخرى -->
         <div class="avatar-card" data-member="أخرى" onclick="selectMember('أخرى')" title="مصروفات ونثريات أخرى">
@@ -7437,12 +7489,14 @@
           <div class="form-group-custom">
             <label class="form-label-custom">يخص من في العائلة؟</label>
             <select class="form-select-custom" id="inpExpMember">
-              <option value="العائلة" selected>👨‍👩‍👧‍👦 العائلة (التزام عام)</option>
               <option value="ماهر">👨 ماهر</option>
+              <option value="العائلة" selected>👨‍👩‍👧‍👦 العائلة (التزام عام)</option>
               <option value="أية">👩 أية</option>
               <option value="محمد">👦 محمد</option>
               <option value="مريم">👧 مريم</option>
               <option value="الحاجة">👵 الحاجة</option>
+              <option value="النونو">👶 النونو</option>
+              <option value="أخرى">🤲 أخرى</option>
             </select>
           </div>
           <button class="btn-submit-tx" onclick="submitExpectedExpense()" style="background: linear-gradient(135deg, #0284c7, #0369a1);">
@@ -7849,11 +7903,13 @@
           <label class="form-label-custom">تحميل المصروف على حساب:</label>
           <select class="form-select-custom" id="smsTargetMember">
             <option value="ماهر">👨 ماهر</option>
+            <option value="العائلة">👨‍👩‍👧‍👦 العائلة</option>
             <option value="أية">👩 أية</option>
             <option value="محمد">👦 محمد</option>
             <option value="مريم">👧 مريم</option>
             <option value="الحاجة">👵 الحاجة</option>
             <option value="النونو">👶 النونو</option>
+            <option value="أخرى">🤲 أخرى</option>
           </select>
         </div>
 
@@ -8045,11 +8101,13 @@
             <label class="form-label-custom">أنت تمثل من في العائلة؟</label>
             <select class="form-select-custom" id="regMember">
               <option value="ماهر">👨 ماهر</option>
+              <option value="العائلة">👨‍👩‍👧‍👦 العائلة</option>
               <option value="أية">👩 أية</option>
               <option value="محمد">👦 محمد</option>
               <option value="مريم">👧 مريم</option>
               <option value="الحاجة">👵 الحاجة</option>
               <option value="النونو">👶 النونو</option>
+              <option value="أخرى">🤲 أخرى</option>
             </select>
           </div>
 
@@ -8139,11 +8197,13 @@
             <select id="actMemberSelect" class="activity-member-select" onchange="filterActivityLogUI()">
               <option value="all">👥 كافة أفراد العائلة</option>
               <option value="ماهر">👨 ماهر</option>
+              <option value="العائلة">👨‍👩‍👧‍👦 العائلة</option>
               <option value="أية">👩 أية</option>
               <option value="محمد">👦 محمد</option>
               <option value="مريم">👧 مريم</option>
               <option value="الحاجة">👵 الحاجة</option>
               <option value="النونو">👶 النونو</option>
+              <option value="أخرى">🤲 أخرى</option>
             </select>
           </div>
           <div class="activity-filter-tabs">
@@ -8332,12 +8392,13 @@
             <div class="form-group-custom">
               <label class="form-label-custom">خاص بـ</label>
               <select class="form-select-custom" id="inpNoteMember">
-                <option value="العائلة">العائلة بالكامل</option>
                 <option value="ماهر">ماهر</option>
-                <option value="آية">آية</option>
+                <option value="العائلة">العائلة بالكامل</option>
+                <option value="أية">أية</option>
                 <option value="محمد">محمد</option>
                 <option value="مريم">مريم</option>
                 <option value="الحاجة">الحاجة</option>
+                <option value="النونو">النونو</option>
                 <option value="أخرى">أخرى</option>
               </select>
             </div>
@@ -8682,7 +8743,8 @@
       'النونو': 'data:image/jpeg;base64,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'
     };
     
-    const FAMILY_MEMBERS = ['ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'الكل'];
+    const FAMILY_MEMBERS = ['ماهر', 'العائلة', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'الكل'];
+    if (typeof MEMBER_AVATARS !== 'undefined') { MEMBER_AVATARS['آية'] = MEMBER_AVATARS['أية']; }
 
     // حالة التطبيق
     let state = {
@@ -9287,7 +9349,7 @@
           dataEstimated = EXPENSE_CATEGORIES.map(c => estByCat[c.id] || 0);
           dataActual = EXPENSE_CATEGORIES.map(c => actualByCat[c.id] || 0);
         } else if (activeComparisonDimension === 'member') {
-          const members = ['ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
+          const members = ['ماهر', 'العائلة', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
           labels = members;
           dataReceived = members.map(m => m === 'ماهر' ? receivedTotal : 0);
           dataEstimated = members.map(m => estByMember[m] || 0);
@@ -9407,12 +9469,12 @@
       if (memTableContainer) {
         const membersList = [
           { name: 'ماهر', avatar: MEMBER_AVATARS['ماهر'] },
-          { name: 'أية', avatar: MEMBER_AVATARS['أية'] },
+          { name: 'العائلة', avatar: MEMBER_AVATARS['العائلة'] },
+          { name: 'أية', avatar: MEMBER_AVATARS['أية'] || MEMBER_AVATARS['آية'] },
           { name: 'محمد', avatar: MEMBER_AVATARS['محمد'] },
           { name: 'مريم', avatar: MEMBER_AVATARS['مريم'] },
           { name: 'الحاجة', avatar: MEMBER_AVATARS['الحاجة'] },
           { name: 'النونو', avatar: MEMBER_AVATARS['النونو'] },
-          { name: 'العائلة', avatar: MEMBER_AVATARS['العائلة'] },
           { name: 'أخرى', avatar: MEMBER_AVATARS['أخرى'] }
         ];
 
@@ -11123,15 +11185,21 @@
       return `${periodTxt}${curMember}`;
     }
 
-    function initMemberPhotoPickers() {
+        function initMemberPhotoPickers() {
+      // ضمان توفر صورة آية بكلا صيغتي الهمزة
+      if (typeof MEMBER_AVATARS !== 'undefined') {
+        if (!MEMBER_AVATARS['آية'] && MEMBER_AVATARS['أية']) MEMBER_AVATARS['آية'] = MEMBER_AVATARS['أية'];
+        if (!MEMBER_AVATARS['أية'] && MEMBER_AVATARS['آية']) MEMBER_AVATARS['أية'] = MEMBER_AVATARS['آية'];
+      }
+
       const members = [
-        { id: 'أية', name: 'أية (أم العيال)', photo: MEMBER_AVATARS['أية'] },
         { id: 'ماهر', name: 'ماهر', photo: MEMBER_AVATARS['ماهر'] },
+        { id: 'العائلة', name: 'العائلة (عام)', icon: 'fa-people-roof', color: '#14b8a6' },
+        { id: 'أية', name: 'أية (أم العيال)', photo: MEMBER_AVATARS['أية'] || MEMBER_AVATARS['آية'] },
         { id: 'محمد', name: 'محمد', photo: MEMBER_AVATARS['محمد'] },
         { id: 'مريم', name: 'مريم', photo: MEMBER_AVATARS['مريم'] },
         { id: 'الحاجة', name: 'الحاجة', photo: MEMBER_AVATARS['الحاجة'] },
         { id: 'النونو', name: 'النونو', photo: MEMBER_AVATARS['النونو'] },
-        { id: 'العائلة', name: 'العائلة', icon: 'fa-users', color: '#14b8a6' },
         { id: 'أخرى', name: 'أخرى', icon: 'fa-hand-holding-heart', color: '#f59e0b' }
       ];
 
@@ -11140,14 +11208,14 @@
       if (reqPicker) {
         const currentReqVal = (document.getElementById('inpReqMember') ? document.getElementById('inpReqMember').value : 'أية') || 'أية';
         reqPicker.innerHTML = members.map(m => {
-          const isActive = (m.id === currentReqVal);
+          const isActive = (m.id === currentReqVal || (m.id === 'أية' && (currentReqVal === 'آية' || currentReqVal === 'أية')));
           const avatarHtml = m.photo 
-            ? `<img src="${m.photo}" alt="${m.name}" style="width: 36px; height: 36px; min-width: 36px; min-height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid ${isActive ? '#38bdf8' : 'rgba(255,255,255,0.15)'}; display: block;">`
-            : `<div style="width: 36px; height: 36px; min-width: 36px; min-height: 36px; border-radius: 50%; background: ${m.color || '#38bdf8'}; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; border: 2px solid ${isActive ? '#38bdf8' : 'rgba(255,255,255,0.15)'};"><i class="fa-solid ${m.icon}"></i></div>`;
+            ? `<img src="${m.photo}" alt="${m.name}" style="width: 38px; height: 38px; min-width: 38px; min-height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.18);">`
+            : `<div style="width: 38px; height: 38px; min-width: 38px; min-height: 38px; border-radius: 50%; background: ${m.color || '#14b8a6'}; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.05rem; border: 2px solid rgba(255,255,255,0.18);"><i class="fa-solid ${m.icon || 'fa-users'}"></i></div>`;
           return `
-            <div class="member-photo-chip ${isActive ? 'active' : ''}" onclick="selectReqMemberPicker('${m.id}')" data-member-id="${m.id}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 4px; border-radius: 12px; cursor: pointer; background: ${isActive ? 'rgba(56, 189, 248, 0.15)' : 'rgba(255,255,255,0.03)'}; border: 1.5px solid ${isActive ? '#38bdf8' : 'rgba(255,255,255,0.08)'}; width: 62px; box-sizing: border-box; text-align: center;">
+            <div class="member-photo-chip ${isActive ? 'active' : ''}" onclick="selectReqMemberPicker('${m.id}')" data-member-id="${m.id}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; padding: 4px 6px; border-radius: 12px; transition: all 0.2s;">
               ${avatarHtml}
-              <span style="font-size: 0.68rem; font-weight: 800; color: ${isActive ? '#38bdf8' : '#cbd5e1'}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">${m.name.split(' ')[0]}</span>
+              <span style="font-size: 0.68rem; font-weight: 800; color: ${isActive ? '#38bdf8' : '#cbd5e1'}; white-space: nowrap;">${m.name.split(' ')[0]}</span>
             </div>
           `;
         }).join('');
@@ -11158,14 +11226,14 @@
       if (txPicker) {
         const currentTxVal = (document.getElementById('inpTxMember') ? document.getElementById('inpTxMember').value : 'العائلة') || 'العائلة';
         txPicker.innerHTML = members.map(m => {
-          const isActive = (m.id === currentTxVal);
+          const isActive = (m.id === currentTxVal || (m.id === 'أية' && (currentTxVal === 'آية' || currentTxVal === 'أية')));
           const avatarHtml = m.photo 
-            ? `<img src="${m.photo}" alt="${m.name}" style="width: 34px; height: 34px; min-width: 34px; min-height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid ${isActive ? '#38bdf8' : 'rgba(255,255,255,0.15)'}; display: block;">`
-            : `<div style="width: 34px; height: 34px; min-width: 34px; min-height: 34px; border-radius: 50%; background: ${m.color || '#38bdf8'}; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.82rem; border: 2px solid ${isActive ? '#38bdf8' : 'rgba(255,255,255,0.15)'};"><i class="fa-solid ${m.icon}"></i></div>`;
+            ? `<img src="${m.photo}" alt="${m.name}" style="width: 36px; height: 36px; min-width: 36px; min-height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.18);">`
+            : `<div style="width: 36px; height: 36px; min-width: 36px; min-height: 36px; border-radius: 50%; background: ${m.color || '#14b8a6'}; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1rem; border: 2px solid rgba(255,255,255,0.18);"><i class="fa-solid ${m.icon || 'fa-users'}"></i></div>`;
           return `
-            <div class="member-photo-chip ${isActive ? 'active' : ''}" onclick="selectTxMemberPicker('${m.id}')" data-member-id="${m.id}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 5px 3px; border-radius: 10px; cursor: pointer; background: ${isActive ? 'rgba(56, 189, 248, 0.15)' : 'rgba(255,255,255,0.03)'}; border: 1.5px solid ${isActive ? '#38bdf8' : 'rgba(255,255,255,0.08)'}; width: 56px; box-sizing: border-box; text-align: center;">
+            <div class="member-photo-chip ${isActive ? 'active' : ''}" onclick="selectTxMemberPicker('${m.id}')" data-member-id="${m.id}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; padding: 4px 6px; border-radius: 12px; transition: all 0.2s;">
               ${avatarHtml}
-              <span style="font-size: 0.65rem; font-weight: 800; color: ${isActive ? '#38bdf8' : '#cbd5e1'}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%;">${m.name.split(' ')[0]}</span>
+              <span style="font-size: 0.65rem; font-weight: 800; color: ${isActive ? '#38bdf8' : '#cbd5e1'}; white-space: nowrap;">${m.name.split(' ')[0]}</span>
             </div>
           `;
         }).join('');
@@ -11176,7 +11244,8 @@
       const inp = document.getElementById('inpReqMember');
       if (inp) inp.value = memberId;
       document.querySelectorAll('#reqMemberPhotoPicker .member-photo-chip').forEach(chip => {
-        if (chip.getAttribute('data-member-id') === memberId) chip.classList.add('active');
+        const cId = chip.getAttribute('data-member-id');
+        if (cId === memberId || (memberId === 'أية' && cId === 'آية') || (memberId === 'آية' && cId === 'أية')) chip.classList.add('active');
         else chip.classList.remove('active');
       });
     }
@@ -11185,7 +11254,8 @@
       const inp = document.getElementById('inpTxMember');
       if (inp) inp.value = memberId;
       document.querySelectorAll('#txMemberPhotoPicker .member-photo-chip').forEach(chip => {
-        if (chip.getAttribute('data-member-id') === memberId) chip.classList.add('active');
+        const cId = chip.getAttribute('data-member-id');
+        if (cId === memberId || (memberId === 'أية' && cId === 'آية') || (memberId === 'آية' && cId === 'أية')) chip.classList.add('active');
         else chip.classList.remove('active');
       });
     }
