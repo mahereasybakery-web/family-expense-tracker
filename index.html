@@ -92,7 +92,7 @@
       // ملء قائمة الأعضاء بترتيب العائلة أولاً
       const memberSelect = document.getElementById('editTxMember');
       if (memberSelect) {
-        const members = ['العائلة', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
+        const members = ['البيت', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
         memberSelect.innerHTML = members.map(m => `
           <option value="${m}" ${m === tx.member ? 'selected' : ''}>${m}</option>
         `).join('');
@@ -6830,7 +6830,7 @@
       gap: 3px !important;
     }
     .kpi-three-card .kpi-three-value {
-      font-size: 0.78rem !important;
+      font-size: 0.80rem !important;
       font-weight: 900 !important;
       white-space: nowrap !important;
       direction: rtl !important;
@@ -6841,6 +6841,76 @@
       flex-direction: column !important;
       align-items: center !important;
       justify-content: center !important;
+    }
+
+    /* تكبير وتنسيق كتلة اسم المحفظة والذهب ومحول العملات */
+    .wallet-select-cluster {
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.85)) !important;
+      border: 1.5px solid rgba(56, 189, 248, 0.45) !important;
+      border-radius: 12px !important;
+      padding: 5px 8px !important;
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+    }
+    .wallet-dropdown-compact {
+      background: transparent !important;
+      border: none !important;
+      color: #38bdf8 !important;
+      font-weight: 800 !important;
+      font-size: 0.86rem !important;
+      font-family: inherit !important;
+      outline: none !important;
+      cursor: pointer !important;
+      direction: rtl !important;
+      max-width: none !important;
+      flex: 1 1 auto !important;
+      width: 100% !important;
+    }
+    .btn-add-wallet-mini {
+      background: rgba(56, 189, 248, 0.2) !important;
+      border: 1.5px solid rgba(56, 189, 248, 0.5) !important;
+      color: #38bdf8 !important;
+      width: 25px !important;
+      height: 25px !important;
+      min-width: 25px !important;
+      border-radius: 50% !important;
+      font-size: 0.80rem !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      transition: all 0.2s !important;
+    }
+    .tools-pills-cluster {
+      display: flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      flex-shrink: 0 !important;
+    }
+    .gold-pill {
+      background: linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(245, 158, 11, 0.1)) !important;
+      border: 1.5px solid rgba(234, 179, 8, 0.6) !important;
+      color: #fbbf24 !important;
+      padding: 6px 9px !important;
+      font-size: 0.82rem !important;
+      font-weight: 800 !important;
+      border-radius: 11px !important;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25) !important;
+    }
+    .currency-pill-btn {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.1)) !important;
+      border: 1.5px solid #f59e0b !important;
+      color: #fbbf24 !important;
+      padding: 6px 11px !important;
+      border-radius: 11px !important;
+      font-size: 0.84rem !important;
+      font-weight: 800 !important;
+      cursor: pointer !important;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25) !important;
     }
 
     /* ملء وتناسب شبكة بنود المصروفات مع شاشة الجوال بالكامل دون أي فراغات سفلية ميتة */
@@ -6875,20 +6945,20 @@
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     .cat-icon-bubble {
-      width: 44px !important;
-      height: 44px !important;
-      min-width: 44px !important;
-      min-height: 44px !important;
-      border-radius: 13px !important;
+      width: 48px !important;
+      height: 48px !important;
+      min-width: 48px !important;
+      min-height: 48px !important;
+      border-radius: 14px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      font-size: 1.3rem !important;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35) !important;
+      font-size: 1.45rem !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
     }
     .cat-label-text {
       font-family: inherit !important;
-      font-size: 0.84rem !important;
+      font-size: 0.86rem !important;
       font-weight: 800 !important;
       color: #f8fafc !important;
       margin: 2px 0 !important;
@@ -6900,9 +6970,9 @@
       line-height: 1.2 !important;
     }
     .cat-amount-pill {
-      padding: 3px 6px !important;
+      padding: 4px 6px !important;
       border-radius: 8px !important;
-      width: 92% !important;
+      width: 94% !important;
       text-align: center !important;
       box-sizing: border-box !important;
       display: flex !important;
@@ -6910,7 +6980,7 @@
       justify-content: center !important;
     }
     .cat-amount-pill span {
-      font-size: 0.76rem !important;
+      font-size: 0.86rem !important;
       font-weight: 900 !important;
       line-height: 1.2 !important;
       white-space: nowrap !important;
@@ -6954,12 +7024,20 @@
       <!-- تم نقل أدوات البورصة والذهب والحاسبة والضبط إلى صفحة التحليلات لتوفير مساحة نقية ومريحة بالجوال -->
       <div style="display: none;" id="legacyHeaderToolsAnchor"></div>
       <div class="avatars-container" id="avatarsContainer">
-        <!-- الكل -->
-        <div class="avatar-card" data-member="الكل" onclick="selectMember('الكل')">
-          <div class="avatar-bubble" style="background: linear-gradient(135deg, #0f766e, #14b8a6); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+        <!-- الكل (إجمالي كافة المصروفات) -->
+        <div class="avatar-card" data-member="الكل" onclick="selectMember('الكل')" title="كافة مصروفات العائلة (إجمالي عام لكافة البنود والأفراد)">
+          <div class="avatar-bubble" style="background: linear-gradient(135deg, #0f766e, #14b8a6); display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 4px 12px rgba(15, 118, 110, 0.4);">
             👨‍👩‍👧‍👦
           </div>
-          <span class="avatar-name-label">العائلة</span>
+          <span class="avatar-name-label">الكل</span>
+        </div>
+
+        <!-- البيت (مصروفات الأسرة المشتركة: إيجار، مياه، فواتير) -->
+        <div class="avatar-card" data-member="البيت" onclick="selectMember('البيت')" title="مصروفات وتكاليف البيت والأسرة المشتركة (إيجار، مياه، غاز، مستلزمات)">
+          <div class="avatar-bubble" style="background: linear-gradient(135deg, #0284c7, #0ea5e9); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: #ffffff; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);">
+            <i class="fa-solid fa-house-chimney"></i>
+          </div>
+          <span class="avatar-name-label">البيت</span>
         </div>
 
         <!-- ماهر -->
@@ -7100,25 +7178,25 @@
 
         <!-- شريط الأدوات المالي الاحترافي أسفل اختيار التاريخ (المحفظة، البورصة والذهب، الشارتات، تبديل العملات) -->
         <div class="sub-period-tools-bar">
-          <!-- جزء اختيار المحفظة النشطة وإضافة محفظة -->
-          <div class="wallet-select-cluster" title="اختيار المحفظة وإدارتها">
-            <i class="fa-solid fa-vault" style="color: #38bdf8; font-size: 0.92rem;"></i>
-            <select class="wallet-dropdown-compact" id="activeWalletSelect"></select>
+          <!-- جزء اختيار المحفظة النشطة مع تصميم فاخر وأكبر وأوضح -->
+          <div class="wallet-select-cluster" title="اختيار المحفظة المعروضة وإدارتها">
+            <div style="width: 28px; height: 28px; border-radius: 8px; background: rgba(56, 189, 248, 0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i class="fa-solid fa-wallet" style="color: #38bdf8; font-size: 0.98rem;"></i>
+            </div>
+            <select class="wallet-dropdown-compact" id="activeWalletSelect" title="المحفظة النشطة"></select>
             <button type="button" class="btn-add-wallet-mini" id="btnOpenAddWallet" onclick="openModal('walletModal')" title="إضافة محفظة جديدة">
               <i class="fa-solid fa-plus"></i>
             </button>
           </div>
 
-          <!-- أدوات المؤشرات وبورصة الذهب وتغير أسعار العملات -->
+          <!-- أدوات المؤشرات وبورصة الذهب وتغير أسعار العملات بحجم أكبر وأوضح -->
           <div class="tools-pills-cluster">
             <button type="button" class="tool-pill-action gold-pill" onclick="openGoldDrawer()" title="بورصة الذهب وتغير أسعار العملات المباشرة">
               <i class="fa-solid fa-arrow-trend-up"></i>
               <span>الذهب والبورصة</span>
             </button>
 
-
-
-            <div class="currency-pill-btn" id="btnToggleCurrency" title="تبديل العملة المعروضة (EGP / SAR / USD)">
+            <div class="currency-pill-btn" id="btnToggleCurrency" title="تبديل العملة المعروضة (EGP / SAR / USD / ذهب 21)">
               <i class="fa-solid fa-coins"></i>
               <span id="activeCurrencyText">EGP</span>
             </div>
@@ -7807,7 +7885,7 @@
             <label class="form-label-custom">يخص من في العائلة؟</label>
             <select class="form-select-custom" id="inpExpMember">
               <option value="ماهر">👨 ماهر</option>
-              <option value="العائلة" selected>👨‍👩‍👧‍👦 العائلة (التزام عام)</option>
+              <option value="البيت" selected>🏠 البيت (مصروف عام / إيجار / فواتير)</option>
               <option value="أية">👩 أية</option>
               <option value="محمد">👦 محمد</option>
               <option value="مريم">👧 مريم</option>
@@ -8133,7 +8211,7 @@
           <label class="form-label-custom" style="font-size: 0.68rem; margin-bottom: 2px; display: block; font-weight: 700;">
             <i class="fa-solid fa-user-tag" style="color: #38bdf8;"></i> يخص من في العائلة؟ (بالصور الفعلية):
           </label>
-          <input type="hidden" id="inpTxMember" value="العائلة">
+          <input type="hidden" id="inpTxMember" value="البيت">
           <div class="member-photo-picker-strip" id="txMemberPhotoPicker" style="display: flex; gap: 5px; overflow-x: auto; padding-bottom: 2px;">
             <!-- تتولد تلقائياً بالصور الفعلية الحقيقية لأفراد العائلة -->
           </div>
@@ -8235,7 +8313,7 @@
           <label class="form-label-custom">تحميل المصروف على حساب:</label>
           <select class="form-select-custom" id="smsTargetMember">
             <option value="ماهر">👨 ماهر</option>
-            <option value="العائلة">👨‍👩‍👧‍👦 العائلة</option>
+            <option value="البيت">🏠 البيت</option>
             <option value="أية">👩 أية</option>
             <option value="محمد">👦 محمد</option>
             <option value="مريم">👧 مريم</option>
@@ -8433,7 +8511,7 @@
             <label class="form-label-custom">أنت تمثل من في العائلة؟</label>
             <select class="form-select-custom" id="regMember">
               <option value="ماهر">👨 ماهر</option>
-              <option value="العائلة">👨‍👩‍👧‍👦 العائلة</option>
+              <option value="البيت">🏠 البيت</option>
               <option value="أية">👩 أية</option>
               <option value="محمد">👦 محمد</option>
               <option value="مريم">👧 مريم</option>
@@ -8529,7 +8607,7 @@
             <select id="actMemberSelect" class="activity-member-select" onchange="filterActivityLogUI()">
               <option value="all">👥 كافة أفراد العائلة</option>
               <option value="ماهر">👨 ماهر</option>
-              <option value="العائلة">👨‍👩‍👧‍👦 العائلة</option>
+              <option value="البيت">🏠 البيت</option>
               <option value="أية">👩 أية</option>
               <option value="محمد">👦 محمد</option>
               <option value="مريم">👧 مريم</option>
@@ -8725,7 +8803,7 @@
               <label class="form-label-custom">خاص بـ</label>
               <select class="form-select-custom" id="inpNoteMember">
                 <option value="ماهر">ماهر</option>
-                <option value="العائلة">العائلة بالكامل</option>
+                <option value="البيت">مصروفات البيت</option>
                 <option value="أية">أية</option>
                 <option value="محمد">محمد</option>
                 <option value="مريم">مريم</option>
@@ -9093,7 +9171,7 @@
       'النونو': 'data:image/jpeg;base64,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'
     };
     
-    const FAMILY_MEMBERS = ['العائلة', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'الكل'];
+    const FAMILY_MEMBERS = ['البيت', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
     if (typeof MEMBER_AVATARS !== 'undefined') { MEMBER_AVATARS['آية'] = MEMBER_AVATARS['أية']; }
 
     // حالة التطبيق
@@ -9640,7 +9718,7 @@
         if (c === 'shopping' || c === 'supermarket') c = 'food';
         if (c === 'other') c = 'others';
         actualByCat[c] = (actualByCat[c] || 0) + a;
-        const m = t.member || 'العائلة';
+        const m = (t.member === 'العائلة' || !t.member) ? 'البيت' : t.member;
         actualByMember[m] = (actualByMember[m] || 0) + a;
         const mo = (t.date || '').slice(0, 7) || 'الشهر الحالي';
         actualByMonth[mo] = (actualByMonth[mo] || 0) + a;
@@ -9699,7 +9777,7 @@
           dataEstimated = EXPENSE_CATEGORIES.map(c => estByCat[c.id] || 0);
           dataActual = EXPENSE_CATEGORIES.map(c => actualByCat[c.id] || 0);
         } else if (activeComparisonDimension === 'member') {
-          const members = ['العائلة', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
+          const members = ['البيت', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
           labels = members;
           dataReceived = members.map(m => m === 'ماهر' ? receivedTotal : 0);
           dataEstimated = members.map(m => estByMember[m] || 0);
@@ -9819,7 +9897,7 @@
       if (memTableContainer) {
         const membersList = [
           { name: 'ماهر', avatar: MEMBER_AVATARS['ماهر'] },
-          { name: 'العائلة', avatar: MEMBER_AVATARS['العائلة'] },
+          { name: 'البيت', avatar: '' },
           { name: 'أية', avatar: MEMBER_AVATARS['أية'] || MEMBER_AVATARS['آية'] },
           { name: 'محمد', avatar: MEMBER_AVATARS['محمد'] },
           { name: 'مريم', avatar: MEMBER_AVATARS['مريم'] },
@@ -10151,7 +10229,7 @@
       filtered = filtered || getFilteredTransactions();
       totalExp = totalExp !== undefined ? totalExp : (filtered.filter(t => t.type === 'expense').reduce((s, t) => s + (parseFloat(t.amount)||0), 0));
 
-      const membersList = ['ماهر', 'آية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
+      const membersList = ['البيت', 'ماهر', 'آية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
       const memData = {};
       membersList.forEach(m => memData[m] = { sum: 0, count: 0, topCat: {}, topCatAmt: 0 });
 
@@ -10958,7 +11036,7 @@
 
       const title = (titleInp?.value || '').trim();
       const contentText = (contentInp?.value || '').trim();
-      const member = memberInp?.value || 'العائلة';
+      const member = memberInp?.value || 'البيت';
       const priority = priorityInp?.value || 'normal';
 
       if (!title || !contentText) {
@@ -11462,9 +11540,11 @@
     function getFilteredTransactions() {
       let list = [...(state.transactions || [])];
 
-      // 1. تصفية أفراد العائلة (مع دعم كامل لبند أخرى)
+      // 1. تصفية أفراد العائلة (بند الكل إجمالي، بند البيت يشمل العائلة، وباقي الأفراد)
       if (state.currentMemberFilter && state.currentMemberFilter !== 'الكل') {
-        if (state.currentMemberFilter === 'أخرى' || state.currentMemberFilter === 'صدقات وأخرى') {
+        if (state.currentMemberFilter === 'البيت') {
+          list = list.filter(t => t.member === 'البيت' || t.member === 'العائلة' || !t.member);
+        } else if (state.currentMemberFilter === 'أخرى' || state.currentMemberFilter === 'صدقات وأخرى') {
           list = list.filter(t => 
             t.member === 'أخرى' || 
             t.member === 'صدقات وأخرى' ||
@@ -11554,7 +11634,7 @@
       }
 
       const members = [
-        { id: 'العائلة', name: 'العائلة (عام)', icon: 'fa-people-roof', color: '#14b8a6' },
+        { id: 'البيت', name: 'البيت (مصروفات الأسرة)', icon: 'fa-house-chimney', color: '#0ea5e9' },
         { id: 'ماهر', name: 'ماهر', photo: MEMBER_AVATARS['ماهر'] },
         { id: 'أية', name: 'أية (أم العيال)', photo: MEMBER_AVATARS['أية'] || MEMBER_AVATARS['آية'] },
         { id: 'محمد', name: 'محمد', photo: MEMBER_AVATARS['محمد'] },
@@ -11585,7 +11665,7 @@
       // 2. منتقي عضو الحركة في نافذة تسجيل المصروف (txModal)
       const txPicker = document.getElementById('txMemberPhotoPicker');
       if (txPicker) {
-        const currentTxVal = (document.getElementById('inpTxMember') ? document.getElementById('inpTxMember').value : 'العائلة') || 'العائلة';
+        const currentTxVal = (document.getElementById('inpTxMember') ? document.getElementById('inpTxMember').value : 'البيت') || 'البيت';
         txPicker.innerHTML = members.map(m => {
           const isActive = (m.id === currentTxVal || (m.id === 'أية' && (currentTxVal === 'آية' || currentTxVal === 'أية')));
           const avatarHtml = m.photo 
@@ -11722,96 +11802,86 @@
         }
       });
 
-      // باليت ألوان عالية التباين ورموز تعبيرية وتصميم فاخر وأنيق بدون أي تشويه للخطوط العربية
+      // باليت ألوان فاخرة ومتنوعة ذات تباين عالي وأيقونات واضحة معبرة عن كل بند
       const HIGH_CONTRAST_THEMES = {
         food: {
           name: 'طعام ومشتريات',
-          icon: 'fa-cart-shopping',
-          emoji: '🛒',
+          icon: 'fa-basket-shopping',
           accent: '#10b981',
-          gradient: 'linear-gradient(135deg, #10b981, #059669)',
-          bg: 'linear-gradient(145deg, rgba(16, 185, 129, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #10b981, #047857)',
+          bg: 'linear-gradient(145deg, rgba(16, 185, 129, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#10b981'
         },
         daily: {
           name: 'مصروف يومي',
           icon: 'fa-mug-hot',
-          emoji: '☕',
           accent: '#f59e0b',
-          gradient: 'linear-gradient(135deg, #f59e0b, #d97706)',
-          bg: 'linear-gradient(145deg, rgba(245, 158, 11, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #f59e0b, #b45309)',
+          bg: 'linear-gradient(145deg, rgba(245, 158, 11, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#f59e0b'
         },
         bills: {
           name: 'فواتير والتزامات',
-          icon: 'fa-bolt-lightning',
-          emoji: '⚡',
+          icon: 'fa-receipt',
           accent: '#f97316',
-          gradient: 'linear-gradient(135deg, #f97316, #ea580c)',
-          bg: 'linear-gradient(145deg, rgba(249, 115, 22, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #f97316, #c2410c)',
+          bg: 'linear-gradient(145deg, rgba(249, 115, 22, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#f97316'
         },
         transport: {
           name: 'مواصلات وبنزين',
-          icon: 'fa-gas-pump',
-          emoji: '⛽',
+          icon: 'fa-car-side',
           accent: '#0284c7',
-          gradient: 'linear-gradient(135deg, #0284c7, #0369a1)',
-          bg: 'linear-gradient(145deg, rgba(2, 132, 199, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #0284c7, #075985)',
+          bg: 'linear-gradient(145deg, rgba(2, 132, 199, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#0284c7'
         },
         house: {
           name: 'مستلزمات منزل',
           icon: 'fa-couch',
-          emoji: '🛋️',
           accent: '#8b5cf6',
-          gradient: 'linear-gradient(135deg, #8b5cf6, #6d28d9)',
-          bg: 'linear-gradient(145deg, rgba(139, 92, 246, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #8b5cf6, #5b21b6)',
+          bg: 'linear-gradient(145deg, rgba(139, 92, 246, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#8b5cf6'
         },
         health: {
           name: 'صحة وعلاج',
-          icon: 'fa-stethoscope',
-          emoji: '🩺',
+          icon: 'fa-heart-pulse',
           accent: '#ef4444',
-          gradient: 'linear-gradient(135deg, #ef4444, #b91c1c)',
-          bg: 'linear-gradient(145deg, rgba(239, 68, 68, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #ef4444, #991b1b)',
+          bg: 'linear-gradient(145deg, rgba(239, 68, 68, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#ef4444'
         },
         clothes: {
           name: 'ملابس وأحذية',
           icon: 'fa-shirt',
-          emoji: '👕',
           accent: '#ec4899',
-          gradient: 'linear-gradient(135deg, #ec4899, #be185d)',
-          bg: 'linear-gradient(145deg, rgba(236, 72, 153, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #ec4899, #9d174d)',
+          bg: 'linear-gradient(145deg, rgba(236, 72, 153, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#ec4899'
         },
         education: {
           name: 'تعليم ودروس',
-          icon: 'fa-book-open-reader',
-          emoji: '📚',
+          icon: 'fa-graduation-cap',
           accent: '#3b82f6',
-          gradient: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-          bg: 'linear-gradient(145deg, rgba(59, 130, 246, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #3b82f6, #1e40af)',
+          bg: 'linear-gradient(145deg, rgba(59, 130, 246, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#3b82f6'
         },
         other: {
           name: 'أخرى',
           icon: 'fa-cubes-stacked',
-          emoji: '📦',
           accent: '#14b8a6',
-          gradient: 'linear-gradient(135deg, #14b8a6, #0f766e)',
-          bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #14b8a6, #115e59)',
+          bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#14b8a6'
         },
         entertainment: {
           name: 'أخرى',
           icon: 'fa-cubes-stacked',
-          emoji: '📦',
           accent: '#14b8a6',
-          gradient: 'linear-gradient(135deg, #14b8a6, #0f766e)',
-          bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #14b8a6, #115e59)',
+          bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#14b8a6'
         }
       };
@@ -11823,7 +11893,6 @@
         const theme = HIGH_CONTRAST_THEMES[cat.id] || {
           name: cat.name,
           icon: cat.icon || 'fa-tag',
-          emoji: '🏷️',
           accent: cat.color || '#38bdf8',
           gradient: `linear-gradient(135deg, ${cat.color}, #334155)`,
           bg: 'rgba(15, 23, 42, 0.9)',
@@ -11836,22 +11905,23 @@
 
         card.style.cssText = `
           background: ${isLight ? '#ffffff' : theme.bg} !important;
-          border: 1.5px solid ${theme.border} !important;
-          border-radius: 14px !important;
-          padding: 8px 6px 7px !important;
+          border: 1.8px solid ${theme.border} !important;
+          border-radius: 16px !important;
+          padding: 8px 6px 6px !important;
           display: flex !important;
           flex-direction: column !important;
           align-items: center !important;
           justify-content: space-evenly !important;
-          height: 100% !important; min-height: 0 !important;
+          height: 100% !important;
+          min-height: 0 !important;
           cursor: pointer !important;
-          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 10px ${theme.accent}25 !important;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px ${theme.accent}30 !important;
           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
           position: relative !important;
           box-sizing: border-box !important;
         `;
 
-        // عند النقر يتم فتح تسجيل مصروف مباشر للبند أو عرض تفاصيله
+        // عند النقر يتم فتح تسجيل مصروف مباشر للبند
         card.onclick = () => {
           openQuickCategoryExpense(cat.id);
         };
@@ -11862,27 +11932,27 @@
           amtDisplay = '- ' + formatMoney(spent, true);
         }
 
-        const pillBg = spent > 0 ? 'rgba(244, 63, 94, 0.18)' : 'rgba(255, 255, 255, 0.05)';
-        const pillBorder = spent > 0 ? 'rgba(244, 63, 94, 0.5)' : 'rgba(255, 255, 255, 0.12)';
+        const pillBg = spent > 0 ? 'rgba(244, 63, 94, 0.22)' : 'rgba(255, 255, 255, 0.05)';
+        const pillBorder = spent > 0 ? 'rgba(244, 63, 94, 0.6)' : 'rgba(255, 255, 255, 0.12)';
         const pillTextColor = spent > 0 ? '#ff4d6d' : '#94a3b8';
 
         card.innerHTML = `
-          <!-- 1. أيقونة التصنيف الفاخرة ثلاثية الأبعاد -->
+          <!-- 1. أيقونة التصنيف الفاخرة الكبيرة ثلاثية الأبعاد -->
           <div class="cat-icon-bubble" 
-               style="background: ${theme.gradient}; width: 38px; height: 38px; min-width: 38px; min-height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px ${theme.accent}45; margin-bottom: 4px;">
-            <i class="fa-solid ${theme.icon}" style="color: #ffffff; font-size: 1.15rem;"></i>
+               style="background: ${theme.gradient}; width: 48px; height: 48px; min-width: 48px; min-height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 10px ${theme.accent}40;">
+            <i class="fa-solid ${theme.icon}" style="color: #ffffff; font-size: 1.45rem;"></i>
           </div>
 
-          <!-- 2. اسم التصنيف بخط عربي نقي وواضح تماماً وبدون أي أحرف سوداء مشوهة -->
+          <!-- 2. اسم التصنيف بخط عربي نقي وواضح تماماً -->
           <div class="cat-label-text" 
-               style="font-family: inherit; font-size: 0.82rem; font-weight: 800; color: #f8fafc; text-align: center; margin-bottom: 4px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+               style="font-family: inherit; font-size: 0.86rem; font-weight: 800; color: #f8fafc; text-align: center; margin: 3px 0 2px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
             ${theme.name}
           </div>
 
-          <!-- 3. كبسولة المبلغ المصروف بتنسيق محاسبي واضح -->
+          <!-- 3. كبسولة المبلغ المصروف بخط وأرقام أكبر وأكثر وضوحاً -->
           <div class="cat-amount-pill ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
-               style="background: ${pillBg}; border: 1px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 6px; border-radius: 7px; width: 94%; text-align: center; direction: rtl; box-sizing: border-box;">
-            <span style="font-size: 0.72rem; font-weight: 900; line-height: 1.2;">${amtDisplay}</span>
+               style="background: ${pillBg}; border: 1.2px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 6px; border-radius: 8px; width: 94%; text-align: center; direction: rtl; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
+            <span style="font-size: 0.86rem; font-weight: 900; line-height: 1.2; white-space: nowrap;">${amtDisplay}</span>
           </div>
         `;
 
@@ -12268,7 +12338,7 @@
       state.currentMemberFilter = member;
       state.selectedMember = member;
 
-      // عند اختيار شخص معين يتم تعيينه كعضو افتراضي لتسجيل العمليات
+      // عند اختيار شخص معين أو البيت يتم تعيينه كعضو افتراضي لتسجيل العمليات
       if (member !== 'الكل') {
         state.currentUser = member;
       }
@@ -12287,7 +12357,9 @@
       // إعادة رسم وتحديث كافة صفحات البرنامج فوراً
       renderUI();
 
-      const memberDisplayName = (member === 'الكل') ? 'كافة أفراد العائلة' : member;
+      let memberDisplayName = member;
+      if (member === 'الكل') memberDisplayName = 'كافة المصروفات (إجمالي عام)';
+      else if (member === 'البيت') memberDisplayName = 'مصروفات وتكاليف البيت';
       showToast(`👤 تم تصفية العرض على: ${memberDisplayName}`);
     }
 
@@ -12325,16 +12397,21 @@
       }
 
       // الديفولت الأوتوماتيكي:
-      // "وعند فتح تسجيل مصروف جديد فى حالة عدم إختيار شخص يكون الأختيار الأتوماتيك هو العائلة"
+      // عند فتح تسجيل مصروف جديد في حالة عدم اختيار شخص يكون الافتراضي هو "البيت"
       if (memberSel) {
+        let defMember = 'البيت';
         if (type === 'expense') {
-          if (!state.currentMemberFilter || state.currentMemberFilter === 'الكل') {
-            memberSel.value = 'العائلة';
+          if (state.currentMemberFilter && state.currentMemberFilter !== 'الكل') {
+            defMember = state.currentMemberFilter;
           } else {
-            memberSel.value = state.currentMemberFilter;
+            defMember = 'البيت';
           }
         } else {
-          memberSel.value = (state.currentMemberFilter && state.currentMemberFilter !== 'الكل') ? state.currentMemberFilter : 'ماهر';
+          defMember = (state.currentMemberFilter && state.currentMemberFilter !== 'الكل') ? state.currentMemberFilter : 'ماهر';
+        }
+        memberSel.value = defMember;
+        if (typeof selectTxMemberPicker === 'function') {
+          selectTxMemberPicker(defMember);
         }
       }
 
@@ -12390,7 +12467,7 @@
         amount: amount,
         label: label,
         category: catInp ? catInp.value : 'other',
-        member: memberInp ? memberInp.value : 'العائلة',
+        member: (memberInp && memberInp.value) ? memberInp.value : 'البيت',
         walletId: walletInp && walletInp.value ? walletInp.value : (state.currentWalletId !== 'all' ? state.currentWalletId : 'wallet-default'),
         date: dateInp && dateInp.value ? dateInp.value : new Date().toISOString().split('T')[0],
         receipt: state.pendingReceiptDataUri || null
@@ -12737,7 +12814,7 @@
         `<option value="${c.id}">${c.name}</option>`
       ).join('');
 
-      const memberOptions = ['العائلة', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'].map(m => 
+      const memberOptions = ['البيت', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'].map(m => 
         `<option value="${m}">${m}</option>`
       ).join('');
 
@@ -12935,7 +13012,7 @@
 
       let list = state.moneyRequests || [];
       if (state.currentMemberFilter && state.currentMemberFilter !== 'الكل') {
-        list = list.filter(r => r.member === state.currentMemberFilter || r.member === 'العائلة');
+        list = list.filter(r => r.member === state.currentMemberFilter || (state.currentMemberFilter === 'البيت' && (r.member === 'البيت' || r.member === 'العائلة')));
       }
 
       const pendingCount = list.filter(r => r.status === 'pending').length;
@@ -13172,7 +13249,7 @@
 
       let list = state.expectedExpenses || [];
       if (state.currentMemberFilter && state.currentMemberFilter !== 'الكل') {
-        list = list.filter(e => e.member === state.currentMemberFilter || e.member === 'العائلة');
+        list = list.filter(e => e.member === state.currentMemberFilter || (state.currentMemberFilter === 'البيت' && (e.member === 'البيت' || e.member === 'العائلة')));
       }
 
       let totUp = 0;
@@ -15435,7 +15512,7 @@ function exportActivityLogExcel() {
       // ملء قائمة الأعضاء بترتيب العائلة أولاً
       const memberSelect = document.getElementById('editTxMember');
       if (memberSelect) {
-        const members = ['العائلة', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
+        const members = ['البيت', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
         memberSelect.innerHTML = members.map(m => `
           <option value="${m}" ${m === tx.member ? 'selected' : ''}>${m}</option>
         `).join('');
