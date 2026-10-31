@@ -17,7 +17,144 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- المكتبات: SheetJS للإكسيل و Chart.js للشارتات التوضيحية -->
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js">
+    catch (e) {
+        console.warn('Sync on reload warning:', e);
+      }
+
+      if ('serviceWorker' in navigator) {
+        try {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          for (const reg of registrations) {
+            await reg.update();
+          }
+        } catch (e) {
+          console.warn('SW update warning:', e);
+        }
+      }
+
+      if ('caches' in window) {
+        try {
+          const keys = await caches.keys();
+          for (const key of keys) {
+            await caches.delete(key);
+          }
+        } catch (e) {
+          console.warn('Caches delete warning:', e);
+        }
+      }
+
+      setTimeout(() => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('_v', Date.now());
+        window.location.href = url.toString();
+      }, 700);
+    }
+
+    // =========================================================================
+    // دوال تفاصيل وتعديل العملية المالية
+    // =========================================================================
+    function openEditTxModal(txId) {
+      const tx = (state.transactions || []).find(t => String(t.id) === String(txId));
+      if (!tx) {
+        showToast('لم يتم العثور على العملية المطلوبة', 'error');
+        return;
+      }
+
+      document.getElementById('editTxId').value = tx.id;
+      document.getElementById('editTxAmount').value = tx.amount || '';
+      document.getElementById('editTxLabel').value = tx.label || '';
+      document.getElementById('editTxDate').value = tx.date || new Date().toISOString().split('T')[0];
+
+      if (tx.type === 'income') {
+        document.getElementById('editTxTypeIncome').checked = true;
+      } else {
+        document.getElementById('editTxTypeExpense').checked = true;
+      }
+
+      // ملء قائمة التصنيفات
+      const catSelect = document.getElementById('editTxCategory');
+      if (catSelect) {
+        const cats = tx.type === 'income' ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
+        catSelect.innerHTML = cats.map(c => `
+          <option value="${c.id}" ${c.id === tx.category ? 'selected' : ''}>${c.name}</option>
+        `).join('');
+      }
+
+      // ملء قائمة المحافظ
+      const walletSelect = document.getElementById('editTxWallet');
+      if (walletSelect) {
+        walletSelect.innerHTML = (state.wallets || []).map(w => `
+          <option value="${w.id}" ${w.id === tx.walletId ? 'selected' : ''}>${w.name}</option>
+        `).join('');
+      }
+
+      // ملء قائمة الأعضاء بترتيب العائلة أولاً
+      const memberSelect = document.getElementById('editTxMember');
+      if (memberSelect) {
+        const members = ['العائلة', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
+        memberSelect.innerHTML = members.map(m => `
+          <option value="${m}" ${m === tx.member ? 'selected' : ''}>${m}</option>
+        `).join('');
+      }
+
+      openModal('editTxModal');
+    }
+
+    function saveEditedTx() {
+      const txId = document.getElementById('editTxId').value;
+      const tx = (state.transactions || []).find(t => String(t.id) === String(txId));
+      if (!tx) {
+        showToast('حدث خطأ في تحديد العملية', 'error');
+        return;
+      }
+
+      const amountVal = parseFloat(document.getElementById('editTxAmount').value);
+      if (isNaN(amountVal) || amountVal <= 0) {
+        showToast('يرجى إدخال مبلغ صحيح أكبر من الصفر', 'error');
+        return;
+      }
+
+      const labelVal = document.getElementById('editTxLabel').value.trim();
+      if (!labelVal) {
+        showToast('يرجى إدخال بيان للعملية', 'error');
+        return;
+      }
+
+      const isIncome = document.getElementById('editTxTypeIncome').checked;
+      const typeVal = isIncome ? 'income' : 'expense';
+      const categoryVal = document.getElementById('editTxCategory').value;
+      const walletVal = document.getElementById('editTxWallet').value;
+      const memberVal = document.getElementById('editTxMember').value;
+      const dateVal = document.getElementById('editTxDate').value;
+
+      // تحديث بيانات العملية
+      tx.amount = amountVal;
+      tx.label = labelVal;
+      tx.type = typeVal;
+      tx.category = categoryVal;
+      tx.walletId = walletVal;
+      tx.member = memberVal;
+      tx.date = dateVal;
+
+      // حفظ الحالة محلياً وسحابياً
+      if (typeof saveState === 'function') {
+        saveState();
+      } else {
+        localStorage.setItem('state_transactions', JSON.stringify(state.transactions));
+      }
+
+      closeModal('editTxModal');
+      showToast('تم حفظ وتعديل العملية بنجاح! ✨', 'success');
+
+      // إعادة رسم الواجهة وقائمة العمليات
+      if (typeof renderUI === 'function') renderUI();
+      if (typeof renderOperationsList === 'function' && typeof getFilteredTransactions === 'function') {
+        renderOperationsList(getFilteredTransactions());
+      }
+    }
+
+</script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
@@ -1581,13 +1718,17 @@
       display: flex;
       flex-direction: column;
       transform: translateX(100%);
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
       border-left: 2px solid var(--gold);
       direction: rtl;
+      pointer-events: none;
+      visibility: hidden;
     }
 
     .side-drawer-panel.open {
       transform: translateX(0);
+      pointer-events: auto;
+      visibility: visible;
     }
 
     .drawer-top-bar {
@@ -3879,19 +4020,45 @@
 
     /* بنود الرصيد الثلاثة في الصفحة الأولى (بدلاً من الشارت الدائري) */
     .kpi-three-strip {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5px;
-      margin: 4px 10px 6px;
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 6px !important;
+      margin: 4px 10px 8px !important;
     }
-    .kpi-three-card.card-balance {
-      grid-column: 1 / -1;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding: 4px 12px;
-      min-height: 28px;
+
+    .kpi-three-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 8px 5px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      min-height: 56px !important;
+      transition: all 0.2s;
+      box-sizing: border-box !important;
+    }
+
+    .card-income {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: linear-gradient(145deg, rgba(16, 185, 129, 0.12), var(--bg-card));
+    }
+
+    .card-expense {
+      border-color: rgba(244, 63, 94, 0.4);
+      background: linear-gradient(145deg, rgba(244, 63, 94, 0.12), var(--bg-card));
+    }
+
+    .card-balance {
+      grid-column: auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border-color: rgba(56, 189, 248, 0.4);
+      background: linear-gradient(145deg, rgba(56, 189, 248, 0.12), var(--bg-card));
     }
 
     .kpi-three-card {
@@ -4311,19 +4478,19 @@
     }
     .period-filter-pill {
       flex: 1;
-      padding: 8px 4px;
-      border-radius: 9px;
+      padding: 9px 8px;
+      border-radius: 11px;
       border: none;
       background: transparent;
       color: #94a3b8;
-      font-size: 0.74rem;
+      font-size: 0.84rem;
       font-weight: 800;
       cursor: pointer;
       transition: all 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 5px;
       font-family: inherit;
       white-space: nowrap;
     }
@@ -4783,12 +4950,12 @@
       border: none;
       color: #38bdf8;
       font-weight: 800;
-      font-size: 0.76rem;
+      font-size: 0.82rem;
       font-family: inherit;
       outline: none;
       cursor: pointer;
       direction: rtl;
-      max-width: 125px;
+      max-width: 150px;
     }
     .btn-add-wallet-mini {
       background: rgba(56, 189, 248, 0.15);
@@ -5228,24 +5395,34 @@
     }
 
     .tool-pill-action.gold-pill {
-      font-size: 0.72rem !important;
-      padding: 4px 8px !important;
-      border-radius: 12px !important;
-      white-space: nowrap !important;
+      background: rgba(234, 179, 8, 0.18);
+      border: 1.5px solid rgba(234, 179, 8, 0.5);
+      color: #fbbf24;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      border-radius: 11px;
     }
 
     .currency-pill-btn {
-      padding: 4px 8px !important;
-      font-size: 0.72rem !important;
-      border-radius: 12px !important;
-      white-space: nowrap !important;
-      cursor: pointer !important;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(245, 158, 11, 0.18);
+      border: 1.5px solid #f59e0b;
+      color: #fbbf24;
+      padding: 6px 12px;
+      border-radius: 11px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
     }
 
         /* بطاقات الرصيد الثلاثة المتناسقة بدقة: صف أول (إيداع وسحب)، صف ثان (رصيد حالي)، بحجم وتناسب مثالي */
     .kpi-three-strip {
       display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
+      grid-template-columns: repeat(3, 1fr) !important;
       gap: 6px !important;
       margin: 6px 10px 8px !important;
       width: calc(100% - 20px) !important;
@@ -5264,7 +5441,7 @@
     }
 
     .kpi-three-card.card-balance {
-      grid-column: 1 / -1 !important;
+      grid-column: auto !important;
       background: linear-gradient(135deg, rgba(2, 132, 199, 0.22), rgba(15, 23, 42, 0.95)) !important;
       border-color: rgba(56, 189, 248, 0.45) !important;
       padding: 6px 12px !important;
@@ -5618,7 +5795,7 @@
               /* بطاقات الرصيد الثلاثة المتناسقة بدقة: صف أول (إيداع وسحب)، صف ثان (رصيد حالي)، بحجم وتناسب مثالي */
     .kpi-three-strip {
       display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
+      grid-template-columns: repeat(3, 1fr) !important;
       gap: 6px !important;
       margin: 6px 10px 8px !important;
       width: calc(100% - 20px) !important;
@@ -5637,7 +5814,7 @@
     }
 
     .kpi-three-card.card-balance {
-      grid-column: 1 / -1 !important;
+      grid-column: auto !important;
       background: linear-gradient(135deg, rgba(2, 132, 199, 0.22), rgba(15, 23, 42, 0.95)) !important;
       border-color: rgba(56, 189, 248, 0.45) !important;
       padding: 6px 12px !important;
@@ -6428,7 +6605,7 @@
     /* 3. تكبير أرقام الصرف والإيداع والرصيد الفعلي */
     .kpi-three-strip {
       display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
+      grid-template-columns: repeat(3, 1fr) !important;
       gap: 5px !important;
       margin: 2px 4px !important;
       width: calc(100% - 8px) !important;
@@ -6615,6 +6792,54 @@
       }).catch(function(e) {});
     }
   </script>
+
+    /* ضمان تناسق كروت المؤشرات الثلاثة في صف واحد على كافة الشاشات */
+    .kpi-three-strip {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 5px !important;
+      margin: 4px 8px 8px !important;
+      width: calc(100% - 16px) !important;
+      box-sizing: border-box !important;
+    }
+    .kpi-three-card {
+      padding: 7px 4px !important;
+      min-height: 54px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      border-radius: 12px !important;
+      box-sizing: border-box !important;
+    }
+    .kpi-three-card .kpi-three-label {
+      font-size: 0.68rem !important;
+      font-weight: 800 !important;
+      margin-bottom: 2px !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      width: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 3px !important;
+    }
+    .kpi-three-card .kpi-three-value {
+      font-size: 0.78rem !important;
+      font-weight: 900 !important;
+      white-space: nowrap !important;
+      direction: rtl !important;
+    }
+    .card-balance {
+      grid-column: auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
 </head>
 <body>
 
@@ -6653,6 +6878,14 @@
       <!-- تم نقل أدوات البورصة والذهب والحاسبة والضبط إلى صفحة التحليلات لتوفير مساحة نقية ومريحة بالجوال -->
       <div style="display: none;" id="legacyHeaderToolsAnchor"></div>
       <div class="avatars-container" id="avatarsContainer">
+        <!-- الكل -->
+        <div class="avatar-card" data-member="الكل" onclick="selectMember('الكل')">
+          <div class="avatar-bubble" style="background: linear-gradient(135deg, #0f766e, #14b8a6); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+            👨‍👩‍👧‍👦
+          </div>
+          <span class="avatar-name-label">العائلة</span>
+        </div>
+
         <!-- ماهر -->
         <div class="avatar-card active" data-member="ماهر" onclick="selectMember('ماهر')">
           <div class="avatar-bubble">
@@ -6661,13 +6894,7 @@
           <span class="avatar-name-label">ماهر</span>
         </div>
 
-        <!-- الكل -->
-        <div class="avatar-card" data-member="الكل" onclick="selectMember('الكل')">
-          <div class="avatar-bubble" style="background: linear-gradient(135deg, #0f766e, #14b8a6); display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
-            👨‍👩‍👧‍👦
-          </div>
-          <span class="avatar-name-label">العائلة</span>
-        </div>
+
 
         <!-- أية -->
         <div class="avatar-card" data-member="أية" onclick="selectMember('أية')">
@@ -6798,9 +7025,8 @@
         <!-- شريط الأدوات المالي الاحترافي أسفل اختيار التاريخ (المحفظة، البورصة والذهب، الشارتات، تبديل العملات) -->
         <div class="sub-period-tools-bar">
           <!-- جزء اختيار المحفظة النشطة وإضافة محفظة -->
-          <div class="wallet-select-cluster">
-            <i class="fa-solid fa-vault" style="color: #38bdf8; font-size: 0.85rem;"></i>
-            <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700;">المحفظة:</span>
+          <div class="wallet-select-cluster" title="اختيار المحفظة وإدارتها">
+            <i class="fa-solid fa-vault" style="color: #38bdf8; font-size: 0.92rem;"></i>
             <select class="wallet-dropdown-compact" id="activeWalletSelect"></select>
             <button type="button" class="btn-add-wallet-mini" id="btnOpenAddWallet" onclick="openModal('walletModal')" title="إضافة محفظة جديدة">
               <i class="fa-solid fa-plus"></i>
@@ -6840,14 +7066,7 @@
             <div class="kpi-three-value" id="topCardBalance">0.00 ج.م</div>
           </div>
         </div>
-        <div class="quick-actions-bar">
-          <button class="btn-quick-action btn-quick-expense" onclick="openTxModal('expense')" id="btnQuickExpense">
-            <i class="fa-solid fa-minus"></i> تسجيل مصروف جديد
-          </button>
-          <button class="btn-quick-action btn-quick-income" onclick="openTxModal('income')" id="btnQuickIncome">
-            <i class="fa-solid fa-plus"></i> تسجيل دخل جديد
-          </button>
-        </div>
+
 
 
 
@@ -7298,6 +7517,28 @@
       </div>
 
       <div class="page-view" id="viewRequests" style="display: none;">
+        <!-- زر وقسم إدارة وتسجيل الدخل والإيداعات المنقول من المصاريف -->
+        <div class="income-management-banner" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(15, 23, 42, 0.85)); border: 1.5px solid rgba(16, 185, 129, 0.4); border-radius: 14px; padding: 10px 12px; margin-bottom: 12px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.12);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 9px; background: rgba(16, 185, 129, 0.2); display: flex; align-items: center; justify-content: center; color: #10b981; font-size: 1rem;">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+              </div>
+              <div>
+                <div style="font-size: 0.88rem; font-weight: 800; color: #f8fafc;">تسجيل ومتابعة الدخل والإيداعات</div>
+                <div style="font-size: 0.68rem; color: #94a3b8;">إضافة دخل جديد أو استعراض كشف وسجل الإيداعات السابقة</div>
+              </div>
+            </div>
+            <span style="background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); padding: 2px 7px; border-radius: 6px; font-size: 0.68rem; font-weight: 800;">
+              إيداعات
+            </span>
+          </div>
+          <button type="button" onclick="openIncomeChoiceModal()" style="width: 100%; background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; border: none; border-radius: 10px; padding: 9px 12px; font-weight: 800; font-size: 0.84rem; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);">
+            <i class="fa-solid fa-circle-dollar-to-slot"></i>
+            <span>إدارة الدخل والإيداعات (تسجيل جديد / عرض السجل)</span>
+          </button>
+        </div>
+
         
         <!-- شريط التبديل بين إنشاء طلب جديد وعرض الطلبات السابقة -->
         <div class="requests-view-switcher" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; background: rgba(15, 23, 42, 0.7); padding: 5px; border-radius: 14px; border: 1px solid var(--border-subtle);">
@@ -7700,12 +7941,27 @@
               طي / إظهار
             </button>
           </div>
-          <div id="tvChartContainer" style="width: 100%; height: 110px; border-radius: 8px; overflow: hidden; transition: all 0.3s;">
+          <div id="tvChartContainer" style="width: 100%; height: 160px; border-radius: 8px; overflow: hidden; transition: all 0.3s;">
             <iframe 
               src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=ar_AE#%7B%22symbol%22%3A%22TVC%3AGOLD%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22dateRange%22%3A%221M%22%2C%22colorTheme%22%3A%22dark%22%2C%22trendLineColor%22%3A%22rgba(245%2C%20158%2C%2011%2C%201)%22%2C%22underLineColor%22%3A%22rgba(245%2C%20158%2C%2011%2C%200.3)%22%2C%22underLineBottomColor%22%3A%22rgba(245%2C%20158%2C%2011%2C%200)%22%2C%22isTransparent%22%3Afalse%2C%22autosize%22%3Atrue%7D" 
               style="width: 100%; height: 100%; border: none;" 
               title="TradingView Gold Chart">
             </iframe>
+          </div>
+        </div>
+
+        <!-- ملخص أصول العائلة بالذهب والعملات لإلغاء أي فراغات سفلية -->
+        <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 10px 12px; margin-top: 4px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <div style="font-size: 0.76rem; font-weight: 800; color: #fbbf24; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-scale-balanced"></i>
+              <span>تقويم الرصيد الفعلي الحالي بالذهب</span>
+            </div>
+            <span style="font-size: 0.65rem; color: #34d399; font-weight: 700;">عيار 21 مباشر</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.72rem; color: #94a3b8;">ما يعادله الرصيد الحالي:</span>
+            <span id="drawerGoldEquivBal" style="font-size: 0.86rem; font-weight: 900; color: #fde047;">0.00 جم ذهب 21</span>
           </div>
         </div>
 
@@ -8481,6 +8737,24 @@
           <button type="button" class="btn-modal-close" onclick="closeModal('settingsModal')" aria-label="إغلاق">&times;</button>
         </div>
         <div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 14px;">
+        <!-- زر إعادة تحميل وتحديث التطبيق والمزامنة السحابية -->
+        <div class="settings-action-card" style="background: rgba(56, 189, 248, 0.08); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 12px 14px; margin-bottom: 14px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-arrows-rotate" style="color: #38bdf8; font-size: 1.1rem;"></i>
+              <span style="font-weight: 800; font-size: 0.88rem; color: #f8fafc;">إعادة تحميل وتحديث التطبيق</span>
+            </div>
+            <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; font-size: 0.68rem; font-weight: 800; padding: 2px 7px; border-radius: 6px;">تحديث ومزامنة فورية</span>
+          </div>
+          <p style="font-size: 0.74rem; color: #94a3b8; margin: 0 0 10px 0; line-height: 1.4;">
+            يقوم بإعادة تحميل البرنامج بالكامل من الخادم، جلب كافة التطويرات والتحديثات الجديدة، مسح الكاش المؤقت، وإعادة تشغيل المزامنة السحابية الفورية.
+          </p>
+          <button type="button" class="btn-primary-custom" onclick="forceAppReloadAndSync()" style="width: 100%; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; padding: 9px; border-radius: 10px; font-weight: 800; font-size: 0.82rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <i class="fa-solid fa-rotate"></i>
+            <span>إعادة التحميل وتحديث التطبيق الآن</span>
+          </button>
+        </div>
+
           <!-- بطاقة الحساب والمستخدم الحالي (المدمجة مع الضبط والإعدادات) -->
           <div class="app-card-panel" style="margin: 0; background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(56, 189, 248, 0.3);">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
@@ -8719,7 +8993,7 @@
       { id: 'health', name: 'صحة وعلاج', icon: 'fa-stethoscope', color: '#f43f5e', emoji: '🩺' },
       { id: 'clothes', name: 'ملابس وأحذية', icon: 'fa-shirt', color: '#ec4899', emoji: '👔' },
       { id: 'education', name: 'تعليم ودروس', icon: 'fa-book-open-reader', color: '#3b82f6', emoji: '📚' },
-      { id: 'entertainment', name: 'ترفيه وألعاب', icon: 'fa-gamepad', color: '#14b8a6', emoji: '🎡' }
+      { id: 'other', name: 'أخرى', icon: 'fa-cubes-stacked', color: '#14b8a6', emoji: '📦' }
     ];
 
     const INCOME_CATEGORIES = [
@@ -8743,7 +9017,7 @@
       'النونو': 'data:image/jpeg;base64,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'
     };
     
-    const FAMILY_MEMBERS = ['ماهر', 'العائلة', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'الكل'];
+    const FAMILY_MEMBERS = ['العائلة', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'الكل'];
     if (typeof MEMBER_AVATARS !== 'undefined') { MEMBER_AVATARS['آية'] = MEMBER_AVATARS['أية']; }
 
     // حالة التطبيق
@@ -9349,7 +9623,7 @@
           dataEstimated = EXPENSE_CATEGORIES.map(c => estByCat[c.id] || 0);
           dataActual = EXPENSE_CATEGORIES.map(c => actualByCat[c.id] || 0);
         } else if (activeComparisonDimension === 'member') {
-          const members = ['ماهر', 'العائلة', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
+          const members = ['العائلة', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
           labels = members;
           dataReceived = members.map(m => m === 'ماهر' ? receivedTotal : 0);
           dataEstimated = members.map(m => estByMember[m] || 0);
@@ -10744,12 +11018,17 @@
       const num = Number(n) || 0;
       if (state.currency === 'SAR') return num * (state.rates.SAR || 0.067);
       if (state.currency === 'USD') return num * (state.rates.USD || 0.0178);
+      if (state.currency === 'GOLD21') {
+        const g21 = (state.market && state.market.gold21) ? Number(state.market.gold21) : 6375;
+        return g21 > 0 ? (num / g21) : 0;
+      }
       return num;
     }
 
     function getCurrencySymbol() {
       if (state.currency === 'SAR') return 'ر.س';
       if (state.currency === 'USD') return '$';
+      if (state.currency === 'GOLD21') return 'جم ذهب 21';
       return 'ج.م';
     }
 
@@ -10757,6 +11036,12 @@
       const num = Number(n) || 0;
       const converted = convertAmount(num);
       const isUSD = state.currency === 'USD';
+      const isGold = state.currency === 'GOLD21';
+      
+      if (isGold) {
+        let formatted = converted.toLocaleString('en-US', { minimumFractionDigits: compact ? 2 : 3, maximumFractionDigits: compact ? 2 : 3 });
+        return `${formatted} جم ذهب 21`;
+      }
       
       if (compact) {
         let formatted = Math.round(converted).toLocaleString('en-US');
@@ -11193,8 +11478,8 @@
       }
 
       const members = [
-        { id: 'ماهر', name: 'ماهر', photo: MEMBER_AVATARS['ماهر'] },
         { id: 'العائلة', name: 'العائلة (عام)', icon: 'fa-people-roof', color: '#14b8a6' },
+        { id: 'ماهر', name: 'ماهر', photo: MEMBER_AVATARS['ماهر'] },
         { id: 'أية', name: 'أية (أم العيال)', photo: MEMBER_AVATARS['أية'] || MEMBER_AVATARS['آية'] },
         { id: 'محمد', name: 'محمد', photo: MEMBER_AVATARS['محمد'] },
         { id: 'مريم', name: 'مريم', photo: MEMBER_AVATARS['مريم'] },
@@ -11355,14 +11640,13 @@
         if (t.type === 'expense') {
           let c = t.category;
           if (c === 'shopping' || c === 'supermarket') c = 'food';
-          if (c === 'kids') c = 'entertainment';
-          if (c === 'gifts') c = 'entertainment';
-          if (c === 'others' || c === 'other') c = 'daily';
+          if (c === 'kids' || c === 'gifts' || c === 'entertainment') c = 'other';
+          if (c === 'others') c = 'other';
           catTotals[c] = (catTotals[c] || 0) + (Number(t.amount) || 0);
         }
       });
 
-      // باليت ألوان عالية التباين ورموز تعبيرية غنية وأكثر احترافية للـ 9 بنود الأساسية
+      // باليت ألوان عالية التباين ورموز تعبيرية وتصميم فاخر وأنيق بدون أي تشويه للخطوط العربية
       const HIGH_CONTRAST_THEMES = {
         food: {
           name: 'طعام ومشتريات',
@@ -11370,7 +11654,7 @@
           emoji: '🛒',
           accent: '#10b981',
           gradient: 'linear-gradient(135deg, #10b981, #059669)',
-          bg: 'linear-gradient(145deg, rgba(16, 185, 129, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(16, 185, 129, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#10b981'
         },
         daily: {
@@ -11379,7 +11663,7 @@
           emoji: '☕',
           accent: '#f59e0b',
           gradient: 'linear-gradient(135deg, #f59e0b, #d97706)',
-          bg: 'linear-gradient(145deg, rgba(245, 158, 11, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(245, 158, 11, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#f59e0b'
         },
         bills: {
@@ -11388,7 +11672,7 @@
           emoji: '⚡',
           accent: '#f97316',
           gradient: 'linear-gradient(135deg, #f97316, #ea580c)',
-          bg: 'linear-gradient(145deg, rgba(249, 115, 22, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(249, 115, 22, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#f97316'
         },
         transport: {
@@ -11397,7 +11681,7 @@
           emoji: '⛽',
           accent: '#0284c7',
           gradient: 'linear-gradient(135deg, #0284c7, #0369a1)',
-          bg: 'linear-gradient(145deg, rgba(2, 132, 199, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(2, 132, 199, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#0284c7'
         },
         house: {
@@ -11406,25 +11690,25 @@
           emoji: '🛋️',
           accent: '#8b5cf6',
           gradient: 'linear-gradient(135deg, #8b5cf6, #6d28d9)',
-          bg: 'linear-gradient(145deg, rgba(139, 92, 246, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(139, 92, 246, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#8b5cf6'
         },
         health: {
           name: 'صحة وعلاج',
           icon: 'fa-stethoscope',
           emoji: '🩺',
-          accent: '#f43f5e',
-          gradient: 'linear-gradient(135deg, #f43f5e, #be123c)',
-          bg: 'linear-gradient(145deg, rgba(244, 63, 94, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
-          border: '#f43f5e'
+          accent: '#ef4444',
+          gradient: 'linear-gradient(135deg, #ef4444, #b91c1c)',
+          bg: 'linear-gradient(145deg, rgba(239, 68, 68, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          border: '#ef4444'
         },
         clothes: {
           name: 'ملابس وأحذية',
           icon: 'fa-shirt',
-          emoji: '👔',
+          emoji: '👕',
           accent: '#ec4899',
           gradient: 'linear-gradient(135deg, #ec4899, #be185d)',
-          bg: 'linear-gradient(145deg, rgba(236, 72, 153, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(236, 72, 153, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#ec4899'
         },
         education: {
@@ -11433,16 +11717,25 @@
           emoji: '📚',
           accent: '#3b82f6',
           gradient: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-          bg: 'linear-gradient(145deg, rgba(59, 130, 246, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(59, 130, 246, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#3b82f6'
         },
-        entertainment: {
-          name: 'ترفيه وألعاب',
-          icon: 'fa-gamepad',
-          emoji: '🎡',
+        other: {
+          name: 'أخرى',
+          icon: 'fa-cubes-stacked',
+          emoji: '📦',
           accent: '#14b8a6',
           gradient: 'linear-gradient(135deg, #14b8a6, #0f766e)',
-          bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.18) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          border: '#14b8a6'
+        },
+        entertainment: {
+          name: 'أخرى',
+          icon: 'fa-cubes-stacked',
+          emoji: '📦',
+          accent: '#14b8a6',
+          gradient: 'linear-gradient(135deg, #14b8a6, #0f766e)',
+          bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.16) 0%, rgba(15, 23, 42, 0.95) 100%)',
           border: '#14b8a6'
         }
       };
@@ -11450,7 +11743,7 @@
       const isLight = document.body.classList.contains('light-theme');
 
       EXPENSE_CATEGORIES.forEach(cat => {
-        const spent = catTotals[cat.id] || 0;
+        const spent = catTotals[cat.id] || (cat.id === 'other' ? (catTotals['entertainment'] || 0) : 0);
         const theme = HIGH_CONTRAST_THEMES[cat.id] || {
           name: cat.name,
           icon: cat.icon || 'fa-tag',
@@ -11469,14 +11762,14 @@
           background: ${isLight ? '#ffffff' : theme.bg} !important;
           border: 1.5px solid ${theme.border} !important;
           border-radius: 14px !important;
-          padding: 8px 4px 6px !important;
+          padding: 8px 6px 7px !important;
           display: flex !important;
           flex-direction: column !important;
           align-items: center !important;
           justify-content: space-between !important;
-          min-height: 84px !important;
+          min-height: 96px !important;
           cursor: pointer !important;
-          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3), 0 0 10px ${theme.accent}20 !important;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35), 0 0 10px ${theme.accent}25 !important;
           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
           position: relative !important;
           box-sizing: border-box !important;
@@ -11487,16 +11780,10 @@
           openQuickCategoryExpense(cat.id);
         };
 
-        // تنسيق ذكي متناسق للأرقام والعملة المحولة ديناميكياً مع حجم المربع
         let amtDisplay = '0.00 ' + getCurrencySymbol();
         if (state.currency === 'USD') amtDisplay = '$0.00';
-        let fontSz = '0.78rem';
         if (spent > 0) {
-          const conv = convertAmount(spent);
           amtDisplay = '- ' + formatMoney(spent, true);
-          if (conv >= 100000) fontSz = '0.62rem';
-          else if (conv >= 10000) fontSz = '0.68rem';
-          else fontSz = '0.74rem';
         }
 
         const pillBg = spent > 0 ? 'rgba(244, 63, 94, 0.18)' : 'rgba(255, 255, 255, 0.05)';
@@ -11504,22 +11791,22 @@
         const pillTextColor = spent > 0 ? '#ff4d6d' : '#94a3b8';
 
         card.innerHTML = `
-          <!-- 1. أيقونة التصنيف -->
+          <!-- 1. أيقونة التصنيف الفاخرة ثلاثية الأبعاد -->
           <div class="cat-icon-bubble" 
-               style="background: ${theme.gradient}; width: 34px; height: 34px; min-width: 34px; min-height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px ${theme.accent}40; margin-bottom: 4px;">
-            <i class="fa-solid ${theme.icon}" style="color: #ffffff; font-size: 1.05rem;"></i>
+               style="background: ${theme.gradient}; width: 38px; height: 38px; min-width: 38px; min-height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 10px ${theme.accent}45; margin-bottom: 4px;">
+            <i class="fa-solid ${theme.icon}" style="color: #ffffff; font-size: 1.15rem;"></i>
           </div>
 
-          <!-- 2. اسم التصنيف بدون أي بتر أو اختصار نهائياً -->
+          <!-- 2. اسم التصنيف بخط عربي نقي وواضح تماماً وبدون أي أحرف سوداء مشوهة -->
           <div class="cat-label-text" 
-               style="font-size: 0.68rem; font-weight: 800; color: #f8fafc; text-align: center; margin-bottom: 3px; width: 100%; line-height: 1.15; height: 26px; display: flex; align-items: center; justify-content: center; word-break: break-word;">
-            ${theme.emoji} ${theme.name}
+               style="font-family: 'Cairo', sans-serif; font-size: 0.82rem; font-weight: 800; color: #f8fafc; text-align: center; margin-bottom: 4px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            ${theme.name}
           </div>
 
-          <!-- 3. كبسولة المبلغ المصروف -->
+          <!-- 3. كبسولة المبلغ المصروف بتنسيق محاسبي واضح -->
           <div class="cat-amount-pill ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
-               style="background: ${pillBg}; border: 1px solid ${pillBorder}; color: ${pillTextColor}; padding: 2px 4px; border-radius: 6px; width: 94%; text-align: center; direction: rtl; box-sizing: border-box;">
-            <span style="font-size: 0.70rem; font-weight: 900; line-height: 1.2;">${amtDisplay}</span>
+               style="background: ${pillBg}; border: 1px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 6px; border-radius: 7px; width: 94%; text-align: center; direction: rtl; box-sizing: border-box;">
+            <span style="font-size: 0.72rem; font-weight: 900; line-height: 1.2;">${amtDisplay}</span>
           </div>
         `;
 
@@ -11822,6 +12109,22 @@
 
           const card = document.createElement('div');
           card.className = 'ops-tx-card-lux';
+          card.setAttribute('data-tx-id', tx.id);
+          card.title = 'اضغط مرتين لعرض التفاصيل وتعديل العملية';
+          card.ondblclick = (e) => {
+            e.stopPropagation();
+            openEditTxModal(tx.id);
+          };
+          let lastTouchOps = 0;
+          card.addEventListener('touchend', (e) => {
+            if (e.target.closest('.ops-tx-del-btn') || e.target.closest('.ops-tx-edit-btn') || e.target.closest('[onclick*="openReceiptLightbox"]')) return;
+            const now = Date.now();
+            if (now - lastTouchOps < 350) {
+              e.preventDefault();
+              openEditTxModal(tx.id);
+            }
+            lastTouchOps = now;
+          });
           card.innerHTML = `
             <div class="ops-tx-right-cluster">
               <div class="ops-tx-icon-bubble" style="background: linear-gradient(135deg, ${cat.color}, ${cat.color}99); color: #ffffff;">
@@ -11848,6 +12151,9 @@
               <span class="ops-tx-amount-text" style="color: ${color};">
                 ${sign}${formatMoney(amt)}
               </span>
+              <button class="ops-tx-edit-btn" onclick="openEditTxModal('${tx.id}')" title="تعديل وتفاصيل الحركة" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; margin-left: 4px; transition: all 0.2s;">
+                <i class="fa-solid fa-pen-to-square" style="font-size: 0.76rem;"></i>
+              </button>
               <button class="ops-tx-del-btn" onclick="deleteTx('${tx.id}')" title="حذف الحركة">
                 <i class="fa-solid fa-trash-can"></i>
               </button>
@@ -12355,7 +12661,7 @@
         `<option value="${c.id}">${c.name}</option>`
       ).join('');
 
-      const memberOptions = ['أية', 'ماهر', 'محمد', 'مريم', 'الحاجة', 'النونو', 'العائلة', 'أخرى'].map(m => 
+      const memberOptions = ['العائلة', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'].map(m => 
         `<option value="${m}">${m}</option>`
       ).join('');
 
@@ -13929,9 +14235,10 @@
     function toggleCurrency() {
       if (state.currency === 'EGP') state.currency = 'SAR';
       else if (state.currency === 'SAR') state.currency = 'USD';
+      else if (state.currency === 'USD') state.currency = 'GOLD21';
       else state.currency = 'EGP';
       const el = document.getElementById('activeCurrencyText');
-      if (el) el.textContent = state.currency;
+      if (el) el.textContent = state.currency === 'GOLD21' ? 'ذهب 21' : state.currency;
       
       // إعادة رسم كامل الواجهة والبطاقات والرسوم البيانية بالعملة الجديدة
       renderUI();
@@ -14748,5 +15055,371 @@ function exportActivityLogExcel() {
   <div id="printableStatementSheet">
     <!-- تتولد محتويات كشف الحساب المحاسبي الكامل ديناميكياً قبل الطباعة -->
   </div>
+
+    <!-- ==============================================
+         نافذة اختيار إجراء الدخل (تسجيل جديد / عرض السجل)
+         ============================================== -->
+    <div class="modal-overlay modal-overlay-custom" id="incomeChoiceModal">
+      <div class="modal-content-card" style="max-width: 440px; border-radius: 20px; padding: 16px 18px;">
+        <div class="modal-head" style="margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">
+          <h3 class="modal-title-custom" style="font-size: 0.95rem; color: #10b981; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-circle-dollar-to-slot"></i>
+            <span>إدارة الدخل والإيداعات المالية</span>
+          </h3>
+          <button type="button" class="btn-modal-close" onclick="closeModal('incomeChoiceModal')">&times;</button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <!-- خيار 1: تسجيل دخل جديد -->
+          <button type="button" onclick="closeModal('incomeChoiceModal'); openTxModal('income');" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05)); border: 1.5px solid #10b981; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: right; transition: all 0.2s;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #10b981, #059669); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; flex-shrink: 0;">
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <div>
+              <div style="font-size: 0.88rem; font-weight: 800; color: #f8fafc;">تسجيل إيداع / دخل جديد</div>
+              <div style="font-size: 0.72rem; color: #94a3b8;">إضافة مبلغ جديد إلى إحدى المحافظ وتحديث الرصيد فوراً</div>
+            </div>
+          </button>
+
+          <!-- خيار 2: عرض التسجيلات السابقة -->
+          <button type="button" onclick="closeModal('incomeChoiceModal'); openIncomeHistoryModal();" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(56, 189, 248, 0.05)); border: 1.5px solid #38bdf8; border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: right; transition: all 0.2s;">
+            <div style="width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #0284c7, #0369a1); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; flex-shrink: 0;">
+              <i class="fa-solid fa-table-list"></i>
+            </div>
+            <div>
+              <div style="font-size: 0.88rem; font-weight: 800; color: #f8fafc;">عرض التسجيلات السابقة</div>
+              <div style="font-size: 0.72rem; color: #94a3b8;">استعراض كشف وسجل كافة الإيداعات السابقة بالتفصيل</div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         نافذة عرض سجل الإيداعات السابقة
+         ============================================== -->
+    <div class="modal-overlay modal-overlay-custom" id="incomeHistoryModal">
+      <div class="modal-content-card" style="max-width: 550px; max-height: 90vh; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column;">
+        <div class="modal-head" style="margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">
+          <h3 class="modal-title-custom" style="font-size: 0.95rem; color: #10b981; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-receipt"></i>
+            <span>سجل عمليات الإيداع والدخل السابقة</span>
+          </h3>
+          <button type="button" class="btn-modal-close" onclick="closeModal('incomeHistoryModal')">&times;</button>
+        </div>
+        <div id="incomeHistorySummary" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 8px 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.76rem; font-weight: 800; color: #94a3b8;">إجمالي مبالغ الإيداعات:</span>
+          <span id="incomeHistoryTotalAmt" style="font-size: 0.92rem; font-weight: 900; color: #10b981;">+ 0.00 ج.م</span>
+        </div>
+        <div id="incomeHistoryListContainer" style="overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 8px; padding-left: 2px;">
+          <!-- تتولد ديناميكياً -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         نافذة تعديل العملية المالية (Edit Transaction Modal)
+         ============================================== -->
+    <div class="modal-overlay modal-overlay-custom" id="editTxModal">
+      <div class="modal-content-card" style="max-width: 480px; max-height: 92vh; border-radius: 20px; padding: 14px 18px; display: flex; flex-direction: column;">
+        <div class="modal-head" style="margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">
+          <h3 class="modal-title-custom" style="font-size: 0.95rem; color: #38bdf8; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>تفاصيل وتعديل العملية المالية</span>
+          </h3>
+          <button type="button" class="btn-modal-close" onclick="closeModal('editTxModal')">&times;</button>
+        </div>
+        <form id="formEditTx" onsubmit="event.preventDefault(); saveEditedTx();" style="display: flex; flex-direction: column; gap: 10px; overflow-y: auto;">
+          <input type="hidden" id="editTxId">
+          
+          <!-- نوع العملية -->
+          <div class="form-group-custom" style="margin-bottom: 0;">
+            <label class="form-label-custom" style="font-size: 0.74rem; font-weight: 800; margin-bottom: 3px;">نوع العملية:</label>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <label style="background: rgba(244, 63, 94, 0.12); border: 1.5px solid rgba(244, 63, 94, 0.4); border-radius: 8px; padding: 6px; text-align: center; cursor: pointer; font-size: 0.78rem; font-weight: 800; color: #ff4d6d; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <input type="radio" name="editTxType" id="editTxTypeExpense" value="expense"> مصروف
+              </label>
+              <label style="background: rgba(16, 185, 129, 0.12); border: 1.5px solid rgba(16, 185, 129, 0.4); border-radius: 8px; padding: 6px; text-align: center; cursor: pointer; font-size: 0.78rem; font-weight: 800; color: #34d399; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <input type="radio" name="editTxType" id="editTxTypeIncome" value="income"> دخل / إيداع
+              </label>
+            </div>
+          </div>
+
+          <!-- المبلغ -->
+          <div class="form-group-custom" style="margin-bottom: 0;">
+            <label class="form-label-custom" style="font-size: 0.74rem; font-weight: 800; margin-bottom: 3px;">المبلغ (ج.م):</label>
+            <input type="number" step="0.01" class="form-input-custom" id="editTxAmount" required style="font-size: 1.1rem; font-weight: 900; text-align: center; color: #38bdf8; height: 40px;">
+          </div>
+
+          <!-- البيان / الوصف -->
+          <div class="form-group-custom" style="margin-bottom: 0;">
+            <label class="form-label-custom" style="font-size: 0.74rem; font-weight: 800; margin-bottom: 3px;">البيان / الوصف:</label>
+            <input type="text" class="form-input-custom" id="editTxLabel" required style="font-size: 0.85rem; height: 38px;">
+          </div>
+
+          <!-- التصنيف والمحفظة في صف واحد -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div class="form-group-custom" style="margin-bottom: 0;">
+              <label class="form-label-custom" style="font-size: 0.74rem; font-weight: 800; margin-bottom: 3px;">التصنيف:</label>
+              <select class="form-input-custom" id="editTxCategory" style="font-size: 0.80rem; height: 38px;"></select>
+            </div>
+            <div class="form-group-custom" style="margin-bottom: 0;">
+              <label class="form-label-custom" style="font-size: 0.74rem; font-weight: 800; margin-bottom: 3px;">المحفظة:</label>
+              <select class="form-input-custom" id="editTxWallet" style="font-size: 0.80rem; height: 38px;"></select>
+            </div>
+          </div>
+
+          <!-- الشخص والتاريخ في صف واحد -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div class="form-group-custom" style="margin-bottom: 0;">
+              <label class="form-label-custom" style="font-size: 0.74rem; font-weight: 800; margin-bottom: 3px;">يخص من في العائلة:</label>
+              <select class="form-input-custom" id="editTxMember" style="font-size: 0.80rem; height: 38px;"></select>
+            </div>
+            <div class="form-group-custom" style="margin-bottom: 0;">
+              <label class="form-label-custom" style="font-size: 0.74rem; font-weight: 800; margin-bottom: 3px;">التاريخ:</label>
+              <input type="date" class="form-input-custom" id="editTxDate" required style="font-size: 0.80rem; height: 38px;">
+            </div>
+          </div>
+
+          <!-- أزرار الحفظ والإلغاء -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px;">
+            <button type="submit" class="btn-primary-custom" style="background: linear-gradient(135deg, #0284c7, #0369a1); border: none; padding: 10px; border-radius: 10px; font-weight: 800; font-size: 0.84rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+              <i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات
+            </button>
+            <button type="button" class="btn-secondary-custom" onclick="closeModal('editTxModal')" style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border); padding: 10px; border-radius: 10px; font-weight: 800; font-size: 0.84rem; color: #94a3b8; cursor: pointer;">
+              إلغاء
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+<script>
+    // =========================================================================
+    // دوال الدخل والإيداعات المنقولة لصفحة طلب أموال
+    // =========================================================================
+    function openIncomeChoiceModal() {
+      openModal('incomeChoiceModal');
+    }
+
+    function openIncomeHistoryModal() {
+      openModal('incomeHistoryModal');
+      renderIncomeHistoryList();
+    }
+
+    function renderIncomeHistoryList() {
+      const container = document.getElementById('incomeHistoryListContainer');
+      const totalAmtEl = document.getElementById('incomeHistoryTotalAmt');
+      if (!container) return;
+
+      const incomeList = (state.transactions || []).filter(t => t.type === 'income');
+      // ترتيب تنازلي حسب التاريخ
+      incomeList.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+      let total = 0;
+      incomeList.forEach(t => { total += (Number(t.amount) || 0); });
+      if (totalAmtEl) totalAmtEl.textContent = '+ ' + formatMoney(total);
+
+      if (incomeList.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 25px 10px; color: #94a3b8;">
+            <i class="fa-solid fa-circle-exclamation" style="font-size: 2rem; margin-bottom: 8px;"></i>
+            <div style="font-weight: 800; font-size: 0.85rem;">لا توجد عمليات إيداع أو دخل مسجلة</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = incomeList.map(t => {
+        const amt = Number(t.amount) || 0;
+        const wName = getWalletName(t.walletId);
+        const memberAvatar = MEMBER_AVATARS[t.member] || null;
+        const avatarHtml = memberAvatar
+          ? `<img src="${memberAvatar}" style="width: 18px; height: 18px; border-radius: 50%; object-fit: cover;">`
+          : `<i class="fa-solid fa-user" style="font-size: 0.7rem; color: #10b981;"></i>`;
+
+        return `
+          <div class="ops-tx-card-lux" style="cursor: pointer;" ondblclick="closeModal('incomeHistoryModal'); openEditTxModal('${t.id}')" title="اضغط مرتين للتعديل">
+            <div class="ops-tx-right-cluster">
+              <div class="ops-tx-icon-bubble" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff;">
+                <i class="fa-solid fa-money-bill-wave"></i>
+              </div>
+              <div class="ops-tx-info-block">
+                <div class="ops-tx-label-text">${escapeHtml(t.label || 'إيداع نقدي')}</div>
+                <div class="ops-tx-meta-chips">
+                  <span class="ops-tx-chip" style="background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.25);">
+                    ${avatarHtml}
+                    <span>${t.member || 'العائلة'}</span>
+                  </span>
+                  <span class="ops-tx-chip" style="background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.25);">
+                    <i class="fa-solid fa-vault"></i>
+                    <span>${wName}</span>
+                  </span>
+                  <span class="ops-tx-chip" style="color: #94a3b8;">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>${t.date || ''}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="ops-tx-left-cluster">
+              <span class="ops-tx-amount-text" style="color: #10b981; font-weight: 900;">
+                + ${formatMoney(amt)}
+              </span>
+              <button class="ops-tx-edit-btn" onclick="closeModal('incomeHistoryModal'); openEditTxModal('${t.id}')" title="تعديل الإيداع" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; margin-left: 4px;">
+                <i class="fa-solid fa-pen-to-square" style="font-size: 0.76rem;"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // دوال إعادة تحميل وتحديث التطبيق والمزامنة الفورية
+    // =========================================================================
+    async function forceAppReloadAndSync() {
+      showToast('جاري تحديث التطبيق ومسح الذاكرة المؤقتة وإعادة المزامنة...', 'info');
+      
+      try {
+        if (typeof syncWithCloud === 'function') {
+          await syncWithCloud();
+        }
+      } catch (e) {
+        console.warn('Sync on reload warning:', e);
+      }
+
+      if ('serviceWorker' in navigator) {
+        try {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          for (const reg of registrations) {
+            await reg.update();
+          }
+        } catch (e) {
+          console.warn('SW update warning:', e);
+        }
+      }
+
+      if ('caches' in window) {
+        try {
+          const keys = await caches.keys();
+          for (const key of keys) {
+            await caches.delete(key);
+          }
+        } catch (e) {
+          console.warn('Caches delete warning:', e);
+        }
+      }
+
+      setTimeout(() => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('_v', Date.now());
+        window.location.href = url.toString();
+      }, 700);
+    }
+
+    // =========================================================================
+    // دوال تفاصيل وتعديل العملية المالية
+    // =========================================================================
+    function openEditTxModal(txId) {
+      const tx = (state.transactions || []).find(t => String(t.id) === String(txId));
+      if (!tx) {
+        showToast('لم يتم العثور على العملية المطلوبة', 'error');
+        return;
+      }
+
+      document.getElementById('editTxId').value = tx.id;
+      document.getElementById('editTxAmount').value = tx.amount || '';
+      document.getElementById('editTxLabel').value = tx.label || '';
+      document.getElementById('editTxDate').value = tx.date || new Date().toISOString().split('T')[0];
+
+      if (tx.type === 'income') {
+        document.getElementById('editTxTypeIncome').checked = true;
+      } else {
+        document.getElementById('editTxTypeExpense').checked = true;
+      }
+
+      // ملء قائمة التصنيفات
+      const catSelect = document.getElementById('editTxCategory');
+      if (catSelect) {
+        const cats = tx.type === 'income' ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
+        catSelect.innerHTML = cats.map(c => `
+          <option value="${c.id}" ${c.id === tx.category ? 'selected' : ''}>${c.name}</option>
+        `).join('');
+      }
+
+      // ملء قائمة المحافظ
+      const walletSelect = document.getElementById('editTxWallet');
+      if (walletSelect) {
+        walletSelect.innerHTML = (state.wallets || []).map(w => `
+          <option value="${w.id}" ${w.id === tx.walletId ? 'selected' : ''}>${w.name}</option>
+        `).join('');
+      }
+
+      // ملء قائمة الأعضاء بترتيب العائلة أولاً
+      const memberSelect = document.getElementById('editTxMember');
+      if (memberSelect) {
+        const members = ['العائلة', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
+        memberSelect.innerHTML = members.map(m => `
+          <option value="${m}" ${m === tx.member ? 'selected' : ''}>${m}</option>
+        `).join('');
+      }
+
+      openModal('editTxModal');
+    }
+
+    function saveEditedTx() {
+      const txId = document.getElementById('editTxId').value;
+      const tx = (state.transactions || []).find(t => String(t.id) === String(txId));
+      if (!tx) {
+        showToast('حدث خطأ في تحديد العملية', 'error');
+        return;
+      }
+
+      const amountVal = parseFloat(document.getElementById('editTxAmount').value);
+      if (isNaN(amountVal) || amountVal <= 0) {
+        showToast('يرجى إدخال مبلغ صحيح أكبر من الصفر', 'error');
+        return;
+      }
+
+      const labelVal = document.getElementById('editTxLabel').value.trim();
+      if (!labelVal) {
+        showToast('يرجى إدخال بيان للعملية', 'error');
+        return;
+      }
+
+      const isIncome = document.getElementById('editTxTypeIncome').checked;
+      const typeVal = isIncome ? 'income' : 'expense';
+      const categoryVal = document.getElementById('editTxCategory').value;
+      const walletVal = document.getElementById('editTxWallet').value;
+      const memberVal = document.getElementById('editTxMember').value;
+      const dateVal = document.getElementById('editTxDate').value;
+
+      // تحديث بيانات العملية
+      tx.amount = amountVal;
+      tx.label = labelVal;
+      tx.type = typeVal;
+      tx.category = categoryVal;
+      tx.walletId = walletVal;
+      tx.member = memberVal;
+      tx.date = dateVal;
+
+      // حفظ الحالة محلياً وسحابياً
+      if (typeof saveState === 'function') {
+        saveState();
+      } else {
+        localStorage.setItem('state_transactions', JSON.stringify(state.transactions));
+      }
+
+      closeModal('editTxModal');
+      showToast('تم حفظ وتعديل العملية بنجاح! ✨', 'success');
+
+      // إعادة رسم الواجهة وقائمة العمليات
+      if (typeof renderUI === 'function') renderUI();
+      if (typeof renderOperationsList === 'function' && typeof getFilteredTransactions === 'function') {
+        renderOperationsList(getFilteredTransactions());
+      }
+    }
+</script>
 </body>
 </html>
