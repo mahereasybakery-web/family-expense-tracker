@@ -8649,29 +8649,68 @@
           </div>
         </div>
 
-        <!-- حاسبة الذهب السريعة المدمجة في صف واحد -->
-        <div class="gold-calc-card" style="padding: 8px 10px; border-radius: 12px; gap: 6px;">
+        <!-- حاسبة الذهب والمصنعية المتقدمة بالصاغة المصرية (v3.1.4) -->
+        <div class="gold-calc-card" style="padding: 10px 12px; border-radius: 14px; background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(245, 158, 11, 0.4); margin-bottom: 8px; display: flex; flex-direction: column; gap: 7px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div style="font-size: 0.74rem; font-weight: 800; color: #fde047;">
-              <i class="fa-solid fa-calculator"></i> حاسبة الذهب والعملات للمصروفات
+            <div style="font-size: 0.80rem; font-weight: 800; color: #fde047; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-calculator" style="color: var(--gold);"></i>
+              <span>حاسبة الذهب والمصنعية التقديرية (الصاغة بمصر)</span>
             </div>
-            <div class="calc-result-badge" style="padding: 2px 8px; border-radius: 6px; font-size: 0.72rem; margin: 0;">
-              <span id="calcResultDisplay" style="font-weight: 900; color: #fde047;">63,750.00 ج.م</span>
-            </div>
+            <span style="background: rgba(245, 158, 11, 0.18); color: #fde047; border: 1px solid rgba(245, 158, 11, 0.4); padding: 2px 7px; border-radius: 6px; font-size: 0.65rem; font-weight: 800;">
+              شامل المصنعية والدمغة
+            </span>
           </div>
-          <div class="calc-row-inputs" style="display: grid; grid-template-columns: 70px 1fr; gap: 6px; margin: 2px 0;">
-            <input type="number" class="calc-input-qty" id="calcQty" value="10" style="height: 32px; font-size: 0.82rem; padding: 2px 6px; text-align: center; border-radius: 8px;">
-            <select class="calc-select-asset" id="calcAsset" style="height: 32px; font-size: 0.75rem; padding: 2px 6px; border-radius: 8px;">
-              <option value="gold21">جرام ذهب عيار 21</option>
-              <option value="gold24">جرام ذهب عيار 24</option>
-              <option value="goldPound">جنيه ذهب (8 جرام)</option>
-              <option value="usd">دولار أمريكي ($)</option>
-              <option value="sar">ريال سعودي (ر.س)</option>
+
+          <!-- اختيار نوع الذهب / العيار / السبيكة -->
+          <div>
+            <label style="font-size: 0.68rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px; display: block;">نوع الذهب أو العملة:</label>
+            <select class="calc-select-asset" id="calcAsset" onchange="onGoldAssetChange()" style="width: 100%; height: 34px; font-size: 0.78rem; padding: 4px 8px; border-radius: 8px; background: rgba(30, 41, 59, 0.85); color: #f8fafc; border: 1px solid rgba(255,255,255,0.12); cursor: pointer;">
+              <option value="gold21_jewelry" selected>💍 مشغولات ذهبية عيار 21 (الأكثر طلباً)</option>
+              <option value="gold18_jewelry">💎 مشغولات ذهبية عيار 18 (تصاميم وماركات)</option>
+              <option value="gold_pound">🪙 جنيه ذهب عيار 21 (BTC / لازوردي - 8 جرام)</option>
+              <option value="gold24_bar_small">🧱 سبيكة عيار 24 (أوزان صغيرة 1 - 5 جرام)</option>
+              <option value="gold24_bar_large">🧱 سبيكة عيار 24 (أوزان 10 - 100 جرام)</option>
+              <option value="gold21_raw">🟡 ذهب عيار 21 خام (سعر الشاشة بدون مصنعية)</option>
+              <option value="gold24_raw">🟡 ذهب عيار 24 خام (سبائك خام بدون مصنعية)</option>
+              <option value="usd">💵 دولار أمريكي (USDEGP)</option>
+              <option value="sar">🇸🇦 ريال سعودي (SAREGP)</option>
             </select>
           </div>
-          <button class="btn-import-calc" id="btnImportCalc" style="padding: 6px 10px; font-size: 0.75rem; border-radius: 8px; font-weight: 800;">
-            <i class="fa-solid fa-plus-circle"></i> إضافة المبلغ للمصروفات فوراً
-          </button>
+
+          <!-- المدخلات: الوزن / الكمية والمصنعية للجرام -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div>
+              <label id="lblCalcQty" style="font-size: 0.68rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px; display: block;">الوزن بالجرام:</label>
+              <input type="number" step="0.1" class="calc-input-qty" id="calcQty" value="10" oninput="recalcGoldTotal()" style="width: 100%; height: 34px; font-size: 0.88rem; font-weight: 800; padding: 4px 8px; text-align: center; border-radius: 8px; background: rgba(30, 41, 59, 0.85); color: #f8fafc; border: 1px solid rgba(255,255,255,0.12); box-sizing: border-box;">
+            </div>
+            <div id="colCalcWorkmanship">
+              <label style="font-size: 0.68rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px; display: block;">المصنعية والدمغة (ج.م/جرام):</label>
+              <input type="number" step="1" id="calcWorkmanshipPerGram" value="90" oninput="recalcGoldTotal()" style="width: 100%; height: 34px; font-size: 0.88rem; font-weight: 800; padding: 4px 8px; text-align: center; border-radius: 8px; background: rgba(30, 41, 59, 0.85); color: #fde047; border: 1px solid rgba(245,158,11,0.3); box-sizing: border-box;">
+            </div>
+          </div>
+
+          <!-- كشف الحساب التقديري الشفاف بالصاغة -->
+          <div style="background: rgba(10, 15, 29, 0.85); border-radius: 10px; padding: 8px 10px; border: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.72rem; display: flex; flex-direction: column; gap: 4px;">
+            <div style="display: flex; justify-content: space-between; color: #94a3b8;">
+              <span>قيمة الذهب الخام (سعر الشاشة):</span>
+              <span id="calcRawVal" style="font-weight: 800; color: #cbd5e1;">63,750.00 ج.م</span>
+            </div>
+            <div id="rowCalcWorkmanshipTotal" style="display: flex; justify-content: space-between; color: #94a3b8;">
+              <span>إجمالي المصنعية والدمغة المقدرة:</span>
+              <span id="calcWorkmanshipTotal" style="font-weight: 800; color: #fde047;">900.00 ج.م</span>
+            </div>
+            <div id="rowCalcCashback" style="display: none; justify-content: space-between; color: #34d399; font-size: 0.68rem;">
+              <span>كاش باك مسترد عند البيع (تقريبي):</span>
+              <span id="calcCashbackVal" style="font-weight: 800;">0.00 ج.م</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 5px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.82rem;">
+              <span style="font-weight: 800; color: #f8fafc;">الإجمالي المطلوب للشراء:</span>
+              <span id="calcFinalTotal" style="font-size: 1.05rem; font-weight: 900; color: #10b981;">64,650.00 ج.م</span>
+            </div>
+          </div>
+          <div style="font-size: 0.62rem; color: #64748b; line-height: 1.4;">
+            💡 <span id="calcWorkmanshipNote">متوسط مصنعية مشغولات عيار 21 بالسوق المصري تتراوح بين 70 إلى 150 ج.م/جرام حسب الصانع، وتطبق ضريبة الدمغة على قيمة المصنعية فقط.</span>
+          </div>
         </div>
 
         <!-- شارت TradingView المصغر مع إمكانية الطي والإظهار -->
@@ -10847,10 +10886,19 @@
         }
       });
 
-      // 1. رسم الشارت الدائري لتوزيع الميزانية العامة لأفراد العائلة
-      const memberColors = ['#0284c7', '#db2777', '#0891b2', '#c026d3', '#d97706', '#10b981', '#f59e0b'];
-      const activeMembers = membersList.filter(m => memData[m].sum > 0);
+      // 1. حساب مقارنة مصروفات البيت المشتركة vs المصروفات الشخصية للأفراد
+      const houseSum = memData['البيت'].sum;
+      let individualSum = 0;
+      membersList.forEach(m => { if (m !== 'البيت') individualSum += memData[m].sum; });
+      const housePct = totalExp > 0 ? ((houseSum / totalExp) * 100).toFixed(1) : 0;
+      const indPct = totalExp > 0 ? ((individualSum / totalExp) * 100).toFixed(1) : 0;
 
+      // 2. تجهيز المنفقين الفعليين مرتبين تنازلياً حسب إجمالي الصرف
+      const activeMembers = membersList.filter(m => memData[m].sum > 0).sort((a, b) => memData[b].sum - memData[a].sum);
+      const zeroMembers = membersList.filter(m => memData[m].sum === 0);
+
+      // 3. رسم الشارت الدائري الفاخر (Doughnut Chart)
+      const memberColors = ['#0284c7', '#ec4899', '#10b981', '#f59e0b', '#8b5cf6', '#3b82f6', '#14b8a6', '#f43f5e'];
       const canvas = document.getElementById('anaMembersCanvas');
       if (canvas && typeof Chart !== 'undefined') {
         if (execMemChart && typeof execMemChart.destroy === 'function') {
@@ -10860,12 +10908,13 @@
         execMemChart = new Chart(ctx, {
           type: 'doughnut',
           data: {
-            labels: activeMembers.length > 0 ? activeMembers : ['لا توجد بيانات'],
+            labels: activeMembers.length > 0 ? activeMembers : ['لا توجد مصروفات مسجلة'],
             datasets: [{
-              data: activeMembers.length > 0 ? activeMembers.map(m => memData[m].sum) : [0],
-              backgroundColor: activeMembers.map((m, i) => memberColors[i % memberColors.length]),
-              borderWidth: 1.5,
-              cutout: '62%'
+              data: activeMembers.length > 0 ? activeMembers.map(m => memData[m].sum) : [1],
+              backgroundColor: activeMembers.length > 0 ? activeMembers.map((m, i) => memberColors[i % memberColors.length]) : ['rgba(255,255,255,0.08)'],
+              borderColor: '#090d16',
+              borderWidth: 2,
+              cutout: '70%'
             }]
           },
           options: {
@@ -10873,9 +10922,7 @@
               if (elements && elements.length > 0) {
                 const idx = elements[0].index;
                 const memName = activeMembers[idx];
-                if (memName) {
-                  openOperationsFiltered({ member: memName });
-                }
+                if (memName) openOperationsFiltered({ member: memName });
               }
             },
             responsive: true,
@@ -10883,79 +10930,118 @@
             plugins: {
               legend: {
                 position: 'bottom',
-                labels: { color: '#cbd5e1', font: { family: 'Cairo', size: 10, weight: 'bold' }, padding: 8 }
+                labels: { color: '#cbd5e1', font: { family: 'Alexandria', size: 11, weight: '700' }, padding: 8 }
               }
             }
           }
         });
       }
 
-      // 2. بناء شبكة كروت التحليل الخاص لكل شخص بشكل عام (General Overview Per Member)
+      // 4. بناء لوحة التحليل المالي والترتيب التنفيذي (Executive Leaderboard)
       const gridContainer = document.getElementById('memberAnalyticsLuxGrid');
       if (gridContainer) {
-        let htmlCards = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px;">';
-        membersList.forEach((m, idx) => {
-          const mSum = memData[m].sum;
-          const count = memData[m].count;
-          const pct = totalExp > 0 ? ((mSum / totalExp) * 100).toFixed(1) : 0;
-          const avgPerTx = count > 0 ? Math.round(mSum / count) : 0;
-          const photo = MEMBER_AVATARS[m] || '';
+        let html = '';
 
-          let topCatName = 'لا يوجد';
-          let maxAmt = 0;
-          for (const [cId, cAmt] of Object.entries(memData[m].topCat)) {
-            if (cAmt > maxAmt) { maxAmt = cAmt; topCatName = (EXPENSE_CATEGORIES.find(c => c.id === cId) || {}).name || cId; }
-          }
+        // كرت مقارنة ميزانية البيت العامة vs المصروفات الشخصية للأفراد
+        html += `
+          <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.15), rgba(15, 23, 42, 0.85)); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 12px 14px; margin-bottom: 12px;">
+            <div style="font-size: 0.80rem; font-weight: 800; color: #38bdf8; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+              <span><i class="fa-solid fa-scale-balanced"></i> مقارنة تكاليف البيت vs المصروفات الشخصية</span>
+              <span style="font-size: 0.70rem; color: #94a3b8;">إجمالي: ${formatMoney(totalExp)}</span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px;">
+              <div style="background: rgba(2, 132, 199, 0.15); border: 1px solid rgba(2, 132, 199, 0.3); border-radius: 10px; padding: 8px 10px;">
+                <div style="font-size: 0.68rem; color: #7dd3fc; font-weight: 800;">🏠 مصروفات البيت العامة</div>
+                <div style="font-size: 0.95rem; font-weight: 900; color: #fff; margin: 2px 0;">- ${formatMoney(houseSum)}</div>
+                <div style="font-size: 0.62rem; color: #38bdf8;">حصة: %${housePct} من الميزانية</div>
+              </div>
+              <div style="background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.3); border-radius: 10px; padding: 8px 10px;">
+                <div style="font-size: 0.68rem; color: #f472b6; font-weight: 800;">👥 المصروفات الشخصية للأفراد</div>
+                <div style="font-size: 0.95rem; font-weight: 900; color: #fff; margin: 2px 0;">- ${formatMoney(individualSum)}</div>
+                <div style="font-size: 0.62rem; color: #f472b6;">حصة: %${indPct} من الميزانية</div>
+              </div>
+            </div>
+            <!-- شريط النسبة التوضيحي الملون -->
+            <div style="width: 100%; height: 6px; border-radius: 3px; background: rgba(255,255,255,0.08); overflow: hidden; display: flex;">
+              <div style="width: ${housePct}%; background: #0284c7; height: 100%;"></div>
+              <div style="width: ${indPct}%; background: #ec4899; height: 100%;"></div>
+            </div>
+          </div>
+        `;
 
-          htmlCards += `
-            <div onclick="selectAnalyticsMemberBreakdown('${m}')" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 6px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='#38bdf8'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='var(--border-subtle)'; this.style.transform='none';">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                ${photo ? `<img src="${photo}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1.5px solid #38bdf8;">` : `<i class="fa-solid fa-user" style="color: #38bdf8; font-size: 1.2rem;"></i>`}
-                <div>
-                  <div style="font-weight: 800; font-size: 0.88rem; color: #f1f5f9;">${m}</div>
-                  <div style="font-size: 0.65rem; color: #94a3b8;">${count} حركة مسجلة</div>
+        // كروت المنفقين الفعليين (Active Spenders Leaderboard)
+        if (activeMembers.length > 0) {
+          html += '<div style="font-size: 0.80rem; font-weight: 800; color: #fde047; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-trophy" style="color: var(--gold);"></i> ترتيب المنفقين الأكثر صرفاً خلال الفترة:</div>';
+          html += '<div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px;">';
+
+          activeMembers.forEach((m, rankIdx) => {
+            const mSum = memData[m].sum;
+            const count = memData[m].count;
+            const pct = totalExp > 0 ? ((mSum / totalExp) * 100).toFixed(1) : 0;
+            const photo = MEMBER_AVATARS[m] || '';
+            const rankBadges = ['🥇 الأول', '🥈 الثاني', '🥉 الثالث', '🎖️ الرابع', '🎖️ الخامس', '🎖️ السادس', '🎖️ السابع', '🎖️ الثامن'];
+            const rankBadge = rankBadges[rankIdx] || `🎖️ #${rankIdx + 1}`;
+
+            let topCatName = 'لا يوجد';
+            let maxAmt = 0;
+            for (const [cId, cAmt] of Object.entries(memData[m].topCat)) {
+              if (cAmt > maxAmt) { maxAmt = cAmt; topCatName = (EXPENSE_CATEGORIES.find(c => c.id === cId) || {}).name || cId; }
+            }
+
+            html += `
+              <div onclick="selectAnalyticsMemberBreakdown('${m}')" style="background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px 12px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='#38bdf8';" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.08)';">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    ${photo ? `<img src="${photo}" style="width: 36px; height: 36px; min-width: 36px; border-radius: 50%; object-fit: cover; border: 2px solid #38bdf8;">` : `<div style="width: 36px; height: 36px; border-radius: 50%; background: #0284c7; display: flex; align-items: center; justify-content: center; color: #fff;"><i class="fa-solid fa-house-chimney"></i></div>`}
+                    <div>
+                      <div style="font-weight: 800; font-size: 0.88rem; color: #f8fafc;">${m}</div>
+                      <div style="font-size: 0.65rem; color: #94a3b8;">${count} حركات مسجلة • أعلى بند: <strong style="color: #38bdf8;">${topCatName}</strong></div>
+                    </div>
+                  </div>
+                  <div style="text-align: left;">
+                    <div style="font-size: 0.95rem; font-weight: 900; color: #ff4d6d; font-variant-numeric: tabular-nums;">- ${formatMoney(mSum)}</div>
+                    <span style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); padding: 1px 6px; border-radius: 6px; font-size: 0.62rem; font-weight: 800;">${rankBadge} (%${pct})</span>
+                  </div>
                 </div>
-                <span style="margin-right: auto; font-size: 0.75rem; font-weight: 800; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 2px 6px; border-radius: 6px;">${pct}%</span>
+                <!-- شريط نسبة المساهمة المالي الفردي -->
+                <div style="width: 100%; height: 5px; border-radius: 3px; background: rgba(255,255,255,0.06); overflow: hidden;">
+                  <div style="width: ${pct}%; height: 100%; background: linear-gradient(90deg, #38bdf8, #0284c7); border-radius: 3px;"></div>
+                </div>
               </div>
-              <div style="font-size: 1.05rem; font-weight: 900; color: #f87171; margin-top: 2px;">
-                - ${formatMoney(mSum)}
+            `;
+          });
+          html += '</div>';
+        } else {
+          html += '<div style="text-align: center; padding: 16px; color: #94a3b8; font-size: 0.82rem;">✨ لم تسجل أي مصروفات في الفترة المحددة.</div>';
+        }
+
+        // شريط الأفراد الذين لم يسجلوا أي مصروفات خلال الفترة (Zero Spenders Strip)
+        if (zeroMembers.length > 0) {
+          html += `
+            <div style="background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 8px 10px;">
+              <div style="font-size: 0.70rem; font-weight: 700; color: #64748b; margin-bottom: 6px;">
+                💤 لم تسجل مصروفات في هذه الفترة (${zeroMembers.length} أفراد):
               </div>
-              <div style="display: flex; justify-content: space-between; font-size: 0.68rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 4px;">
-                <span>متوسط: <b style="color: #10b981;">${formatMoney(avgPerTx)}</b></span>
-                <span>أعلى: <b style="color: #cbd5e1;">${topCatName}</b></span>
-              </div>
-              <div style="font-size: 0.64rem; color: #38bdf8; text-align: center; margin-top: 2px; font-weight: 700;">
-                <i class="fa-solid fa-magnifying-glass-chart"></i> اضغط لعرض البنود التفصيلية
+              <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                ${zeroMembers.map(m => {
+                  const p = MEMBER_AVATARS[m];
+                  return `
+                    <div onclick="selectAnalyticsMemberBreakdown('${m}')" style="display: flex; align-items: center; gap: 4px; background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 3px 8px; cursor: pointer;">
+                      ${p ? `<img src="${p}" style="width: 18px; height: 18px; border-radius: 50%; object-fit: cover;">` : `<i class="fa-solid fa-user" style="font-size: 0.65rem; color: #94a3b8;"></i>`}
+                      <span style="font-size: 0.68rem; font-weight: 800; color: #94a3b8;">${m}</span>
+                      <span style="font-size: 0.65rem; color: #64748b; font-weight: 700;">(0.00)</span>
+                    </div>
+                  `;
+                }).join('')}
               </div>
             </div>
           `;
-        });
-        htmlCards += '</div>';
-        gridContainer.innerHTML = htmlCards;
-      }
+        }
 
-      // 3. بناء وتحديث شريط كبسولات اختيار الشخص للتحليل بنوع المصروف
-      const stripContainer = document.getElementById('memberAnalyticsSelectorStrip');
-      if (stripContainer) {
-        const selectorList = ['الكل', ...membersList];
-        stripContainer.innerHTML = selectorList.map(m => {
-          const isActive = (m === currentAnalyticsMember);
-          const photo = (m !== 'الكل') ? MEMBER_AVATARS[m] : null;
-          const bgActive = isActive ? 'background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; border-color: #38bdf8;' : 'background: rgba(15, 23, 42, 0.6); color: var(--text-muted); border-color: var(--border-subtle);';
-          return `
-            <button type="button" onclick="selectAnalyticsMemberBreakdown('${m}')" style="display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 800; border: 1px solid; cursor: pointer; white-space: nowrap; transition: all 0.2s; ${bgActive}">
-              ${photo ? `<img src="${photo}" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover;">` : (m === 'الكل' ? '<i class="fa-solid fa-users"></i>' : '<i class="fa-solid fa-user"></i>')}
-              <span>${m === 'الكل' ? 'كافة العائلة' : m}</span>
-            </button>
-          `;
-        }).join('');
+        gridContainer.innerHTML = html;
       }
-
-      // 4. رسم وتحديث التحليل التفصيلي بنوع المصروف للشخص المختار
-      renderPerMemberCategoryBreakdown(filtered, totalExp);
     }
 
-    // محرك التحليل التفصيلي بنوع المصروف لكل شخص
     function renderPerMemberCategoryBreakdown(filtered, overallTotalExp) {
       filtered = filtered || getFilteredTransactions();
       const expTxs = filtered.filter(t => t.type === 'expense');
@@ -11787,18 +11873,18 @@
 
     function formatMoney(n, compact = false) {
       const num = Number(n) || 0;
+      if (Math.abs(num) < 0.005) {
+        if (state.currency === 'USD') return '$0.00';
+        if (state.currency === 'GOLD21') return '0.00 جم ذهب 21';
+        return `0.00 ${getCurrencySymbol()}`;
+      }
       const converted = convertAmount(num);
       const isUSD = state.currency === 'USD';
       const isGold = state.currency === 'GOLD21';
       
       if (isGold) {
-        let formatted = converted.toLocaleString('en-US', { minimumFractionDigits: compact ? 2 : 3, maximumFractionDigits: compact ? 2 : 3 });
+        let formatted = converted.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 3 });
         return `${formatted} جم ذهب 21`;
-      }
-      
-      if (compact) {
-        let formatted = Math.round(converted).toLocaleString('en-US');
-        return isUSD ? `$${formatted}` : `${formatted} ${getCurrencySymbol()}`;
       }
       
       let formatted = converted.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -12562,22 +12648,22 @@
         const pillTextColor = spent > 0 ? '#ff4d6d' : '#94a3b8';
 
         card.innerHTML = `
-          <!-- 1. صورة/أيقونة التصنيف ثلاثية الأبعاد الفاخرة والمعبرة عن البند -->
+          <!-- 1. صورة/أيقونة التصنيف ثلاثية الأبعاد الفاخرة تملأ الجزء العلوي -->
           <div class="cat-icon-bubble" 
-               style="background: ${theme.gradient}; width: 44px; height: 44px; min-width: 44px; min-height: 44px; border-radius: 13px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), 0 0 10px ${theme.accent}35;">
-            <span style="font-size: 2.1rem; line-height: 1; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.35));">${theme.emoji}</span>
+               style="background: ${theme.gradient}; width: 52px; height: 52px; min-width: 52px; min-height: 52px; border-radius: 15px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 12px ${theme.accent}45; margin-top: 1px;">
+            <span style="font-size: 2.5rem; line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.45));">${theme.emoji}</span>
           </div>
 
-          <!-- 2. اسم التصنيف بخط عربي نقي وواضح تماماً -->
+          <!-- 2. اسم التصنيف بخط عربي فخم وواضح -->
           <div class="cat-label-text" 
-               style="font-family: inherit; font-size: 0.84rem; font-weight: 800; color: #f8fafc; text-align: center; margin: 2px 0; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+               style="font-size: 0.86rem; font-weight: 800; color: #f8fafc; text-align: center; margin: 3px 0 2px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: clip;">
             ${theme.name}
           </div>
 
-          <!-- 3. كبسولة المبلغ المصروف بخط وأرقام أكبر وأكثر وضوحاً -->
+          <!-- 3. كبسولة المبلغ المصروف بخط عريض وأرقام كبيرة وواضحة -->
           <div class="cat-amount-pill ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
-               style="background: ${pillBg}; border: 1.2px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 6px; border-radius: 8px; width: 94%; text-align: center; direction: rtl; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 0.85rem; font-weight: 900; line-height: 1.2; white-space: nowrap;">${amtDisplay}</span>
+               style="background: ${pillBg}; border: 1.2px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 4px; border-radius: 9px; width: 95%; text-align: center; direction: rtl; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
+            <span style="font-size: 1.05rem; font-weight: 900; line-height: 1.2; white-space: nowrap; font-variant-numeric: tabular-nums;">${amtDisplay}</span>
           </div>
         `;
 
@@ -14193,19 +14279,123 @@
       }
     }
 
-    function updateCalcDisplay() {
-      const qty = parseFloat(document.getElementById('calcQty').value) || 0;
-      const asset = document.getElementById('calcAsset').value;
-      let unit = 0;
-      if (asset === 'gold21') unit = state.market.gold21;
-      else if (asset === 'gold24') unit = state.market.gold24;
-      else if (asset === 'goldPound') unit = state.market.goldPound;
-      else if (asset === 'usd') unit = state.market.usdEgp;
-      else if (asset === 'sar') unit = state.market.sarEgp;
+    
+    // =========================================================================
+    // حاسبة الذهب والمصنعية التقديرية بالصاغة المصرية (v3.1.4)
+    // =========================================================================
+    const WORKMANSHIP_PRESETS = {
+      'gold21_jewelry': { fee: 90, unit: 'gram', isGold: true, karat: 21, cashback: 0, note: 'متوسط مصنعية مشغولات عيار 21 بالسوق المصري تتراوح بين 70 إلى 150 ج.م/جرام حسب الصانع والماركة.' },
+      'gold18_jewelry': { fee: 150, unit: 'gram', isGold: true, karat: 18, cashback: 0, note: 'متوسط مصنعية مشغولات عيار 18 بالسوق تتراوح بين 120 إلى 250 ج.م/جرام للماركات والتصاميم الراقية (لازوردي وغيره).' },
+      'gold_pound': { fee: 50, unit: 'pound', isGold: true, karat: 21, cashback: 20, note: 'جنيه الذهب يزن 8 جرامات عيار 21، متوسط مصنعيته 45-55 ج.م/جرام (~400 ج.م للجنيه) مع كاش باك مسترد ~20 ج.م/جرام عند البيع مغلفاً.' },
+      'gold24_bar_small': { fee: 55, unit: 'gram', isGold: true, karat: 24, cashback: 25, note: 'سبائك عيار 24 الصغيرة (1-5 جرام) مصنعيتها بين 45-65 ج.م/جرام مع كاش باك مسترد ~25 ج.م/جرام عند الحفاظ على الغلاف.' },
+      'gold24_bar_large': { fee: 40, unit: 'gram', isGold: true, karat: 24, cashback: 20, note: 'سبائك عيار 24 المتوسطة والكبيرة (10-100 جرام) مصنعيتها منخفضة بين 35-48 ج.م/جرام مع كاش باك ~20 ج.م/جرام.' },
+      'gold21_raw': { fee: 0, unit: 'gram', isGold: true, karat: 21, cashback: 0, note: 'سعر الذهب الخام عيار 21 (سعر الشاشة بالصاغة) بدون أي مصنعية أو دمغة.' },
+      'gold24_raw': { fee: 0, unit: 'gram', isGold: true, karat: 24, cashback: 0, note: 'سعر الذهب الخام عيار 24 (النقاء 99.9%) بدون أي مصنعية أو دمغة.' },
+      'usd': { fee: 0, unit: 'currency', isGold: false, cashback: 0, note: 'سعر صرف الدولار الأمريكي الرسمي بالجنيه المصري (USDEGP).' },
+      'sar': { fee: 0, unit: 'currency', isGold: false, cashback: 0, note: 'سعر صرف الريال السعودي الرسمي بالجنيه المصري (SAREGP).' }
+    };
 
-      const total = qty * unit;
-      document.getElementById('calcResultDisplay').textContent = total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ج.م';
+    function onGoldAssetChange() {
+      const asset = (document.getElementById('calcAsset') ? document.getElementById('calcAsset').value : 'gold21_jewelry') || 'gold21_jewelry';
+      const preset = WORKMANSHIP_PRESETS[asset] || WORKMANSHIP_PRESETS['gold21_jewelry'];
+
+      const lblQty = document.getElementById('lblCalcQty');
+      const inpQty = document.getElementById('calcQty');
+      const colWorkmanship = document.getElementById('colCalcWorkmanship');
+      const inpWorkmanship = document.getElementById('calcWorkmanshipPerGram');
+      const noteEl = document.getElementById('calcWorkmanshipNote');
+
+      if (preset.unit === 'pound') {
+        if (lblQty) lblQty.textContent = 'عدد الجنيهات:';
+        if (inpQty && inpQty.value > 10) inpQty.value = 1;
+      } else if (preset.unit === 'currency') {
+        if (lblQty) lblQty.textContent = 'المبلغ بالعملة:';
+      } else {
+        if (lblQty) lblQty.textContent = 'الوزن بالجرام:';
+      }
+
+      if (inpWorkmanship) inpWorkmanship.value = preset.fee;
+
+      if (preset.unit === 'currency' || preset.fee === 0) {
+        if (colWorkmanship) colWorkmanship.style.display = 'none';
+      } else {
+        if (colWorkmanship) colWorkmanship.style.display = 'block';
+      }
+
+      if (noteEl) noteEl.textContent = preset.note;
+      recalcGoldTotal();
     }
+
+    function updateCalcDisplay() { recalcGoldTotal(); }
+
+    function recalcGoldTotal() {
+      const asset = (document.getElementById('calcAsset') ? document.getElementById('calcAsset').value : 'gold21_jewelry') || 'gold21_jewelry';
+      const preset = WORKMANSHIP_PRESETS[asset] || WORKMANSHIP_PRESETS['gold21_jewelry'];
+      const qty = parseFloat(document.getElementById('calcQty') ? document.getElementById('calcQty').value : 10) || 0;
+      const workmanshipPerGram = parseFloat(document.getElementById('calcWorkmanshipPerGram') ? document.getElementById('calcWorkmanshipPerGram').value : preset.fee) || 0;
+
+      const g21 = (state.market && state.market.gold21) || 6375;
+      const g24 = (state.market && state.market.gold24) || 7286;
+      const g18 = g24 * (18 / 24);
+      const usd = (state.market && state.market.usdEgp) || 56.04;
+      const sar = (state.market && state.market.sarEgp) || 14.93;
+
+      let rawTotal = 0;
+      let workmanshipTotal = 0;
+      let cashbackTotal = 0;
+
+      if (asset === 'gold21_jewelry') {
+        rawTotal = qty * g21;
+        workmanshipTotal = qty * workmanshipPerGram;
+      } else if (asset === 'gold18_jewelry') {
+        rawTotal = qty * g18;
+        workmanshipTotal = qty * workmanshipPerGram;
+      } else if (asset === 'gold_pound') {
+        // جنيه الذهب وزن 8 جرام
+        rawTotal = qty * (g21 * 8);
+        workmanshipTotal = qty * (8 * workmanshipPerGram);
+        cashbackTotal = qty * (8 * (preset.cashback || 0));
+      } else if (asset === 'gold24_bar_small' || asset === 'gold24_bar_large') {
+        rawTotal = qty * g24;
+        workmanshipTotal = qty * workmanshipPerGram;
+        cashbackTotal = qty * (preset.cashback || 0);
+      } else if (asset === 'gold21_raw') {
+        rawTotal = qty * g21;
+        workmanshipTotal = 0;
+      } else if (asset === 'gold24_raw') {
+        rawTotal = qty * g24;
+        workmanshipTotal = 0;
+      } else if (asset === 'usd') {
+        rawTotal = qty * usd;
+        workmanshipTotal = 0;
+      } else if (asset === 'sar') {
+        rawTotal = qty * sar;
+        workmanshipTotal = 0;
+      }
+
+      const finalTotal = rawTotal + workmanshipTotal;
+
+      const rawEl = document.getElementById('calcRawVal');
+      const workEl = document.getElementById('calcWorkmanshipTotal');
+      const finalEl = document.getElementById('calcFinalTotal');
+      const cashEl = document.getElementById('calcCashbackVal');
+      const rowWork = document.getElementById('rowCalcWorkmanshipTotal');
+      const rowCash = document.getElementById('rowCalcCashback');
+
+      if (rawEl) rawEl.textContent = rawTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ج.م';
+      if (workEl) workEl.textContent = workmanshipTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ج.م';
+      if (finalEl) finalEl.textContent = finalTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ج.م';
+
+      if (rowWork) rowWork.style.display = workmanshipTotal > 0 ? 'flex' : 'none';
+
+      if (cashbackTotal > 0) {
+        if (rowCash) rowCash.style.display = 'flex';
+        if (cashEl) cashEl.textContent = cashbackTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ج.م';
+      } else {
+        if (rowCash) rowCash.style.display = 'none';
+      }
+    }
+
 
         function applyCalcToExpense() {
       const qty = parseFloat(document.getElementById('calcQty').value) || 1;
