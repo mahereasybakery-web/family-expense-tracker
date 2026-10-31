@@ -3981,13 +3981,17 @@
       transform: scale(0.93);
     }
 
+    .nav-tab-item .nav-tab-svg,
     .nav-tab-item i {
+      width: 24px;
+      height: 24px;
       font-size: 1.25rem;
       transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       color: #94a3b8;
+      stroke: #94a3b8;
     }
 
     .nav-tab-item span {
@@ -4007,9 +4011,11 @@
       box-shadow: 0 4px 18px rgba(56, 189, 248, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
     }
 
+    .nav-tab-item.active .nav-tab-svg,
     .nav-tab-item.active i {
       transform: translateY(-2px) scale(1.18);
       color: #38bdf8 !important;
+      stroke: #38bdf8 !important;
       filter: drop-shadow(0 2px 10px rgba(56, 189, 248, 0.85));
     }
 
@@ -5962,7 +5968,10 @@
         min-height: 48px !important;
       }
 
+      .nav-tab-item .nav-tab-svg,
       .nav-tab-item i {
+        width: 22px !important;
+        height: 22px !important;
         font-size: 1.2rem !important;
       }
 
@@ -6496,7 +6505,7 @@
       border-color: rgba(16, 185, 129, 0.45) !important;
       box-shadow: 0 4px 18px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
     }
-    [data-app-theme="emerald"] .nav-tab-item.active i {
+    [data-app-theme="emerald"] .nav-tab-item.active i, [data-app-theme="emerald"] .nav-tab-item.active .nav-tab-svg {
       color: #10b981 !important;
       filter: drop-shadow(0 2px 10px rgba(16, 185, 129, 0.85));
     }
@@ -6510,7 +6519,7 @@
       border-color: rgba(168, 85, 247, 0.45) !important;
       box-shadow: 0 4px 18px rgba(168, 85, 247, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
     }
-    [data-app-theme="purple"] .nav-tab-item.active i {
+    [data-app-theme="purple"] .nav-tab-item.active i, [data-app-theme="purple"] .nav-tab-item.active .nav-tab-svg {
       color: #c084fc !important;
       filter: drop-shadow(0 2px 10px rgba(168, 85, 247, 0.85));
     }
@@ -6524,7 +6533,7 @@
       border-color: rgba(245, 158, 11, 0.45) !important;
       box-shadow: 0 4px 18px rgba(245, 158, 11, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
     }
-    [data-app-theme="gold"] .nav-tab-item.active i {
+    [data-app-theme="gold"] .nav-tab-item.active i, [data-app-theme="gold"] .nav-tab-item.active .nav-tab-svg {
       color: #fbbf24 !important;
       filter: drop-shadow(0 2px 10px rgba(245, 158, 11, 0.85));
     }
@@ -6538,7 +6547,7 @@
       border-color: rgba(6, 182, 212, 0.45) !important;
       box-shadow: 0 4px 18px rgba(6, 182, 212, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
     }
-    [data-app-theme="ocean"] .nav-tab-item.active i {
+    [data-app-theme="ocean"] .nav-tab-item.active i, [data-app-theme="ocean"] .nav-tab-item.active .nav-tab-svg {
       color: #22d3ee !important;
       filter: drop-shadow(0 2px 10px rgba(6, 182, 212, 0.85));
     }
@@ -6890,13 +6899,32 @@
     }
   
 
-    /* === MODERN FINTECH FONTS & LUXURY TYPOGRAPHY (v3.1.4) === */
+    /* === MODERN FINTECH FONTS & LUXURY TYPOGRAPHY (v3.1.5) === */
     :root {
       --font-family: 'Alexandria', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
       --font-numbers: 'Plus Jakarta Sans', 'Alexandria', sans-serif !important;
     }
-    *, html, body, input, select, textarea, button {
-      font-family: var(--font-family) !important;
+    html, body, input, select, textarea, button, optgroup, option {
+      font-family: var(--font-family);
+    }
+
+    /* حماية صارمة وشاملة لكافة أيقونات Font Awesome لمنع طمسها أو ظهور الصندوق المفقود */
+    i.fa-solid, i.fa-regular, i.fa-brands, i.fas, i.far, i.fab, .fa-solid, .fa-regular, .fa-brands, [class*="fa-"] {
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "FontAwesome" !important;
+      font-weight: 900 !important;
+      font-style: normal !important;
+      font-variant: normal !important;
+      text-rendering: auto !important;
+      line-height: 1 !important;
+      -webkit-font-smoothing: antialiased !important;
+      display: inline-block !important;
+    }
+    .fa-regular {
+      font-weight: 400 !important;
+    }
+    .fa-brands {
+      font-family: "Font Awesome 6 Brands" !important;
+      font-weight: 400 !important;
     }
     .market-box-val, .calc-result-badge, .kpi-val, .amount-val, .cat-amount-pill, .cat-card-amt, [data-num] {
       font-family: var(--font-numbers) !important;
@@ -7609,7 +7637,7 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
-            <span class="version-badge">v3.1.4</span>
+            <span class="version-badge">v3.1.5</span>
           </div>
         </div>
 
@@ -7703,7 +7731,9 @@
         <!-- أخرى -->
         <div class="avatar-card" data-member="أخرى" onclick="selectMember('أخرى')" title="مصروفات ونثريات أخرى">
           <div class="avatar-bubble" style="background: linear-gradient(135deg, #d97706, #f59e0b); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: #ffffff; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);">
-            <i class="fa-solid fa-hand-holding-heart"></i>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"></path>
+            </svg>
           </div>
           <span class="avatar-name-label" style="font-size: 0.72rem; line-height: 1.1; white-space: nowrap; font-weight: 800;">أخرى</span>
         </div>
@@ -8508,23 +8538,45 @@
          ================================================================ -->
     <nav class="app-bottom-nav" id="appBottomNav">
       <button class="nav-tab-item active" id="navTabExpenses" onclick="switchAppPage('expenses')" title="صفحة المصاريف الرئيسية">
-        <i class="fa-solid fa-wallet"></i>
+        <svg class="nav-tab-svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"></path>
+          <path d="M16 12h5a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-5a2 2 0 0 0 0 4z"></path>
+          <circle cx="18.5" cy="10" r="0.8" fill="currentColor"></circle>
+        </svg>
         <span>المصاريف</span>
       </button>
       <button class="nav-tab-item" id="navTabOperations" onclick="switchAppPage('operations')" title="سجل كافة العمليات والمعاملات">
-        <i class="fa-solid fa-list-check"></i>
+        <svg class="nav-tab-svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="3" ry="3"></rect>
+          <path d="m9 10 2 2 4-4"></path>
+          <path d="M7 16h10"></path>
+        </svg>
         <span>العمليات</span>
       </button>
       <button class="nav-tab-item" id="navTabAnalytics" onclick="switchAppPage('analytics')" title="المؤشرات والرسوم البيانية">
-        <i class="fa-solid fa-chart-pie"></i>
+        <svg class="nav-tab-svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+          <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+        </svg>
         <span>مؤشرات</span>
       </button>
       <button class="nav-tab-item" id="navTabRequests" onclick="switchAppPage('requests')" title="إنشاء وإدارة طلبات المبالغ">
-        <i class="fa-solid fa-hand-holding-dollar"></i>
+        <svg class="nav-tab-svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 6v12M15 9.5a2.5 2.5 0 0 0-2.5-2.5H10a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4h-3a2.5 2.5 0 0 1-2.5-2.5"></path>
+        </svg>
         <span>طلب</span>
       </button>
       <button class="nav-tab-item" id="navTabExpected" onclick="switchAppPage('expected')" title="الالتزامات والمصروفات المتوقعة">
-        <i class="fa-solid fa-calendar-days"></i>
+        <svg class="nav-tab-svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="3" ry="3"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+          <circle cx="8" cy="15" r="1.2" fill="currentColor"></circle>
+          <circle cx="12" cy="15" r="1.2" fill="currentColor"></circle>
+          <circle cx="16" cy="15" r="1.2" fill="currentColor"></circle>
+        </svg>
         <span>المتوقعة</span>
       </button>
     </nav>
@@ -8649,7 +8701,7 @@
           </div>
         </div>
 
-        <!-- حاسبة الذهب والمصنعية المتقدمة بالصاغة المصرية (v3.1.4) -->
+        <!-- حاسبة الذهب والمصنعية المتقدمة بالصاغة المصرية (v3.1.5) -->
         <div class="gold-calc-card" style="padding: 10px 12px; border-radius: 14px; background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(245, 158, 11, 0.4); margin-bottom: 8px; display: flex; flex-direction: column; gap: 7px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div style="font-size: 0.80rem; font-weight: 800; color: #fde047; display: flex; align-items: center; gap: 6px;">
@@ -14281,7 +14333,7 @@
 
     
     // =========================================================================
-    // حاسبة الذهب والمصنعية التقديرية بالصاغة المصرية (v3.1.4)
+    // حاسبة الذهب والمصنعية التقديرية بالصاغة المصرية (v3.1.5)
     // =========================================================================
     const WORKMANSHIP_PRESETS = {
       'gold21_jewelry': { fee: 90, unit: 'gram', isGold: true, karat: 21, cashback: 0, note: 'متوسط مصنعية مشغولات عيار 21 بالسوق المصري تتراوح بين 70 إلى 150 ج.م/جرام حسب الصانع والماركة.' },
