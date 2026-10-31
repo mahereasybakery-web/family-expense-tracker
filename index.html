@@ -6793,6 +6793,9 @@
     }
   </script>
 
+    
+
+  <style id="kpiAndCatHarmonizationStyles">
     /* ضمان تناسق كروت المؤشرات الثلاثة في صف واحد على كافة الشاشات */
     .kpi-three-strip {
       display: grid !important;
@@ -6839,7 +6842,15 @@
       align-items: center !important;
       justify-content: center !important;
     }
-
+    .cat-label-text {
+      font-family: inherit !important;
+      font-size: 0.82rem !important;
+      font-weight: 800 !important;
+      color: #f8fafc !important;
+      letter-spacing: 0 !important;
+      text-shadow: none !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -11799,7 +11810,7 @@
 
           <!-- 2. اسم التصنيف بخط عربي نقي وواضح تماماً وبدون أي أحرف سوداء مشوهة -->
           <div class="cat-label-text" 
-               style="font-family: 'Cairo', sans-serif; font-size: 0.82rem; font-weight: 800; color: #f8fafc; text-align: center; margin-bottom: 4px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+               style="font-family: inherit; font-size: 0.82rem; font-weight: 800; color: #f8fafc; text-align: center; margin-bottom: 4px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
             ${theme.name}
           </div>
 
