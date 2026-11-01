@@ -17228,6 +17228,895 @@ function exportActivityLogExcel() {
         renderOperationsList(getFilteredTransactions());
       }
     }
+
+    // =========================================================================
+    // محرك الإصدار المطور الشامل v3.2.0 (Master Overhaul Engine)
+    // =========================================================================
+
+    // -------------------------------------------------------------------------
+    // 1. تحويل ونقل الرصيد بين المحافظ المالية (Inter-Wallet Transfer Engine)
+    // -------------------------------------------------------------------------
+    function openWalletTransferModal() {
+      const fromSel = document.getElementById('inpTransferFromWallet');
+      const toSel = document.getElementById('inpTransferToWallet');
+      const amtInp = document.getElementById('inpTransferAmount');
+      const dateInp = document.getElementById('inpTransferDate');
+      const notesInp = document.getElementById('inpTransferNotes');
+
+      if (!fromSel || !toSel) return;
+
+      const wallets = state.wallets || [];
+      const optsHtml = wallets.map(w => `<option value="${w.id}">${w.name} (${formatMoney(w.balance || 0)})</option>`).join('');
+
+      fromSel.innerHTML = optsHtml;
+      toSel.innerHTML = optsHtml;
+
+      if (wallets.length > 1) {
+        toSel.selectedIndex = 1;
+      }
+
+      if (amtInp) amtInp.value = '';
+      if (dateInp) dateInp.value = new Date().toISOString().split('T')[0];
+      if (notesInp) notesInp.value = '';
+
+      openModal('walletTransferModal');
+    }
+
+    function executeWalletTransfer() {
+      const fromSel = document.getElementById('inpTransferFromWallet');
+      const toSel = document.getElementById('inpTransferToWallet');
+      const amtInp = document.getElementById('inpTransferAmount');
+      const dateInp = document.getElementById('inpTransferDate');
+      const notesInp = document.getElementById('inpTransferNotes');
+
+      const fromId = fromSel ? fromSel.value : '';
+      const toId = toSel ? toSel.value : '';
+      const amount = parseFloat(amtInp ? amtInp.value : 0);
+      const date = dateInp && dateInp.value ? dateInp.value : new Date().toISOString().split('T')[0];
+      const notes = notesInp ? notesInp.value.trim() : '';
+
+      if (isNaN(amount) || amount <= 0) {
+        showToast('⚠️ الرجاء إدخال مبلغ صحيح أكبر من الصفر للتحويل', 'error');
+        if (amtInp) amtInp.focus();
+        return;
+      }
+
+      if (fromId === toId) {
+        showToast('⚠️ لا يمكن التحويل لنفس المحفظة! يرجى اختيار محفظتين مختلفتين', 'error');
+        return;
+      }
+
+      const fromWallet = (state.wallets || []).find(w => w.id === fromId);
+      const toWallet = (state.wallets || []).find(w => w.id === toId);
+
+      if (!fromWallet || !toWallet) {
+        showToast('⚠️ حدث خطأ في تحديد بيانات المحافظ', 'error');
+        return;
+      }
+
+      // تحديث أرصدة المحافظ
+      fromWallet.balance = (Number(fromWallet.balance) || 0) - amount;
+      toWallet.balance = (Number(toWallet.balance) || 0) + amount;
+      try {
+        localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
+      } catch(e) {}
+
+      // تسجيل حركة التحويل في سجل العمليات
+      const transferTx = {
+        id: 'tx-trans-' + Date.now(),
+        type: 'transfer',
+        fromWalletId: fromId,
+        toWalletId: toId,
+        amount: amount,
+        label: notes || `تحويل من ${fromWallet.name} إلى ${toWallet.name}`,
+        category: 'other',
+        member: state.currentUser || 'ماهر',
+        author: state.currentUser || 'ماهر',
+        date: date,
+        time: new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }),
+        notes: `تحويل بين المحافظ: من [${fromWallet.name}] إلى [${toWallet.name}]`
+      };
+
+      state.transactions.unshift(transferTx);
+      saveTx();
+
+      // التوثيق في الأرشيف
+      logActivity({
+        type: 'wallet_transfer',
+        action: 'تحويل بين المحافظ',
+        label: `تحويل ${formatMoney(amount)} من [${fromWallet.name}] إلى [${toWallet.name}]`,
+        amount: amount,
+        member: state.currentUser || 'ماهر',
+        author: state.currentUser || 'ماهر'
+      });
+
+      playNotificationChime();
+      if ('vibrate' in navigator) navigator.vibrate([100, 50, 100]);
+
+      closeModal('walletTransferModal');
+      populateWalletDropdowns();
+      renderUI();
+      showToast(`⚡ تم تحويل (${formatMoney(amount)}) من [${fromWallet.name}] إلى [${toWallet.name}] بنجاح`);
+    }
+
+    // -------------------------------------------------------------------------
+    // 2. كشف حركات المحفظة المحاسبي والتصدير إكسيل و PDF
+    // -------------------------------------------------------------------------
+    function openWalletStatementModal() {
+      const selectFilter = document.getElementById('stmtWalletFilter');
+      if (selectFilter) {
+        let html = '<option value="all">كل المحافظ مجتمعة (إجمالي شامل)</option>';
+        (state.wallets || []).forEach(w => {
+          html += `<option value="${w.id}">${w.name}</option>`;
+        });
+        selectFilter.innerHTML = html;
+        selectFilter.value = state.currentWalletId || 'all';
+      }
+
+      renderWalletStatement();
+      openModal('walletStatementModal');
+    }
+
+    function renderWalletStatement() {
+      const selectFilter = document.getElementById('stmtWalletFilter');
+      const periodFilter = document.getElementById('stmtPeriodFilter');
+      const tableContainer = document.getElementById('walletStatementTableContainer');
+
+      const targetWalletId = selectFilter ? selectFilter.value : 'all';
+      const period = periodFilter ? periodFilter.value : 'all';
+
+      let txList = state.transactions || [];
+
+      // تصفية المحفظة
+      if (targetWalletId !== 'all') {
+        txList = txList.filter(t => t.walletId === targetWalletId || t.fromWalletId === targetWalletId || t.toWalletId === targetWalletId);
+      }
+
+      // تصفية الفترة الزمنية
+      const now = new Date();
+      const todayStr = getLocalDateStr(now);
+      if (period === 'today') {
+        txList = txList.filter(t => t.date === todayStr);
+      } else if (period === 'week') {
+        const weekAgo = new Date();
+        weekAgo.setDate(weekAgo.getDate() - 7);
+        const weekAgoStr = getLocalDateStr(weekAgo);
+        txList = txList.filter(t => t.date >= weekAgoStr);
+      } else if (period === 'month') {
+        const monthPrefix = todayStr.substring(0, 7);
+        txList = txList.filter(t => (t.date || '').startsWith(monthPrefix));
+      }
+
+      // ترتيب زمني تصاعدي لحساب الرصيد التراكمي بدقة
+      const chronological = [...txList].reverse();
+
+      let openingBalance = 0;
+      if (targetWalletId !== 'all') {
+        const wObj = (state.wallets || []).find(w => w.id === targetWalletId);
+        openingBalance = Number(wObj ? wObj.initialBalance : 0) || 0;
+      } else {
+        openingBalance = (state.wallets || []).reduce((sum, w) => sum + (Number(w.initialBalance) || 0), 0);
+      }
+
+      let running = openingBalance;
+      let totalIn = 0;
+      let totalOut = 0;
+
+      const statementRows = chronological.map(tx => {
+        let isCredit = false;
+        let isDebit = false;
+        let rowAmount = Number(tx.amount) || 0;
+
+        if (tx.type === 'income') {
+          isCredit = true;
+          totalIn += rowAmount;
+          running += rowAmount;
+        } else if (tx.type === 'expense') {
+          isDebit = true;
+          totalOut += rowAmount;
+          running -= rowAmount;
+        } else if (tx.type === 'transfer') {
+          if (targetWalletId === 'all') {
+            // تحويل داخلي لا يغير إجمالي كل المحافظ
+          } else if (tx.toWalletId === targetWalletId) {
+            isCredit = true;
+            totalIn += rowAmount;
+            running += rowAmount;
+          } else if (tx.fromWalletId === targetWalletId) {
+            isDebit = true;
+            totalOut += rowAmount;
+            running -= rowAmount;
+          }
+        }
+
+        return {
+          date: tx.date || '',
+          time: tx.time || '',
+          label: tx.label || '',
+          type: tx.type,
+          isCredit,
+          isDebit,
+          amount: rowAmount,
+          balanceAfter: running,
+          member: tx.member || '',
+          walletName: getWalletName(tx.walletId || tx.toWalletId || tx.fromWalletId)
+        };
+      });
+
+      // تحديث كروت الملخص الأربعة
+      const elOpen = document.getElementById('stmtOpeningBal');
+      const elIn = document.getElementById('stmtTotalInflow');
+      const elOut = document.getElementById('stmtTotalOutflow');
+      const elClose = document.getElementById('stmtClosingBal');
+
+      if (elOpen) elOpen.textContent = formatMoney(openingBalance);
+      if (elIn) elIn.textContent = '+ ' + formatMoney(totalIn);
+      if (elOut) elOut.textContent = '- ' + formatMoney(totalOut);
+      if (elClose) elClose.textContent = formatMoney(running);
+
+      // بناء جدول كشف الحساب
+      if (tableContainer) {
+        if (statementRows.length === 0) {
+          tableContainer.innerHTML = `
+            <div style="text-align: center; padding: 30px; color: #64748b; font-size: 0.85rem;">
+              <i class="fa-solid fa-receipt" style="font-size: 2rem; margin-bottom: 8px; opacity: 0.5;"></i>
+              <p>لا توجد حركات مسجلة لهذه المحفظة خلال الفترة المحددة</p>
+            </div>
+          `;
+          return;
+        }
+
+        // عرض السطور بترتيب تنازلي (الأحدث أولاً)
+        const displayRows = [...statementRows].reverse();
+
+        tableContainer.innerHTML = `
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.78rem; text-align: right;">
+            <thead>
+              <tr style="background: rgba(30, 41, 59, 0.9); color: #38bdf8; border-bottom: 1.5px solid rgba(56, 189, 248, 0.3);">
+                <th style="padding: 8px 10px;">التاريخ</th>
+                <th style="padding: 8px;">البيان</th>
+                <th style="padding: 8px;">نوع الحركة</th>
+                <th style="padding: 8px; text-align: center;">المبلغ</th>
+                <th style="padding: 8px 10px; text-align: left;">الرصيد التراكمي</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${displayRows.map(r => {
+                let badge = '';
+                let amtDisplay = '';
+                if (r.type === 'income') {
+                  badge = '<span style="color: #34d399; background: rgba(16, 185, 129, 0.15); padding: 2px 6px; border-radius: 6px; font-weight: 800;">إيداع +</span>';
+                  amtDisplay = `<span style="color: #34d399; font-weight: 900;">+ ${formatMoney(r.amount)}</span>`;
+                } else if (r.type === 'expense') {
+                  badge = '<span style="color: #f87171; background: rgba(239, 68, 68, 0.15); padding: 2px 6px; border-radius: 6px; font-weight: 800;">صرف -</span>';
+                  amtDisplay = `<span style="color: #f87171; font-weight: 900;">- ${formatMoney(r.amount)}</span>`;
+                } else {
+                  badge = '<span style="color: #fbbf24; background: rgba(245, 158, 11, 0.15); padding: 2px 6px; border-radius: 6px; font-weight: 800;">تحويل 🔄</span>';
+                  amtDisplay = `<span style="color: #fbbf24; font-weight: 900;">${formatMoney(r.amount)}</span>`;
+                }
+
+                return `
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                    <td style="padding: 8px 10px; color: #94a3b8; font-size: 0.72rem; white-space: nowrap;">${r.date}</td>
+                    <td style="padding: 8px; color: #f1f5f9; font-weight: 700;">
+                      ${escapeHtml(r.label)}
+                      <div style="font-size: 0.65rem; color: #64748b;">${r.walletName} • ${r.member}</div>
+                    </td>
+                    <td style="padding: 8px;">${badge}</td>
+                    <td style="padding: 8px; text-align: center; white-space: nowrap;">${amtDisplay}</td>
+                    <td style="padding: 8px 10px; text-align: left; font-weight: 900; color: #38bdf8; font-variant-numeric: tabular-nums;">${formatMoney(r.balanceAfter)}</td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        `;
+      }
+    }
+
+    function exportWalletStatementExcel() {
+      if (typeof XLSX === 'undefined') {
+        showToast('⚠️ جاري تحميل مكتبة الإكسيل، يرجى المحاولة بعد لحظات', 'info');
+        return;
+      }
+
+      const selectFilter = document.getElementById('stmtWalletFilter');
+      const targetWalletId = selectFilter ? selectFilter.value : 'all';
+      const wName = targetWalletId === 'all' ? 'كافة المحافظ' : (getWalletName(targetWalletId) || 'المحفظة');
+
+      const rows = [];
+      rows.push(['كشف حساب وحركات المحفظة المحاسبي المعتمد']);
+      rows.push(['المحفظة:', wName]);
+      rows.push(['تاريخ التصدير:', new Date().toLocaleDateString('ar-EG')]);
+      rows.push([]);
+      rows.push(['التاريخ', 'البيان', 'نوع الحركة', 'المحفظة', 'المبلغ', 'الرصيد التراكمي', 'المسؤول']);
+
+      const tableEl = document.querySelector('#walletStatementTableContainer table');
+      if (!tableEl) {
+        showToast('لا توجد بيانات لتصديرها', 'error');
+        return;
+      }
+
+      const trs = tableEl.querySelectorAll('tbody tr');
+      trs.forEach(tr => {
+        const tds = tr.querySelectorAll('td');
+        if (tds.length >= 5) {
+          const date = tds[0].textContent.trim();
+          const label = tds[1].textContent.trim().replace(/\s+/g, ' ');
+          const type = tds[2].textContent.trim();
+          const amt = tds[3].textContent.trim();
+          const bal = tds[4].textContent.trim();
+          rows.push([date, label, type, wName, amt, bal, state.currentUser || 'ماهر']);
+        }
+      });
+
+      const ws = XLSX.utils.aoa_to_sheet(rows);
+      ws['!dir'] = 'rtl';
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'كشف الحساب');
+      XLSX.writeFile(wb, `كشف_حساب_${wName.replace(/\s+/g, '_')}_${Date.now()}.xlsx`);
+      showToast('📊 تم تصدير كشف الحساب إكسيل بنجاح');
+    }
+
+    function exportWalletStatementPdf() {
+      const tableContainer = document.getElementById('walletStatementTableContainer');
+      const selectFilter = document.getElementById('stmtWalletFilter');
+      const wName = selectFilter && selectFilter.value !== 'all' ? getWalletName(selectFilter.value) : 'كافة المحافظ مجتمعة';
+
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="ar" dir="rtl">
+        <head>
+          <meta charset="UTF-8">
+          <title>كشف حساب محفظة - ${wName}</title>
+          <style>
+            body { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; direction: rtl; padding: 20px; color: #1e293b; }
+            h2 { color: #0f172a; border-bottom: 2px solid #0284c7; padding-bottom: 8px; margin-bottom: 12px; }
+            .header-info { display: flex; justify-content: space-between; margin-bottom: 16px; font-size: 0.85rem; color: #64748b; }
+            table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
+            th, td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: right; }
+            th { background: #f1f5f9; color: #0f172a; }
+            .credit { color: #047857; font-weight: bold; }
+            .debit { color: #b91c1c; font-weight: bold; }
+            .kpi-row { display: flex; gap: 10px; margin-bottom: 16px; }
+            .kpi-box { flex: 1; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px; text-align: center; }
+          </style>
+        </head>
+        <body>
+          <h2>كشف حساب وحركات المحفظة المعتمد</h2>
+          <div class="header-info">
+            <div><strong>المحفظة:</strong> ${wName}</div>
+            <div><strong>تاريخ الطباعة:</strong> ${new Date().toLocaleDateString('ar-EG')}</div>
+            <div><strong>المسؤول:</strong> ${state.currentUser || 'ماهر'}</div>
+          </div>
+          ${tableContainer ? tableContainer.innerHTML : ''}
+          <script>
+            window.onload = function() { window.print(); };
+          <\/script>
+        </body>
+        </html>
+      `);
+      printWindow.document.close();
+    }
+
+    // -------------------------------------------------------------------------
+    // 3. رفع وتصوير الفواتير للالتزامات المتوقعة (Photo Upload for Commitments)
+    // -------------------------------------------------------------------------
+    function handleExpectedPhotoUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          const maxDim = 600;
+          let w = img.width;
+          let h = img.height;
+          if (w > h && w > maxDim) {
+            h = Math.round((h * maxDim) / w);
+            w = maxDim;
+          } else if (h > maxDim) {
+            w = Math.round((w * maxDim) / h);
+            h = maxDim;
+          }
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          const compressed = canvas.toDataURL('image/jpeg', 0.82);
+
+          state.pendingExpectedPhotoDataUri = compressed;
+
+          const previewImg = document.getElementById('expPhotoPreviewImg');
+          const previewCont = document.getElementById('expPhotoPreviewContainer');
+          const badge = document.getElementById('expPhotoStatusBadge');
+          const removeBtn = document.getElementById('btnRemoveExpPhoto');
+
+          if (previewImg) previewImg.src = compressed;
+          if (previewCont) previewCont.style.display = 'block';
+          if (badge) badge.style.display = 'inline-block';
+          if (removeBtn) removeBtn.style.display = 'inline-block';
+
+          showToast('📸 تم إرفاق صورة المستند بنجاح');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeExpectedPhoto() {
+      state.pendingExpectedPhotoDataUri = null;
+      const previewCont = document.getElementById('expPhotoPreviewContainer');
+      const badge = document.getElementById('expPhotoStatusBadge');
+      const removeBtn = document.getElementById('btnRemoveExpPhoto');
+      const fileInp = document.getElementById('inpExpPhoto');
+
+      if (previewCont) previewCont.style.display = 'none';
+      if (badge) badge.style.display = 'none';
+      if (removeBtn) removeBtn.style.display = 'none';
+      if (fileInp) fileInp.value = '';
+    }
+
+    // -------------------------------------------------------------------------
+    // 4. التبديل الرئيسي في صفحة المتوقعة (Commitments vs Monthly Budget)
+    // -------------------------------------------------------------------------
+    function switchExpectedMainTab(tab) {
+      const btnCommitments = document.getElementById('tabExpectedCommitments');
+      const btnBudget = document.getElementById('tabExpectedMonthlyBudget');
+      const btnHistory = document.getElementById('tabExpectedBudgetHistory');
+
+      const subCommitments = document.getElementById('subViewCommitments');
+      const panelNewExp = document.getElementById('panelNewExpected');
+      const panelListExp = document.getElementById('panelListExpected');
+      const panelBudget = document.getElementById('panelMonthlyBudget');
+      const panelHistory = document.getElementById('panelBudgetHistory');
+
+      [btnCommitments, btnBudget, btnHistory].forEach(b => {
+        if (b) {
+          b.classList.remove('active');
+          b.style.background = 'transparent';
+          b.style.color = '#94a3b8';
+          b.style.boxShadow = 'none';
+        }
+      });
+
+      if (tab === 'commitments') {
+        if (btnCommitments) {
+          btnCommitments.classList.add('active');
+          btnCommitments.style.background = 'linear-gradient(135deg, #0284c7, #0369a1)';
+          btnCommitments.style.color = '#fff';
+          btnCommitments.style.boxShadow = '0 4px 12px rgba(2, 132, 199, 0.35)';
+        }
+        if (subCommitments) subCommitments.style.display = 'block';
+        if (panelNewExp) panelNewExp.style.display = 'block';
+        if (panelListExp) panelListExp.style.display = 'none';
+        if (panelBudget) panelBudget.style.display = 'none';
+        if (panelHistory) panelHistory.style.display = 'none';
+      } else if (tab === 'monthly_budget') {
+        if (btnBudget) {
+          btnBudget.classList.add('active');
+          btnBudget.style.background = 'linear-gradient(135deg, #0284c7, #0369a1)';
+          btnBudget.style.color = '#fff';
+          btnBudget.style.boxShadow = '0 4px 12px rgba(2, 132, 199, 0.35)';
+        }
+        if (subCommitments) subCommitments.style.display = 'none';
+        if (panelNewExp) panelNewExp.style.display = 'none';
+        if (panelListExp) panelListExp.style.display = 'none';
+        if (panelBudget) panelBudget.style.display = 'block';
+        if (panelHistory) panelHistory.style.display = 'none';
+        loadMonthlyBudget();
+      } else if (tab === 'budget_history') {
+        if (btnHistory) {
+          btnHistory.classList.add('active');
+          btnHistory.style.background = 'linear-gradient(135deg, #0284c7, #0369a1)';
+          btnHistory.style.color = '#fff';
+          btnHistory.style.boxShadow = '0 4px 12px rgba(2, 132, 199, 0.35)';
+        }
+        if (subCommitments) subCommitments.style.display = 'none';
+        if (panelNewExp) panelNewExp.style.display = 'none';
+        if (panelListExp) panelListExp.style.display = 'none';
+        if (panelBudget) panelBudget.style.display = 'none';
+        if (panelHistory) panelHistory.style.display = 'block';
+        renderBudgetHistory();
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 5. محرك الميزانية التقديرية الشهرية الشاملة (Monthly Budget Engine)
+    // -------------------------------------------------------------------------
+    let currentBudgetMonthData = null;
+
+    function initMonthlyBudgetUI() {
+      const stored = localStorage.getItem('family_monefy_monthly_budgets');
+      if (stored) {
+        try { state.monthlyBudgets = JSON.parse(stored); } catch(e) { state.monthlyBudgets = []; }
+      }
+
+      if (!state.monthlyBudgets || state.monthlyBudgets.length === 0) {
+        // ميزانية استرشادية ذكية لشهر نوفمبر 2026
+        const defaultBudget = {
+          month: '2026-11',
+          title: 'ميزانية نوفمبر 2026 التقديرية',
+          categories: {
+            food: 20000,
+            daily: 4000,
+            bills: 8000,
+            transport: 6000,
+            house: 6000,
+            health: 5000,
+            clothes: 6000,
+            education: 15000,
+            other: 6000
+          },
+          incomes: [
+            { id: 'inc-1', name: 'راتب ماهر الأساسي', amount: 85000, member: 'ماهر' },
+            { id: 'inc-2', name: 'استشارات وأعمال حرة', amount: 30000, member: 'ماهر' }
+          ],
+          updatedAt: new Date().toISOString()
+        };
+        state.monthlyBudgets = [defaultBudget];
+        try {
+          localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
+        } catch(e) {}
+      }
+    }
+
+    function loadMonthlyBudget() {
+      const monthInp = document.getElementById('inpBudgetMonth');
+      const targetMonth = monthInp ? monthInp.value : '2026-11';
+
+      if (!state.monthlyBudgets) state.monthlyBudgets = [];
+      let bData = state.monthlyBudgets.find(b => b.month === targetMonth);
+
+      if (!bData) {
+        bData = {
+          month: targetMonth,
+          title: `ميزانية ${targetMonth} التقديرية`,
+          categories: {
+            food: 18000,
+            daily: 3500,
+            bills: 7500,
+            transport: 5500,
+            house: 5000,
+            health: 4500,
+            clothes: 5000,
+            education: 12000,
+            other: 5000
+          },
+          incomes: [
+            { id: 'inc-' + Date.now(), name: 'الدخل الشهري المتوقع', amount: 80000, member: 'ماهر' }
+          ],
+          updatedAt: new Date().toISOString()
+        };
+        state.monthlyBudgets.push(bData);
+      }
+
+      currentBudgetMonthData = bData;
+      renderMonthlyBudgetAllocations();
+    }
+
+    function setProrateView(view, btnEl) {
+      state.activeProrateView = view;
+      document.querySelectorAll('#panelMonthlyBudget .btn-export-tool').forEach(b => {
+        b.classList.remove('active');
+        b.style.background = '';
+        b.style.color = '';
+      });
+      if (btnEl) {
+        btnEl.classList.add('active');
+        btnEl.style.background = 'rgba(56, 189, 248, 0.2)';
+        btnEl.style.color = '#38bdf8';
+      }
+
+      const badge = document.getElementById('budgetProrateNoteBadge');
+      if (badge) {
+        if (view === 'day') badge.textContent = 'معروض باليوم (نسبة 1/30)';
+        else if (view === 'week') badge.textContent = 'معروض بالأسبوع (نسبة 7/30)';
+        else badge.textContent = 'معروض بالشهر كاملاً';
+      }
+
+      renderMonthlyBudgetAllocations();
+    }
+
+    function renderMonthlyBudgetAllocations() {
+      if (!currentBudgetMonthData) return;
+
+      const grid = document.getElementById('budgetCategoryInputsGrid');
+      const incCont = document.getElementById('budgetIncomeRowsContainer');
+      const memFilter = document.getElementById('budgetMemberFilter');
+      const catFilter = document.getElementById('budgetCategoryFilter');
+
+      const selectedMem = memFilter ? memFilter.value : 'all';
+      const selectedCat = catFilter ? catFilter.value : 'all';
+
+      // معامل التوزيع التناسبي
+      let multiplier = 1;
+      if (state.activeProrateView === 'week') multiplier = 7 / 30;
+      else if (state.activeProrateView === 'day') multiplier = 1 / 30;
+
+      // 1. رسم بنود المصروفات
+      if (grid) {
+        const cats = typeof EXPENSE_CATEGORIES !== 'undefined' ? EXPENSE_CATEGORIES : [];
+        let expTotal = 0;
+
+        grid.innerHTML = cats.map(c => {
+          if (selectedCat !== 'all' && c.id !== selectedCat) return '';
+
+          const baseAmt = currentBudgetMonthData.categories[c.id] || 0;
+          const displayAmt = Math.round(baseAmt * multiplier);
+          expTotal += baseAmt;
+
+          return `
+            <div style="background: rgba(30, 41, 59, 0.7); border: 1.2px solid ${c.color}50; border-radius: 10px; padding: 8px 10px; display: flex; flex-direction: column; gap: 4px;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-size: 0.76rem; font-weight: 800; color: #f1f5f9; display: flex; align-items: center; gap: 5px;">
+                  <i class="fa-solid ${c.icon}" style="color: ${c.color};"></i> ${c.name}
+                </span>
+                <span style="font-size: 0.65rem; color: #38bdf8;">${state.activeProrateView === 'month' ? 'شهري' : (state.activeProrateView === 'week' ? 'أسبوعي' : 'يومي')}</span>
+              </div>
+              <input type="number" step="100" class="form-input-custom budget-cat-input" data-cat-id="${c.id}" value="${displayAmt}" oninput="onBudgetCategoryInputChange('${c.id}', this.value)" style="height: 36px; font-weight: 900; font-size: 0.95rem; text-align: center; color: #f87171; border-radius: 8px; box-sizing: border-box;">
+            </div>
+          `;
+        }).join('');
+      }
+
+      // 2. رسم مصادر الدخل
+      if (incCont) {
+        const incomes = currentBudgetMonthData.incomes || [];
+        incCont.innerHTML = incomes.map((inc, idx) => {
+          return `
+            <div style="display: flex; gap: 6px; align-items: center; background: rgba(30, 41, 59, 0.6); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06);">
+              <input type="text" value="${escapeHtml(inc.name)}" placeholder="مصدر الدخل" onchange="updateBudgetIncome(${idx}, 'name', this.value)" style="flex: 2; height: 32px; font-size: 0.76rem; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 6px; padding: 0 8px;">
+              <input type="number" step="500" value="${inc.amount}" placeholder="المبلغ" onchange="updateBudgetIncome(${idx}, 'amount', this.value)" style="flex: 1.2; height: 32px; font-size: 0.85rem; font-weight: 900; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; text-align: center; border-radius: 6px;">
+              <button type="button" onclick="removeBudgetIncome(${idx})" style="width: 32px; height: 32px; border-radius: 6px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; cursor: pointer;"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+          `;
+        }).join('');
+      }
+
+      updateBudgetKpis();
+    }
+
+    function onBudgetCategoryInputChange(catId, val) {
+      if (!currentBudgetMonthData) return;
+      const num = parseFloat(val) || 0;
+      let multiplier = 1;
+      if (state.activeProrateView === 'week') multiplier = 7 / 30;
+      else if (state.activeProrateView === 'day') multiplier = 1 / 30;
+
+      // العودة للأصل الشهري
+      currentBudgetMonthData.categories[catId] = Math.round(num / multiplier);
+      updateBudgetKpis();
+    }
+
+    function addBudgetIncomeRow() {
+      if (!currentBudgetMonthData) return;
+      if (!currentBudgetMonthData.incomes) currentBudgetMonthData.incomes = [];
+      currentBudgetMonthData.incomes.push({
+        id: 'inc-' + Date.now(),
+        name: 'إيراد إضافي جديد',
+        amount: 5000,
+        member: state.currentUser || 'ماهر'
+      });
+      renderMonthlyBudgetAllocations();
+    }
+
+    function updateBudgetIncome(idx, field, val) {
+      if (!currentBudgetMonthData || !currentBudgetMonthData.incomes[idx]) return;
+      if (field === 'amount') {
+        currentBudgetMonthData.incomes[idx].amount = parseFloat(val) || 0;
+      } else {
+        currentBudgetMonthData.incomes[idx].name = val;
+      }
+      updateBudgetKpis();
+    }
+
+    function removeBudgetIncome(idx) {
+      if (!currentBudgetMonthData || !currentBudgetMonthData.incomes) return;
+      currentBudgetMonthData.incomes.splice(idx, 1);
+      renderMonthlyBudgetAllocations();
+    }
+
+    function updateBudgetKpis() {
+      if (!currentBudgetMonthData) return;
+
+      let multiplier = 1;
+      if (state.activeProrateView === 'week') multiplier = 7 / 30;
+      else if (state.activeProrateView === 'day') multiplier = 1 / 30;
+
+      const totalMonthlyInc = (currentBudgetMonthData.incomes || []).reduce((s, i) => s + (Number(i.amount) || 0), 0);
+      const totalMonthlyExp = Object.values(currentBudgetMonthData.categories || {}).reduce((s, v) => s + (Number(v) || 0), 0);
+
+      const dispInc = Math.round(totalMonthlyInc * multiplier);
+      const dispExp = Math.round(totalMonthlyExp * multiplier);
+      const surplus = dispInc - dispExp;
+
+      const kpiInc = document.getElementById('budgetKpiIncome');
+      const kpiExp = document.getElementById('budgetKpiExpense');
+      const kpiSurplus = document.getElementById('budgetKpiSurplus');
+
+      if (kpiInc) kpiInc.textContent = '+ ' + formatMoney(dispInc);
+      if (kpiExp) kpiExp.textContent = '- ' + formatMoney(dispExp);
+      if (kpiSurplus) {
+        kpiSurplus.textContent = (surplus >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(surplus));
+        kpiSurplus.style.color = surplus >= 0 ? '#38bdf8' : '#f87171';
+      }
+    }
+
+    function saveMonthlyBudget() {
+      if (!currentBudgetMonthData) return;
+      currentBudgetMonthData.updatedAt = new Date().toISOString();
+
+      const idx = state.monthlyBudgets.findIndex(b => b.month === currentBudgetMonthData.month);
+      if (idx !== -1) {
+        state.monthlyBudgets[idx] = currentBudgetMonthData;
+      } else {
+        state.monthlyBudgets.push(currentBudgetMonthData);
+      }
+
+      try {
+        localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
+      } catch(e) {}
+
+      logActivity({
+        type: 'budget_updated',
+        action: 'تثبيت ميزانية شهرية',
+        label: `اعتماد الميزانية التقديرية لشهر (${currentBudgetMonthData.month})`,
+        amount: Object.values(currentBudgetMonthData.categories).reduce((s, v) => s + v, 0),
+        member: 'البيت',
+        author: state.currentUser || 'ماهر'
+      });
+
+      playNotificationChime();
+      showToast(`💾 تم حفظ وتثبيت الميزانية التقديرية لشهر (${currentBudgetMonthData.month}) بنجاح! ✨`);
+
+      // تحديث شاشة المقارنات والرقابة المالية فوراً بناءً على الميزانية المعتمدة
+      if (typeof renderComparisonsSection === 'function') {
+        renderComparisonsSection();
+      }
+    }
+
+    function renderBudgetHistory() {
+      const container = document.getElementById('budgetHistoryListContainer');
+      if (!container) return;
+
+      const list = state.monthlyBudgets || [];
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 24px; color: #64748b; font-size: 0.85rem;">
+            <i class="fa-solid fa-clock-rotate-left" style="font-size: 2rem; margin-bottom: 8px; opacity: 0.5;"></i>
+            <p>لا توجد ميزانيات تقديرية محفوظة في السجل حتى الآن</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(b => {
+        const totalInc = (b.incomes || []).reduce((s, i) => s + (Number(i.amount) || 0), 0);
+        const totalExp = Object.values(b.categories || {}).reduce((s, v) => s + (Number(v) || 0), 0);
+        const surplus = totalInc - totalExp;
+
+        return `
+          <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 0.92rem; font-weight: 800; color: #f1f5f9; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-calendar-days" style="color: #38bdf8;"></i> ${b.title || b.month}
+              </div>
+              <div style="font-size: 0.70rem; color: #94a3b8; display: flex; gap: 10px; margin-top: 4px;">
+                <span>الدخل: <strong style="color: #34d399;">+${formatMoney(totalInc)}</strong></span>
+                <span>المصروف: <strong style="color: #f87171;">-${formatMoney(totalExp)}</strong></span>
+                <span>الفائض: <strong style="color: ${surplus >= 0 ? '#38bdf8' : '#f87171'};">${formatMoney(surplus)}</strong></span>
+              </div>
+            </div>
+            <button type="button" onclick="restoreBudgetForView('${b.month}')" class="btn-tool-pill" style="background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; padding: 6px 14px; border-radius: 8px; font-weight: 800; font-size: 0.76rem; border: none; cursor: pointer;">
+              <i class="fa-solid fa-eye"></i> فتح ومعاينة
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function restoreBudgetForView(month) {
+      const inp = document.getElementById('inpBudgetMonth');
+      if (inp) inp.value = month;
+      switchExpectedMainTab('monthly_budget');
+    }
+
+    // حساب الميزانية التقديرية التناسبية لأي فترة وزمن
+    function getProratedBudgetForPeriod(periodStr) {
+      if (!state.monthlyBudgets || state.monthlyBudgets.length === 0) return { totalExp: 0, byCat: {} };
+      
+      const now = new Date();
+      const currentMonthKey = getLocalDateStr(now).substring(0, 7);
+      const bData = (state.monthlyBudgets || []).find(b => b.month === currentMonthKey) || state.monthlyBudgets[0];
+
+      if (!bData) return { totalExp: 0, byCat: {} };
+
+      let multiplier = 1;
+      if (periodStr === 'day' || periodStr === 'today') multiplier = 1 / 30;
+      else if (periodStr === 'week') multiplier = 7 / 30;
+      else if (periodStr === 'month') multiplier = 1;
+      else multiplier = 1;
+
+      const byCat = {};
+      let totalExp = 0;
+      for (const [cId, val] of Object.entries(bData.categories || {})) {
+        const prorated = Math.round((Number(val) || 0) * multiplier);
+        byCat[cId] = prorated;
+        totalExp += prorated;
+      }
+
+      return { totalExp, byCat };
+    }
+
+    // -------------------------------------------------------------------------
+    // 6. التحليل التفصيلي بنوع المصروف لكل شخص وشريط الأفاتارات (Fix Point 5)
+    // -------------------------------------------------------------------------
+    function renderMemberAnalyticsSelectorStrip() {
+      const strip = document.getElementById('memberAnalyticsSelectorStrip');
+      if (!strip) return;
+
+      const members = ['الكل', 'البيت', 'ماهر', 'آية', 'محمد', 'مريم', 'الحاجة', 'النونُو', 'أخرى'];
+      strip.innerHTML = members.map(m => {
+        const isAct = (typeof currentAnalyticsMember !== 'undefined' ? currentAnalyticsMember : 'الكل') === m;
+        const photo = (m !== 'الكل' && typeof MEMBER_AVATARS !== 'undefined') ? MEMBER_AVATARS[m] : null;
+
+        return `
+          <button type="button" class="btn-mem-analytics-chip ${isAct ? 'active' : ''}" onclick="selectAnalyticsMemberBreakdown('${m}')" style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 12px; border: 1.5px solid ${isAct ? '#38bdf8' : 'rgba(255,255,255,0.1)'}; background: ${isAct ? 'rgba(56, 189, 248, 0.2)' : 'rgba(30, 41, 59, 0.8)'}; color: ${isAct ? '#38bdf8' : '#cbd5e1'}; font-weight: 800; font-size: 0.78rem; cursor: pointer; white-space: nowrap; transition: all 0.2s;">
+            ${photo ? `<img src="${photo}" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover;">` : `<i class="fa-solid fa-users" style="font-size: 0.8rem;"></i>`}
+            <span>${m}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    // -------------------------------------------------------------------------
+    // 7. تبديل أشكال شارت التحليل (أعمدة - دونات - دائري - قطبي)
+    // -------------------------------------------------------------------------
+    function switchCategoryChartFormat(format, btnEl) {
+      state.activeCategoryChartFormat = format;
+      document.querySelectorAll('.chart-format-switcher-strip .btn-export-tool').forEach(b => {
+        b.classList.remove('active');
+        b.style.background = '';
+        b.style.color = '';
+      });
+      if (btnEl) {
+        btnEl.classList.add('active');
+        btnEl.style.background = 'rgba(56, 189, 248, 0.2)';
+        btnEl.style.color = '#38bdf8';
+      }
+
+      if (typeof renderCategoryChart === 'function') {
+        renderCategoryChart();
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // 8. تسجيل دخول فوري بنقرة واحدة لأفراد العائلة
+    // -------------------------------------------------------------------------
+    function quickSelectUser(memberName) {
+      state.currentUser = memberName;
+      try {
+        localStorage.setItem('family_monefy_auth', JSON.stringify({ user: memberName, loggedIn: true }));
+      } catch(e) {}
+
+      // تحديث شارة الهيدر
+      const headerTitle = document.querySelector('.brand-title');
+      if (headerTitle) {
+        headerTitle.innerHTML = `مصروفات العيلة ماهر ❤️ ${memberName}`;
+      }
+
+      playNotificationChime();
+      if ('vibrate' in navigator) navigator.vibrate(80);
+
+      closeModal('authModal');
+      renderUI();
+      showToast(`👋 أهلاً بك يا ${memberName}! تم تسجيل دخولك المباشر بنجاح.`);
+    }
+
 </script>
 
   <!-- ==============================================================
