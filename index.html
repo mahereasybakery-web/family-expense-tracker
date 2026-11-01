@@ -6,7 +6,8 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>مصروفات العيلة ماهر ❤️ أية</title>
+  <title>عيلة ماهر ❤️ أية</title>
+  <meta name="apple-mobile-web-app-title" content="عيلة ماهر ❤️ أية">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0f172a">
 
@@ -9164,7 +9165,7 @@
             <i class="fa-solid fa-wallet"></i>
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
-            <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
+            <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">عيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
             <span class="version-badge">v3.5.2</span>
           </div>
         </div>
@@ -12231,13 +12232,10 @@
         ayaCanExport: true,
       },
       wallets: [
-        { id: 'wallet-default', name: 'محفظة البيت الرئيسية (كاش)', icon: 'fa-money-bill-wave', initialBalance: 15000 },
-        { id: 'wallet-bank-misr', name: 'بنك مصر - الحساب الجاري', icon: 'fa-building-columns', initialBalance: 85000 },
-        { id: 'wallet-ahly', name: 'البنك الأهلي - حساب الراتب', icon: 'fa-landmark', initialBalance: 120000 },
-        { id: 'wallet-vodafone', name: 'فودافون كاش - فواتير ومدفوعات', icon: 'fa-mobile-screen', initialBalance: 8500 },
-        { id: 'wallet-instapay', name: 'انستاباي InstaPay', icon: 'fa-bolt', initialBalance: 25000 },
-        { id: 'wallet-cash-safe', name: 'خزينة كاش الطوارئ بالمنزل', icon: 'fa-vault', initialBalance: 50000 },
-        { id: 'wallet-cib-credit', name: 'بطاقة CIB الائتمانية', icon: 'fa-credit-card', initialBalance: 30000 }
+        { id: 'wallet-cash-safe', name: 'كاش البيت', type: 'cash', balance: 25000, initialBalance: 25000, icon: 'fa-money-bill-1-wave', color: '#06b6d4', isDefault: true },
+        { id: 'wallet-reserve', name: 'المبلغ الإحتياطى', type: 'reserve', balance: 115000, initialBalance: 100000, icon: 'fa-vault', color: '#f59e0b' },
+        { id: 'wallet-vodafone', name: 'فودافون كاش', type: 'wallet', balance: 8500, initialBalance: 8500, icon: 'fa-mobile-screen', color: '#ef4444' },
+        { id: 'wallet-other', name: 'أخرى', type: 'other', balance: 18000, initialBalance: 15000, icon: 'fa-wallet', color: '#8b5cf6' }
       ],
       transactions: [],
     };
@@ -12284,10 +12282,24 @@
         }
       }
 
-      // 2. تحميل المحافظ
+      // 2. تحميل المحافظ وترقيتها للمحافظ الأربعة المعتمدة (كاش البيت، المبلغ الإحتياطى، فودافون كاش، أخرى)
       const storedWallets = localStorage.getItem('family_monefy_wallets');
       if (storedWallets) {
-        try { state.wallets = JSON.parse(storedWallets); } catch(e) {}
+        try {
+          const parsed = JSON.parse(storedWallets);
+          if (Array.isArray(parsed) && parsed.length === 4 && parsed.some(w => w.id === 'wallet-reserve')) {
+            state.wallets = parsed;
+          } else {
+            // ترقية المحافظ القديمة للمحافظ الأربعة الرسمية
+            state.wallets = [
+              { id: 'wallet-cash-safe', name: 'كاش البيت', type: 'cash', balance: 25000, initialBalance: 25000, icon: 'fa-money-bill-1-wave', color: '#06b6d4', isDefault: true },
+              { id: 'wallet-reserve', name: 'المبلغ الإحتياطى', type: 'reserve', balance: 115000, initialBalance: 100000, icon: 'fa-vault', color: '#f59e0b' },
+              { id: 'wallet-vodafone', name: 'فودافون كاش', type: 'wallet', balance: 8500, initialBalance: 8500, icon: 'fa-mobile-screen', color: '#ef4444' },
+              { id: 'wallet-other', name: 'أخرى', type: 'other', balance: 18000, initialBalance: 15000, icon: 'fa-wallet', color: '#8b5cf6' }
+            ];
+            localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
+          }
+        } catch(e) {}
       }
 
       
@@ -12299,7 +12311,7 @@
 
       // 3. إدارة إصدار التطبيق وتحميل الحركات الغنية المتجددة بحسب تاريخ اليوم الحالي
       // 3. إدارة إصدار التطبيق (مسح البيانات القديمة تلقائياً وتوليد حركات متوازنة جديدة)
-      const APP_VERSION = '3.6.0';
+      const APP_VERSION = '3.7.0';
       const storedVer = localStorage.getItem('family_monefy_version');
       const todayIsoStr = getLocalDateStr(new Date());
 
@@ -12314,12 +12326,10 @@
         localStorage.setItem('family_monefy_version', APP_VERSION);
 
         state.wallets = [
-          { id: 'wallet-ahly', name: 'البنك الأهلي المصري', type: 'bank', balance: 85400, icon: 'fa-building-columns', color: '#10b981' },
-          { id: 'wallet-bank-misr', name: 'بنك مصر (شهادات وادخار)', type: 'bank', balance: 42500, icon: 'fa-landmark', color: '#f59e0b' },
-          { id: 'wallet-instapay', name: 'إنستاباي InstaPay', type: 'digital', balance: 14200, icon: 'fa-bolt', color: '#8b5cf6' },
-          { id: 'wallet-vodafone', name: 'فودافون كاش', type: 'wallet', balance: 6800, icon: 'fa-mobile-screen', color: '#ef4444' },
-          { id: 'wallet-cash-safe', name: 'الخزينة النقدية (كاش البيت)', type: 'cash', balance: 8500, icon: 'fa-money-bill-1-wave', color: '#06b6d4' },
-          { id: 'wallet-cib-credit', name: 'فيزا مشتريات CIB', type: 'credit', balance: 15000, icon: 'fa-credit-card', color: '#3b82f6' }
+          { id: 'wallet-cash-safe', name: 'كاش البيت', type: 'cash', balance: 25000, initialBalance: 25000, icon: 'fa-money-bill-1-wave', color: '#06b6d4', isDefault: true },
+          { id: 'wallet-reserve', name: 'المبلغ الإحتياطى', type: 'reserve', balance: 115000, initialBalance: 100000, icon: 'fa-vault', color: '#f59e0b' },
+          { id: 'wallet-vodafone', name: 'فودافون كاش', type: 'wallet', balance: 8500, initialBalance: 8500, icon: 'fa-mobile-screen', color: '#ef4444' },
+          { id: 'wallet-other', name: 'أخرى', type: 'other', balance: 18000, initialBalance: 15000, icon: 'fa-wallet', color: '#8b5cf6' }
         ];
         localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
 
@@ -14739,8 +14749,9 @@
     }
 
     function getWalletName(walletId) {
-      const w = (state.wallets || []).find(w => w.id === walletId);
-      return w ? w.name : 'المحفظة الافتراضية';
+      const targetId = normalizeWalletId(walletId);
+      const w = (state.wallets || []).find(w => w.id === targetId || w.id === walletId);
+      return w ? w.name : 'كاش البيت';
     }
 
     // =========================================================================
@@ -14910,74 +14921,74 @@
 
       const txs = [
         // ===================== اليوم (dayOffset = 0) =====================
-        { id: 'tx-today-1', type: 'expense', amount: 380, label: 'سوبرماركت كارفور - فطار وبقالة طازجة', category: 'food', member: 'ماهر', walletId: 'wallet-ahly', date: todayStr },
+        { id: 'tx-today-1', type: 'expense', amount: 380, label: 'سوبرماركت كارفور - فطار وبقالة طازجة', category: 'food', member: 'ماهر', walletId: 'wallet-cash-safe', date: todayStr },
         { id: 'tx-today-2', type: 'expense', amount: 55, label: 'قهوة ونثريات العمل', category: 'daily', member: 'ماهر', walletId: 'wallet-cash-safe', date: todayStr },
-        { id: 'tx-today-3', type: 'expense', amount: 350, label: 'بنزين 95 للسيارة محطة وطنية', category: 'transport', member: 'ماهر', walletId: 'wallet-ahly', date: todayStr },
-        { id: 'tx-today-4', type: 'expense', amount: 190, label: 'صيدلية العزبي - فيتامينات ومسكن', category: 'health', member: 'أية', walletId: 'wallet-instapay', date: todayStr },
+        { id: 'tx-today-3', type: 'expense', amount: 350, label: 'بنزين 95 للسيارة محطة وطنية', category: 'transport', member: 'ماهر', walletId: 'wallet-cash-safe', date: todayStr },
+        { id: 'tx-today-4', type: 'expense', amount: 190, label: 'صيدلية العزبي - فيتامينات ومسكن', category: 'health', member: 'أية', walletId: 'wallet-other', date: todayStr },
         { id: 'tx-today-5', type: 'expense', amount: 310, label: 'بامبرز وحفاضات وسيريلاك النونو', category: 'kids', member: 'أية', walletId: 'wallet-vodafone', date: todayStr },
         { id: 'tx-today-6', type: 'expense', amount: 80, label: 'مصروف مدرسي محمد ومريم', category: 'daily', member: 'محمد', walletId: 'wallet-cash-safe', date: todayStr },
         { id: 'tx-today-7', type: 'expense', amount: 65, label: 'مخبوزات وفينو طازج للبيت', category: 'food', member: 'أية', walletId: 'wallet-cash-safe', date: todayStr },
         { id: 'tx-today-8', type: 'expense', amount: 175, label: 'سوق الخضار والفاكهة الطازجة', category: 'food', member: 'الحاجة', walletId: 'wallet-cash-safe', date: todayStr },
         { id: 'tx-today-9', type: 'expense', amount: 40, label: 'شحن كروت فكة وباقة مكالمات', category: 'daily', member: 'ماهر', walletId: 'wallet-vodafone', date: todayStr },
-        { id: 'tx-today-10', type: 'expense', amount: 75, label: 'مشوار أوبر عائلي سريع', category: 'transport', member: 'أية', walletId: 'wallet-instapay', date: todayStr },
-        { id: 'tx-today-inc-1', type: 'income', amount: 2500, label: 'أرباح استثمار وتداول إنستاباي', category: 'invest', member: 'ماهر', walletId: 'wallet-instapay', date: todayStr },
-        { id: 'tx-today-wth-1', type: 'expense', amount: 2000, label: '[سحب نقدي ATM] تحويل من الأهلي للخزينة النقدية', category: 'others', member: 'ماهر', walletId: 'wallet-ahly', date: todayStr },
+        { id: 'tx-today-10', type: 'expense', amount: 75, label: 'مشوار أوبر عائلي سريع', category: 'transport', member: 'أية', walletId: 'wallet-other', date: todayStr },
+        { id: 'tx-today-inc-1', type: 'income', amount: 2500, label: 'عائد استثمار وتداول', category: 'invest', member: 'ماهر', walletId: 'wallet-reserve', date: todayStr },
+        { id: 'tx-today-wth-1', type: 'expense', amount: 2000, label: '[تحويل رصيد] من المبلغ الاحتياطي لكاش البيت', category: 'others', member: 'ماهر', walletId: 'wallet-reserve', date: todayStr },
 
         // ===================== أمس (dayOffset = 1) =====================
-        { id: 'tx-yest-1', type: 'expense', amount: 850, label: 'لحوم ودواجن بلدي طازجة للأسبوع', category: 'food', member: 'أية', walletId: 'wallet-ahly', date: getDateOffset(1) },
+        { id: 'tx-yest-1', type: 'expense', amount: 850, label: 'لحوم ودواجن بلدي طازجة للأسبوع', category: 'food', member: 'أية', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
         { id: 'tx-yest-2', type: 'expense', amount: 260, label: 'منظفات ومطهرات للبيت ومستلزمات', category: 'house', member: 'أية', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
         { id: 'tx-yest-3', type: 'expense', amount: 140, label: 'كشاكيل وألوان وأدوات مدرسة مريم', category: 'education', member: 'مريم', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
-        { id: 'tx-yest-4', type: 'expense', amount: 320, label: 'صيدلية 19011 - علاج سكر وضغط للحاجة', category: 'health', member: 'الحاجة', walletId: 'wallet-instapay', date: getDateOffset(1) },
+        { id: 'tx-yest-4', type: 'expense', amount: 320, label: 'صيدلية 19011 - علاج سكر وضغط للحاجة', category: 'health', member: 'الحاجة', walletId: 'wallet-other', date: getDateOffset(1) },
         { id: 'tx-yest-5', type: 'expense', amount: 95, label: 'مصروف شخصي ونثريات يومية', category: 'daily', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
         { id: 'tx-yest-6', type: 'expense', amount: 150, label: 'غسيل وتلميع السيارة دوري', category: 'transport', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
         { id: 'tx-yest-7', type: 'expense', amount: 180, label: 'طلبات بقالة وألبان وسوبرماركت', category: 'food', member: 'محمد', walletId: 'wallet-vodafone', date: getDateOffset(1) },
 
         // ===================== هذا الأسبوع (dayOffset = 2 to 6) =====================
-        { id: 'tx-wk-1', type: 'expense', amount: 780, label: 'فاتورة الكهرباء الشهرية للمنزل', category: 'bills', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(2) },
+        { id: 'tx-wk-1', type: 'expense', amount: 780, label: 'فاتورة الكهرباء الشهرية للمنزل', category: 'bills', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(2) },
         { id: 'tx-wk-2', type: 'expense', amount: 430, label: 'اشتراك الإنترنت المنزلي WE VDSL', category: 'bills', member: 'ماهر', walletId: 'wallet-vodafone', date: getDateOffset(2) },
         { id: 'tx-wk-3', type: 'expense', amount: 110, label: 'فاتورة الغاز الطبيعي', category: 'bills', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(3) },
-        { id: 'tx-wk-4', type: 'expense', amount: 700, label: 'دروس خصوصية ومذكرات لغات محمد', category: 'education', member: 'محمد', walletId: 'wallet-instapay', date: getDateOffset(3) },
-        { id: 'tx-wk-5', type: 'expense', amount: 950, label: 'اشتراك نادي وتدريب سباحة للأولاد', category: 'entertainment', member: 'محمد', walletId: 'wallet-bank-misr', date: getDateOffset(4) },
-        { id: 'tx-wk-6', type: 'expense', amount: 1480, label: 'عشاء ومطعم عائلي نهاية الأسبوع', category: 'entertainment', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(4) },
-        { id: 'tx-wk-7', type: 'expense', amount: 2400, label: 'شراء ملابس شتوية أطفال زارا', category: 'clothes', member: 'أية', walletId: 'wallet-cib-credit', date: getDateOffset(5) },
+        { id: 'tx-wk-4', type: 'expense', amount: 700, label: 'دروس خصوصية ومذكرات لغات محمد', category: 'education', member: 'محمد', walletId: 'wallet-other', date: getDateOffset(3) },
+        { id: 'tx-wk-5', type: 'expense', amount: 950, label: 'اشتراك نادي وتدريب سباحة للأولاد', category: 'entertainment', member: 'محمد', walletId: 'wallet-other', date: getDateOffset(4) },
+        { id: 'tx-wk-6', type: 'expense', amount: 1480, label: 'عشاء ومطعم عائلي نهاية الأسبوع', category: 'entertainment', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(4) },
+        { id: 'tx-wk-7', type: 'expense', amount: 2400, label: 'شراء ملابس شتوية أطفال زارا', category: 'clothes', member: 'أية', walletId: 'wallet-other', date: getDateOffset(5) },
         { id: 'tx-wk-8', type: 'expense', amount: 420, label: 'تصليح سباكة وفلاتر مياه بالمنزل', category: 'house', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(5) },
-        { id: 'tx-wk-9', type: 'expense', amount: 850, label: 'تغيير زيت وفلتر السيارة صيانة', category: 'transport', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(6) },
-        { id: 'tx-wk-10', type: 'expense', amount: 1650, label: 'طلبات سوبرماركت هايبر وان الأسبوعية', category: 'food', member: 'أية', walletId: 'wallet-ahly', date: getDateOffset(6) },
-        { id: 'tx-wk-11', type: 'expense', amount: 650, label: 'هدية ومجاملة زيارة عائلية', category: 'gifts', member: 'أية', walletId: 'wallet-instapay', date: getDateOffset(6) },
+        { id: 'tx-wk-9', type: 'expense', amount: 850, label: 'تغيير زيت وفلتر السيارة صيانة', category: 'transport', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(6) },
+        { id: 'tx-wk-10', type: 'expense', amount: 1650, label: 'طلبات سوبرماركت هايبر وان الأسبوعية', category: 'food', member: 'أية', walletId: 'wallet-cash-safe', date: getDateOffset(6) },
+        { id: 'tx-wk-11', type: 'expense', amount: 650, label: 'هدية ومجاملة زيارة عائلية', category: 'gifts', member: 'أية', walletId: 'wallet-other', date: getDateOffset(6) },
         { id: 'tx-wk-12', type: 'expense', amount: 480, label: 'قصص ومستلزمات ألعاب تعليمية كيدز', category: 'kids', member: 'مريم', walletId: 'wallet-cash-safe', date: getDateOffset(3) },
-        { id: 'tx-wk-13', type: 'expense', amount: 500, label: 'عيادة أطفال واستشارة طبية', category: 'health', member: 'أية', walletId: 'wallet-instapay', date: getDateOffset(5) },
-        { id: 'tx-wk-inc-1', type: 'income', amount: 7500, label: 'مستحقات استشارات تقنية حرة', category: 'business', member: 'ماهر', walletId: 'wallet-instapay', date: getDateOffset(3) },
-        { id: 'tx-wk-wth-1', type: 'expense', amount: 4000, label: '[سحب نقدي ATM] سحب كاش لمصروف البيت والدروس', category: 'others', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(4) },
+        { id: 'tx-wk-13', type: 'expense', amount: 500, label: 'عيادة أطفال واستشارة طبية', category: 'health', member: 'أية', walletId: 'wallet-other', date: getDateOffset(5) },
+        { id: 'tx-wk-inc-1', type: 'income', amount: 7500, label: 'مستحقات استشارات تقنية حرة', category: 'business', member: 'ماهر', walletId: 'wallet-other', date: getDateOffset(3) },
+        { id: 'tx-wk-wth-1', type: 'expense', amount: 4000, label: '[سحب كاش] من الاحتياطي لمصروف البيت', category: 'others', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(4) },
 
         // ===================== باقي الشهر الحالي (dayOffset = 7 to 28) =====================
-        { id: 'tx-mo-1', type: 'expense', amount: 14000, label: 'قسط مدرسة تجريبي لغات سنوي', category: 'education', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(10) },
-        { id: 'tx-mo-2', type: 'expense', amount: 4500, label: 'شراء أحذية وبدل عمل ماهر', category: 'clothes', member: 'ماهر', walletId: 'wallet-cib-credit', date: getDateOffset(12) },
-        { id: 'tx-mo-3', type: 'expense', amount: 6800, label: 'طلبات تموين وبقالة شهرية كارفور', category: 'food', member: 'أية', walletId: 'wallet-ahly', date: getDateOffset(14) },
-        { id: 'tx-mo-4', type: 'expense', amount: 2200, label: 'قسط أجهزة منزلية بي تك', category: 'house', member: 'ماهر', walletId: 'wallet-bank-misr', date: getDateOffset(16) },
-        { id: 'tx-mo-5', type: 'expense', amount: 1400, label: 'تحاليل معمل البرج وفحوصات', category: 'health', member: 'أية', walletId: 'wallet-ahly', date: getDateOffset(18) },
-        { id: 'tx-mo-6', type: 'expense', amount: 3200, label: 'صيانة دورية للسيارة وتيل فرامل', category: 'transport', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(20) },
-        { id: 'tx-mo-7', type: 'expense', amount: 1500, label: 'هدية عيد ميلاد عائلي مجاملات', category: 'gifts', member: 'أية', walletId: 'wallet-instapay', date: getDateOffset(22) },
+        { id: 'tx-mo-1', type: 'expense', amount: 14000, label: 'قسط مدرسة تجريبي لغات سنوي', category: 'education', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(10) },
+        { id: 'tx-mo-2', type: 'expense', amount: 4500, label: 'شراء أحذية وبدل عمل ماهر', category: 'clothes', member: 'ماهر', walletId: 'wallet-other', date: getDateOffset(12) },
+        { id: 'tx-mo-3', type: 'expense', amount: 6800, label: 'طلبات تموين وبقالة شهرية كارفور', category: 'food', member: 'أية', walletId: 'wallet-cash-safe', date: getDateOffset(14) },
+        { id: 'tx-mo-4', type: 'expense', amount: 2200, label: 'قسط أجهزة منزلية بي تك', category: 'house', member: 'ماهر', walletId: 'wallet-other', date: getDateOffset(16) },
+        { id: 'tx-mo-5', type: 'expense', amount: 1400, label: 'تحاليل معمل البرج وفحوصات', category: 'health', member: 'أية', walletId: 'wallet-cash-safe', date: getDateOffset(18) },
+        { id: 'tx-mo-6', type: 'expense', amount: 3200, label: 'صيانة دورية للسيارة وتيل فرامل', category: 'transport', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(20) },
+        { id: 'tx-mo-7', type: 'expense', amount: 1500, label: 'هدية عيد ميلاد عائلي مجاملات', category: 'gifts', member: 'أية', walletId: 'wallet-other', date: getDateOffset(22) },
         { id: 'tx-mo-8', type: 'expense', amount: 950, label: 'مستلزمات صيانة ونثريات منزلية', category: 'house', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(24) },
-        { id: 'tx-mo-9', type: 'expense', amount: 1800, label: 'كورسات لغات وتدريب برمجة محمد', category: 'education', member: 'محمد', walletId: 'wallet-instapay', date: getDateOffset(26) },
+        { id: 'tx-mo-9', type: 'expense', amount: 1800, label: 'كورسات لغات وتدريب برمجة محمد', category: 'education', member: 'محمد', walletId: 'wallet-other', date: getDateOffset(26) },
         { id: 'tx-mo-10', type: 'expense', amount: 850, label: 'نثريات طوارئ وإكراميات أخرى', category: 'others', member: 'أخرى', walletId: 'wallet-cash-safe', date: getDateOffset(27) },
 
         // إيداعات ودخل الشهر الحالي
-        { id: 'tx-mo-inc-1', type: 'income', amount: 52000, label: 'راتب ماهر الشهري الأساسي', category: 'salary', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(1) },
-        { id: 'tx-mo-inc-2', type: 'income', amount: 14000, label: 'مستحقات استشارات برمجية حرة', category: 'business', member: 'ماهر', walletId: 'wallet-instapay', date: getDateOffset(8) },
-        { id: 'tx-mo-inc-3', type: 'income', amount: 7500, label: 'عائد شهادات استثمار وبنك مصر', category: 'invest', member: 'ماهر', walletId: 'wallet-bank-misr', date: getDateOffset(15) },
+        { id: 'tx-mo-inc-1', type: 'income', amount: 52000, label: 'راتب ماهر الشهري الأساسي', category: 'salary', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
+        { id: 'tx-mo-inc-2', type: 'income', amount: 14000, label: 'مستحقات استشارات برمجية حرة', category: 'business', member: 'ماهر', walletId: 'wallet-other', date: getDateOffset(8) },
+        { id: 'tx-mo-inc-3', type: 'income', amount: 7500, label: 'عائد استثمار المبلغ الاحتياطي', category: 'invest', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(15) },
         { id: 'tx-mo-inc-4', type: 'income', amount: 10000, label: 'قبض جمعية عائلية شهرية', category: 'other_inc', member: 'أية', walletId: 'wallet-vodafone', date: getDateOffset(20) },
 
         // ===================== حركات شهور سابقة للعمق الإحصائي (dayOffset = 30 to 75) =====================
-        { id: 'tx-prev-1', type: 'expense', amount: 12000, label: 'مصاريف وإيجار مصيف عائلي', category: 'entertainment', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(35) },
-        { id: 'tx-prev-2', type: 'expense', amount: 8500, label: 'شراء ملابس ومستلزمات خريف', category: 'clothes', member: 'أية', walletId: 'wallet-cib-credit', date: getDateOffset(42) },
-        { id: 'tx-prev-3', type: 'expense', amount: 5400, label: 'تجديد رخصة وتأمين السيارة', category: 'transport', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(50) },
-        { id: 'tx-prev-4', type: 'expense', amount: 15000, label: 'قسط مدرسة تجريبي لغات ترم أول', category: 'education', member: 'ماهر', walletId: 'wallet-bank-misr', date: getDateOffset(60) },
-        { id: 'tx-prev-5', type: 'expense', amount: 7200, label: 'مشتريات وبقالة شهرية كبرى', category: 'food', member: 'أية', walletId: 'wallet-ahly', date: getDateOffset(68) },
+        { id: 'tx-prev-1', type: 'expense', amount: 12000, label: 'مصاريف وإيجار مصيف عائلي', category: 'entertainment', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(35) },
+        { id: 'tx-prev-2', type: 'expense', amount: 8500, label: 'شراء ملابس ومستلزمات خريف', category: 'clothes', member: 'أية', walletId: 'wallet-other', date: getDateOffset(42) },
+        { id: 'tx-prev-3', type: 'expense', amount: 5400, label: 'تجديد رخصة وتأمين السيارة', category: 'transport', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(50) },
+        { id: 'tx-prev-4', type: 'expense', amount: 15000, label: 'قسط مدرسة تجريبي لغات ترم أول', category: 'education', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(60) },
+        { id: 'tx-prev-5', type: 'expense', amount: 7200, label: 'مشتريات وبقالة شهرية كبرى', category: 'food', member: 'أية', walletId: 'wallet-cash-safe', date: getDateOffset(68) },
         
-        { id: 'tx-prev-inc-1', type: 'income', amount: 52000, label: 'راتب ماهر للشهر السابق', category: 'salary', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(32) },
-        { id: 'tx-prev-inc-2', type: 'income', amount: 18000, label: 'مكافأة أداء ربع سنوية استثنائية', category: 'bonus', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(45) },
-        { id: 'tx-prev-inc-3', type: 'income', amount: 52000, label: 'راتب ماهر قبل شهرين', category: 'salary', member: 'ماهر', walletId: 'wallet-ahly', date: getDateOffset(62) },
-        { id: 'tx-prev-inc-4', type: 'income', amount: 8000, label: 'أرباح تداول واستثمار إضافية', category: 'invest', member: 'ماهر', walletId: 'wallet-instapay', date: getDateOffset(70) }
+        { id: 'tx-prev-inc-1', type: 'income', amount: 52000, label: 'راتب ماهر للشهر السابق', category: 'salary', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(32) },
+        { id: 'tx-prev-inc-2', type: 'income', amount: 18000, label: 'مكافأة أداء ربع سنوية استثنائية', category: 'bonus', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(45) },
+        { id: 'tx-prev-inc-3', type: 'income', amount: 52000, label: 'راتب ماهر قبل شهرين', category: 'salary', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(62) },
+        { id: 'tx-prev-inc-4', type: 'income', amount: 8000, label: 'أرباح تداول واستثمار إضافية', category: 'invest', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(70) }
       ];
 
       // ترتيب الحركات تنازلياً من الأحدث إلى الأقدم
@@ -15012,15 +15023,13 @@
       localStorage.removeItem('family_monefy_debts');
       localStorage.removeItem('family_monefy_wallets');
       localStorage.removeItem('family_monefy_activity_log');
-      localStorage.setItem('family_monefy_version', '3.6.0');
+      localStorage.setItem('family_monefy_version', '3.7.0');
 
       state.wallets = [
-        { id: 'wallet-ahly', name: 'البنك الأهلي المصري', type: 'bank', balance: 85400, icon: 'fa-building-columns', color: '#10b981' },
-        { id: 'wallet-bank-misr', name: 'بنك مصر (شهادات وادخار)', type: 'bank', balance: 42500, icon: 'fa-landmark', color: '#f59e0b' },
-        { id: 'wallet-instapay', name: 'إنستاباي InstaPay', type: 'digital', balance: 14200, icon: 'fa-bolt', color: '#8b5cf6' },
-        { id: 'wallet-vodafone', name: 'فودافون كاش', type: 'wallet', balance: 6800, icon: 'fa-mobile-screen', color: '#ef4444' },
-        { id: 'wallet-cash-safe', name: 'الخزينة النقدية (كاش البيت)', type: 'cash', balance: 8500, icon: 'fa-money-bill-1-wave', color: '#06b6d4' },
-        { id: 'wallet-cib-credit', name: 'فيزا مشتريات CIB', type: 'credit', balance: 15000, icon: 'fa-credit-card', color: '#3b82f6' }
+        { id: 'wallet-cash-safe', name: 'كاش البيت', type: 'cash', balance: 25000, initialBalance: 25000, icon: 'fa-money-bill-1-wave', color: '#06b6d4', isDefault: true },
+        { id: 'wallet-reserve', name: 'المبلغ الإحتياطى', type: 'reserve', balance: 115000, initialBalance: 100000, icon: 'fa-vault', color: '#f59e0b' },
+        { id: 'wallet-vodafone', name: 'فودافون كاش', type: 'wallet', balance: 8500, initialBalance: 8500, icon: 'fa-mobile-screen', color: '#ef4444' },
+        { id: 'wallet-other', name: 'أخرى', type: 'other', balance: 18000, initialBalance: 15000, icon: 'fa-wallet', color: '#8b5cf6' }
       ];
       localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
 
@@ -16197,6 +16206,17 @@
         renderUI();
         showToast('🗑️ تم حذف الحركة بنجاح');
       }
+    }
+
+        // دالة توحيد وترقية معرفات المحافظ للعمليات التاريخية
+    function normalizeWalletId(wId) {
+      if (!wId) return 'wallet-cash-safe';
+      if (wId === 'wallet-cash-safe' || wId === 'wallet-default' || wId === 'wallet-home-cash') return 'wallet-cash-safe';
+      if (wId === 'wallet-vodafone') return 'wallet-vodafone';
+      if (wId === 'wallet-reserve' || wId === 'wallet-bank-misr') return 'wallet-reserve';
+      if (wId === 'wallet-other' || wId === 'wallet-instapay' || wId === 'wallet-cib-credit') return 'wallet-other';
+      if (wId === 'wallet-ahly') return 'wallet-cash-safe';
+      return 'wallet-cash-safe';
     }
 
     function saveTx() {
@@ -20270,7 +20290,8 @@ function exportActivityLogExcel() {
         <html lang="ar" dir="rtl">
         <head>
           <meta charset="UTF-8">
-          <title>كشف حساب محفظة - ${wName}</title>
+          <title>عيلة ماهر ❤️ أية</title>
+  <meta name="apple-mobile-web-app-title" content="عيلة ماهر ❤️ أية">
           <style>
             body { font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif; direction: rtl; padding: 20px; color: #1e293b; }
             h2 { color: #0f172a; border-bottom: 2px solid #0284c7; padding-bottom: 8px; margin-bottom: 12px; }
@@ -22053,7 +22074,8 @@ function doGet(e) {
         <html lang="ar" dir="rtl">
         <head>
           <meta charset="UTF-8">
-          <title>كشف حساب محفظة - ${wName}</title>
+          <title>عيلة ماهر ❤️ أية</title>
+  <meta name="apple-mobile-web-app-title" content="عيلة ماهر ❤️ أية">
           <style>
             body { font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif; direction: rtl; padding: 20px; color: #1e293b; }
             h2 { color: #0f172a; border-bottom: 2px solid #0284c7; padding-bottom: 8px; margin-bottom: 12px; }
