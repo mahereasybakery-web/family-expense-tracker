@@ -7890,27 +7890,31 @@
 
   <style id="kpiAndCatHarmonizationStyles">
     /* حاوية المحتوى الرئيسي وصفحة المصاريف لضمان عدم اختفاء أي جزء أسفل الشريط إطلاقاً */
+    /* حاوية المحتوى الرئيسي وصفحة المصاريف لضمان عدم اختفاء أي جزء وملء مساحة الشاشة هندسياً دون فراغات */
     .app-scroll-body {
       flex: 1 1 auto !important;
       display: flex !important;
       flex-direction: column !important;
       overflow-y: auto !important;
       -webkit-overflow-scrolling: touch !important;
-      padding: 0 0 76px 0 !important;
+      padding: 0 0 64px 0 !important;
       margin: 0 !important;
       box-sizing: border-box !important;
+      height: calc(100% - 100px) !important;
     }
 
     #viewExpenses.active {
       display: flex !important;
       flex-direction: column !important;
+      flex: 1 1 auto !important;
+      height: 100% !important;
       min-height: 100% !important;
-      height: auto !important;
-      overflow-y: visible !important;
-      padding: 0 4px 76px 4px !important;
+      padding: 0 4px 4px 4px !important;
       box-sizing: border-box !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      justify-content: space-between !important;
     }
-
     /* تكبير شريط الفترات الزمنية ليكون أوضح وأكبر مع تناسق كامل لكافة الأزرار الخمسة */
     .period-selector-top-strip {
       padding: 3px 4px !important;
@@ -8550,55 +8554,119 @@
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
     }
 
-    /* استرجاع أبعاد شبكة المصاريف السابقة المتجاوبة التي تملأ مساحة الشاشة بأريحية */
+    /* شبكة بنود المصروفات الاحترافية المعتمدة (9 بنود 3×3) تملأ الشاشة بدقة هندسية دون فراغات نهائياً */
     .categories-monefy-grid, #catGrid {
+      flex: 1 1 0% !important;
       display: grid !important;
       grid-template-columns: repeat(3, 1fr) !important;
-      grid-template-rows: repeat(3, minmax(98px, 1fr)) !important;
-      gap: 6px !important;
-      width: calc(100% - 12px) !important;
-      margin: 2px 6px 10px !important;
+      grid-template-rows: repeat(3, 1fr) !important;
+      gap: 8px !important;
+      width: calc(100% - 8px) !important;
+      margin: 2px 4px 4px !important;
       padding: 0 !important;
       box-sizing: border-box !important;
+      height: 100% !important;
+      min-height: 0 !important;
     }
 
     .cat-card {
       height: 100% !important;
-      min-height: 98px !important;
+      min-height: 0 !important;
       box-sizing: border-box !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
       justify-content: space-between !important;
-      padding: 6px 4px !important;
-      border-radius: 14px !important;
+      padding: clamp(6px, 1.2vh, 10px) 4px clamp(5px, 1vh, 8px) !important;
+      border-radius: 17px !important;
       overflow: hidden !important;
-      border-width: 1.5px !important;
+      border-width: 1.8px !important;
       border-style: solid !important;
       background: rgba(17, 24, 39, 0.92) !important;
       border-color: rgba(255, 255, 255, 0.08) !important;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
-      transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+      transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, box-shadow 0.2s ease !important;
+      position: relative !important;
+    }
+
+    .cat-card:active {
+      transform: scale(0.96) !important;
     }
 
     body.light-theme .cat-card {
       height: 100% !important;
-      min-height: 98px !important;
+      min-height: 0 !important;
       box-sizing: border-box !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
       justify-content: space-between !important;
-      padding: 6px 4px !important;
-      border-radius: 14px !important;
+      padding: clamp(6px, 1.2vh, 10px) 4px clamp(5px, 1vh, 8px) !important;
+      border-radius: 17px !important;
       overflow: hidden !important;
-      border-width: 1.5px !important;
+      border-width: 1.8px !important;
       border-style: solid !important;
       background: #ffffff !important;
       border-color: #cbd5e1 !important;
       box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06) !important;
     }
 
+    .cat-icon-bubble {
+      width: clamp(56px, 15vw, 68px) !important;
+      height: clamp(56px, 15vw, 68px) !important;
+      min-width: 56px !important;
+      min-height: 56px !important;
+      border-radius: 18px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+      flex-shrink: 0 !important;
+      margin-top: 1px !important;
+    }
+
+    .cat-icon-bubble span {
+      font-size: clamp(2.4rem, 6.5vw, 2.9rem) !important;
+      line-height: 1 !important;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.45)) !important;
+      transform: translateZ(0) !important;
+    }
+
+    .cat-label-text {
+      font-family: 'Alexandria', 'Cairo', system-ui, sans-serif !important;
+      font-size: clamp(0.85rem, 2.5vw, 0.98rem) !important;
+      font-weight: 800 !important;
+      text-align: center !important;
+      margin: 3px 0 2px !important;
+      width: 100% !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: clip !important;
+    }
+
+    .cat-amount-pill {
+      width: 95% !important;
+      padding: clamp(3px, 0.8vh, 6px) 4px !important;
+      border-radius: 11px !important;
+      text-align: center !important;
+      direction: rtl !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .cat-amount-pill span {
+      font-family: 'Alexandria', 'Plus Jakarta Sans', system-ui, sans-serif !important;
+      font-size: clamp(1.05rem, 3.2vw, 1.25rem) !important;
+      font-weight: 900 !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
+      font-variant-numeric: tabular-nums !important;
+    }
     /* كروت المؤشرات الثلاثية الأكبر والأكثر بروزاً ووضوحاً (Three KPI Master Cards) */
     .kpi-three-strip {
       display: grid !important;
@@ -8739,7 +8807,7 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
-            <span class="version-badge">v3.5.1</span>
+            <span class="version-badge">v3.5.2</span>
           </div>
         </div>
 
@@ -14725,80 +14793,80 @@
           name: 'طعام ومشتريات',
           emoji: '🛒',
           accent: '#10b981',
-          gradient: 'linear-gradient(135deg, #10b981, #047857)',
-          bg: 'linear-gradient(145deg, rgba(16, 185, 129, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',
+          bg: 'linear-gradient(160deg, rgba(16, 185, 129, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
           border: '#10b981'
         },
         daily: {
           name: 'مصروف يومي',
           emoji: '☕',
           accent: '#f59e0b',
-          gradient: 'linear-gradient(135deg, #f59e0b, #b45309)',
-          bg: 'linear-gradient(145deg, rgba(245, 158, 11, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)',
+          bg: 'linear-gradient(160deg, rgba(245, 158, 11, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
           border: '#f59e0b'
         },
         bills: {
           name: 'فواتير والتزامات',
           emoji: '⚡',
           accent: '#f97316',
-          gradient: 'linear-gradient(135deg, #f97316, #c2410c)',
-          bg: 'linear-gradient(145deg, rgba(249, 115, 22, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #f97316 0%, #c2410c 100%)',
+          bg: 'linear-gradient(160deg, rgba(249, 115, 22, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
           border: '#f97316'
         },
         transport: {
           name: 'مواصلات وبنزين',
           emoji: '🚗',
           accent: '#0284c7',
-          gradient: 'linear-gradient(135deg, #0284c7, #075985)',
-          bg: 'linear-gradient(145deg, rgba(2, 132, 199, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
+          bg: 'linear-gradient(160deg, rgba(2, 132, 199, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
           border: '#0284c7'
         },
         house: {
           name: 'مستلزمات منزل',
           emoji: '🛋️',
           accent: '#8b5cf6',
-          gradient: 'linear-gradient(135deg, #8b5cf6, #5b21b6)',
-          bg: 'linear-gradient(145deg, rgba(139, 92, 246, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
+          bg: 'linear-gradient(160deg, rgba(139, 92, 246, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
           border: '#8b5cf6'
         },
         health: {
           name: 'صحة وعلاج',
           emoji: '💊',
           accent: '#ef4444',
-          gradient: 'linear-gradient(135deg, #ef4444, #991b1b)',
-          bg: 'linear-gradient(145deg, rgba(239, 68, 68, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)',
+          bg: 'linear-gradient(160deg, rgba(239, 68, 68, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
           border: '#ef4444'
         },
         clothes: {
           name: 'ملابس وأحذية',
           emoji: '👔',
           accent: '#ec4899',
-          gradient: 'linear-gradient(135deg, #ec4899, #9d174d)',
-          bg: 'linear-gradient(145deg, rgba(236, 72, 153, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)',
+          bg: 'linear-gradient(160deg, rgba(236, 72, 153, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
           border: '#ec4899'
         },
         education: {
           name: 'تعليم ودروس',
           emoji: '🎓',
           accent: '#3b82f6',
-          gradient: 'linear-gradient(135deg, #3b82f6, #1e40af)',
-          bg: 'linear-gradient(145deg, rgba(59, 130, 246, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+          bg: 'linear-gradient(160deg, rgba(59, 130, 246, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
           border: '#3b82f6'
         },
         other: {
-          name: 'أخرى',
+          name: 'أخرى ونثريات',
           emoji: '🎁',
           accent: '#14b8a6',
-          gradient: 'linear-gradient(135deg, #14b8a6, #115e59)',
-          bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
+          bg: 'linear-gradient(160deg, rgba(20, 184, 166, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
           border: '#14b8a6'
         },
         entertainment: {
-          name: 'أخرى',
+          name: 'أخرى ونثريات',
           emoji: '🎁',
           accent: '#14b8a6',
-          gradient: 'linear-gradient(135deg, #14b8a6, #115e59)',
-          bg: 'linear-gradient(145deg, rgba(20, 184, 166, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%)',
+          gradient: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
+          bg: 'linear-gradient(160deg, rgba(20, 184, 166, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
           border: '#14b8a6'
         }
       };
@@ -14823,16 +14891,16 @@
         card.style.cssText = `
           background: ${isLight ? '#ffffff' : theme.bg} !important;
           border: 1.8px solid ${theme.border} !important;
-          border-radius: 14px !important;
-          padding: 6px 4px 5px !important;
+          border-radius: 17px !important;
+          padding: clamp(6px, 1.2vh, 10px) 4px clamp(5px, 1vh, 8px) !important;
           display: flex !important;
           flex-direction: column !important;
           align-items: center !important;
-          justify-content: space-evenly !important;
+          justify-content: space-between !important;
           height: 100% !important;
-          min-height: 98px !important;
+          min-height: 0 !important;
           cursor: pointer !important;
-          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 10px ${theme.accent}30 !important;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 12px ${theme.accent}30 !important;
           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
           position: relative !important;
           box-sizing: border-box !important;
@@ -14849,10 +14917,10 @@
         }
 
         const pillBg = spent > 0 
-          ? (isLight ? 'rgba(239, 68, 68, 0.09)' : 'rgba(244, 63, 94, 0.22)') 
+          ? (isLight ? 'rgba(239, 68, 68, 0.12)' : 'rgba(244, 63, 94, 0.24)') 
           : (isLight ? '#f1f5f9' : 'rgba(255, 255, 255, 0.05)');
         const pillBorder = spent > 0 
-          ? (isLight ? 'rgba(239, 68, 68, 0.35)' : 'rgba(244, 63, 94, 0.6)') 
+          ? (isLight ? 'rgba(239, 68, 68, 0.5)' : 'rgba(244, 63, 94, 0.7)') 
           : (isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.12)');
         const pillTextColor = spent > 0 
           ? (isLight ? '#b91c1c' : '#ff4d6d') 
@@ -14862,20 +14930,20 @@
         card.innerHTML = `
           <!-- 1. صورة/أيقونة التصنيف ثلاثية الأبعاد الفاخرة تملأ الجزء العلوي -->
           <div class="cat-icon-bubble" 
-               style="background: ${theme.gradient}; width: 52px; height: 52px; min-width: 52px; min-height: 52px; border-radius: 15px; display: flex; align-items: center; justify-content: center; box-shadow: ${isLight ? '0 2px 8px rgba(0,0,0,0.1)' : '0 4px 14px rgba(0, 0, 0, 0.4), 0 0 12px ' + theme.accent + '45'}; margin-top: 1px;">
-            <span style="font-size: 2.5rem; line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.45));">${theme.emoji}</span>
+               style="background: ${theme.gradient}; width: clamp(56px, 15vw, 68px); height: clamp(56px, 15vw, 68px); min-width: 56px; min-height: 56px; border-radius: 18px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 14px ${theme.accent}55; border: 1.5px solid rgba(255, 255, 255, 0.25); margin-top: 1px; flex-shrink: 0;">
+            <span style="font-size: clamp(2.4rem, 6.5vw, 2.9rem); line-height: 1; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5)); transform: translateZ(0);">${theme.emoji}</span>
           </div>
 
           <!-- 2. اسم التصنيف بخط عربي فخم وواضح متناسق بين الفاتح والداكن -->
           <div class="cat-label-text" 
-               style="font-size: 0.86rem; font-weight: 800; color: ${catLabelColor}; text-align: center; margin: 3px 0 2px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: clip;">
+               style="font-family: 'Alexandria', 'Cairo', sans-serif; font-size: clamp(0.85rem, 2.5vw, 0.98rem); font-weight: 800; color: ${catLabelColor}; text-align: center; margin: 3px 0 2px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: clip;">
             ${theme.name}
           </div>
 
           <!-- 3. كبسولة المبلغ المصروف بخط عريض وأرقام كبيرة وواضحة -->
           <div class="cat-amount-pill ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
-               style="background: ${pillBg}; border: 1.2px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 4px; border-radius: 9px; width: 95%; text-align: center; direction: rtl; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 1.05rem; font-weight: 900; line-height: 1.2; white-space: nowrap; font-variant-numeric: tabular-nums;">${amtDisplay}</span>
+               style="background: ${pillBg}; border: 1.2px solid ${pillBorder}; color: ${pillTextColor}; padding: clamp(3px, 0.8vh, 6px) 4px; border-radius: 11px; width: 95%; text-align: center; direction: rtl; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
+            <span style="font-family: 'Alexandria', 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.05rem, 3.2vw, 1.25rem); font-weight: 900; line-height: 1.2; white-space: nowrap; font-variant-numeric: tabular-nums;">${amtDisplay}</span>
           </div>
         `;
 
