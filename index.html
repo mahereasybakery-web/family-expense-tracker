@@ -12246,7 +12246,7 @@
           </div>
 
           <!-- كارت النسخ الاحتياطي المحلي واستيراد JSON -->
-          <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 13px 15px; margin-bottom: 12px;">
+          <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 13px 15px; margin-bottom: 0;">
             <div style="font-weight: 800; font-size: 0.86rem; color: #f8fafc; margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
               <i class="fa-solid fa-file-code" style="color: #38bdf8;"></i>
               <span>النسخ الاحتياطي المحلي (ملف JSON)</span>
@@ -12265,19 +12265,6 @@
             </div>
           </div>
 
-          <!-- كارت إعادة التعيين والنموذج التجريبي -->
-          <div class="settings-action-card" style="background: rgba(239, 68, 68, 0.06); border: 1.2px solid rgba(239, 68, 68, 0.25); border-radius: 16px; padding: 12px 14px;">
-            <div style="font-weight: 800; font-size: 0.84rem; color: #f87171; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <span>منطقة إعادة التعيين والتجربة</span>
-            </div>
-            <p style="font-size: 0.70rem; color: #94a3b8; margin: 0 0 8px 0; line-height: 1.4;">
-              إعادة بناء المعاملات والمحافظ وتطبيق النموذج التجريبي الأصلي للتطبيق.
-            </p>
-            <button type="button" class="btn-submit-tx" onclick="resetToDemoData()" style="width: 100%; background: linear-gradient(135deg, rgba(239, 68, 68, 0.85), rgba(220, 38, 38, 0.95)); margin: 0; padding: 8px 12px; font-weight: 800; font-size: 0.78rem; border-radius: 10px; border: 1px solid rgba(239, 68, 68, 0.5);">
-              <i class="fa-solid fa-trash-can-arrow-up"></i> مسح البيانات السابقة وتطبيق التجربة الجديدة
-            </button>
-          </div>
 
         </div>
 
@@ -12438,7 +12425,7 @@
     if (typeof MEMBER_AVATARS !== 'undefined') { MEMBER_AVATARS['آية'] = MEMBER_AVATARS['أية']; }
 
     // حالة التطبيق
-    let state = {
+    var state = window.state = {
       expectedTypeFilter: null,
       currentUser: 'ماهر',
       selectedMember: 'ماهر', // الفرد المختار حالياً - يحدد الديفولت تلقائياً
@@ -12556,11 +12543,12 @@
 
       // 3. إدارة إصدار التطبيق وتحميل الحركات الغنية المتجددة بحسب تاريخ اليوم الحالي
       // 3. إدارة إصدار التطبيق (مسح البيانات القديمة تلقائياً وتوليد حركات متوازنة جديدة)
-      const APP_VERSION = '3.7.0';
+      const APP_VERSION = '4.0.0';
+      const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
-      const todayIsoStr = getLocalDateStr(new Date());
+      const storedSeed = localStorage.getItem('family_monefy_seed_version');
 
-      if (storedVer !== APP_VERSION) {
+      if (storedVer !== APP_VERSION || storedSeed !== DATA_SEED_VERSION) {
         localStorage.removeItem('family_monefy_v2_tx');
         localStorage.removeItem('family_monefy_txs');
         localStorage.removeItem('family_monefy_requests');
@@ -12568,21 +12556,38 @@
         localStorage.removeItem('family_monefy_debts');
         localStorage.removeItem('family_monefy_wallets');
         localStorage.removeItem('family_monefy_activity_log');
+        localStorage.removeItem('family_monefy_monthly_budgets');
+        localStorage.removeItem('family_monefy_expected');
+        
         localStorage.setItem('family_monefy_version', APP_VERSION);
+        localStorage.setItem('family_monefy_seed_version', DATA_SEED_VERSION);
 
+        // المحافظ الأربعة الرسمية بأرصدة افتتاحية قوية
         state.wallets = [
-          { id: 'wallet-cash-safe', name: 'كاش البيت', type: 'cash', balance: 25000, initialBalance: 25000, icon: 'fa-money-bill-1-wave', color: '#06b6d4', isDefault: true },
-          { id: 'wallet-reserve', name: 'المبلغ الإحتياطى', type: 'reserve', balance: 115000, initialBalance: 100000, icon: 'fa-vault', color: '#f59e0b' },
-          { id: 'wallet-vodafone', name: 'فودافون كاش', type: 'wallet', balance: 8500, initialBalance: 8500, icon: 'fa-mobile-screen', color: '#ef4444' },
-          { id: 'wallet-other', name: 'أخرى', type: 'other', balance: 18000, initialBalance: 15000, icon: 'fa-wallet', color: '#8b5cf6' }
+          { id: 'wallet-cash-safe', name: 'كاش البيت', type: 'cash', balance: 35000, initialBalance: 35000, icon: 'fa-money-bill-1-wave', color: '#06b6d4', isDefault: true },
+          { id: 'wallet-reserve', name: 'المبلغ الإحتياطى', type: 'reserve', balance: 120000, initialBalance: 120000, icon: 'fa-vault', color: '#f59e0b' },
+          { id: 'wallet-vodafone', name: 'فودافون كاش', type: 'wallet', balance: 20000, initialBalance: 20000, icon: 'fa-mobile-screen', color: '#ef4444' },
+          { id: 'wallet-other', name: 'أخرى', type: 'other', balance: 15000, initialBalance: 15000, icon: 'fa-wallet', color: '#8b5cf6' }
         ];
         localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
 
+        // توليد الـ 1000 حركة الجديدة
         state.transactions = generateRichDemoTransactions();
         saveTx();
 
+        // توليد طلبات الصرف الموزعة بنسبة 100%
         state.moneyRequests = generateRichDemoRequests();
         localStorage.setItem('family_monefy_requests', JSON.stringify(state.moneyRequests));
+
+        // توليد الموازنات التقديرية للأشهر الحالية والسابقة
+        state.monthlyBudgets = generateRichDemoBudgets();
+        localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
+
+        // توليد الالتزامات والديون والمصاريف القادمة
+        state.expectedExpenses = generateRichDemoCommitments();
+        localStorage.setItem('family_monefy_expected', JSON.stringify(state.expectedExpenses));
+
+        auditAndRecomputeAllWalletBalances();
       } else {
         const storedTx = localStorage.getItem('family_monefy_v2_tx') || localStorage.getItem('family_monefy_txs');
         let parsedTx = null;
@@ -12595,6 +12600,18 @@
         } else {
           state.transactions = parsedTx;
         }
+
+        try {
+          const storedBudgets = localStorage.getItem('family_monefy_monthly_budgets');
+          if (storedBudgets) state.monthlyBudgets = JSON.parse(storedBudgets);
+          else state.monthlyBudgets = generateRichDemoBudgets();
+        } catch(e) { state.monthlyBudgets = generateRichDemoBudgets(); }
+
+        try {
+          const storedExp = localStorage.getItem('family_monefy_expected');
+          if (storedExp) state.expectedExpenses = JSON.parse(storedExp);
+          else state.expectedExpenses = generateRichDemoCommitments();
+        } catch(e) { state.expectedExpenses = generateRichDemoCommitments(); }
       }
 
       // تحميل الصلاحيات
@@ -15270,112 +15287,560 @@
       return `${y}-${m}-${day}`;
     }
 
-    function generateRichDemoTransactions() {
-      const now = new Date();
-      const todayStr = getLocalDateStr(now);
+    
+function generateRichDemoTransactions() {
+  const members = ['ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'البيت'];
+  const walletDefs = {
+    'wallet-cash-safe': 'كاش البيت',
+    'wallet-reserve': 'المبلغ الإحتياطى',
+    'wallet-vodafone': 'فودافون كاش',
+    'wallet-other': 'أخرى'
+  };
 
-      const getDateOffset = (daysAgo) => {
-        const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - daysAgo);
-        return getLocalDateStr(d);
-      };
+  const categoriesExpenses = {
+    food: [
+      ['سوبرماركت كارفور - بقالة ومشتريات الشهر', 650, 2800],
+      ['سعودي ماركت - جبن ومخبوزات وفاكهة', 320, 1100],
+      ['سوق الخضار والفاكهة الأسبوعي', 180, 550],
+      ['محل جزارة - لحوم طازجة بلدي', 450, 1600],
+      ['محل دواجن وطيور طازجة', 180, 620],
+      ['مخبوزات وحلويات العبد وتورتة', 150, 480],
+      ['سوبرماركت أولاد رجب - طلبات سريعة', 95, 380],
+      ['مطعم كشرى أبو طارق غداء عائلي', 160, 390],
+      ['مطعم مشويات وحاتي عشاء عائلي', 420, 1450],
+      ['أسماك ومأكولات بحرية طازجة', 380, 1250]
+    ],
+    daily: [
+      ['مصروف مدرسي يومي للأولاد', 40, 100],
+      ['قهوة ومشروبات العمل ونثريات', 35, 95],
+      ['شحن كروت فكة ورصيد جوال', 30, 85],
+      ['جرائد ومجلات ونثريات يومية', 25, 60],
+      ['مياه معدنية وعصائر في المشاوير', 30, 75],
+      ['مصروف شخصي كاش نثريات', 50, 200]
+    ],
+    transport: [
+      ['بنزين 95 للسيارة محطة شل', 350, 750],
+      ['بنزين محطة وطنية وتفويك السيارة', 320, 680],
+      ['مشوار أوبر سريع مشوار عائلي', 45, 160],
+      ['مشوار كريم مريم ومحمد للمدرسة', 40, 120],
+      ['غسيل وتلميع السيارة وتغيير مياه رادياتير', 80, 220],
+      ['كارتة ورسوم طريق سفر', 30, 90],
+      ['صيانة سريعة وضبط زوايا وإطارات', 150, 450]
+    ],
+    bills: [
+      ['فاتورة شحن كارت كهرباء العداد المنزلي', 400, 1200],
+      ['فاتورة الغاز الطبيعي للمنزل', 120, 320],
+      ['فاتورة المياه الشهرية للشقة', 110, 280],
+      ['اشتراك وي إنترنت منزلي فايبر فائق السرعة', 450, 850],
+      ['فاتورة صيانة العمارة والأمن والمصعد', 250, 500],
+      ['شحن باقة إنترنت فودافون إضافية', 120, 350]
+    ],
+    health: [
+      ['صيدلية العزبي - فيتامينات ومسكنات دورية', 140, 580],
+      ['صيدلية سيف - روشتة علاج ودواء', 180, 720],
+      ['كشف استشاري أطفال ومتابعة', 350, 600],
+      ['كشف عيادة أسنان وتنظيف', 400, 900],
+      ['تحاليل معمل البرج الدورية', 450, 1200],
+      ['مستلزمات صيدلية وإسعافات منزلية', 85, 290]
+    ],
+    house: [
+      ['منظفات ومساحيق غسيل أريال وفيرى', 220, 650],
+      ['أدوات منزلية ومستلزمات مطبخ', 130, 480],
+      ['إصلاحات سباكة وكهرباء للشقة', 150, 550],
+      ['مفروشات وملايات جديدة للمنزل', 300, 1100],
+      ['فلاتر مياه شمعات جديدة', 180, 450]
+    ],
+    education: [
+      ['قسط شهري دروس خصوصية رياضيات ولغات', 600, 1800],
+      ['كتب ومذكرات خارجية وأدوات مدرسية', 250, 750],
+      ['اشتراك تدريب سباحة ونادي رياضي', 450, 1200],
+      ['كورس لغة إنجليزية أونلاين', 500, 1500],
+      ['مستلزمات أنشطة مدرسية ومعارض', 150, 450]
+    ],
+    clothes: [
+      ['شراء ملابس أطفال زارا وإتش آند إم', 450, 1600],
+      ['قميص وبنطلون عمل ماهر تاون تيم', 500, 1800],
+      ['أحذية رياضية للأولاد نايكي وكونفرس', 450, 1400],
+      ['طرح وعبايات أية', 300, 950],
+      ['بيجامات وملابس بيت مريحة', 250, 800]
+    ],
+    kids: [
+      ['حفاضات بامبرز عناية مميزة للنونو', 280, 580],
+      ['ألبان وسيريلاك وبسكويت أطفال', 190, 480],
+      ['ألعاب تعليمية وترفيهية للأولاد', 150, 550],
+      ['ملابس خروج قطنية للنونو', 220, 650]
+    ]
+  };
 
-      const txs = [
-        // ===================== اليوم (dayOffset = 0) =====================
-        { id: 'tx-today-1', type: 'expense', amount: 380, label: 'سوبرماركت كارفور - فطار وبقالة طازجة', category: 'food', member: 'ماهر', walletId: 'wallet-cash-safe', date: todayStr },
-        { id: 'tx-today-2', type: 'expense', amount: 55, label: 'قهوة ونثريات العمل', category: 'daily', member: 'ماهر', walletId: 'wallet-cash-safe', date: todayStr },
-        { id: 'tx-today-3', type: 'expense', amount: 350, label: 'بنزين 95 للسيارة محطة وطنية', category: 'transport', member: 'ماهر', walletId: 'wallet-cash-safe', date: todayStr },
-        { id: 'tx-today-4', type: 'expense', amount: 190, label: 'صيدلية العزبي - فيتامينات ومسكن', category: 'health', member: 'أية', walletId: 'wallet-other', date: todayStr },
-        { id: 'tx-today-5', type: 'expense', amount: 310, label: 'بامبرز وحفاضات وسيريلاك النونو', category: 'kids', member: 'أية', walletId: 'wallet-vodafone', date: todayStr },
-        { id: 'tx-today-6', type: 'expense', amount: 80, label: 'مصروف مدرسي محمد ومريم', category: 'daily', member: 'محمد', walletId: 'wallet-cash-safe', date: todayStr },
-        { id: 'tx-today-7', type: 'expense', amount: 65, label: 'مخبوزات وفينو طازج للبيت', category: 'food', member: 'أية', walletId: 'wallet-cash-safe', date: todayStr },
-        { id: 'tx-today-8', type: 'expense', amount: 175, label: 'سوق الخضار والفاكهة الطازجة', category: 'food', member: 'الحاجة', walletId: 'wallet-cash-safe', date: todayStr },
-        { id: 'tx-today-9', type: 'expense', amount: 40, label: 'شحن كروت فكة وباقة مكالمات', category: 'daily', member: 'ماهر', walletId: 'wallet-vodafone', date: todayStr },
-        { id: 'tx-today-10', type: 'expense', amount: 75, label: 'مشوار أوبر عائلي سريع', category: 'transport', member: 'أية', walletId: 'wallet-other', date: todayStr },
-        { id: 'tx-today-inc-1', type: 'income', amount: 2500, label: 'عائد استثمار وتداول', category: 'invest', member: 'ماهر', walletId: 'wallet-reserve', date: todayStr },
-        { id: 'tx-today-wth-1', type: 'expense', amount: 2000, label: '[تحويل رصيد] من المبلغ الاحتياطي لكاش البيت', category: 'others', member: 'ماهر', walletId: 'wallet-reserve', date: todayStr },
+  // مولد أرقام عشوائي قطعي وثابت (Deterministic PRNG)
+  let seed = 42;
+  function rnd() {
+    seed = (seed * 9301 + 49297) % 233280;
+    return seed / 233280;
+  }
 
-        // ===================== أمس (dayOffset = 1) =====================
-        { id: 'tx-yest-1', type: 'expense', amount: 850, label: 'لحوم ودواجن بلدي طازجة للأسبوع', category: 'food', member: 'أية', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
-        { id: 'tx-yest-2', type: 'expense', amount: 260, label: 'منظفات ومطهرات للبيت ومستلزمات', category: 'house', member: 'أية', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
-        { id: 'tx-yest-3', type: 'expense', amount: 140, label: 'كشاكيل وألوان وأدوات مدرسة مريم', category: 'education', member: 'مريم', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
-        { id: 'tx-yest-4', type: 'expense', amount: 320, label: 'صيدلية 19011 - علاج سكر وضغط للحاجة', category: 'health', member: 'الحاجة', walletId: 'wallet-other', date: getDateOffset(1) },
-        { id: 'tx-yest-5', type: 'expense', amount: 95, label: 'مصروف شخصي ونثريات يومية', category: 'daily', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
-        { id: 'tx-yest-6', type: 'expense', amount: 150, label: 'غسيل وتلميع السيارة دوري', category: 'transport', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
-        { id: 'tx-yest-7', type: 'expense', amount: 180, label: 'طلبات بقالة وألبان وسوبرماركت', category: 'food', member: 'محمد', walletId: 'wallet-vodafone', date: getDateOffset(1) },
+  const txs = [];
+  let txCounter = 1;
 
-        // ===================== هذا الأسبوع (dayOffset = 2 to 6) =====================
-        { id: 'tx-wk-1', type: 'expense', amount: 780, label: 'فاتورة الكهرباء الشهرية للمنزل', category: 'bills', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(2) },
-        { id: 'tx-wk-2', type: 'expense', amount: 430, label: 'اشتراك الإنترنت المنزلي WE VDSL', category: 'bills', member: 'ماهر', walletId: 'wallet-vodafone', date: getDateOffset(2) },
-        { id: 'tx-wk-3', type: 'expense', amount: 110, label: 'فاتورة الغاز الطبيعي', category: 'bills', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(3) },
-        { id: 'tx-wk-4', type: 'expense', amount: 700, label: 'دروس خصوصية ومذكرات لغات محمد', category: 'education', member: 'محمد', walletId: 'wallet-other', date: getDateOffset(3) },
-        { id: 'tx-wk-5', type: 'expense', amount: 950, label: 'اشتراك نادي وتدريب سباحة للأولاد', category: 'entertainment', member: 'محمد', walletId: 'wallet-other', date: getDateOffset(4) },
-        { id: 'tx-wk-6', type: 'expense', amount: 1480, label: 'عشاء ومطعم عائلي نهاية الأسبوع', category: 'entertainment', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(4) },
-        { id: 'tx-wk-7', type: 'expense', amount: 2400, label: 'شراء ملابس شتوية أطفال زارا', category: 'clothes', member: 'أية', walletId: 'wallet-other', date: getDateOffset(5) },
-        { id: 'tx-wk-8', type: 'expense', amount: 420, label: 'تصليح سباكة وفلاتر مياه بالمنزل', category: 'house', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(5) },
-        { id: 'tx-wk-9', type: 'expense', amount: 850, label: 'تغيير زيت وفلتر السيارة صيانة', category: 'transport', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(6) },
-        { id: 'tx-wk-10', type: 'expense', amount: 1650, label: 'طلبات سوبرماركت هايبر وان الأسبوعية', category: 'food', member: 'أية', walletId: 'wallet-cash-safe', date: getDateOffset(6) },
-        { id: 'tx-wk-11', type: 'expense', amount: 650, label: 'هدية ومجاملة زيارة عائلية', category: 'gifts', member: 'أية', walletId: 'wallet-other', date: getDateOffset(6) },
-        { id: 'tx-wk-12', type: 'expense', amount: 480, label: 'قصص ومستلزمات ألعاب تعليمية كيدز', category: 'kids', member: 'مريم', walletId: 'wallet-cash-safe', date: getDateOffset(3) },
-        { id: 'tx-wk-13', type: 'expense', amount: 500, label: 'عيادة أطفال واستشارة طبية', category: 'health', member: 'أية', walletId: 'wallet-other', date: getDateOffset(5) },
-        { id: 'tx-wk-inc-1', type: 'income', amount: 7500, label: 'مستحقات استشارات تقنية حرة', category: 'business', member: 'ماهر', walletId: 'wallet-other', date: getDateOffset(3) },
-        { id: 'tx-wk-wth-1', type: 'expense', amount: 4000, label: '[سحب كاش] من الاحتياطي لمصروف البيت', category: 'others', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(4) },
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function fmtDate(y, m, d) { return `${y}-${pad(m)}-${pad(d)}`; }
 
-        // ===================== باقي الشهر الحالي (dayOffset = 7 to 28) =====================
-        { id: 'tx-mo-1', type: 'expense', amount: 14000, label: 'قسط مدرسة تجريبي لغات سنوي', category: 'education', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(10) },
-        { id: 'tx-mo-2', type: 'expense', amount: 4500, label: 'شراء أحذية وبدل عمل ماهر', category: 'clothes', member: 'ماهر', walletId: 'wallet-other', date: getDateOffset(12) },
-        { id: 'tx-mo-3', type: 'expense', amount: 6800, label: 'طلبات تموين وبقالة شهرية كارفور', category: 'food', member: 'أية', walletId: 'wallet-cash-safe', date: getDateOffset(14) },
-        { id: 'tx-mo-4', type: 'expense', amount: 2200, label: 'قسط أجهزة منزلية بي تك', category: 'house', member: 'ماهر', walletId: 'wallet-other', date: getDateOffset(16) },
-        { id: 'tx-mo-5', type: 'expense', amount: 1400, label: 'تحاليل معمل البرج وفحوصات', category: 'health', member: 'أية', walletId: 'wallet-cash-safe', date: getDateOffset(18) },
-        { id: 'tx-mo-6', type: 'expense', amount: 3200, label: 'صيانة دورية للسيارة وتيل فرامل', category: 'transport', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(20) },
-        { id: 'tx-mo-7', type: 'expense', amount: 1500, label: 'هدية عيد ميلاد عائلي مجاملات', category: 'gifts', member: 'أية', walletId: 'wallet-other', date: getDateOffset(22) },
-        { id: 'tx-mo-8', type: 'expense', amount: 950, label: 'مستلزمات صيانة ونثريات منزلية', category: 'house', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(24) },
-        { id: 'tx-mo-9', type: 'expense', amount: 1800, label: 'كورسات لغات وتدريب برمجة محمد', category: 'education', member: 'محمد', walletId: 'wallet-other', date: getDateOffset(26) },
-        { id: 'tx-mo-10', type: 'expense', amount: 850, label: 'نثريات طوارئ وإكراميات أخرى', category: 'others', member: 'أخرى', walletId: 'wallet-cash-safe', date: getDateOffset(27) },
+  // 1. الدخول والتحويلات الشهرية المنتظمة (11 شهراً من يناير حتى نوفمبر 2026)
+  for (let m = 1; m <= 11; m++) {
+    // الراتب الأساسي لماهر (82,000 ج.م في أول الشهر)
+    txs.push({
+      id: 'tx-' + txCounter++,
+      type: 'income',
+      amount: 82000,
+      label: `راتب ماهر الشهري الأساسي - شهر ${m}`,
+      category: 'salary',
+      member: 'ماهر',
+      walletId: 'wallet-reserve',
+      wallet: 'المبلغ الإحتياطى',
+      date: fmtDate(2026, m, 1)
+    });
 
-        // إيداعات ودخل الشهر الحالي
-        { id: 'tx-mo-inc-1', type: 'income', amount: 52000, label: 'راتب ماهر الشهري الأساسي', category: 'salary', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(1) },
-        { id: 'tx-mo-inc-2', type: 'income', amount: 14000, label: 'مستحقات استشارات برمجية حرة', category: 'business', member: 'ماهر', walletId: 'wallet-other', date: getDateOffset(8) },
-        { id: 'tx-mo-inc-3', type: 'income', amount: 7500, label: 'عائد استثمار المبلغ الاحتياطي', category: 'invest', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(15) },
-        { id: 'tx-mo-inc-4', type: 'income', amount: 10000, label: 'قبض جمعية عائلية شهرية', category: 'other_inc', member: 'أية', walletId: 'wallet-vodafone', date: getDateOffset(20) },
+    // تحويل رصيد من الاحتياطي إلى كاش البيت لمصروفات المنزل (35,000 ج.م في اليوم الثاني)
+    txs.push({
+      id: 'tx-' + txCounter++,
+      type: 'transfer',
+      amount: 35000,
+      label: `[تحويل رصيد] من الاحتياطي إلى كاش البيت لمصاريف شهر ${m}`,
+      category: 'others',
+      member: 'ماهر',
+      walletId: 'wallet-reserve',
+      wallet: 'المبلغ الإحتياطى',
+      fromWalletId: 'wallet-reserve',
+      fromWallet: 'المبلغ الإحتياطى',
+      toWalletId: 'wallet-cash-safe',
+      toWallet: 'كاش البيت',
+      date: fmtDate(2026, m, 2)
+    });
 
-        // ===================== حركات شهور سابقة للعمق الإحصائي (dayOffset = 30 to 75) =====================
-        { id: 'tx-prev-1', type: 'expense', amount: 12000, label: 'مصاريف وإيجار مصيف عائلي', category: 'entertainment', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(35) },
-        { id: 'tx-prev-2', type: 'expense', amount: 8500, label: 'شراء ملابس ومستلزمات خريف', category: 'clothes', member: 'أية', walletId: 'wallet-other', date: getDateOffset(42) },
-        { id: 'tx-prev-3', type: 'expense', amount: 5400, label: 'تجديد رخصة وتأمين السيارة', category: 'transport', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(50) },
-        { id: 'tx-prev-4', type: 'expense', amount: 15000, label: 'قسط مدرسة تجريبي لغات ترم أول', category: 'education', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(60) },
-        { id: 'tx-prev-5', type: 'expense', amount: 7200, label: 'مشتريات وبقالة شهرية كبرى', category: 'food', member: 'أية', walletId: 'wallet-cash-safe', date: getDateOffset(68) },
-        
-        { id: 'tx-prev-inc-1', type: 'income', amount: 52000, label: 'راتب ماهر للشهر السابق', category: 'salary', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(32) },
-        { id: 'tx-prev-inc-2', type: 'income', amount: 18000, label: 'مكافأة أداء ربع سنوية استثنائية', category: 'bonus', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(45) },
-        { id: 'tx-prev-inc-3', type: 'income', amount: 52000, label: 'راتب ماهر قبل شهرين', category: 'salary', member: 'ماهر', walletId: 'wallet-cash-safe', date: getDateOffset(62) },
-        { id: 'tx-prev-inc-4', type: 'income', amount: 8000, label: 'أرباح تداول واستثمار إضافية', category: 'invest', member: 'ماهر', walletId: 'wallet-reserve', date: getDateOffset(70) }
-      ];
+    // تحويل رصيد من كاش البيت إلى فودافون كاش (6,000 ج.م في اليوم الثالث)
+    txs.push({
+      id: 'tx-' + txCounter++,
+      type: 'transfer',
+      amount: 6000,
+      label: `[تحويل رصيد] من كاش البيت إلى فودافون كاش لشهر ${m}`,
+      category: 'others',
+      member: 'ماهر',
+      walletId: 'wallet-cash-safe',
+      wallet: 'كاش البيت',
+      fromWalletId: 'wallet-cash-safe',
+      fromWallet: 'كاش البيت',
+      toWalletId: 'wallet-vodafone',
+      toWallet: 'فودافون كاش',
+      date: fmtDate(2026, m, 3)
+    });
 
-      // ترتيب الحركات تنازلياً من الأحدث إلى الأقدم
-      txs.sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
-      return txs;
+    // تحويل رصيد من كاش البيت إلى محفظة أخرى (4,000 ج.م في اليوم الرابع)
+    txs.push({
+      id: 'tx-' + txCounter++,
+      type: 'transfer',
+      amount: 4000,
+      label: `[تحويل رصيد] من كاش البيت إلى محفظة أخرى لشهر ${m}`,
+      category: 'others',
+      member: 'أية',
+      walletId: 'wallet-cash-safe',
+      wallet: 'كاش البيت',
+      fromWalletId: 'wallet-cash-safe',
+      fromWallet: 'كاش البيت',
+      toWalletId: 'wallet-other',
+      toWallet: 'أخرى',
+      date: fmtDate(2026, m, 4)
+    });
+
+    // عوائد استثمارات وأسهم في منتصف الشهر (15,000 ج.م)
+    const invAmts = [12000, 14500, 16000, 18500];
+    txs.push({
+      id: 'tx-' + txCounter++,
+      type: 'income',
+      amount: invAmts[Math.floor(rnd() * invAmts.length)],
+      label: `عائد استثمار وأرباح توزيعات أسهم دورية - شهر ${m}`,
+      category: 'invest',
+      member: 'ماهر',
+      walletId: 'wallet-reserve',
+      wallet: 'المبلغ الإحتياطى',
+      date: fmtDate(2026, m, 15)
+    });
+
+    // أتعاب استشارات وأعمال حرة إضافية (20,000 ج.م في 25 الشهر)
+    const bizAmts = [15000, 18000, 22000, 25000];
+    txs.push({
+      id: 'tx-' + txCounter++,
+      type: 'income',
+      amount: bizAmts[Math.floor(rnd() * bizAmts.length)],
+      label: `أتعاب استشارات أعمال وتطوير برمجي - شهر ${m}`,
+      category: 'biz',
+      member: 'ماهر',
+      walletId: 'wallet-reserve',
+      wallet: 'المبلغ الإحتياطى',
+      date: fmtDate(2026, m, 25)
+    });
+
+    // أرباح متجر وتسويق إلكتروني أية (18 الشهر)
+    const ayaAmts = [4000, 5500, 6800, 7500];
+    txs.push({
+      id: 'tx-' + txCounter++,
+      type: 'income',
+      amount: ayaAmts[Math.floor(rnd() * ayaAmts.length)],
+      label: `أرباح متجر هدايا وتسويق إلكتروني أية - شهر ${m}`,
+      category: 'biz',
+      member: 'أية',
+      walletId: 'wallet-vodafone',
+      wallet: 'فودافون كاش',
+      date: fmtDate(2026, m, 18)
+    });
+  }
+
+  // 2. توليد باقي العمليات كمصروفات واقعية حتى الوصول بالضبط لـ 1000 عملية
+  const catKeys = Object.keys(categoriesExpenses);
+  const remainingCount = 1000 - txs.length;
+
+  for (let i = 0; i < remainingCount; i++) {
+    // توزيع التواريخ عبر أيام سنة 2026 (مع كثافة أعلى في الشهور الأخيرة)
+    let dayOfYear;
+    const rW = rnd();
+    if (rW < 0.45) {
+      dayOfYear = 245 + Math.floor(rnd() * 60); // سبتمبر إلى نوفمبر (الشهور الحالية)
+    } else if (rW < 0.75) {
+      dayOfYear = 120 + Math.floor(rnd() * 125); // مايو إلى أغسطس
+    } else {
+      dayOfYear = 1 + Math.floor(rnd() * 119); // يناير إلى أبريل
     }
 
-    function generateRichDemoRequests() {
-      const now = new Date();
-      const todayStr = getLocalDateStr(now);
-      const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-      const tomorrowStr = getLocalDateStr(tomorrow);
-      const nextWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 5);
-      const nextWeekStr = getLocalDateStr(nextWeek);
+    // حساب التاريخ
+    const dObj = new Date(2026, 0, dayOfYear);
+    const dateStr = fmtDate(dObj.getFullYear(), dObj.getMonth() + 1, dObj.getDate());
 
+    // اختيار التصنيف والبند
+    const cat = catKeys[Math.floor(rnd() * catKeys.length)];
+    const items = categoriesExpenses[cat];
+    const pickedItem = items[Math.floor(rnd() * items.length)];
+    const label = pickedItem[0];
+    const minA = pickedItem[1];
+    const maxA = pickedItem[2];
+    const amount = Math.round((minA + rnd() * (maxA - minA)) / 5) * 5;
+
+    // اختيار الفرد المناسب
+    let member = members[Math.floor(rnd() * members.length)];
+    if (cat === 'kids') member = rnd() < 0.7 ? 'أية' : 'ماهر';
+    else if (cat === 'education') member = rnd() < 0.5 ? 'محمد' : 'مريم';
+    else if (cat === 'health') member = rnd() < 0.4 ? 'الحاجة' : (rnd() < 0.7 ? 'أية' : 'ماهر');
+    else if (cat === 'transport') member = rnd() < 0.8 ? 'ماهر' : 'أية';
+    else if (cat === 'bills') member = 'البيت';
+
+    // اختيار المحفظة
+    const wR = rnd();
+    let wId = 'wallet-cash-safe';
+    if (wR < 0.65) wId = 'wallet-cash-safe';
+    else if (wR < 0.85) wId = 'wallet-vodafone';
+    else if (wR < 0.95) wId = 'wallet-other';
+    else wId = 'wallet-reserve';
+
+    txs.push({
+      id: 'tx-' + txCounter++,
+      type: 'expense',
+      amount: amount,
+      label: label,
+      category: cat,
+      member: member,
+      walletId: wId,
+      wallet: walletDefs[wId],
+      date: dateStr
+    });
+  }
+
+  // ترتيب الحركات تنازلياً حسب التاريخ (الأحدث أولاً)
+  txs.sort((a, b) => (b.date > a.date ? 1 : b.date < a.date ? -1 : 0));
+  return txs;
+}
+
+
+    function generateRichDemoRequests() {
       return [
-        { id: 'req-1', member: 'أية', amount: 1800, reason: 'شراء ملابس شتوية للأولاد وتجهيزات', date: tomorrowStr, category: 'clothes', status: 'pending', createdBy: 'أية', timestamp: 'اليوم 10:30 ص' },
-        { id: 'req-2', member: 'محمد', amount: 350, reason: 'أدوات هندسية ومجسمات دراسية للمدرسة', date: todayStr, category: 'kids', status: 'pending', createdBy: 'محمد', timestamp: 'اليوم 09:15 ص' },
-        { id: 'req-3', member: 'مريم', amount: 650, reason: 'مذكرات لغات ومراجعات شهرية وملازم', date: todayStr, category: 'education', status: 'approved', createdBy: 'مريم', timestamp: 'أمس 04:30 م' },
-        { id: 'req-4', member: 'أية', amount: 3200, reason: 'تجديد شمعات فلتر مياه ومفروشات منزل', date: nextWeekStr, category: 'house', status: 'approved', createdBy: 'أية', timestamp: 'أمس 01:15 م' },
-        { id: 'req-5', member: 'الحاجة', amount: 950, reason: 'أدوية صيدلية العزبي الشهرية سكر وضغط', date: tomorrowStr, category: 'health', status: 'pending', createdBy: 'الحاجة', timestamp: 'اليوم 11:00 ص' },
-        { id: 'req-6', member: 'ماهر', amount: 1400, reason: 'صيانة دورية وتغيير تيل فرامل للسيارة', date: nextWeekStr, category: 'transport', status: 'pending', createdBy: 'ماهر', timestamp: 'اليوم 08:00 ص' }
+        {
+          id: 'req-1',
+          member: 'أية',
+          amount: 3500,
+          reason: 'مستلزمات دراسية وكتب خارجية لمحمد ومريم وقسط الباص',
+          date: '2026-11-02',
+          category: 'education',
+          status: 'approved',
+          createdBy: 'أية',
+          timestamp: '2026-11-01 10:30 ص',
+          allocations: [
+            { amount: 2000, category: 'education', member: 'محمد' },
+            { amount: 1500, category: 'education', member: 'مريم' }
+          ]
+        },
+        {
+          id: 'req-2',
+          member: 'أية',
+          amount: 1800,
+          reason: 'أدوية وفيتامينات دور البرد ومستلزمات صيدلية العزبي',
+          date: '2026-11-03',
+          category: 'health',
+          status: 'pending',
+          createdBy: 'أية',
+          timestamp: '2026-11-01 11:15 ص',
+          allocations: [
+            { amount: 1200, category: 'health', member: 'الحاجة' },
+            { amount: 600, category: 'daily', member: 'أية' }
+          ]
+        },
+        {
+          id: 'req-3',
+          member: 'أية',
+          amount: 2400,
+          reason: 'حفاضات بامبرز وبدائل حليب وسيريلاك للنونو للشهر',
+          date: '2026-11-04',
+          category: 'kids',
+          status: 'approved',
+          createdBy: 'أية',
+          timestamp: '2026-11-01 01:20 م',
+          allocations: [
+            { amount: 2400, category: 'kids', member: 'النونو' }
+          ]
+        },
+        {
+          id: 'req-4',
+          member: 'محمد',
+          amount: 450,
+          reason: 'أدوات هندسية ونشاط علمي ومجسمات للمدرسة',
+          date: '2026-11-01',
+          category: 'education',
+          status: 'approved',
+          createdBy: 'محمد',
+          timestamp: '2026-11-01 09:00 ص',
+          allocations: [
+            { amount: 450, category: 'education', member: 'محمد' }
+          ]
+        },
+        {
+          id: 'req-5',
+          member: 'أية',
+          amount: 3200,
+          reason: 'تغيير 5 شمعات فلتر المياه ومفروشات شتوية للبيت',
+          date: '2026-11-05',
+          category: 'house',
+          status: 'pending',
+          createdBy: 'أية',
+          timestamp: '2026-11-01 02:45 م',
+          allocations: [
+            { amount: 2200, category: 'house', member: 'البيت' },
+            { amount: 1000, category: 'daily', member: 'أية' }
+          ]
+        },
+        {
+          id: 'req-6',
+          member: 'ماهر',
+          amount: 1400,
+          reason: 'صيانة دورية وتغيير تيل فرامل أمامي للسيارة',
+          date: '2026-11-06',
+          category: 'transport',
+          status: 'approved',
+          createdBy: 'ماهر',
+          timestamp: '2026-11-01 08:30 ص',
+          allocations: [
+            { amount: 1400, category: 'transport', member: 'ماهر' }
+          ]
+        },
+        {
+          id: 'req-7',
+          member: 'الحاجة',
+          amount: 950,
+          reason: 'علاج السكر والضغط الشهري ومكملات كبار السن',
+          date: '2026-11-02',
+          category: 'health',
+          status: 'approved',
+          createdBy: 'الحاجة',
+          timestamp: '2026-11-01 12:00 م',
+          allocations: [
+            { amount: 950, category: 'health', member: 'الحاجة' }
+          ]
+        },
+        {
+          id: 'req-8',
+          member: 'مريم',
+          amount: 500,
+          reason: 'قصص تلوين ومجموعات رسم وألوان لمادة التربية الفنية',
+          date: '2026-11-01',
+          category: 'education',
+          status: 'pending',
+          createdBy: 'مريم',
+          timestamp: '2026-11-01 03:10 م',
+          allocations: [
+            { amount: 500, category: 'education', member: 'مريم' }
+          ]
+        }
+      ];
+    }
+
+    function generateRichDemoBudgets() {
+      return [
+        {
+          month: '2026-11',
+          title: 'ميزانية نوفمبر 2026 التقديرية',
+          categories: {
+            food: 22000,
+            daily: 5000,
+            bills: 8500,
+            transport: 6500,
+            house: 6000,
+            health: 5500,
+            clothes: 6000,
+            education: 15000,
+            other: 5500
+          },
+          incomes: [
+            { id: 'inc-nov-1', name: 'راتب ماهر الأساسي', amount: 82000, member: 'ماهر' },
+            { id: 'inc-nov-2', name: 'أرباح استثمارات وأسهم', amount: 18000, member: 'ماهر' },
+            { id: 'inc-nov-3', name: 'أتعاب استشارات وأعمال حرة', amount: 20000, member: 'ماهر' }
+          ],
+          updatedAt: '2026-11-01T10:00:00.000Z'
+        },
+        {
+          month: '2026-10',
+          title: 'ميزانية أكتوبر 2026 التقديرية',
+          categories: {
+            food: 20000,
+            daily: 4500,
+            bills: 8000,
+            transport: 6000,
+            house: 5500,
+            health: 5000,
+            clothes: 5500,
+            education: 14000,
+            other: 5000
+          },
+          incomes: [
+            { id: 'inc-oct-1', name: 'راتب ماهر الأساسي', amount: 82000, member: 'ماهر' },
+            { id: 'inc-oct-2', name: 'عوائد استثمار', amount: 16000, member: 'ماهر' }
+          ],
+          updatedAt: '2026-10-01T10:00:00.000Z'
+        },
+        {
+          month: '2026-09',
+          title: 'ميزانية سبتمبر 2026 التقديرية',
+          categories: {
+            food: 19500,
+            daily: 4500,
+            bills: 7800,
+            transport: 5800,
+            house: 5200,
+            health: 4800,
+            clothes: 5000,
+            education: 22000,
+            other: 4500
+          },
+          incomes: [
+            { id: 'inc-sep-1', name: 'راتب ماهر الأساسي', amount: 82000, member: 'ماهر' },
+            { id: 'inc-sep-2', name: 'أتعاب استشارات', amount: 25000, member: 'ماهر' }
+          ],
+          updatedAt: '2026-09-01T10:00:00.000Z'
+        }
+      ];
+    }
+
+    function generateRichDemoCommitments() {
+      return [
+        {
+          id: 'exp-1',
+          type: 'upcoming',
+          title: 'قسط مدرسة لغات الترم الثاني (محمد ومريم)',
+          amount: 15000,
+          dueDate: '2026-11-20',
+          member: 'محمد',
+          category: 'education',
+          notes: 'شامل الكتب والأنشطة المدرسية والباص',
+          status: 'pending'
+        },
+        {
+          id: 'exp-2',
+          type: 'upcoming',
+          title: 'تجديد ترخيص وتأمين السيارة السنوي',
+          amount: 4500,
+          dueDate: '2026-11-25',
+          member: 'ماهر',
+          category: 'transport',
+          notes: 'فحص فني وتأمين إجباري ورسوم مرور',
+          status: 'pending'
+        },
+        {
+          id: 'exp-3',
+          type: 'upcoming',
+          title: 'فاتورة الكهرباء والغاز المنزلي الشهرية',
+          amount: 1850,
+          dueDate: '2026-11-15',
+          member: 'البيت',
+          category: 'bills',
+          notes: 'شحن كارت العداد الذكي وفاتورة الغاز',
+          status: 'pending'
+        },
+        {
+          id: 'exp-4',
+          type: 'upcoming',
+          title: 'اشتراك إنترنت فايبر فائق السرعة وي',
+          amount: 850,
+          dueDate: '2026-11-10',
+          member: 'البيت',
+          category: 'bills',
+          notes: 'تجديد باقة 600 جيجا السنوية',
+          status: 'pending'
+        },
+        {
+          id: 'exp-5',
+          type: 'debt',
+          title: 'جمعية عائلية شهرية مستحقة القبض والدفع',
+          amount: 5000,
+          dueDate: '2026-11-30',
+          member: 'ماهر',
+          category: 'others',
+          notes: 'سهم شهر نوفمبر في جمعية العائلة',
+          status: 'pending'
+        },
+        {
+          id: 'exp-6',
+          type: 'debt',
+          title: 'باقي دفعة صيانة وتجديد رخام المطبخ',
+          amount: 6000,
+          dueDate: '2026-12-05',
+          member: 'البيت',
+          category: 'house',
+          notes: 'الدفعة الأخيرة بعد انتهاء التركيب والاستلام',
+          status: 'pending'
+        },
+        {
+          id: 'exp-7',
+          type: 'paid',
+          title: 'صيانة دورية وتغيير زيت وفلاتر السيارة',
+          amount: 3200,
+          dueDate: '2026-11-01',
+          member: 'ماهر',
+          category: 'transport',
+          notes: 'تم السداد كاش في مركز الصيانة المعتمد',
+          status: 'paid',
+          paidAt: '2026-11-01T12:00:00.000Z'
+        },
+        {
+          id: 'exp-8',
+          type: 'paid',
+          title: 'اشتراك نادي وتدريب سباحة محمد ومريم',
+          amount: 2500,
+          dueDate: '2026-11-02',
+          member: 'أية',
+          category: 'education',
+          notes: 'تم السداد واستلام كارنيهات التمارين',
+          status: 'paid',
+          paidAt: '2026-11-02T14:30:00.000Z'
+        }
       ];
     }
 
     function resetToDemoData() {
-      if (!confirm('هل أنت متأكد من مسح البيانات السابقة وبدء تجربة جديدة متوازنة بالكامل؟')) return;
+      if (!confirm('هل أنت متأكد من مسح البيانات السابقة وبدء تجربة جديدة مع 1000 حركة موازنة وميزانيات والتزامات واقعية؟')) return;
       localStorage.removeItem('family_monefy_v2_tx');
       localStorage.removeItem('family_monefy_txs');
       localStorage.removeItem('family_monefy_requests');
@@ -15383,13 +15848,16 @@
       localStorage.removeItem('family_monefy_debts');
       localStorage.removeItem('family_monefy_wallets');
       localStorage.removeItem('family_monefy_activity_log');
-      localStorage.setItem('family_monefy_version', '3.7.0');
+      localStorage.removeItem('family_monefy_monthly_budgets');
+      localStorage.removeItem('family_monefy_expected');
+      localStorage.setItem('family_monefy_version', '4.0.0');
+      localStorage.setItem('family_monefy_seed_version', 'v4.0_clean_1000');
 
       state.wallets = [
-        { id: 'wallet-cash-safe', name: 'كاش البيت', type: 'cash', balance: 25000, initialBalance: 25000, icon: 'fa-money-bill-1-wave', color: '#06b6d4', isDefault: true },
-        { id: 'wallet-reserve', name: 'المبلغ الإحتياطى', type: 'reserve', balance: 115000, initialBalance: 100000, icon: 'fa-vault', color: '#f59e0b' },
-        { id: 'wallet-vodafone', name: 'فودافون كاش', type: 'wallet', balance: 8500, initialBalance: 8500, icon: 'fa-mobile-screen', color: '#ef4444' },
-        { id: 'wallet-other', name: 'أخرى', type: 'other', balance: 18000, initialBalance: 15000, icon: 'fa-wallet', color: '#8b5cf6' }
+        { id: 'wallet-cash-safe', name: 'كاش البيت', type: 'cash', balance: 35000, initialBalance: 35000, icon: 'fa-money-bill-1-wave', color: '#06b6d4', isDefault: true },
+        { id: 'wallet-reserve', name: 'المبلغ الإحتياطى', type: 'reserve', balance: 120000, initialBalance: 120000, icon: 'fa-vault', color: '#f59e0b' },
+        { id: 'wallet-vodafone', name: 'فودافون كاش', type: 'wallet', balance: 20000, initialBalance: 20000, icon: 'fa-mobile-screen', color: '#ef4444' },
+        { id: 'wallet-other', name: 'أخرى', type: 'other', balance: 15000, initialBalance: 15000, icon: 'fa-wallet', color: '#8b5cf6' }
       ];
       localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets));
 
@@ -15399,10 +15867,17 @@
       state.moneyRequests = generateRichDemoRequests();
       localStorage.setItem('family_monefy_requests', JSON.stringify(state.moneyRequests));
 
+      state.monthlyBudgets = generateRichDemoBudgets();
+      localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
+
+      state.expectedExpenses = generateRichDemoCommitments();
+      localStorage.setItem('family_monefy_expected', JSON.stringify(state.expectedExpenses));
+
+      auditAndRecomputeAllWalletBalances();
       state.period = 'month';
       setAppPeriod('month');
       renderUI();
-      showToast('✨ تم مسح وتجديد بيانات النظام بالكامل وتوليد حركات وطلبات وسحب واقعية بنجاح!');
+      showToast('✨ تم مسح وتجديد بيانات النظام بالكامل وتوليد 1000 حركة موازنة وميزانيات والتزامات بنجاح!');
     }
 
     function getFilteredTransactions() {
@@ -17176,7 +17651,7 @@ function filterOperationsList() {
         return;
       }
 
-      // التدقيق الحسابي الإلزامي: التحقق من توزيع كامل المبلغ المطلوب بنسبة 100% على البنود
+      // التدقيق الحسابي الإلزامي الصارم: التحقق من توزيع كامل المبلغ المطلوب بنسبة 100% على البنود
       let allocatedSum = 0;
       const validAllocations = (currentRequestAllocations || []).map(a => {
         const amt = parseFloat(a.amount) || 0;
