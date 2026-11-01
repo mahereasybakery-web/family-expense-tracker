@@ -10063,7 +10063,7 @@
                   <span>توزيع المصروفات بحسب قنوات الدفع والمحافظ</span>
                 </div>
               </div>
-              <div class="chart-canvas-wrap" style="height: 290px; position: relative;">
+              <div class="chart-canvas-wrap" style="height: 330px; position: relative;">
                 <canvas id="walletsDistributionCanvas"></canvas>
               </div>
               <div id="walletsBreakdownLegend" style="margin-top: 10px;"></div>
@@ -13391,6 +13391,7 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          layout: { padding: { top: 32, bottom: 32, left: 60, right: 60 } },
           interaction: { mode: 'nearest', intersect: false },
           onClick: (event, elements, chart) => {
             const ci = chart || (event && event.chart) || walletsDistChartInstance;
@@ -13404,7 +13405,7 @@
             }
           },
           plugins: {
-            legend: { position: 'bottom', labels: { color: '#cbd5e1', font: { family: 'Tajawal', size: 10, weight: '700' }, padding: 8 } }
+            legend: { display: false }
           }
         }
       });
@@ -13611,8 +13612,8 @@
           const rawLabel = chart.data.labels[index] || '';
           if (!rawLabel) return;
 
-          // اسم البند كاملاً بدون اختصار متبوعاً بالنسبة المئوية
-          const pctStr = Math.round(pct) + '%';
+          // اسم البند كاملاً بدون اختصار متبوعاً بالنسبة المئوية بالترتيب العربي المطابق للمرجع (الاسم ثم الرقم ثم ٪)
+          const pctStr = Math.round(pct) + '٪';
           const text = `${rawLabel} ${pctStr}`;
 
           const { startAngle, endAngle, outerRadius, x: centerX, y: centerY } = element;
@@ -13842,7 +13843,7 @@
             },
             plugins: {
               legend: {
-                display: isBar,
+                display: false,
                 position: 'bottom',
                 labels: {
                   color: isLight ? '#0f172a' : '#cbd5e1',
@@ -13919,7 +13920,7 @@
                   <span style="color: ${isLight ? '#64748b' : '#94a3b8'}; font-size: 0.70rem; font-weight: 600;">(${c.count} حركة)</span>
                 </span>
                 <span style="font-weight: 900; color: ${isLight ? '#b91c1c' : '#f87171'};">
-                  - ${formatMoney(c.sum)} <span style="color: #0284c7; font-size: 0.72rem; margin-right: 4px; font-weight: 800;">(${pct}%)</span>
+                  - ${formatMoney(c.sum)} <span dir="ltr" style="display: inline-block; color: #0284c7; font-size: 0.74rem; margin-right: 6px; font-weight: 800; font-family: var(--font-numbers); font-variant-numeric: tabular-nums;">(${pct}%)</span>
                 </span>
               </div>
               <div style="width: 100%; height: 6px; background: ${isLight ? '#e2e8f0' : 'rgba(255,255,255,0.08)'}; border-radius: 4px; overflow: hidden;">
@@ -14037,7 +14038,7 @@
             }]
           },
           options: {
-            layout: { padding: { top: 16, bottom: 16, left: 32, right: 32 } },
+            layout: { padding: isMemBar ? { top: 8, bottom: 8, left: 16, right: 16 } : { top: 32, bottom: 32, left: 60, right: 60 } },
             ...(isMemBar ? { indexAxis: 'y' } : {}),
             interaction: { mode: 'nearest', intersect: false },
             onClick: (event, elements, chart) => {
@@ -14053,7 +14054,7 @@
             maintainAspectRatio: false,
             plugins: {
               legend: {
-                display: !isMemBar,
+                display: false,
                 position: 'bottom',
                 labels: {
                   color: '#cbd5e1',
@@ -17223,12 +17224,36 @@
         return;
       }
 
-      // تجميع التخصيصات المتعددة
-      const allocations = (currentRequestAllocations || []).map(a => ({
-        amount: parseFloat(a.amount) || 0,
-        category: a.category || 'daily',
-        member: a.member || member
-      })).filter(a => a.amount > 0);
+      // التدقيق الحسابي الإلزامي: التحقق من توزيع كامل المبلغ المطلوب بنسبة 100% على البنود
+      let allocatedSum = 0;
+      const validAllocations = (currentRequestAllocations || []).map(a => {
+        const amt = parseFloat(a.amount) || 0;
+        allocatedSum += amt;
+        return {
+          amount: amt,
+          category: a.category || 'daily',
+          member: a.member || member
+        };
+      }).filter(a => a.amount > 0);
+
+      const diff = Math.round((amount - allocatedSum) * 100) / 100;
+      if (Math.abs(diff) >= 0.01) {
+        if (diff > 0) {
+          showToast(`❌ لا يمكن إرسال الطلب: لم يتم توزيع كامل المبلغ! متبقي غير موزع (${formatMoney(diff)}) يجب توزيعه بالكامل على البنود.`);
+        } else {
+          showToast(`❌ لا يمكن إرسال الطلب: مجموع البنود الموزعة يتجاوز المبلغ المطلوب بـ (${formatMoney(Math.abs(diff))}).`);
+        }
+        const badge = document.getElementById('allocMatchStatus');
+        if (badge) {
+          badge.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+
+      if (validAllocations.length === 0) {
+        showToast('⚠️ الرجاء إضافة بند توزيع واحد على الأقل بالمبلغ المطلوب');
+        return;
+      }
 
       const newReq = {
         id: 'req-' + Date.now(),
@@ -17236,8 +17261,8 @@
         amount: amount,
         reason: reason,
         date: reqDate,
-        category: allocations[0] ? allocations[0].category : 'others',
-        allocations: allocations.length > 0 ? allocations : [{ amount: amount, category: 'others', member: member }],
+        category: validAllocations[0] ? validAllocations[0].category : 'others',
+        allocations: validAllocations,
         photo: state.pendingRequestPhotoDataUri || null,
         status: 'pending',
         createdBy: member,
@@ -17245,7 +17270,9 @@
       };
 
       state.moneyRequests.unshift(newReq);
-      localStorage.setItem('family_monefy_requests', JSON.stringify(state.moneyRequests));
+      try {
+        localStorage.setItem('family_monefy_requests', JSON.stringify(state.moneyRequests));
+      } catch(e) {}
 
       if (amtInp) amtInp.value = '';
       if (rsnInp) rsnInp.value = '';
@@ -17266,7 +17293,8 @@
 
       playNotificationChime();
       renderRequestsList();
-      showToast(`💌 تم إرسال طلب المصروف (${amount} ج.م) لماهر بنجاح`);
+      showToast(`💌 تم إرسال طلب المصروف بنجاح (${formatMoney(amount)}) وتوزيعه بالكامل!`);
+      triggerDriveAutoSync();
     }
 
     function renderRequestsList() {
