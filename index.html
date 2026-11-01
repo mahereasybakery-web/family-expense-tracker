@@ -8570,12 +8570,78 @@
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
     }
 
-    /* شبكة بنود المصروفات الاحترافية المعتمدة (9 بنود 3×3) بأبعاد متناسقة وهندسة دقيقة تملأ المساحة بتناغم */
+    /* =========================================================================
+       محرك التكيف التلقائي الشامل لأحجام الخطوط والشاشات والكروت (v3.5.5)
+       Automatic Scaling Engine: Small / Medium / Large & Screen Dimensions
+       ========================================================================= */
+    :root {
+      --app-font-scale: 1;
+      --app-grid-row-min: 104px;
+      --app-grid-row-max: 126px;
+      --app-card-max-h: 126px;
+      --app-icon-bubble-size: clamp(48px, 12.5vw, 54px);
+      --app-icon-emoji-size: clamp(2rem, 5.2vw, 2.35rem);
+      --app-card-title-size: clamp(0.82rem, 2.4vw, 0.92rem);
+      --app-card-amt-size: clamp(0.98rem, 2.8vw, 1.15rem);
+      --app-card-padding: 7px 4px 6px;
+      --app-tools-strip-h: 38px;
+      --app-bottom-nav-h: 64px;
+    }
+
+    /* 1. الحجم الصغير (صغير: مدمج وخفيف للأجهزة الصغيرة أو لعرض بيانات أكثر) */
+    html[data-font-size="small"], body[data-font-size="small"] {
+      font-size: 12.5px !important;
+      --app-font-scale: 0.88;
+      --app-grid-row-min: 94px;
+      --app-grid-row-max: 114px;
+      --app-card-max-h: 114px;
+      --app-icon-bubble-size: 44px;
+      --app-icon-emoji-size: 1.9rem;
+      --app-card-title-size: 0.76rem;
+      --app-card-amt-size: 0.90rem;
+      --app-card-padding: 5px 3px 4px;
+      --app-tools-strip-h: 35px;
+      --app-bottom-nav-h: 58px;
+    }
+
+    /* 2. الحجم الوسط (وسط: قياسي متوازن ومريح - الافتراضي) */
+    html[data-font-size="medium"], body[data-font-size="medium"] {
+      font-size: 14px !important;
+      --app-font-scale: 1;
+      --app-grid-row-min: 104px;
+      --app-grid-row-max: 126px;
+      --app-card-max-h: 126px;
+      --app-icon-bubble-size: clamp(48px, 12.5vw, 54px);
+      --app-icon-emoji-size: clamp(2rem, 5.2vw, 2.35rem);
+      --app-card-title-size: clamp(0.82rem, 2.4vw, 0.92rem);
+      --app-card-amt-size: clamp(0.98rem, 2.8vw, 1.15rem);
+      --app-card-padding: 7px 4px 6px;
+      --app-tools-strip-h: 38px;
+      --app-bottom-nav-h: 64px;
+    }
+
+    /* 3. الحجم الكبير (كبير: خط وأرقام عريضة بارزة ومقروءة جداً بوضوح) */
+    html[data-font-size="large"], body[data-font-size="large"] {
+      font-size: 15.6px !important;
+      --app-font-scale: 1.12;
+      --app-grid-row-min: 112px;
+      --app-grid-row-max: 138px;
+      --app-card-max-h: 138px;
+      --app-icon-bubble-size: clamp(50px, 13vw, 58px);
+      --app-icon-emoji-size: clamp(2.15rem, 5.5vw, 2.5rem);
+      --app-card-title-size: clamp(0.88rem, 2.6vw, 1rem);
+      --app-card-amt-size: clamp(1.06rem, 3.1vw, 1.25rem);
+      --app-card-padding: 8px 4px 6px;
+      --app-tools-strip-h: 42px;
+      --app-bottom-nav-h: 68px;
+    }
+
+    /* تكيف الشبكة تلقائياً مع حجم الخط والشاشة */
     .categories-monefy-grid, #catGrid {
       flex: 1 1 auto !important;
       display: grid !important;
       grid-template-columns: repeat(3, 1fr) !important;
-      grid-template-rows: repeat(3, minmax(104px, 126px)) !important;
+      grid-template-rows: repeat(3, minmax(var(--app-grid-row-min), var(--app-grid-row-max))) !important;
       align-content: space-evenly !important;
       gap: 7px !important;
       width: calc(100% - 10px) !important;
@@ -8586,7 +8652,7 @@
 
     .cat-card {
       height: 100% !important;
-      max-height: 126px !important;
+      max-height: var(--app-card-max-h) !important;
       min-height: 0 !important;
       box-sizing: border-box !important;
       display: flex !important;
@@ -8594,7 +8660,7 @@
       align-items: center !important;
       justify-content: center !important;
       gap: 3px !important;
-      padding: 7px 4px 6px !important;
+      padding: var(--app-card-padding) !important;
       border-radius: 16px !important;
       overflow: hidden !important;
       border-width: 1.6px !important;
@@ -8602,7 +8668,7 @@
       background: linear-gradient(155deg, rgba(30, 41, 59, 0.90) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
       border-color: rgba(255, 255, 255, 0.12) !important;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
-      transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, box-shadow 0.2s ease !important;
+      transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, box-shadow 0.2s ease, max-height 0.25s ease !important;
       position: relative !important;
     }
 
@@ -8612,7 +8678,7 @@
 
     body.light-theme .cat-card {
       height: 100% !important;
-      max-height: 126px !important;
+      max-height: var(--app-card-max-h) !important;
       min-height: 0 !important;
       box-sizing: border-box !important;
       display: flex !important;
@@ -8620,7 +8686,7 @@
       align-items: center !important;
       justify-content: center !important;
       gap: 3px !important;
-      padding: 7px 4px 6px !important;
+      padding: var(--app-card-padding) !important;
       border-radius: 16px !important;
       overflow: hidden !important;
       border-width: 1.6px !important;
@@ -8631,10 +8697,10 @@
     }
 
     .cat-icon-bubble {
-      width: clamp(48px, 12.5vw, 54px) !important;
-      height: clamp(48px, 12.5vw, 54px) !important;
-      min-width: 48px !important;
-      min-height: 48px !important;
+      width: var(--app-icon-bubble-size) !important;
+      height: var(--app-icon-bubble-size) !important;
+      min-width: var(--app-icon-bubble-size) !important;
+      min-height: var(--app-icon-bubble-size) !important;
       border-radius: 14px !important;
       display: flex !important;
       align-items: center !important;
@@ -8644,10 +8710,11 @@
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
       flex-shrink: 0 !important;
       margin-top: 1px !important;
+      transition: width 0.2s ease, height 0.2s ease !important;
     }
 
     .cat-icon-bubble span {
-      font-size: clamp(2rem, 5.2vw, 2.35rem) !important;
+      font-size: var(--app-icon-emoji-size) !important;
       line-height: 1 !important;
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.45)) !important;
       transform: translateZ(0) !important;
@@ -8655,7 +8722,7 @@
 
     .cat-label-text {
       font-family: var(--font-family) !important;
-      font-size: clamp(0.82rem, 2.4vw, 0.92rem) !important;
+      font-size: var(--app-card-title-size) !important;
       font-weight: 800 !important;
       text-align: center !important;
       margin: 2px 0 1px !important;
@@ -8680,12 +8747,77 @@
 
     .cat-amount-pill span {
       font-family: var(--font-numbers) !important;
-      font-size: clamp(0.98rem, 2.8vw, 1.15rem) !important;
+      font-size: var(--app-card-amt-size) !important;
       font-weight: 900 !important;
       line-height: 1.2 !important;
       white-space: nowrap !important;
       font-variant-numeric: tabular-nums !important;
     }
+
+    /* تكيف شريط الأدوات وشريط التنقل السفلي */
+    .executive-quick-tools-strip {
+      height: var(--app-tools-strip-h) !important;
+    }
+    .wallet-select-cluster {
+      height: var(--app-tools-strip-h) !important;
+    }
+    .tool-pill-action.gold-pill, .currency-pill-btn {
+      height: var(--app-tools-strip-h) !important;
+    }
+    .app-bottom-nav {
+      height: var(--app-bottom-nav-h) !important;
+    }
+
+    /* =========================================================================
+       التكيف التلقائي مع مقاسات الشاشات المختلفة (Screen Auto-Adaptation Queries)
+       ========================================================================= */
+
+    /* 1. الشاشات الصغيرة والمضغوطة رأسياً (Compact Screens: iPhone SE, height <= 690px) */
+    @media (max-height: 690px) {
+      :root {
+        --app-grid-row-min: 92px;
+        --app-grid-row-max: 108px;
+        --app-card-max-h: 108px;
+        --app-icon-bubble-size: 40px;
+        --app-icon-emoji-size: 1.8rem;
+        --app-tools-strip-h: 34px;
+        --app-bottom-nav-h: 54px;
+      }
+      .kpi-master-wealth-cockpit {
+        min-height: 68px !important;
+        padding: 4px 8px !important;
+      }
+      .period-selector-top-strip {
+        padding: 3px 6px !important;
+      }
+      .period-filter-pill {
+        padding: 3px 8px !important;
+        font-size: 0.70rem !important;
+      }
+    }
+
+    /* 2. الشاشات الطويلة (Tall Screens: Android 915px+, height >= 860px) */
+    @media (min-height: 860px) {
+      .categories-monefy-grid, #catGrid {
+        gap: 8px !important;
+        margin: 4px 6px 8px !important;
+      }
+    }
+
+    /* 3. الشاشات العريضة (Tablets, iPads & Desktops: width >= 500px) */
+    @media (min-width: 500px) {
+      .mobile-frame {
+        max-width: min(540px, 94vw) !important;
+        border-radius: 28px !important;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55) !important;
+      }
+    }
+    @media (min-width: 768px) {
+      .mobile-frame {
+        max-width: min(580px, 92vw) !important;
+      }
+    }
+
     /* كروت المؤشرات الثلاثية الأكبر والأكثر بروزاً ووضوحاً (Three KPI Master Cards) */
     .kpi-three-strip {
       display: grid !important;
@@ -9509,7 +9641,7 @@
             <!-- 3. أعلى يوم إنفاقاً -->
             <div class="kpi-lux-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(249, 115, 22, 0.35); border-radius: 12px; padding: 8px 10px;">
               <div class="kpi-lux-head" style="display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; font-weight: 800; color: #94a3b8; margin-bottom: 2px;">
-                <span>أعلى يوم صرفاً</span><i class="fa-solid fa-fire" style="color: #f97316;"></i>
+                <span>أعلى يوم إنفاقاً</span><i class="fa-solid fa-fire" style="color: #f97316;"></i>
               </div>
               <div class="kpi-lux-value" id="kpiLuxPeakDay" style="color: #f97316; font-size: 0.90rem; font-weight: 900; direction: rtl;">-</div>
               <div class="kpi-lux-sub" id="kpiLuxPeakDaySub" style="font-size: 0.65rem; color: #64748b; margin-top: 1px;">تاريخ الذروة الاستهلاكية</div>
@@ -11784,6 +11916,32 @@
             </button>
           </div>
 
+          <!-- محدد حجم الخط التلقائي (كبير / وسط / صغير) -->
+          <div style="margin-bottom: 10px; background: rgba(255,255,255,0.03); padding: 8px 10px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <div style="font-size: 0.74rem; font-weight: 800; color: #cbd5e1; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-text-height" style="color: #38bdf8;"></i>
+                <span>حجم الخط والأرقام (تكيف تلقائي):</span>
+              </div>
+              <span id="activeFontSizeBadge" style="font-size: 0.65rem; color: #38bdf8; font-weight: 800;">وسط (الافتراضي)</span>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+              <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeSmall" onclick="setAppFontSize('small')" style="padding: 7px 4px; font-size: 0.70rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <span style="font-size: 0.74rem; font-weight: 800;">صغير</span>
+                <span style="font-size: 0.58rem; color: #94a3b8;">مدمج وخفيف</span>
+              </button>
+              <button type="button" class="analytics-sec-btn font-size-pill active" id="fontSizeMedium" onclick="setAppFontSize('medium')" style="padding: 7px 4px; font-size: 0.72rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <span style="font-size: 0.82rem; font-weight: 800;">وسط</span>
+                <span style="font-size: 0.58rem; color: #94a3b8;">متوازن (افتراضي)</span>
+              </button>
+              <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeLarge" onclick="setAppFontSize('large')" style="padding: 7px 4px; font-size: 0.74rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <span style="font-size: 0.94rem; font-weight: 900;">كبير</span>
+                <span style="font-size: 0.58rem; color: #94a3b8;">واضح وبارز</span>
+              </button>
+            </div>
+          </div>
+
           <!-- محدد نمط وشكل الكروت -->
           <div style="margin-bottom: 10px; background: rgba(255,255,255,0.03); padding: 6px 8px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06);">
             <div style="font-size: 0.70rem; font-weight: 800; color: #cbd5e1; margin-bottom: 6px;">
@@ -12738,7 +12896,7 @@
           options: {
             responsive: true,
             maintainAspectRatio: false,
-            layout: { padding: { top: 16, bottom: 16, left: 32, right: 32 } },
+            layout: { padding: { top: 20, bottom: 20, left: (isBar ? 8 : 36), right: (isBar ? 8 : 36) } },
             interaction: { mode: 'nearest', intersect: false },
             onClick: (event, elements, chart) => {
               const ci = chart || (event && event.chart) || threePillarChartInstance;
@@ -13083,15 +13241,29 @@
         if (total <= 0) return;
 
         const isLight = document.body.classList.contains('light-theme');
+        const chartWidth = chart.width;
+        const chartHeight = chart.height;
 
         ctx.save();
         meta.data.forEach((element, index) => {
           const val = Number(dataset.data[index]) || 0;
           if (val <= 0) return;
           const pct = (val / total) * 100;
-          if (pct < 3.5) return; // عدم تكديس البنود متناهية الصغر أقل من 3.5%
+          if (pct < 3.0) return; // إخفاء النسب المتناهية الصغر أقل من 3% لمنع التزاحم
 
-          const label = chart.data.labels[index] || '';
+          const rawLabel = chart.data.labels[index] || '';
+          // تسميات ذكية وموجزة للكبسولات لمنع الخروج عن حواف الشاشة
+          let label = rawLabel;
+          if (label === 'طعام ومشتريات') label = 'طعام';
+          else if (label === 'مواصلات وبنزين') label = 'مواصلات';
+          else if (label === 'فواتير والتزامات' || label === 'فواتير وخدمات') label = 'فواتير';
+          else if (label === 'مستلزمات منزل' || label === 'أثاث وتجهيزات منزل') label = 'منزل';
+          else if (label === 'صحة وعلاج' || label === 'صيدلية وعلاج') label = 'صحة';
+          else if (label === 'ملابس وأحذية' || label === 'ملابس ومظهر') label = 'ملابس';
+          else if (label === 'تعليم ودروس') label = 'تعليم';
+          else if (label === 'أخرى ونثريات') label = 'أخرى';
+          else if (label.length > 9) label = label.slice(0, 8) + '..';
+
           const text = `${label} ${pct.toFixed(0)}%`;
 
           const { startAngle, endAngle, outerRadius, x: centerX, y: centerY } = element;
@@ -13102,18 +13274,35 @@
           const edgeY = centerY + Math.sin(midAngle) * outerRadius;
 
           // مسافة المؤشر الخارجية
-          const calloutDist = outerRadius + 16;
+          const calloutDist = outerRadius + 14;
           const targetX = centerX + Math.cos(midAngle) * calloutDist;
           const targetY = centerY + Math.sin(midAngle) * calloutDist;
 
-          // خط أفقي ذكي يتكيف مع اتجاه اليمين واليسار
           const isRight = Math.cos(midAngle) >= 0;
-          const elbowX = targetX + (isRight ? 10 : -10);
-          const elbowY = targetY;
+
+          // قياس أبعاد الكبسولة التوضيحية
+          ctx.font = 'bold 10px "Alexandria", "Cairo", sans-serif';
+          const textMetrics = ctx.measureText(text);
+          const textWidth = textMetrics.width;
+          const badgePaddingX = 6;
+          const badgePaddingY = 3;
+          const badgeWidth = textWidth + badgePaddingX * 2;
+          const badgeHeight = 18;
+
+          // إحداثيات الكبسولة المحمية داخل حدود الكانفاس
+          let badgeX = isRight ? targetX + 8 : targetX - badgeWidth - 8;
+          let badgeY = targetY - badgeHeight / 2;
+
+          // قفل محكم لمنع أي خروج عن حواف الكانفاس (Clamping)
+          badgeX = Math.max(4, Math.min(badgeX, chartWidth - badgeWidth - 4));
+          badgeY = Math.max(4, Math.min(badgeY, chartHeight - badgeHeight - 4));
+
+          const elbowX = isRight ? badgeX : badgeX + badgeWidth;
+          const elbowY = badgeY + badgeHeight / 2;
 
           const sliceColor = Array.isArray(dataset.backgroundColor) ? dataset.backgroundColor[index] : dataset.backgroundColor;
 
-          // 1. رسم خط المؤشر التوضيحي
+          // 1. رسم خط المؤشر التوضيحي الأنيق
           ctx.beginPath();
           ctx.moveTo(edgeX, edgeY);
           ctx.lineTo(targetX, targetY);
@@ -13128,19 +13317,7 @@
           ctx.fillStyle = sliceColor || '#38bdf8';
           ctx.fill();
 
-          // 2. قياس أبعاد الكبسولة التوضيحية
-          ctx.font = 'bold 9.5px Tajawal, sans-serif';
-          const textMetrics = ctx.measureText(text);
-          const textWidth = textMetrics.width;
-          const badgePaddingX = 6;
-          const badgePaddingY = 3;
-          const badgeWidth = textWidth + badgePaddingX * 2;
-          const badgeHeight = 18;
-
-          const badgeX = isRight ? elbowX + 2 : elbowX - badgeWidth - 2;
-          const badgeY = elbowY - badgeHeight / 2;
-
-          // 3. رسم خلفية الكبسولة الأنيقة
+          // 2. رسم خلفية الكبسولة
           ctx.beginPath();
           if (typeof ctx.roundRect === 'function') {
             ctx.roundRect(badgeX, badgeY, badgeWidth, badgeHeight, 5);
@@ -13153,7 +13330,7 @@
           ctx.lineWidth = 1.2;
           ctx.stroke();
 
-          // 4. كتابة نص اسم البند ونسبته المئوية بوضوح تام
+          // 3. كتابة النص والنسبة بوضوح تام
           ctx.fillStyle = isLight ? '#0f172a' : '#ffffff';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
@@ -15033,7 +15210,7 @@
     }
 
     function renderUI() {
-      // 1. حساب الرصيد الفعلي الحالي وإجمالي المصروفات والإيداع (ثابت لكافة الفترات دون فلترة زمنية إطلاقاً)
+      // 1. حساب الرصيد الفعلي التراكمي المعتمد لكافة المحافظ (السيولة النقدية الدائمة بالخزينة)
       let allTxs = state.transactions || [];
       if (state.currentWalletId && state.currentWalletId !== 'all') {
         allTxs = allTxs.filter(t => t.walletId === state.currentWalletId);
@@ -15047,13 +15224,25 @@
       });
       const actualBalance = actualTotalInc - actualTotalExp;
 
-      // تحديث البطاقات الثلاث أعلى الصفحة (تعرض الرصيد الفعلي الحالي الدائم)
+      // 2. الحركات المفلترة بحسب الفترة الزمنية المختارة (اليوم / الأسبوع / الشهر / الكل / مخصص)
+      const filtered = getFilteredTransactions();
+      let periodInc = 0;
+      let periodExp = 0;
+      filtered.forEach(t => {
+        const amt = Number(t.amount) || 0;
+        if (t.type === 'income') periodInc += amt;
+        else periodExp += amt;
+      });
+
+      // 3. تحديث قمرة القيادة المالية (Executive Wealth Cockpit):
+      // - الرصيد الفعلي الحالي: يعرض السيولة التراكمية الحقيقية المعتمدة للمحافظ (actualBalance)
+      // - كبسولتا التدفقات التوأم: تعرضان إيداعات ومصروفات الفترة المحددة بدقة (تتطابق 100% مع شبكة البنود وشاشة المؤشرات)
       const elInc = document.getElementById('topCardIncome');
       const elExp = document.getElementById('topCardExpense');
       const elBal = document.getElementById('topCardBalance');
 
-      if (elInc) elInc.textContent = '+ ' + formatMoney(actualTotalInc);
-      if (elExp) elExp.textContent = '- ' + formatMoney(actualTotalExp);
+      if (elInc) elInc.textContent = '+ ' + formatMoney(periodInc);
+      if (elExp) elExp.textContent = (periodExp > 0 ? '- ' : '') + formatMoney(periodExp);
       if (elBal) {
         elBal.textContent = (actualBalance >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(actualBalance));
         const isLight = document.body.classList.contains('light-theme');
@@ -15064,12 +15253,21 @@
         }
       }
 
-      // 2. الحركات المفلترة بحسب الفترة الزمنية وباقي الفلاتر (تطبق على شبكة البنود وسجل العمليات والشارتات)
-      const filtered = getFilteredTransactions();
-      let periodExp = 0;
-      filtered.forEach(t => {
-        if (t.type === 'expense') periodExp += (Number(t.amount) || 0);
-      });
+      // ضبط شارة وتلميح الفترة الزمنية لكبسولتي التدفقات
+      const curPeriodCode = state.period || 'month';
+      const periodShortNames = {
+        'today': 'اليوم',
+        'day': 'اليوم',
+        'week': 'الأسبوع',
+        'month': 'الشهر',
+        'all': 'كافة الفترات',
+        'custom': 'المخصصة'
+      };
+      const curPeriodLabel = periodShortNames[curPeriodCode] || 'الفترة';
+      const pillInflow = document.querySelector('.cockpit-flow-pill.inflow');
+      const pillOutflow = document.querySelector('.cockpit-flow-pill.outflow');
+      if (pillInflow) pillInflow.setAttribute('title', `إجمالي إيداعات ${curPeriodLabel} (+${formatMoney(periodInc)}) - انقر لتسجيل أو استعراض الدخل`);
+      if (pillOutflow) pillOutflow.setAttribute('title', `إجمالي مصروفات ${curPeriodLabel} (-${formatMoney(periodExp)}) - انقر لمراجعة عمليات المصروفات`);
 
       // تحديث شارة اسم الفترة وإجمالي مصروفها في شريط رأس البنود
       const p = state.period || 'month';
@@ -15234,25 +15432,35 @@
           border: cat.color
         };
 
+        const cardBg = isLight 
+          ? '#ffffff' 
+          : `linear-gradient(155deg, rgba(30, 41, 59, 0.90) 0%, rgba(15, 23, 42, 0.98) 100%)`;
+        const cardBorder = isLight 
+          ? theme.border 
+          : `${theme.border}bb`;
+        const cardShadow = isLight 
+          ? `0 4px 14px rgba(0, 0, 0, 0.08), 0 0 10px ${theme.accent}20` 
+          : `0 4px 18px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 12px ${theme.accent}35`;
+
         const card = document.createElement('div');
         card.className = `cat-card cat-theme-${cat.id}`;
         card.setAttribute('data-cat-id', cat.id);
 
         card.style.cssText = `
-          background: ${isLight ? '#ffffff' : 'linear-gradient(155deg, rgba(30, 41, 59, 0.90) 0%, rgba(15, 23, 42, 0.98) 100%)'} !important;
-          border: 1.6px solid ${isLight ? theme.border : theme.border + 'bb'} !important;
+          background: ${cardBg} !important;
+          border: 1.6px solid ${cardBorder} !important;
           border-radius: 16px !important;
-          padding: 7px 4px 6px !important;
+          padding: var(--app-card-padding, 7px 4px 6px) !important;
           display: flex !important;
           flex-direction: column !important;
           align-items: center !important;
           justify-content: center !important;
           gap: 3px !important;
           height: 100% !important;
-          max-height: 126px !important;
+          max-height: var(--app-card-max-h, 126px) !important;
           min-height: 0 !important;
           cursor: pointer !important;
-          box-shadow: ${isLight ? '0 4px 14px rgba(0, 0, 0, 0.08), 0 0 10px ' + theme.accent + '20' : '0 4px 18px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 12px ' + theme.accent + '35'} !important;
+          box-shadow: ${cardShadow} !important;
           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
           position: relative !important;
           box-sizing: border-box !important;
@@ -17207,6 +17415,58 @@
     }
 
     // تطبيق نمط وتصميم الكروت (Design Style Engine)
+    // ==========================================
+    // التحكم التلقائي في حجم الخط ومقاس الشاشات والكروت (v3.5.5)
+    // ==========================================
+    function setAppFontSize(size, persist = true) {
+      const validSizes = ['small', 'medium', 'large'];
+      if (!validSizes.includes(size)) size = 'medium';
+
+      document.documentElement.setAttribute('data-font-size', size);
+      document.body.setAttribute('data-font-size', size);
+
+      if (persist) {
+        try {
+          localStorage.setItem('family_expense_font_size', size);
+        } catch (e) {}
+      }
+
+      // تحديث حالة الأزرار في الإعدادات
+      document.querySelectorAll('.font-size-pill').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(
+        size === 'small' ? 'fontSizeSmall' : 
+        (size === 'large' ? 'fontSizeLarge' : 'fontSizeMedium')
+      );
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const badge = document.getElementById('activeFontSizeBadge');
+      const labels = { small: 'صغير (مدمج)', medium: 'وسط (الافتراضي)', large: 'كبير (واضح وبارز)' };
+      if (badge) badge.textContent = labels[size] || 'وسط';
+
+      // تحديث الشاشات والكروت تلقائياً لضبط التناسب مع الحجم الجديد
+      if (typeof renderCategoriesGrid === 'function') {
+        const txs = (typeof getFilteredTransactions === 'function') ? getFilteredTransactions() : state.transactions;
+        renderCategoriesGrid(txs);
+      }
+      if (typeof renderAnalyticsUI === 'function') {
+        renderAnalyticsUI();
+      }
+
+      showToast(`🔠 تم تفعيل حجم الخط: ${labels[size]} وتكييف الشاشات تلقائياً`);
+    }
+
+    // رصد وتطبيق التكيف التلقائي مع مقاس الشاشة المفتوحة منها
+    function applyScreenAdaptiveLayout() {
+      const h = window.innerHeight;
+      const w = window.innerWidth;
+      const hMode = h < 700 ? 'compact' : (h > 860 ? 'tall' : 'standard');
+      const wMode = w >= 600 ? 'tablet' : 'mobile';
+      document.documentElement.setAttribute('data-screen-h', hMode);
+      document.documentElement.setAttribute('data-screen-w', wMode);
+    }
+    window.addEventListener('resize', applyScreenAdaptiveLayout);
+    applyScreenAdaptiveLayout();
+
     function setAppFont(fontKey) {
       const fonts = {
         tajawal: { name: 'تاجوال (افتراضي)', family: "'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" },
