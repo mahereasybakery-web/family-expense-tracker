@@ -8324,7 +8324,7 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
-            <span class="version-badge">v3.2.0</span>
+            <span class="version-badge">v3.5.0</span>
           </div>
         </div>
 
@@ -8509,73 +8509,46 @@
           </div>
         </div>
 
-        <!-- مركز الخزينة والمحافظ المالية وإجراءات الحركات النقدية (Executive Wallet & Financial Hub) -->
-        <div class="financial-treasury-hub" style="margin: 3px 6px 8px; display: flex; flex-direction: column; gap: 7px;">
-          
-          <!-- الصف الأول: اختيار المحفظة النشطة بوضوح كامل + إضافة محفظة + أزرار الحركات البنكية المميزة -->
-          <div class="wallet-master-strip" style="display: flex; align-items: center; justify-content: space-between; gap: 6px; width: 100%; box-sizing: border-box;">
-            
-            <!-- كتلة اختيار المحفظة النشطة: واسعة، بارزة، سهلة النقر ومستحيل تنكمش إلى الصفر -->
-            <div class="wallet-select-cluster" id="walletSelectCluster" title="اختيار المحفظة المعروضة وإدارتها" style="flex: 1 1 auto; min-width: 145px; height: 42px; display: flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 13px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(15, 23, 42, 0.95)); border: 1.5px solid rgba(56, 189, 248, 0.5); box-shadow: 0 3px 12px rgba(56, 189, 248, 0.18); box-sizing: border-box;">
-              <i class="fa-solid fa-wallet" style="color: #38bdf8; font-size: 1.15rem; flex-shrink: 0;"></i>
-              <select class="wallet-dropdown-compact" id="activeWalletSelect" title="المحفظة النشطة" style="flex: 1 1 auto; min-width: 95px; width: auto; background: transparent; border: none; color: #38bdf8; font-weight: 900; font-size: 0.88rem; font-family: inherit; outline: none; cursor: pointer; direction: rtl;"></select>
-              <button type="button" class="btn-add-wallet-mini" id="btnOpenAddWallet" onclick="openModal('walletModal')" title="إضافة محفظة مالية جديدة" style="width: 26px; height: 26px; border-radius: 50%; background: rgba(56, 189, 248, 0.25); border: 1px solid rgba(56, 189, 248, 0.55); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; cursor: pointer; flex-shrink: 0;">
-                <i class="fa-solid fa-plus"></i>
-              </button>
-            </div>
-
-            <!-- أزرار حركات المحافظ المفصولة بهوية مميزة: تحويل رصيد + كشف حركات -->
-            <div class="wallet-actions-cluster" style="display: flex; align-items: center; gap: 5px; flex-shrink: 0;">
-              <!-- زر تحويل رصيد بين المحافظ -->
-              <button type="button" class="wallet-action-btn btn-transfer-action" onclick="openWalletTransferModal()" title="نقل وتحويل رصيد بين المحافظ" style="height: 42px; padding: 0 11px; border-radius: 12px; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.5px solid rgba(56, 189, 248, 0.5); background: linear-gradient(135deg, rgba(2, 132, 199, 0.28), rgba(14, 165, 233, 0.18)); color: #38bdf8; box-shadow: 0 2px 10px rgba(2, 132, 199, 0.25); transition: all 0.2s;">
-                <i class="fa-solid fa-right-left" style="font-size: 0.84rem;"></i>
-                <span>تحويل</span>
-              </button>
-
-              <!-- زر كشف حركات المحفظة المحاسبي وتصدير إكسيل/PDF -->
-              <button type="button" class="wallet-action-btn btn-statement-action" onclick="openWalletStatementModal()" title="كشف حركات وتصدير إكسيل و PDF" style="height: 42px; padding: 0 11px; border-radius: 12px; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.5px solid rgba(16, 185, 129, 0.5); background: linear-gradient(135deg, rgba(16, 185, 129, 0.28), rgba(5, 150, 105, 0.18)); color: #34d399; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.25); transition: all 0.2s;">
-                <i class="fa-solid fa-file-invoice-dollar" style="font-size: 0.88rem;"></i>
-                <span>كشف</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- الصف الثاني: بورصة الذهب الحية + مزامنة Google Drive السحابية + تبديل العملات -->
-          <div class="financial-quick-tools-strip" style="display: flex; align-items: center; justify-content: space-between; gap: 6px; width: 100%; box-sizing: border-box;">
-            <!-- بورصة الذهب والعملات (TradingView حي) -->
-            <button type="button" class="tool-pill-action gold-pill" onclick="openGoldDrawer()" title="بورصة الذهب وأسعار العملات الحية" style="flex: 1; height: 36px; padding: 0 10px; border-radius: 11px; font-size: 0.76rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.45); background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(15, 23, 42, 0.9)); color: #fbbf24;">
-              <i class="fa-solid fa-arrow-trend-up"></i>
-              <span>بورصة الذهب والعملات</span>
-            </button>
-
-            <!-- زر مزامنة سحابة Google Drive الحية الفورية -->
-            <button type="button" class="tool-pill-action drive-sync-pill" onclick="openGoogleDriveSyncModal()" id="btnTopDriveSync" title="مزامنة سحابية مباشرة عبر Google Drive" style="height: 36px; padding: 0 11px; border-radius: 11px; font-size: 0.76rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(34, 197, 94, 0.5); background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(15, 23, 42, 0.9)); color: #34d399;">
-              <i class="fa-brands fa-google-drive" style="font-size: 0.92rem;"></i>
-              <span id="topDriveSyncStatusText">مزامنة سحابية</span>
-            </button>
-
-            <!-- تبديل العملة EGP / SAR / USD -->
-            <div class="currency-pill-btn" id="btnToggleCurrency" title="تبديل العملة المعروضة (EGP / SAR / USD)" style="height: 36px; padding: 0 10px; border-radius: 11px; font-size: 0.76rem; font-weight: 800; display: flex; align-items: center; gap: 4px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.45); background: rgba(30, 41, 59, 0.85); color: #fbbf24; flex-shrink: 0;">
-              <i class="fa-solid fa-coins"></i>
-              <span id="activeCurrencyText">EGP</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- بنود الرصيد الثلاثة الفاخرة المعتمدة (Executive Tri-Balance Dashboard) -->
-        <div class="kpi-three-strip" style="display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; margin: 3px 6px 9px !important; width: calc(100% - 12px) !important; box-sizing: border-box !important;">
-          <div class="kpi-three-card card-income" title="إجمالي عمليات الإيداع والدخل الفعلي لكافة الفترات" style="height: 80px !important; min-height: 80px !important; max-height: 80px !important; padding: 8px 6px !important; border-radius: 14px !important; background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(15, 23, 42, 0.92)) !important; border: 1.5px solid rgba(16, 185, 129, 0.5) !important; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2) !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; align-items: center !important; text-align: center !important; box-sizing: border-box !important;">
+        <!-- بنود الرصيد الثلاثة الفاخرة المعتمدة (Executive Tri-Balance Dashboard) - أسفل فلتر التاريخ مباشرة -->
+        <div class="kpi-three-strip" style="display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; margin: 4px 6px 7px !important; width: calc(100% - 12px) !important; box-sizing: border-box !important;">
+          <div class="kpi-three-card card-income" title="إجمالي عمليات الإيداع والدخل الفعلي لكافة الفترات" style="height: 78px !important; min-height: 78px !important; max-height: 78px !important; padding: 7px 6px !important; border-radius: 14px !important; background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(15, 23, 42, 0.92)) !important; border: 1.5px solid rgba(16, 185, 129, 0.5) !important; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2) !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; align-items: center !important; text-align: center !important; box-sizing: border-box !important;">
             <div class="kpi-three-label" style="font-size: 0.72rem !important; font-weight: 800 !important; color: #34d399 !important; display: flex !important; align-items: center !important; gap: 4px !important; white-space: nowrap !important;"><i class="fa-solid fa-arrow-down-left"></i> إجمالي الإيداعات</div>
             <div class="kpi-three-value" id="topCardIncome" style="font-size: 0.98rem !important; font-weight: 900 !important; color: #34d399 !important; white-space: nowrap !important; direction: rtl !important; font-variant-numeric: tabular-nums !important;">+ 0.00 ج.م</div>
           </div>
-          <div class="kpi-three-card card-expense" title="إجمالي المصروفات الفعلية لكافة الفترات" style="height: 80px !important; min-height: 80px !important; max-height: 80px !important; padding: 8px 6px !important; border-radius: 14px !important; background: linear-gradient(135deg, rgba(239, 68, 68, 0.16), rgba(15, 23, 42, 0.92)) !important; border: 1.5px solid rgba(239, 68, 68, 0.5) !important; box-shadow: 0 4px 14px rgba(239, 68, 68, 0.2) !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; align-items: center !important; text-align: center !important; box-sizing: border-box !important;">
+          <div class="kpi-three-card card-expense" title="إجمالي المصروفات الفعلية لكافة الفترات" style="height: 78px !important; min-height: 78px !important; max-height: 78px !important; padding: 7px 6px !important; border-radius: 14px !important; background: linear-gradient(135deg, rgba(239, 68, 68, 0.16), rgba(15, 23, 42, 0.92)) !important; border: 1.5px solid rgba(239, 68, 68, 0.5) !important; box-shadow: 0 4px 14px rgba(239, 68, 68, 0.2) !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; align-items: center !important; text-align: center !important; box-sizing: border-box !important;">
             <div class="kpi-three-label" style="font-size: 0.72rem !important; font-weight: 800 !important; color: #f87171 !important; display: flex !important; align-items: center !important; gap: 4px !important; white-space: nowrap !important;"><i class="fa-solid fa-arrow-up-right"></i> إجمالي المصروفات</div>
             <div class="kpi-three-value" id="topCardExpense" style="font-size: 0.98rem !important; font-weight: 900 !important; color: #f87171 !important; white-space: nowrap !important; direction: rtl !important; font-variant-numeric: tabular-nums !important;">- 0.00 ج.م</div>
           </div>
-          <div class="kpi-three-card card-balance" title="الرصيد الفعلي الحالي المتوفر في المحافظ" style="height: 80px !important; min-height: 80px !important; max-height: 80px !important; padding: 8px 6px !important; border-radius: 14px !important; background: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(15, 23, 42, 0.95)) !important; border: 1.6px solid rgba(56, 189, 248, 0.6) !important; box-shadow: 0 4px 16px rgba(2, 132, 199, 0.25) !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; align-items: center !important; text-align: center !important; box-sizing: border-box !important;">
+          <div class="kpi-three-card card-balance" title="الرصيد الفعلي الحالي المتوفر في المحافظ" style="height: 78px !important; min-height: 78px !important; max-height: 78px !important; padding: 7px 6px !important; border-radius: 14px !important; background: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(15, 23, 42, 0.95)) !important; border: 1.6px solid rgba(56, 189, 248, 0.6) !important; box-shadow: 0 4px 16px rgba(2, 132, 199, 0.25) !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; align-items: center !important; text-align: center !important; box-sizing: border-box !important;">
             <div class="kpi-three-label" style="font-size: 0.72rem !important; font-weight: 800 !important; color: #38bdf8 !important; display: flex !important; align-items: center !important; gap: 4px !important; white-space: nowrap !important;"><i class="fa-solid fa-wallet"></i> الرصيد الفعلي</div>
             <div class="kpi-three-value" id="topCardBalance" style="font-size: 1.05rem !important; font-weight: 900 !important; color: #38bdf8 !important; white-space: nowrap !important; direction: rtl !important; font-variant-numeric: tabular-nums !important;">0.00 ج.م</div>
           </div>
+        </div>
+
+        <!-- شريط أدوات الخزينة السريعة: المحفظة النشطة + إضافة محفظة + الذهب والبورصة + محول العملات المستعاد -->
+        <div class="executive-quick-tools-strip" style="margin: 2px 6px 8px; display: flex; align-items: center; justify-content: space-between; gap: 6px; width: calc(100% - 12px); box-sizing: border-box;">
+          
+          <!-- كتلة المحفظة النشطة: بارزة ومريحة + زر إضافة محفظة -->
+          <div class="wallet-select-cluster" id="walletSelectCluster" title="اختيار المحفظة المعروضة وإدارتها" style="flex: 1 1 auto; min-width: 135px; height: 38px; display: flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 12px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(15, 23, 42, 0.95)); border: 1.5px solid rgba(56, 189, 248, 0.5); box-shadow: 0 3px 10px rgba(56, 189, 248, 0.15); box-sizing: border-box;">
+            <i class="fa-solid fa-wallet" style="color: #38bdf8; font-size: 1.05rem; flex-shrink: 0;"></i>
+            <select class="wallet-dropdown-compact" id="activeWalletSelect" title="المحفظة النشطة" style="flex: 1 1 auto; min-width: 85px; width: auto; background: transparent; border: none; color: #38bdf8; font-weight: 900; font-size: 0.86rem; font-family: inherit; outline: none; cursor: pointer; direction: rtl;"></select>
+            <button type="button" class="btn-add-wallet-mini" id="btnOpenAddWallet" onclick="openModal('walletModal')" title="إضافة محفظة مالية جديدة" style="width: 24px; height: 24px; border-radius: 50%; background: rgba(56, 189, 248, 0.25); border: 1px solid rgba(56, 189, 248, 0.55); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 0.74rem; cursor: pointer; flex-shrink: 0;">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+
+          <!-- زر بورصة الذهب والأسعار المباشرة -->
+          <button type="button" class="tool-pill-action gold-pill" id="btnOpenGold" onclick="openGoldDrawer()" title="بورصة الذهب وأسعار العملات الحية" style="height: 38px; padding: 0 10px; border-radius: 12px; font-size: 0.76rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.5); background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(15, 23, 42, 0.9)); color: #fbbf24; flex-shrink: 0;">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            <span>الذهب والبورصة</span>
+          </button>
+
+          <!-- زر محول العملات المستعاد (EGP / SAR / USD / ذهب 21) -->
+          <div class="currency-pill-btn" id="btnToggleCurrency" onclick="toggleCurrency()" title="محول وتبديل العملات (EGP / SAR / USD / ذهب 21)" style="height: 38px; padding: 0 10px; border-radius: 12px; font-size: 0.76rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.5); background: rgba(30, 41, 59, 0.85); color: #fbbf24; flex-shrink: 0;">
+            <i class="fa-solid fa-coins"></i>
+            <span id="activeCurrencyText">EGP</span>
+          </div>
+
         </div>
 
         <!-- شبكة بنود المصاريف فقط -->
@@ -8852,23 +8825,20 @@
                   <i class="fa-solid fa-chart-pie" style="color: #10b981;"></i>
                   <span>توزيع المصروفات حسب التصنيف</span>
                 </div>
-                <div class="chart-format-switcher-strip" style="display: flex; gap: 5px; justify-content: center; margin: 4px 0 8px; background: rgba(15, 23, 42, 0.7); padding: 3px 6px; border-radius: 10px; border: 1px solid var(--border-subtle);">
-                  <button type="button" class="btn-export-tool active" id="btnChartTypeBar" onclick="switchCategoryChartFormat('bar', this)" style="border-radius: 8px; padding: 4px 10px; font-size: 0.74rem; font-weight: 800; background: rgba(56, 189, 248, 0.2); color: #38bdf8;">
+                <div class="chart-format-switcher-strip" style="display: flex; gap: 4px; background: rgba(15, 23, 42, 0.7); padding: 3px 5px; border-radius: 10px; border: 1px solid var(--border-subtle);">
+                  <button type="button" class="btn-export-tool active" id="btnChartTypeBar" onclick="switchCategoryChartFormat('bar', this)" style="border-radius: 8px; padding: 4px 9px; font-size: 0.72rem; font-weight: 800; background: rgba(56, 189, 248, 0.2); color: #38bdf8;">
                     <i class="fa-solid fa-chart-column"></i> أعمدة
                   </button>
-                  <button type="button" class="btn-export-tool" id="btnChartTypeDoughnut" onclick="switchCategoryChartFormat('doughnut', this)" style="border-radius: 8px; padding: 4px 10px; font-size: 0.74rem; font-weight: 800;">
+                  <button type="button" class="btn-export-tool" id="btnChartTypeDoughnut" onclick="switchCategoryChartFormat('doughnut', this)" style="border-radius: 8px; padding: 4px 9px; font-size: 0.72rem; font-weight: 800;">
                     <i class="fa-solid fa-chart-pie"></i> دونات
                   </button>
-                  <button type="button" class="btn-export-tool" id="btnChartTypePie" onclick="switchCategoryChartFormat('pie', this)" style="border-radius: 8px; padding: 4px 10px; font-size: 0.74rem; font-weight: 800;">
+                  <button type="button" class="btn-export-tool" id="btnChartTypePie" onclick="switchCategoryChartFormat('pie', this)" style="border-radius: 8px; padding: 4px 9px; font-size: 0.72rem; font-weight: 800;">
                     <i class="fa-solid fa-circle-notch"></i> دائري
                   </button>
-                  <button type="button" class="btn-export-tool" id="btnChartTypePolar" onclick="switchCategoryChartFormat('polarArea', this)" style="border-radius: 8px; padding: 4px 10px; font-size: 0.74rem; font-weight: 800;">
+                  <button type="button" class="btn-export-tool" id="btnChartTypePolar" onclick="switchCategoryChartFormat('polarArea', this)" style="border-radius: 8px; padding: 4px 9px; font-size: 0.72rem; font-weight: 800;">
                     <i class="fa-solid fa-compass"></i> قطبي
                   </button>
                 </div>
-                <button class="chart-type-toggle-btn" onclick="toggleCategoryChartType()" title="تبديل شكل المؤشر (دائري / أعمدة)" style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border); color: #38bdf8; padding: 4px 8px; border-radius: 8px; cursor: pointer;">
-                  <i class="fa-solid fa-chart-column" id="categoryChartTypeIcon"></i>
-                </button>
               </div>
               <div class="chart-canvas-wrap" style="height: 240px; position: relative;">
                 <canvas id="executiveCategoryCanvas"></canvas>
@@ -11172,13 +11142,29 @@
         reqDateInp.value = new Date().toISOString().split('T')[0];
       }
 
-      // 1. فحص حفظ تسجيل الدخول
-      const savedAuth = localStorage.getItem('family_monefy_auth');
-      if (savedAuth) {
+      // 1. فحص الرابط الذكي لتحديد هوية الفرد تلقائياً أو استعادة الجلسة
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramUser = urlParams.get('user');
+      if (paramUser) {
+        let targetUser = 'آية';
+        const uLower = paramUser.toLowerCase();
+        if (uLower.includes('maher') || paramUser.includes('ماهر')) targetUser = 'ماهر';
+        else if (uLower.includes('aya') || paramUser.includes('آية') || paramUser.includes('اية')) targetUser = 'آية';
+        else if (uLower.includes('mohamed') || paramUser.includes('محمد')) targetUser = 'محمد';
+        else if (uLower.includes('mariam') || paramUser.includes('مريم')) targetUser = 'مريم';
+        
+        state.currentUser = targetUser;
         try {
-          const authObj = JSON.parse(savedAuth);
-          state.currentUser = authObj.user || 'ماهر';
+          localStorage.setItem('family_monefy_auth', JSON.stringify({ user: targetUser, loggedIn: true }));
         } catch(e) {}
+      } else {
+        const savedAuth = localStorage.getItem('family_monefy_auth');
+        if (savedAuth) {
+          try {
+            const authObj = JSON.parse(savedAuth);
+            state.currentUser = authObj.user || 'ماهر';
+          } catch(e) {}
+        }
       }
 
       // 2. تحميل المحافظ
@@ -19066,7 +19052,7 @@ function doGet(e) {
       const data = {
         app: 'FamilyExpenseTrackerMonefy',
         account: GDRIVE_CONFIG.targetAccount,
-        version: 'v3.4.0',
+        version: 'v3.5.0',
         exportedAt: new Date().toISOString(),
         transactions: state.transactions || [],
         wallets: state.wallets || [],
