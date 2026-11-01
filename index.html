@@ -13,7 +13,7 @@
   <!-- الخطوط والأيقونات -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Almarai:wght@300;400;700;800&family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- المكتبات: SheetJS للإكسيل و Chart.js للشارتات التوضيحية -->
@@ -341,7 +341,8 @@
       --border: #26334d;
       --gold: #f59e0b;
       --gold-dark: #d97706;
-      --font-family: 'Cairo', 'Tajawal', 'Readex Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-family: 'Tajawal', 'IBM Plex Sans Arabic', 'Almarai', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-numbers: 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
     }
 
     /* ==============================================================
@@ -1016,7 +1017,7 @@
       font-size: 1.75rem;
       font-weight: 900;
       color: var(--primary);
-      font-family: 'Cairo', system-ui, sans-serif;
+      font-family: var(--font-family);
       letter-spacing: -0.5px;
       line-height: 1;
     }
@@ -2462,7 +2463,7 @@
         direction: rtl !important;
         background: #ffffff !important;
         color: #0f172a !important;
-        font-family: 'Cairo', Arial, sans-serif !important;
+        font-family: var(--font-family) !important;
       }
       .print-header-box {
         display: flex;
@@ -5054,7 +5055,7 @@
       color: #4b5563 !important;
       font-size: 1.45rem;
       font-weight: 500;
-      font-family: 'Cairo', sans-serif;
+      font-family: var(--font-family);
       padding: 16px 0;
       cursor: pointer;
       display: flex;
@@ -5076,7 +5077,7 @@
       color: #374151 !important;
       font-size: 1.35rem;
       font-weight: 600;
-      font-family: 'Cairo', sans-serif;
+      font-family: var(--font-family);
       padding: 16px 0;
       cursor: pointer;
       display: flex;
@@ -5117,7 +5118,7 @@
       font-weight: 700;
       color: #64748b !important;
       cursor: pointer;
-      font-family: 'Cairo', sans-serif;
+      font-family: var(--font-family);
       padding: 6px 12px;
       border-radius: 8px;
       transition: all 0.15s ease;
@@ -6040,7 +6041,7 @@
     }
 
     body {
-      font-family: 'Cairo', 'Tajawal', 'Readex Pro', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      font-family: var(--font-family) !important;
       font-size: 14px !important;
       line-height: 1.5 !important;
     }
@@ -6852,8 +6853,8 @@
 
     /* === MODERN FINTECH FONTS & LUXURY TYPOGRAPHY (v3.2.0) === */
     :root {
-      --font-family: 'Alexandria', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-      --font-numbers: 'Plus Jakarta Sans', 'Alexandria', sans-serif !important;
+      --font-family: 'Tajawal', 'IBM Plex Sans Arabic', 'Almarai', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-numbers: 'Tajawal', 'IBM Plex Sans Arabic', sans-serif;
     }
     html, body, input, select, textarea, button, optgroup, option {
       font-family: var(--font-family);
@@ -7250,7 +7251,7 @@
     .kpi-three-value {
       font-size: 1.18rem !important;
       font-weight: 900 !important;
-      font-family: 'Alexandria', 'Cairo', sans-serif !important;
+      font-family: var(--font-family) !important;
       font-variant-numeric: tabular-nums !important;
       line-height: 1.2 !important;
       white-space: nowrap !important;
@@ -7342,7 +7343,7 @@
       font-size: 1.75rem !important;
       font-weight: 900 !important;
       color: #34d399 !important;
-      font-family: 'Alexandria', 'Cairo', sans-serif !important;
+      font-family: var(--font-family) !important;
       direction: ltr !important;
       line-height: 1.2 !important;
     }
@@ -8653,7 +8654,7 @@
     }
 
     .cat-label-text {
-      font-family: 'Alexandria', 'Cairo', system-ui, sans-serif !important;
+      font-family: var(--font-family) !important;
       font-size: clamp(0.82rem, 2.4vw, 0.92rem) !important;
       font-weight: 800 !important;
       text-align: center !important;
@@ -8678,7 +8679,7 @@
     }
 
     .cat-amount-pill span {
-      font-family: 'Alexandria', 'Plus Jakarta Sans', system-ui, sans-serif !important;
+      font-family: var(--font-numbers) !important;
       font-size: clamp(0.98rem, 2.8vw, 1.15rem) !important;
       font-weight: 900 !important;
       line-height: 1.2 !important;
@@ -11798,6 +11799,31 @@
             </div>
           </div>
 
+          <!-- محدد خط التطبيق المعتمد (الكلمات والأرقام) -->
+          <div style="margin-bottom: 10px; background: rgba(255,255,255,0.03); padding: 8px 10px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <div style="font-size: 0.74rem; font-weight: 800; color: #cbd5e1; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-font" style="color: #38bdf8;"></i>
+                <span>خط الكلمات والأرقام:</span>
+              </div>
+              <span id="activeFontBadge" style="font-size: 0.65rem; color: #34d399; font-weight: 800;">تاجوال (افتراضي)</span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+              <button type="button" class="analytics-sec-btn font-choice-pill active" id="fontChoiceTajawal" onclick="setAppFont('tajawal')" style="padding: 7px 6px; font-size: 0.72rem; font-family: 'Tajawal', sans-serif !important;">
+                ✨ تاجوال (أنيق ومتناسق)
+              </button>
+              <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceIBM" onclick="setAppFont('ibm')" style="padding: 7px 6px; font-size: 0.72rem; font-family: 'IBM Plex Sans Arabic', sans-serif !important;">
+                🏢 آي بي إم فليكس (تنفيذي)
+              </button>
+              <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceAlmarai" onclick="setAppFont('almarai')" style="padding: 7px 6px; font-size: 0.72rem; font-family: 'Almarai', sans-serif !important;">
+                📱 المراعي (عصري مريح)
+              </button>
+              <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceReadex" onclick="setAppFont('readex')" style="padding: 7px 6px; font-size: 0.72rem; font-family: 'Readex Pro', sans-serif !important;">
+                📐 ريدكس برو (هندسي)
+              </button>
+            </div>
+          </div>
+
           <!-- لوحة الألوان الملكية الستة -->
           <div class="theme-color-palette" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
             <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')" style="padding: 6px 8px; font-size: 0.72rem;">
@@ -12730,11 +12756,11 @@
             plugins: {
               legend: {
                 position: 'top',
-                labels: { color: '#cbd5e1', font: { family: 'Cairo', size: 10, weight: 'bold' } }
+                labels: { color: '#cbd5e1', font: { family: 'Tajawal', size: 10, weight: 'bold' } }
               }
             },
             scales: {
-              x: { ticks: { color: '#94a3b8', font: { size: 9, family: 'Cairo' } } },
+              x: { ticks: { color: '#94a3b8', font: { size: 9, family: 'Tajawal' } } },
               y: { ticks: { color: '#94a3b8', font: { size: 9 } } }
             }
           }
@@ -12911,7 +12937,7 @@
             }
           },
           plugins: {
-            legend: { position: 'bottom', labels: { color: '#cbd5e1', font: { family: 'Alexandria', size: 10, weight: '700' }, padding: 8 } }
+            legend: { position: 'bottom', labels: { color: '#cbd5e1', font: { family: 'Tajawal', size: 10, weight: '700' }, padding: 8 } }
           }
         }
       });
@@ -13103,7 +13129,7 @@
           ctx.fill();
 
           // 2. قياس أبعاد الكبسولة التوضيحية
-          ctx.font = 'bold 9.5px Cairo, sans-serif';
+          ctx.font = 'bold 9.5px Tajawal, sans-serif';
           const textMetrics = ctx.measureText(text);
           const textWidth = textMetrics.width;
           const badgePaddingX = 6;
@@ -13220,7 +13246,7 @@
                 position: 'bottom',
                 labels: {
                   color: isLight ? '#0f172a' : '#cbd5e1',
-                  font: { family: 'Cairo', size: 10, weight: 'bold' },
+                  font: { family: 'Tajawal', size: 10, weight: 'bold' },
                   boxWidth: 12,
                   padding: 8,
                   generateLabels: (chart) => {
@@ -13253,7 +13279,7 @@
             },
             scales: isBar ? {
               x: { ticks: { color: isLight ? '#475569' : '#94a3b8', font: { size: 9 } } },
-              y: { ticks: { color: isLight ? '#0f172a' : '#cbd5e1', font: { family: 'Cairo', size: 10, weight: 'bold' } } }
+              y: { ticks: { color: isLight ? '#0f172a' : '#cbd5e1', font: { family: 'Tajawal', size: 10, weight: 'bold' } } }
             } : (isPolar ? {
               r: {
                 grid: { color: isLight ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.08)' },
@@ -13431,7 +13457,7 @@
                 position: 'bottom',
                 labels: {
                   color: '#cbd5e1',
-                  font: { family: 'Cairo', size: 10, weight: '700' },
+                  font: { family: 'Tajawal', size: 10, weight: '700' },
                   padding: 8,
                   generateLabels: (chart) => {
                     const dataset = chart.data.datasets[0];
@@ -13463,7 +13489,7 @@
             },
             scales: isMemBar ? {
               x: { ticks: { color: '#94a3b8', font: { size: 9 } } },
-              y: { ticks: { color: '#cbd5e1', font: { family: 'Alexandria', size: 10, weight: 'bold' } } }
+              y: { ticks: { color: '#cbd5e1', font: { family: 'Tajawal', size: 10, weight: 'bold' } } }
             } : (isMemPolar ? {
               r: {
                 grid: { color: 'rgba(255,255,255,0.08)' },
@@ -13713,7 +13739,7 @@
             },
             scales: {
               x: { ticks: { color: '#94a3b8', font: { size: 9 } } },
-              y: { ticks: { color: '#cbd5e1', font: { family: 'Cairo', size: 9, weight: 'bold' } } }
+              y: { ticks: { color: '#cbd5e1', font: { family: 'Tajawal', size: 9, weight: 'bold' } } }
             }
           }
         });
@@ -13834,7 +13860,7 @@
             plugins: {
               legend: {
                 position: 'top',
-                labels: { color: '#cbd5e1', font: { family: 'Cairo', size: 10, weight: 'bold' } }
+                labels: { color: '#cbd5e1', font: { family: 'Tajawal', size: 10, weight: 'bold' } }
               }
             },
             scales: {
@@ -13937,11 +13963,11 @@
             plugins: {
               legend: {
                 position: 'top',
-                labels: { color: '#cbd5e1', font: { family: 'Cairo', size: 10, weight: 'bold' } }
+                labels: { color: '#cbd5e1', font: { family: 'Tajawal', size: 10, weight: 'bold' } }
               }
             },
             scales: {
-              x: { ticks: { color: '#94a3b8', font: { size: 9, family: 'Cairo' } } },
+              x: { ticks: { color: '#94a3b8', font: { size: 9, family: 'Tajawal' } } },
               y: { ticks: { color: '#94a3b8', font: { size: 9 } } }
             }
           }
@@ -14066,7 +14092,7 @@
             plugins: {
               legend: {
                 position: 'top',
-                labels: { color: '#cbd5e1', font: { family: 'Cairo', size: 10, weight: 'bold' } }
+                labels: { color: '#cbd5e1', font: { family: 'Tajawal', size: 10, weight: 'bold' } }
               }
             },
             scales: {
@@ -15262,7 +15288,7 @@
 
           <!-- 2. اسم التصنيف بخط عربي فخم وواضح متناسق بين الفاتح والداكن -->
           <div class="cat-label-text" 
-               style="font-family: 'Alexandria', 'Cairo', sans-serif; font-size: clamp(0.82rem, 2.4vw, 0.92rem); font-weight: 800; color: ${catLabelColor} !important; text-align: center; margin: 2px 0 1px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: clip;">
+               style="font-family: var(--font-family); font-size: clamp(0.82rem, 2.4vw, 0.92rem); font-weight: 800; color: ${catLabelColor} !important; text-align: center; margin: 2px 0 1px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: clip;">
             ${theme.name}
           </div>
 
@@ -15271,7 +15297,7 @@
                onclick="event.stopPropagation(); openOperationsFiltered({ category: '${cat.id}', categoryName: '${cat.name}', type: 'expense' });" 
                title="انقر لفتح ومراجعة عمليات ${cat.name} في شاشة العمليات" 
                style="cursor: pointer; background: ${pillBg}; border: 1.2px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 4px; border-radius: 9px; width: 95%; text-align: center; direction: rtl; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
-            <span style="font-family: 'Alexandria', 'Plus Jakarta Sans', sans-serif; font-size: clamp(0.98rem, 2.8vw, 1.15rem); font-weight: 900; line-height: 1.2; white-space: nowrap; font-variant-numeric: tabular-nums;">${amtDisplay}</span>
+            <span style="font-family: var(--font-numbers); font-size: clamp(0.98rem, 2.8vw, 1.15rem); font-weight: 900; line-height: 1.2; white-space: nowrap; font-variant-numeric: tabular-nums;">${amtDisplay}</span>
           </div>
         `;
 
@@ -17181,6 +17207,47 @@
     }
 
     // تطبيق نمط وتصميم الكروت (Design Style Engine)
+    function setAppFont(fontKey) {
+      const fonts = {
+        tajawal: { name: 'تاجوال (افتراضي)', family: "'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" },
+        ibm: { name: 'آي بي إم فليكس', family: "'IBM Plex Sans Arabic', sans-serif" },
+        almarai: { name: 'المراعي', family: "'Almarai', sans-serif" },
+        readex: { name: 'ريدكس برو', family: "'Readex Pro', sans-serif" }
+      };
+
+      const selected = fonts[fontKey] || fonts.tajawal;
+      document.documentElement.style.setProperty('--font-family', selected.family, 'important');
+      document.documentElement.style.setProperty('--font-numbers', selected.family, 'important');
+
+      // تحديث حالة الأزرار في نافذة الإعدادات
+      document.querySelectorAll('.font-choice-pill').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      const activeBtn = document.getElementById(
+        fontKey === 'ibm' ? 'fontChoiceIBM' :
+        (fontKey === 'almarai' ? 'fontChoiceAlmarai' :
+        (fontKey === 'readex' ? 'fontChoiceReadex' : 'fontChoiceTajawal'))
+      );
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const badge = document.getElementById('activeFontBadge');
+      if (badge) badge.textContent = selected.name;
+
+      try {
+        localStorage.setItem('family_expense_app_font', fontKey);
+      } catch (e) {}
+
+      // إعادة رسم شبكة المصروفات والشارتات فوراً لتطبيق الفونت المختار
+      if (typeof renderCategoriesGrid === 'function') {
+        const txs = (typeof getFilteredTransactions === 'function') ? getFilteredTransactions() : state.transactions;
+        renderCategoriesGrid(txs);
+      }
+      if (typeof renderAnalyticsUI === 'function') {
+        renderAnalyticsUI();
+      }
+      showToast(`🔤 تم تطبيق خط (${selected.name}) لكافة الكلمات والأرقام`);
+    }
+
     function setAppDesignStyle(style) {
       document.documentElement.setAttribute('data-card-style', style);
       document.body.setAttribute('data-card-style', style);
@@ -19945,7 +20012,7 @@ function exportActivityLogExcel() {
           <meta charset="UTF-8">
           <title>كشف حساب محفظة - ${wName}</title>
           <style>
-            body { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; direction: rtl; padding: 20px; color: #1e293b; }
+            body { font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif; direction: rtl; padding: 20px; color: #1e293b; }
             h2 { color: #0f172a; border-bottom: 2px solid #0284c7; padding-bottom: 8px; margin-bottom: 12px; }
             .header-info { display: flex; justify-content: space-between; margin-bottom: 16px; font-size: 0.85rem; color: #64748b; }
             table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
@@ -21728,7 +21795,7 @@ function doGet(e) {
           <meta charset="UTF-8">
           <title>كشف حساب محفظة - ${wName}</title>
           <style>
-            body { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; direction: rtl; padding: 20px; color: #1e293b; }
+            body { font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif; direction: rtl; padding: 20px; color: #1e293b; }
             h2 { color: #0f172a; border-bottom: 2px solid #0284c7; padding-bottom: 8px; margin-bottom: 12px; }
             .header-info { display: flex; justify-content: space-between; margin-bottom: 16px; font-size: 0.85rem; color: #64748b; }
             table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
