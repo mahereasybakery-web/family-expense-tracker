@@ -10267,123 +10267,107 @@
          نافذة حساب الأسرة وتسجيل الدخول وإدارة الأفراد (Rebuilt Auth Modal)
          ============================================================== -->
     <div class="modal-overlay modal-overlay-custom" id="authModal">
-      <div class="modal-content-card" style="max-width: 460px; border-radius: 20px; padding: 16px 18px;">
+      <div class="modal-content-card" style="max-width: 440px; border-radius: 20px; padding: 16px 18px;">
         
-        <!-- رأس نافذة الحساب -->
+        <!-- رأس نافذة الحساب وقفل الأمان -->
         <div class="modal-head" style="margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">
           <div style="display: flex; align-items: center; gap: 8px;">
-            <div style="width: 34px; height: 34px; border-radius: 10px; background: rgba(56, 189, 248, 0.2); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
-              <i class="fa-solid fa-user-shield"></i>
+            <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(56, 189, 248, 0.2); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+              <i class="fa-solid fa-user-lock"></i>
             </div>
             <div>
-              <h3 class="modal-title-custom" style="font-size: 0.98rem; font-weight: 800; color: #f8fafc;">حساب الأسرة وتسجيل الدخول</h3>
-              <div style="font-size: 0.65rem; color: #94a3b8;">إدارة ملفات أفراد العائلة والمزامنة السحابية</div>
+              <h3 class="modal-title-custom" style="font-size: 0.98rem; font-weight: 800; color: #f8fafc;">حسابات العائلة وقفل الأمان 🛡️</h3>
+              <div style="font-size: 0.65rem; color: #94a3b8;">اختر حسابك وقم بإدخال رمز القفل الخاص بك للمتابعة</div>
             </div>
           </div>
           <button class="btn-close-drawer" onclick="closeModal('authModal')">&times;</button>
         </div>
 
-        <!-- شريط التبديل بين الدخول السريع / البريد / إنشاء حساب -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-bottom: 12px; background: rgba(15, 23, 42, 0.8); padding: 4px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
-          <button type="button" class="auth-tab-btn active" id="tabBtnQuickLogin" onclick="switchAuthMode('quick')" style="padding: 7px 4px; border-radius: 9px; font-size: 0.76rem; font-weight: 800; border: none; cursor: pointer; background: linear-gradient(135deg, #0284c7, #0ea5e9); color: #fff;">
-            <i class="fa-solid fa-bolt"></i> سريع
-          </button>
-          <button type="button" class="auth-tab-btn" id="tabBtnEmailLogin" onclick="switchAuthMode('email')" style="padding: 7px 4px; border-radius: 9px; font-size: 0.76rem; font-weight: 800; border: none; cursor: pointer; background: transparent; color: #94a3b8;">
-            <i class="fa-solid fa-envelope"></i> بالبريد
-          </button>
-          <button type="button" class="auth-tab-btn" id="tabBtnNewAccount" onclick="switchAuthMode('new')" style="padding: 7px 4px; border-radius: 9px; font-size: 0.76rem; font-weight: 800; border: none; cursor: pointer; background: transparent; color: #94a3b8;">
-            <i class="fa-solid fa-user-plus"></i> فرد جديد
-          </button>
-        </div>
-
-        <!-- 1. شاشة الدخول السريع الفوري بنقرة واحدة (أفراد العائلة) -->
-        <div id="authViewQuick">
-          <div style="font-size: 0.74rem; color: #38bdf8; font-weight: 800; margin-bottom: 8px; text-align: center;">
-            اختر حسابك للدخول الفوري وتخصيص تجربة التطبيق:
+        <!-- 1. شاشة شبكة ملفات أفراد الأسرة (Family Profiles Grid) -->
+        <div id="authProfilesGridView">
+          <div style="font-size: 0.72rem; color: #38bdf8; font-weight: 800; margin-bottom: 8px; text-align: center;">
+            <i class="fa-solid fa-users"></i> اختر حسابك للانتقال وتأكيد رمز القفل:
           </div>
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px;">
-            <div onclick="quickSelectUser('ماهر')" style="background: rgba(30, 41, 59, 0.7); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
-              <img src="images/avatars/maher.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Maher&background=0284c7&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; border: 2px solid #38bdf8;">
+            <!-- ماهر -->
+            <div onclick="promptMemberPin('ماهر')" style="background: rgba(30, 41, 59, 0.75); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s; position: relative;">
+              <div style="position: absolute; top: 5px; left: 5px; font-size: 0.60rem; color: #38bdf8;"><i class="fa-solid fa-lock"></i></div>
+              <img src="images/avatars/maher.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Maher&background=0284c7&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 4px; border: 2px solid #38bdf8;">
               <div style="font-size: 0.80rem; font-weight: 800; color: #fff;">ماهر</div>
-              <span style="font-size: 0.62rem; color: #38bdf8;">رب الأسرة</span>
+              <span style="font-size: 0.60rem; color: #38bdf8;">رب الأسرة</span>
             </div>
-            <div onclick="quickSelectUser('آية')" style="background: rgba(30, 41, 59, 0.7); border: 1.5px solid rgba(236, 72, 153, 0.4); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
-              <img src="images/avatars/aya.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Aya&background=ec4899&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; border: 2px solid #ec4899;">
+            <!-- آية -->
+            <div onclick="promptMemberPin('آية')" style="background: rgba(30, 41, 59, 0.75); border: 1.5px solid rgba(236, 72, 153, 0.45); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s; position: relative;">
+              <div style="position: absolute; top: 5px; left: 5px; font-size: 0.60rem; color: #f472b6;"><i class="fa-solid fa-lock"></i></div>
+              <img src="images/avatars/aya.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Aya&background=ec4899&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 4px; border: 2px solid #ec4899;">
               <div style="font-size: 0.80rem; font-weight: 800; color: #fff;">آية</div>
-              <span style="font-size: 0.62rem; color: #f472b6;">ربة المنزل</span>
+              <span style="font-size: 0.60rem; color: #f472b6;">ربة المنزل</span>
             </div>
-            <div onclick="quickSelectUser('محمد')" style="background: rgba(30, 41, 59, 0.7); border: 1.5px solid rgba(245, 158, 11, 0.4); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
-              <img src="avatar_mohamed.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Mohamed&background=f59e0b&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; border: 2px solid #f59e0b;">
+            <!-- محمد -->
+            <div onclick="promptMemberPin('محمد')" style="background: rgba(30, 41, 59, 0.75); border: 1.5px solid rgba(245, 158, 11, 0.45); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s; position: relative;">
+              <div style="position: absolute; top: 5px; left: 5px; font-size: 0.60rem; color: #fbbf24;"><i class="fa-solid fa-lock"></i></div>
+              <img src="avatar_mohamed.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Mohamed&background=f59e0b&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 4px; border: 2px solid #f59e0b;">
               <div style="font-size: 0.80rem; font-weight: 800; color: #fff;">محمد</div>
-              <span style="font-size: 0.62rem; color: #fbbf24;">الابن</span>
+              <span style="font-size: 0.60rem; color: #fbbf24;">الابن</span>
             </div>
-            <div onclick="quickSelectUser('مريم')" style="background: rgba(30, 41, 59, 0.7); border: 1.5px solid rgba(139, 92, 246, 0.4); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
-              <img src="images/avatars/mariam.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Mariam&background=8b5cf6&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; border: 2px solid #8b5cf6;">
+            <!-- مريم -->
+            <div onclick="promptMemberPin('مريم')" style="background: rgba(30, 41, 59, 0.75); border: 1.5px solid rgba(139, 92, 246, 0.45); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s; position: relative;">
+              <div style="position: absolute; top: 5px; left: 5px; font-size: 0.60rem; color: #c084fc;"><i class="fa-solid fa-lock"></i></div>
+              <img src="images/avatars/mariam.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Mariam&background=8b5cf6&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 4px; border: 2px solid #8b5cf6;">
               <div style="font-size: 0.80rem; font-weight: 800; color: #fff;">مريم</div>
-              <span style="font-size: 0.62rem; color: #c084fc;">الابنة</span>
+              <span style="font-size: 0.60rem; color: #c084fc;">الابنة</span>
             </div>
-            <div onclick="quickSelectUser('الحاجة')" style="background: rgba(30, 41, 59, 0.7); border: 1.5px solid rgba(16, 185, 129, 0.4); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
-              <img src="images/avatars/el-haga.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Haga&background=10b981&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; border: 2px solid #10b981;">
+            <!-- الحاجة -->
+            <div onclick="promptMemberPin('الحاجة')" style="background: rgba(30, 41, 59, 0.75); border: 1.5px solid rgba(16, 185, 129, 0.45); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
+              <img src="images/avatars/el-haga.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Haga&background=10b981&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 4px; border: 2px solid #10b981;">
               <div style="font-size: 0.80rem; font-weight: 800; color: #fff;">الحاجة</div>
-              <span style="font-size: 0.62rem; color: #34d399;">البركة</span>
+              <span style="font-size: 0.60rem; color: #34d399;">البركة</span>
             </div>
-            <div onclick="quickSelectUser('النونُو')" style="background: rgba(30, 41, 59, 0.7); border: 1.5px solid rgba(244, 63, 94, 0.4); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
-              <img src="baby.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Nono&background=f43f5e&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; border: 2px solid #f43f5e;">
+            <!-- النونو -->
+            <div onclick="promptMemberPin('النونُو')" style="background: rgba(30, 41, 59, 0.75); border: 1.5px solid rgba(244, 63, 94, 0.45); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
+              <img src="baby.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Nono&background=f43f5e&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 4px; border: 2px solid #f43f5e;">
               <div style="font-size: 0.80rem; font-weight: 800; color: #fff;">النونُو</div>
-              <span style="font-size: 0.62rem; color: #fb7185;">أصغر العائلة</span>
+              <span style="font-size: 0.60rem; color: #fb7185;">أصغر العائلة</span>
             </div>
           </div>
         </div>
 
-        <!-- 2. شاشة الدخول بالبريد الإلكتروني وكلمة المرور -->
-        <div id="authViewEmail" style="display: none;">
-          <div class="form-group-custom" style="margin-bottom: 8px;">
-            <label class="form-label-custom" style="font-size: 0.72rem;">البريد الإلكتروني</label>
-            <input type="email" class="form-input-custom" id="inpAuthEmail" placeholder="maher@family.com" style="height: 38px; font-size: 0.84rem;">
+        <!-- 2. شاشة التحقق من رمز القفل (PIN Verification View) -->
+        <div id="authPinVerificationView" style="display: none; background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 14px; padding: 16px 14px; text-align: center;">
+          <div style="margin-bottom: 8px;">
+            <img id="pinTargetMemberAvatar" src="" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2.5px solid #38bdf8; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35); margin: 0 auto 6px; display: block;">
+            <div id="pinTargetMemberTitle" style="font-size: 0.95rem; font-weight: 900; color: #f8fafc;">قفل الحساب</div>
+            <div style="font-size: 0.70rem; color: #94a3b8; margin-top: 2px;">أدخل رمز القفل الخاص بهذا الحساب للمتابعة 🔒</div>
           </div>
-          <div class="form-group-custom" style="margin-bottom: 12px;">
-            <label class="form-label-custom" style="font-size: 0.72rem;">كلمة المرور</label>
-            <input type="password" class="form-input-custom" id="inpAuthPassword" placeholder="••••••••" style="height: 38px; font-size: 0.84rem;">
+
+          <div style="margin-bottom: 12px;">
+            <input type="password" id="inpFamilyMemberPin" class="form-input-custom" placeholder="رمز القفل •••••" maxlength="15" inputmode="numeric" onkeydown="if(event.key==='Enter') verifyMemberPinSubmit();" style="height: 44px; font-size: 1.2rem; text-align: center; letter-spacing: 4px; border-radius: 11px; background: rgba(30, 41, 59, 0.9); border: 1.5px solid rgba(56, 189, 248, 0.4); color: #fff; width: 100%; box-sizing: border-box;">
+            <div id="pinErrorHint" style="display: none; font-size: 0.72rem; color: #f43f5e; font-weight: 800; margin-top: 6px;">
+              ⚠️ رمز القفل غير صحيح! يرجى المحاولة مرة أخرى.
+            </div>
           </div>
-          <button type="button" class="btn-submit-tx" onclick="handleCustomSignIn()" style="height: 42px; background: linear-gradient(135deg, #0284c7, #0ea5e9); font-size: 0.88rem; font-weight: 800; margin-bottom: 6px;">
-            <i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول
-          </button>
+
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="btn-submit-tx" onclick="verifyMemberPinSubmit()" style="flex: 2; height: 42px; background: linear-gradient(135deg, #0284c7, #0ea5e9); font-size: 0.88rem; font-weight: 800; border-radius: 10px; margin: 0;">
+              <i class="fa-solid fa-unlock"></i> تأكيد ودخول
+            </button>
+            <button type="button" onclick="cancelPinVerification()" style="flex: 1; height: 42px; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; font-weight: 800; font-size: 0.78rem; cursor: pointer;">
+              إلغاء
+            </button>
+          </div>
         </div>
 
-        <!-- 3. شاشة إنشاء حساب فرد جديد -->
-        <div id="authViewNew" style="display: none;">
-          <div class="form-group-custom" style="margin-bottom: 6px;">
-            <label class="form-label-custom" style="font-size: 0.70rem;">اسم الفرد أو العضو الجديد *</label>
-            <input type="text" class="form-input-custom" id="inpNewUserName" placeholder="مثال: يوسف، فاطمة..." style="height: 36px; font-size: 0.82rem;">
-          </div>
-          <div class="form-group-custom" style="margin-bottom: 6px;">
-            <label class="form-label-custom" style="font-size: 0.70rem;">البريد الإلكتروني *</label>
-            <input type="email" class="form-input-custom" id="inpNewUserEmail" placeholder="name@family.com" style="height: 36px; font-size: 0.82rem;">
-          </div>
-          <div class="form-group-custom" style="margin-bottom: 8px;">
-            <label class="form-label-custom" style="font-size: 0.70rem;">كلمة المرور *</label>
-            <input type="password" class="form-input-custom" id="inpNewUserPassword" placeholder="كلمة المرور للحساب" style="height: 36px; font-size: 0.82rem;">
-          </div>
-          <button type="button" class="btn-submit-tx" onclick="handleCreateNewMemberAccount()" style="height: 42px; background: linear-gradient(135deg, #10b981, #059669); font-size: 0.88rem; font-weight: 800;">
-            <i class="fa-solid fa-user-plus"></i> إنشاء وتثبيت الحساب الجديد
-          </button>
-        </div>
-
-        <!-- زر المزامنة السحابية المباشر من داخل الحساب -->
-        <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; margin-top: 10px; text-align: center;">
-          <button type="button" onclick="closeModal('authModal'); openGoogleDriveSyncModal();" style="background: rgba(34, 197, 94, 0.15); border: 1.2px solid rgba(34, 197, 94, 0.4); color: #34d399; padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 0.76rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+        <!-- معلومات السحابة المشتركة المباشرة -->
+        <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; margin-top: 12px; text-align: center;">
+          <button type="button" onclick="closeModal('authModal'); openGoogleDriveSyncModal();" style="background: rgba(34, 197, 94, 0.15); border: 1.2px solid rgba(34, 197, 94, 0.4); color: #34d399; padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
             <i class="fa-brands fa-google-drive"></i>
-            <span>إعدادات المزامنة الفورية عبر Google Drive ☁️</span>
+            <span>سحابة العائلة مفعلة: maher.easybakery@gmail.com ☁️</span>
           </button>
         </div>
 
       </div>
     </div>
 
-    <!-- ==============================================================
-         نافذة مركز المزامنة السحابية عبر Google Drive (Drive Sync Hub)
-         تعمل على الجوال فوراً وتشارك البيانات بين الأجهزة بدون خوادم خارجية
-         ============================================================== -->
     <div class="modal-overlay modal-overlay-custom" id="googleDriveSyncModal">
       <div class="modal-content-card" style="max-width: 480px; border-radius: 20px; padding: 16px 18px;">
         
@@ -18801,13 +18785,113 @@ function switchCategoryChartFormat(format, btnEl) {
     // -------------------------------------------------------------------------
     // 8. تسجيل دخول فوري بنقرة واحدة لأفراد العائلة
     // -------------------------------------------------------------------------
-    function quickSelectUser(memberName) {
+    // =========================================================================
+    // نظام قفل الأمان المخصص لكل حساب عائلي (Family Account PIN Lock Engine v3.4.2)
+    // =========================================================================
+
+    const FAMILY_PIN_CODES = {
+      'ماهر': '4503069',
+      'آية': '25320',
+      'أية': '25320',
+      'محمد': '00000',
+      'مريم': '11111'
+    };
+
+    let pendingPinTargetMember = null;
+
+    // طلب التحقق برمز القفل عند الانتقال من حساب لآخر أو التسجيل الجديد
+    function promptMemberPin(memberName) {
+      // إذا كان المستخدم حالياً هو نفس الفرد، أغلق النافذة مباشرة
+      if (state.currentUser === memberName) {
+        closeModal('authModal');
+        return;
+      }
+
+      // إذا لم يكن للفرد رمز قفل محدد (مثل الحاجة أو النونو)، يتم الدخول المباشر
+      if (!FAMILY_PIN_CODES[memberName]) {
+        completeUserLogin(memberName);
+        closeModal('authModal');
+        return;
+      }
+
+      pendingPinTargetMember = memberName;
+
+      const vGrid = document.getElementById('authProfilesGridView');
+      const vPin = document.getElementById('authPinVerificationView');
+      const pinTitle = document.getElementById('pinTargetMemberTitle');
+      const pinAvatar = document.getElementById('pinTargetMemberAvatar');
+      const inpPin = document.getElementById('inpFamilyMemberPin');
+      const errHint = document.getElementById('pinErrorHint');
+
+      if (vGrid) vGrid.style.display = 'none';
+      if (vPin) vPin.style.display = 'block';
+      if (pinTitle) pinTitle.textContent = `قفل حساب: ${memberName}`;
+      if (errHint) errHint.style.display = 'none';
+      if (inpPin) {
+        inpPin.value = '';
+        setTimeout(() => inpPin.focus(), 250);
+      }
+
+      if (pinAvatar) {
+        const avatarMap = {
+          'ماهر': 'images/avatars/maher.jpg',
+          'آية': 'images/avatars/aya.jpg',
+          'أية': 'images/avatars/aya.jpg',
+          'محمد': 'avatar_mohamed.jpg',
+          'مريم': 'images/avatars/mariam.jpg'
+        };
+        pinAvatar.src = avatarMap[memberName] || `https://ui-avatars.com/api/?name=${encodeURIComponent(memberName)}&background=0284c7&color=fff`;
+      }
+    }
+
+    function cancelPinVerification() {
+      pendingPinTargetMember = null;
+      const vGrid = document.getElementById('authProfilesGridView');
+      const vPin = document.getElementById('authPinVerificationView');
+      if (vGrid) vGrid.style.display = 'block';
+      if (vPin) vPin.style.display = 'none';
+    }
+
+    function verifyMemberPinSubmit() {
+      if (!pendingPinTargetMember) return;
+
+      const inpPin = document.getElementById('inpFamilyMemberPin');
+      const errHint = document.getElementById('pinErrorHint');
+      const entered = inpPin ? inpPin.value.trim() : '';
+
+      const correctPin = FAMILY_PIN_CODES[pendingPinTargetMember];
+
+      if (entered === correctPin) {
+        const memberName = pendingPinTargetMember;
+        completeUserLogin(memberName);
+        cancelPinVerification();
+        closeModal('authModal');
+        showToast(`🔓 تم التحقق بنجاح! مرحباً بك يا ${memberName} ✨`);
+      } else {
+        if (errHint) {
+          errHint.style.display = 'block';
+          errHint.textContent = '⚠️ رمز القفل غير صحيح! يرجى المحاولة مرة أخرى.';
+        }
+        if (inpPin) {
+          inpPin.value = '';
+          inpPin.focus();
+        }
+        if ('vibrate' in navigator) navigator.vibrate([100, 50, 100]);
+        // haptic / audio feedback
+        if (typeof playNotificationChime === 'function') playNotificationChime();
+      }
+    }
+
+    function completeUserLogin(memberName) {
       state.currentUser = memberName;
       try {
-        localStorage.setItem('family_monefy_auth', JSON.stringify({ user: memberName, loggedIn: true }));
+        localStorage.setItem('family_monefy_auth', JSON.stringify({
+          user: memberName,
+          loggedIn: true,
+          verifiedAt: new Date().toISOString()
+        }));
       } catch(e) {}
 
-      // تحديث شارة الهيدر
       const headerTitle = document.querySelector('.brand-title');
       if (headerTitle) {
         headerTitle.innerHTML = `مصروفات العيلة ماهر ❤️ ${memberName}`;
@@ -18816,11 +18900,12 @@ function switchCategoryChartFormat(format, btnEl) {
       playNotificationChime();
       if ('vibrate' in navigator) navigator.vibrate(80);
 
-      closeModal('authModal');
-      renderUI();
-      showToast(`👋 أهلاً بك يا ${memberName}! تم تسجيل دخولك المباشر بنجاح.`);
+      if (typeof renderUI === 'function') renderUI();
     }
 
+    function quickSelectUser(memberName) {
+      promptMemberPin(memberName);
+    }
 
     // =========================================================================
     // محرك المزامنة السحابية عبر Google Drive والحسابات (Google Drive Sync Engine v3.3.0)
