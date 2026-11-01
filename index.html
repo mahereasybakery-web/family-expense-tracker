@@ -9096,14 +9096,7 @@
               <span id="lblReqCurrentMember" style="font-size: 0.70rem; font-weight: 900; color: #38bdf8;">أية</span>
             </div>
 
-            <!-- مقدم الطلب بالأفاتار -->
-            <div style="margin-bottom: 8px;">
-              <label style="font-size: 0.70rem; color: #cbd5e1; font-weight: 800; display: block; margin-bottom: 3px;">
-                <i class="fa-solid fa-user-check" style="color: #ec4899;"></i> مقدم الطلب:
-              </label>
-              <input type="hidden" id="inpReqMember" value="أية">
-              <div class="member-photo-picker-strip" id="reqMemberPhotoPicker" style="gap: 5px; padding: 2px 0;"></div>
-            </div>
+            <input type="hidden" id="inpReqMember" value="أية">
 
             <!-- المبلغ وتاريخ الحاجة -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px;">
@@ -9152,10 +9145,12 @@
               </div>
             </div>
 
-            <!-- سبب وتفاصيل الطلب -->
-            <div style="margin-bottom: 8px;">
-              <label style="font-size: 0.68rem; color: #cbd5e1; font-weight: 800; display: block; margin-bottom: 2px;">سبب وتفاصيل الطلب *</label>
-              <input type="text" class="form-input-custom" id="inpReqReason" placeholder="مثال: شراء ملابس للأولاد، مستلزمات الصيدلية، متطلبات للمنزل..." style="height: 36px; font-size: 0.80rem;">
+            <!-- سبب وتفاصيل الطلب (موسع ومريح للكتابة المفصلة) -->
+            <div style="margin-bottom: 10px;">
+              <label style="font-size: 0.72rem; color: #cbd5e1; font-weight: 800; display: block; margin-bottom: 4px;">
+                <i class="fa-solid fa-pen-to-square" style="color: #ec4899;"></i> سبب وتفاصيل الطلب وملاحظاته *
+              </label>
+              <textarea class="form-input-custom" id="inpReqReason" rows="3" placeholder="اكتب هنا تفاصيل وسبب طلب المصروف بوضوح (مثال: شراء ملابس للأولاد، مستلزمات الصيدلية والعلاج، متطلبات للمنزل والمطبخ...)" style="width: 100%; min-height: 76px; padding: 8px 12px; font-size: 0.84rem; line-height: 1.5; resize: vertical; border-radius: 12px; box-sizing: border-box; font-family: inherit;"></textarea>
             </div>
 
             <!-- قسم التوجيه والتوزيع التقديري للمبلغ على البنود والأفراد مع المطابقة التامة -->
