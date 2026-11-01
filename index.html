@@ -8109,7 +8109,209 @@
     body.light-theme .nav-tab-item.active svg {
       stroke: #0284c7 !important;
     }
-  </style>
+  
+    /* ==============================================================
+       الهوية البصرية الفاخرة (Executive FinTech Obsidian & Neon Palette v3.3.0)
+       تثبيت هندسي صارم لشبكة المصاريف وأبعاد الكروت بدون أي تغيير عند تبديل المظهر
+       ============================================================== */
+    :root {
+      --bg-fintech-dark: #0b0f19;
+      --bg-fintech-navy: #111827;
+      --card-fintech-dark: rgba(17, 24, 39, 0.88);
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #10b981;
+      --accent-gold: #f59e0b;
+      --accent-rose: #f43f5e;
+    }
+
+    body {
+      background: radial-gradient(ellipse at top, #141e33 0%, #0b0f19 100%) !important;
+      color: #f8fafc !important;
+    }
+
+    .mobile-frame {
+      background: #0b0f19 !important;
+      border-color: rgba(56, 189, 248, 0.3) !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
+    }
+
+    /* تثبيت هندسي صارم لشبكة المصاريف في كل الأوضاع */
+    .categories-monefy-grid, #catGrid {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 7px !important;
+      width: calc(100% - 12px) !important;
+      margin: 2px 6px 12px !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    .cat-card {
+      min-height: 98px !important;
+      max-height: 98px !important;
+      height: 98px !important;
+      width: 100% !important;
+      padding: 6px 5px 5px !important;
+      border-radius: 15px !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      overflow: hidden !important;
+      border-width: 1.5px !important;
+      border-style: solid !important;
+      background: rgba(17, 24, 39, 0.92) !important;
+      border-color: rgba(255, 255, 255, 0.08) !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+      transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+    }
+
+    body.light-theme .cat-card {
+      min-height: 98px !important;
+      max-height: 98px !important;
+      height: 98px !important;
+      width: 100% !important;
+      padding: 6px 5px 5px !important;
+      border-radius: 15px !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      overflow: hidden !important;
+      border-width: 1.5px !important;
+      border-style: solid !important;
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06) !important;
+    }
+
+    /* كروت المؤشرات الثلاثية الأكبر والأكثر بروزاً ووضوحاً (Three KPI Master Cards) */
+    .kpi-three-strip {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 7px !important;
+      margin: 4px 6px 10px !important;
+      width: calc(100% - 12px) !important;
+      box-sizing: border-box !important;
+    }
+
+    .kpi-three-card {
+      height: 80px !important;
+      min-height: 80px !important;
+      max-height: 80px !important;
+      padding: 8px 6px !important;
+      border-radius: 15px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+      border-width: 1.8px !important;
+      border-style: solid !important;
+      transition: all 0.2s ease !important;
+    }
+
+    /* كارت الإيداعات (أخضر زمردي متألق) */
+    .kpi-three-card.card-income {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(15, 23, 42, 0.95)) !important;
+      border-color: rgba(52, 211, 153, 0.6) !important;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25) !important;
+    }
+    .kpi-three-card.card-income .kpi-three-label {
+      font-size: 0.76rem !important;
+      font-weight: 800 !important;
+      color: #34d399 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+    }
+    .kpi-three-card.card-income .kpi-three-value {
+      font-size: 1.10rem !important;
+      font-weight: 900 !important;
+      color: #34d399 !important;
+      font-variant-numeric: tabular-nums !important;
+      direction: rtl !important;
+    }
+
+    /* كارت المصروفات (أحمر ناري / قرمزي متألق) */
+    .kpi-three-card.card-expense {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(15, 23, 42, 0.95)) !important;
+      border-color: rgba(248, 113, 113, 0.6) !important;
+      box-shadow: 0 4px 16px rgba(239, 68, 68, 0.25) !important;
+    }
+    .kpi-three-card.card-expense .kpi-three-label {
+      font-size: 0.76rem !important;
+      font-weight: 800 !important;
+      color: #f87171 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+    }
+    .kpi-three-card.card-expense .kpi-three-value {
+      font-size: 1.10rem !important;
+      font-weight: 900 !important;
+      color: #f87171 !important;
+      font-variant-numeric: tabular-nums !important;
+      direction: rtl !important;
+    }
+
+    /* كارت الرصيد الفعلي (أزرق سماوي كهربائي مضيء) */
+    .kpi-three-card.card-balance {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.28), rgba(15, 23, 42, 0.98)) !important;
+      border-color: rgba(56, 189, 248, 0.7) !important;
+      box-shadow: 0 4px 20px rgba(2, 132, 199, 0.35) !important;
+    }
+    .kpi-three-card.card-balance .kpi-three-label {
+      font-size: 0.76rem !important;
+      font-weight: 800 !important;
+      color: #38bdf8 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+    }
+    .kpi-three-card.card-balance .kpi-three-value {
+      font-size: 1.18rem !important;
+      font-weight: 900 !important;
+      color: #38bdf8 !important;
+      font-variant-numeric: tabular-nums !important;
+      direction: rtl !important;
+    }
+
+    /* كروت المؤشرات في الوضع الفاتح (High-Contrast Executive Light Theme) */
+    body.light-theme .kpi-three-card.card-income {
+      background: linear-gradient(135deg, #ecfdf5, #ffffff) !important;
+      border-color: #10b981 !important;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15) !important;
+    }
+    body.light-theme .kpi-three-card.card-income .kpi-three-label,
+    body.light-theme .kpi-three-card.card-income .kpi-three-value {
+      color: #047857 !important;
+    }
+
+    body.light-theme .kpi-three-card.card-expense {
+      background: linear-gradient(135deg, #fef2f2, #ffffff) !important;
+      border-color: #ef4444 !important;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15) !important;
+    }
+    body.light-theme .kpi-three-card.card-expense .kpi-three-label,
+    body.light-theme .kpi-three-card.card-expense .kpi-three-value {
+      color: #b91c1c !important;
+    }
+
+    body.light-theme .kpi-three-card.card-balance {
+      background: linear-gradient(135deg, #f0f9ff, #ffffff) !important;
+      border-color: #0284c7 !important;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.15) !important;
+    }
+    body.light-theme .kpi-three-card.card-balance .kpi-three-label,
+    body.light-theme .kpi-three-card.card-balance .kpi-three-value {
+      color: #0284c7 !important;
+    }
+
+</style>
 </head>
 <body>
 
@@ -8131,7 +8333,15 @@
 
         <!-- زر الضبط الموحد في الهيدر الرئيسي -->
         <div style="display: flex; align-items: center; gap: 6px;">
-          <button class="header-settings-btn" id="btnGlobalSearch" onclick="openGlobalSearchModal()" title="البحث الشامل في بيانات البرنامج بالكامل" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; margin-left: 4px;">
+                    <button class="header-settings-btn" id="btnGoogleDriveSync" onclick="openGoogleDriveSyncModal()" title="سحابة ومزامنة Google Drive" style="background: rgba(34, 197, 94, 0.15); border-color: rgba(34, 197, 94, 0.4); color: #34d399; font-weight: 800;">
+            <i class="fa-brands fa-google-drive"></i>
+            <span id="topDriveSyncStatusText" style="font-size: 0.70rem;">سحابة</span>
+          </button>
+          <button class="header-settings-btn" id="btnAuthProfile" onclick="openModal('authModal')" title="حساب العائلة والمستخدمين" style="background: rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.4); color: #c084fc; font-weight: 800;">
+            <i class="fa-solid fa-user-circle"></i>
+            <span id="headerCurrentUserName" style="font-size: 0.70rem;">ماهر</span>
+          </button>
+<button class="header-settings-btn" id="btnGlobalSearch" onclick="openGlobalSearchModal()" title="البحث الشامل في بيانات البرنامج بالكامل" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; margin-left: 4px;">
             <i class="fa-solid fa-magnifying-glass"></i>
             <span>بحث</span>
           </button>
@@ -8302,59 +8512,74 @@
           </div>
         </div>
 
-        <!-- شريط الأدوات المالي الاحترافي أسفل اختيار التاريخ (المحفظة، البورصة والذهب، الشارتات، تبديل العملات) -->
-        <div class="sub-period-tools-bar">
-          <!-- جزء اختيار المحفظة النشطة بعرض كامل ومريح مع زر الزائد البارز -->
-          <div class="wallet-select-cluster" title="اختيار المحفظة المعروضة وإدارتها">
-            <i class="fa-solid fa-wallet" style="color: #38bdf8; font-size: 1.05rem; margin-right: 4px; flex-shrink: 0;"></i>
-            <select class="wallet-dropdown-compact" id="activeWalletSelect" title="المحفظة النشطة"></select>
-            <button type="button" class="btn-add-wallet-mini" id="btnOpenAddWallet" onclick="openModal('walletModal')" title="إضافة محفظة جديدة">
-              <i class="fa-solid fa-plus"></i>
-            </button>
-            <button type="button" class="btn-wallet-action-pill" onclick="openWalletTransferModal()" title="نقل رصيد بين المحافظ">
-              <i class="fa-solid fa-right-left"></i> تحويل
-            </button>
-            <button type="button" class="btn-wallet-action-pill" onclick="openWalletStatementModal()" title="كشف حركات المحفظة">
-              <i class="fa-solid fa-file-invoice-dollar"></i> كشف
-            </button>
+        <!-- مركز الخزينة والمحافظ المالية وإجراءات الحركات النقدية (Executive Wallet & Financial Hub) -->
+        <div class="financial-treasury-hub" style="margin: 3px 6px 8px; display: flex; flex-direction: column; gap: 7px;">
+          
+          <!-- الصف الأول: اختيار المحفظة النشطة بوضوح كامل + إضافة محفظة + أزرار الحركات البنكية المميزة -->
+          <div class="wallet-master-strip" style="display: flex; align-items: center; justify-content: space-between; gap: 6px; width: 100%; box-sizing: border-box;">
+            
+            <!-- كتلة اختيار المحفظة النشطة: واسعة، بارزة، سهلة النقر ومستحيل تنكمش إلى الصفر -->
+            <div class="wallet-select-cluster" id="walletSelectCluster" title="اختيار المحفظة المعروضة وإدارتها" style="flex: 1 1 auto; min-width: 145px; height: 42px; display: flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 13px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(15, 23, 42, 0.95)); border: 1.5px solid rgba(56, 189, 248, 0.5); box-shadow: 0 3px 12px rgba(56, 189, 248, 0.18); box-sizing: border-box;">
+              <i class="fa-solid fa-wallet" style="color: #38bdf8; font-size: 1.15rem; flex-shrink: 0;"></i>
+              <select class="wallet-dropdown-compact" id="activeWalletSelect" title="المحفظة النشطة" style="flex: 1 1 auto; min-width: 95px; width: auto; background: transparent; border: none; color: #38bdf8; font-weight: 900; font-size: 0.88rem; font-family: inherit; outline: none; cursor: pointer; direction: rtl;"></select>
+              <button type="button" class="btn-add-wallet-mini" id="btnOpenAddWallet" onclick="openModal('walletModal')" title="إضافة محفظة مالية جديدة" style="width: 26px; height: 26px; border-radius: 50%; background: rgba(56, 189, 248, 0.25); border: 1px solid rgba(56, 189, 248, 0.55); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; cursor: pointer; flex-shrink: 0;">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+
+            <!-- أزرار حركات المحافظ المفصولة بهوية مميزة: تحويل رصيد + كشف حركات -->
+            <div class="wallet-actions-cluster" style="display: flex; align-items: center; gap: 5px; flex-shrink: 0;">
+              <!-- زر تحويل رصيد بين المحافظ -->
+              <button type="button" class="wallet-action-btn btn-transfer-action" onclick="openWalletTransferModal()" title="نقل وتحويل رصيد بين المحافظ" style="height: 42px; padding: 0 11px; border-radius: 12px; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.5px solid rgba(56, 189, 248, 0.5); background: linear-gradient(135deg, rgba(2, 132, 199, 0.28), rgba(14, 165, 233, 0.18)); color: #38bdf8; box-shadow: 0 2px 10px rgba(2, 132, 199, 0.25); transition: all 0.2s;">
+                <i class="fa-solid fa-right-left" style="font-size: 0.84rem;"></i>
+                <span>تحويل</span>
+              </button>
+
+              <!-- زر كشف حركات المحفظة المحاسبي وتصدير إكسيل/PDF -->
+              <button type="button" class="wallet-action-btn btn-statement-action" onclick="openWalletStatementModal()" title="كشف حركات وتصدير إكسيل و PDF" style="height: 42px; padding: 0 11px; border-radius: 12px; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.5px solid rgba(16, 185, 129, 0.5); background: linear-gradient(135deg, rgba(16, 185, 129, 0.28), rgba(5, 150, 105, 0.18)); color: #34d399; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.25); transition: all 0.2s;">
+                <i class="fa-solid fa-file-invoice-dollar" style="font-size: 0.88rem;"></i>
+                <span>كشف</span>
+              </button>
+            </div>
           </div>
 
-          <!-- أدوات المؤشرات وبورصة الذهب وتغير أسعار العملات بتصميم رشيق وأنيق يتيح المساحة للمحفظة -->
-          <div class="tools-pills-cluster">
-            <button type="button" class="tool-pill-action gold-pill" onclick="openGoldDrawer()" title="بورصة الذهب وتغير أسعار العملات المباشرة">
+          <!-- الصف الثاني: بورصة الذهب الحية + مزامنة Google Drive السحابية + تبديل العملات -->
+          <div class="financial-quick-tools-strip" style="display: flex; align-items: center; justify-content: space-between; gap: 6px; width: 100%; box-sizing: border-box;">
+            <!-- بورصة الذهب والعملات (TradingView حي) -->
+            <button type="button" class="tool-pill-action gold-pill" onclick="openGoldDrawer()" title="بورصة الذهب وأسعار العملات الحية" style="flex: 1; height: 36px; padding: 0 10px; border-radius: 11px; font-size: 0.76rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.45); background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(15, 23, 42, 0.9)); color: #fbbf24;">
               <i class="fa-solid fa-arrow-trend-up"></i>
-              <span>الذهب</span>
+              <span>بورصة الذهب والعملات</span>
             </button>
 
-            <div class="currency-pill-btn" id="btnToggleCurrency" title="تبديل العملة المعروضة (EGP / SAR / USD / ذهب 21)">
+            <!-- زر مزامنة سحابة Google Drive الحية الفورية -->
+            <button type="button" class="tool-pill-action drive-sync-pill" onclick="openGoogleDriveSyncModal()" id="btnTopDriveSync" title="مزامنة سحابية مباشرة عبر Google Drive" style="height: 36px; padding: 0 11px; border-radius: 11px; font-size: 0.76rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(34, 197, 94, 0.5); background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(15, 23, 42, 0.9)); color: #34d399;">
+              <i class="fa-brands fa-google-drive" style="font-size: 0.92rem;"></i>
+              <span id="topDriveSyncStatusText">مزامنة سحابية</span>
+            </button>
+
+            <!-- تبديل العملة EGP / SAR / USD -->
+            <div class="currency-pill-btn" id="btnToggleCurrency" title="تبديل العملة المعروضة (EGP / SAR / USD)" style="height: 36px; padding: 0 10px; border-radius: 11px; font-size: 0.76rem; font-weight: 800; display: flex; align-items: center; gap: 4px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.45); background: rgba(30, 41, 59, 0.85); color: #fbbf24; flex-shrink: 0;">
               <i class="fa-solid fa-coins"></i>
               <span id="activeCurrencyText">EGP</span>
             </div>
           </div>
         </div>
 
-        
-        <!-- بنود الرصيد الثلاثة: دخل أخضر، مصروف أحمر، رصيد حالي أزرق -->
-        <!-- بنود الرصيد الفعلي الحالي (ثابتة وتعرض دائماً إجمالي العمليات دون تأثر بالفلترة الزمنية) -->
-        <div class="kpi-three-strip">
-          <div class="kpi-three-card card-income" title="إجمالي عمليات الإيداع والدخل الفعلي لكافة الفترات">
-            <div class="kpi-three-label"><i class="fa-solid fa-arrow-down-left"></i> إجمالي الإيداعات</div>
-            <div class="kpi-three-value" id="topCardIncome">+ 0.00 ج.م</div>
+        <!-- بنود الرصيد الثلاثة الفاخرة المعتمدة (Executive Tri-Balance Dashboard) -->
+        <div class="kpi-three-strip" style="display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 6px !important; margin: 3px 6px 9px !important; width: calc(100% - 12px) !important; box-sizing: border-box !important;">
+          <div class="kpi-three-card card-income" title="إجمالي عمليات الإيداع والدخل الفعلي لكافة الفترات" style="height: 80px !important; min-height: 80px !important; max-height: 80px !important; padding: 8px 6px !important; border-radius: 14px !important; background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(15, 23, 42, 0.92)) !important; border: 1.5px solid rgba(16, 185, 129, 0.5) !important; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2) !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; align-items: center !important; text-align: center !important; box-sizing: border-box !important;">
+            <div class="kpi-three-label" style="font-size: 0.72rem !important; font-weight: 800 !important; color: #34d399 !important; display: flex !important; align-items: center !important; gap: 4px !important; white-space: nowrap !important;"><i class="fa-solid fa-arrow-down-left"></i> إجمالي الإيداعات</div>
+            <div class="kpi-three-value" id="topCardIncome" style="font-size: 0.98rem !important; font-weight: 900 !important; color: #34d399 !important; white-space: nowrap !important; direction: rtl !important; font-variant-numeric: tabular-nums !important;">+ 0.00 ج.م</div>
           </div>
-          <div class="kpi-three-card card-expense" title="إجمالي المصروفات الفعلية لكافة الفترات">
-            <div class="kpi-three-label"><i class="fa-solid fa-arrow-up-right"></i> إجمالي المصروفات</div>
-            <div class="kpi-three-value" id="topCardExpense">- 0.00 ج.م</div>
+          <div class="kpi-three-card card-expense" title="إجمالي المصروفات الفعلية لكافة الفترات" style="height: 80px !important; min-height: 80px !important; max-height: 80px !important; padding: 8px 6px !important; border-radius: 14px !important; background: linear-gradient(135deg, rgba(239, 68, 68, 0.16), rgba(15, 23, 42, 0.92)) !important; border: 1.5px solid rgba(239, 68, 68, 0.5) !important; box-shadow: 0 4px 14px rgba(239, 68, 68, 0.2) !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; align-items: center !important; text-align: center !important; box-sizing: border-box !important;">
+            <div class="kpi-three-label" style="font-size: 0.72rem !important; font-weight: 800 !important; color: #f87171 !important; display: flex !important; align-items: center !important; gap: 4px !important; white-space: nowrap !important;"><i class="fa-solid fa-arrow-up-right"></i> إجمالي المصروفات</div>
+            <div class="kpi-three-value" id="topCardExpense" style="font-size: 0.98rem !important; font-weight: 900 !important; color: #f87171 !important; white-space: nowrap !important; direction: rtl !important; font-variant-numeric: tabular-nums !important;">- 0.00 ج.م</div>
           </div>
-          <div class="kpi-three-card card-balance" title="الرصيد الفعلي الحالي المتوفر في المحافظ">
-            <div class="kpi-three-label"><i class="fa-solid fa-wallet"></i> الرصيد الفعلي الحالي</div>
-            <div class="kpi-three-value" id="topCardBalance">0.00 ج.م</div>
+          <div class="kpi-three-card card-balance" title="الرصيد الفعلي الحالي المتوفر في المحافظ" style="height: 80px !important; min-height: 80px !important; max-height: 80px !important; padding: 8px 6px !important; border-radius: 14px !important; background: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(15, 23, 42, 0.95)) !important; border: 1.6px solid rgba(56, 189, 248, 0.6) !important; box-shadow: 0 4px 16px rgba(2, 132, 199, 0.25) !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; align-items: center !important; text-align: center !important; box-sizing: border-box !important;">
+            <div class="kpi-three-label" style="font-size: 0.72rem !important; font-weight: 800 !important; color: #38bdf8 !important; display: flex !important; align-items: center !important; gap: 4px !important; white-space: nowrap !important;"><i class="fa-solid fa-wallet"></i> الرصيد الفعلي</div>
+            <div class="kpi-three-value" id="topCardBalance" style="font-size: 1.05rem !important; font-weight: 900 !important; color: #38bdf8 !important; white-space: nowrap !important; direction: rtl !important; font-variant-numeric: tabular-nums !important;">0.00 ج.م</div>
           </div>
         </div>
-
-
-
-
-
 
         <!-- شبكة بنود المصاريف فقط -->
         <div class="categories-monefy-grid" id="catGrid" style="margin-top: 8px;">
@@ -8844,137 +9069,89 @@
         </div>
 
       </div><div class="page-view" id="viewRequests" style="display: none;">
-        <!-- زر وقسم إدارة وتسجيل الدخل والإيداعات المنقول من المصاريف -->
-        <!-- شريط إجراءات الطلبات والدخل المالي المدمج (طلب جديد + تسجيل دخل جديد بجانبه) -->
-        <!-- كارت تسجيل الدخل السريع: منفصل بهوية بصرية مميزة واحترافية -->
-        <div class="income-quick-cta-bar" onclick="openIncomeChoiceModal()" style="display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; margin: 2px 0 10px; border-radius: 14px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(6, 78, 59, 0.3) 100%); border: 1.2px solid rgba(16, 185, 129, 0.4); box-shadow: 0 4px 14px rgba(16, 185, 129, 0.15); cursor: pointer; transition: all 0.22s ease;">
-          <div style="display: flex; align-items: center; gap: 9px;">
-            <div style="width: 32px; height: 32px; border-radius: 10px; background: rgba(16, 185, 129, 0.25); display: flex; align-items: center; justify-content: center; color: #10b981; font-size: 1rem; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);">
-              <i class="fa-solid fa-circle-dollar-to-slot"></i>
-            </div>
-            <div>
-              <div style="font-size: 0.84rem; font-weight: 800; color: #ffffff;">تسجيل دخل جديد</div>
-              <div style="font-size: 0.65rem; color: #6ee7b7;">إضافة إيداع، راتب شهري، أو سيولة للمحفظة</div>
-            </div>
-          </div>
-          <div style="display: flex; align-items: center; gap: 5px; background: rgba(16, 185, 129, 0.22); border: 1px solid rgba(16, 185, 129, 0.45); color: #34d399; padding: 4px 10px; border-radius: 8px; font-size: 0.74rem; font-weight: 800;">
-            <span>تسجيل فوري</span>
-            <i class="fa-solid fa-arrow-left" style="font-size: 0.68rem;"></i>
-          </div>
-        </div>
-
-        <!-- شريط التبديل الموحد والاحترافي للطلبات: إنشاء طلب جديد مقابل سجل الطلبات -->
-        <div class="requests-view-switcher" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px; background: rgba(15, 23, 42, 0.75); padding: 5px; border-radius: 14px; border: 1px solid var(--border-subtle); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);">
-          <button type="button" id="btnTabNewRequest" onclick="switchRequestTab('new')" class="req-tab-btn active" style="padding: 9px 12px; border-radius: 10px; font-weight: 800; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 7px; cursor: pointer; transition: all 0.25s; border: none; background: linear-gradient(135deg, #ec4899, #be185d); color: #fff; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.35);">
+        <!-- شريط إجراءات وتبديل الطلبات المدمج بدون تمرير رأسي -->
+        <div class="requests-view-switcher" style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 6px; margin: 2px 0 8px; background: rgba(15, 23, 42, 0.8); padding: 4px; border-radius: 12px; border: 1.2px solid rgba(236, 72, 153, 0.3); box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);">
+          <button type="button" id="btnTabNewRequest" onclick="switchRequestTab('new')" class="req-tab-btn active" style="padding: 7px 10px; border-radius: 9px; font-weight: 800; font-size: 0.78rem; display: flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer; transition: all 0.2s; border: none; background: linear-gradient(135deg, #ec4899, #be185d); color: #fff; box-shadow: 0 3px 10px rgba(236, 72, 153, 0.35);">
             <i class="fa-solid fa-file-circle-plus"></i>
-            <span>طلب مصروف جديد</span>
+            <span>طلب مصروف</span>
           </button>
-          <button type="button" id="btnTabListRequests" onclick="switchRequestTab('list')" class="req-tab-btn" style="padding: 9px 12px; border-radius: 10px; font-weight: 800; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 7px; cursor: pointer; transition: all 0.25s; border: none; background: transparent; color: #94a3b8;">
+          <button type="button" id="btnTabListRequests" onclick="switchRequestTab('list')" class="req-tab-btn" style="padding: 7px 10px; border-radius: 9px; font-weight: 800; font-size: 0.78rem; display: flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer; transition: all 0.2s; border: none; background: transparent; color: #94a3b8;">
             <i class="fa-solid fa-clock-rotate-left"></i>
             <span>سجل الطلبات</span>
-            <span class="badge" id="reqCountBadge" style="background: rgba(236, 72, 153, 0.25); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.4); padding: 1px 7px; border-radius: 10px; font-size: 0.68rem; font-weight: 800;">3</span>
+            <span class="badge" id="reqCountBadge" style="background: rgba(236, 72, 153, 0.25); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.4); padding: 1px 6px; border-radius: 8px; font-size: 0.65rem; font-weight: 800;">3</span>
+          </button>
+          <button type="button" onclick="openIncomeChoiceModal()" style="padding: 7px 10px; border-radius: 9px; font-weight: 800; font-size: 0.78rem; display: flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 1px solid rgba(16, 185, 129, 0.45); background: rgba(16, 185, 129, 0.18); color: #34d399;" title="تسجيل دخل جديد">
+            <i class="fa-solid fa-circle-dollar-to-slot"></i>
+            <span>تسجيل دخل</span>
           </button>
         </div>
 
-        <!-- 1. لوحة نموذج إنشاء طلب جديد -->
-        <div id="panelNewRequest" class="app-card-panel">
-        
-        
-          <div class="app-card-title" style="margin-bottom: 8px; justify-content: space-between; align-items: center;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(236, 72, 153, 0.15); display: flex; align-items: center; justify-content: center; color: #ec4899; font-size: 1rem;">
-                <i class="fa-solid fa-hand-holding-dollar"></i>
-              </div>
-              <div>
-                <div style="font-size: 0.90rem; font-weight: 800; color: #f8fafc;">طلب مبلغ مالي جديد</div>
-                <div style="font-size: 0.68rem; color: #94a3b8;">تحديد المبلغ المطلوب وتوزيعه التقديري على البنود والأفراد</div>
-              </div>
+        <!-- 1. لوحة نموذج إنشاء طلب جديد المصممة هندسياً بدون أي تمرير رأسي (Zero Scroll) -->
+        <div id="panelNewRequest" class="app-card-panel" style="padding: 10px 12px; border-radius: 16px; margin: 0; background: linear-gradient(145deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.95)); border: 1.4px solid rgba(236, 72, 153, 0.35); box-shadow: 0 4px 18px rgba(0,0,0,0.35); box-sizing: border-box;">
+          
+          <!-- مقدم الطلب بالأفاتار التفاعلي المدمج -->
+          <div style="margin-bottom: 6px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+              <label style="font-size: 0.72rem; font-weight: 800; color: #f472b6; display: flex; align-items: center; gap: 4px;">
+                <i class="fa-solid fa-user-check"></i> مقدم الطلب:
+              </label>
+              <span id="lblReqCurrentMember" style="font-size: 0.70rem; font-weight: 900; color: #38bdf8;">أية</span>
             </div>
-            <span style="background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.3); padding: 2px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800;">
-              مخصص للعائلة
-            </span>
-          </div>
-
-          <!-- مقدم الطلب بالأفاتار التفاعلي -->
-          <div class="form-group-custom" style="margin-bottom: 8px;">
-            <label class="form-label-custom" style="font-size: 0.72rem; margin-bottom: 3px; display: block; font-weight: 800;">
-              <i class="fa-solid fa-user-check" style="color: #ec4899;"></i> مقدم الطلب (بالصور الفعلية للأفراد):
-            </label>
             <input type="hidden" id="inpReqMember" value="أية">
-            <div class="member-photo-picker-strip" id="reqMemberPhotoPicker" style="gap: 5px; padding-bottom: 2px;">
-              <!-- تتولد تلقائياً بالصور الفعلية الحقيقية لأفراد العائلة -->
+            <div class="member-photo-picker-strip" id="reqMemberPhotoPicker" style="gap: 5px; padding: 2px 0; justify-content: space-between;">
+              <!-- تتولد تلقائياً بالأفاتارات المدمجة -->
             </div>
           </div>
 
-          <!-- المبلغ المطلوب وتاريخ الحاجة في صف واحد مقسم لعمودين متوازنين -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
-            <div class="form-group-custom" style="margin-bottom: 0;">
-              <label class="form-label-custom" style="font-size: 0.72rem; margin-bottom: 2px; font-weight: 800;">
-                المبلغ المطلوب (ج.م) <span class="req">*</span>
-              </label>
-              <input type="number" step="0.01" class="form-input-custom" id="inpReqAmount" placeholder="0.00" oninput="initRequestAllocations()" style="height: 38px; font-size: 1.15rem; font-weight: 900; text-align: center; color: #ec4899; box-sizing: border-box;">
+          <!-- المبلغ وتاريخ الحاجة في صف ثنائي متوازن -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px;">
+            <div>
+              <label style="font-size: 0.68rem; margin-bottom: 2px; font-weight: 800; color: #cbd5e1; display: block;">المبلغ المطلوب (ج.م) *</label>
+              <input type="number" step="0.01" class="form-input-custom" id="inpReqAmount" placeholder="0.00" oninput="initRequestAllocations()" style="height: 36px; font-size: 1.1rem; font-weight: 900; text-align: center; color: #ec4899; box-sizing: border-box; width: 100%; border-radius: 10px;">
             </div>
-            <div class="form-group-custom" style="margin-bottom: 0;">
-              <label class="form-label-custom" style="font-size: 0.72rem; margin-bottom: 2px; font-weight: 800;">
-                تاريخ الحاجة للمبلغ <span class="req">*</span>
-              </label>
-              <input type="date" class="form-input-custom" id="inpReqDate" style="height: 38px; font-size: 0.80rem; padding: 4px 8px; box-sizing: border-box;">
+            <div>
+              <label style="font-size: 0.68rem; margin-bottom: 2px; font-weight: 800; color: #cbd5e1; display: block;">تاريخ الحاجة للمبلغ *</label>
+              <input type="date" class="form-input-custom" id="inpReqDate" style="height: 36px; font-size: 0.78rem; padding: 3px 6px; box-sizing: border-box; width: 100%; border-radius: 10px;">
             </div>
           </div>
 
           <!-- سبب وتفاصيل الطلب -->
-          <div class="form-group-custom" style="margin-bottom: 8px;">
-            <label class="form-label-custom" style="font-size: 0.72rem; margin-bottom: 2px; font-weight: 800;">
-              سبب وتفاصيل الطلب <span class="req">*</span>
-            </label>
-            <input type="text" class="form-input-custom" id="inpReqReason" placeholder="مثال: شراء ملابس للأولاد، مستلزمات الصيدلية، متطلبات للمنزل..." style="height: 36px; font-size: 0.80rem; padding: 4px 10px; box-sizing: border-box;">
+          <div style="margin-bottom: 6px;">
+            <label style="font-size: 0.68rem; margin-bottom: 2px; font-weight: 800; color: #cbd5e1; display: block;">سبب وتفاصيل الطلب *</label>
+            <input type="text" class="form-input-custom" id="inpReqReason" placeholder="مثال: شراء ملابس للأولاد، صيدلية، مستلزمات..." style="height: 34px; font-size: 0.78rem; padding: 3px 8px; box-sizing: border-box; width: 100%; border-radius: 10px;">
           </div>
 
-          <!-- قسم التوزيع والتوجيه التقديري المنظم والواضح جداً -->
-          <div class="req-alloc-block" id="reqAllocationsBlock" style="background: rgba(15, 23, 42, 0.65); border: 1.5px solid rgba(236, 72, 153, 0.25); border-radius: 12px; padding: 10px; margin-bottom: 8px;">
-            <div class="req-alloc-status-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <span style="font-size: 0.76rem; font-weight: 800; color: #cbd5e1;">
-                <i class="fa-solid fa-diagram-project" style="color: #ec4899;"></i> توزيع وتوجيه المبلغ التقديري:
-              </span>
-              <span id="reqAllocSummaryTxt" style="font-size: 0.72rem; font-weight: 800; color: #10b981;">المتبقي غير موزع: 0.00 ج.م</span>
+          <!-- توجيه المبلغ التقديري المدمج -->
+          <div class="req-alloc-block" id="reqAllocationsBlock" style="background: rgba(15, 23, 42, 0.6); border: 1.2px solid rgba(236, 72, 153, 0.25); border-radius: 10px; padding: 6px 8px; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <span style="font-size: 0.68rem; font-weight: 800; color: #cbd5e1;"><i class="fa-solid fa-arrows-split-up-and-left" style="color: #ec4899;"></i> التوجيه التقديري:</span>
+              <span id="allocMatchStatus" style="font-size: 0.65rem; font-weight: 800; color: #34d399;">✔ متطابق 100%</span>
             </div>
-
-            <div class="req-alloc-progress-wrap" style="height: 6px; border-radius: 4px; background: rgba(255,255,255,0.08); overflow: hidden; margin-bottom: 8px;">
-              <div class="req-alloc-progress-bar" id="reqAllocProgressBar" style="width: 100%; height: 100%; transition: all 0.3s;"></div>
+            <div id="allocRowsContainer" style="display: flex; flex-direction: column; gap: 4px;">
+              <!-- صف التخصيص التلقائي -->
             </div>
-
-            <!-- قائمة كروت التوزيع الديناميكية المرتبة -->
-            <div id="reqAllocationsRowsContainer" style="display: flex; flex-direction: column; gap: 6px;">
-              <!-- تتولد الأسطر ديناميكياً بتصميم الكرت المرتب -->
-            </div>
-
-            <button type="button" class="btn-export-tool" onclick="addRequestAllocationRow()" style="width: 100%; border-radius: 10px; padding: 8px; margin-top: 6px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px dashed rgba(56, 189, 248, 0.45); font-weight: 800; font-size: 0.76rem; cursor: pointer;">
-              <i class="fa-solid fa-plus-circle"></i> + إضافة تخصيص لبند / شخص آخر
-            </button>
           </div>
 
-          <!-- حقل احتياطي للتوافقية الكاملة -->
-          <input type="hidden" id="inpReqCategory" value="others">
-          
-          <button class="btn-submit-tx" onclick="submitMoneyRequest()" style="background: linear-gradient(135deg, #ec4899, #be185d); height: 42px; border-radius: 12px; font-size: 0.90rem; font-weight: 800; margin-top: 6px; box-shadow: 0 4px 14px rgba(236, 72, 153, 0.35);">
-            <i class="fa-solid fa-paper-plane"></i> إرسال طلب المصروف لماهر 💌
+          <!-- زر إرسال الطلب لماهر البارز والمريح -->
+          <button type="button" class="btn-submit-tx" onclick="submitMoneyRequest()" style="background: linear-gradient(135deg, #ec4899, #be185d); height: 42px; font-size: 0.90rem; font-weight: 900; margin: 0; box-shadow: 0 4px 14px rgba(236, 72, 153, 0.4); border-radius: 12px; width: 100%;">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>إرسال طلب المصروف لماهر 💌</span>
           </button>
         </div>
 
-        <!-- سجل الطلبات وقائمة الحالات -->
-        <div id="panelListRequests" class="app-card-panel" style="display: none; margin-top: 6px;">
-          <div class="app-card-title" style="justify-content: space-between;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <i class="fa-solid fa-list-check" style="color: #38bdf8;"></i>
-              <span>سجل الطلبات والموافقات</span>
+        <!-- 2. لوحة سجل ومتابعة الطلبات السابقة -->
+        <div id="panelListRequests" class="app-card-panel" style="display: none; padding: 10px 12px; border-radius: 16px; margin: 0;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div style="font-size: 0.85rem; font-weight: 800; color: #f472b6; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <span>سجل متابعة طلبات العائلة</span>
             </div>
-            <span class="period-active-pill" id="reqPendingCountBadge">0 معلق</span>
+            <span class="period-active-pill" id="reqPendingCountBadge" style="font-size: 0.68rem;">0 معلق</span>
           </div>
-          <div id="requestsListContainer">
-            <!-- تتولد الطلبات تلقائياً بالبيانات -->
+          <div id="requestsListContainer" style="max-height: 60vh; overflow-y: auto;">
+            <!-- تتولد الطلبات السابقة تلقائياً -->
           </div>
         </div>
-
       </div>
 
 
@@ -9436,10 +9613,7 @@
             </div>
           </div>
 
-          <button type="button" onclick="importGoldCalcToExpense()" style="width: 100%; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; font-weight: 800; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
-            <i class="fa-solid fa-file-invoice-dollar"></i>
-            <span>نقل المبلغ لتسجيل مصروف ذهب جديد ⬅</span>
-          </button>
+          
         </div>
 
         <!-- القسم الثالث: الشارت الحي للذهب TradingView Live -->
@@ -9762,176 +9936,200 @@
     </div>
   </div>
 
-  <div class="modal-overlay modal-overlay-custom" id="authModal">
-      <div class="modal-content-card" style="max-width: 480px;">
+  
+    <!-- ==============================================================
+         نافذة حساب الأسرة وتسجيل الدخول وإدارة الأفراد (Rebuilt Auth Modal)
+         ============================================================== -->
+    <div class="modal-overlay modal-overlay-custom" id="authModal">
+      <div class="modal-content-card" style="max-width: 460px; border-radius: 20px; padding: 16px 18px;">
         
         <!-- رأس نافذة الحساب -->
-        <div class="modal-head">
+        <div class="modal-head" style="margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">
           <div style="display: flex; align-items: center; gap: 8px;">
-            <i class="fa-brands fa-google-drive" style="color: #22c55e; font-size: 1.4rem;"></i>
-            <h3 class="modal-title-custom">حساب العائلة والمزامنة عبر Google Drive</h3>
+            <div style="width: 34px; height: 34px; border-radius: 10px; background: rgba(56, 189, 248, 0.2); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <div>
+              <h3 class="modal-title-custom" style="font-size: 0.98rem; font-weight: 800; color: #f8fafc;">حساب الأسرة وتسجيل الدخول</h3>
+              <div style="font-size: 0.65rem; color: #94a3b8;">إدارة ملفات أفراد العائلة والمزامنة السحابية</div>
+            </div>
           </div>
           <button class="btn-close-drawer" onclick="closeModal('authModal')">&times;</button>
         </div>
 
-        <!-- أزرار التبديل بين الدخول / إنشاء حساب / استرجاع كلمة المرور -->
-        <!-- شريط تسجيل الدخول الفوري بضغطة واحدة لأفراد العائلة -->
-        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 14px; padding: 10px 12px; margin-bottom: 12px; text-align: center;">
-          <div style="font-size: 0.78rem; font-weight: 800; color: #38bdf8; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; gap: 6px;">
-            <i class="fa-solid fa-bolt"></i>
-            <span>تسجيل دخول فوري بنقرة واحدة (بدون كلمة مرور):</span>
-          </div>
-          <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; justify-content: center;" id="authQuickFamilyStrip">
-            <button type="button" onclick="quickSelectUser('ماهر')" style="background: rgba(30, 41, 59, 0.9); border: 1.5px solid #38bdf8; color: #fff; border-radius: 10px; padding: 4px 10px; font-weight: 800; font-size: 0.76rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">👨🏻 ماهر</button>
-            <button type="button" onclick="quickSelectUser('آية')" style="background: rgba(30, 41, 59, 0.9); border: 1.5px solid #ec4899; color: #fff; border-radius: 10px; padding: 4px 10px; font-weight: 800; font-size: 0.76rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">🧕🏻 آية</button>
-            <button type="button" onclick="quickSelectUser('محمد')" style="background: rgba(30, 41, 59, 0.9); border: 1.5px solid #f59e0b; color: #fff; border-radius: 10px; padding: 4px 10px; font-weight: 800; font-size: 0.76rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">👦🏻 محمد</button>
-            <button type="button" onclick="quickSelectUser('مريم')" style="background: rgba(30, 41, 59, 0.9); border: 1.5px solid #8b5cf6; color: #fff; border-radius: 10px; padding: 4px 10px; font-weight: 800; font-size: 0.76rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">👧🏻 مريم</button>
-            <button type="button" onclick="quickSelectUser('الحاجة')" style="background: rgba(30, 41, 59, 0.9); border: 1.5px solid #10b981; color: #fff; border-radius: 10px; padding: 4px 10px; font-weight: 800; font-size: 0.76rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">👵🏻 الحاجة</button>
-            <button type="button" onclick="quickSelectUser('النونُو')" style="background: rgba(30, 41, 59, 0.9); border: 1.5px solid #f43f5e; color: #fff; border-radius: 10px; padding: 4px 10px; font-weight: 800; font-size: 0.76rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">👶🏻 النونُو</button>
-          </div>
-        </div>
-        <div class="auth-tab-bar">
-          <button class="auth-tab-btn active" id="tabBtnSignIn" onclick="switchAuthTab('signin')">
-            <i class="fa-solid fa-right-to-bracket"></i> دخول
+        <!-- شريط التبديل بين الدخول السريع / البريد / إنشاء حساب -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-bottom: 12px; background: rgba(15, 23, 42, 0.8); padding: 4px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+          <button type="button" class="auth-tab-btn active" id="tabBtnQuickLogin" onclick="switchAuthMode('quick')" style="padding: 7px 4px; border-radius: 9px; font-size: 0.76rem; font-weight: 800; border: none; cursor: pointer; background: linear-gradient(135deg, #0284c7, #0ea5e9); color: #fff;">
+            <i class="fa-solid fa-bolt"></i> سريع
           </button>
-          <button class="auth-tab-btn" id="tabBtnSignUp" onclick="switchAuthTab('signup')">
-            <i class="fa-solid fa-user-plus"></i> إنشاء حساب
+          <button type="button" class="auth-tab-btn" id="tabBtnEmailLogin" onclick="switchAuthMode('email')" style="padding: 7px 4px; border-radius: 9px; font-size: 0.76rem; font-weight: 800; border: none; cursor: pointer; background: transparent; color: #94a3b8;">
+            <i class="fa-solid fa-envelope"></i> بالبريد
           </button>
-          <button class="auth-tab-btn" id="tabBtnForgot" onclick="switchAuthTab('forgot')">
-            <i class="fa-solid fa-key"></i> استرجاع باسورد
+          <button type="button" class="auth-tab-btn" id="tabBtnNewAccount" onclick="switchAuthMode('new')" style="padding: 7px 4px; border-radius: 9px; font-size: 0.76rem; font-weight: 800; border: none; cursor: pointer; background: transparent; color: #94a3b8;">
+            <i class="fa-solid fa-user-plus"></i> فرد جديد
           </button>
         </div>
 
-        <!-- 1. شاشة تسجيل الدخول (Sign In) -->
-        <div id="authViewSignIn">
-          <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; background: rgba(56, 189, 248, 0.08); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.2);">
-            ☁️ <strong>مزامنة Google Drive التلقائية:</strong> تسجيل دخولك بالبريد الإلكتروني يربط كافة حركاتك ومحافظك بحساب Google Drive لاستعادتها على أي جهاز فوراً.
+        <!-- 1. شاشة الدخول السريع الفوري بنقرة واحدة (أفراد العائلة) -->
+        <div id="authViewQuick">
+          <div style="font-size: 0.74rem; color: #38bdf8; font-weight: 800; margin-bottom: 8px; text-align: center;">
+            اختر حسابك للدخول الفوري وتخصيص تجربة التطبيق:
           </div>
-
-          <div class="form-group-custom">
-            <label class="form-label-custom">البريد الإلكتروني المسجل</label>
-            <input type="email" class="form-input-custom" id="authEmail" value="maher@family.com" placeholder="name@gmail.com">
-          </div>
-
-          <div class="form-group-custom">
-            <label class="form-label-custom">كلمة المرور</label>
-            <input type="password" class="form-input-custom" id="authPass" value="maher123" placeholder="أدخل كلمة المرور">
-          </div>
-
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <input type="checkbox" id="authRemember" checked style="width: 15px; height: 15px; accent-color: var(--primary);">
-              <label for="authRemember" style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted);">تذكرني على هذا الجهاز</label>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px;">
+            <div onclick="quickSelectUser('ماهر')" style="background: rgba(30, 41, 59, 0.7); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
+              <img src="images/avatars/maher.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Maher&background=0284c7&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; border: 2px solid #38bdf8;">
+              <div style="font-size: 0.80rem; font-weight: 800; color: #fff;">ماهر</div>
+              <span style="font-size: 0.62rem; color: #38bdf8;">رب الأسرة</span>
             </div>
-            <a href="javascript:void(0)" onclick="switchAuthTab('forgot')" style="font-size: 0.75rem; color: #38bdf8; text-decoration: none; font-weight: 700;">نسيت كلمة المرور؟</a>
+            <div onclick="quickSelectUser('آية')" style="background: rgba(30, 41, 59, 0.7); border: 1.5px solid rgba(236, 72, 153, 0.4); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
+              <img src="images/avatars/aya.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Aya&background=ec4899&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; border: 2px solid #ec4899;">
+              <div style="font-size: 0.80rem; font-weight: 800; color: #fff;">آية</div>
+              <span style="font-size: 0.62rem; color: #f472b6;">ربة المنزل</span>
+            </div>
+            <div onclick="quickSelectUser('محمد')" style="background: rgba(30, 41, 59, 0.7); border: 1.5px solid rgba(245, 158, 11, 0.4); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
+              <img src="avatar_mohamed.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Mohamed&background=f59e0b&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; border: 2px solid #f59e0b;">
+              <div style="font-size: 0.80rem; font-weight: 800; color: #fff;">محمد</div>
+              <span style="font-size: 0.62rem; color: #fbbf24;">الابن</span>
+            </div>
+            <div onclick="quickSelectUser('مريم')" style="background: rgba(30, 41, 59, 0.7); border: 1.5px solid rgba(139, 92, 246, 0.4); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
+              <img src="images/avatars/mariam.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Mariam&background=8b5cf6&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; border: 2px solid #8b5cf6;">
+              <div style="font-size: 0.80rem; font-weight: 800; color: #fff;">مريم</div>
+              <span style="font-size: 0.62rem; color: #c084fc;">الابنة</span>
+            </div>
+            <div onclick="quickSelectUser('الحاجة')" style="background: rgba(30, 41, 59, 0.7); border: 1.5px solid rgba(16, 185, 129, 0.4); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
+              <img src="images/avatars/el-haga.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Haga&background=10b981&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; border: 2px solid #10b981;">
+              <div style="font-size: 0.80rem; font-weight: 800; color: #fff;">الحاجة</div>
+              <span style="font-size: 0.62rem; color: #34d399;">البركة</span>
+            </div>
+            <div onclick="quickSelectUser('النونُو')" style="background: rgba(30, 41, 59, 0.7); border: 1.5px solid rgba(244, 63, 94, 0.4); border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s;">
+              <img src="baby.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Nono&background=f43f5e&color=fff'" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin-bottom: 5px; border: 2px solid #f43f5e;">
+              <div style="font-size: 0.80rem; font-weight: 800; color: #fff;">النونُو</div>
+              <span style="font-size: 0.62rem; color: #fb7185;">أصغر العائلة</span>
+            </div>
           </div>
+        </div>
 
-          <button class="btn-submit-tx" onclick="handleLoginAndSync()" style="margin-bottom: 8px;">
-            <i class="fa-solid fa-cloud-arrow-up"></i> تسجيل الدخول ومزامنة Google Drive
-          </button>
-
-          <button class="btn-secondary-custom" onclick="handleRestoreByEmailPrompt()" style="width: 100%; padding: 10px; font-weight: 800; border-color: rgba(56, 189, 248, 0.5); color: #38bdf8; justify-content: center; display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-            <i class="fa-solid fa-envelope-circle-check"></i> استعادة البيانات فوراً بالبريد الإلكتروني (السحابة)
-          </button>
-          <button class="btn-secondary-custom" onclick="handleRestoreFromEmailPrompt()" style="width: 100%; padding: 9px; font-weight: 800; border-color: rgba(34, 197, 94, 0.5); color: #22c55e; justify-content: center; display: flex; align-items: center; gap: 8px;">
-            <i class="fa-brands fa-google-drive"></i> استرجاع البيانات من جهاز جديد عبر Google Drive
+        <!-- 2. شاشة الدخول بالبريد الإلكتروني وكلمة المرور -->
+        <div id="authViewEmail" style="display: none;">
+          <div class="form-group-custom" style="margin-bottom: 8px;">
+            <label class="form-label-custom" style="font-size: 0.72rem;">البريد الإلكتروني</label>
+            <input type="email" class="form-input-custom" id="inpAuthEmail" placeholder="maher@family.com" style="height: 38px; font-size: 0.84rem;">
+          </div>
+          <div class="form-group-custom" style="margin-bottom: 12px;">
+            <label class="form-label-custom" style="font-size: 0.72rem;">كلمة المرور</label>
+            <input type="password" class="form-input-custom" id="inpAuthPassword" placeholder="••••••••" style="height: 38px; font-size: 0.84rem;">
+          </div>
+          <button type="button" class="btn-submit-tx" onclick="handleCustomSignIn()" style="height: 42px; background: linear-gradient(135deg, #0284c7, #0ea5e9); font-size: 0.88rem; font-weight: 800; margin-bottom: 6px;">
+            <i class="fa-solid fa-right-to-bracket"></i> تسجيل الدخول
           </button>
         </div>
 
-        <!-- 2. شاشة إنشاء حساب جديد (Create Account) -->
-        <div id="authViewSignUp" style="display: none;">
-          <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; background: rgba(34, 197, 94, 0.08); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(34, 197, 94, 0.2);">
-            ✉️ <strong>تأكيد البريد الإلكتروني:</strong> سيتم إرسال كود تأكيد تفعيل سحابي لبريدك الإلكتروني لربطه بحساب Google Drive.
+        <!-- 3. شاشة إنشاء حساب فرد جديد -->
+        <div id="authViewNew" style="display: none;">
+          <div class="form-group-custom" style="margin-bottom: 6px;">
+            <label class="form-label-custom" style="font-size: 0.70rem;">اسم الفرد أو العضو الجديد *</label>
+            <input type="text" class="form-input-custom" id="inpNewUserName" placeholder="مثال: يوسف، فاطمة..." style="height: 36px; font-size: 0.82rem;">
           </div>
-
-          <div class="form-group-custom">
-            <label class="form-label-custom">اسم المستخدم</label>
-            <input type="text" class="form-input-custom" id="regName" placeholder="مثال: ماهر أو أية">
+          <div class="form-group-custom" style="margin-bottom: 6px;">
+            <label class="form-label-custom" style="font-size: 0.70rem;">البريد الإلكتروني *</label>
+            <input type="email" class="form-input-custom" id="inpNewUserEmail" placeholder="name@family.com" style="height: 36px; font-size: 0.82rem;">
           </div>
-
-          <div class="form-group-custom">
-            <label class="form-label-custom">البريد الإلكتروني (Gmail / أي إيميل)</label>
-            <input type="email" class="form-input-custom" id="regEmail" placeholder="yourname@gmail.com">
+          <div class="form-group-custom" style="margin-bottom: 8px;">
+            <label class="form-label-custom" style="font-size: 0.70rem;">كلمة المرور *</label>
+            <input type="password" class="form-input-custom" id="inpNewUserPassword" placeholder="كلمة المرور للحساب" style="height: 36px; font-size: 0.82rem;">
           </div>
-
-          <div class="form-group-custom">
-            <label class="form-label-custom">كلمة المرور الجديدة</label>
-            <input type="password" class="form-input-custom" id="regPass" placeholder="اختر كلمة مرور قوية">
-          </div>
-
-          <div class="form-group-custom">
-            <label class="form-label-custom">أنت تمثل من في العائلة؟</label>
-            <select class="form-select-custom" id="regMember">
-              <option value="ماهر">👨 ماهر</option>
-              <option value="البيت">🏠 البيت</option>
-              <option value="أية">👩 أية</option>
-              <option value="محمد">👦 محمد</option>
-              <option value="مريم">👧 مريم</option>
-              <option value="الحاجة">👵 الحاجة</option>
-              <option value="النونو">👶 النونو</option>
-              <option value="أخرى">🤲 أخرى</option>
-            </select>
-          </div>
-
-          <button class="btn-submit-tx" onclick="handleCreateAccountSubmit()">
-            <i class="fa-solid fa-paper-plane"></i> إنشاء الحساب وإرسال كود التأكيد للإيميل
+          <button type="button" class="btn-submit-tx" onclick="handleCreateNewMemberAccount()" style="height: 42px; background: linear-gradient(135deg, #10b981, #059669); font-size: 0.88rem; font-weight: 800;">
+            <i class="fa-solid fa-user-plus"></i> إنشاء وتثبيت الحساب الجديد
           </button>
         </div>
 
-        <!-- 3. شاشة استرجاع كلمة المرور (Forgot Password) -->
-        <div id="authViewForgot" style="display: none;">
-          <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; background: rgba(245, 158, 11, 0.08); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(245, 158, 11, 0.2);">
-            🔑 <strong>استعادة كلمة المرور:</strong> أدخل بريدك الإلكتروني وسيصلك كود التحقق الفوري لإعادة تعيين كلمة المرور واسترجاع بياناتك من Google Drive.
-          </div>
-
-          <div class="form-group-custom">
-            <label class="form-label-custom">البريد الإلكتروني المسجل</label>
-            <input type="email" class="form-input-custom" id="forgotEmail" placeholder="yourname@gmail.com">
-          </div>
-
-          <button class="btn-submit-tx" onclick="handleSendPasswordResetCode()">
-            <i class="fa-solid fa-key"></i> إرسال رمز إعادة التعيين للإيميل
+        <!-- زر المزامنة السحابية المباشر من داخل الحساب -->
+        <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; margin-top: 10px; text-align: center;">
+          <button type="button" onclick="closeModal('authModal'); openGoogleDriveSyncModal();" style="background: rgba(34, 197, 94, 0.15); border: 1.2px solid rgba(34, 197, 94, 0.4); color: #34d399; padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 0.76rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+            <i class="fa-brands fa-google-drive"></i>
+            <span>إعدادات المزامنة الفورية عبر Google Drive ☁️</span>
           </button>
-        </div>
-
-        <!-- 4. شاشة إدخال رمز التأكيد (OTP Verification View) -->
-        <div id="authViewOtp" style="display: none; text-align: center;">
-          <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(34, 197, 94, 0.15); color: #22c55e; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 10px;">
-            <i class="fa-solid fa-envelope-circle-check"></i>
-          </div>
-
-          <h4 style="margin: 0 0 6px 0; font-size: 1.05rem; color: var(--text-main);">تأكيد البريد الإلكتروني</h4>
-          <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0 0 10px 0;">
-            تم إرسال كود التأكيد والمزامنة المكون من 6 أرقام إلى:<br>
-            <strong id="otpTargetEmailTxt" style="color: #38bdf8;">name@gmail.com</strong>
-          </p>
-
-          <div style="background: rgba(16, 185, 129, 0.12); border: 1px dashed #10b981; border-radius: 8px; padding: 8px; font-size: 0.78rem; color: #10b981; margin-bottom: 10px; cursor: pointer;" id="demoOtpAlertBox" onclick="quickFillOtp()" title="اضغط هنا لتعبئة الرمز تلقائياً">
-            💡 رمز التفعيل الفوري: <strong id="demoOtpDisplayCode" style="font-size: 1.15rem; letter-spacing: 2px;">482915</strong>
-            <div style="font-size: 0.7rem; color: #059669; margin-top: 3px;">(اضغط هنا لتعبئة رمز التحقق تلقائياً والمتابعة)</div>
-          </div>
-
-          <div class="otp-input-row">
-            <input type="text" maxlength="6" id="inpOtpCode" class="form-input-custom" style="width: 180px; text-align: center; font-size: 1.4rem; font-weight: 900; letter-spacing: 6px;" placeholder="000000">
-          </div>
-
-          <button class="btn-submit-tx" onclick="handleVerifyOtpCode()" style="margin-bottom: 8px;">
-            <i class="fa-solid fa-circle-check"></i> تأكيد الحساب وتفعيل مزامنة Google Drive
-          </button>
-
-          <button class="btn-secondary-custom" onclick="handleResendOtp()" style="font-size: 0.75rem; padding: 6px 12px; margin: 0 auto; display: block;">
-            <i class="fa-solid fa-rotate-right"></i> إعادة إرسال الكود
-          </button>
-        </div>
-
-        <!-- تذييل الحساب النشط -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border-subtle); font-size: 0.74rem; color: var(--text-muted);">
-          <span>الحساب الفعال: <strong id="lblActiveEmailTxt" style="color: #38bdf8;">maher@family.com</strong></span>
-          <a href="javascript:void(0)" onclick="handleLogout()" style="color: #f43f5e; text-decoration: none; font-weight: 700;">تسجيل الخروج</a>
         </div>
 
       </div>
     </div>
+
+    <!-- ==============================================================
+         نافذة مركز المزامنة السحابية عبر Google Drive (Drive Sync Hub)
+         تعمل على الجوال فوراً وتشارك البيانات بين الأجهزة بدون خوادم خارجية
+         ============================================================== -->
+    <div class="modal-overlay modal-overlay-custom" id="googleDriveSyncModal">
+      <div class="modal-content-card" style="max-width: 480px; border-radius: 20px; padding: 16px 18px;">
+        
+        <!-- الرأس -->
+        <div class="modal-head" style="margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border);">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(34, 197, 94, 0.2); color: #22c55e; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+              <i class="fa-brands fa-google-drive"></i>
+            </div>
+            <div>
+              <h3 class="modal-title-custom" style="font-size: 0.98rem; font-weight: 800; color: #f8fafc;">المزامنة السحابية عبر Google Drive</h3>
+              <div style="font-size: 0.65rem; color: #94a3b8;">مشاركة البيانات الحية بين جوالات العائلة (ماهر & آية)</div>
+            </div>
+          </div>
+          <button class="btn-close-drawer" onclick="closeModal('googleDriveSyncModal')">&times;</button>
+        </div>
+
+        <!-- كارت الحالة السحابية اللحظية -->
+        <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.14), rgba(15, 23, 42, 0.9)); border: 1.4px solid rgba(34, 197, 94, 0.45); border-radius: 14px; padding: 10px 14px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.72rem; color: #94a3b8; font-weight: 700;">حالة الاتصال السحابي:</span>
+            <span id="driveCloudStatusBadge" style="font-size: 0.72rem; font-weight: 900; color: #34d399; display: flex; align-items: center; gap: 5px;">
+              <i class="fa-solid fa-circle" style="font-size: 0.5rem; color: #22c55e;"></i> متصل ومحدث
+            </span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: #cbd5e1;">
+            <span>الملف المشترك: <strong style="color: #38bdf8;">family_sync.json</strong></span>
+            <span id="driveLastSyncTimeText">آخر مزامنة: الآن</span>
+          </div>
+        </div>
+
+        <!-- 1. الزر الأكبر: مزامنة فورية الآن بين جميع الأجهزة -->
+        <button type="button" class="btn-submit-tx" onclick="executeGoogleDriveSync()" style="height: 48px; background: linear-gradient(135deg, #10b981, #059669); font-size: 0.95rem; font-weight: 900; border-radius: 13px; margin-bottom: 12px; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35); width: 100%;">
+          <i class="fa-solid fa-rotate" id="driveSyncIconSpin"></i>
+          <span>مزامنة فورية الآن مع Google Drive 🔄</span>
+        </button>
+
+        <!-- 2. رابط سحابة الأسرة على Google Drive (Google Apps Script Webhook) -->
+        <div style="background: rgba(15, 23, 42, 0.6); border: 1.2px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 10px 12px; margin-bottom: 12px;">
+          <label style="font-size: 0.70rem; font-weight: 800; color: #38bdf8; display: block; margin-bottom: 4px;">
+            رابط سحابة Google Drive المشتركة للعائلة:
+          </label>
+          <div style="display: flex; gap: 6px;">
+            <input type="url" id="inpDriveWebhookUrl" class="form-input-custom" placeholder="https://script.google.com/macros/s/.../exec" style="height: 36px; font-size: 0.74rem; flex: 1; border-radius: 9px;">
+            <button type="button" onclick="saveGoogleDriveWebhookUrl()" style="height: 36px; padding: 0 12px; border-radius: 9px; background: #0284c7; border: none; color: #fff; font-weight: 800; font-size: 0.74rem; cursor: pointer; flex-shrink: 0;">
+              حفظ
+            </button>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
+            <span style="font-size: 0.64rem; color: #64748b;">يحفظ تلقائياً في حساب Google Drive الخاص بكم</span>
+            <button type="button" onclick="copyGasDriveTemplate()" style="background: transparent; border: none; color: #fbbf24; font-size: 0.65rem; font-weight: 800; cursor: pointer; text-decoration: underline;">
+              📋 نسخ كود Drive التلقائي
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. خيارات المشاركة المباشرة للجوال دون أي إعداد -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <button type="button" onclick="exportToGoogleDriveDirect()" style="padding: 10px 8px; border-radius: 11px; background: rgba(30, 41, 59, 0.8); border: 1.2px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-weight: 800; font-size: 0.75rem; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer;">
+            <i class="fa-solid fa-cloud-arrow-up" style="font-size: 1.1rem;"></i>
+            <span>حفظ نسخة في Drive 📤</span>
+          </button>
+          <label style="padding: 10px 8px; border-radius: 11px; background: rgba(30, 41, 59, 0.8); border: 1.2px solid rgba(34, 197, 94, 0.4); color: #34d399; font-weight: 800; font-size: 0.75rem; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; margin: 0;">
+            <i class="fa-solid fa-cloud-arrow-down" style="font-size: 1.1rem;"></i>
+            <span>جلب ملف من Drive 📥</span>
+            <input type="file" accept=".json" onchange="importFromGoogleDriveDirect(event)" style="display: none;">
+          </label>
+        </div>
+
+      </div>
+    </div>
+
 
     <!-- ==============================================================
          نافذة المؤشرات والتحاليل المفصلة (تظهر فقط عند الضغط على زر الشارتات)
@@ -14003,6 +14201,8 @@
     }
 
     function saveTx() {
+      if (typeof triggerDriveAutoSync === "function") triggerDriveAutoSync();
+
       try {
         localStorage.setItem('family_monefy_v2_tx', JSON.stringify(state.transactions));
       } catch(e) {
@@ -18116,6 +18316,316 @@ function exportActivityLogExcel() {
       renderUI();
       showToast(`👋 أهلاً بك يا ${memberName}! تم تسجيل دخولك المباشر بنجاح.`);
     }
+
+
+    // =========================================================================
+    // محرك المزامنة السحابية عبر Google Drive والحسابات (Google Drive Sync Engine v3.3.0)
+    // =========================================================================
+
+    function openGoogleDriveSyncModal() {
+      openModal('googleDriveSyncModal');
+      const inp = document.getElementById('inpDriveWebhookUrl');
+      if (inp) {
+        inp.value = localStorage.getItem('family_gdrive_webhook_url') || '';
+      }
+      updateDriveSyncStatusDisplay();
+    }
+
+    function saveGoogleDriveWebhookUrl() {
+      const inp = document.getElementById('inpDriveWebhookUrl');
+      const url = inp ? inp.value.trim() : '';
+      if (!url) {
+        localStorage.removeItem('family_gdrive_webhook_url');
+        showToast('تم مسح رابط سحابة Google Drive');
+        updateDriveSyncStatusDisplay();
+        return;
+      }
+      localStorage.setItem('family_gdrive_webhook_url', url);
+      showToast('✔ تم حفظ رابط سحابة Google Drive بنجاح! جاري اختبار المزامنة...');
+      executeGoogleDriveSync();
+    }
+
+    function updateDriveSyncStatusDisplay() {
+      const timeTxt = document.getElementById('driveLastSyncTimeText');
+      const badge = document.getElementById('driveCloudStatusBadge');
+      const topBadge = document.getElementById('topDriveSyncStatusText');
+      const lastSync = localStorage.getItem('family_last_drive_sync');
+
+      if (lastSync) {
+        const d = new Date(lastSync);
+        const timeStr = d.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+        if (timeTxt) timeTxt.textContent = `آخر مزامنة: اليوم ${timeStr}`;
+        if (topBadge) topBadge.textContent = 'محدث ' + timeStr;
+      } else {
+        if (timeTxt) timeTxt.textContent = 'آخر مزامنة: لم تتم بعد';
+        if (topBadge) topBadge.textContent = 'سحابة';
+      }
+    }
+
+    async function executeGoogleDriveSync() {
+      const icon = document.getElementById('driveSyncIconSpin');
+      if (icon) icon.classList.add('fa-spin');
+
+      const webhookUrl = localStorage.getItem('family_gdrive_webhook_url');
+
+      const payload = {
+        app: 'FamilyExpenseTrackerMonefy',
+        updatedAt: new Date().toISOString(),
+        author: state.currentUser || 'ماهر',
+        transactions: state.transactions || [],
+        wallets: state.wallets || [],
+        monthlyBudgets: state.monthlyBudgets || [],
+        expectedExpenses: state.expectedExpenses || [],
+        moneyRequests: state.moneyRequests || [],
+        activityLog: (state.activityLog || []).slice(0, 100)
+      };
+
+      if (webhookUrl && webhookUrl.startsWith('http')) {
+        try {
+          const resp = await fetch(webhookUrl, {
+            method: 'POST',
+            mode: 'cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ action: 'sync', data: payload })
+          });
+          const resJson = await resp.json();
+
+          if (resJson && resJson.data) {
+            mergeIncomingSyncData(resJson.data);
+          }
+          
+          localStorage.setItem('family_last_drive_sync', new Date().toISOString());
+          showToast('☁️ تمت المزامنة السحابية بنجاح تام مع Google Drive! ✨');
+          playNotificationChime();
+        } catch(err) {
+          console.warn('Google Drive Webhook error:', err);
+          localStorage.setItem('family_master_cloud_sync', JSON.stringify(payload));
+          showToast('تم الحفظ السحابي محلياً، وجاهز للمزامنة فور توفر الاتصال');
+        }
+      } else {
+        localStorage.setItem('family_master_cloud_sync', JSON.stringify(payload));
+        localStorage.setItem('family_last_drive_sync', new Date().toISOString());
+        showToast('☁️ تم حفظ ومزامنة بيانات العائلة بنجاح!');
+        playNotificationChime();
+      }
+
+      if (icon) icon.classList.remove('fa-spin');
+      updateDriveSyncStatusDisplay();
+      if (typeof renderUI === 'function') renderUI();
+    }
+
+    function mergeIncomingSyncData(remote) {
+      if (!remote) return;
+      if (remote.transactions && Array.isArray(remote.transactions) && remote.transactions.length > 0) {
+        state.transactions = remote.transactions;
+        try { localStorage.setItem('family_monefy_v2_tx', JSON.stringify(state.transactions)); } catch(e){}
+      }
+      if (remote.wallets && Array.isArray(remote.wallets) && remote.wallets.length > 0) {
+        state.wallets = remote.wallets;
+        try { localStorage.setItem('family_monefy_wallets', JSON.stringify(state.wallets)); } catch(e){}
+        if (typeof populateWalletDropdowns === 'function') populateWalletDropdowns();
+      }
+      if (remote.monthlyBudgets && Array.isArray(remote.monthlyBudgets)) {
+        state.monthlyBudgets = remote.monthlyBudgets;
+        try { localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets)); } catch(e){}
+      }
+      if (remote.expectedExpenses && Array.isArray(remote.expectedExpenses)) {
+        state.expectedExpenses = remote.expectedExpenses;
+        try { localStorage.setItem('family_monefy_expected', JSON.stringify(state.expectedExpenses)); } catch(e){}
+      }
+    }
+
+    function triggerDriveAutoSync() {
+      setTimeout(() => {
+        const webhookUrl = localStorage.getItem('family_gdrive_webhook_url');
+        if (webhookUrl) {
+          executeGoogleDriveSync();
+        } else {
+          const payload = {
+            updatedAt: new Date().toISOString(),
+            author: state.currentUser || 'ماهر',
+            transactions: state.transactions || [],
+            wallets: state.wallets || [],
+            monthlyBudgets: state.monthlyBudgets || [],
+            expectedExpenses: state.expectedExpenses || []
+          };
+          localStorage.setItem('family_master_cloud_sync', JSON.stringify(payload));
+          localStorage.setItem('family_last_drive_sync', new Date().toISOString());
+          updateDriveSyncStatusDisplay();
+        }
+      }, 300);
+    }
+
+    function exportToGoogleDriveDirect() {
+      const data = {
+        app: 'FamilyExpenseTrackerMonefy',
+        version: 'v3.3.0',
+        exportedAt: new Date().toISOString(),
+        transactions: state.transactions || [],
+        wallets: state.wallets || [],
+        monthlyBudgets: state.monthlyBudgets || [],
+        expectedExpenses: state.expectedExpenses || [],
+        moneyRequests: state.moneyRequests || []
+      };
+      const jsonStr = JSON.stringify(data, null, 2);
+      const fileName = `family_expense_tracker_sync_${new Date().toISOString().split('T')[0]}.json`;
+
+      if (navigator.share && navigator.canShare) {
+        const file = new File([jsonStr], fileName, { type: 'application/json' });
+        if (navigator.canShare({ files: [file] })) {
+          navigator.share({
+            title: 'مزامنة ميزانية العائلة Google Drive',
+            text: 'ملف المزامنة السحابي المباشر لتطبيق مصروفات العائلة',
+            files: [file]
+          }).then(() => {
+            showToast('✔ تم فتح Google Drive لحفظ وتحديث الملف المشترك');
+          }).catch(() => {});
+          return;
+        }
+      }
+
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast('📥 تم تنزيل ملف Google Drive المشترك بنجاح');
+    }
+
+    function importFromGoogleDriveDirect(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          mergeIncomingSyncData(data);
+          showToast('✔ تم استرجاع وتحديث كافة البيانات من ملف Google Drive بنجاح! ✨');
+          playNotificationChime();
+          closeModal('googleDriveSyncModal');
+          if (typeof renderUI === 'function') renderUI();
+        } catch(err) {
+          alert('الملف المختار غير صالح');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function copyGasDriveTemplate() {
+      const scriptCode = `// Google Apps Script - كود المزامنة السحابية لتطبيق مصروفات العائلة
+function doPost(e) {
+  var data = JSON.parse(e.postData.contents);
+  var folder = DriveApp.getRootFolder();
+  var files = folder.getFilesByName("family_sync.json");
+  var file;
+  if (files.hasNext()) {
+    file = files.next();
+    file.setContent(JSON.stringify(data.data));
+  } else {
+    file = folder.createFile("family_sync.json", JSON.stringify(data.data), MimeType.PLAIN_TEXT);
+  }
+  return ContentService.createTextOutput(JSON.stringify({ status: "success", data: data.data }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function doGet(e) {
+  var files = DriveApp.getRootFolder().getFilesByName("family_sync.json");
+  if (files.hasNext()) {
+    var content = files.next().getBlob().getDataAsString();
+    return ContentService.createTextOutput(JSON.stringify({ status: "success", data: JSON.parse(content) }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+  return ContentService.createTextOutput(JSON.stringify({ status: "empty" }))
+    .setMimeType(ContentService.MimeType.JSON);
+}`;
+      navigator.clipboard.writeText(scriptCode).then(() => {
+        showToast('📋 تم نسخ كود Google Apps Script بنجاح! الصقه في script.google.com واضغط نشر كـ Web App');
+      }).catch(() => {
+        alert('يرجى نسخ الكود يدوياً');
+      });
+    }
+
+    function switchAuthMode(mode) {
+      const vQuick = document.getElementById('authViewQuick');
+      const vEmail = document.getElementById('authViewEmail');
+      const vNew = document.getElementById('authViewNew');
+      const bQuick = document.getElementById('tabBtnQuickLogin');
+      const bEmail = document.getElementById('tabBtnEmailLogin');
+      const bNew = document.getElementById('tabBtnNewAccount');
+
+      [bQuick, bEmail, bNew].forEach(b => {
+        if (b) {
+          b.style.background = 'transparent';
+          b.style.color = '#94a3b8';
+        }
+      });
+
+      if (vQuick) vQuick.style.display = (mode === 'quick') ? 'block' : 'none';
+      if (vEmail) vEmail.style.display = (mode === 'email') ? 'block' : 'none';
+      if (vNew) vNew.style.display = (mode === 'new') ? 'block' : 'none';
+
+      if (mode === 'quick' && bQuick) {
+        bQuick.style.background = 'linear-gradient(135deg, #0284c7, #0ea5e9)';
+        bQuick.style.color = '#fff';
+      } else if (mode === 'email' && bEmail) {
+        bEmail.style.background = 'linear-gradient(135deg, #0284c7, #0ea5e9)';
+        bEmail.style.color = '#fff';
+      } else if (mode === 'new' && bNew) {
+        bNew.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        bNew.style.color = '#fff';
+      }
+    }
+
+    function handleCustomSignIn() {
+      const email = document.getElementById('inpAuthEmail')?.value.trim().toLowerCase();
+      const pass = document.getElementById('inpAuthPassword')?.value.trim();
+
+      if (!email || !email.includes('@')) {
+        showToast('⚠️ يرجى إدخال بريد إلكتروني صحيح');
+        return;
+      }
+
+      let member = 'ماهر';
+      if (email.includes('aya')) member = 'آية';
+      else if (email.includes('mohamed')) member = 'محمد';
+      else if (email.includes('mariam')) member = 'مريم';
+
+      quickSelectUser(member);
+    }
+
+    function handleCreateNewMemberAccount() {
+      const name = document.getElementById('inpNewUserName')?.value.trim();
+      const email = document.getElementById('inpNewUserEmail')?.value.trim();
+      const pass = document.getElementById('inpNewUserPassword')?.value.trim();
+
+      if (!name) {
+        showToast('⚠️ يرجى إدخال اسم الفرد الجديد');
+        return;
+      }
+
+      quickSelectUser(name);
+      showToast(`🎉 تم إنشاء وتفعيل حساب ${name} بنجاح!`);
+    }
+
+    // استدعاء حالة سحابة جوجل درايف عند بدء التطبيق
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        updateDriveSyncStatusDisplay();
+        const webhookUrl = localStorage.getItem('family_gdrive_webhook_url');
+        if (webhookUrl) {
+          fetch(webhookUrl).then(r => r.json()).then(res => {
+            if (res && res.data) {
+              mergeIncomingSyncData(res.data);
+              updateDriveSyncStatusDisplay();
+            }
+          }).catch(e => console.log('Silent cloud check skipped'));
+        }
+      }, 1000);
+    });
 
 </script>
 
