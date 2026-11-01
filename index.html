@@ -8324,7 +8324,7 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">مصروفات العيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
-            <span class="version-badge">v3.5.0</span>
+            <span class="version-badge">v3.5.1</span>
           </div>
         </div>
 
@@ -8352,8 +8352,6 @@
 
       <!-- السطر 2: شريط الأدوات الرئيسي المتناسق الفاخر -->
       
-      <!-- تم نقل أدوات البورصة والذهب والحاسبة والضبط إلى صفحة التحليلات لتوفير مساحة نقية ومريحة بالجوال -->
-      <div style="display: none;" id="legacyHeaderToolsAnchor"></div>
       <div class="avatars-container" id="avatarsContainer">
         <!-- الكل (إجمالي كافة المصروفات) -->
         <div class="avatar-card" data-member="الكل" onclick="selectMember('الكل')" title="كافة مصروفات العائلة (إجمالي عام لكافة البنود والأفراد)">
@@ -9128,13 +9126,71 @@
               <input type="text" class="form-input-custom" id="inpReqReason" placeholder="مثال: شراء ملابس للأولاد، مستلزمات الصيدلية، متطلبات للمنزل..." style="height: 36px; font-size: 0.80rem;">
             </div>
 
-            <!-- قسم التوجيه التقديري للمبلغ -->
-            <div class="req-alloc-block" id="reqAllocationsBlock" style="background: rgba(15, 23, 42, 0.65); border: 1.4px solid rgba(236, 72, 153, 0.25); border-radius: 12px; padding: 10px; margin-bottom: 10px;">
+            <!-- قسم التوجيه والتوزيع التقديري للمبلغ على البنود والأفراد مع المطابقة التامة -->
+            <div class="req-alloc-block" id="reqAllocationsBlock" style="background: rgba(15, 23, 42, 0.75); border: 1.4px solid rgba(236, 72, 153, 0.35); border-radius: 14px; padding: 12px; margin-bottom: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.3);">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                <span style="font-size: 0.74rem; font-weight: 800; color: #cbd5e1;"><i class="fa-solid fa-arrows-split-up-and-left" style="color: #ec4899;"></i> توجيه المبلغ التقديري:</span>
-                <span id="allocMatchStatus" style="font-size: 0.68rem; font-weight: 800; color: #34d399;">✔ متطابق</span>
+                <span style="font-size: 0.78rem; font-weight: 800; color: #f472b6; display: flex; align-items: center; gap: 5px;">
+                  <i class="fa-solid fa-arrows-split-up-and-left"></i> توزيع وتوجيه المبلغ المطلوب:
+                </span>
+                <span id="allocMatchStatus" style="font-size: 0.70rem; font-weight: 900; padding: 2px 8px; border-radius: 8px; background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); transition: all 0.25s ease;">
+                  ✔ متطابق 100%
+                </span>
               </div>
-              <div id="allocRowsContainer" style="display: flex; flex-direction: column; gap: 4px;"></div>
+              
+              <!-- شريط المطابقة الرقمية والنسبة المئوية -->
+              <div id="reqAllocSummaryTxt" style="font-size: 0.70rem; font-weight: 700; color: #94a3b8; margin-bottom: 6px; direction: rtl;">
+                المبلغ المطلوب: 0.00 ج.م | الموزع: 0.00 ج.م (0%)
+              </div>
+
+              <!-- شريط التقدم اللحظي الملون -->
+              <div style="height: 6px; width: 100%; background: rgba(255, 255, 255, 0.08); border-radius: 6px; overflow: hidden; margin-bottom: 10px;">
+                <div id="reqAllocProgressBar" style="height: 100%; width: 100%; background: #10b981; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+              </div>
+
+              <!-- حاوية أسطر التوزيعات -->
+              <div id="reqAllocationsRowsContainer" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px;"></div>
+
+              <!-- زر إضافة تخصيص جديد -->
+              <button type="button" class="btn-wallet-action-pill" onclick="addRequestAllocationRow()" style="width: 100%; height: 36px; border-radius: 10px; font-size: 0.76rem; font-weight: 800; background: rgba(236, 72, 153, 0.12); border: 1.2px dashed rgba(236, 72, 153, 0.5); color: #f472b6; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <i class="fa-solid fa-plus-circle"></i>
+                <span>+ إضافة تخصيص لبند / شخص آخر</span>
+              </button>
+            </div>
+
+            <!-- إرفاق صورة مستند أو فاتورة بالطلب (التقاط كاميرا أو رفع ملف) -->
+            <div class="form-group-custom" style="margin-bottom: 12px; background: rgba(15, 23, 42, 0.55); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <label class="form-label-custom" style="font-size: 0.76rem; font-weight: 800; color: #cbd5e1; margin: 0; display: flex; align-items: center; gap: 5px;">
+                  <i class="fa-solid fa-paperclip" style="color: #ec4899;"></i> إرفاق فاتورة / مستند أو صورة (اختياري):
+                </label>
+                <span id="reqPhotoStatusBadge" style="font-size: 0.66rem; font-weight: 800; color: #34d399; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); padding: 1px 7px; border-radius: 6px; display: none;">
+                  <i class="fa-solid fa-check"></i> تم إرفاق الملف
+                </span>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                <!-- زر 1: التقاط صورة مباشرة عبر الكاميرا -->
+                <label for="inpReqCameraPhoto" class="btn-wallet-action-pill" style="height: 38px; padding: 0 12px; border-radius: 10px; font-size: 0.76rem; font-weight: 800; background: rgba(236, 72, 153, 0.16); border: 1.2px solid rgba(236, 72, 153, 0.45); color: #f472b6; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+                  <i class="fa-solid fa-camera"></i>
+                  <span>التقاط صورة بالكاميرا 📷</span>
+                </label>
+                <input type="file" id="inpReqCameraPhoto" accept="image/*" capture="environment" style="display: none;" onchange="handleRequestPhotoUpload(event)">
+
+                <!-- زر 2: رفع مستند أو صورة من المعرض والملفات -->
+                <label for="inpReqDocFile" class="btn-wallet-action-pill" style="height: 38px; padding: 0 12px; border-radius: 10px; font-size: 0.76rem; font-weight: 800; background: rgba(56, 189, 248, 0.16); border: 1.2px solid rgba(56, 189, 248, 0.45); color: #38bdf8; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+                  <i class="fa-solid fa-file-arrow-up"></i>
+                  <span>رفع مستند / ملف 📁</span>
+                </label>
+                <input type="file" id="inpReqDocFile" accept="image/*,.pdf" style="display: none;" onchange="handleRequestPhotoUpload(event)">
+              </div>
+
+              <!-- معاينة الصورة أو المستند المرفق وزر الحذف -->
+              <div id="reqPhotoPreviewContainer" style="display: none; margin-top: 8px; align-items: center; gap: 10px; background: rgba(0,0,0,0.25); padding: 6px 10px; border-radius: 8px;">
+                <img id="reqPhotoPreviewImg" src="" alt="المستند" style="width: 44px; height: 44px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2);">
+                <span id="reqPhotoFileName" style="font-size: 0.72rem; color: #cbd5e1; flex: 1; word-break: break-all;">مستند مرفق</span>
+                <button type="button" onclick="removeRequestPhoto()" class="btn-item-action btn-item-reject" style="height: 28px; padding: 0 8px; font-size: 0.68rem; border-radius: 6px; cursor: pointer;">
+                  <i class="fa-solid fa-trash-can"></i> حذف
+                </button>
+              </div>
             </div>
 
             <button type="button" class="btn-submit-tx" onclick="submitMoneyRequest()" style="background: linear-gradient(135deg, #ec4899, #be185d); height: 44px; font-size: 0.92rem; font-weight: 900; margin: 0; box-shadow: 0 4px 14px rgba(236, 72, 153, 0.35); border-radius: 12px; width: 100%;">
@@ -14248,10 +14304,14 @@
     function clearOpsFilter() {
       const searchInp = document.getElementById('opsSearchInput');
       if (searchInp) searchInp.value = '';
+      const catSel = document.getElementById('opsFilterCategory');
+      if (catSel) catSel.value = 'all';
+      const memSel = document.getElementById('opsFilterMember');
+      if (memSel) memSel.value = 'all';
       setOpsTypeFilter('all');
       filterOperationsList();
       if (typeof renderActivityLogUI === 'function') renderActivityLogUI();
-      showToast('تمت إعادة ضبط فلاتر العمليات');
+      showToast('تمت إعادة ضبط فلاتر العمليات بالكامل');
     }
 
     function setOpsTypeFilter(type, btn) {
@@ -14286,6 +14346,34 @@
         list = list.filter(t => t.type === 'expense');
       } else if (opsTypeFilterState === 'income') {
         list = list.filter(t => t.type === 'income');
+      }
+
+      // تطبيق فلترة التصنيف في صفحة العمليات (Category Filter)
+      const catFilter = document.getElementById('opsFilterCategory')?.value || 'all';
+      if (catFilter && catFilter !== 'all') {
+        list = list.filter(t => {
+          const c = (t.category || '').toLowerCase();
+          if (catFilter === 'food') return c === 'food' || c === 'supermarket';
+          if (catFilter === 'daily') return c === 'daily' || c === 'cafe';
+          if (catFilter === 'bills') return c === 'bills' || c === 'utilities';
+          if (catFilter === 'transport') return c === 'transport' || c === 'fuel';
+          if (catFilter === 'house') return c === 'house' || c === 'home';
+          if (catFilter === 'health') return c === 'health' || c === 'medical' || c === 'pharmacy';
+          if (catFilter === 'clothes') return c === 'clothes' || c === 'shopping';
+          if (catFilter === 'education') return c === 'education' || c === 'school';
+          if (catFilter === 'other') return c === 'other' || c === 'others' || c === 'gifts';
+          return c === catFilter;
+        });
+      }
+
+      // تطبيق فلترة العضو في صفحة العمليات (Member Filter)
+      const memFilter = document.getElementById('opsFilterMember')?.value || 'all';
+      if (memFilter && memFilter !== 'all') {
+        list = list.filter(t => {
+          if (memFilter === 'البيت') return t.member === 'البيت' || t.member === 'العائلة' || !t.member;
+          if (memFilter === 'آية' || memFilter === 'أية') return t.member === 'آية' || t.member === 'أية';
+          return t.member === memFilter;
+        });
       }
 
       // تطبيق نص البحث إذا وجد
@@ -14919,27 +15007,112 @@
     function updateRequestAllocationBalances() {
       const totalRequested = parseFloat(document.getElementById('inpReqAmount')?.value || 0) || 0;
       let allocatedSum = 0;
-      currentRequestAllocations.forEach(a => allocatedSum += (parseFloat(a.amount) || 0));
+      (currentRequestAllocations || []).forEach(a => allocatedSum += (parseFloat(a.amount) || 0));
       const remaining = totalRequested - allocatedSum;
 
+      const statusBadge = document.getElementById('allocMatchStatus');
       const summaryEl = document.getElementById('reqAllocSummaryTxt');
       const progressEl = document.getElementById('reqAllocProgressBar');
 
-      if (summaryEl) {
-        if (remaining === 0) {
-          summaryEl.innerHTML = `<span style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> متطابق 100% (${formatMoney(totalRequested)})</span>`;
+      const pct = totalRequested > 0 ? ((allocatedSum / totalRequested) * 100).toFixed(0) : 0;
+
+      if (statusBadge) {
+        if (totalRequested <= 0) {
+          statusBadge.innerHTML = '<span style="color: #94a3b8;"><i class="fa-solid fa-pen"></i> حدد المبلغ أولاً</span>';
+          statusBadge.style.background = 'rgba(255,255,255,0.06)';
+          statusBadge.style.borderColor = 'rgba(255,255,255,0.15)';
+        } else if (Math.abs(remaining) < 0.01) {
+          statusBadge.innerHTML = `<span style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> ✔ متطابق 100% (${formatMoney(totalRequested)})</span>`;
+          statusBadge.style.background = 'rgba(16, 185, 129, 0.16)';
+          statusBadge.style.borderColor = 'rgba(16, 185, 129, 0.45)';
         } else if (remaining > 0) {
-          summaryEl.innerHTML = `<span style="color: #fbbf24;"><i class="fa-solid fa-triangle-exclamation"></i> المتبقي غير موزع: ${formatMoney(remaining)}</span>`;
+          statusBadge.innerHTML = `<span style="color: #fbbf24;"><i class="fa-solid fa-triangle-exclamation"></i> ⚠️ متبقي غير موزع: ${formatMoney(remaining)} (${pct}% / 100%)</span>`;
+          statusBadge.style.background = 'rgba(245, 158, 11, 0.16)';
+          statusBadge.style.borderColor = 'rgba(245, 158, 11, 0.45)';
         } else {
-          summaryEl.innerHTML = `<span style="color: #f43f5e;"><i class="fa-solid fa-circle-xmark"></i> تجاوز للمبلغ بـ: ${formatMoney(Math.abs(remaining))}</span>`;
+          statusBadge.innerHTML = `<span style="color: #f43f5e;"><i class="fa-solid fa-circle-xmark"></i> ❌ تجاوز للمطلوب بـ: ${formatMoney(Math.abs(remaining))} (${pct}% / 100%)</span>`;
+          statusBadge.style.background = 'rgba(244, 63, 94, 0.16)';
+          statusBadge.style.borderColor = 'rgba(244, 63, 94, 0.45)';
         }
       }
 
-      if (progressEl) {
-        const pct = totalRequested > 0 ? Math.min(100, (allocatedSum / totalRequested) * 100) : 0;
-        progressEl.style.width = pct + '%';
-        progressEl.style.background = (remaining < 0) ? '#f43f5e' : ((remaining === 0) ? '#10b981' : '#fbbf24');
+      if (summaryEl) {
+        summaryEl.innerHTML = `المبلغ المطلوب: <strong>${formatMoney(totalRequested)}</strong> | الموزع: <strong>${formatMoney(allocatedSum)}</strong> (${pct}%)`;
       }
+
+      if (progressEl) {
+        const barPct = totalRequested > 0 ? Math.min(100, Math.max(0, (allocatedSum / totalRequested) * 100)) : 0;
+        progressEl.style.width = barPct + '%';
+        progressEl.style.background = (remaining < -0.01) ? '#f43f5e' : (Math.abs(remaining) < 0.01 ? '#10b981' : '#fbbf24');
+      }
+    }
+
+    // إدارة التقاط ورفع صور وفواتير طلب المصروف
+    function handleRequestPhotoUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        if (file.type && file.type.startsWith('image/')) {
+          const img = new Image();
+          img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const maxDim = 600;
+            let w = img.width;
+            let h = img.height;
+            if (w > h && w > maxDim) {
+              h = Math.round((h * maxDim) / w);
+              w = maxDim;
+            } else if (h > maxDim) {
+              w = Math.round((w * maxDim) / h);
+              h = maxDim;
+            }
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            const compressed = canvas.toDataURL('image/jpeg', 0.82);
+
+            state.pendingRequestPhotoDataUri = compressed;
+
+            const previewImg = document.getElementById('reqPhotoPreviewImg');
+            const previewCont = document.getElementById('reqPhotoPreviewContainer');
+            const badge = document.getElementById('reqPhotoStatusBadge');
+            const fileNameEl = document.getElementById('reqPhotoFileName');
+
+            if (previewImg) previewImg.src = compressed;
+            if (previewCont) previewCont.style.display = 'flex';
+            if (badge) badge.style.display = 'inline-flex';
+            if (fileNameEl) fileNameEl.textContent = file.name || 'صورة ملتقطة بالكاميرا';
+            showToast('📸 تم تجهيز صورة المستند للطلب بنجاح');
+          };
+          img.src = e.target.result;
+        } else {
+          // ملف مستند PDF أو غيره
+          state.pendingRequestPhotoDataUri = e.target.result;
+          const previewCont = document.getElementById('reqPhotoPreviewContainer');
+          const badge = document.getElementById('reqPhotoStatusBadge');
+          const fileNameEl = document.getElementById('reqPhotoFileName');
+          if (previewCont) previewCont.style.display = 'flex';
+          if (badge) badge.style.display = 'inline-flex';
+          if (fileNameEl) fileNameEl.textContent = file.name || 'مستند مرفق';
+          showToast('📄 تم إرفاق المستند بنجاح');
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeRequestPhoto() {
+      state.pendingRequestPhotoDataUri = null;
+      const previewCont = document.getElementById('reqPhotoPreviewContainer');
+      const badge = document.getElementById('reqPhotoStatusBadge');
+      const camInp = document.getElementById('inpReqCameraPhoto');
+      const docInp = document.getElementById('inpReqDocFile');
+      if (previewCont) previewCont.style.display = 'none';
+      if (badge) badge.style.display = 'none';
+      if (camInp) camInp.value = '';
+      if (docInp) docInp.value = '';
     }
 
     function renderRequestAllocations() {
@@ -15115,6 +15288,7 @@
         date: reqDate,
         category: allocations[0] ? allocations[0].category : 'others',
         allocations: allocations.length > 0 ? allocations : [{ amount: amount, category: 'others', member: member }],
+        photo: state.pendingRequestPhotoDataUri || null,
         status: 'pending',
         createdBy: member,
         timestamp: new Date().toLocaleString('ar-EG')
@@ -15125,6 +15299,7 @@
 
       if (amtInp) amtInp.value = '';
       if (rsnInp) rsnInp.value = '';
+      removeRequestPhoto();
       currentRequestAllocations = [{ amount: 0, category: 'daily', member: 'أية' }];
       renderRequestAllocations();
 
@@ -15215,6 +15390,14 @@
               <i class="fa-regular fa-calendar-check"></i> تاريخ الحاجة: ${req.date || 'اليوم'}
             </span>
           </div>
+
+          ${req.photo ? `
+            <div style="margin: 5px 0 2px;">
+              <a href="${req.photo}" target="_blank" download="request-doc-${req.id}" style="display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 7px; background: rgba(56, 189, 248, 0.16); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; font-size: 0.72rem; font-weight: 800; text-decoration: none;">
+                <i class="fa-solid fa-paperclip"></i> عرض المستند / الفاتورة المرفقة
+              </a>
+            </div>
+          ` : ''}
 
           <div class="item-entry-meta">
             <span><i class="fa-regular fa-clock"></i> تم الطلب: ${req.timestamp || ''}</span>
@@ -19247,7 +19430,7 @@ function doGet(e) {
       const data = {
         app: 'FamilyExpenseTrackerMonefy',
         account: GDRIVE_CONFIG.targetAccount,
-        version: 'v3.5.0',
+        version: 'v3.5.1',
         exportedAt: new Date().toISOString(),
         transactions: state.transactions || [],
         wallets: state.wallets || [],
