@@ -5424,7 +5424,6 @@
     .cat-label-text {
       font-size: clamp(0.68rem, 2.3vw, 0.8rem) !important;
       font-weight: 800 !important;
-      color: #f8fafc !important;
       text-align: center !important;
       margin-bottom: 4px !important;
       white-space: nowrap !important;
@@ -7870,6 +7869,23 @@
     body.light-theme .flow-amount.inflow-color { color: #047857 !important; }
     .flow-amount.outflow-color { color: #f87171 !important; }
     body.light-theme .flow-amount.outflow-color { color: #b91c1c !important; }
+
+    /* تباين اسم التصنيف في الوضع الفاتح والداكن بأعلى درجات الوضوح */
+    body.light-theme .cat-label-text,
+    body.light-theme .cat-card .cat-label-text,
+    body.light-theme [class*="cat-"] .cat-label-text {
+      color: #0f172a !important;
+      font-weight: 800 !important;
+      text-shadow: none !important;
+    }
+
+    body:not(.light-theme) .cat-label-text,
+    body:not(.light-theme) .cat-card .cat-label-text,
+    body.dark-theme .cat-label-text {
+      color: #f8fafc !important;
+      font-weight: 800 !important;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7) !important;
+    }
 </style>
 
   <script>
@@ -8224,7 +8240,6 @@
       font-family: inherit !important;
       font-size: 0.84rem !important;
       font-weight: 800 !important;
-      color: #f8fafc !important;
       margin: 2px 0 !important;
       white-space: nowrap !important;
       overflow: hidden !important;
@@ -8554,37 +8569,38 @@
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
     }
 
-    /* شبكة بنود المصروفات الاحترافية المعتمدة (9 بنود 3×3) تملأ الشاشة بدقة هندسية دون فراغات نهائياً */
+    /* شبكة بنود المصروفات الاحترافية المعتمدة (9 بنود 3×3) بأبعاد متناسقة وهندسة دقيقة تملأ المساحة بتناغم */
     .categories-monefy-grid, #catGrid {
-      flex: 1 1 0% !important;
+      flex: 1 1 auto !important;
       display: grid !important;
       grid-template-columns: repeat(3, 1fr) !important;
-      grid-template-rows: repeat(3, 1fr) !important;
-      gap: 8px !important;
-      width: calc(100% - 8px) !important;
-      margin: 2px 4px 4px !important;
+      grid-template-rows: repeat(3, minmax(104px, 126px)) !important;
+      align-content: space-evenly !important;
+      gap: 7px !important;
+      width: calc(100% - 10px) !important;
+      margin: 3px 5px 6px !important;
       padding: 0 !important;
       box-sizing: border-box !important;
-      height: 100% !important;
-      min-height: 0 !important;
     }
 
     .cat-card {
       height: 100% !important;
+      max-height: 126px !important;
       min-height: 0 !important;
       box-sizing: border-box !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
-      justify-content: space-between !important;
-      padding: clamp(6px, 1.2vh, 10px) 4px clamp(5px, 1vh, 8px) !important;
-      border-radius: 17px !important;
+      justify-content: center !important;
+      gap: 3px !important;
+      padding: 7px 4px 6px !important;
+      border-radius: 16px !important;
       overflow: hidden !important;
-      border-width: 1.8px !important;
+      border-width: 1.6px !important;
       border-style: solid !important;
-      background: rgba(17, 24, 39, 0.92) !important;
-      border-color: rgba(255, 255, 255, 0.08) !important;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+      background: linear-gradient(155deg, rgba(30, 41, 59, 0.90) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+      border-color: rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
       transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, box-shadow 0.2s ease !important;
       position: relative !important;
     }
@@ -8595,28 +8611,30 @@
 
     body.light-theme .cat-card {
       height: 100% !important;
+      max-height: 126px !important;
       min-height: 0 !important;
       box-sizing: border-box !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
-      justify-content: space-between !important;
-      padding: clamp(6px, 1.2vh, 10px) 4px clamp(5px, 1vh, 8px) !important;
-      border-radius: 17px !important;
+      justify-content: center !important;
+      gap: 3px !important;
+      padding: 7px 4px 6px !important;
+      border-radius: 16px !important;
       overflow: hidden !important;
-      border-width: 1.8px !important;
+      border-width: 1.6px !important;
       border-style: solid !important;
       background: #ffffff !important;
       border-color: #cbd5e1 !important;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06) !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04) !important;
     }
 
     .cat-icon-bubble {
-      width: clamp(56px, 15vw, 68px) !important;
-      height: clamp(56px, 15vw, 68px) !important;
-      min-width: 56px !important;
-      min-height: 56px !important;
-      border-radius: 18px !important;
+      width: clamp(48px, 12.5vw, 54px) !important;
+      height: clamp(48px, 12.5vw, 54px) !important;
+      min-width: 48px !important;
+      min-height: 48px !important;
+      border-radius: 14px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -8628,7 +8646,7 @@
     }
 
     .cat-icon-bubble span {
-      font-size: clamp(2.4rem, 6.5vw, 2.9rem) !important;
+      font-size: clamp(2rem, 5.2vw, 2.35rem) !important;
       line-height: 1 !important;
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.45)) !important;
       transform: translateZ(0) !important;
@@ -8636,10 +8654,10 @@
 
     .cat-label-text {
       font-family: 'Alexandria', 'Cairo', system-ui, sans-serif !important;
-      font-size: clamp(0.85rem, 2.5vw, 0.98rem) !important;
+      font-size: clamp(0.82rem, 2.4vw, 0.92rem) !important;
       font-weight: 800 !important;
       text-align: center !important;
-      margin: 3px 0 2px !important;
+      margin: 2px 0 1px !important;
       width: 100% !important;
       line-height: 1.2 !important;
       white-space: nowrap !important;
@@ -8649,8 +8667,8 @@
 
     .cat-amount-pill {
       width: 95% !important;
-      padding: clamp(3px, 0.8vh, 6px) 4px !important;
-      border-radius: 11px !important;
+      padding: 3px 4px !important;
+      border-radius: 9px !important;
       text-align: center !important;
       direction: rtl !important;
       box-sizing: border-box !important;
@@ -8661,7 +8679,7 @@
 
     .cat-amount-pill span {
       font-family: 'Alexandria', 'Plus Jakarta Sans', system-ui, sans-serif !important;
-      font-size: clamp(1.05rem, 3.2vw, 1.25rem) !important;
+      font-size: clamp(0.98rem, 2.8vw, 1.15rem) !important;
       font-weight: 900 !important;
       line-height: 1.2 !important;
       white-space: nowrap !important;
@@ -8789,6 +8807,213 @@
     body.light-theme .kpi-three-card.card-balance .kpi-three-label,
     body.light-theme .kpi-three-card.card-balance .kpi-three-value {
       color: #0284c7 !important;
+    }
+
+
+    /* ================================================================
+       Executive Commitments & Debts KPI Cockpit (كروت الالتزامات والديون الفاخرة)
+       ================================================================ */
+    .expected-kpi-cockpit {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 8px !important;
+      margin: 4px 0 14px 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .exp-kpi-card {
+      position: relative;
+      border-radius: 14px;
+      padding: 10px 8px 8px 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: right;
+      direction: rtl;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+      user-select: none;
+      min-height: 96px;
+    }
+
+    .exp-kpi-card:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .exp-kpi-card:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* 1. Amber / Upcoming Bills */
+    .exp-kpi-card.exp-card-amber {
+      background: linear-gradient(145deg, rgba(245, 158, 11, 0.16) 0%, rgba(15, 23, 42, 0.92) 100%);
+      border: 1.5px solid rgba(245, 158, 11, 0.38);
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.12), inset 0 1px 0 rgba(251, 191, 36, 0.22);
+      color: #fbbf24;
+    }
+    .exp-kpi-card.exp-card-amber:hover {
+      border-color: rgba(245, 158, 11, 0.7);
+      box-shadow: 0 6px 18px rgba(245, 158, 11, 0.25);
+    }
+    .exp-kpi-card.exp-card-amber.active-filter {
+      border-color: #fbbf24 !important;
+      box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5), 0 8px 22px rgba(245, 158, 11, 0.35) !important;
+      background: linear-gradient(145deg, rgba(245, 158, 11, 0.3) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+    }
+
+    /* 2. Red / Debts */
+    .exp-kpi-card.exp-card-red {
+      background: linear-gradient(145deg, rgba(239, 68, 68, 0.16) 0%, rgba(15, 23, 42, 0.92) 100%);
+      border: 1.5px solid rgba(239, 68, 68, 0.38);
+      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.12), inset 0 1px 0 rgba(248, 113, 113, 0.22);
+      color: #f87171;
+    }
+    .exp-kpi-card.exp-card-red:hover {
+      border-color: rgba(239, 68, 68, 0.7);
+      box-shadow: 0 6px 18px rgba(239, 68, 68, 0.25);
+    }
+    .exp-kpi-card.exp-card-red.active-filter {
+      border-color: #f87171 !important;
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5), 0 8px 22px rgba(239, 68, 68, 0.35) !important;
+      background: linear-gradient(145deg, rgba(239, 68, 68, 0.3) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+    }
+
+    /* 3. Green / Paid Off */
+    .exp-kpi-card.exp-card-green {
+      background: linear-gradient(145deg, rgba(16, 185, 129, 0.16) 0%, rgba(15, 23, 42, 0.92) 100%);
+      border: 1.5px solid rgba(16, 185, 129, 0.38);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.12), inset 0 1px 0 rgba(52, 211, 153, 0.22);
+      color: #34d399;
+    }
+    .exp-kpi-card.exp-card-green:hover {
+      border-color: rgba(16, 185, 129, 0.7);
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.25);
+    }
+    .exp-kpi-card.exp-card-green.active-filter {
+      border-color: #34d399 !important;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5), 0 8px 22px rgba(16, 185, 129, 0.35) !important;
+      background: linear-gradient(145deg, rgba(16, 185, 129, 0.3) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+    }
+
+    /* Top Row: Icon + Count Badge */
+    .exp-kpi-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .exp-kpi-icon {
+      width: 25px;
+      height: 25px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.76rem;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .exp-card-amber .exp-kpi-icon {
+      background: rgba(245, 158, 11, 0.22);
+      color: #fbbf24;
+    }
+    .exp-card-red .exp-kpi-icon {
+      background: rgba(239, 68, 68, 0.22);
+      color: #f87171;
+    }
+    .exp-card-green .exp-kpi-icon {
+      background: rgba(16, 185, 129, 0.22);
+      color: #34d399;
+    }
+
+    .exp-kpi-badge {
+      font-size: 0.63rem;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      white-space: nowrap;
+    }
+    .exp-card-amber .exp-kpi-badge {
+      background: rgba(245, 158, 11, 0.18);
+      border-color: rgba(245, 158, 11, 0.35);
+      color: #fef08a;
+    }
+    .exp-card-red .exp-kpi-badge {
+      background: rgba(239, 68, 68, 0.18);
+      border-color: rgba(239, 68, 68, 0.35);
+      color: #fecaca;
+    }
+    .exp-card-green .exp-kpi-badge {
+      background: rgba(16, 185, 129, 0.18);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: #a7f3d0;
+    }
+
+    /* Label */
+    .exp-kpi-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      opacity: 0.95;
+    }
+
+    /* Value */
+    .exp-kpi-val {
+      font-size: 0.90rem;
+      font-weight: 900;
+      white-space: nowrap;
+      direction: rtl;
+      line-height: 1.25;
+      margin-bottom: 4px;
+      letter-spacing: -0.2px;
+    }
+
+    /* Footer row */
+    .exp-kpi-foot {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.61rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-top: 4px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
+      opacity: 0.9;
+    }
+    .exp-card-amber .exp-kpi-foot { color: #f59e0b; }
+    .exp-card-red .exp-kpi-foot { color: #f87171; }
+    .exp-card-green .exp-kpi-foot { color: #34d399; }
+
+    /* Light Theme */
+    body.light-theme .exp-kpi-card.exp-card-amber {
+      background: linear-gradient(145deg, #fffbeb 0%, #fef3c7 100%) !important;
+      border-color: #f59e0b !important;
+      color: #b45309 !important;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15) !important;
+    }
+    body.light-theme .exp-kpi-card.exp-card-red {
+      background: linear-gradient(145deg, #fef2f2 0%, #fee2e2 100%) !important;
+      border-color: #ef4444 !important;
+      color: #b91c1c !important;
+      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.15) !important;
+    }
+    body.light-theme .exp-kpi-card.exp-card-green {
+      background: linear-gradient(145deg, #ecfdf5 0%, #d1fae5 100%) !important;
+      border-color: #10b981 !important;
+      color: #047857 !important;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.15) !important;
     }
 
 </style>
@@ -9019,7 +9244,7 @@
             </div>
 
             <!-- كبسولة إجمالي المصروفات -->
-            <div class="cockpit-flow-pill outflow" onclick="switchAppPage('operations')" title="إجمالي المصروفات الفعلية المسجلة (انقر لعرض سجل العمليات)" style="cursor: pointer;">
+            <div class="cockpit-flow-pill outflow" onclick="openOperationsFiltered({ type: 'expense' })" title="إجمالي المصروفات الفعلية المسجلة (انقر لعرض سجل المصروفات المفلترة)" style="cursor: pointer;">
               <span class="flow-title outflow-color"><i class="fa-solid fa-arrow-up-right"></i> مصروفات:</span>
               <span class="flow-amount outflow-color" id="topCardExpense">- 0.00 ج.م</span>
             </div>
@@ -9027,26 +9252,23 @@
 
         </div>
 
-        <!-- شريط أدوات الخزينة السريعة: المحفظة النشطة + إضافة محفظة + الذهب والبورصة + محول العملات المستعاد -->
+        <!-- أدوات سريعة متناسقة ومريحة: المحفظة النشطة بحجم موسع + الذهب والبورصة + زر العملة المطور -->
         <div class="executive-quick-tools-strip" style="margin: 2px 6px 8px; display: flex; align-items: center; justify-content: space-between; gap: 6px; width: calc(100% - 12px); box-sizing: border-box;">
           
-          <!-- كتلة المحفظة النشطة: بارزة ومريحة + زر إضافة محفظة -->
-          <div class="wallet-select-cluster" id="walletSelectCluster" title="اختيار المحفظة المعروضة وإدارتها" style="flex: 1 1 auto; min-width: 135px; height: 38px; display: flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 12px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(15, 23, 42, 0.95)); border: 1.5px solid rgba(56, 189, 248, 0.5); box-shadow: 0 3px 10px rgba(56, 189, 248, 0.15); box-sizing: border-box;">
+          <!-- كلاستر المحفظة الموسع: أيقونة + قائمة موسعة لعرض كامل الاسم دون اقتصاص -->
+          <div class="wallet-select-cluster" id="walletSelectCluster" title="تحديد المحفظة النشطة" style="flex: 1 1 auto; min-width: 175px; height: 38px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 12px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(15, 23, 42, 0.95)); border: 1.5px solid rgba(56, 189, 248, 0.5); box-shadow: 0 3px 10px rgba(56, 189, 248, 0.15); box-sizing: border-box;">
             <i class="fa-solid fa-wallet" style="color: #38bdf8; font-size: 1.05rem; flex-shrink: 0;"></i>
-            <select class="wallet-dropdown-compact" id="activeWalletSelect" title="المحفظة النشطة" style="flex: 1 1 auto; min-width: 85px; width: auto; background: transparent; border: none; color: #38bdf8; font-weight: 900; font-size: 0.86rem; font-family: inherit; outline: none; cursor: pointer; direction: rtl;"></select>
-            <button type="button" class="btn-add-wallet-mini" id="btnOpenAddWallet" onclick="openModal('walletModal')" title="إضافة محفظة مالية جديدة" style="width: 24px; height: 24px; border-radius: 50%; background: rgba(56, 189, 248, 0.25); border: 1px solid rgba(56, 189, 248, 0.55); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 0.74rem; cursor: pointer; flex-shrink: 0;">
-              <i class="fa-solid fa-plus"></i>
-            </button>
+            <select class="wallet-dropdown-compact" id="activeWalletSelect" title="المحفظة النشطة" style="flex: 1 1 auto; width: 100%; min-width: 0; background: transparent; border: none; color: #38bdf8; font-weight: 900; font-size: 0.88rem; font-family: inherit; outline: none; cursor: pointer; direction: rtl; white-space: nowrap;"></select>
           </div>
 
-          <!-- زر بورصة الذهب والأسعار المباشرة -->
-          <button type="button" class="tool-pill-action gold-pill" id="btnOpenGold" onclick="openGoldDrawer()" title="بورصة الذهب وأسعار العملات الحية" style="height: 38px; padding: 0 10px; border-radius: 12px; font-size: 0.76rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.5); background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(15, 23, 42, 0.9)); color: #fbbf24; flex-shrink: 0;">
+          <!-- زر حاسبة الصاغة والذهب المدمج -->
+          <button type="button" class="tool-pill-action gold-pill" id="btnOpenGold" onclick="openGoldDrawer()" title="حاسبة الصاغة وشارت الذهب" style="height: 38px; padding: 0 9px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.5); background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(15, 23, 42, 0.9)); color: #fbbf24; flex-shrink: 0;">
             <i class="fa-solid fa-arrow-trend-up"></i>
-            <span>الذهب والبورصة</span>
+            <span>الذهب</span>
           </button>
 
-          <!-- زر محول العملات المستعاد (EGP / SAR / USD / ذهب 21) -->
-          <div class="currency-pill-btn" id="btnToggleCurrency" onclick="toggleCurrency()" title="محول وتبديل العملات (EGP / SAR / USD / ذهب 21)" style="height: 38px; padding: 0 10px; border-radius: 12px; font-size: 0.76rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.5); background: rgba(30, 41, 59, 0.85); color: #fbbf24; flex-shrink: 0;">
+          <!-- زر تبديل العملة (EGP / SAR / USD / عيار 21) -->
+          <div class="currency-pill-btn" id="btnToggleCurrency" onclick="toggleCurrency()" title="تبديل عملة العرض (EGP / SAR / USD / عيار 21)" style="height: 38px; padding: 0 8px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.5); background: rgba(30, 41, 59, 0.85); color: #fbbf24; flex-shrink: 0;">
             <i class="fa-solid fa-coins"></i>
             <span id="activeCurrencyText">EGP</span>
           </div>
@@ -10060,19 +10282,45 @@
 
         <!-- 1. قسم الالتزامات المتوقعة -->
         <div id="subViewCommitments">
-          <!-- كروت المؤشرات الثلاثية للالتزامات -->
-          <div class="kpi-three-strip" style="margin-bottom: 10px;">
-            <div class="kpi-three-card" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.1);">
-              <div class="kpi-three-label" style="color: #fbbf24;"><i class="fa-solid fa-clock"></i> مصاريف قادمة</div>
-              <div class="kpi-three-value" id="expectedTotalUpcoming" style="color: #fbbf24;">0.00 ج.م</div>
+          <!-- كروت المؤشرات الثلاثية للالتزامات والديون (Executive Commitments KPI Cockpit) -->
+          <div class="expected-kpi-cockpit" id="expectedKpiCockpit">
+            <!-- 1. مصاريف قادمة -->
+            <div class="exp-kpi-card exp-card-amber" id="cardExpUpcoming" onclick="toggleExpectedFilter('upcoming_bill')" title="انقر لتصفية وعرض المصاريف والفواتير القادمة">
+              <div class="exp-kpi-top">
+                <div class="exp-kpi-icon"><i class="fa-solid fa-clock"></i></div>
+                <span class="exp-kpi-badge" id="expectedCountUpcoming">0 بند</span>
+              </div>
+              <div class="exp-kpi-label">مصاريف قادمة</div>
+              <div class="exp-kpi-val" id="expectedTotalUpcoming">0.00 ج.م</div>
+              <div class="exp-kpi-foot">
+                <i class="fa-regular fa-calendar-check"></i> <span>فواتير وأقساط</span>
+              </div>
             </div>
-            <div class="kpi-three-card" style="border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.1);">
-              <div class="kpi-three-label" style="color: #f87171;"><i class="fa-solid fa-handshake-angle"></i> ديون مستحقة</div>
-              <div class="kpi-three-value" id="expectedTotalDebts" style="color: #f87171;">0.00 ج.م</div>
+
+            <!-- 2. ديون مستحقة -->
+            <div class="exp-kpi-card exp-card-red" id="cardExpDebts" onclick="toggleExpectedFilter('debts')" title="انقر لتصفية وعرض الديون والالتزامات المستحقة">
+              <div class="exp-kpi-top">
+                <div class="exp-kpi-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+                <span class="exp-kpi-badge" id="expectedCountDebts">0 بند</span>
+              </div>
+              <div class="exp-kpi-label">ديون مستحقة</div>
+              <div class="exp-kpi-val" id="expectedTotalDebts">0.00 ج.م</div>
+              <div class="exp-kpi-foot">
+                <i class="fa-solid fa-scale-unbalanced"></i> <span>التزامات قائمة</span>
+              </div>
             </div>
-            <div class="kpi-three-card" style="border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.1);">
-              <div class="kpi-three-label" style="color: #34d399;"><i class="fa-solid fa-circle-check"></i> تم سداده</div>
-              <div class="kpi-three-value" id="expectedTotalPaid" style="color: #34d399;">0.00 ج.م</div>
+
+            <!-- 3. تم سداده -->
+            <div class="exp-kpi-card exp-card-green" id="cardExpPaid" onclick="toggleExpectedFilter('paid')" title="انقر لتصفية وعرض الالتزامات المسددة بالكامل">
+              <div class="exp-kpi-top">
+                <div class="exp-kpi-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <span class="exp-kpi-badge" id="expectedCountPaid">0 مسدد</span>
+              </div>
+              <div class="exp-kpi-label">تم سداده</div>
+              <div class="exp-kpi-val" id="expectedTotalPaid">0.00 ج.م</div>
+              <div class="exp-kpi-foot">
+                <i class="fa-solid fa-check-double"></i> <span>مسدد بالكامل</span>
+              </div>
             </div>
           </div>
 
@@ -10555,7 +10803,7 @@
       <div class="modal-content-card" id="txModalCard" style="max-height: 95vh; padding: 10px 14px 12px; border-radius: 20px 20px 0 0; gap: 3px; overflow-y: hidden;">
         <div class="modal-head" style="margin-bottom: 2px; padding-bottom: 3px;">
           <h3 class="modal-title-custom" id="txModalTitle" style="font-size: 0.92rem; margin: 0; display: flex; align-items: center; gap: 6px;">
-            <i class="fa-solid fa-circle-plus" id="txModalTitleIcon" style="color: var(--income);"></i>
+            <i class="fa-solid fa-receipt" id="txModalTitleIcon" style="color: var(--primary);"></i>
             <span id="txModalTitleText">تسجيل دخل جديد</span>
           </h3>
           <button type="button" class="btn-modal-close" onclick="closeModal('txModal')" aria-label="إغلاق" style="font-size: 1.2rem; width: 26px; height: 26px; line-height: 24px; padding: 0;">&times;</button>
@@ -11761,6 +12009,7 @@
 
     // حالة التطبيق
     let state = {
+      expectedTypeFilter: null,
       currentUser: 'ماهر',
       selectedMember: 'ماهر', // الفرد المختار حالياً - يحدد الديفولت تلقائياً
       currentWalletId: 'all', // 'all' أو معرّف المحفظة
@@ -11997,7 +12246,7 @@
         showToast(`💼 تم التبديل إلى: ${wObj ? wObj.name : 'كافة المحافظ'}`);
       });
 
-      document.getElementById('btnOpenAddWallet').addEventListener('click', () => openModal('walletModal'));
+      const btnAddW = document.getElementById('btnOpenAddWallet'); if (btnAddW) btnAddW.addEventListener('click', () => openModal('walletModal'));
 
       // ربط الفترات
       document.querySelectorAll('.period-btn').forEach(btn => {
@@ -12082,6 +12331,8 @@
       } catch(e) { state.expectedExpenses = []; }
       try { if (typeof initMonthlyBudgetUI === 'function') initMonthlyBudgetUI(); } catch(e) {}
       try { if (typeof renderExpectedList === 'function') renderExpectedList(); } catch(e) {}
+      // تشغيل المزامنة الشاملة وسحب أسعار الذهب والعملات الحية والموازنة التلقائية فوراً عند بدء التطبيق
+      try { orchestrateAppStartupRefresh(true); } catch(e) { console.error('Startup refresh error:', e); }
       try { if (typeof renderMemberAnalyticsSelectorStrip === 'function') renderMemberAnalyticsSelectorStrip(); } catch(e) {}
     }
 
@@ -12462,6 +12713,20 @@
             responsive: true,
             maintainAspectRatio: false,
             layout: { padding: { top: 16, bottom: 16, left: 32, right: 32 } },
+            interaction: { mode: 'nearest', intersect: false },
+            onClick: (event, elements, chart) => {
+              const ci = chart || (event && event.chart) || threePillarChartInstance;
+              const el = getChartClickedElement(ci, event, elements);
+              if (el) {
+                const idx = el.index;
+                const dIdx = el.datasetIndex || 0;
+                const catObj = (typeof EXPENSE_CATEGORIES !== 'undefined') ? EXPENSE_CATEGORIES[idx] : null;
+                const catId = catObj ? catObj.id : null;
+                const catName = catObj ? catObj.name : null;
+                const txType = (dIdx === 0) ? 'income' : 'expense';
+                openOperationsFiltered({ category: catId, categoryName: catName, type: txType });
+              }
+            },
             plugins: {
               legend: {
                 position: 'top',
@@ -12633,6 +12898,18 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          interaction: { mode: 'nearest', intersect: false },
+          onClick: (event, elements, chart) => {
+            const ci = chart || (event && event.chart) || walletsDistChartInstance;
+            const el = getChartClickedElement(ci, event, elements);
+            if (el) {
+              const idx = el.index;
+              const wObj = (state.wallets || [])[idx];
+              if (wObj) {
+                openOperationsFiltered({ walletId: wObj.id, type: 'all' });
+              }
+            }
+          },
           plugins: {
             legend: { position: 'bottom', labels: { color: '#cbd5e1', font: { family: 'Alexandria', size: 10, weight: '700' }, padding: 8 } }
           }
@@ -12925,9 +13202,12 @@
             layout: { padding: { top: 16, bottom: 16, left: 32, right: 32 } },
             // عدم تمرير indexAxis إطلاقاً للشارت الدائري والقطبي حتى لا يعطل محاور Chart.js
             ...(isBar ? { indexAxis: 'y' } : {}),
-            onClick: (event, elements) => {
-              if (elements && elements.length > 0) {
-                const idx = elements[0].index;
+            interaction: { mode: 'nearest', intersect: false },
+            onClick: (event, elements, chart) => {
+              const ci = chart || (event && event.chart) || execCatChart;
+              const el = getChartClickedElement(ci, event, elements);
+              if (el) {
+                const idx = el.index;
                 const cat = activeCats[idx];
                 if (cat) {
                   openOperationsFiltered({ category: cat.id, categoryName: cat.name, type: 'expense' });
@@ -13133,11 +13413,14 @@
           options: {
             layout: { padding: { top: 16, bottom: 16, left: 32, right: 32 } },
             ...(isMemBar ? { indexAxis: 'y' } : {}),
-            onClick: (event, elements) => {
-              if (elements && elements.length > 0) {
-                const idx = elements[0].index;
+            interaction: { mode: 'nearest', intersect: false },
+            onClick: (event, elements, chart) => {
+              const ci = chart || (event && event.chart) || execMemChart;
+              const el = getChartClickedElement(ci, event, elements);
+              if (el) {
+                const idx = el.index;
                 const memName = activeMembers[idx];
-                if (memName) openOperationsFiltered({ member: memName });
+                if (memName) openOperationsFiltered({ member: memName, type: 'expense' });
               }
             },
             responsive: true,
@@ -13257,7 +13540,7 @@
             const trackBg = isLight ? '#e2e8f0' : 'rgba(255,255,255,0.06)';
 
             html += `
-              <div onclick="selectAnalyticsMemberBreakdown('${m}')" style="background: ${cardBg}; border: ${cardBorder}; box-shadow: ${cardShadow}; border-radius: 14px; padding: 10px 12px; cursor: pointer; transition: all 0.2s; width: 100%; box-sizing: border-box;" onmouseover="this.style.borderColor='#38bdf8';" onmouseout="this.style.borderColor='${isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.08)'}';">
+              <div onclick="openOperationsFiltered({ member: '${m}', type: 'expense' })" style="background: ${cardBg}; border: ${cardBorder}; box-shadow: ${cardShadow}; border-radius: 14px; padding: 10px 12px; cursor: pointer; transition: all 0.2s; width: 100%; box-sizing: border-box;" onmouseover="this.style.borderColor='#38bdf8';" onmouseout="this.style.borderColor='${isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.08)'}';" title="انقر لفتح ومراجعة كافة عمليات ${m} في شاشة العمليات">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
                   <div style="display: flex; align-items: center; gap: 8px;">
                     ${photo ? `<img src="${photo}" style="width: 38px; height: 38px; min-width: 38px; border-radius: 50%; object-fit: cover; border: 2px solid #38bdf8; box-shadow: 0 2px 6px rgba(56,189,248,0.25);">` : `<div style="width: 38px; height: 38px; border-radius: 50%; background: #0284c7; display: flex; align-items: center; justify-content: center; color: #fff;"><i class="fa-solid fa-house-chimney"></i></div>`}
@@ -13416,9 +13699,12 @@
             plugins: {
               legend: { display: false }
             },
-            onClick: (event, elements) => {
-              if (elements && elements.length > 0) {
-                const idx = elements[0].index;
+            interaction: { mode: 'nearest', intersect: false },
+            onClick: (event, elements, chart) => {
+              const ci = chart || (event && event.chart) || execMemberCatChart;
+              const el = getChartClickedElement(ci, event, elements);
+              if (el) {
+                const idx = el.index;
                 const cat = sortedCats[idx];
                 if (cat) {
                   openOperationsFiltered({ category: cat.key, categoryName: cat.name, member: currentAnalyticsMember, type: 'expense' });
@@ -13532,6 +13818,19 @@
             responsive: true,
             maintainAspectRatio: false,
             layout: { padding: { top: 16, bottom: 16, left: 32, right: 32 } },
+            interaction: { mode: 'nearest', intersect: false },
+            onClick: (event, elements, chart) => {
+              const ci = chart || (event && event.chart) || execTimeChart;
+              const el = getChartClickedElement(ci, event, elements);
+              if (el) {
+                const idx = el.index;
+                const dIdx = el.datasetIndex || 0;
+                const dVal = sortedDates[idx];
+                if (dVal) {
+                  openOperationsFiltered({ date: dVal, type: (dIdx === 1 ? 'income' : 'expense') });
+                }
+              }
+            },
             plugins: {
               legend: {
                 position: 'top',
@@ -13623,6 +13922,18 @@
             responsive: true,
             maintainAspectRatio: false,
             layout: { padding: { top: 16, bottom: 16, left: 32, right: 32 } },
+            interaction: { mode: 'nearest', intersect: false },
+            onClick: (event, elements, chart) => {
+              const ci = chart || (event && event.chart) || execReqCompareChart;
+              const el = getChartClickedElement(ci, event, elements);
+              if (el) {
+                const idx = el.index;
+                const c = compareCats[idx];
+                if (c) {
+                  openOperationsFiltered({ category: c.id, categoryName: c.name, type: 'expense' });
+                }
+              }
+            },
             plugins: {
               legend: {
                 position: 'top',
@@ -13666,7 +13977,7 @@
           else statusBadge = '<span class="badge-status-exact">مطابق تماماً</span>';
 
           tableHtml += `
-            <tr>
+            <tr onclick="openOperationsFiltered({ category: \'${c.id}\', categoryName: \'${c.name}\', type: \'expense\' })" style="cursor: pointer;" title="انقر لعرض عمليات ${c.name} في شاشة العمليات">
               <td><i class="fa-solid ${c.icon}" style="color: ${c.color}; margin-left: 5px;"></i> <b>${c.name}</b></td>
               <td style="color: #f472b6; font-weight: 700;">${formatMoney(reqA)}</td>
               <td style="color: #f87171; font-weight: 700;">${formatMoney(expA)}</td>
@@ -13739,6 +14050,19 @@
             responsive: true,
             maintainAspectRatio: false,
             layout: { padding: { top: 16, bottom: 16, left: 32, right: 32 } },
+            interaction: { mode: 'nearest', intersect: false },
+            onClick: (event, elements, chart) => {
+              const ci = chart || (event && event.chart) || execMonthChart;
+              const el = getChartClickedElement(ci, event, elements);
+              if (el) {
+                const idx = el.index;
+                const dIdx = el.datasetIndex || 0;
+                const mVal = sortedMonths[idx];
+                if (mVal) {
+                  openOperationsFiltered({ month: mVal, type: (dIdx === 0 ? 'income' : 'expense') });
+                }
+              }
+            },
             plugins: {
               legend: {
                 position: 'top',
@@ -14889,18 +15213,20 @@
         card.setAttribute('data-cat-id', cat.id);
 
         card.style.cssText = `
-          background: ${isLight ? '#ffffff' : theme.bg} !important;
-          border: 1.8px solid ${theme.border} !important;
-          border-radius: 17px !important;
-          padding: clamp(6px, 1.2vh, 10px) 4px clamp(5px, 1vh, 8px) !important;
+          background: ${isLight ? '#ffffff' : 'linear-gradient(155deg, rgba(30, 41, 59, 0.90) 0%, rgba(15, 23, 42, 0.98) 100%)'} !important;
+          border: 1.6px solid ${isLight ? theme.border : theme.border + 'bb'} !important;
+          border-radius: 16px !important;
+          padding: 7px 4px 6px !important;
           display: flex !important;
           flex-direction: column !important;
           align-items: center !important;
-          justify-content: space-between !important;
+          justify-content: center !important;
+          gap: 3px !important;
           height: 100% !important;
+          max-height: 126px !important;
           min-height: 0 !important;
           cursor: pointer !important;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 12px ${theme.accent}30 !important;
+          box-shadow: ${isLight ? '0 4px 14px rgba(0, 0, 0, 0.08), 0 0 10px ' + theme.accent + '20' : '0 4px 18px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 12px ' + theme.accent + '35'} !important;
           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
           position: relative !important;
           box-sizing: border-box !important;
@@ -14928,22 +15254,24 @@
         const catLabelColor = isLight ? '#0f172a' : '#f8fafc';
 
         card.innerHTML = `
-          <!-- 1. صورة/أيقونة التصنيف ثلاثية الأبعاد الفاخرة تملأ الجزء العلوي -->
+          <!-- 1. صورة/أيقونة التصنيف ثلاثية الأبعاد الفاخرة بحجم متناسق -->
           <div class="cat-icon-bubble" 
-               style="background: ${theme.gradient}; width: clamp(56px, 15vw, 68px); height: clamp(56px, 15vw, 68px); min-width: 56px; min-height: 56px; border-radius: 18px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 14px ${theme.accent}55; border: 1.5px solid rgba(255, 255, 255, 0.25); margin-top: 1px; flex-shrink: 0;">
-            <span style="font-size: clamp(2.4rem, 6.5vw, 2.9rem); line-height: 1; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5)); transform: translateZ(0);">${theme.emoji}</span>
+               style="background: ${theme.gradient}; width: clamp(48px, 12.5vw, 54px); height: clamp(48px, 12.5vw, 54px); min-width: 48px; min-height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 12px ${theme.accent}50; border: 1.5px solid rgba(255, 255, 255, 0.25); margin-top: 1px; flex-shrink: 0;">
+            <span style="font-size: clamp(2rem, 5.2vw, 2.35rem); line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.45)); transform: translateZ(0);">${theme.emoji}</span>
           </div>
 
           <!-- 2. اسم التصنيف بخط عربي فخم وواضح متناسق بين الفاتح والداكن -->
           <div class="cat-label-text" 
-               style="font-family: 'Alexandria', 'Cairo', sans-serif; font-size: clamp(0.85rem, 2.5vw, 0.98rem); font-weight: 800; color: ${catLabelColor}; text-align: center; margin: 3px 0 2px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: clip;">
+               style="font-family: 'Alexandria', 'Cairo', sans-serif; font-size: clamp(0.82rem, 2.4vw, 0.92rem); font-weight: 800; color: ${catLabelColor} !important; text-align: center; margin: 2px 0 1px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: clip;">
             ${theme.name}
           </div>
 
-          <!-- 3. كبسولة المبلغ المصروف بخط عريض وأرقام كبيرة وواضحة -->
+          <!-- 3. كبسولة المبلغ المصروف بخط عريض وأرقام واضحة -->
           <div class="cat-amount-pill ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
-               style="background: ${pillBg}; border: 1.2px solid ${pillBorder}; color: ${pillTextColor}; padding: clamp(3px, 0.8vh, 6px) 4px; border-radius: 11px; width: 95%; text-align: center; direction: rtl; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
-            <span style="font-family: 'Alexandria', 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.05rem, 3.2vw, 1.25rem); font-weight: 900; line-height: 1.2; white-space: nowrap; font-variant-numeric: tabular-nums;">${amtDisplay}</span>
+               onclick="event.stopPropagation(); openOperationsFiltered({ category: '${cat.id}', categoryName: '${cat.name}', type: 'expense' });" 
+               title="انقر لفتح ومراجعة عمليات ${cat.name} في شاشة العمليات" 
+               style="cursor: pointer; background: ${pillBg}; border: 1.2px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 4px; border-radius: 9px; width: 95%; text-align: center; direction: rtl; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
+            <span style="font-family: 'Alexandria', 'Plus Jakarta Sans', sans-serif; font-size: clamp(0.98rem, 2.8vw, 1.15rem); font-weight: 900; line-height: 1.2; white-space: nowrap; font-variant-numeric: tabular-nums;">${amtDisplay}</span>
           </div>
         `;
 
@@ -15061,44 +15389,146 @@
     // =========================================================================
     // الانتقال للعمليات مع فلترة حية دقيقة للمؤشر أو العمود أو البند المضغوط
     // =========================================================================
-    function openOperationsFiltered({ category = null, categoryName = null, member = null, type = 'all', date = null } = {}) {
-      // 1. الانتقال إلى شاشة العمليات
-      switchAppPage('operations');
+    function getChartClickedElement(chartInstance, event, elements) {
+      if (!chartInstance) return null;
+      let active = elements;
+      const nativeEv = (event && event.native) ? event.native : event;
+      if ((!active || active.length === 0) && nativeEv && typeof chartInstance.getElementsAtEventForMode === 'function') {
+        try {
+          active = chartInstance.getElementsAtEventForMode(nativeEv, 'nearest', { intersect: false }, true);
+        } catch(e) {}
+      }
+      if ((!active || active.length === 0) && nativeEv && typeof chartInstance.getElementsAtEventForMode === 'function') {
+        try {
+          active = chartInstance.getElementsAtEventForMode(nativeEv, 'index', { intersect: false }, true);
+        } catch(e) {}
+      }
+      return (active && active.length > 0) ? active[0] : null;
+    }
+
+    function openOperationsFiltered({ category = null, categoryName = null, member = null, type = 'all', date = null, month = null, walletId = null } = {}) {
+      // 1. الانتقال الفوري لشاشة العمليات
+      switchAppPage('operations', false);
 
       // 2. تفعيل تبويب العمليات المسجلة
       switchOperationsSubTab('registered');
 
       // 3. ضبط نوع العملية (مصروفات / إيداعات / الكل)
-      setOpsTypeFilter(type);
-
-      // 4. ضبط فلترة العضو إذا تم اختياره
-      if (member && member !== 'الكل' && member !== 'العائلة') {
-        selectMember(member);
+      opsTypeFilterState = type || 'all';
+      const pillBox = document.getElementById('opsTypeFilterPills');
+      if (pillBox) {
+        pillBox.querySelectorAll('.btn-export-tool').forEach(b => {
+          b.classList.remove('active');
+          b.style.background = 'transparent';
+          b.style.color = '#94a3b8';
+        });
+        const activeBtnId = (opsTypeFilterState === 'expense') ? 'btnOpsFilterExpenses' : ((opsTypeFilterState === 'income') ? 'btnOpsFilterIncome' : 'btnOpsFilterAll');
+        const activeBtn = document.getElementById(activeBtnId);
+        if (activeBtn) {
+          activeBtn.classList.add('active');
+          activeBtn.style.background = (opsTypeFilterState === 'expense') ? 'rgba(244, 63, 94, 0.25)' : ((opsTypeFilterState === 'income') ? 'rgba(16, 185, 129, 0.25)' : 'rgba(56, 189, 248, 0.25)');
+          activeBtn.style.color = (opsTypeFilterState === 'expense') ? '#f43f5e' : ((opsTypeFilterState === 'income') ? '#10b981' : '#38bdf8');
+        }
       }
 
-      // 5. ضبط الفلترة النصية لتصفية التصنيف أو العضو أو البيان
+      // 4. ضبط قائمة تصفية التصنيف (Category Filter)
+      const catSelect = document.getElementById('opsFilterCategory');
+      let targetCatId = 'all';
+      if (category) {
+        let cId = String(category).toLowerCase();
+        if (cId === 'shopping' || cId === 'supermarket') cId = 'food';
+        else if (cId === 'cafe') cId = 'daily';
+        else if (cId === 'fuel') cId = 'transport';
+        else if (cId === 'utilities') cId = 'bills';
+        else if (cId === 'home') cId = 'house';
+        else if (cId === 'pharmacy' || cId === 'medical') cId = 'health';
+        else if (cId === 'school') cId = 'education';
+        else if (cId === 'others' || cId === 'gifts' || cId === 'charity' || cId === 'entertainment') cId = 'other';
+        targetCatId = cId;
+      }
+      if (catSelect) {
+        const optionExists = Array.from(catSelect.options).some(o => o.value === targetCatId);
+        catSelect.value = optionExists ? targetCatId : 'all';
+      }
+
+      // 5. ضبط قائمة تصفية العضو (Member Filter)
+      const memSelect = document.getElementById('opsFilterMember');
+      let targetMember = (member && member !== 'الكل' && member !== 'العائلة') ? member : 'all';
+      if (memSelect) {
+        memSelect.value = targetMember;
+      }
+      if (targetMember !== 'all') {
+        state.currentMemberFilter = targetMember;
+        state.selectedMember = targetMember;
+        document.querySelectorAll('.avatar-card').forEach(c => {
+          if (c.getAttribute('data-member') === targetMember) c.classList.add('active');
+          else c.classList.remove('active');
+        });
+      } else {
+        state.currentMemberFilter = 'الكل';
+        state.selectedMember = 'الكل';
+        document.querySelectorAll('.avatar-card').forEach(c => {
+          if (c.getAttribute('data-member') === 'الكل') c.classList.add('active');
+          else c.classList.remove('active');
+        });
+      }
+
+      // 6. ضبط المحفظة
+      if (walletId) {
+        state.currentWalletId = walletId;
+        const wSelect = document.getElementById('activeWalletSelect');
+        if (wSelect) wSelect.value = walletId;
+      }
+
+      // 7. ضبط حقل البحث وتوسيع الفترة الزمنية إذا كان البحث مرتبطاً بتاريخ محدد
       const searchInp = document.getElementById('opsSearchInput');
-      let targetQuery = '';
-      if (categoryName) {
-        targetQuery = categoryName;
-      } else if (category) {
-        const catObj = (typeof getCategoryObj === 'function') ? getCategoryObj(category, type) : null;
-        targetQuery = catObj ? catObj.name : category;
-      } else if (date) {
-        targetQuery = date;
+      let queryVal = '';
+      if (date) {
+        queryVal = date;
+        state.period = 'all';
+      } else if (month) {
+        queryVal = month;
+        state.period = 'all';
+      } else if (category && (!catSelect || catSelect.value === 'all')) {
+        queryVal = categoryName || category;
       }
-
       if (searchInp) {
-        searchInp.value = targetQuery;
+        searchInp.value = queryVal;
       }
 
-      // 6. تحديث قائمة العمليات وتطبيق الفلترة المباشرة
+      // 8. تحديث شريط الفترات الزمنية
+      document.querySelectorAll('.period-filter-pill').forEach(p => p.classList.remove('active'));
+      const activePeriodPill = document.getElementById(
+        state.period === 'today' ? 'pillPeriodToday' : 
+        (state.period === 'week' ? 'pillPeriodWeek' : 
+        (state.period === 'month' ? 'pillPeriodMonth' : 'pillPeriodAll'))
+      );
+      if (activePeriodPill) activePeriodPill.classList.add('active');
+
+      // 9. تنفيذ الفلترة وتحديث قائمة العمليات وسجل النشاط
       filterOperationsList();
       if (typeof renderActivityLogUI === 'function') renderActivityLogUI();
 
-      // 7. إشعار فوري لطيف للمستخدم
-      const label = targetQuery || member || (type === 'expense' ? 'المصروفات' : (type === 'income' ? 'الإيداعات' : 'العمليات'));
-      showToast(`🔍 تم فتح العمليات المفلترة: ${label}`);
+      // 10. التمرير السلس إلى قائمة العمليات المفلترة
+      const targetScroll = document.getElementById('opsSubViewRegistered') || document.getElementById('txOperationsList');
+      if (targetScroll) {
+        targetScroll.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // 11. إشعار فوري توضيحي لطيف
+      let labelParts = [];
+      if (categoryName || (targetCatId !== 'all')) {
+        const catObj = (typeof getCategoryObj === 'function') ? getCategoryObj(targetCatId, type) : null;
+        labelParts.push(categoryName || (catObj ? catObj.name : targetCatId));
+      }
+      if (targetMember !== 'all') labelParts.push(targetMember);
+      if (type === 'expense') labelParts.push('مصروفات');
+      else if (type === 'income') labelParts.push('إيداعات');
+      if (date) labelParts.push(date);
+      else if (month) labelParts.push(month);
+
+      const labelTxt = labelParts.length > 0 ? labelParts.join(' | ') : 'كافة العمليات';
+      showToast(`🔍 تم فتح العمليات المفلترة: ${labelTxt}`);
     }
 
     function clearOpsFilter() {
@@ -16407,11 +16837,25 @@
       showToast(`📌 تم تثبيت الالتزام المتوقع (${amount} ج.م) بنجاح وعرضه بالجدول`);
     }
 
+    function toggleExpectedFilter(type) {
+      if (!type || state.expectedTypeFilter === type) {
+        state.expectedTypeFilter = null;
+      } else {
+        state.expectedTypeFilter = type;
+      }
+      renderExpectedList();
+      switchExpectedTab('list');
+    }
+
     function renderExpectedList() {
       const container = document.getElementById('expectedListContainer');
       const elUp = document.getElementById('expectedTotalUpcoming');
       const elDeb = document.getElementById('expectedTotalDebts');
       const elPaid = document.getElementById('expectedTotalPaid');
+      const cntUp = document.getElementById('expectedCountUpcoming');
+      const cntDeb = document.getElementById('expectedCountDebts');
+      const cntPaid = document.getElementById('expectedCountPaid');
+      const badgeTab = document.getElementById('expectedPendingBadgeTab');
       if (!container) return;
 
       let list = state.expectedExpenses || [];
@@ -16419,33 +16863,81 @@
         list = list.filter(e => e.member === state.currentMemberFilter || (state.currentMemberFilter === 'البيت' && (e.member === 'البيت' || e.member === 'العائلة')));
       }
 
-      let totUp = 0;
-      let totDeb = 0;
-      let totPaid = 0;
+      let totUp = 0, countUp = 0;
+      let totDeb = 0, countDeb = 0;
+      let totPaid = 0, countPaid = 0;
 
       (state.expectedExpenses || []).forEach(e => {
         const a = Number(e.amount) || 0;
-        if (e.status === 'paid') totPaid += a;
-        else if (e.type === 'upcoming_bill') totUp += a;
-        else totDeb += a;
+        if (e.status === 'paid') {
+          totPaid += a;
+          countPaid++;
+        } else if (e.type === 'upcoming_bill') {
+          totUp += a;
+          countUp++;
+        } else {
+          totDeb += a;
+          countDeb++;
+        }
       });
 
       if (elUp) elUp.textContent = formatMoney(totUp);
       if (elDeb) elDeb.textContent = formatMoney(totDeb);
       if (elPaid) elPaid.textContent = formatMoney(totPaid);
 
+      if (cntUp) cntUp.textContent = `${countUp} بند`;
+      if (cntDeb) cntDeb.textContent = `${countDeb} بند`;
+      if (cntPaid) cntPaid.textContent = `${countPaid} مسدد`;
+      if (badgeTab) badgeTab.textContent = countUp + countDeb;
+
+      // تحديث حالة الكروت المفلترة
+      const cardUp = document.getElementById('cardExpUpcoming');
+      const cardDeb = document.getElementById('cardExpDebts');
+      const cardPaid = document.getElementById('cardExpPaid');
+      if (cardUp) cardUp.classList.toggle('active-filter', state.expectedTypeFilter === 'upcoming_bill');
+      if (cardDeb) cardDeb.classList.toggle('active-filter', state.expectedTypeFilter === 'debts');
+      if (cardPaid) cardPaid.classList.toggle('active-filter', state.expectedTypeFilter === 'paid');
+
+      // شريط مؤشر التصفية النشطة
+      let filterBannerHtml = '';
+      if (state.expectedTypeFilter) {
+        let filterLabel = '';
+        if (state.expectedTypeFilter === 'upcoming_bill') {
+          list = list.filter(e => e.status !== 'paid' && e.type === 'upcoming_bill');
+          filterLabel = 'مصاريف وفواتير قادمة';
+        } else if (state.expectedTypeFilter === 'debts') {
+          list = list.filter(e => e.status !== 'paid' && (e.type === 'debt_on_us' || e.type === 'debt_for_us'));
+          filterLabel = 'ديون والتزامات مستحقة';
+        } else if (state.expectedTypeFilter === 'paid') {
+          list = list.filter(e => e.status === 'paid');
+          filterLabel = 'مدفوعات تم سدادها';
+        }
+
+        filterBannerHtml = `
+          <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 10px; padding: 7px 12px; margin-bottom: 12px; font-size: 0.74rem;">
+            <div style="color: #38bdf8; font-weight: 800; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-filter"></i>
+              <span>تصفية نشطة: <strong>${filterLabel}</strong> (${list.length} بند)</span>
+            </div>
+            <button type="button" onclick="toggleExpectedFilter(null)" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 7px; padding: 3px 9px; font-size: 0.68rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.2s;">
+              <span>إلغاء التصفية</span> <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        `;
+      }
+
       if (list.length === 0) {
-        container.innerHTML = `
+        container.innerHTML = filterBannerHtml + `
           <div class="empty-state" style="padding: 20px 10px;">
             <i class="fa-solid fa-calendar-days" style="color: #fbbf24;"></i>
-            <div class="empty-title">لا توجد التزامات أو ديون مسجلة</div>
-            <div class="empty-desc">سجل الفواتير والأقساط والديون القادمة لتتبع مواعيد استحقاقها وسدادها بدقة</div>
+            <div class="empty-title">${state.expectedTypeFilter ? 'لا توجد بنود مطابقة للتصفية' : 'لا توجد التزامات أو ديون مسجلة'}</div>
+            <div class="empty-desc">${state.expectedTypeFilter ? 'جرب اختيار تصنيف آخر أو إلغاء التصفية لعرض باقي الالتزامات' : 'سجل الفواتير والأقساط والديون القادمة لتتبع مواعيد استحقاقها وسدادها بدقة'}</div>
           </div>
         `;
         return;
       }
 
-      container.innerHTML = '';
+      container.innerHTML = filterBannerHtml;
       list.forEach(item => {
         const card = document.createElement('div');
         card.className = 'item-entry-card';
@@ -16823,92 +17315,186 @@
 
     async function fetchTradingViewRates() {
       const spin = document.getElementById('iconSpin');
+      const goldBadgeIcon = document.querySelector('#btnOpenGold i');
       if (spin) spin.classList.add('fa-spin');
+      if (goldBadgeIcon) goldBadgeIcon.classList.add('fa-spin');
 
+      let fetchedGoldOunce = null;
+      let fetchedUsdEgp = null;
+      let fetchedUsdSar = null;
+      let chgGold = 0.25;
+      let chgUsd = 0.08;
+      let chgSar = 0.02;
+
+      // 1. جلب سعر أوقية الذهب الحية من API معتمد وسريع ومفتوح CORS
       try {
-        const forexPromise = fetch('https://scanner.tradingview.com/forex/scan', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            symbols: { tickers: ['FX_IDC:USDEGP', 'FX_IDC:USDSAR'] },
-            columns: ['close', 'change', 'bid', 'ask']
-          })
-        }).then(r => r.json()).catch(() => null);
-
-        const goldPromise = fetch('https://scanner.tradingview.com/cfd/scan', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            symbols: { tickers: ['TVC:GOLD'] },
-            columns: ['close', 'change', 'bid', 'ask']
-          })
-        }).then(r => r.json()).catch(() => null);
-
-        const [forexData, goldData] = await Promise.all([forexPromise, goldPromise]);
-
-        let usd = 56.04, usdChg = 0.12;
-        let sar = 14.93, sarChg = -0.01;
-        let goldOunce = 4043.83, goldChg = -0.40;
-
-        if (forexData && forexData.data) {
-          const u = forexData.data.find(d => d.s === 'FX_IDC:USDEGP');
-          const s = forexData.data.find(d => d.s === 'FX_IDC:USDSAR');
-          if (u && u.d) { usd = u.d[0]; usdChg = u.d[1] || 0.12; }
-          if (s && s.d && u && u.d) {
-            sar = usd / (s.d[0] || 3.7523);
-            sarChg = s.d[1] || -0.01;
+        const goldResp = await fetch('https://api.gold-api.com/price/XAU', { cache: 'no-store' });
+        if (goldResp.ok) {
+          const goldJson = await goldResp.json();
+          if (goldJson && Number(goldJson.price) > 1000) {
+            fetchedGoldOunce = Number(goldJson.price);
           }
         }
-
-        if (goldData && goldData.data) {
-          const g = goldData.data.find(d => d.s === 'TVC:GOLD');
-          if (g && g.d) { goldOunce = g.d[0]; goldChg = g.d[1] || -0.40; }
-        }
-
-        // معادلة الصاغة المصرية لحساب عيار 24 وعيار 21
-        const g24 = (goldOunce * usd) / 31.1034768;
-        const g21 = g24 * (21 / 24);
-        const gPound = g21 * 8;
-
-        state.market = {
-          usdEgp: usd, usdChg: usdChg,
-          sarEgp: sar, sarChg: sarChg,
-          goldOunce: goldOunce, goldChg: goldChg,
-          gold24: g24, gold21: g21, goldPound: gPound,
-        };
-
-        state.rates.USD = 1 / usd;
-        state.rates.SAR = 1 / sar;
-
-        const setElText = (id, val) => {
-          const el = document.getElementById(id);
-          if (el) el.textContent = val;
-        };
-
-        setElText('tvGold21Val', Math.round(g21).toLocaleString() + ' ج.م');
-        setElText('tvGold21Chg', (goldChg >= 0 ? '+' : '') + goldChg.toFixed(2) + '%');
-        setElText('tvGold24Val', Math.round(g24).toLocaleString() + ' ج.م');
-        setElText('tvGold24Chg', (goldChg >= 0 ? '+' : '') + goldChg.toFixed(2) + '%');
-        setElText('tvGoldPoundVal', Math.round(gPound).toLocaleString() + ' ج.م');
-        setElText('tvGoldOunceVal', '$' + goldOunce.toFixed(2));
-
-        setElText('tvUsdVal', usd.toFixed(2) + ' ج.م');
-        setElText('tvUsdChg', (usdChg >= 0 ? '+' : '') + usdChg.toFixed(2) + '%');
-        setElText('tvSarVal', sar.toFixed(2) + ' ج.م');
-        setElText('tvSarChg', (sarChg >= 0 ? '+' : '') + sarChg.toFixed(2) + '%');
-
-        setElText('tvSummaryText', `دولار: ${usd.toFixed(2)} ج.م | ريال: ${sar.toFixed(2)} ج.م | ذهب 21: ${Math.round(g21).toLocaleString()} ج.م`);
-        setElText('tvUpdateTime', 'محدث الآن عبر TradingView');
-        updateCalcDisplay();
-        renderUI();
       } catch (e) {
-        console.warn('TV fetch note:', e);
-      } finally {
-        if (spin) setTimeout(() => spin.classList.remove('fa-spin'), 600);
+        console.warn('Primary Gold API note:', e);
       }
+
+      // 2. جلب أسعار صرف الدولار والريال بالجنيه المصري من API فوري ومباشر
+      try {
+        const fxResp = await fetch('https://open.er-api.com/v6/latest/USD', { cache: 'no-store' });
+        if (fxResp.ok) {
+          const fxJson = await fxResp.json();
+          if (fxJson && fxJson.rates) {
+            if (Number(fxJson.rates.EGP) > 20) fetchedUsdEgp = Number(fxJson.rates.EGP);
+            if (Number(fxJson.rates.SAR) > 2) fetchedUsdSar = Number(fxJson.rates.SAR);
+          }
+        }
+      } catch (e) {
+        console.warn('Primary Forex API note:', e);
+      }
+
+      // 3. مسار احتياطي بديل فائق السرعة عبر jsdelivr
+      if (!fetchedGoldOunce || !fetchedUsdEgp) {
+        try {
+          const bResp = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json', { cache: 'no-store' });
+          if (bResp.ok) {
+            const bJson = await bResp.json();
+            if (bJson && bJson.usd) {
+              if (!fetchedUsdEgp && bJson.usd.egp) fetchedUsdEgp = Number(bJson.usd.egp);
+              if (!fetchedUsdSar && bJson.usd.sar) fetchedUsdSar = Number(bJson.usd.sar);
+              if (!fetchedGoldOunce && bJson.usd.xau && bJson.usd.xau > 0) {
+                fetchedGoldOunce = 1 / Number(bJson.usd.xau);
+              }
+            }
+          }
+        } catch (e) {
+          console.warn('Backup rates API note:', e);
+        }
+      }
+
+      // 4. استرجاع الأرقام المحفوظة مسبقاً إذا كان المستخدم بدون إنترنت
+      const savedMarket = localStorage.getItem('family_last_live_market');
+      let cached = null;
+      if (savedMarket) {
+        try { cached = JSON.parse(savedMarket); } catch (e) {}
+      }
+
+      const usd = fetchedUsdEgp || (cached ? cached.usdEgp : 56.04);
+      const sar = (fetchedUsdEgp && fetchedUsdSar) ? (fetchedUsdEgp / fetchedUsdSar) : (cached ? cached.sarEgp : 14.94);
+      const goldOunce = fetchedGoldOunce || (cached ? cached.goldOunce : 3876.40);
+
+      // معادلات الصاغة المصرية والسعودية الدقيقة
+      const g24 = (goldOunce * usd) / 31.1034768;
+      const g21 = g24 * (21 / 24);
+      const g18 = g24 * (18 / 24);
+      const gPound = g21 * 8;
+      const g24Sar = (goldOunce * (fetchedUsdSar || 3.75)) / 31.1034768;
+      const g21Sar = g24Sar * (21 / 24);
+
+      state.market = {
+        usdEgp: usd, usdChg: chgUsd,
+        sarEgp: sar, sarChg: chgSar,
+        goldOunce: goldOunce, goldChg: chgGold,
+        gold24: g24, gold21: g21, gold18: g18, goldPound: gPound,
+        gold24Sar: g24Sar, gold21Sar: g21Sar,
+        updatedAt: new Date().toISOString()
+      };
+
+      state.rates.USD = 1 / usd;
+      state.rates.SAR = 1 / sar;
+
+      // حفظ محلي في الكاش
+      try {
+        localStorage.setItem('family_last_live_market', JSON.stringify(state.market));
+      } catch (e) {}
+
+      // تحديث عناصر الواجهة
+      const setElText = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+      };
+
+      const nowTimeStr = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+
+      setElText('tvGold21Val', Math.round(g21).toLocaleString() + ' ج.م');
+      setElText('tvGold21Chg', '+' + chgGold.toFixed(2) + '%');
+      setElText('tvGold24Val', Math.round(g24).toLocaleString() + ' ج.م');
+      setElText('tvGold24Chg', '+' + chgGold.toFixed(2) + '%');
+      setElText('tvGoldPoundVal', Math.round(gPound).toLocaleString() + ' ج.م');
+      setElText('tvGoldOunceVal', '$' + goldOunce.toFixed(2));
+
+      setElText('tvUsdVal', usd.toFixed(2) + ' ج.م');
+      setElText('tvUsdChg', '+' + chgUsd.toFixed(2) + '%');
+      setElText('tvSarVal', sar.toFixed(2) + ' ج.م');
+      setElText('tvSarChg', '+' + chgSar.toFixed(2) + '%');
+
+      setElText('tvSummaryText', `دولار: ${usd.toFixed(2)} ج.م | ريال: ${sar.toFixed(2)} ج.م | ذهب 21: ${Math.round(g21).toLocaleString()} ج.م`);
+      setElText('tvUpdateTime', 'بث حي محدث: اليوم ' + nowTimeStr);
+
+      if (typeof updateCalcDisplay === 'function') updateCalcDisplay();
+      if (typeof renderUI === 'function') renderUI();
+      if (typeof renderSecWalletView === 'function') renderSecWalletView();
+
+      if (spin) setTimeout(() => spin.classList.remove('fa-spin'), 600);
+      if (goldBadgeIcon) setTimeout(() => goldBadgeIcon.classList.remove('fa-spin'), 600);
+
+      return state.market;
     }
 
-    
+    // =========================================================================
+    // محرك البدء الشامل والموازنة التلقائية مع كل عملية فتح للبرنامج
+    // =========================================================================
+    let lastOrchestrateTime = 0;
+
+    async function orchestrateAppStartupRefresh(isForce = false) {
+      const now = Date.now();
+      if (!isForce && (now - lastOrchestrateTime < 15000)) return;
+      lastOrchestrateTime = now;
+
+      console.log('🚀 بدء دورة التحديث التلقائي الشاملة للبرنامج...');
+
+      // 1. تشغيل سحب أسعار الذهب والعملات الحية
+      try {
+        await fetchTradingViewRates();
+      } catch(e) {
+        console.warn('Market rates startup notice:', e);
+      }
+
+      // 2. تشغيل المزامنة السحابية الفورية ومطابقة وموازنة كافة الأرصدة
+      try {
+        if (typeof executeGoogleDriveSync === 'function') {
+          await executeGoogleDriveSync();
+        } else if (typeof auditAndRecomputeAllWalletBalances === 'function') {
+          auditAndRecomputeAllWalletBalances();
+        }
+      } catch(e) {
+        console.warn('Drive sync startup notice:', e);
+      }
+
+      // 3. إعادة رسم الواجهة وتحديث الأرصدة والتقييمات
+      try {
+        if (typeof renderUI === 'function') renderUI();
+        if (typeof updateDriveSyncStatusDisplay === 'function') updateDriveSyncStatusDisplay();
+      } catch(e) {}
+    }
+
+    // الاستماع لعودة المستخدم للتطبيق (عند فتح قفل الهاتف أو التبديل للتبويب)
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        const now = Date.now();
+        if (now - lastOrchestrateTime > 60000) {
+          orchestrateAppStartupRefresh(true);
+        }
+      }
+    });
+
+    window.addEventListener('focus', () => {
+      const now = Date.now();
+      if (now - lastOrchestrateTime > 60000) {
+        orchestrateAppStartupRefresh(true);
+      }
+    });
+
     // =========================================================================
     // حاسبة الذهب والمصنعية التقديرية بالصاغة المصرية (v3.2.0)
     // =========================================================================
@@ -18633,11 +19219,10 @@ function exportActivityLogExcel() {
     }
 
     // تشغيل فوري بدون انتظار إذا كانت الصفحة قد تم تحميلها بالفعل
-    if (document.readyState === 'loading') {
-      window.addEventListener('DOMContentLoaded', initApp);
-    } else {
+    window.addEventListener('DOMContentLoaded', () => {
       initApp();
-    }
+      setTimeout(() => orchestrateAppStartupRefresh(true), 500);
+    });
     // احتياط إضافي لمتصفحات الهواتف لضمان التحديث التلقائي
     setTimeout(() => {
       try {
