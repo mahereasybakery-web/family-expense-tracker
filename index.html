@@ -7955,6 +7955,32 @@
       color: #0284c7 !important;
     }
 
+
+    /* تحسينات فائقة التباين للوضع الفاتح في نافذة الضبط */
+    body.light-theme #settingsModal .settings-action-card,
+    body.light-theme #settingsModal .app-card-panel {
+      background: #ffffff !important;
+      border-color: #e2e8f0 !important;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05) !important;
+    }
+    body.light-theme #settingsModal [style*="color: #f8fafc"],
+    body.light-theme #settingsModal [style*="color:#f8fafc"] {
+      color: #0f172a !important;
+    }
+    body.light-theme #settingsModal [style*="color: #cbd5e1"],
+    body.light-theme #settingsModal [style*="color:#cbd5e1"] {
+      color: #334155 !important;
+    }
+    body.light-theme #settingsModal [style*="background: rgba(0, 0, 0,"],
+    body.light-theme #settingsModal [style*="background: rgba(255, 255, 255, 0.04)"] {
+      background: #f1f5f9 !important;
+      border-color: #e2e8f0 !important;
+    }
+    body.light-theme #settingsModal .settings-tabs-strip {
+      background: #f8fafc !important;
+      border-bottom-color: #e2e8f0 !important;
+    }
+
 </style>
 
   <script>
@@ -10194,8 +10220,8 @@
             <input type="hidden" id="inpReqMember" value="أية">
 
             <!-- المبلغ وتاريخ الحاجة -->
-            <div style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 6px; margin-bottom: 6px;">
-              <div>
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px; margin-bottom: 6px; width: 100%; box-sizing: border-box;">
+              <div style="min-width: 0;">
                 <label style="font-size: 0.68rem; color: #cbd5e1; font-weight: 800; display: block; margin-bottom: 2px;">
                   المبلغ المطلوب (ج.م) * <span style="font-size: 0.62rem; color: #ec4899; font-weight: 700;">(±100 ج.م)</span>
                 </label>
@@ -10209,7 +10235,7 @@
                   </button>
                 </div>
               </div>
-              <div>
+              <div style="min-width: 0;">
                 <label style="font-size: 0.68rem; color: #cbd5e1; font-weight: 800; display: block; margin-bottom: 2px;">تاريخ الحاجة للمبلغ *</label>
                 <input type="date" class="form-input-custom" id="inpReqDate" style="height: 38px; font-size: 0.76rem; padding: 4px 6px; width: 100%; box-sizing: border-box; min-width: 0; direction: ltr; text-align: center;">
               </div>
