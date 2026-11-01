@@ -8328,23 +8328,20 @@
           </div>
         </div>
 
-        <!-- زر الضبط الموحد في الهيدر الرئيسي -->
+        <!-- زر الضبط والمزامنة السحابية الموحد في الهيدر الرئيسي -->
         <div style="display: flex; align-items: center; gap: 6px;">
-                    <button class="header-settings-btn" id="btnGoogleDriveSync" onclick="openGoogleDriveSyncModal()" title="سحابة ومزامنة Google Drive" style="background: rgba(34, 197, 94, 0.15); border-color: rgba(34, 197, 94, 0.4); color: #34d399; font-weight: 800;">
-            <i class="fa-brands fa-google-drive"></i>
-            <span id="topDriveSyncStatusText" style="font-size: 0.70rem;">سحابة</span>
+          <button class="header-settings-btn" id="btnMainSettings" onclick="openSettingsModal()" title="الضبط وإعدادات التطبيق والمزامنة السحابية" style="background: rgba(34, 197, 94, 0.14); border: 1.2px solid rgba(34, 197, 94, 0.45); color: #34d399; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
+            <i class="fa-solid fa-gear" style="font-size: 0.85rem; color: #a855f7;"></i>
+            <i class="fa-solid fa-cloud-arrow-up" id="headerDriveSyncIcon" style="font-size: 0.85rem; color: #22c55e;"></i>
+            <span id="topDriveSyncStatusText" style="font-size: 0.72rem; font-weight: 800;">متزامن</span>
           </button>
           <button class="header-settings-btn" id="btnAuthProfile" onclick="openModal('authModal')" title="حساب العائلة والمستخدمين" style="background: rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.4); color: #c084fc; font-weight: 800;">
             <i class="fa-solid fa-user-circle"></i>
             <span id="headerCurrentUserName" style="font-size: 0.70rem;">ماهر</span>
           </button>
-<button class="header-settings-btn" id="btnGlobalSearch" onclick="openGlobalSearchModal()" title="البحث الشامل في بيانات البرنامج بالكامل" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; margin-left: 4px;">
+          <button class="header-settings-btn" id="btnGlobalSearch" onclick="openGlobalSearchModal()" title="البحث الشامل في بيانات البرنامج بالكامل" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; margin-left: 4px;">
             <i class="fa-solid fa-magnifying-glass"></i>
             <span>بحث</span>
-          </button>
-          <button class="header-settings-btn" id="btnMainSettings" onclick="openSettingsModal()" title="الضبط والإعدادات والحساب">
-            <i class="fa-solid fa-gear"></i>
-            <span>الضبط</span>
           </button>
           <span id="headerUserEmailDisplay" style="display: none;">maher@family.com</span>
         </div>
@@ -10815,162 +10812,270 @@
     </div>
 
     <!-- نافذة الإعدادات وضبط الحساب والمظهر -->
-    <div class="modal-overlay modal-overlay-custom" id="settingsModal">
-      <div class="modal-content-card" style="max-width: 500px;">
-        <div class="modal-head">
-          <h3 class="modal-title-custom"><i class="fa-solid fa-gear" style="color: #c084fc;"></i> إعدادات وضبط التطبيق</h3>
-          <button type="button" class="btn-modal-close" onclick="closeModal('settingsModal')" aria-label="إغلاق">&times;</button>
-        </div>
-        <div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 14px;">
-        <!-- زر إعادة تحميل وتحديث التطبيق والمزامنة السحابية -->
-        <div class="settings-action-card" style="background: rgba(56, 189, 248, 0.08); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 12px 14px; margin-bottom: 14px;">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <i class="fa-solid fa-arrows-rotate" style="color: #38bdf8; font-size: 1.1rem;"></i>
-              <span style="font-weight: 800; font-size: 0.88rem; color: #f8fafc;">إعادة تحميل وتحديث التطبيق</span>
-            </div>
-            <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; font-size: 0.68rem; font-weight: 800; padding: 2px 7px; border-radius: 6px;">تحديث ومزامنة فورية</span>
+    <!-- ======================================================================= -->
+  <!-- نافذة الضبط والإعدادات والمزامنة السحابية الموحدة (v3.5.0) -->
+  <!-- ======================================================================= -->
+  <div class="modal-overlay modal-overlay-custom" id="settingsModal">
+    <div class="modal-content-card" style="max-width: 520px; width: 95%; max-height: 90vh; display: flex; flex-direction: column; padding: 0; border-radius: 20px; overflow: hidden; border: 1.5px solid rgba(56, 189, 248, 0.3); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);">
+      
+      <!-- الرأس الفاخر للنافذة -->
+      <div class="modal-head" style="padding: 14px 18px; margin: 0; background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border-bottom: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(168, 85, 247, 0.2)); border: 1.2px solid rgba(56, 189, 248, 0.4); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: #38bdf8;">
+            <i class="fa-solid fa-sliders"></i>
           </div>
-          <p style="font-size: 0.74rem; color: #94a3b8; margin: 0 0 10px 0; line-height: 1.4;">
-            يقوم بإعادة تحميل البرنامج بالكامل من الخادم، جلب كافة التطويرات والتحديثات الجديدة، مسح الكاش المؤقت، وإعادة تشغيل المزامنة السحابية الفورية.
+          <div>
+            <h3 class="modal-title-custom" style="font-size: 0.98rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 6px;">
+              <span>الضبط الموحد والمزامنة السحابية</span>
+              <span class="version-badge" style="font-size: 0.65rem;">v3.5.0</span>
+            </h3>
+            <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 600;">التحكم الشامل، المزامنة، الأمان، والمظهر</div>
+          </div>
+        </div>
+        <button type="button" class="btn-modal-close" onclick="closeModal('settingsModal')" aria-label="إغلاق">&times;</button>
+      </div>
+
+      <!-- محتوى الإعدادات القابل للتمرير بمرونة -->
+      <div style="padding: 14px 16px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 12px;" class="custom-scrollbar">
+
+        <!-- 1. كارت المزامنة السحابية المدمج المباشر (Google Drive Cloud Sync Hub) -->
+        <div class="settings-action-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), rgba(15, 23, 42, 0.85)); border: 1.5px solid rgba(34, 197, 94, 0.4); border-radius: 16px; padding: 13px 15px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(34, 197, 94, 0.2); display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: 1.1rem;">
+                <i class="fa-brands fa-google-drive"></i>
+              </div>
+              <div>
+                <span style="font-weight: 900; font-size: 0.88rem; color: #f8fafc; display: block;">المزامنة السحابية المباشرة (Google Drive)</span>
+                <span style="font-size: 0.66rem; color: #94a3b8;">ربط فوري ومحدث لحظياً مع خادم السحابة</span>
+              </div>
+            </div>
+            <span id="settingsDriveCloudStatusBadge" style="background: rgba(34, 197, 94, 0.2); color: #34d399; font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; border: 1px solid rgba(34, 197, 94, 0.35); display: flex; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-circle" style="font-size: 0.45rem; color: #22c55e;"></i> متصل ومحدث تلقائياً
+            </span>
+          </div>
+
+          <!-- تفاصيل الحساب والملف -->
+          <div style="background: rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 4px; font-size: 0.72rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="color: #94a3b8;">الحساب السحابي المعتمد:</span>
+              <span style="color: #38bdf8; font-weight: 800; direction: ltr; font-family: monospace;">maher.easybakery@gmail.com</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="color: #94a3b8;">ملف قاعدة البيانات المشترك:</span>
+              <span style="color: #34d399; font-weight: 800; font-family: monospace;">family_expense_tracker_db.json</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 4px; margin-top: 2px;">
+              <span style="color: #94a3b8;">توقيت آخر مزامنة:</span>
+              <span id="settingsDriveLastSyncTimeText" style="color: #fbbf24; font-weight: 800;">آخر مزامنة: الآن</span>
+            </div>
+          </div>
+
+          <!-- زر المزامنة الفورية السحابية (متزامن) -->
+          <button type="button" class="btn-submit-tx" onclick="executeGoogleDriveSync()" style="width: 100%; height: 42px; background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 10px; font-weight: 900; font-size: 0.88rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35); margin-bottom: 6px;">
+            <i class="fa-solid fa-arrows-rotate" id="settingsDriveSyncIconSpin"></i>
+            <span>مزامنة وحفظ سحابي فوري الآن (متزامن)</span>
+          </button>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: #94a3b8; padding: 0 2px;">
+            <span><i class="fa-solid fa-bolt" style="color: #fbbf24;"></i> كل معاملة تسجلها تُحفظ فوراً على السحابة</span>
+            <button type="button" onclick="closeModal('settingsModal'); openGoogleDriveSyncModal();" style="background: none; border: none; color: #38bdf8; text-decoration: underline; cursor: pointer; font-size: 0.70rem; font-weight: 700;">
+              خيارات الربط المتقدمة
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. كارت الحساب النشط وقفل الأمان بالرمز السري المخصص (Active Member & PIN Security) -->
+        <div class="app-card-panel" style="margin: 0; background: linear-gradient(135deg, rgba(168, 85, 247, 0.10), rgba(15, 23, 42, 0.8)); border: 1.2px solid rgba(168, 85, 247, 0.35); border-radius: 14px; padding: 12px 14px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div id="settingsCurrentMemberAvatar" style="width: 38px; height: 38px; border-radius: 50%; background: rgba(168, 85, 247, 0.2); border: 1.2px solid rgba(168, 85, 247, 0.4); display: flex; align-items: center; justify-content: center; font-size: 1.35rem;">
+                👨‍💼
+              </div>
+              <div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span id="settingsCurrentMemberName" style="font-size: 0.95rem; font-weight: 900; color: #f8fafc;">ماهر</span>
+                  <span id="settingsMemberPinStatus" style="background: rgba(168, 85, 247, 0.25); color: #c084fc; font-size: 0.66rem; font-weight: 800; padding: 2px 6px; border-radius: 6px; border: 1px solid rgba(168, 85, 247, 0.4);">
+                    <i class="fa-solid fa-lock"></i> قفل PIN مخصص: <strong>4503069</strong>
+                  </span>
+                </div>
+                <div style="font-size: 0.70rem; color: #94a3b8;" id="settingsModalUserEmail">maher@family.com</div>
+              </div>
+            </div>
+            <button type="button" class="btn-export-tool" onclick="closeModal('settingsModal'); openModal('authModal');" style="padding: 6px 12px; font-size: 0.75rem; font-weight: 800; background: rgba(168, 85, 247, 0.2); border-color: rgba(168, 85, 247, 0.45); color: #c084fc;">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i> تبديل الحساب
+            </button>
+          </div>
+
+          <!-- جدول تذكير رموز القفل المخصصة لأفراد الأسرة -->
+          <div style="background: rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 6px 10px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; text-align: center; font-size: 0.68rem;">
+            <div style="border-left: 1px solid rgba(255,255,255,0.06);">
+              <span style="color: #94a3b8; display: block;">ماهر</span>
+              <strong style="color: #38bdf8; font-family: monospace;">4503069</strong>
+            </div>
+            <div style="border-left: 1px solid rgba(255,255,255,0.06);">
+              <span style="color: #94a3b8; display: block;">أية</span>
+              <strong style="color: #ec4899; font-family: monospace;">25320</strong>
+            </div>
+            <div style="border-left: 1px solid rgba(255,255,255,0.06);">
+              <span style="color: #94a3b8; display: block;">محمد</span>
+              <strong style="color: #fbbf24; font-family: monospace;">00000</strong>
+            </div>
+            <div>
+              <span style="color: #94a3b8; display: block;">مريم</span>
+              <strong style="color: #a855f7; font-family: monospace;">11111</strong>
+            </div>
+          </div>
+          <div style="font-size: 0.64rem; color: #94a3b8; margin-top: 4px; text-align: center;">
+            🔒 يطلب القفل السري عند التبديل بين الحسابات لضمان الخصوصية التامة
+          </div>
+        </div>
+
+        <!-- 3. كارت تحديث التطبيق ومسح الكاش (Force App Reload & CDN Update) -->
+        <div class="settings-action-card" style="background: rgba(56, 189, 248, 0.08); border: 1.2px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 11px 14px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-arrows-rotate" style="color: #38bdf8; font-size: 1.05rem;"></i>
+              <span style="font-weight: 800; font-size: 0.86rem; color: #f8fafc;">إعادة تحميل وتحديث التطبيق</span>
+            </div>
+            <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; font-size: 0.66rem; font-weight: 800; padding: 2px 7px; border-radius: 6px;">مسح الكاش وتحديث فوري</span>
+          </div>
+          <p style="font-size: 0.72rem; color: #94a3b8; margin: 0 0 8px 0; line-height: 1.4;">
+            يقوم بإعادة تحميل أحدث إصدار من GitHub Pages، مسح الكاش المؤقت لمتصفح الهاتف، وجلب كافة التحديثات والمزامنة السحابية فوراً.
           </p>
-          <button type="button" class="btn-primary-custom" onclick="forceAppReloadAndSync()" style="width: 100%; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; padding: 9px; border-radius: 10px; font-weight: 800; font-size: 0.82rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <button type="button" class="btn-primary-custom" onclick="forceAppReloadAndSync()" style="width: 100%; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; padding: 8px 12px; border-radius: 10px; font-weight: 800; font-size: 0.82rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
             <i class="fa-solid fa-rotate"></i>
             <span>إعادة التحميل وتحديث التطبيق الآن</span>
           </button>
         </div>
 
-          <!-- بطاقة الحساب والمستخدم الحالي (المدمجة مع الضبط والإعدادات) -->
-          <div class="app-card-panel" style="margin: 0; background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(56, 189, 248, 0.3);">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(56, 189, 248, 0.2); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: #38bdf8;">
-                  <i class="fa-solid fa-circle-user"></i>
-                </div>
-                <div>
-                  <div style="font-size: 0.88rem; font-weight: 800; color: var(--text-main);" id="settingsModalUserEmail">maher@family.com</div>
-                  <div style="font-size: 0.72rem; color: #10b981; display: flex; align-items: center; gap: 4px;">
-                    <i class="fa-solid fa-cloud-check"></i> حساب العائلة والمزامنة المشتركة
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="btn-export-tool" onclick="openModal('authModal'); closeModal('settingsModal');" style="padding: 5px 10px; font-size: 0.74rem;">
-                <i class="fa-solid fa-right-left"></i> تبديل الحساب
-              </button>
+        <!-- 4. كارت إدارة المحافظ المالية والحسابات البنكية (Financial Wallets & Accounts) -->
+        <div class="app-card-panel" style="margin: 0; background: rgba(255, 255, 255, 0.03); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 11px 14px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-vault" style="color: #f59e0b; font-size: 1.05rem;"></i>
+              <span style="font-weight: 800; font-size: 0.86rem; color: #f8fafc;">المحافظ المالية والحسابات</span>
             </div>
+            <span id="settingsWalletCountText" style="font-size: 0.68rem; color: #38bdf8; font-weight: 700;">6 محافظ نشطة</span>
+          </div>
+          <p style="font-size: 0.72rem; color: #94a3b8; margin: 0 0 8px 0; line-height: 1.4;">
+            إدارة أرصدة المحافظ (كاش، فودافون كاش، البنوك)، التحويلات الداخلية بين المحافظ، واستعراض كشف الحساب المعتمد المحاسبي بدقة 0.00.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <button type="button" class="btn-submit-tx" onclick="closeModal('settingsModal'); openModal('walletModal');" style="margin: 0; padding: 8px 10px; font-size: 0.78rem; font-weight: 800; border-radius: 10px; background: linear-gradient(135deg, #0284c7, #0369a1); display: flex; align-items: center; justify-content: center; gap: 6px;">
+              <i class="fa-solid fa-plus-circle"></i>
+              <span>إدارة وتعديل المحافظ</span>
+            </button>
+            <button type="button" class="btn-export-tool excel-btn" onclick="closeModal('settingsModal'); openWalletStatementModal();" style="margin: 0; padding: 8px 10px; font-size: 0.78rem; font-weight: 800; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+              <i class="fa-solid fa-file-invoice-dollar"></i>
+              <span>كشف الحساب المعتمد</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. كارت المظهر والهوية والتصميم (Appearance & Design Style) -->
+        <div class="app-card-panel" style="margin: 0; background: rgba(255, 255, 255, 0.03); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 11px 14px;">
+          <div class="app-card-title" style="margin-bottom: 8px; font-size: 0.86rem;">
+            <i class="fa-solid fa-palette" style="color: #38bdf8;"></i>
+            <span>المظهر وهوية التصميم</span>
           </div>
 
-          <!-- مزامنة Google Drive -->
-          <div class="app-card-panel" style="margin: 0;">
-            <div class="app-card-title">
-              <i class="fa-brands fa-google-drive" style="color: #10b981;"></i>
-              <span>المزامنة السحابية (Google Drive)</span>
-            </div>
-            <p style="font-size: 0.78rem; color: #94a3b8; line-height: 1.5; margin-bottom: 10px;">
-              مزامنة قاعدة البيانات بالكامل وتحديث العمليات عبر السحابة لتبقى بيانات العائلة آمنة ومحدثة على كل الأجهزة.
-            </p>
-            <div style="display: flex; gap: 8px;">
-              <button class="btn-submit-tx" onclick="openModal('driveSyncModal'); closeModal('settingsModal');" style="background: linear-gradient(135deg, #10b981, #059669); margin: 0; padding: 10px 14px;">
-                <i class="fa-brands fa-google-drive"></i> فتح خيارات Drive والمزامنة
-              </button>
-            </div>
-          </div>
-
-                    <!-- تبديل الوضع الداكن والفاتح مدمج داخل الضبط -->
-          <div class="app-card-panel" style="margin: 0; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 10px 14px;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 38px; height: 38px; border-radius: 50%; background: rgba(251, 191, 36, 0.15); display: flex; align-items: center; justify-content: center; color: #fbbf24; font-size: 1.15rem;">
-                <i class="fa-solid fa-circle-half-stroke"></i>
-              </div>
+          <!-- تبديل الوضع الداكن والفاتح -->
+          <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 8px 12px; margin-bottom: 10px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-circle-half-stroke" style="color: #fbbf24; font-size: 1rem;"></i>
               <div>
-                <div style="font-size: 0.88rem; font-weight: 800; color: var(--text-main);">الوضع الليلي والنهاري</div>
-                <div style="font-size: 0.72rem; color: #94a3b8;">التبديل الفوري بين المظهر الداكن والمظهر الفاتح</div>
+                <div style="font-size: 0.82rem; font-weight: 800; color: var(--text-main);">الوضع الليلي والنهاري</div>
+                <div style="font-size: 0.68rem; color: #94a3b8;">التبديل بين الثيم الداكن والفاتح</div>
               </div>
             </div>
-            <button type="button" class="btn-export-tool" id="btnToggleTheme" onclick="toggleTheme()" style="padding: 7px 14px; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+            <button type="button" class="btn-export-tool" id="btnToggleTheme" onclick="toggleTheme()" style="padding: 5px 12px; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; gap: 6px;">
               <i class="fa-solid fa-moon" id="themeIcon"></i>
               <span id="themeToggleText">تبديل المظهر</span>
             </button>
           </div>
 
-          <!-- لون وهوية وتصميم التطبيق (مع تعدد الأشكال والتصاميم) -->
-          <div class="app-card-panel" style="margin: 0;">
-            <div class="app-card-title">
-              <i class="fa-solid fa-palette" style="color: #38bdf8;"></i>
-              <span>لون وتصميم مظهر التطبيق</span>
+          <!-- محدد نمط وشكل الكروت -->
+          <div style="margin-bottom: 10px; background: rgba(255,255,255,0.03); padding: 6px 8px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06);">
+            <div style="font-size: 0.70rem; font-weight: 800; color: #cbd5e1; margin-bottom: 6px;">
+              <i class="fa-solid fa-shapes" style="color: #38bdf8;"></i> نمط وشكل الكروت:
             </div>
-
-            <!-- محدد نمط وشكل التصميم (Design Style) -->
-            <div style="margin-bottom: 10px; background: rgba(255,255,255,0.03); padding: 6px 8px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.06);">
-              <div style="font-size: 0.72rem; font-weight: 800; color: #cbd5e1; margin-bottom: 6px;">
-                <i class="fa-solid fa-shapes" style="color: #38bdf8;"></i> نمط وشكل الكروت:
-              </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-                <button type="button" class="analytics-sec-btn active" id="designStyleGlass" onclick="setAppDesignStyle('glass')" style="padding: 6px 8px; font-size: 0.72rem;">
-                  ✨ زجاجي فخم ونيون
-                </button>
-                <button type="button" class="analytics-sec-btn" id="designStyleMin" onclick="setAppDesignStyle('minimal')" style="padding: 6px 8px; font-size: 0.72rem;">
-                  📐 عصري مدمج هادئ
-                </button>
-              </div>
-            </div>
-            <div class="theme-color-palette" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
-              <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')">
-                <div class="theme-color-dot" style="background: #0284c7;"></div>
-                <span>كحلي ملكي</span>
-              </div>
-              <div class="theme-pill-option" id="themeOptBlack" onclick="setAppTheme('black')">
-                <div class="theme-color-dot" style="background: #111116; border: 1.5px solid #64748b;"></div>
-                <span>أسود أسطوري</span>
-              </div>
-              <div class="theme-pill-option" id="themeOptEmerald" onclick="setAppTheme('emerald')">
-                <div class="theme-color-dot" style="background: #10b981;"></div>
-                <span>زمردي فاخر</span>
-              </div>
-              <div class="theme-pill-option" id="themeOptPurple" onclick="setAppTheme('purple')">
-                <div class="theme-color-dot" style="background: #a855f7;"></div>
-                <span>بنفسجي فخم</span>
-              </div>
-              <div class="theme-pill-option" id="themeOptGold" onclick="setAppTheme('gold')">
-                <div class="theme-color-dot" style="background: #f59e0b;"></div>
-                <span>ذهبي ملكي</span>
-              </div>
-              <div class="theme-pill-option" id="themeOptOcean" onclick="setAppTheme('ocean')">
-                <div class="theme-color-dot" style="background: #06b6d4;"></div>
-                <span>أزرق سماوي</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- إدارة المحافظ وحسابات البنك -->
-          <div class="app-card-panel" style="margin: 0;">
-            <div class="app-card-title">
-              <i class="fa-solid fa-vault" style="color: #f59e0b;"></i>
-              <span>المحافظ والحسابات المالية</span>
-            </div>
-            <div style="display: flex; gap: 8px;">
-              <button class="btn-submit-tx" onclick="openModal('walletModal'); closeModal('settingsModal');" style="background: linear-gradient(135deg, #0284c7, #0369a1); margin: 0; padding: 10px 14px;">
-                <i class="fa-solid fa-plus"></i> إضافة وتعديل المحافظ
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+              <button type="button" class="analytics-sec-btn active" id="designStyleGlass" onclick="setAppDesignStyle('glass')" style="padding: 6px 8px; font-size: 0.72rem;">
+                ✨ زجاجي فخم ونيون
+              </button>
+              <button type="button" class="analytics-sec-btn" id="designStyleMin" onclick="setAppDesignStyle('minimal')" style="padding: 6px 8px; font-size: 0.72rem;">
+                📐 عصري مدمج هادئ
               </button>
             </div>
           </div>
 
-          <!-- مسح البيانات السابقة وتطبيق بيانات تجربة جديدة بالكامل -->
-          <div class="app-card-panel" style="margin: 0; border: 1px solid rgba(239, 68, 68, 0.35); background: rgba(239, 68, 68, 0.06);">
-            <div class="app-card-title" style="color: #f87171;">
-              <i class="fa-solid fa-arrows-rotate" style="color: #ef4444;"></i>
-              <span>إعادة ضبط ومسح البيانات السابقة</span>
+          <!-- لوحة الألوان الملكية الستة -->
+          <div class="theme-color-palette" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+            <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')" style="padding: 6px 8px; font-size: 0.72rem;">
+              <div class="theme-color-dot" style="background: #0284c7;"></div>
+              <span>كحلي ملكي</span>
             </div>
-            <p style="font-size: 0.78rem; color: #94a3b8; line-height: 1.5; margin-bottom: 10px;">
-              تصفير كافة البيانات المحلية القديمة وتطبيق بيانات تجربة نموذجية متوازنة جديدة لمصروفات وسحب وطلبات العائلة.
-            </p>
-            <button type="button" class="btn-submit-tx" onclick="resetToDemoData()" style="background: linear-gradient(135deg, #ef4444, #dc2626); margin: 0; padding: 10px 14px; font-weight: 800;">
-              <i class="fa-solid fa-trash-can-arrow-up"></i> مسح البيانات القديمة وتطبيق التجربة الجديدة
-            </button>
+            <div class="theme-pill-option" id="themeOptBlack" onclick="setAppTheme('black')" style="padding: 6px 8px; font-size: 0.72rem;">
+              <div class="theme-color-dot" style="background: #111116; border: 1.5px solid #64748b;"></div>
+              <span>أسود أسطوري</span>
+            </div>
+            <div class="theme-pill-option" id="themeOptEmerald" onclick="setAppTheme('emerald')" style="padding: 6px 8px; font-size: 0.72rem;">
+              <div class="theme-color-dot" style="background: #10b981;"></div>
+              <span>زمردي فاخر</span>
+            </div>
+            <div class="theme-pill-option" id="themeOptPurple" onclick="setAppTheme('purple')" style="padding: 6px 8px; font-size: 0.72rem;">
+              <div class="theme-color-dot" style="background: #a855f7;"></div>
+              <span>بنفسجي فخم</span>
+            </div>
+            <div class="theme-pill-option" id="themeOptGold" onclick="setAppTheme('gold')" style="padding: 6px 8px; font-size: 0.72rem;">
+              <div class="theme-color-dot" style="background: #f59e0b;"></div>
+              <span>ذهبي ملكي</span>
+            </div>
+            <div class="theme-pill-option" id="themeOptOcean" onclick="setAppTheme('ocean')" style="padding: 6px 8px; font-size: 0.72rem;">
+              <div class="theme-color-dot" style="background: #06b6d4;"></div>
+              <span>أزرق سماوي</span>
+            </div>
           </div>
         </div>
+
+        <!-- 6. كارت إدارة البيانات، النسخ الاحتياطي، وإعادة التعيين (Data Backup & Reset) -->
+        <div class="app-card-panel" style="margin: 0; background: rgba(255, 255, 255, 0.03); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 11px 14px;">
+          <div class="app-card-title" style="margin-bottom: 6px; font-size: 0.86rem;">
+            <i class="fa-solid fa-database" style="color: #38bdf8;"></i>
+            <span>إدارة البيانات والنسخ الاحتياطي المحلي</span>
+          </div>
+          <p style="font-size: 0.72rem; color: #94a3b8; margin: 0 0 8px 0; line-height: 1.4;">
+            تصدير ملف احتياطي محلي كامل بجميع الحركات والمحافظ، أو استيراد نسخة محفوظة سابقة، أو إعادة ضبط النموذج التجريبي.
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+            <button type="button" class="btn-export-tool" onclick="downloadBackup()" style="padding: 7px 10px; font-size: 0.76rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 8px;">
+              <i class="fa-solid fa-download"></i> تصدير نسخة (JSON)
+            </button>
+            <button type="button" class="btn-export-tool" onclick="document.getElementById('settingsBackupFileInput').click()" style="padding: 7px 10px; font-size: 0.76rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 8px;">
+              <i class="fa-solid fa-upload"></i> استيراد نسخة (JSON)
+            </button>
+            <input type="file" id="settingsBackupFileInput" accept=".json" style="display: none;" onchange="handleBackupUpload(event)">
+          </div>
+
+          <button type="button" class="btn-submit-tx" onclick="resetToDemoData()" style="width: 100%; background: linear-gradient(135deg, rgba(239, 68, 68, 0.85), rgba(220, 38, 38, 0.95)); margin: 0; padding: 8px 12px; font-weight: 800; font-size: 0.78rem; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.5);">
+            <i class="fa-solid fa-trash-can-arrow-up"></i> مسح البيانات السابقة وتطبيق التجربة الجديدة
+          </button>
+        </div>
+
       </div>
+
+      <!-- تذييل النافذة البسيط -->
+      <div style="padding: 10px 16px; background: rgba(15, 23, 42, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+        <span style="font-size: 0.68rem; color: #94a3b8;">مصروفات العائلة &copy; 2026 - نظام مالي محاسبي عائلي متكامل</span>
+        <button type="button" class="btn-export-tool" onclick="closeModal('settingsModal')" style="padding: 5px 14px; font-size: 0.76rem; font-weight: 800;">
+          إغلاق
+        </button>
+      </div>
+
     </div>
+  </div>
 <div class="toast-msg" id="toastMsg">
       <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i>
       <span id="toastTxt">تم بنجاح!</span>
@@ -15702,7 +15807,92 @@
     // الضبط وإدارة المظهر والسمات (Theme & Settings)
     // =========================================================================
     function openSettingsModal() {
+      updateSettingsModalDisplay();
       openModal('settingsModal');
+    }
+
+    function updateSettingsModalDisplay() {
+      const user = state.currentUser || 'ماهر';
+      const nameEl = document.getElementById('settingsCurrentMemberName');
+      if (nameEl) nameEl.textContent = user;
+
+      const emailEl = document.getElementById('settingsModalUserEmail');
+      if (emailEl) emailEl.textContent = (typeof GDRIVE_CONFIG !== 'undefined' ? GDRIVE_CONFIG.targetAccount : 'maher.easybakery@gmail.com');
+
+      const avatarEl = document.getElementById('settingsCurrentMemberAvatar');
+      if (avatarEl) {
+        const emojis = { 'ماهر': '👨‍💼', 'أية': '👩‍💼', 'محمد': '👦', 'مريم': '👧' };
+        avatarEl.textContent = emojis[user] || '👤';
+      }
+
+      const pinPins = { 'ماهر': '4503069', 'أية': '25320', 'محمد': '00000', 'مريم': '11111' };
+      const pinEl = document.getElementById('settingsMemberPinStatus');
+      if (pinEl) {
+        pinEl.innerHTML = `<i class="fa-solid fa-lock"></i> قفل PIN مخصص: <strong style="letter-spacing: 1px;">${pinPins[user] || '••••'}</strong>`;
+      }
+
+      const walletCountEl = document.getElementById('settingsWalletCountText');
+      if (walletCountEl && state.wallets) {
+        const totalBal = state.wallets.reduce((sum, w) => sum + (Number(w.balance) || 0), 0);
+        const curr = state.currency || 'ج.م';
+        walletCountEl.textContent = `${state.wallets.length} محافظ نشطة (إجمالي: ${formatMoney(totalBal, curr)})`;
+      }
+
+      updateDriveSyncStatusDisplay();
+    }
+
+    function downloadBackup() {
+      try {
+        const backupData = {
+          app: 'FamilyExpenseTrackerMonefy',
+          version: '3.5.0',
+          exportedAt: new Date().toISOString(),
+          account: (typeof GDRIVE_CONFIG !== 'undefined' ? GDRIVE_CONFIG.targetAccount : 'maher.easybakery@gmail.com'),
+          state: state
+        };
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData, null, 2));
+        const dlAnchor = document.createElement('a');
+        dlAnchor.setAttribute("href", dataStr);
+        const dStr = new Date().toISOString().slice(0, 10);
+        dlAnchor.setAttribute("download", `family_expense_tracker_backup_${dStr}.json`);
+        document.body.appendChild(dlAnchor);
+        dlAnchor.click();
+        dlAnchor.remove();
+        if (typeof showToast === 'function') showToast('💾 تم تنزيل النسخة الاحتياطية بنجاح!');
+      } catch(e) {
+        alert('حدث خطأ أثناء تنزيل النسخة الاحتياطية: ' + e.message);
+      }
+    }
+
+    function handleBackupUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          const incomingState = parsed.state || parsed;
+          if (incomingState && Array.isArray(incomingState.transactions)) {
+            if (!confirm('هل أنت متأكد من استعادة النسخة الاحتياطية؟ سيتم دمج كافة المعاملات والمحافظ وتحديث المزامنة.')) return;
+            if (typeof mergeIncomingSyncData === 'function') {
+              mergeIncomingSyncData(incomingState);
+            } else {
+              state = Object.assign(state, incomingState);
+            }
+            if (typeof saveState === 'function') saveState();
+            if (typeof auditAndRecomputeAllWalletBalances === 'function') auditAndRecomputeAllWalletBalances();
+            if (typeof executeGoogleDriveSync === 'function') executeGoogleDriveSync();
+            if (typeof renderUI === 'function') renderUI();
+            if (typeof showToast === 'function') showToast('✅ تم استعادة النسخة الاحتياطية وتزامنها مع Google Drive بنجاح!');
+          } else {
+            alert('ملف النسخة الاحتياطية غير صالح أو لا يحتوي على بنية بيانات صحيحة.');
+          }
+        } catch(err) {
+          alert('حدث خطأ أثناء قراءة ملف النسخة الاحتياطية: ' + err.message);
+        }
+        event.target.value = '';
+      };
+      reader.readAsText(file);
     }
 
     function setAppTheme(theme) {
@@ -19133,7 +19323,9 @@ function switchCategoryChartFormat(format, btnEl) {
 
     function updateDriveSyncStatusDisplay() {
       const timeTxt = document.getElementById('driveLastSyncTimeText');
+      const settingsTimeTxt = document.getElementById('settingsDriveLastSyncTimeText');
       const badge = document.getElementById('driveCloudStatusBadge');
+      const settingsBadge = document.getElementById('settingsDriveCloudStatusBadge');
       const topBadge = document.getElementById('topDriveSyncStatusText');
       const lastSync = localStorage.getItem('family_last_drive_sync');
 
@@ -19141,17 +19333,23 @@ function switchCategoryChartFormat(format, btnEl) {
         const d = new Date(lastSync);
         const timeStr = d.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
         if (timeTxt) timeTxt.textContent = `آخر مزامنة: اليوم ${timeStr}`;
+        if (settingsTimeTxt) settingsTimeTxt.textContent = `آخر مزامنة: اليوم ${timeStr}`;
         if (topBadge) topBadge.textContent = 'متزامن ' + timeStr;
       } else {
         if (timeTxt) timeTxt.textContent = 'آخر مزامنة: الآن';
-        if (topBadge) topBadge.textContent = 'سحابة Google Drive';
+        if (settingsTimeTxt) settingsTimeTxt.textContent = 'آخر مزامنة: الآن';
+        if (topBadge) topBadge.textContent = 'متزامن';
       }
     }
 
     // المزامنة الشاملة والموازنة الحسابية التامة
     async function executeGoogleDriveSync() {
       const icon = document.getElementById('driveSyncIconSpin');
+      const settingsIcon = document.getElementById('settingsDriveSyncIconSpin');
+      const headerIcon = document.getElementById('headerDriveSyncIcon');
       if (icon) icon.classList.add('fa-spin');
+      if (settingsIcon) settingsIcon.classList.add('fa-spin');
+      if (headerIcon) headerIcon.classList.add('fa-spin');
 
       const customWebhook = localStorage.getItem('family_gdrive_webhook_url');
       const syncEndpoint = (customWebhook && customWebhook.startsWith('http')) ? customWebhook : GDRIVE_CONFIG.defaultSyncUrl;
@@ -19236,6 +19434,8 @@ function switchCategoryChartFormat(format, btnEl) {
       }
 
       if (icon) icon.classList.remove('fa-spin');
+      if (settingsIcon) settingsIcon.classList.remove('fa-spin');
+      if (headerIcon) headerIcon.classList.remove('fa-spin');
       updateDriveSyncStatusDisplay();
       if (typeof renderUI === 'function') renderUI();
       if (typeof renderSecWalletView === 'function') renderSecWalletView();
