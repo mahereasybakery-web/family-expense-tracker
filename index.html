@@ -9106,14 +9106,49 @@
             </div>
 
             <!-- المبلغ وتاريخ الحاجة -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px;">
               <div>
-                <label style="font-size: 0.68rem; color: #cbd5e1; font-weight: 800; display: block; margin-bottom: 2px;">المبلغ المطلوب (ج.م) *</label>
-                <input type="number" step="0.01" class="form-input-custom" id="inpReqAmount" placeholder="0.00" oninput="initRequestAllocations()" style="height: 38px; font-size: 1.15rem; font-weight: 900; text-align: center; color: #ec4899;">
+                <label style="font-size: 0.68rem; color: #cbd5e1; font-weight: 800; display: block; margin-bottom: 2px;">
+                  المبلغ المطلوب (ج.م) * <span style="font-size: 0.62rem; color: #ec4899; font-weight: 700;">(±100 ج.م)</span>
+                </label>
+                <div style="display: flex; align-items: center; gap: 3px;">
+                  <button type="button" onclick="adjustReqAmount(-100)" class="btn-item-action" style="height: 38px; width: 34px; min-width: 34px; padding: 0; border-radius: 9px; font-size: 1.15rem; font-weight: 900; background: rgba(236, 72, 153, 0.2); border: 1.2px solid rgba(236, 72, 153, 0.5); color: #f472b6; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="إنقاص 100 ج.م">
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                  <input type="number" step="100" min="0" class="form-input-custom" id="inpReqAmount" placeholder="0" oninput="initRequestAllocations()" style="height: 38px; font-size: 1.15rem; font-weight: 900; text-align: center; color: #ec4899; flex: 1; min-width: 0;">
+                  <button type="button" onclick="adjustReqAmount(100)" class="btn-item-action" style="height: 38px; width: 34px; min-width: 34px; padding: 0; border-radius: 9px; font-size: 1.15rem; font-weight: 900; background: rgba(236, 72, 153, 0.2); border: 1.2px solid rgba(236, 72, 153, 0.5); color: #f472b6; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="زيادة 100 ج.م">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
               </div>
               <div>
                 <label style="font-size: 0.68rem; color: #cbd5e1; font-weight: 800; display: block; margin-bottom: 2px;">تاريخ الحاجة للمبلغ *</label>
                 <input type="date" class="form-input-custom" id="inpReqDate" style="height: 38px; font-size: 0.78rem;">
+              </div>
+            </div>
+
+            <!-- مؤشر السلايدر التفاعلي للمبلغ المطلوب (بواقع 100 جنيه لكل تدريج وضغطة) -->
+            <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 6px 10px; margin-bottom: 8px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; font-size: 0.68rem; font-weight: 800; color: #94a3b8;">
+                <span><i class="fa-solid fa-sliders" style="color: #ec4899;"></i> مؤشر المبلغ (100 ج.م / خطوة):</span>
+                <span id="lblReqSliderVal" style="color: #ec4899; font-weight: 900; font-size: 0.74rem;">0 ج.م</span>
+              </div>
+              <input type="range" id="rngReqAmount" min="0" max="25000" step="100" value="0" oninput="syncReqAmountFromRange(this.value)" style="width: 100%; height: 6px; accent-color: #ec4899; cursor: pointer; border-radius: 6px; display: block;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.60rem; color: #64748b; font-weight: 700; margin-top: 3px; direction: ltr;">
+                <span>0</span>
+                <span>5,000</span>
+                <span>10,000</span>
+                <span>15,000</span>
+                <span>20,000</span>
+                <span>25,000</span>
+              </div>
+              <!-- كبسولات الزيادة السريعة بمضاعفات 100 جنيه -->
+              <div style="display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; justify-content: center;">
+                <button type="button" onclick="adjustReqAmount(100)" class="btn-wallet-action-pill" style="height: 24px; padding: 0 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.4); color: #f472b6; cursor: pointer;">+100</button>
+                <button type="button" onclick="adjustReqAmount(200)" class="btn-wallet-action-pill" style="height: 24px; padding: 0 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.4); color: #f472b6; cursor: pointer;">+200</button>
+                <button type="button" onclick="adjustReqAmount(500)" class="btn-wallet-action-pill" style="height: 24px; padding: 0 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.4); color: #f472b6; cursor: pointer;">+500</button>
+                <button type="button" onclick="adjustReqAmount(1000)" class="btn-wallet-action-pill" style="height: 24px; padding: 0 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.4); color: #f472b6; cursor: pointer;">+1000</button>
+                <button type="button" onclick="adjustReqAmount(-100)" class="btn-wallet-action-pill" style="height: 24px; padding: 0 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: rgba(244, 63, 94, 0.15); border: 1px solid rgba(244, 63, 94, 0.4); color: #f43f5e; cursor: pointer;">-100</button>
               </div>
             </div>
 
@@ -15066,11 +15101,60 @@
       { amount: 0, category: 'daily', member: 'أية' }
     ];
 
+    // مزامنة مؤشر السلايدر التفاعلي للمبلغ المطلوب (100 ج.م لكل خطوة)
+    function syncReqAmountFromRange(val) {
+      const inp = document.getElementById('inpReqAmount');
+      const lbl = document.getElementById('lblReqSliderVal');
+      const num = parseFloat(val) || 0;
+      if (inp) {
+        inp.value = num > 0 ? num : '';
+      }
+      if (lbl) {
+        lbl.textContent = (typeof formatMoney === 'function') ? formatMoney(num) : num + ' ج.م';
+      }
+      initRequestAllocations();
+    }
+
+    // تعديل المبلغ بمقدار 100 جنيه لكل ضغطة على المؤشر أو الأزرار
+    function adjustReqAmount(delta) {
+      const inp = document.getElementById('inpReqAmount');
+      const rng = document.getElementById('rngReqAmount');
+      const lbl = document.getElementById('lblReqSliderVal');
+      if (!inp) return;
+      let cur = parseFloat(inp.value) || 0;
+      let next = Math.max(0, Math.round((cur + delta) / 100) * 100);
+      inp.value = next > 0 ? next : '';
+      if (rng) rng.value = Math.min(25000, next);
+      if (lbl) lbl.textContent = (typeof formatMoney === 'function') ? formatMoney(next) : next + ' ج.م';
+      initRequestAllocations();
+    }
+
+    // تعديل تخصيص كل سطر بمقدار 100 جنيه
+    function adjustAllocRowAmount(idx, delta) {
+      if (!currentRequestAllocations[idx]) return;
+      let cur = parseFloat(currentRequestAllocations[idx].amount) || 0;
+      let next = Math.max(0, Math.round((cur + delta) / 100) * 100);
+      currentRequestAllocations[idx].amount = next;
+      renderRequestAllocations();
+    }
+
     function initRequestAllocations() {
       const amtInp = document.getElementById('inpReqAmount');
+      const rng = document.getElementById('rngReqAmount');
+      const lbl = document.getElementById('lblReqSliderVal');
       const val = parseFloat(amtInp ? amtInp.value : 0) || 0;
-      if (currentRequestAllocations.length === 0 || (currentRequestAllocations.length === 1 && currentRequestAllocations[0].amount === 0)) {
-        currentRequestAllocations = [{ amount: val, category: 'daily', member: 'أية' }];
+      if (rng && document.activeElement !== rng) {
+        rng.value = Math.min(25000, val);
+      }
+      if (lbl) {
+        lbl.textContent = (typeof formatMoney === 'function') ? formatMoney(val) : val + ' ج.م';
+      }
+      const currentMember = document.getElementById('inpReqMember')?.value || 'أية';
+      if (currentRequestAllocations.length === 0) {
+        currentRequestAllocations = [{ amount: val, category: 'daily', member: currentMember }];
+      } else if (currentRequestAllocations.length === 1) {
+        currentRequestAllocations[0].amount = val;
+        currentRequestAllocations[0].member = currentMember;
       }
       renderRequestAllocations();
     }
@@ -15254,11 +15338,15 @@
               </select>
             </div>
           </div>
-          <!-- السطر الثاني: المبلغ المخصص وزر الحذف -->
+          <!-- السطر الثاني: المبلغ المخصص مع مؤشر التدريج وزر الحذف -->
           <div style="display: flex; gap: 6px; align-items: flex-end;">
             <div style="flex: 1;">
-              <div style="font-size: 0.64rem; color: #94a3b8; font-weight: 700; margin-bottom: 1px;">المبلغ المخصص (ج.م):</div>
-              <input type="number" step="0.01" class="form-input-custom" value="${alloc.amount > 0 ? alloc.amount : ''}" placeholder="0.00 ج.م" style="height: 32px; font-size: 0.95rem; font-weight: 900; text-align: center; padding: 2px 8px; border-radius: 7px; color: #38bdf8; width: 100%; box-sizing: border-box;" oninput="updateRequestAllocationRow(${idx}, 'amount', this.value)">
+              <div style="font-size: 0.64rem; color: #94a3b8; font-weight: 700; margin-bottom: 1px;">المبلغ المخصص (ج.م) [±100]:</div>
+              <div style="display: flex; align-items: center; gap: 3px;">
+                <button type="button" onclick="adjustAllocRowAmount(${idx}, -100)" class="btn-item-action" style="height: 32px; width: 28px; min-width: 28px; padding: 0; font-size: 0.95rem; font-weight: 900; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; border-radius: 7px; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="إنقاص 100 ج.م">-</button>
+                <input type="number" step="100" min="0" class="form-input-custom" value="${alloc.amount > 0 ? alloc.amount : ''}" placeholder="0.00 ج.م" style="height: 32px; font-size: 0.95rem; font-weight: 900; text-align: center; padding: 2px 6px; border-radius: 7px; color: #38bdf8; flex: 1; min-width: 0; box-sizing: border-box;" oninput="updateRequestAllocationRow(${idx}, 'amount', this.value)">
+                <button type="button" onclick="adjustAllocRowAmount(${idx}, 100)" class="btn-item-action" style="height: 32px; width: 28px; min-width: 28px; padding: 0; font-size: 0.95rem; font-weight: 900; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; border-radius: 7px; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="زيادة 100 ج.م">+</button>
+              </div>
             </div>
             <button type="button" onclick="removeRequestAllocationRow(${idx})" class="btn-item-action btn-item-reject" style="height: 32px; padding: 0 10px; font-size: 0.72rem; border-radius: 7px; flex: 0 0 auto; gap: 4px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;" title="حذف هذا التخصيص">
               <i class="fa-solid fa-trash-can"></i> حذف
@@ -15405,6 +15493,8 @@
       if (amtInp) amtInp.value = '';
       if (rsnInp) rsnInp.value = '';
       removeRequestPhoto();
+      const rngEl = document.getElementById('rngReqAmount'); if (rngEl) rngEl.value = 0;
+      const lblEl = document.getElementById('lblReqSliderVal'); if (lblEl) lblEl.textContent = '0 ج.م';
       currentRequestAllocations = [{ amount: 0, category: 'daily', member: 'أية' }];
       renderRequestAllocations();
 
