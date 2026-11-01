@@ -11594,9 +11594,9 @@
 
         <!-- معلومات السحابة المشتركة المباشرة -->
         <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px; margin-top: 12px; text-align: center;">
-          <button type="button" onclick="closeModal('authModal'); openGoogleDriveSyncModal();" style="background: rgba(34, 197, 94, 0.15); border: 1.2px solid rgba(34, 197, 94, 0.4); color: #34d399; padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+          <button type="button" onclick="closeModal('authModal'); openSettingsModal();" style="background: rgba(34, 197, 94, 0.15); border: 1.2px solid rgba(34, 197, 94, 0.4); color: #34d399; padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
             <i class="fa-brands fa-google-drive"></i>
-            <span>سحابة العائلة مفعلة: maher.easybakery@gmail.com ☁️</span>
+            <span>سحابة العائلة مفعلة ومتصلة لحظياً ☁️</span>
           </button>
         </div>
 
@@ -11613,8 +11613,8 @@
               <i class="fa-brands fa-google-drive"></i>
             </div>
             <div>
-              <h3 class="modal-title-custom" style="font-size: 0.98rem; font-weight: 800; color: #f8fafc;">المزامنة السحابية عبر Google Drive</h3>
-              <div style="font-size: 0.68rem; color: #38bdf8; font-weight: 700;">الحساب المعتمد: maher.easybakery@gmail.com</div>
+              <h3 class="modal-title-custom" style="font-size: 0.98rem; font-weight: 800; color: #f8fafc;">المزامنة السحابية اللحظية</h3>
+              <div style="font-size: 0.68rem; color: #34d399; font-weight: 700;">متصل ومحمي تلقائياً ☁️</div>
             </div>
           </div>
           <button class="btn-close-drawer" onclick="closeModal('googleDriveSyncModal')">&times;</button>
@@ -11629,12 +11629,12 @@
             </span>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: #cbd5e1; margin-bottom: 3px;">
-            <span>الملف المشترك: <strong style="color: #38bdf8;">family_expense_tracker_db.json</strong></span>
+            <span style="color: #94a3b8;">تحديث البيانات: <strong style="color: #38bdf8;">مشفر وتلقائي</strong></span>
             <span id="driveLastSyncTimeText">آخر مزامنة: الآن</span>
           </div>
           <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.66rem; color: #fbbf24; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 3px;">
-            <span>الموازنة الرياضية للأرصدة:</span>
-            <span style="font-weight: 800; color: #34d399;">مطابقة تامة بدقة 0.00 ج.م / ر.س</span>
+            <span>الموازنة الرياضية وفرق الرصيد:</span>
+            <span style="font-weight: 800; color: #34d399;">مطابقة تامة بدقة 0.00 ج.م</span>
           </div>
         </div>
 
@@ -11643,43 +11643,7 @@
           <i class="fa-solid fa-rotate" id="driveSyncIconSpin"></i>
           <span>مزامنة فورية وموازنة الحسابات الآن 🔄</span>
         </button>
-
-        <!-- 2. قسم ربط Google Drive المباشر بنقرة واحدة بحساب maher.easybakery@gmail.com -->
-        <div style="background: rgba(15, 23, 42, 0.75); border: 1.2px solid rgba(245, 158, 11, 0.35); border-radius: 12px; padding: 10px 12px; margin-bottom: 10px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-            <div style="font-size: 0.74rem; font-weight: 800; color: #fbbf24; display: flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-cloud-arrow-up"></i> ربط مباشر بحساب Google المفتوح بالمتصفح
-            </div>
-            <span style="font-size: 0.62rem; color: #94a3b8;">Chrome Profile</span>
-          </div>
-          <div style="font-size: 0.68rem; color: #cbd5e1; margin-bottom: 6px; line-height: 1.4;">
-            نظراً لأن حسابك <strong style="color: #38bdf8;">maher.easybakery@gmail.com</strong> مفتوح حالياً بالمتصفح، يمكنك نشر الرابط السحابي الخاص بك في ثوانٍ بنقرة واحدة ليعمل على كافة جوالات الأسرة بدون الحاجة لتسجيل دخولهم:
-          </div>
-          <div style="display: flex; gap: 6px;">
-            <button type="button" onclick="openGasDriveEditor()" style="flex: 1; height: 36px; border-radius: 9px; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; color: #fff; font-weight: 800; font-size: 0.74rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);">
-              <i class="fa-solid fa-wand-magic-sparkles"></i> 🚀 نشر رابط السحابة التلقائي بحسابك
-            </button>
-          </div>
-        </div>
-
-        <!-- 3. رابط سحابة الأسرة على Google Drive (Apps Script Webhook) -->
-        <div style="background: rgba(15, 23, 42, 0.6); border: 1.2px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 10px 12px; margin-bottom: 10px;">
-          <label style="font-size: 0.70rem; font-weight: 800; color: #38bdf8; display: block; margin-bottom: 4px;">
-            رابط سحابة Google Drive المشتركة لعائلة ماهر & آية:
-          </label>
-          <div style="display: flex; gap: 6px;">
-            <input type="url" id="inpDriveWebhookUrl" class="form-input-custom" placeholder="https://script.google.com/macros/s/.../exec" style="height: 36px; font-size: 0.72rem; flex: 1; border-radius: 9px;">
-            <button type="button" onclick="saveGoogleDriveWebhookUrl()" style="height: 36px; padding: 0 12px; border-radius: 9px; background: #0284c7; border: none; color: #fff; font-weight: 800; font-size: 0.74rem; cursor: pointer; flex-shrink: 0;">
-              حفظ
-            </button>
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
-            <span style="font-size: 0.62rem; color: #64748b;">يحفظ تلقائياً في حساب Google Drive: maher.easybakery@gmail.com</span>
-            <button type="button" onclick="copyGasDriveTemplate()" style="background: transparent; border: none; color: #fbbf24; font-size: 0.65rem; font-weight: 800; cursor: pointer; text-decoration: underline;">
-              📋 نسخ الكود
-            </button>
-          </div>
-        </div>
+        <input type="hidden" id="inpDriveWebhookUrl">
 
         <!-- 4. خيارات الحفظ والاسترجاع كملف مباشر للجوال -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
@@ -12011,46 +11975,34 @@
               <span>مركز الضبط الموحد والمزامنة</span>
               <span class="version-badge" style="font-size: 0.65rem; background: rgba(34, 197, 94, 0.2); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.4);">v3.5.0 • متزامن</span>
             </h3>
-            <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 600;">التحكم الشامل، المزامنة، الأمان، والمظهر</div>
+            <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 600;">المزامنة السحابية الفورية، التخصيص، وإدارة البيانات</div>
           </div>
         </div>
         <button type="button" class="btn-modal-close" onclick="closeModal('settingsModal')" aria-label="إغلاق">&times;</button>
       </div>
 
-      <!-- شريط التبويبات الثلاثي المنظم والأنيق (بدون زر الأمان) -->
-      <div class="settings-tabs-strip" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 8px 14px; background: rgba(15, 23, 42, 0.7); border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-shrink: 0;">
-        <button type="button" class="settings-tab-btn active" data-tab="sync" onclick="switchSettingsTab('sync')">
-          <i class="fa-brands fa-google-drive"></i>
-          <span>السحابة</span>
-        </button>
-        <button type="button" class="settings-tab-btn" data-tab="appearance" onclick="switchSettingsTab('appearance')">
-          <i class="fa-solid fa-palette"></i>
-          <span>المظهر</span>
-        </button>
-        <button type="button" class="settings-tab-btn" data-tab="data" onclick="switchSettingsTab('data')">
-          <i class="fa-solid fa-database"></i>
-          <span>البيانات</span>
-        </button>
-      </div>
+      <!-- محتوى الضبط الموحد الشامل (صفحة واحدة احترافية متكاملة) -->
+      <div style="padding: 14px 16px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 14px;" class="custom-scrollbar">
 
-      <!-- محتوى التبويبات المنظم والمرن والقابل للتمرير -->
-      <div style="padding: 14px 16px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 12px;" class="custom-scrollbar">
+        <!-- ========================================================
+             القسم 1: المزامنة السحابية وتحديث النظام
+             ======================================================== -->
+        <div class="settings-unified-section" id="settingsSec_sync">
+          <div style="font-size: 0.80rem; font-weight: 900; color: #34d399; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; padding: 0 4px;">
+            <i class="fa-brands fa-google-drive"></i>
+            <span>المزامنة السحابية وتحديث التطبيق</span>
+          </div>
 
-        <!-- ==========================================
-             التبويب 1: السحابة والمزامنة المباشرة
-             ========================================== -->
-        <div class="settings-tab-pane" id="settingsPane_sync" style="display: block;">
-          
-          <!-- كارت المزامنة السحابية المباشرة (Google Drive) -->
-          <div class="settings-action-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), rgba(15, 23, 42, 0.85)); border: 1.5px solid rgba(34, 197, 94, 0.4); border-radius: 16px; padding: 14px 15px; margin-bottom: 12px;">
+          <!-- كارت المزامنة وحالة الموازنة وفرق الرصيد -->
+          <div class="settings-action-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), rgba(15, 23, 42, 0.85)); border: 1.5px solid rgba(34, 197, 94, 0.4); border-radius: 16px; padding: 13px 14px; margin-bottom: 10px;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
               <div style="display: flex; align-items: center; gap: 8px;">
-                <div style="width: 34px; height: 34px; border-radius: 8px; background: rgba(34, 197, 94, 0.2); display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: 1.15rem;">
+                <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(34, 197, 94, 0.2); display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: 1.2rem;">
                   <i class="fa-brands fa-google-drive"></i>
                 </div>
                 <div>
-                  <span style="font-weight: 900; font-size: 0.90rem; color: #f8fafc; display: block;">المزامنة السحابية المباشرة (Google Drive)</span>
-                  <span style="font-size: 0.68rem; color: #94a3b8;">ربط فوري وحفظ مشفر لحظياً مع خادم السحابة</span>
+                  <span style="font-weight: 900; font-size: 0.88rem; color: #f8fafc; display: block;">المزامنة السحابية اللحظية</span>
+                  <span id="settingsDriveLastSyncTimeText" style="font-size: 0.69rem; color: #fbbf24; font-weight: 700;">آخر مزامنة: الآن</span>
                 </div>
               </div>
               <span id="settingsDriveCloudStatusBadge" style="background: rgba(34, 197, 94, 0.2); color: #34d399; font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; border: 1px solid rgba(34, 197, 94, 0.35); display: flex; align-items: center; gap: 4px;">
@@ -12058,103 +12010,84 @@
               </span>
             </div>
 
-            <!-- تفاصيل الحساب والملف -->
-            <div style="background: rgba(0, 0, 0, 0.3); border-radius: 10px; padding: 9px 12px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 5px; font-size: 0.74rem;">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="color: #94a3b8;">الحساب السحابي المعتمد:</span>
-                <span style="color: #38bdf8; font-weight: 800; direction: ltr; font-family: monospace;">maher.easybakery@gmail.com</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="color: #94a3b8;">قاعدة البيانات المشتركة:</span>
-                <span style="color: #34d399; font-weight: 800; font-family: monospace;">family_expense_tracker_db.json</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 5px; margin-top: 2px;">
-                <span style="color: #94a3b8;">توقيت آخر مزامنة:</span>
-                <span id="settingsDriveLastSyncTimeText" style="color: #fbbf24; font-weight: 800;">آخر مزامنة: الآن</span>
-              </div>
+            <!-- سطر حالة الموازنة الرياضية وفرق الرصيد -->
+            <div style="background: rgba(0, 0, 0, 0.35); border-radius: 10px; padding: 8px 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem;">
+              <span style="color: #94a3b8; display: flex; align-items: center; gap: 6px; font-weight: 700;">
+                <i class="fa-solid fa-scale-balanced" style="color: #38bdf8;"></i> الموازنة الرياضية وفرق الرصيد:
+              </span>
+              <span id="settingsReconciliationDiffBadge" style="font-weight: 800; color: #34d399; display: flex; align-items: center; gap: 4px;">
+                <i class="fa-solid fa-circle-check"></i> مطابقة تامة (فرق الرصيد: 0.00 ج.م)
+              </span>
             </div>
 
             <!-- زر المزامنة الفورية السحابية (متزامن) -->
-            <button type="button" class="btn-submit-tx" onclick="executeGoogleDriveSync()" style="width: 100%; height: 44px; background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 12px; font-weight: 900; font-size: 0.90rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35); margin-bottom: 8px;">
+            <button type="button" class="btn-submit-tx" onclick="executeGoogleDriveSync()" style="width: 100%; height: 44px; background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 12px; font-weight: 900; font-size: 0.88rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35); margin-bottom: 6px;">
               <i class="fa-solid fa-arrows-rotate" id="settingsDriveSyncIconSpin"></i>
               <span>مزامنة وحفظ سحابي فوري الآن (متزامن)</span>
             </button>
 
-            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: #94a3b8; padding: 0 2px;">
-              <span><i class="fa-solid fa-bolt" style="color: #fbbf24;"></i> كل معاملة تسجلها تُحفظ فوراً على السحابة</span>
-              <button type="button" onclick="closeModal('settingsModal'); openGoogleDriveSyncModal();" style="background: none; border: none; color: #38bdf8; text-decoration: underline; cursor: pointer; font-size: 0.72rem; font-weight: 800;">
-                خيارات الربط المتقدمة ⚙️
-              </button>
+            <div style="text-align: center; font-size: 0.67rem; color: #94a3b8;">
+              <i class="fa-solid fa-bolt" style="color: #fbbf24;"></i> كل معاملة تسجلها تُحفظ وتُوازن لحظياً بين جميع جوالات الأسرة
             </div>
           </div>
 
           <!-- كارت تحديث التطبيق ومسح الكاش السحابي -->
-          <div class="settings-action-card" style="background: rgba(56, 189, 248, 0.08); border: 1.2px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 12px 14px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <i class="fa-solid fa-rotate" style="color: #38bdf8; font-size: 1.05rem;"></i>
-                <span style="font-weight: 800; font-size: 0.86rem; color: #f8fafc;">إعادة تحميل وتحديث التطبيق</span>
+          <div class="settings-action-card" style="background: rgba(56, 189, 248, 0.08); border: 1.2px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 11px 13px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+              <div style="font-weight: 800; font-size: 0.82rem; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-rotate" style="color: #38bdf8;"></i>
+                <span>تحديث وإعادة تحميل التطبيق</span>
               </div>
-              <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; font-size: 0.66rem; font-weight: 800; padding: 2px 7px; border-radius: 6px;">تحديث فوري من GitHub</span>
+              <span style="font-size: 0.63rem; color: #38bdf8; font-weight: 800; background: rgba(56, 189, 248, 0.15); padding: 2px 6px; border-radius: 4px;">
+                تحديث فوري من GitHub
+              </span>
             </div>
-            <p style="font-size: 0.72rem; color: #94a3b8; margin: 0 0 10px 0; line-height: 1.4;">
-              يقوم بإعادة تحميل أحدث إصدار منشور فوراً، مسح الكاش المؤقت لمتصفح الهاتف، وجلب كافة المعاملات السحابية.
+            <p style="font-size: 0.69rem; color: #94a3b8; margin: 0 0 8px 0; line-height: 1.35;">
+              إعادة تحميل أحدث إصدار منشور فوراً، مسح الكاش المؤقت لمتصفح الهاتف وجلب أحدث البيانات.
             </p>
-            <button type="button" class="btn-primary-custom" onclick="forceAppReloadAndSync()" style="width: 100%; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; padding: 9px 12px; border-radius: 10px; font-weight: 800; font-size: 0.82rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-              <i class="fa-solid fa-arrows-rotate"></i>
-              <span>إعادة التحميل وتحديث التطبيق الآن</span>
+            <button type="button" class="btn-submit-tx" onclick="forceAppReloadAndCacheBust()" style="width: 100%; background: linear-gradient(135deg, #0284c7, #0369a1); margin: 0; padding: 8px 12px; font-weight: 800; font-size: 0.78rem; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.4);">
+              <i class="fa-solid fa-arrows-rotate"></i> إعادة التحميل وتحديث التطبيق الآن
             </button>
           </div>
-
         </div>
 
-        <!-- ==========================================
-             التبويب 3: المظهر والتخصيص والثيمات
-             ========================================== -->
-        <div class="settings-tab-pane" id="settingsPane_appearance" style="display: none;">
-          
-          <!-- مفتاح التبديل بين الوضع الليلي والنهاري -->
-          <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 12px 14px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 34px; height: 34px; border-radius: 8px; background: rgba(251, 191, 36, 0.15); display: flex; align-items: center; justify-content: center; color: #fbbf24; font-size: 1.1rem;">
-                <i class="fa-solid fa-circle-half-stroke"></i>
-              </div>
-              <div>
-                <div style="font-size: 0.86rem; font-weight: 800; color: var(--text-main);">الوضع الليلي والنهاري</div>
-                <div style="font-size: 0.68rem; color: #94a3b8;">التبديل بين الثيم الداكن والفاتح</div>
-              </div>
-            </div>
-            <button type="button" class="btn-export-tool" id="btnToggleTheme" onclick="toggleTheme()" style="padding: 6px 14px; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; gap: 6px; border-radius: 10px;">
-              <i class="fa-solid fa-moon" id="themeIcon"></i>
-              <span id="themeToggleText">تبديل المظهر</span>
-            </button>
+        <!-- فاصل جمالي بين الأقسام -->
+        <div style="height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); margin: 2px 0;"></div>
+
+        <!-- ========================================================
+             القسم 2: المظهر والتخصيص
+             ======================================================== -->
+        <div class="settings-unified-section" id="settingsSec_appearance">
+          <div style="font-size: 0.80rem; font-weight: 900; color: #a855f7; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; padding: 0 4px;">
+            <i class="fa-solid fa-palette"></i>
+            <span>المظهر والتخصيص البصري</span>
           </div>
 
-          <!-- بالتة الألوان الملكية الستة -->
-          <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 12px 14px; margin-bottom: 12px;">
-            <div style="font-size: 0.80rem; font-weight: 800; color: #cbd5e1; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-              <i class="fa-solid fa-palette" style="color: #ec4899;"></i>
-              <span>الألوان الملكية المعتمدة للواجهة:</span>
+          <!-- ثيم ألوان النظام المعتمدة -->
+          <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 12px 14px; margin-bottom: 10px;">
+            <div style="font-size: 0.78rem; font-weight: 800; color: #cbd5e1; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-paint-brush" style="color: #a855f7;"></i>
+              <span>سمة وألوان التطبيق:</span>
             </div>
-            <div class="theme-color-palette" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
               <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')" style="padding: 7px 8px; font-size: 0.74rem;">
-                <div class="theme-color-dot" style="background: #0284c7;"></div>
+                <div class="theme-color-dot" style="background: #1e3a8a;"></div>
                 <span>كحلي ملكي</span>
               </div>
               <div class="theme-pill-option" id="themeOptBlack" onclick="setAppTheme('black')" style="padding: 7px 8px; font-size: 0.74rem;">
-                <div class="theme-color-dot" style="background: #111116; border: 1.5px solid #64748b;"></div>
+                <div class="theme-color-dot" style="background: #0f172a;"></div>
                 <span>أسود أسطوري</span>
               </div>
               <div class="theme-pill-option" id="themeOptEmerald" onclick="setAppTheme('emerald')" style="padding: 7px 8px; font-size: 0.74rem;">
-                <div class="theme-color-dot" style="background: #10b981;"></div>
+                <div class="theme-color-dot" style="background: #065f46;"></div>
                 <span>زمردي فاخر</span>
               </div>
               <div class="theme-pill-option" id="themeOptPurple" onclick="setAppTheme('purple')" style="padding: 7px 8px; font-size: 0.74rem;">
-                <div class="theme-color-dot" style="background: #a855f7;"></div>
+                <div class="theme-color-dot" style="background: #581c87;"></div>
                 <span>بنفسجي فخم</span>
               </div>
               <div class="theme-pill-option" id="themeOptGold" onclick="setAppTheme('gold')" style="padding: 7px 8px; font-size: 0.74rem;">
-                <div class="theme-color-dot" style="background: #f59e0b;"></div>
+                <div class="theme-color-dot" style="background: #b45309;"></div>
                 <span>ذهبي ملكي</span>
               </div>
               <div class="theme-pill-option" id="themeOptOcean" onclick="setAppTheme('ocean')" style="padding: 7px 8px; font-size: 0.74rem;">
@@ -12165,9 +12098,9 @@
           </div>
 
           <!-- خطوط التطبيق المعتمدة -->
-          <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 12px 14px; margin-bottom: 12px;">
+          <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 12px 14px; margin-bottom: 10px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <div style="font-size: 0.80rem; font-weight: 800; color: #cbd5e1; display: flex; align-items: center; gap: 6px;">
+              <div style="font-size: 0.78rem; font-weight: 800; color: #cbd5e1; display: flex; align-items: center; gap: 6px;">
                 <i class="fa-solid fa-font" style="color: #38bdf8;"></i>
                 <span>خط الكلمات والأرقام:</span>
               </div>
@@ -12190,7 +12123,7 @@
           </div>
 
           <!-- حجم الخط ونمط الكروت -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
             <!-- الحجم -->
             <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px 12px;">
               <div style="font-size: 0.74rem; font-weight: 800; color: #cbd5e1; margin-bottom: 6px; display: flex; align-items: center; gap: 4px;">
@@ -12213,59 +12146,63 @@
               </div>
             </div>
           </div>
-
         </div>
 
-        <!-- ==========================================
-             التبويب 4: المحافظ والبيانات والنسخ الاحتياطي
-             ========================================== -->
-        <div class="settings-tab-pane" id="settingsPane_data" style="display: none;">
-          
+        <!-- فاصل جمالي بين الأقسام -->
+        <div style="height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); margin: 2px 0;"></div>
+
+        <!-- ========================================================
+             القسم 3: المحافظ والبيانات
+             ======================================================== -->
+        <div class="settings-unified-section" id="settingsSec_data">
+          <div style="font-size: 0.80rem; font-weight: 900; color: #10b981; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; padding: 0 4px;">
+            <i class="fa-solid fa-database"></i>
+            <span>المحافظ والحسابات والنسخ الاحتياطي</span>
+          </div>
+
           <!-- كارت إدارة المحافظ المالية والحسابات البنكية -->
-          <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 13px 15px; margin-bottom: 12px;">
+          <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 12px 14px; margin-bottom: 10px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <div style="font-weight: 800; font-size: 0.86rem; color: #f8fafc; display: flex; align-items: center; gap: 8px;">
+              <div style="font-weight: 800; font-size: 0.84rem; color: #f8fafc; display: flex; align-items: center; gap: 7px;">
                 <i class="fa-solid fa-wallet" style="color: #10b981;"></i>
                 <span>إدارة المحافظ والحسابات البنكية</span>
               </div>
-              <span id="settingsWalletCountText" style="font-size: 0.70rem; color: #10b981; font-weight: 800; background: rgba(16, 185, 129, 0.15); padding: 2px 7px; border-radius: 6px;">
+              <span id="settingsWalletCountText" style="font-size: 0.68rem; color: #10b981; font-weight: 800; background: rgba(16, 185, 129, 0.15); padding: 2px 7px; border-radius: 6px;">
                 5 محافظ نشطة
               </span>
             </div>
-            <p style="font-size: 0.72rem; color: #94a3b8; margin: 0 0 10px 0; line-height: 1.4;">
+            <p style="font-size: 0.70rem; color: #94a3b8; margin: 0 0 9px 0; line-height: 1.35;">
               تعديل أسماء المحافظ، تحديث الأرصدة الافتتاحية، تسجيل التحويلات البنكية، واستعراض كشف الحساب.
             </p>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-              <button type="button" class="btn-submit-tx" onclick="closeModal('settingsModal'); openModal('walletModal');" style="margin: 0; padding: 9px 10px; font-size: 0.78rem; font-weight: 800; border-radius: 10px;">
+              <button type="button" class="btn-submit-tx" onclick="closeModal('settingsModal'); openModal('walletModal');" style="margin: 0; padding: 8px 10px; font-size: 0.78rem; font-weight: 800; border-radius: 10px;">
                 <i class="fa-solid fa-pen-to-square"></i> تعديل المحافظ
               </button>
-              <button type="button" class="btn-export-tool excel-btn" onclick="closeModal('settingsModal'); openWalletStatementModal();" style="padding: 9px 10px; font-size: 0.78rem; font-weight: 800; border-radius: 10px;">
+              <button type="button" class="btn-export-tool excel-btn" onclick="closeModal('settingsModal'); openWalletStatementModal();" style="padding: 8px 10px; font-size: 0.78rem; font-weight: 800; border-radius: 10px;">
                 <i class="fa-solid fa-receipt"></i> كشف الحساب
               </button>
             </div>
           </div>
 
           <!-- كارت النسخ الاحتياطي المحلي واستيراد JSON -->
-          <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 13px 15px; margin-bottom: 0;">
-            <div style="font-weight: 800; font-size: 0.86rem; color: #f8fafc; margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
+          <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 12px 14px; margin-bottom: 0;">
+            <div style="font-weight: 800; font-size: 0.84rem; color: #f8fafc; margin-bottom: 5px; display: flex; align-items: center; gap: 7px;">
               <i class="fa-solid fa-file-code" style="color: #38bdf8;"></i>
               <span>النسخ الاحتياطي المحلي (ملف JSON)</span>
             </div>
-            <p style="font-size: 0.72rem; color: #94a3b8; margin: 0 0 10px 0; line-height: 1.4;">
+            <p style="font-size: 0.70rem; color: #94a3b8; margin: 0 0 9px 0; line-height: 1.35;">
               تصدير نسخة احتياطية كاملة بهاتفك، أو استرجاع بيانات محفوظة مسبقاً.
             </p>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-              <button type="button" class="btn-export-tool" onclick="downloadBackup()" style="padding: 9px 10px; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 10px;">
+              <button type="button" class="btn-export-tool" onclick="downloadBackup()" style="padding: 8px 10px; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 10px;">
                 <i class="fa-solid fa-download"></i> تصدير نسخة (JSON)
               </button>
-              <button type="button" class="btn-export-tool" onclick="document.getElementById('settingsBackupFileInput').click()" style="padding: 9px 10px; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 10px;">
+              <button type="button" class="btn-export-tool" onclick="document.getElementById('settingsBackupFileInput').click()" style="padding: 8px 10px; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 10px;">
                 <i class="fa-solid fa-upload"></i> استيراد نسخة (JSON)
               </button>
               <input type="file" id="settingsBackupFileInput" accept=".json" style="display: none;" onchange="handleBackupUpload(event)">
             </div>
           </div>
-
-
         </div>
 
       </div>
@@ -18185,9 +18122,6 @@ function filterOperationsList() {
 
 function openSettingsModal() {
       updateSettingsModalDisplay();
-      const activeBtn = document.querySelector('.settings-tab-btn.active');
-      const activeTab = activeBtn ? activeBtn.getAttribute('data-tab') : 'sync';
-      switchSettingsTab(activeTab || 'sync');
       openModal('settingsModal');
     }
 
@@ -18215,6 +18149,39 @@ function openSettingsModal() {
         const totalBal = state.wallets.reduce((sum, w) => sum + (Number(w.balance) || 0), 0);
         const curr = state.currency || 'ج.م';
         walletCountEl.textContent = `${state.wallets.length} محافظ نشطة (إجمالي: ${formatMoney(totalBal, curr)})`;
+      }
+
+      // حساب الموازنة الرياضية للأرصدة وفرق الرصيد اللحظي
+      const diffBadge = document.getElementById('settingsReconciliationDiffBadge');
+      if (diffBadge) {
+        let actualBal = 0;
+        let computedBal = 0;
+        if (state.wallets && Array.isArray(state.wallets)) {
+          state.wallets.forEach(w => {
+            actualBal += Number(w.balance) || 0;
+            let wComp = parseFloat(w.initialBalance || w.baseBalance || 0);
+            (state.transactions || []).forEach(tx => {
+              if (tx.deleted) return;
+              const amt = Math.abs(parseFloat(tx.amount) || 0);
+              if (tx.type === 'expense' && tx.wallet === w.name) wComp -= amt;
+              else if (tx.type === 'income' && tx.wallet === w.name) wComp += amt;
+              else if (tx.type === 'transfer') {
+                if (tx.fromWallet === w.name || tx.wallet === w.name) wComp -= amt;
+                if (tx.toWallet === w.name) wComp += amt;
+              }
+            });
+            computedBal += wComp;
+          });
+        }
+        const diff = Math.abs(actualBal - computedBal);
+        const curr = state.currency || 'ج.م';
+        if (diff < 0.01) {
+          diffBadge.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #34d399;"></i> مطابقة تامة (فرق الرصيد: 0.00 ${curr})`;
+          diffBadge.style.color = '#34d399';
+        } else {
+          diffBadge.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color: #f87171;"></i> فرق رصيد: ${formatMoney(diff, curr)}`;
+          diffBadge.style.color = '#f87171';
+        }
       }
 
       updateDriveSyncStatusDisplay();
