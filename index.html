@@ -18740,7 +18740,7 @@ function switchCategoryChartFormat(format, btnEl) {
       targetAccount: 'maher.easybakery@gmail.com',
       targetFileName: 'family_expense_tracker_db.json',
       // قناة السحابة التلقائية المدمجة المجهزة مسبقاً (تعمل فوراً بدون أي إعداد على كافة الجوالات)
-      defaultSyncUrl: 'https://kvdb.io/4y9y1g3qVb5R2W8K/family_monefy_sync_maher_easybakery_v3',
+      defaultSyncUrl: 'https://script.google.com/macros/s/AKfycbwdIuCjR3lUy0DTBnWTj9koFZ4ghRxR2Dq-sdj_LjIS2r_gHfpp4AX_32dNd2RRKPaShQ/exec',
       defaultChannelKey: 'maher_easybakery_family_sync_v3'
     };
 
@@ -19141,10 +19141,16 @@ function doGet(e) {
       }
     });
 
+
     // استدعاء فحص المزامنة الأولي عند بدء التشغيل
     setTimeout(() => {
+      const curWebhook = localStorage.getItem('family_gdrive_webhook_url');
+      if (!curWebhook || curWebhook.includes('kvdb.io')) {
+        localStorage.setItem('family_gdrive_webhook_url', 'https://script.google.com/macros/s/AKfycbwdIuCjR3lUy0DTBnWTj9koFZ4ghRxR2Dq-sdj_LjIS2r_gHfpp4AX_32dNd2RRKPaShQ/exec');
+      }
       executeGoogleDriveSync();
     }, 1200);
+
 
     
     function switchAuthMode(mode) {
