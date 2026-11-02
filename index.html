@@ -10611,10 +10611,6 @@
               <span id="topDriveSyncStatusText">متزامن</span>
             </span>
           </button>
-          <button class="header-settings-btn" id="btnAuthProfile" onclick="openSettingsModal('users')" title="حساب العائلة والمستخدمين" style="background: rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.4); color: #c084fc; font-weight: 800;">
-            <i class="fa-solid fa-user-circle"></i>
-            <span id="headerCurrentUserName" style="font-size: 0.70rem;">ماهر</span>
-          </button>
           <button class="header-settings-btn" id="btnGlobalSearch" onclick="openGlobalSearchModal()" title="البحث الشامل في بيانات البرنامج بالكامل" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; margin-left: 4px;">
             <i class="fa-solid fa-magnifying-glass"></i>
             <span>بحث</span>
@@ -13754,9 +13750,9 @@
                 <i class="fa-solid fa-text-height" style="color: #38bdf8;"></i> حجم الخط:
               </div>
               <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;">
-                <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeSmall" onclick="setAppFontSize('small')" style="padding: 5px 1px; font-size: 0.65rem;">صغير</button>
-                <button type="button" class="analytics-sec-btn font-size-pill active" id="fontSizeMedium" onclick="setAppFontSize('medium')" style="padding: 5px 1px; font-size: 0.68rem;">وسط</button>
-                <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeLarge" onclick="setAppFontSize('large')" style="padding: 5px 1px; font-size: 0.70rem;">كبير</button>
+                <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeSmall" onclick="setAppFontSize('small', true, true)" style="padding: 5px 1px; font-size: 0.65rem;">صغير</button>
+                <button type="button" class="analytics-sec-btn font-size-pill active" id="fontSizeMedium" onclick="setAppFontSize('medium', true, true)" style="padding: 5px 1px; font-size: 0.68rem;">وسط</button>
+                <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeLarge" onclick="setAppFontSize('large', true, true)" style="padding: 5px 1px; font-size: 0.70rem;">كبير</button>
               </div>
             </div>
             <div>
@@ -14086,7 +14082,7 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = '4.8.0';
+      const APP_VERSION = '4.8.1';
       const APP_BUILD_ID = 202611021446;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
@@ -17971,9 +17967,43 @@ function generateRichDemoTransactions() {
           border: cat.color
         };
 
-        const cardBg = curThemeStyle.bg;
-        const cardBorder = isLight ? theme.border : (theme.border || curThemeStyle.border);
-        const cardShadow = curThemeStyle.shadow;
+        const currentCardStyle = document.documentElement.getAttribute('data-card-style') || localStorage.getItem('family_monefy_design_style') || 'glass';
+
+        let cardBg = curThemeStyle.bg;
+        let cardBorder = isLight ? theme.border : (theme.border || curThemeStyle.border);
+        let cardRadius = '18px';
+        let cardBackdrop = 'blur(16px)';
+        let cardShadow = curThemeStyle.shadow;
+
+        if (currentCardStyle === 'minimal') {
+          cardBg = isLight ? '#ffffff' : '#0f172a';
+          cardBorder = `1.5px solid ${theme.accent}77`;
+          cardRadius = '8px';
+          cardBackdrop = 'none';
+          cardShadow = isLight ? '0 2px 4px rgba(0, 0, 0, 0.08)' : '0 2px 5px rgba(0, 0, 0, 0.5)';
+        } else if (currentCardStyle === 'neumorphic') {
+          cardBg = isLight ? '#f1f5f9' : 'linear-gradient(145deg, #1e293b, #0f172a)';
+          cardBorder = isLight ? '1.5px solid rgba(255, 255, 255, 0.08)' : '1.5px solid rgba(255, 255, 255, 0.08)';
+          cardRadius = '14px';
+          cardBackdrop = 'none';
+          cardShadow = isLight 
+            ? '5px 5px 12px #cbd5e1, -4px -4px 10px #ffffff, inset 1px 1px 1px rgba(255, 255, 255, 0.8)' 
+            : '5px 5px 12px #070b12, -4px -4px 10px rgba(255, 255, 255, 0.05), inset 1px 1px 1px rgba(255, 255, 255, 0.1)';
+        } else if (currentCardStyle === 'neon') {
+          cardBg = isLight ? '#f8fafc' : '#050b14';
+          cardBorder = `2px solid ${theme.accent}`;
+          cardRadius = '14px';
+          cardBackdrop = 'none';
+          cardShadow = `0 0 14px ${theme.accent}80, inset 0 0 8px ${theme.accent}33`;
+        } else {
+          // glass (default)
+          cardBg = isLight ? 'rgba(255, 255, 255, 0.80)' : curThemeStyle.bg;
+          cardBorder = isLight ? '1.5px solid rgba(0, 0, 0, 0.12)' : `1.5px solid ${theme.border || curThemeStyle.border}`;
+          cardRadius = '18px';
+          cardBackdrop = 'blur(16px)';
+          cardShadow = isLight ? '0 8px 24px rgba(0, 0, 0, 0.08)' : (curThemeStyle.shadow || '0 8px 24px rgba(0, 0, 0, 0.45)');
+        }
+
         const catLabelColor = curThemeStyle.labelColor;
 
         // اختيار تدرج فقاعة الأيقونة بناءً على نمط الأيقونات المختار
@@ -17990,8 +18020,10 @@ function generateRichDemoTransactions() {
 
         card.style.cssText = `
           background: ${cardBg};
-          border: 1.6px solid ${cardBorder};
-          border-radius: 16px;
+          border: ${cardBorder};
+          border-radius: ${cardRadius};
+          backdrop-filter: ${cardBackdrop};
+          -webkit-backdrop-filter: ${cardBackdrop};
           padding: var(--app-card-padding, 7px 4px 6px);
           display: flex;
           flex-direction: column;
@@ -20494,7 +20526,7 @@ function openSettingsModal(targetSection = '') {
       return base;
     }
 
-    function setAppFontSize(size, persist = true) {
+    function setAppFontSize(size, persist = true, notify = false) {
       const validSizes = ['small', 'medium', 'large'];
       if (!validSizes.includes(size)) size = 'medium';
 
@@ -20528,7 +20560,7 @@ function openSettingsModal(targetSection = '') {
         renderAnalyticsUI();
       }
 
-      showToast(`🔠 تم تفعيل حجم الخط: ${labels[size]} وتكييف الشاشات تلقائياً`);
+      if (notify) showToast(`🔠 تم تفعيل حجم الخط: ${labels[size]} وتكييف الشاشات تلقائياً`);
     }
 
     // رصد وتطبيق التكيف التلقائي مع مقاس الشاشة المفتوحة منها
@@ -25549,7 +25581,9 @@ function promptMemberPin(memberName) {
         console.warn('Google Drive Sync error:', err);
         localStorage.setItem('family_master_cloud_sync', JSON.stringify(payload));
         auditAndRecomputeAllWalletBalances();
-        showToast('💾 تم الحفظ السحابي محلياً وجاهز للمزامنة فور توفر الشبكة');
+        if (isManual) {
+          showToast('💾 تم الحفظ السحابي محلياً وجاهز للمزامنة فور توفر الشبكة');
+        }
       }
 
       if (icon) icon.classList.remove('fa-spin');
@@ -26080,8 +26114,8 @@ function installDailyNoonTrigger() {
         // 4. تحديث الواجهة والتنبيه الصوتي والمرئي
         updateDailyBackupDisplay();
         if (typeof updateDriveSyncStatusDisplay === 'function') updateDriveSyncStatusDisplay();
-        if (typeof playNotificationChime === 'function') playNotificationChime();
-        if (typeof showToast === 'function') {
+        if (forceNow && typeof playNotificationChime === 'function') playNotificationChime();
+        if (forceNow && typeof showToast === 'function') {
           showToast(`⏰ تم بنجاح عمل نسخة 12:00 ظهراً وحفظها على Google Drive وحذف نسخة الأمس (${yesterdayStr}) ✨`);
         }
         return true;
@@ -26105,7 +26139,7 @@ function installDailyNoonTrigger() {
         }
 
         updateDailyBackupDisplay();
-        if (typeof showToast === 'function') {
+        if (forceNow && typeof showToast === 'function') {
           showToast(`💾 تم تجهيز نسخة 12:00 ظهراً (${todayFileName}) وحذف نسخة الأمس، وتنتظر مزامنة Google Drive`);
         }
         return false;
