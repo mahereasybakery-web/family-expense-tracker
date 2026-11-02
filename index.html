@@ -9813,96 +9813,149 @@
 
     
     /* ═════════════════════════════════════════════════════════════════════════
-       شريط المؤشرات المالية التنفيذي الماسي الموحد (Executive Wealth Cockpit)
-       تصميم ملكي تنفيذي فائق الفخامة والوضوح بأحدث معايير FinTech العالمية
+       قمرة القيادة المالية التنفيذية الفاخرة (Master Wealth Executive Cockpit)
+       تصميم ملكي فائق الفخامة والجمال مستوحى من كبرى تطبيقات الفنتك العالمية
        ═════════════════════════════════════════════════════════════════════════ */
     .kpi-master-wealth-cockpit {
       width: calc(100% - 14px) !important;
       margin: 4px 7px 8px !important;
       min-height: 88px !important;
-      max-height: 92px !important;
+      max-height: 94px !important;
       box-sizing: border-box !important;
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
-      padding: 8px 12px !important;
-      gap: 10px !important;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96) 0%, rgba(30, 41, 59, 0.90) 100%) !important;
-      border: 1.5px solid rgba(56, 189, 248, 0.45) !important;
-      border-radius: 16px !important;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+      padding: 8px 14px !important;
+      gap: 12px !important;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.97) 0%, rgba(24, 34, 53, 0.92) 100%) !important;
+      background-image: radial-gradient(circle at 92% 10%, rgba(56, 189, 248, 0.16) 0%, transparent 45%), radial-gradient(circle at 8% 90%, rgba(16, 185, 129, 0.12) 0%, transparent 45%) !important;
+      border: 1.2px solid rgba(56, 189, 248, 0.32) !important;
+      border-radius: 18px !important;
+      box-shadow: 0 10px 28px -5px rgba(0, 0, 0, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.12), 0 0 20px rgba(56, 189, 248, 0.08) !important;
       direction: rtl !important;
       position: relative !important;
       overflow: hidden !important;
-      transition: all 0.25s ease !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     .kpi-master-wealth-cockpit:hover {
-      border-color: rgba(56, 189, 248, 0.7) !important;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.2) !important;
+      border-color: rgba(56, 189, 248, 0.6) !important;
+      box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.65), inset 0 1px 2px rgba(255, 255, 255, 0.18), 0 0 25px rgba(56, 189, 248, 0.18) !important;
+      transform: translateY(-1px) !important;
     }
     body.light-theme .kpi-master-wealth-cockpit {
-      background: #ffffff !important;
-      border: 1.5px solid #cbd5e1 !important;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08) !important;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+      background-image: radial-gradient(circle at 92% 10%, rgba(2, 132, 199, 0.08) 0%, transparent 45%), radial-gradient(circle at 8% 90%, rgba(16, 185, 129, 0.06) 0%, transparent 45%) !important;
+      border: 1.2px solid #cbd5e1 !important;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08), inset 0 1px 0 #ffffff, 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+    }
+    body.light-theme .kpi-master-wealth-cockpit:hover {
+      border-color: #0284c7 !important;
+      box-shadow: 0 10px 28px rgba(2, 132, 199, 0.14), inset 0 1px 0 #ffffff !important;
     }
 
+    /* الجانب الأيمن: بطل الشاشة المالي (الرصيد الفعلي) */
     .cockpit-hero-side {
-      flex: 1.1 !important;
+      flex: 1.15 !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
-      gap: 3px !important;
+      gap: 2px !important;
       min-width: 0 !important;
       overflow: hidden !important;
     }
     .cockpit-hero-label {
       font-size: 0.72rem !important;
       font-weight: 800 !important;
-      color: #38bdf8 !important;
+      color: #94a3b8 !important;
       display: flex !important;
       align-items: center !important;
       gap: 6px !important;
       white-space: nowrap !important;
     }
+    body.light-theme .cockpit-hero-label {
+      color: #64748b !important;
+    }
+    .hero-title-text {
+      color: #cbd5e1 !important;
+      font-weight: 800 !important;
+      font-size: 0.72rem !important;
+    }
+    body.light-theme .hero-title-text {
+      color: #334155 !important;
+    }
     .hero-wallet-icon-badge {
       width: 22px !important;
       height: 22px !important;
-      border-radius: 6px !important;
-      background: rgba(56, 189, 248, 0.18) !important;
+      border-radius: 7px !important;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(2, 132, 199, 0.15)) !important;
       color: #38bdf8 !important;
       border: 1px solid rgba(56, 189, 248, 0.45) !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      font-size: 0.72rem !important;
+      font-size: 0.70rem !important;
       flex-shrink: 0 !important;
-      box-shadow: 0 0 8px rgba(56, 189, 248, 0.2) !important;
+      box-shadow: 0 2px 8px rgba(56, 189, 248, 0.25) !important;
     }
+    body.light-theme .hero-wallet-icon-badge {
+      background: linear-gradient(135deg, #e0f2fe, #bae6fd) !important;
+      color: #0284c7 !important;
+      border-color: #7dd3fc !important;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.15) !important;
+    }
+
+    .cockpit-privacy-btn {
+      background: transparent !important;
+      border: none !important;
+      color: #64748b !important;
+      font-size: 0.72rem !important;
+      cursor: pointer !important;
+      padding: 2px 4px !important;
+      margin-right: 2px !important;
+      border-radius: 5px !important;
+      transition: all 0.2s ease !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      line-height: 1 !important;
+    }
+    .cockpit-privacy-btn:hover {
+      color: #38bdf8 !important;
+      background: rgba(56, 189, 248, 0.15) !important;
+    }
+    body.light-theme .cockpit-privacy-btn:hover {
+      color: #0284c7 !important;
+      background: rgba(2, 132, 199, 0.1) !important;
+    }
+
     .cockpit-hero-value {
-      font-size: clamp(1.15rem, 4.4vw, 1.35rem) !important;
+      font-size: clamp(1.22rem, 4.6vw, 1.45rem) !important;
       font-weight: 900 !important;
       color: #38bdf8 !important;
-      letter-spacing: -0.3px !important;
+      letter-spacing: -0.4px !important;
       direction: rtl !important;
       text-align: right !important;
       font-variant-numeric: tabular-nums !important;
-      line-height: 1.15 !important;
+      line-height: 1.18 !important;
       white-space: nowrap !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
-      text-shadow: 0 0 12px rgba(56, 189, 248, 0.35) !important;
+      text-shadow: 0 2px 10px rgba(56, 189, 248, 0.3) !important;
     }
     body.light-theme .cockpit-hero-value {
       color: #0284c7 !important;
       text-shadow: none !important;
     }
+
     .cockpit-hero-sub {
       font-size: 0.62rem !important;
       color: #94a3b8 !important;
       font-weight: 700 !important;
       display: flex !important;
       align-items: center !important;
-      gap: 4px !important;
+      gap: 5px !important;
       white-space: nowrap !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
@@ -9910,23 +9963,40 @@
     body.light-theme .cockpit-hero-sub {
       color: #64748b !important;
     }
+    .cockpit-pulse-dot {
+      display: inline-block !important;
+      width: 5px !important;
+      height: 5px !important;
+      border-radius: 50% !important;
+      background: #22c55e !important;
+      box-shadow: 0 0 6px #22c55e !important;
+      margin-right: 2px !important;
+      animation: pulseCockpitDot 2s infinite !important;
+    }
+    @keyframes pulseCockpitDot {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.35); opacity: 1; box-shadow: 0 0 10px #22c55e; }
+    }
 
+    /* الفاصل الرأسي الزجاجي الفاخر */
     .cockpit-divider {
-      width: 1.5px !important;
-      height: 75% !important;
-      background: linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.35), rgba(16, 185, 129, 0.35), transparent) !important;
+      width: 1px !important;
+      height: 64px !important;
+      background: linear-gradient(180deg, transparent, rgba(56, 189, 248, 0.35) 25%, rgba(16, 185, 129, 0.35) 75%, transparent) !important;
       flex-shrink: 0 !important;
+      margin: 0 2px !important;
     }
     body.light-theme .cockpit-divider {
-      background: linear-gradient(to bottom, transparent, #cbd5e1, transparent) !important;
+      background: linear-gradient(180deg, transparent, rgba(203, 213, 225, 0.9) 30%, rgba(203, 213, 225, 0.9) 70%, transparent) !important;
     }
 
+    /* الجانب الأيسر: كبسولات التدفقات التوأم */
     .cockpit-flow-side {
       flex: 1.35 !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
-      gap: 5px !important;
+      gap: 6px !important;
       min-width: 0 !important;
     }
 
@@ -9939,79 +10009,116 @@
       align-items: center !important;
       justify-content: space-between !important;
       padding: 0 10px !important;
-      border-radius: 10px !important;
+      border-radius: 12px !important;
       font-size: 0.82rem !important;
       white-space: nowrap !important;
       box-sizing: border-box !important;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      position: relative !important;
+      overflow: hidden !important;
     }
     .cockpit-flow-pill:hover {
       transform: translateY(-1.5px) !important;
     }
+    .cockpit-flow-pill:active {
+      transform: scale(0.98) !important;
+    }
+
+    /* كبسولة الإيداعات الماسية */
     .cockpit-flow-pill.inflow {
-      background: linear-gradient(135deg, rgba(6, 78, 59, 0.45) 0%, rgba(15, 23, 42, 0.94) 100%) !important;
-      border: 1.4px solid rgba(16, 185, 129, 0.55) !important;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35), 0 0 10px rgba(16, 185, 129, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, rgba(15, 23, 42, 0.85) 100%) !important;
+      border: 1.2px solid rgba(16, 185, 129, 0.45) !important;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
     }
     .cockpit-flow-pill.inflow:hover {
-      border-color: rgba(16, 185, 129, 0.85) !important;
-      box-shadow: 0 5px 16px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      border-color: rgba(16, 185, 129, 0.8) !important;
+      box-shadow: 0 5px 16px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
     }
     body.light-theme .cockpit-flow-pill.inflow {
-      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%) !important;
-      border: 1.4px solid #34d399 !important;
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12) !important;
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+      border: 1.2px solid #86efac !important;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12), inset 0 1px 0 #ffffff !important;
     }
+    body.light-theme .cockpit-flow-pill.inflow:hover {
+      border-color: #22c55e !important;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2) !important;
+    }
+
+    /* كبسولة المصروفات الماسية */
     .cockpit-flow-pill.outflow {
-      background: linear-gradient(135deg, rgba(136, 19, 55, 0.45) 0%, rgba(15, 23, 42, 0.94) 100%) !important;
-      border: 1.4px solid rgba(244, 63, 94, 0.55) !important;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35), 0 0 10px rgba(244, 63, 94, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.16) 0%, rgba(15, 23, 42, 0.85) 100%) !important;
+      border: 1.2px solid rgba(244, 63, 94, 0.45) !important;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
     }
     .cockpit-flow-pill.outflow:hover {
-      border-color: rgba(244, 63, 94, 0.85) !important;
-      box-shadow: 0 5px 16px rgba(244, 63, 94, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+      border-color: rgba(244, 63, 94, 0.8) !important;
+      box-shadow: 0 5px 16px rgba(244, 63, 94, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
     }
     body.light-theme .cockpit-flow-pill.outflow {
       background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%) !important;
-      border: 1.4px solid #f87171 !important;
-      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.12) !important;
+      border: 1.2px solid #fca5a5 !important;
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.12), inset 0 1px 0 #ffffff !important;
+    }
+    body.light-theme .cockpit-flow-pill.outflow:hover {
+      border-color: #ef4444 !important;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2) !important;
+    }
+
+    .flow-pill-left-group {
+      display: flex !important;
+      align-items: center !important;
+      gap: 7px !important;
     }
 
     .flow-icon-badge {
       width: 22px !important;
       height: 22px !important;
-      border-radius: 6px !important;
+      border-radius: 7px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      font-size: 0.70rem !important;
+      font-size: 0.72rem !important;
       flex-shrink: 0 !important;
+      transition: all 0.2s ease !important;
     }
     .flow-icon-badge.inflow-badge {
-      background: rgba(16, 185, 129, 0.25) !important;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.35), rgba(5, 150, 105, 0.2)) !important;
       color: #34d399 !important;
-      border: 1px solid rgba(16, 185, 129, 0.45) !important;
-      box-shadow: 0 0 8px rgba(16, 185, 129, 0.2) !important;
+      border: 1px solid rgba(16, 185, 129, 0.6) !important;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.25) !important;
     }
+    body.light-theme .flow-icon-badge.inflow-badge {
+      background: #bbf7d0 !important;
+      color: #15803d !important;
+      border-color: #86efac !important;
+      box-shadow: 0 1px 4px rgba(16, 185, 129, 0.15) !important;
+    }
+
     .flow-icon-badge.outflow-badge {
-      background: rgba(244, 63, 94, 0.25) !important;
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.35), rgba(225, 29, 72, 0.2)) !important;
       color: #fb7185 !important;
-      border: 1px solid rgba(244, 63, 94, 0.45) !important;
-      box-shadow: 0 0 8px rgba(244, 63, 94, 0.2) !important;
+      border: 1px solid rgba(244, 63, 94, 0.6) !important;
+      box-shadow: 0 0 8px rgba(244, 63, 94, 0.25) !important;
+    }
+    body.light-theme .flow-icon-badge.outflow-badge {
+      background: #fecdd3 !important;
+      color: #be123c !important;
+      border-color: #fca5a5 !important;
+      box-shadow: 0 1px 4px rgba(239, 68, 68, 0.15) !important;
     }
 
     .flow-title {
       font-weight: 800 !important;
-      font-size: 0.78rem !important;
+      font-size: 0.76rem !important;
       letter-spacing: -0.2px !important;
     }
-    .flow-title.inflow-color { color: #34d399 !important; }
-    body.light-theme .flow-title.inflow-color { color: #047857 !important; }
-    .flow-title.outflow-color { color: #fb7185 !important; }
-    body.light-theme .flow-title.outflow-color { color: #b91c1c !important; }
+    .flow-title.inflow-color { color: #6ee7b7 !important; }
+    body.light-theme .flow-title.inflow-color { color: #15803d !important; }
+    .flow-title.outflow-color { color: #fda4af !important; }
+    body.light-theme .flow-title.outflow-color { color: #be123c !important; }
 
     .flow-amount {
-      font-size: 0.94rem !important;
+      font-size: 0.88rem !important;
       font-weight: 900 !important;
       font-variant-numeric: tabular-nums !important;
       letter-spacing: -0.2px !important;
@@ -10020,18 +10127,18 @@
     }
     .flow-amount.inflow-color {
       color: #34d399 !important;
-      text-shadow: 0 0 10px rgba(52, 211, 153, 0.35) !important;
+      text-shadow: 0 1px 8px rgba(16, 185, 129, 0.25) !important;
     }
     body.light-theme .flow-amount.inflow-color {
-      color: #059669 !important;
+      color: #16a34a !important;
       text-shadow: none !important;
     }
     .flow-amount.outflow-color {
-      color: #f87171 !important;
-      text-shadow: 0 0 10px rgba(248, 113, 113, 0.35) !important;
+      color: #fb7185 !important;
+      text-shadow: 0 1px 8px rgba(244, 63, 94, 0.25) !important;
     }
     body.light-theme .flow-amount.outflow-color {
-      color: #dc2626 !important;
+      color: #e11d48 !important;
       text-shadow: none !important;
     }
 
@@ -10259,6 +10366,7 @@
                 <!-- شريط المؤشرات المالية التنفيذي الماسي الموحد (Executive Wealth Cockpit)
              تصميم ملكي تنفيذي فائق الفخامة والوضوح بأحدث معايير FinTech العالمية
              ========================================================================= -->
+        <!-- قمرة القيادة المالية التنفيذية الفاخرة (Master Wealth Executive Cockpit) -->
         <div class="kpi-master-wealth-cockpit" id="topKpiThreeStrip">
           
           <!-- الجانب الأيمن: بطل الشاشة المالي (الرصيد الفعلي المتاح) -->
@@ -10267,38 +10375,42 @@
               <div class="hero-wallet-icon-badge">
                 <i class="fa-solid fa-wallet"></i>
               </div>
-              <span>الرصيد الفعلي الحالي</span>
+              <span class="hero-title-text">الرصيد الفعلي الحالي</span>
+              <button type="button" class="cockpit-privacy-btn" id="btnToggleBalancePrivacy" onclick="event.stopPropagation(); toggleBalancePrivacy();" title="إخفاء / إظهار الرصيد">
+                <i class="fa-solid fa-eye" id="iconBalancePrivacy"></i>
+              </button>
             </div>
             <div class="cockpit-hero-value" id="topCardBalance">+ 0.00 ج.م</div>
             <div class="cockpit-hero-sub">
-              <i class="fa-solid fa-shield-halved" style="color: #10b981; font-size: 0.65rem;"></i>
+              <i class="fa-solid fa-shield-halved" style="color: #10b981; font-size: 0.68rem;"></i>
               <span>صافي السيولة المعتمدة للمحافظ</span>
+              <span class="cockpit-pulse-dot" title="حسابات متطابقة ومدققة 100%"></span>
             </div>
           </div>
 
-          <!-- الفاصل الرأسي الزجاجي الفاخر -->
+          <!-- الفاصل الرأسي الزجاجي الفاخر المتوهج -->
           <div class="cockpit-divider"></div>
 
-          <!-- الجانب الأيسر: حركة التدفقات النقدية التوأم (إيداعات + مصروفات) -->
+          <!-- الجانب الأيسر: كبسولات التدفقات النقدية التوأم (إيداعات + مصروفات) -->
           <div class="cockpit-flow-side">
             <!-- كبسولة إجمالي الإيداعات -->
             <div class="cockpit-flow-pill inflow" onclick="openModal('incomeChoiceModal')" title="إجمالي عمليات الدخل والإيداع (انقر للتسجيل أو عرض السجل)" style="cursor: pointer;">
-              <div class="flow-pill-left-group" style="display: flex; align-items: center; gap: 7px;">
+              <div class="flow-pill-left-group">
                 <div class="flow-icon-badge inflow-badge">
-                  <i class="fa-solid fa-arrow-down-left"></i>
+                  <i class="fa-solid fa-circle-arrow-down"></i>
                 </div>
-                <span class="flow-title inflow-color">إيداعات:</span>
+                <span class="flow-title inflow-color">إيداعات</span>
               </div>
               <span class="flow-amount inflow-color" id="topCardIncome">+ 0.00 ج.م</span>
             </div>
 
             <!-- كبسولة إجمالي المصروفات -->
             <div class="cockpit-flow-pill outflow" onclick="openOperationsFiltered({ type: 'expense' })" title="إجمالي المصروفات الفعلية المسجلة (انقر لعرض سجل المصروفات المفلترة)" style="cursor: pointer;">
-              <div class="flow-pill-left-group" style="display: flex; align-items: center; gap: 7px;">
+              <div class="flow-pill-left-group">
                 <div class="flow-icon-badge outflow-badge">
-                  <i class="fa-solid fa-arrow-up-right"></i>
+                  <i class="fa-solid fa-circle-arrow-up"></i>
                 </div>
-                <span class="flow-title outflow-color">مصروفات:</span>
+                <span class="flow-title outflow-color">مصروفات</span>
               </div>
               <span class="flow-amount outflow-color" id="topCardExpense">- 0.00 ج.م</span>
             </div>
@@ -13443,8 +13555,8 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = '4.2.1';
-      const APP_BUILD_ID = 2026110203;
+      const APP_VERSION = '4.5.0';
+      const APP_BUILD_ID = 202611021144;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
@@ -16986,6 +17098,15 @@ function generateRichDemoTransactions() {
       });
     }
 
+        // وظيفة إخفاء وإظهار الأرقام الحساسة في قمرة القيادة (Privacy Mode)
+    let isCockpitBalanceHidden = localStorage.getItem('app_balance_privacy') === 'true';
+
+    function toggleBalancePrivacy() {
+      isCockpitBalanceHidden = !isCockpitBalanceHidden;
+      localStorage.setItem('app_balance_privacy', isCockpitBalanceHidden ? 'true' : 'false');
+      renderUI();
+    }
+
     function renderUI() {
       // 1. حساب الرصيد الفعلي التراكمي المعتمد لكافة المحافظ (السيولة النقدية الدائمة بالخزينة)
       let allTxs = state.transactions || [];
@@ -17018,10 +17139,19 @@ function generateRichDemoTransactions() {
       const elExp = document.getElementById('topCardExpense');
       const elBal = document.getElementById('topCardBalance');
 
-      if (elInc) elInc.textContent = '+ ' + formatMoney(periodInc);
-      if (elExp) elExp.textContent = (periodExp > 0 ? '- ' : '') + formatMoney(periodExp);
+      const privacyIcon = document.getElementById('iconBalancePrivacy');
+      if (privacyIcon) {
+        privacyIcon.className = isCockpitBalanceHidden ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+      }
+
+      if (elInc) {
+        elInc.textContent = isCockpitBalanceHidden ? '••••••' : ('+ ' + formatMoney(periodInc));
+      }
+      if (elExp) {
+        elExp.textContent = isCockpitBalanceHidden ? '••••••' : ((periodExp > 0 ? '- ' : '') + formatMoney(periodExp));
+      }
       if (elBal) {
-        elBal.textContent = (actualBalance >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(actualBalance));
+        elBal.textContent = isCockpitBalanceHidden ? '••••••••' : ((actualBalance >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(actualBalance)));
         const isLight = document.body.classList.contains('light-theme');
         if (isLight) {
           elBal.style.color = actualBalance >= 0 ? '#0284c7' : '#b91c1c';
@@ -22132,7 +22262,7 @@ function exportActivityLogExcel() {
         }
 
         // 3. التحقق مما إذا كان هناك إصدار أحدث متوفر بالسيرفر
-        const currentBuildNum = typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 2026110201;
+        const currentBuildNum = typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611021144;
         const currentVerStr = typeof APP_VERSION !== 'undefined' ? APP_VERSION : '4.2.1';
         
         const isNewer = remoteBuild && remoteBuild.buildId && (
