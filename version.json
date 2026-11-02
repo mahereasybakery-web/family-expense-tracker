@@ -1,8 +1,8 @@
 {
-  "version": "4.2.0",
-  "buildId": 2026110202,
-  "buildTimestamp": 1730545200000,
-  "releaseDate": "2026-11-02 10:00:00",
-  "commit": "ta3weem-live-integration",
-  "notes": "دمج أسعار صرف العملات الرسمية (بنك مصر) وأسعار الذهب (مركز المعلومات IDSC) عبر تعويم مع التحديث الآلي الدوري"
+  "version": "4.2.1",
+  "buildId": 2026110203,
+  "buildTimestamp": 1730545600000,
+  "releaseDate": "2026-11-02 11:15:00",
+  "commit": "update-family-pin-codes",
+  "notes": "تحديث رموز القفل (PIN): تعيين رمز 11111 لكل من الحاجة والنونو ومحمد ومريم"
 }
