@@ -14083,7 +14083,7 @@
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
       const APP_VERSION = '4.8.1';
-      const APP_BUILD_ID = 202611021446;
+      const APP_BUILD_ID = 202611021456;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
@@ -23075,7 +23075,7 @@ function exportActivityLogExcel() {
         }
 
         // 3. التحقق مما إذا كان هناك إصدار أحدث متوفر بالسيرفر
-        const currentBuildNum = typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611021446;
+        const currentBuildNum = typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611021456;
         const currentVerStr = typeof APP_VERSION !== 'undefined' ? APP_VERSION : '4.2.1';
         
         const isNewer = remoteBuild && remoteBuild.buildId && (
