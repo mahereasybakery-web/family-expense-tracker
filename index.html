@@ -7827,6 +7827,7 @@
       min-width: 0 !important;
     }
     .cockpit-flow-pill {
+      width: 100% !important;
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
@@ -9532,6 +9533,8 @@
       min-height: 38px !important;
       font-size: 0.82rem !important;
       border-radius: 11px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
       box-shadow: 0 3px 12px rgba(0, 0, 0, 0.30) !important;
     }
     .kpi-master-wealth-cockpit .cockpit-flow-side .cockpit-flow-pill .flow-title {
@@ -12603,6 +12606,9 @@
     let currentModalType = 'expense';
 
     function initApp() {
+      // إغلاق أي نوافذ منبثقة مفتوحة من الجلسة السابقة
+      document.querySelectorAll('.modal-overlay[style*="flex"], .modal-overlay[style*="block"]').forEach(m => { m.style.display = 'none'; });
+
 
       // تعيين التاريخ الافتراضي لطلب المصروف إلى اليوم
       const reqDateInp = document.getElementById('inpReqDate');
