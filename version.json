@@ -1,8 +1,10 @@
 {
-  "version": "4.8.2",
+  "version": "4.9.0",
   "buildId": 202611021508,
   "buildTimestamp": 1793621280000,
-  "releaseDate": "2026-11-02 15:08:00",
+  "releaseDate": "2026-11-02",
   "commit": "auto-update",
-  "notes": "توسيع كارت الإيداعات والمصروفات، وضبط اتجاه الأرقام لمنع التصاق الإشارات واقتصاص رمز العملة"
+  "notes": "توسيع كارت الإيداعات والمصروفات، وضبط اتجاه الأرقام لمنع التصاق الإشارات واقتصاص رمز العملة",
+  "build": "4900",
+  "description": "Seamless Single-Row Commitments KPI Grid, Full Multi-Generational Family Portrait, Comprehensive Activity Logging Across All System Operations & Interactive Click-to-Inspect Activity Details Modal"
 }
