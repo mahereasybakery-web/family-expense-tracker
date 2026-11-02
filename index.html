@@ -6751,19 +6751,72 @@
     }
 
 
-    /* أنماط وتصاميم عرض الكروت (Card Design Styles) */
-    [data-card-style="glass"] .kpi-three-card,
+    /* =========================================================================
+       أنماط وتصاميم عرض الكروت الحقيقية الفعالة (Card Design Styles: Glass vs Minimal)
+       ========================================================================= */
+    /* 1. النمط الزجاجي الفاخر الشفاف المتوهج (Glassmorphism Luxury) */
+    [data-card-style="glass"] .executive-cockpit-card,
+    [data-card-style="glass"] .cockpit-hero-side,
+    [data-card-style="glass"] .stat-capsule-twin,
+    [data-card-style="glass"] .category-card,
+    [data-card-style="glass"] .grid-cat-card,
+    [data-card-style="glass"] .cat-box,
     [data-card-style="glass"] .cat-card,
-    [data-card-style="glass"] .item-entry-card {
-      backdrop-filter: blur(16px) !important;
-      -webkit-backdrop-filter: blur(16px) !important;
-      border-radius: 14px !important;
+    [data-card-style="glass"] .item-entry-card,
+    [data-card-style="glass"] .ops-tx-card-lux,
+    [data-card-style="glass"] .recent-tx-card,
+    [data-card-style="glass"] .commitment-card-lux,
+    [data-card-style="glass"] .commitment-hero-card,
+    [data-card-style="glass"] .settings-unified-section,
+    [data-card-style="glass"] .app-card-panel,
+    [data-card-style="glass"] .modal-content-card {
+      backdrop-filter: blur(20px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+      background: rgba(15, 23, 42, 0.68) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+      border-radius: 18px !important;
     }
-    [data-card-style="minimal"] .kpi-three-card,
+
+    [data-card-style="glass"] .cockpit-hero-side,
+    [data-card-style="glass"] .stat-capsule-twin {
+      background: rgba(30, 41, 59, 0.45) !important;
+      border-color: rgba(255, 255, 255, 0.14) !important;
+    }
+
+    /* 2. النمط العصري المدمج المصمت فائق الرشاقة (Compact Solid Minimalist) */
+    [data-card-style="minimal"] .executive-cockpit-card,
+    [data-card-style="minimal"] .cockpit-hero-side,
+    [data-card-style="minimal"] .stat-capsule-twin,
+    [data-card-style="minimal"] .category-card,
+    [data-card-style="minimal"] .grid-cat-card,
+    [data-card-style="minimal"] .cat-box,
     [data-card-style="minimal"] .cat-card,
-    [data-card-style="minimal"] .item-entry-card {
-      border-radius: 6px !important;
-      box-shadow: none !important;
+    [data-card-style="minimal"] .item-entry-card,
+    [data-card-style="minimal"] .ops-tx-card-lux,
+    [data-card-style="minimal"] .recent-tx-card,
+    [data-card-style="minimal"] .commitment-card-lux,
+    [data-card-style="minimal"] .commitment-hero-card,
+    [data-card-style="minimal"] .settings-unified-section,
+    [data-card-style="minimal"] .app-card-panel,
+    [data-card-style="minimal"] .modal-content-card {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      background: #0f172a !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5) !important;
+      border-radius: 9px !important;
+    }
+
+    [data-card-style="minimal"] .cockpit-hero-side,
+    [data-card-style="minimal"] .stat-capsule-twin {
+      background: #1e293b !important;
+      border-radius: 7px !important;
+    }
+
+    [data-card-style="minimal"] .grid-cat-card,
+    [data-card-style="minimal"] .cat-box {
+      border-radius: 8px !important;
     }
 
   
@@ -10260,16 +10313,21 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">عيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
-            <span class="version-badge">v4.8.0</span>
+            <span class="version-badge">v4.8.1</span>
           </div>
         </div>
 
         <!-- زر الضبط والمزامنة السحابية الموحد في الهيدر الرئيسي -->
         <div style="display: flex; align-items: center; gap: 6px;">
-          <button class="header-settings-btn" id="btnMainSettings" onclick="openSettingsModal()" title="الضبط وإعدادات التطبيق والمزامنة السحابية" style="background: rgba(34, 197, 94, 0.14); border: 1.2px solid rgba(34, 197, 94, 0.45); color: #34d399; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
-            <i class="fa-solid fa-gear" style="font-size: 0.85rem; color: #a855f7;"></i>
-            <i class="fa-solid fa-cloud-arrow-up" id="headerDriveSyncIcon" style="font-size: 0.85rem; color: #22c55e;"></i>
-            <span id="topDriveSyncStatusText" style="font-size: 0.72rem; font-weight: 800;">متزامن</span>
+          <button class="header-settings-btn" id="btnMainSettings" onclick="openSettingsModal()" title="مركز الضبط، إعدادات المظهر، والمزامنة السحابية" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.95)); border: 1px solid rgba(56, 189, 248, 0.35); color: #f8fafc; font-weight: 800; display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px; border-radius: 12px; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);">
+            <div style="width: 22px; height: 22px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(56, 189, 248, 0.3);">
+              <i class="fa-solid fa-sliders" style="font-size: 0.75rem; color: #38bdf8;"></i>
+            </div>
+            <span style="font-size: 0.74rem; font-weight: 900; color: #f8fafc; letter-spacing: -0.2px;">الإعدادات</span>
+            <span style="display: inline-flex; align-items: center; gap: 4px; background: rgba(16, 185, 129, 0.16); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.35); padding: 2px 6px; border-radius: 6px; font-size: 0.62rem; font-weight: 800;">
+              <i class="fa-solid fa-cloud-arrow-up" id="headerDriveSyncIcon" style="font-size: 0.60rem; color: #34d399;"></i>
+              <span id="topDriveSyncStatusText">متزامن</span>
+            </span>
           </button>
           <button class="header-settings-btn" id="btnAuthProfile" onclick="openModal('authModal')" title="حساب العائلة والمستخدمين" style="background: rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.4); color: #c084fc; font-weight: 800;">
             <i class="fa-solid fa-user-circle"></i>
@@ -11610,14 +11668,17 @@
             <div id="expectedNetPositionVal" style="font-size: 0.92rem; font-weight: 900; color: #f43f5e; direction: ltr;">- 0.00 ج.م</div>
           </div>
 
-          <!-- شريط التبديل بين عرض الجدول وتسجيل التزام جديد -->
+          <!-- شريط التبديل: سداد/إضافة التزام على اليمين وقائمة الالتزامات على اليسار -->
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
-            <button type="button" id="btnTabListExpected" onclick="switchExpectedTab('list')" class="exp-tab-btn active" style="padding: 9px 10px; border-radius: 10px; font-weight: 900; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border: none; background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);">
-              <i class="fa-solid fa-table-list"></i> <span>جدول الالتزامات</span>
-              <span class="badge-req-counter" id="expectedPendingBadgeTab" style="background: rgba(255, 255, 255, 0.25); color: #fff; padding: 1px 7px; border-radius: 8px; font-size: 0.70rem;">0</span>
-            </button>
+            <!-- 1. سداد / إضافة التزام مالي (ناحية اليمين) -->
             <button type="button" id="btnTabNewExpected" onclick="switchExpectedTab('new')" class="exp-tab-btn" style="padding: 9px 10px; border-radius: 10px; font-weight: 900; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border: none; background: rgba(255,255,255,0.06); color: #94a3b8; border: 1px solid rgba(255,255,255,0.08);">
-              <i class="fa-solid fa-plus-circle"></i> <span>إضافة التزام / دين جديد</span>
+              <i class="fa-solid fa-hand-holding-dollar" style="color: #38bdf8;"></i> <span>سداد / إضافة التزام</span>
+            </button>
+
+            <!-- 2. قائمة الالتزامات (ناحية اليسار) -->
+            <button type="button" id="btnTabListExpected" onclick="switchExpectedTab('list')" class="exp-tab-btn active" style="padding: 9px 10px; border-radius: 10px; font-weight: 900; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border: none; background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);">
+              <i class="fa-solid fa-table-list"></i> <span>قائمة الالتزامات</span>
+              <span class="badge-req-counter" id="expectedPendingBadgeTab" style="background: rgba(255, 255, 255, 0.25); color: #fff; padding: 1px 7px; border-radius: 8px; font-size: 0.70rem;">0</span>
             </button>
           </div>
 
@@ -13156,51 +13217,34 @@
         <!-- ========================================================
              القسم 1: كارت المزامنة السحابية وتحديث النظام (كارت موحد فائق الرشاقة)
              ======================================================== -->
-        <div class="settings-unified-section" id="settingsSec_sync" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), rgba(15, 23, 42, 0.90)); border: 1.2px solid rgba(34, 197, 94, 0.35); border-radius: 12px; padding: 6px 8px;">
-          <!-- شريط الحالة والمعلومات -->
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px; flex-wrap: wrap; gap: 4px;">
+        <div class="settings-unified-section" id="settingsSec_sync" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.10), rgba(15, 23, 42, 0.90)); border: 1.2px solid rgba(34, 197, 94, 0.35); border-radius: 14px; padding: 10px 12px; margin-bottom: 8px;">
+          <!-- شريط الحالة والمعلومات المباشرة -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <div style="width: 26px; height: 26px; border-radius: 7px; background: rgba(56, 189, 248, 0.15); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(56, 189, 248, 0.3);">
+                <i class="fa-solid fa-cloud-bolt" style="color: #38bdf8; font-size: 0.85rem;"></i>
+              </div>
+              <span style="font-weight: 900; font-size: 0.80rem; color: #f8fafc;">المزامنة والتحديث السحابي</span>
+            </div>
             <div style="display: flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-cloud-bolt" style="color: #38bdf8; font-size: 0.95rem;"></i>
-              <span style="font-weight: 900; font-size: 0.78rem; color: #f8fafc;">المزامنة والتحديث التلقائي</span>
-              <span id="settingsDriveLastSyncTimeText" style="font-size: 0.64rem; color: #fbbf24; font-weight: 700;">آخر مزامنة: الآن</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 4px;">
-              <span id="settingsAppUpdateStatusBadge" style="background: rgba(16, 185, 129, 0.18); color: #34d399; font-size: 0.62rem; font-weight: 800; padding: 2px 6px; border-radius: 5px; border: 1px solid rgba(34, 197, 94, 0.35); display: flex; align-items: center; gap: 3px;">
-                <i class="fa-solid fa-circle-check" style="font-size: 0.38rem; color: #22c55e;"></i> فحص تلقائي نشط
+              <span id="settingsDriveLastSyncTimeText" style="font-size: 0.65rem; color: #38bdf8; font-weight: 800; background: rgba(56, 189, 248, 0.12); padding: 2px 7px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.25);">
+                <i class="fa-solid fa-clock-rotate-left"></i> آخر مزامنة: الآن
               </span>
-              <span id="settingsReconciliationDiffBadge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; font-size: 0.62rem; font-weight: 800; padding: 2px 5px; border-radius: 5px; border: 1px solid rgba(56, 189, 248, 0.3); display: flex; align-items: center; gap: 3px;">
-                <i class="fa-solid fa-circle-check"></i> مطابقة (فرق 0.00)
+              <span id="settingsReconciliationDiffBadge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; border: 1px solid rgba(34, 197, 94, 0.3);">
+                <i class="fa-solid fa-circle-check"></i> مطابقة تامة (فرق 0.00)
               </span>
             </div>
-          </div>
-
-          <!-- شريط توضيحي لميزة التحديث التلقائي عند فتح البرنامج -->
-          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.65rem; color: #94a3b8; background: rgba(15, 23, 42, 0.6); padding: 3px 7px; border-radius: 6px; margin-bottom: 6px; border: 1px dashed rgba(56, 189, 248, 0.25);">
-            <span style="display: flex; align-items: center; gap: 4px; color: #e2e8f0;">
-              <i class="fa-solid fa-bolt" style="color: #fbbf24; font-size: 0.68rem;"></i>
-              <span>يتم فحص وتنزيل التحديثات تلقائياً مع كل فتح للبرنامج</span>
-            </span>
-            <span id="settingsCurrentVersionTag" style="color: #38bdf8; font-weight: 800;">v4.8.0</span>
-          </div>
-
-          <!-- شريط النسخ الاحتياطي اليومي 12:00 ظهراً وحذف نسخة الأمس -->
-          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.65rem; color: #cbd5e1; background: rgba(56, 189, 248, 0.08); padding: 4px 8px; border-radius: 6px; margin-bottom: 6px; border: 1px solid rgba(56, 189, 248, 0.25);">
-            <span style="display: flex; align-items: center; gap: 5px; color: #e2e8f0;">
-              <i class="fa-solid fa-clock-rotate-left" style="color: #38bdf8; font-size: 0.70rem;"></i>
-              <span>نسخ احتياطي يومي مجدول (12:00 م) + حذف الأمس</span>
-            </span>
-            <span id="settingsDailyBackupBadge" style="color: #34d399; font-weight: 800; font-size: 0.63rem;">مجدول 12:00 م</span>
           </div>
 
           <!-- زرا الإجراءات المتناسقان جنباً إلى جنب في صف واحد رشيق -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 7px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
             <!-- زر المزامنة السحابية -->
-            <button type="button" class="btn-submit-tx" onclick="executeGoogleDriveSync()" style="margin: 0; height: 35px; padding: 0 8px; background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 9px; font-weight: 900; font-size: 0.76rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 5px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); cursor: pointer;">
+            <button type="button" class="btn-submit-tx" onclick="executeGoogleDriveSync()" style="margin: 0; height: 38px; padding: 0 10px; background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 10px; font-weight: 900; font-size: 0.78rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35); cursor: pointer; transition: all 0.2s ease;">
               <i class="fa-solid fa-arrows-rotate" id="settingsDriveSyncIconSpin"></i>
               <span>مزامنة سحابية فورية</span>
             </button>
             <!-- زر فحص وتحديث التطبيق الآن -->
-            <button type="button" class="btn-submit-tx" onclick="checkAndApplyAppUpdates({ isManual: true, silent: false })" style="margin: 0; height: 35px; padding: 0 8px; background: linear-gradient(135deg, #0284c7, #0369a1); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 9px; font-weight: 900; font-size: 0.76rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 5px; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25); cursor: pointer;">
+            <button type="button" class="btn-submit-tx" onclick="checkAndApplyAppUpdates({ isManual: true, silent: false })" style="margin: 0; height: 38px; padding: 0 10px; background: linear-gradient(135deg, #0284c7, #0369a1); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 10px; font-weight: 900; font-size: 0.78rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 10px rgba(2, 132, 199, 0.3); cursor: pointer; transition: all 0.2s ease;">
               <i class="fa-solid fa-rotate" id="settingsAppUpdateIconSpin"></i>
               <span>فحص التحديثات الآن</span>
             </button>
@@ -13210,7 +13254,7 @@
         <!-- ========================================================
              القسم 2: المظهر والتخصيص البصري
              ======================================================== -->
-        <div class="settings-unified-section" id="settingsSec_appearance" style="background: rgba(15, 23, 42, 0.90); border: 1.2px solid rgba(255, 255, 255, 0.10); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 10px;">
+        <div class="settings-unified-section" style="background: rgba(15, 23, 42, 0.90); border: 1.2px solid rgba(255, 255, 255, 0.10); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 10px;">
           <!-- 1. سمة وألوان التطبيق (9 خلفيات وألوان ملكية راقية) -->
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
@@ -19439,17 +19483,78 @@ function filterOperationsList() {
             </div>
             ${amountHtml}
           </div>
-          ${item.photo ? `
-            <div style="margin: 4px 0 8px;">
-              <a href="${item.photo}" target="_blank" download="attachment-${item.id}" style="display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; font-size: 0.70rem; font-weight: 800; text-decoration: none;">
-                <i class="fa-solid fa-paperclip"></i> عرض المستند المرفق
-              </a>
+          ${(item.settleReceipt || item.photo) ? `
+            <div style="margin: 4px 0 8px; display: flex; gap: 6px; flex-wrap: wrap;">
+              <button type="button" class="btn-item-action" onclick="openReceiptLightbox('${item.settleReceipt || item.photo}', 'إيصال/مستند: ${escapeHtml(item.title)}')" style="background: rgba(56, 189, 248, 0.18); color: #38bdf8; border: 1.2px solid rgba(56, 189, 248, 0.45); border-radius: 7px; padding: 4px 10px; font-size: 0.72rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;" title="عرض إيصال أو مستند السداد المرفق">
+                <i class="fa-solid fa-file-invoice"></i> إيصال ومستند السداد 📷
+              </button>
             </div>
           ` : ''}
           ${actionBtns}
         `;
         container.appendChild(card);
       });
+    }
+
+    
+    function handlePayExpectedPhotoUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        if (file.type && file.type.startsWith('image/')) {
+          const img = new Image();
+          img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const maxDim = 800;
+            let w = img.width;
+            let h = img.height;
+            if (w > h && w > maxDim) {
+              h = Math.round((h * maxDim) / w);
+              w = maxDim;
+            } else if (h > maxDim) {
+              w = Math.round((w * maxDim) / h);
+              h = maxDim;
+            }
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            const compressed = canvas.toDataURL('image/jpeg', 0.85);
+            state.pendingPayExpectedReceiptDataUri = compressed;
+            showPayExpectedPhotoPreview(compressed);
+          };
+          img.src = e.target.result;
+        } else {
+          state.pendingPayExpectedReceiptDataUri = e.target.result;
+          showPayExpectedPhotoPreview(e.target.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function showPayExpectedPhotoPreview(dataUri) {
+      const previewImg = document.getElementById('payExpPhotoPreviewImg');
+      const previewCont = document.getElementById('payExpPhotoPreviewContainer');
+      const badge = document.getElementById('payExpPhotoAttachedBadge');
+      if (previewImg) previewImg.src = dataUri;
+      if (previewCont) previewCont.style.display = 'block';
+      if (badge) badge.style.display = 'inline-flex';
+    }
+
+    function removePayExpectedPhoto() {
+      state.pendingPayExpectedReceiptDataUri = null;
+      const previewImg = document.getElementById('payExpPhotoPreviewImg');
+      const previewCont = document.getElementById('payExpPhotoPreviewContainer');
+      const badge = document.getElementById('payExpPhotoAttachedBadge');
+      const inpFile = document.getElementById('inpPayExpReceipt');
+      const inpCam = document.getElementById('inpPayExpReceiptCamera');
+      if (previewImg) previewImg.src = '';
+      if (previewCont) previewCont.style.display = 'none';
+      if (badge) badge.style.display = 'none';
+      if (inpFile) inpFile.value = '';
+      if (inpCam) inpCam.value = '';
     }
 
     function openPayExpectedModal(expId) {
@@ -19481,6 +19586,11 @@ function filterOperationsList() {
 
       if (dateInp) dateInp.value = new Date().toISOString().split('T')[0];
       if (noteInp) noteInp.value = '';
+      removePayExpectedPhoto();
+      if (exp.photo) {
+        state.pendingPayExpectedReceiptDataUri = exp.photo;
+        showPayExpectedPhotoPreview(exp.photo);
+      }
 
       // ضبط العناوين حسب نوع الحركة (سداد أم تحصيل)
       if (exp.type === 'debt_for_us') {
@@ -19534,6 +19644,7 @@ function filterOperationsList() {
       const targetWallet = (state.wallets || []).find(w => w.id === walletId);
       const isCollection = exp.type === 'debt_for_us';
 
+      const finalReceipt = state.pendingPayExpectedReceiptDataUri || exp.photo || null;
       const newTx = {
         id: 'tx-exp-' + Date.now(),
         type: isCollection ? 'income' : 'expense',
@@ -19543,8 +19654,13 @@ function filterOperationsList() {
         member: exp.member || 'البيت',
         walletId: walletId,
         date: txDate,
-        receipt: exp.photo || null
+        receipt: finalReceipt
       };
+
+      if (state.pendingPayExpectedReceiptDataUri) {
+        exp.settleReceipt = state.pendingPayExpectedReceiptDataUri;
+        exp.photo = state.pendingPayExpectedReceiptDataUri;
+      }
 
       if (!state.transactions) state.transactions = [];
       state.transactions.unshift(newTx);
@@ -19982,7 +20098,7 @@ function openSettingsModal() {
       }
     }
 
-    function setAppDesignStyle(style) {
+    function setAppDesignStyle(style, notify = true) {
       document.documentElement.setAttribute('data-card-style', style);
       document.body.setAttribute('data-card-style', style);
       localStorage.setItem('family_monefy_design_style', style);
@@ -19998,7 +20114,7 @@ function openSettingsModal() {
           btnGlass.classList.remove('active');
         }
       }
-      if (typeof showToast === 'function') {
+      if (notify && typeof showToast === 'function') {
         showToast(style === 'glass' ? '✨ تم تفعيل نمط الزجاجي الفخم' : '📐 تم تفعيل نمط العصري المدمج');
       }
     }
@@ -22421,7 +22537,7 @@ function exportActivityLogExcel() {
             if (options.isManual) {
               showToast('تم رصد التحديث بالفعل، وجاري اكتمال نشره على خوادم GitHub. سيتم تطبيقه تلقائياً خلال دقيقة.', 'info');
             }
-            if (updateStatusBadge) updateStatusBadge.innerHTML = '<i class="fa-solid fa-clock"></i> بانتظار نشر السيرفر';
+            if (updateStatusBadge) updateStatusBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> أحدث إصدار';
             return;
           }
           sessionStorage.setItem(attemptKey, attempts + 1);
@@ -26574,9 +26690,49 @@ function installDailyNoonTrigger() {
           </div>
         </div>
 
-        <div class="form-group-custom" style="margin-bottom: 16px;">
+        <div class="form-group-custom" style="margin-bottom: 12px;">
           <label class="form-label-custom">ملاحظة / بيان إضافي (اختياري):</label>
-          <input type="text" id="payExpNoteInput" class="form-input-custom" placeholder="مثال: تم السداد نقداً عبر ماهر">
+          <input type="text" id="payExpNoteInput" class="form-input-custom" placeholder="مثال: تم السداد نقداً أو تحويل بنكي">
+        </div>
+
+        <!-- إرفاق صورة أو مستند السداد / التحصيل (كاميرا أو ملف) -->
+        <div style="background: rgba(15, 23, 42, 0.65); border: 1.2px dashed rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 10px 12px; margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <label style="font-size: 0.74rem; font-weight: 800; color: #cbd5e1; display: flex; align-items: center; gap: 6px; margin: 0;">
+              <i class="fa-solid fa-camera" style="color: #38bdf8;"></i>
+              <span id="payExpPhotoLabel">إرفاق إيصال أو صورة السداد:</span>
+            </label>
+            <span id="payExpPhotoAttachedBadge" style="display: none; font-size: 0.62rem; background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); padding: 1px 7px; border-radius: 5px; font-weight: 800;">
+              <i class="fa-solid fa-circle-check"></i> تم إرفاق صورة
+            </span>
+          </div>
+
+          <!-- حقول الملفات المخفية للكاميرا والملفات -->
+          <input type="file" id="inpPayExpReceipt" accept="image/*,.pdf" style="display:none;" onchange="handlePayExpectedPhotoUpload(event)">
+          <input type="file" id="inpPayExpReceiptCamera" accept="image/*" capture="environment" style="display:none;" onchange="handlePayExpectedPhotoUpload(event)">
+
+          <!-- أزرار الاختيار والتصوير -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+            <button type="button" onclick="document.getElementById('inpPayExpReceiptCamera').click()" style="height: 36px; font-size: 0.76rem; font-weight: 800; border-radius: 8px; background: rgba(56, 189, 248, 0.18); border: 1.2px solid #38bdf8; color: #38bdf8; display: flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer;">
+              <i class="fa-solid fa-camera"></i> تصوير بالكاميرا 📷
+            </button>
+            <button type="button" onclick="document.getElementById('inpPayExpReceipt').click()" style="height: 36px; font-size: 0.76rem; font-weight: 800; border-radius: 8px; background: rgba(16, 185, 129, 0.18); border: 1.2px solid #10b981; color: #34d399; display: flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer;">
+              <i class="fa-solid fa-paperclip"></i> رفع ملف / صورة 📁
+            </button>
+          </div>
+
+          <!-- معاينة صورة السداد المرفقة -->
+          <div id="payExpPhotoPreviewContainer" style="display: none; margin-top: 8px; text-align: center; background: rgba(0,0,0,0.35); border-radius: 8px; padding: 6px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;">
+              <img id="payExpPhotoPreviewImg" src="" onclick="openReceiptLightbox(this.src, 'إيصال السداد')" style="max-height: 80px; max-width: 140px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.5); object-fit: cover; cursor: pointer;" title="انقر للتكبير">
+              <div style="display: flex; flex-direction: column; gap: 4px; align-items: flex-start;">
+                <span style="font-size: 0.68rem; color: #38bdf8; font-weight: 800;"><i class="fa-solid fa-magnifying-glass-plus"></i> انقر للتكبير</span>
+                <button type="button" onclick="removePayExpectedPhoto()" style="padding: 4px 8px; border-radius: 6px; background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); color: #f87171; font-size: 0.68rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-trash-can"></i> إزالة الصورة
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div style="display: flex; gap: 8px;">
