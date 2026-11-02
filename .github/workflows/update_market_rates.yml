@@ -1,0 +1,38 @@
+name: Auto Update Market Rates (Ta3weem)
+
+on:
+  schedule:
+    # Runs every 2 hours between 06:00 and 22:00 UTC
+    - cron: '0 6,8,10,12,14,16,18,20 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-rates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch Live Rates from Ta3weem
+        run: |
+          python scripts/fetch_ta3weem_rates.py
+
+      - name: Commit and Push if Changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add market_rates.json
+          if git diff --staged --quiet; then
+            echo "No market rate changes to commit."
+          else
+            git commit -m "chore(rates): Auto-update live currency & gold rates from Ta3weem [skip ci]"
+            git push
+          fi
