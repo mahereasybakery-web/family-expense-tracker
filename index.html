@@ -4430,29 +4430,95 @@
       margin-top: 10px;
     }
     .theme-pill-option {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      cursor: pointer;
-      background: rgba(10, 16, 26, 0.8);
-      color: #cbd5e1;
-      font-size: 0.8rem;
-      font-weight: 800;
-      transition: all 0.2s;
+      position: relative !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 4px !important;
+      padding: 9px 4px 7px !important;
+      border-radius: 12px !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.14) !important;
+      cursor: pointer !important;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      user-select: none !important;
+      text-align: center !important;
+      outline: none !important;
+      box-sizing: border-box !important;
+    }
+    .theme-pill-option:hover {
+      transform: translateY(-2px) !important;
+      filter: brightness(1.15) !important;
     }
     .theme-pill-option.active {
-      border-color: #38bdf8;
-      background: rgba(56, 189, 248, 0.15);
-      color: #ffffff;
+      border: 2.2px solid #38bdf8 !important;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.65), inset 0 0 8px rgba(56, 189, 248, 0.22) !important;
+      transform: translateY(-2px) scale(1.03) !important;
+      background: rgba(56, 189, 248, 0.18) !important;
     }
-    .theme-color-dot {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      box-shadow: 0 0 6px rgba(0,0,0,0.5);
+    body.light-theme .theme-pill-option.active {
+      border: 2.2px solid #0284c7 !important;
+      box-shadow: 0 0 14px rgba(2, 132, 199, 0.45), inset 0 0 8px rgba(2, 132, 199, 0.15) !important;
+      background: rgba(2, 132, 199, 0.12) !important;
+    }
+    .theme-pill-option .theme-color-dot {
+      width: 20px !important;
+      height: 20px !important;
+      min-width: 20px !important;
+      min-height: 20px !important;
+      border-radius: 50% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 0.65rem !important;
+      font-weight: 900 !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      box-sizing: border-box !important;
+      margin-bottom: 2px !important;
+    }
+    .theme-pill-option.active .theme-color-dot {
+      background: #38bdf8 !important;
+      border: 2px solid #ffffff !important;
+      box-shadow: 0 0 10px #38bdf8 !important;
+      color: #04101e !important;
+    }
+    body.light-theme .theme-pill-option.active .theme-color-dot {
+      background: #0284c7 !important;
+      border: 2px solid #ffffff !important;
+      color: #ffffff !important;
+    }
+    .theme-pill-option .theme-selected-badge {
+      display: none;
+      font-size: 0.55rem;
+      font-weight: 900;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.22);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 1px 6px;
+      border-radius: 6px;
+      line-height: 1.2;
+      margin-top: 2px;
+      box-shadow: 0 2px 6px rgba(56, 189, 248, 0.25);
+    }
+    .theme-pill-option.active .theme-selected-badge {
+      display: inline-block !important;
+    }
+
+    /* كروت نافذة خلفيات التطبيق الموسعة */
+    .theme-card-box {
+      position: relative !important;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    .theme-card-box.active {
+      border: 2.2px solid #38bdf8 !important;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.55), inset 0 0 8px rgba(56, 189, 248, 0.15) !important;
+      transform: translateY(-2px) scale(1.02) !important;
+    }
+    .theme-card-box.active .theme-check-dot {
+      background: #38bdf8 !important;
+      border: 2px solid #ffffff !important;
+      color: #04101e !important;
+      box-shadow: 0 0 10px #38bdf8 !important;
     }
 
 
@@ -10703,7 +10769,7 @@
     }
 
     /* =========================================================================
-       Universal Typography & Proportional Card Containment Engine (v4.9.0)
+       Universal Typography & Proportional Card Containment Engine (v4.9.1)
        Guarantees 100% flawless card containment across ALL fonts and font sizes:
        - Fonts: Tajawal, Cairo, IBM Plex, Almarai, Readex Pro, Alexandria
        - Sizes: Small, Medium, Large
@@ -11285,7 +11351,7 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">عيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
-            <span class="version-badge">v4.9.0</span>
+            <span class="version-badge">v4.9.1</span>
           </div>
         </div>
 
@@ -14344,43 +14410,53 @@
               <span>لوحة معاينة واختيار خلفيات التطبيق (9 ألوان وخلفيات) 🎨</span>
             </button>
 
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;">
-              <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(14, 39, 76, 0.7); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; cursor: pointer;">
-                <div class="theme-color-dot" style="background: linear-gradient(135deg, #0e274c, #1a3c6d); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #38bdf8;"></div>
-                <span style="font-weight: 800;">💙 كحلي ملكي</span>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+              <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')" style="background: rgba(14, 39, 76, 0.75);">
+                <div class="theme-color-dot theme-check-dot" data-theme="navy" style="border: 1.5px solid #38bdf8;"><i class="fa-solid fa-check"></i></div>
+                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">💙 كحلي ملكي</span>
+                <span class="theme-selected-badge">مفعل ✓</span>
               </div>
-              <div class="theme-pill-option" id="themeOptBlack" onclick="setAppTheme('black')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(0, 0, 0, 0.8); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; cursor: pointer;">
-                <div class="theme-color-dot" style="background: #000000; width: 12px; height: 12px; border-radius: 50%; border: 1px solid #666;"></div>
-                <span style="font-weight: 800;">🖤 أسود فاحم</span>
+              <div class="theme-pill-option" id="themeOptBlack" onclick="setAppTheme('black')" style="background: rgba(0, 0, 0, 0.90);">
+                <div class="theme-color-dot theme-check-dot" data-theme="black" style="border: 1.5px solid #666;"></div>
+                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">🖤 أسود فاحم</span>
+                <span class="theme-selected-badge">مفعل ✓</span>
               </div>
-              <div class="theme-pill-option" id="themeOptEmerald" onclick="setAppTheme('emerald')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(6, 69, 50, 0.7); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 8px; cursor: pointer;">
-                <div class="theme-color-dot" style="background: linear-gradient(135deg, #064532, #0f5941); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #34d399;"></div>
-                <span style="font-weight: 800;">💚 زمردي فاخر</span>
+              <div class="theme-pill-option" id="themeOptEmerald" onclick="setAppTheme('emerald')" style="background: rgba(6, 69, 50, 0.75);">
+                <div class="theme-color-dot theme-check-dot" data-theme="emerald" style="border: 1.5px solid #34d399;"></div>
+                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">💚 زمردي فاخر</span>
+                <span class="theme-selected-badge">مفعل ✓</span>
               </div>
-              <div class="theme-pill-option" id="themeOptPurple" onclick="setAppTheme('purple')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(55, 18, 94, 0.7); border: 1px solid rgba(192, 132, 252, 0.3); border-radius: 8px; cursor: pointer;">
-                <div class="theme-color-dot" style="background: linear-gradient(135deg, #331057, #461775); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #c084fc;"></div>
-                <span style="font-weight: 800;">💜 بنفسجي ملكي</span>
+              <div class="theme-pill-option" id="themeOptPurple" onclick="setAppTheme('purple')" style="background: rgba(55, 18, 94, 0.75);">
+                <div class="theme-color-dot theme-check-dot" data-theme="purple" style="border: 1.5px solid #c084fc;"></div>
+                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">💜 بنفسجي ملكي</span>
+                <span class="theme-selected-badge">مفعل ✓</span>
               </div>
-              <div class="theme-pill-option" id="themeOptRose" onclick="setAppTheme('rose')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(70, 14, 38, 0.7); border: 1px solid rgba(251, 113, 133, 0.3); border-radius: 8px; cursor: pointer;">
-                <div class="theme-color-dot" style="background: linear-gradient(135deg, #420d24, #571230); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #fb7185;"></div>
-                <span style="font-weight: 800;">🍷 عنابي ياقوتي</span>
+              <div class="theme-pill-option" id="themeOptRose" onclick="setAppTheme('rose')" style="background: rgba(70, 14, 38, 0.75);">
+                <div class="theme-color-dot theme-check-dot" data-theme="rose" style="border: 1.5px solid #fb7185;"></div>
+                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">🍷 عنابي ياقوتي</span>
+                <span class="theme-selected-badge">مفعل ✓</span>
               </div>
-              <div class="theme-pill-option" id="themeOptOcean" onclick="setAppTheme('ocean')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(14, 62, 92, 0.7); border: 1px solid rgba(34, 211, 238, 0.3); border-radius: 8px; cursor: pointer;">
-                <div class="theme-color-dot" style="background: linear-gradient(135deg, #0d3b57, #134e73); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #22d3ee;"></div>
-                <span style="font-weight: 800;">🌊 سماوي فيروزي</span>
+              <div class="theme-pill-option" id="themeOptOcean" onclick="setAppTheme('ocean')" style="background: rgba(14, 62, 92, 0.75);">
+                <div class="theme-color-dot theme-check-dot" data-theme="ocean" style="border: 1.5px solid #22d3ee;"></div>
+                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">🌊 سماوي فيروزي</span>
+                <span class="theme-selected-badge">مفعل ✓</span>
               </div>
-              <div class="theme-pill-option" id="themeOptGold" onclick="setAppTheme('gold')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(59, 35, 16, 0.7); border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 8px; cursor: pointer;">
-                <div class="theme-color-dot" style="background: linear-gradient(135deg, #38210f, #4d2e16); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #fbbf24;"></div>
-                <span style="font-weight: 800;">☕ موكا وبرونزي</span>
+              <div class="theme-pill-option" id="themeOptGold" onclick="setAppTheme('gold')" style="background: rgba(59, 35, 16, 0.75);">
+                <div class="theme-color-dot theme-check-dot" data-theme="gold" style="border: 1.5px solid #fbbf24;"></div>
+                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">☕ موكا وبرونزي</span>
+                <span class="theme-selected-badge">مفعل ✓</span>
               </div>
-              <div class="theme-pill-option" id="themeOptSlate" onclick="setAppTheme('slate')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 8px; cursor: pointer;">
-                <div class="theme-color-dot" style="background: linear-gradient(135deg, #1e293b, #334155); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #94a3b8;"></div>
-                <span style="font-weight: 800;">🪙 تيتانيوم رمادي</span>
+              <div class="theme-pill-option" id="themeOptSlate" onclick="setAppTheme('slate')" style="background: rgba(30, 41, 59, 0.75);">
+                <div class="theme-color-dot theme-check-dot" data-theme="slate" style="border: 1.5px solid #94a3b8;"></div>
+                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">🪙 تيتانيوم رمادي</span>
+                <span class="theme-selected-badge">مفعل ✓</span>
               </div>
-              <div class="theme-pill-option" id="themeOptLight" onclick="setAppTheme('light')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(2, 132, 199, 0.4); border-radius: 8px; cursor: pointer;">
-                <div class="theme-color-dot" style="background: #ffffff; width: 12px; height: 12px; border-radius: 50%; border: 1px solid #0284c7;"></div>
-                <span style="font-weight: 800; color: #0f172a;">☀️ أبيض نهار</span>
+              <div class="theme-pill-option" id="themeOptLight" onclick="setAppTheme('light')" style="background: rgba(255, 255, 255, 0.95);">
+                <div class="theme-color-dot theme-check-dot" data-theme="light" style="border: 1.5px solid #0284c7;"></div>
+                <span style="font-weight: 800; font-size: 0.68rem; color: #0f172a;">☀️ أبيض نهار</span>
+                <span class="theme-selected-badge">مفعل ✓</span>
               </div>
+            </div>
             </div>
           </div>
 
@@ -18424,31 +18500,22 @@ function generateRichDemoTransactions() {
       }
 
       if (elInc) {
-        elInc.textContent = isCockpitBalanceHidden ? '••••••' : ('+ ' + formatMoney(periodInc));
-        const l = elInc.textContent.length;
-        if (l > 15) {
-          elInc.style.fontSize = '0.66rem';
-          elInc.style.letterSpacing = '-0.4px';
-        } else if (l > 12) {
-          elInc.style.fontSize = '0.72rem';
-          elInc.style.letterSpacing = '-0.2px';
+        if (isCockpitBalanceHidden) {
+          elInc.textContent = '••••••';
         } else {
-          elInc.style.fontSize = '0.80rem';
-          elInc.style.letterSpacing = '-0.1px';
+          const numFormatted = (typeof convertAmount === 'function' ? convertAmount(periodInc) : periodInc).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          const currSym = (typeof getCurrencySymbol === 'function') ? getCurrencySymbol() : 'ج.م';
+          elInc.innerHTML = `<span class="flow-curr" style="font-size: 0.62rem; opacity: 0.85; font-weight: 700; margin-left: 2px;">${currSym}</span><span class="flow-val" style="direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; font-weight: 900;">+ ${numFormatted}</span>`;
         }
       }
       if (elExp) {
-        elExp.textContent = isCockpitBalanceHidden ? '••••••' : ((periodExp > 0 ? '- ' : '') + formatMoney(periodExp));
-        const l = elExp.textContent.length;
-        if (l > 15) {
-          elExp.style.fontSize = '0.66rem';
-          elExp.style.letterSpacing = '-0.4px';
-        } else if (l > 12) {
-          elExp.style.fontSize = '0.72rem';
-          elExp.style.letterSpacing = '-0.2px';
+        if (isCockpitBalanceHidden) {
+          elExp.textContent = '••••••';
         } else {
-          elExp.style.fontSize = '0.80rem';
-          elExp.style.letterSpacing = '-0.1px';
+          const numFormatted = (typeof convertAmount === 'function' ? convertAmount(periodExp) : periodExp).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          const currSym = (typeof getCurrencySymbol === 'function') ? getCurrencySymbol() : 'ج.م';
+          const sign = periodExp > 0 ? '- ' : '';
+          elExp.innerHTML = `<span class="flow-curr" style="font-size: 0.62rem; opacity: 0.85; font-weight: 700; margin-left: 2px;">${currSym}</span><span class="flow-val" style="direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; font-weight: 900;">${sign}${numFormatted}</span>`;
         }
       }
       if (elBal) {
@@ -21220,12 +21287,55 @@ function openSettingsModal(targetSection = '') {
         try { localStorage.setItem('family_monefy_theme', theme); } catch(e) {}
       }
 
-      const opts = ['Navy', 'Black', 'Emerald', 'Purple', 'Gold', 'Ocean', 'Rose', 'Slate', 'Light'];
-      opts.forEach(o => {
-        const el = document.getElementById('themeOpt' + o);
-        if (el) {
-          if (o.toLowerCase() === theme) el.classList.add('active');
-          else el.classList.remove('active');
+      const themeMetadata = [
+        { key: 'Navy', theme: 'navy', color: '#38bdf8', bg: 'rgba(14, 39, 76, 0.75)', name: 'كحلي ملكي أزرق' },
+        { key: 'Black', theme: 'black', color: '#e2e8f0', bg: 'rgba(0, 0, 0, 0.90)', name: 'أسود ملكي فاحم (OLED)' },
+        { key: 'Emerald', theme: 'emerald', color: '#34d399', bg: 'rgba(6, 69, 50, 0.75)', name: 'زمردي أخضر فاخر' },
+        { key: 'Purple', theme: 'purple', color: '#c084fc', bg: 'rgba(55, 18, 94, 0.75)', name: 'بنفسجي إمبراطوري' },
+        { key: 'Rose', theme: 'rose', color: '#fb7185', bg: 'rgba(70, 14, 38, 0.75)', name: 'عنابي وياقوتي فخم' },
+        { key: 'Ocean', theme: 'ocean', color: '#22d3ee', bg: 'rgba(14, 62, 92, 0.75)', name: 'سماوي فيروزي بحري' },
+        { key: 'Gold', theme: 'gold', color: '#fbbf24', bg: 'rgba(59, 35, 16, 0.75)', name: 'موكا وبرونزي دافئ' },
+        { key: 'Slate', theme: 'slate', color: '#94a3b8', bg: 'rgba(30, 41, 59, 0.75)', name: 'تيتانيوم رمادي معماري' },
+        { key: 'Light', theme: 'light', color: '#0284c7', bg: 'rgba(255, 255, 255, 0.95)', name: 'النهار الأبيض اللؤلؤي' }
+      ];
+
+      themeMetadata.forEach(tm => {
+        const el = document.getElementById('themeOpt' + tm.key);
+        if (!el) return;
+        const isMatch = (tm.theme === theme);
+        const dot = el.querySelector('.theme-color-dot');
+        const badge = el.querySelector('.theme-selected-badge');
+
+        if (isMatch) {
+          el.classList.add('active');
+          el.style.border = `2.5px solid ${tm.color}`;
+          el.style.boxShadow = `0 0 16px ${tm.color}88, inset 0 0 8px ${tm.color}33`;
+          el.style.transform = 'translateY(-2px) scale(1.03)';
+          if (dot) {
+            dot.innerHTML = `<i class="fa-solid fa-check" style="font-size:0.62rem; font-weight:900; color:${tm.theme === 'light' ? '#fff' : '#000'};"></i>`;
+            dot.style.background = tm.color;
+            dot.style.borderColor = '#ffffff';
+            dot.style.boxShadow = `0 0 10px ${tm.color}`;
+          }
+          if (badge) {
+            badge.style.display = 'inline-block';
+            badge.style.color = tm.color;
+            badge.style.borderColor = tm.color;
+          }
+        } else {
+          el.classList.remove('active');
+          el.style.border = '';
+          el.style.boxShadow = '';
+          el.style.transform = '';
+          if (dot) {
+            dot.innerHTML = '';
+            dot.style.background = '';
+            dot.style.borderColor = '';
+            dot.style.boxShadow = '';
+          }
+          if (badge) {
+            badge.style.display = 'none';
+          }
         }
       });
 
@@ -21241,8 +21351,14 @@ function openSettingsModal(targetSection = '') {
         'light': 'النهار الأبيض اللؤلؤي'
       };
 
-      const badge = document.getElementById('activeThemeBadge');
-      if (badge) badge.textContent = names[theme] || theme;
+      const activeBadge = document.getElementById('activeThemeBadge');
+      if (activeBadge) {
+        activeBadge.innerHTML = `<i class="fa-solid fa-circle-check" style="margin-left: 3px;"></i>المختار: ${names[theme] || theme}`;
+        activeBadge.style.color = '#38bdf8';
+        activeBadge.style.background = 'rgba(56, 189, 248, 0.18)';
+        activeBadge.style.border = '1px solid #38bdf8';
+        activeBadge.style.boxShadow = '0 0 8px rgba(56, 189, 248, 0.3)';
+      }
 
       updateThemeCheckDots();
 
@@ -21278,14 +21394,33 @@ function openSettingsModal(targetSection = '') {
       document.querySelectorAll('.theme-check-dot').forEach(dot => {
         const t = dot.getAttribute('data-theme');
         if (t === cur) {
-          dot.innerHTML = '<i class="fa-solid fa-check"></i>';
+          dot.innerHTML = '<i class="fa-solid fa-check" style="font-weight:900;"></i>';
           dot.style.background = '#38bdf8';
           dot.style.color = '#000';
-          dot.style.borderColor = '#38bdf8';
+          dot.style.borderColor = '#ffffff';
+          dot.style.boxShadow = '0 0 10px #38bdf8';
         } else {
           dot.innerHTML = '';
           dot.style.background = 'transparent';
           dot.style.borderColor = 'rgba(255,255,255,0.3)';
+          dot.style.boxShadow = 'none';
+        }
+      });
+
+      // مزامنة الكروت في مودال استعراض السمات (themeDrawerModal)
+      document.querySelectorAll('.theme-card-box').forEach(box => {
+        const checkDot = box.querySelector('.theme-check-dot');
+        const dotTheme = checkDot ? checkDot.getAttribute('data-theme') : '';
+        if (dotTheme === cur) {
+          box.classList.add('active');
+          box.style.border = '2.2px solid #38bdf8';
+          box.style.boxShadow = '0 0 18px rgba(56, 189, 248, 0.55), inset 0 0 8px rgba(56, 189, 248, 0.15)';
+          box.style.transform = 'translateY(-2px) scale(1.02)';
+        } else {
+          box.classList.remove('active');
+          box.style.border = '';
+          box.style.boxShadow = '';
+          box.style.transform = '';
         }
       });
     }
