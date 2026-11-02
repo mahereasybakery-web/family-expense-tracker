@@ -9621,38 +9621,64 @@
       background: linear-gradient(145deg, rgba(245, 158, 11, 0.3) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
     }
 
-    /* 2. Red / Debts */
-    .exp-kpi-card.exp-card-red {
-      background: linear-gradient(145deg, rgba(239, 68, 68, 0.16) 0%, rgba(15, 23, 42, 0.92) 100%);
-      border: 1.5px solid rgba(239, 68, 68, 0.38);
-      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.12), inset 0 1px 0 rgba(248, 113, 113, 0.22);
-      color: #f87171;
+    /* 2. Red / Rose / Debts on us */
+    .exp-kpi-card.exp-card-red,
+    .exp-kpi-card.exp-card-rose {
+      background: linear-gradient(145deg, rgba(244, 63, 94, 0.16) 0%, rgba(15, 23, 42, 0.92) 100%);
+      border: 1.5px solid rgba(244, 63, 94, 0.38);
+      box-shadow: 0 4px 14px rgba(244, 63, 94, 0.12), inset 0 1px 0 rgba(248, 113, 113, 0.22);
+      color: #f43f5e;
     }
-    .exp-kpi-card.exp-card-red:hover {
-      border-color: rgba(239, 68, 68, 0.7);
-      box-shadow: 0 6px 18px rgba(239, 68, 68, 0.25);
+    .exp-kpi-card.exp-card-red:hover,
+    .exp-kpi-card.exp-card-rose:hover {
+      border-color: rgba(244, 63, 94, 0.7);
+      box-shadow: 0 6px 18px rgba(244, 63, 94, 0.25);
     }
-    .exp-kpi-card.exp-card-red.active-filter {
-      border-color: #f87171 !important;
-      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5), 0 8px 22px rgba(239, 68, 68, 0.35) !important;
-      background: linear-gradient(145deg, rgba(239, 68, 68, 0.3) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+    .exp-kpi-card.exp-card-red.active-filter,
+    .exp-kpi-card.exp-card-rose.active-filter {
+      border-color: #f43f5e !important;
+      box-shadow: 0 0 0 2px rgba(244, 63, 94, 0.5), 0 8px 22px rgba(244, 63, 94, 0.35) !important;
+      background: linear-gradient(145deg, rgba(244, 63, 94, 0.3) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
     }
 
-    /* 3. Green / Paid Off */
-    .exp-kpi-card.exp-card-green {
+    /* 3. Green / Emerald / Debts for us */
+    .exp-kpi-card.exp-card-green,
+    .exp-kpi-card.exp-card-emerald {
       background: linear-gradient(145deg, rgba(16, 185, 129, 0.16) 0%, rgba(15, 23, 42, 0.92) 100%);
       border: 1.5px solid rgba(16, 185, 129, 0.38);
       box-shadow: 0 4px 14px rgba(16, 185, 129, 0.12), inset 0 1px 0 rgba(52, 211, 153, 0.22);
       color: #34d399;
     }
-    .exp-kpi-card.exp-card-green:hover {
+    .exp-kpi-card.exp-card-green:hover,
+    .exp-kpi-card.exp-card-emerald:hover {
       border-color: rgba(16, 185, 129, 0.7);
       box-shadow: 0 6px 18px rgba(16, 185, 129, 0.25);
     }
-    .exp-kpi-card.exp-card-green.active-filter {
+    .exp-kpi-card.exp-card-green.active-filter,
+    .exp-kpi-card.exp-card-emerald.active-filter {
       border-color: #34d399 !important;
       box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.5), 0 8px 22px rgba(16, 185, 129, 0.35) !important;
       background: linear-gradient(145deg, rgba(16, 185, 129, 0.3) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+    }
+
+    /* 4. Blue / Cyan / Paid & Collected */
+    .exp-kpi-card.exp-card-blue,
+    .exp-kpi-card.exp-card-cyan {
+      background: linear-gradient(145deg, rgba(56, 189, 248, 0.16) 0%, rgba(15, 23, 42, 0.92) 100%);
+      border: 1.5px solid rgba(56, 189, 248, 0.38);
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.12), inset 0 1px 0 rgba(56, 189, 248, 0.22);
+      color: #38bdf8;
+    }
+    .exp-kpi-card.exp-card-blue:hover,
+    .exp-kpi-card.exp-card-cyan:hover {
+      border-color: rgba(56, 189, 248, 0.7);
+      box-shadow: 0 6px 18px rgba(56, 189, 248, 0.25);
+    }
+    .exp-kpi-card.exp-card-blue.active-filter,
+    .exp-kpi-card.exp-card-cyan.active-filter {
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.5), 0 8px 22px rgba(56, 189, 248, 0.35) !important;
+      background: linear-gradient(145deg, rgba(56, 189, 248, 0.3) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
     }
 
     /* Top Row: Icon + Count Badge */
@@ -9759,17 +9785,29 @@
       color: #b45309 !important;
       box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15) !important;
     }
-    body.light-theme .exp-kpi-card.exp-card-red {
-      background: linear-gradient(145deg, #fef2f2 0%, #fee2e2 100%) !important;
-      border-color: #ef4444 !important;
-      color: #b91c1c !important;
-      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.15) !important;
+    body.light-theme .exp-kpi-card.exp-card-red,
+    body.light-theme .exp-kpi-card.exp-card-rose {
+      background: linear-gradient(145deg, #fff1f2 0%, #ffe4e6 100%) !important;
+      border-color: #f43f5e !important;
+      color: #e11d48 !important;
+      box-shadow: 0 4px 14px rgba(244, 63, 94, 0.15) !important;
     }
-    body.light-theme .exp-kpi-card.exp-card-green {
+    body.light-theme .exp-kpi-card.exp-card-green,
+    body.light-theme .exp-kpi-card.exp-card-emerald {
       background: linear-gradient(145deg, #ecfdf5 0%, #d1fae5 100%) !important;
       border-color: #10b981 !important;
       color: #047857 !important;
       box-shadow: 0 4px 14px rgba(16, 185, 129, 0.15) !important;
+    }
+    body.light-theme .exp-kpi-card.exp-card-blue,
+    body.light-theme .exp-kpi-card.exp-card-cyan {
+      background: linear-gradient(145deg, #f0f9ff 0%, #e0f2fe 100%) !important;
+      border-color: #0284c7 !important;
+      color: #0369a1 !important;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.15) !important;
+    }
+    body.light-theme .exp-kpi-card div[style*="color: #94a3b8"] {
+      color: #64748b !important;
     }
 
 
@@ -11325,7 +11363,7 @@
           <!-- كروت المؤشرات المالية الأربعة للالتزامات (في صف واحد فائق الرشاقة والتنسيق) -->
           <div class="expected-kpi-cockpit" id="expectedKpiCockpit" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-bottom: 8px;">
             <!-- 1. مصاريف وفواتير قادمة -->
-            <div class="exp-kpi-card exp-card-amber" id="cardExpUpcoming" onclick="toggleExpectedFilter('upcoming_bill')" title="انقر لتصفية المصاريف والفواتير القادمة" style="background: rgba(30, 41, 59, 0.85); border: 1.2px solid rgba(245, 158, 11, 0.4); border-radius: 9px; padding: 4px 5px; text-align: center; cursor: pointer; height: 56px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="exp-kpi-card exp-card-amber" id="cardExpUpcoming" onclick="toggleExpectedFilter('upcoming_bill')" title="انقر لتصفية المصاريف والفواتير القادمة" style=" border-radius: 9px; padding: 4px 5px; text-align: center; cursor: pointer; height: 56px; display: flex; flex-direction: column; justify-content: space-between;">
               <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                 <span style="font-size: 0.72rem; color: #fbbf24;"><i class="fa-solid fa-clock"></i></span>
                 <span class="exp-kpi-badge" id="expectedCountUpcoming" style="font-size: 0.55rem; background: rgba(245, 158, 11, 0.2); color: #fbbf24; padding: 0 4px; border-radius: 4px; font-weight: 800; line-height: 1.2;">0 بند</span>
@@ -11335,7 +11373,7 @@
             </div>
 
             <!-- 2. ديون علينا للغير -->
-            <div class="exp-kpi-card exp-card-rose" id="cardExpDebtsOnUs" onclick="toggleExpectedFilter('debt_on_us')" title="انقر لتصفية الديون المستحقة علينا" style="background: rgba(30, 41, 59, 0.85); border: 1.2px solid rgba(244, 63, 94, 0.4); border-radius: 9px; padding: 4px 5px; text-align: center; cursor: pointer; height: 56px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="exp-kpi-card exp-card-rose" id="cardExpDebtsOnUs" onclick="toggleExpectedFilter('debt_on_us')" title="انقر لتصفية الديون المستحقة علينا" style=" border-radius: 9px; padding: 4px 5px; text-align: center; cursor: pointer; height: 56px; display: flex; flex-direction: column; justify-content: space-between;">
               <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                 <span style="font-size: 0.72rem; color: #f43f5e;"><i class="fa-solid fa-hand-holding-dollar"></i></span>
                 <span class="exp-kpi-badge" id="expectedCountDebtsOnUs" style="font-size: 0.55rem; background: rgba(244, 63, 94, 0.2); color: #f43f5e; padding: 0 4px; border-radius: 4px; font-weight: 800; line-height: 1.2;">0 بند</span>
@@ -11345,7 +11383,7 @@
             </div>
 
             <!-- 3. ديون لنا عند الغير -->
-            <div class="exp-kpi-card exp-card-emerald" id="cardExpDebtsForUs" onclick="toggleExpectedFilter('debt_for_us')" title="انقر لتصفية الديون المستحقة لنا" style="background: rgba(30, 41, 59, 0.85); border: 1.2px solid rgba(16, 185, 129, 0.4); border-radius: 9px; padding: 4px 5px; text-align: center; cursor: pointer; height: 56px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="exp-kpi-card exp-card-emerald" id="cardExpDebtsForUs" onclick="toggleExpectedFilter('debt_for_us')" title="انقر لتصفية الديون المستحقة لنا" style=" border-radius: 9px; padding: 4px 5px; text-align: center; cursor: pointer; height: 56px; display: flex; flex-direction: column; justify-content: space-between;">
               <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                 <span style="font-size: 0.72rem; color: #34d399;"><i class="fa-solid fa-sack-dollar"></i></span>
                 <span class="exp-kpi-badge" id="expectedCountDebtsForUs" style="font-size: 0.55rem; background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 0 4px; border-radius: 4px; font-weight: 800; line-height: 1.2;">0 بند</span>
@@ -11355,7 +11393,7 @@
             </div>
 
             <!-- 4. تم سداده / تحصيله -->
-            <div class="exp-kpi-card exp-card-cyan" id="cardExpPaid" onclick="toggleExpectedFilter('paid')" title="انقر لتصفية الحركات المنتهية والمسددة" style="background: rgba(30, 41, 59, 0.85); border: 1.2px solid rgba(56, 189, 248, 0.4); border-radius: 9px; padding: 4px 5px; text-align: center; cursor: pointer; height: 56px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="exp-kpi-card exp-card-cyan" id="cardExpPaid" onclick="toggleExpectedFilter('paid')" title="انقر لتصفية الحركات المنتهية والمسددة" style=" border-radius: 9px; padding: 4px 5px; text-align: center; cursor: pointer; height: 56px; display: flex; flex-direction: column; justify-content: space-between;">
               <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                 <span style="font-size: 0.72rem; color: #38bdf8;"><i class="fa-solid fa-circle-check"></i></span>
                 <span class="exp-kpi-badge" id="expectedCountPaid" style="font-size: 0.55rem; background: rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 0 4px; border-radius: 4px; font-weight: 800; line-height: 1.2;">0 مكتمل</span>
