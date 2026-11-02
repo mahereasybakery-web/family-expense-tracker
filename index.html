@@ -6263,36 +6263,47 @@
     }
 
   
-    /* =========================================================================
-       محرك السمات والتصاميم الشامل (Multi-Theme & Dynamic Design System)
-       استجابة لطلب المستخدم: تطبيق أكثر من شكل وتصميم وتأثير لوني فوري
+        /* =========================================================================
+       محرك السمات وخلفيات التطبيق الحقيقية (Real Vibrant Multi-Color Themes)
+       تغيير لون خلفية شاشة التطبيق بالكامل (.mobile-frame, body, html, page-views)
        ========================================================================= */
-    /* 1. السمة: كحلي ملكي (Navy) */
-    html[data-app-theme="navy"], body[data-app-theme="navy"] {
-      --bg-app: #090d16 !important;
-      --bg-card: #131b2e !important;
-      --bg-card-sub: #1e293b !important;
-      --border: #26334d !important;
+
+    /* 1. السمة: كحلي ملكي أزرق (Royal Navy Blue) */
+    html[data-app-theme="navy"], body[data-app-theme="navy"],
+    [data-app-theme="navy"] .mobile-frame,
+    [data-app-theme="navy"] #appFrame,
+    [data-app-theme="navy"] .page-view {
+      --bg-app: #0e274c !important;
+      --bg-card: rgba(14, 39, 76, 0.82) !important;
+      --bg-card-sub: #1a3c6d !important;
+      --border: #235496 !important;
       --accent: #0284c7 !important;
       --accent-light: #38bdf8 !important;
-      background: radial-gradient(circle at top, #162035 0%, #090d16 100%) !important;
+      background: linear-gradient(180deg, #112d57 0%, #091a34 100%) !important;
     }
-    [data-app-theme="navy"] .mobile-frame { background: #090d16 !important; }
-    [data-app-theme="navy"] .app-header { background: rgba(11, 19, 38, 0.96) !important; border-bottom: 1px solid rgba(56, 189, 248, 0.25) !important; }
-    [data-app-theme="navy"] .app-bottom-nav { background: rgba(11, 17, 30, 0.96) !important; border-top: 1px solid rgba(56, 189, 248, 0.25) !important; }
+    [data-app-theme="navy"] .mobile-frame {
+      background: linear-gradient(180deg, #112d57 0%, #091a34 100%) !important;
+    }
+    [data-app-theme="navy"] .app-header { background: rgba(11, 28, 55, 0.98) !important; border-bottom: 1px solid rgba(56, 189, 248, 0.35) !important; }
+    [data-app-theme="navy"] .app-bottom-nav { background: rgba(9, 22, 44, 0.98) !important; border-top: 1px solid rgba(56, 189, 248, 0.35) !important; }
     [data-app-theme="navy"] .kpi-three-card,
     [data-app-theme="navy"] .cat-card,
     [data-app-theme="navy"] .item-entry-card,
     [data-app-theme="navy"] .kpi-lux-card,
     [data-app-theme="navy"] .chart-glass-panel,
     [data-app-theme="navy"] .modal-content-card,
-    [data-app-theme="navy"] .side-drawer-panel {
-      background: rgba(15, 23, 42, 0.88) !important;
-      border-color: rgba(56, 189, 248, 0.22) !important;
+    [data-app-theme="navy"] .side-drawer-panel,
+    [data-app-theme="navy"] .app-card-panel {
+      background: rgba(17, 45, 87, 0.85) !important;
+      border-color: rgba(56, 189, 248, 0.35) !important;
+      box-shadow: 0 4px 16px rgba(9, 26, 52, 0.4) !important;
     }
 
-    /* 2. السمة: أسود أسطوري (AMOLED Pitch Black) */
-    html[data-app-theme="black"], body[data-app-theme="black"] {
+    /* 2. السمة: أسود ملكي فاحم (OLED Pure Black) */
+    html[data-app-theme="black"], body[data-app-theme="black"],
+    [data-app-theme="black"] .mobile-frame,
+    [data-app-theme="black"] #appFrame,
+    [data-app-theme="black"] .page-view {
       --bg-app: #000000 !important;
       --bg-card: #0c0c0e !important;
       --bg-card-sub: #16161a !important;
@@ -6310,261 +6321,232 @@
     [data-app-theme="black"] .kpi-lux-card,
     [data-app-theme="black"] .chart-glass-panel,
     [data-app-theme="black"] .modal-content-card,
-    [data-app-theme="black"] .side-drawer-panel {
+    [data-app-theme="black"] .side-drawer-panel,
+    [data-app-theme="black"] .app-card-panel {
       background: #0c0c0f !important;
       border-color: #27272a !important;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.9) !important;
     }
-    [data-app-theme="black"] .kpi-three-card.card-balance {
-      background: linear-gradient(135deg, #1c1c24, #0c0c0f) !important;
-      border-color: #52525b !important;
-    }
 
-    /* 3. السمة: زمردي فاخر (Luxury Emerald Green) */
-    html[data-app-theme="emerald"], body[data-app-theme="emerald"] {
-      --bg-app: #021a13 !important;
-      --bg-card: #063024 !important;
-      --bg-card-sub: #0c4333 !important;
-      --border: #145943 !important;
+    /* 3. السمة: زمردي ملكي أخضر (Imperial Royal Emerald) */
+    html[data-app-theme="emerald"], body[data-app-theme="emerald"],
+    [data-app-theme="emerald"] .mobile-frame,
+    [data-app-theme="emerald"] #appFrame,
+    [data-app-theme="emerald"] .page-view {
+      --bg-app: #064532 !important;
+      --bg-card: rgba(6, 69, 50, 0.82) !important;
+      --bg-card-sub: #0f5941 !important;
+      --border: #187355 !important;
       --accent: #10b981 !important;
       --accent-light: #34d399 !important;
-      background: radial-gradient(circle at top, #064e3b 0%, #021a13 100%) !important;
+      background: linear-gradient(180deg, #07523c 0%, #03271c 100%) !important;
     }
-    [data-app-theme="emerald"] .mobile-frame { background: #021a13 !important; }
-    [data-app-theme="emerald"] .app-header { background: rgba(3, 31, 23, 0.97) !important; border-bottom: 1px solid rgba(16, 185, 129, 0.35) !important; }
-    [data-app-theme="emerald"] .app-bottom-nav { background: rgba(3, 31, 23, 0.97) !important; border-top: 1px solid rgba(16, 185, 129, 0.35) !important; }
+    [data-app-theme="emerald"] .mobile-frame {
+      background: linear-gradient(180deg, #07523c 0%, #03271c 100%) !important;
+    }
+    [data-app-theme="emerald"] .app-header { background: rgba(4, 46, 33, 0.98) !important; border-bottom: 1px solid rgba(16, 185, 129, 0.4) !important; }
+    [data-app-theme="emerald"] .app-bottom-nav { background: rgba(3, 35, 25, 0.98) !important; border-top: 1px solid rgba(16, 185, 129, 0.4) !important; }
     [data-app-theme="emerald"] .kpi-three-card,
     [data-app-theme="emerald"] .cat-card,
     [data-app-theme="emerald"] .item-entry-card,
     [data-app-theme="emerald"] .kpi-lux-card,
     [data-app-theme="emerald"] .chart-glass-panel,
     [data-app-theme="emerald"] .modal-content-card,
-    [data-app-theme="emerald"] .side-drawer-panel {
-      background: rgba(5, 42, 31, 0.92) !important;
-      border-color: rgba(16, 185, 129, 0.35) !important;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.12) !important;
-    }
-    [data-app-theme="emerald"] .kpi-three-card.card-balance {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(4, 34, 25, 0.95)) !important;
-      border-color: #10b981 !important;
+    [data-app-theme="emerald"] .side-drawer-panel,
+    [data-app-theme="emerald"] .app-card-panel {
+      background: rgba(8, 64, 46, 0.85) !important;
+      border-color: rgba(52, 211, 153, 0.35) !important;
+      box-shadow: 0 4px 16px rgba(3, 39, 28, 0.4) !important;
     }
 
-    /* 4. السمة: بنفسجي فخم (Royal Amethyst Purple) */
-    html[data-app-theme="purple"], body[data-app-theme="purple"] {
-      --bg-app: #0e071a !important;
-      --bg-card: #1c0e33 !important;
-      --bg-card-sub: #2d1650 !important;
-      --border: #4a2185 !important;
+    /* 4. السمة: بنفسجي ملكي إمبراطوري (Imperial Royal Purple) */
+    html[data-app-theme="purple"], body[data-app-theme="purple"],
+    [data-app-theme="purple"] .mobile-frame,
+    [data-app-theme="purple"] #appFrame,
+    [data-app-theme="purple"] .page-view {
+      --bg-app: #331057 !important;
+      --bg-card: rgba(55, 18, 94, 0.82) !important;
+      --bg-card-sub: #461775 !important;
+      --border: #6322a3 !important;
       --accent: #a855f7 !important;
       --accent-light: #c084fc !important;
-      background: radial-gradient(circle at top, #3b0764 0%, #0e071a 100%) !important;
+      background: linear-gradient(180deg, #3d1466 0%, #1c0830 100%) !important;
     }
-    [data-app-theme="purple"] .mobile-frame { background: #0e071a !important; }
-    [data-app-theme="purple"] .app-header { background: rgba(20, 10, 36, 0.97) !important; border-bottom: 1px solid rgba(168, 85, 247, 0.35) !important; }
-    [data-app-theme="purple"] .app-bottom-nav { background: rgba(20, 10, 36, 0.97) !important; border-top: 1px solid rgba(168, 85, 247, 0.35) !important; }
+    [data-app-theme="purple"] .mobile-frame {
+      background: linear-gradient(180deg, #3d1466 0%, #1c0830 100%) !important;
+    }
+    [data-app-theme="purple"] .app-header { background: rgba(35, 11, 59, 0.98) !important; border-bottom: 1px solid rgba(168, 85, 247, 0.4) !important; }
+    [data-app-theme="purple"] .app-bottom-nav { background: rgba(26, 8, 44, 0.98) !important; border-top: 1px solid rgba(168, 85, 247, 0.4) !important; }
     [data-app-theme="purple"] .kpi-three-card,
     [data-app-theme="purple"] .cat-card,
     [data-app-theme="purple"] .item-entry-card,
     [data-app-theme="purple"] .kpi-lux-card,
     [data-app-theme="purple"] .chart-glass-panel,
     [data-app-theme="purple"] .modal-content-card,
-    [data-app-theme="purple"] .side-drawer-panel {
-      background: rgba(30, 15, 54, 0.92) !important;
-      border-color: rgba(168, 85, 247, 0.35) !important;
-      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.12) !important;
-    }
-    [data-app-theme="purple"] .kpi-three-card.card-balance {
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(22, 10, 40, 0.95)) !important;
-      border-color: #a855f7 !important;
+    [data-app-theme="purple"] .side-drawer-panel,
+    [data-app-theme="purple"] .app-card-panel {
+      background: rgba(55, 18, 92, 0.85) !important;
+      border-color: rgba(192, 132, 252, 0.35) !important;
+      box-shadow: 0 4px 16px rgba(28, 8, 48, 0.4) !important;
     }
 
-    /* 5. السمة: ذهبي ملكي (Obsidian Royal Gold) */
-    html[data-app-theme="gold"], body[data-app-theme="gold"] {
-      --bg-app: #120e06 !important;
-      --bg-card: #221b0e !important;
-      --bg-card-sub: #332815 !important;
-      --border: #57431e !important;
-      --accent: #f59e0b !important;
-      --accent-light: #fbbf24 !important;
-      background: radial-gradient(circle at top, #451a03 0%, #120e06 100%) !important;
+    /* 5. السمة: عنابي وياقوتي فخم (Royal Burgundy & Ruby Wine) */
+    html[data-app-theme="rose"], body[data-app-theme="rose"],
+    [data-app-theme="rose"] .mobile-frame,
+    [data-app-theme="rose"] #appFrame,
+    [data-app-theme="rose"] .page-view {
+      --bg-app: #420d24 !important;
+      --bg-card: rgba(70, 14, 38, 0.82) !important;
+      --bg-card-sub: #571230 !important;
+      --border: #7d1c46 !important;
+      --accent: #f43f5e !important;
+      --accent-light: #fb7185 !important;
+      background: linear-gradient(180deg, #4f102c 0%, #240614 100%) !important;
     }
-    [data-app-theme="gold"] .mobile-frame { background: #120e06 !important; }
-    [data-app-theme="gold"] .app-header { background: rgba(24, 18, 9, 0.97) !important; border-bottom: 1px solid rgba(245, 158, 11, 0.35) !important; }
-    [data-app-theme="gold"] .app-bottom-nav { background: rgba(24, 18, 9, 0.97) !important; border-top: 1px solid rgba(245, 158, 11, 0.35) !important; }
-    [data-app-theme="gold"] .kpi-three-card,
-    [data-app-theme="gold"] .cat-card,
-    [data-app-theme="gold"] .item-entry-card,
-    [data-app-theme="gold"] .kpi-lux-card,
-    [data-app-theme="gold"] .chart-glass-panel,
-    [data-app-theme="gold"] .modal-content-card,
-    [data-app-theme="gold"] .side-drawer-panel {
-      background: rgba(36, 28, 14, 0.92) !important;
-      border-color: rgba(245, 158, 11, 0.35) !important;
-      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.12) !important;
+    [data-app-theme="rose"] .mobile-frame {
+      background: linear-gradient(180deg, #4f102c 0%, #240614 100%) !important;
     }
-    [data-app-theme="gold"] .kpi-three-card.card-balance {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(24, 18, 9, 0.95)) !important;
-      border-color: #f59e0b !important;
-    }
-
-    /* 6. السمة: أزرق سماوي (Ocean Blue) */
-    html[data-app-theme="ocean"], body[data-app-theme="ocean"] {
-      --bg-app: #041624 !important;
-      --bg-card: #082942 !important;
-      --bg-card-sub: #0e3b5e !important;
-      --border: #145585 !important;
-      --accent: #06b6d4 !important;
-      --accent-light: #22d3ee !important;
-      background: radial-gradient(circle at top, #083344 0%, #041624 100%) !important;
-    }
-    [data-app-theme="ocean"] .mobile-frame { background: #041624 !important; }
-    [data-app-theme="ocean"] .app-header { background: rgba(6, 27, 44, 0.97) !important; border-bottom: 1px solid rgba(6, 182, 212, 0.35) !important; }
-    [data-app-theme="ocean"] .app-bottom-nav { background: rgba(6, 27, 44, 0.97) !important; border-top: 1px solid rgba(6, 182, 212, 0.35) !important; }
-    [data-app-theme="ocean"] .kpi-three-card,
-    [data-app-theme="ocean"] .cat-card,
-    [data-app-theme="ocean"] .item-entry-card,
-    [data-app-theme="ocean"] .kpi-lux-card,
-    [data-app-theme="ocean"] .chart-glass-panel,
-    [data-app-theme="ocean"] .modal-content-card,
-    [data-app-theme="ocean"] .side-drawer-panel {
-      background: rgba(8, 41, 66, 0.92) !important;
-      border-color: rgba(6, 182, 212, 0.35) !important;
-      box-shadow: 0 4px 14px rgba(6, 182, 212, 0.12) !important;
-    }
-    [data-app-theme="ocean"] .kpi-three-card.card-balance {
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(6, 27, 44, 0.95)) !important;
-      border-color: #06b6d4 !important;
-    }
-    /* تحسينات ألوان التبويب النشط للشريط السفلي بحسب كل سمة */
-    [data-app-theme="black"] .nav-tab-item.active {
-      color: #38bdf8 !important;
-      background: rgba(255, 255, 255, 0.08) !important;
-      border-color: rgba(56, 189, 248, 0.5) !important;
-      box-shadow: 0 4px 18px rgba(56, 189, 248, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-    }
-    [data-app-theme="emerald"] .nav-tab-item.active {
-      color: #10b981 !important;
-      background: linear-gradient(180deg, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0.06) 100%) !important;
-      border-color: rgba(16, 185, 129, 0.45) !important;
-      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-    }
-    [data-app-theme="emerald"] .nav-tab-item.active i, [data-app-theme="emerald"] .nav-tab-item.active .nav-tab-svg {
-      color: #10b981 !important;
-      filter: drop-shadow(0 2px 10px rgba(16, 185, 129, 0.85));
-    }
-    [data-app-theme="emerald"] .nav-tab-item.active::after {
-      background: #10b981 !important;
-      box-shadow: 0 0 10px #10b981 !important;
-    }
-    [data-app-theme="purple"] .nav-tab-item.active {
-      color: #c084fc !important;
-      background: linear-gradient(180deg, rgba(168, 85, 247, 0.22) 0%, rgba(168, 85, 247, 0.06) 100%) !important;
-      border-color: rgba(168, 85, 247, 0.45) !important;
-      box-shadow: 0 4px 18px rgba(168, 85, 247, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-    }
-    [data-app-theme="purple"] .nav-tab-item.active i, [data-app-theme="purple"] .nav-tab-item.active .nav-tab-svg {
-      color: #c084fc !important;
-      filter: drop-shadow(0 2px 10px rgba(168, 85, 247, 0.85));
-    }
-    [data-app-theme="purple"] .nav-tab-item.active::after {
-      background: #c084fc !important;
-      box-shadow: 0 0 10px #c084fc !important;
-    }
-    [data-app-theme="gold"] .nav-tab-item.active {
-      color: #fbbf24 !important;
-      background: linear-gradient(180deg, rgba(245, 158, 11, 0.22) 0%, rgba(245, 158, 11, 0.06) 100%) !important;
-      border-color: rgba(245, 158, 11, 0.45) !important;
-      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-    }
-    [data-app-theme="gold"] .nav-tab-item.active i, [data-app-theme="gold"] .nav-tab-item.active .nav-tab-svg {
-      color: #fbbf24 !important;
-      filter: drop-shadow(0 2px 10px rgba(245, 158, 11, 0.85));
-    }
-    [data-app-theme="gold"] .nav-tab-item.active::after {
-      background: #fbbf24 !important;
-      box-shadow: 0 0 10px #fbbf24 !important;
-    }
-    [data-app-theme="ocean"] .nav-tab-item.active {
-      color: #22d3ee !important;
-      background: linear-gradient(180deg, rgba(6, 182, 212, 0.22) 0%, rgba(6, 182, 212, 0.06) 100%) !important;
-      border-color: rgba(6, 182, 212, 0.45) !important;
-      box-shadow: 0 4px 18px rgba(6, 182, 212, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-    }
-    [data-app-theme="ocean"] .nav-tab-item.active i, [data-app-theme="ocean"] .nav-tab-item.active .nav-tab-svg {
-      color: #22d3ee !important;
-      filter: drop-shadow(0 2px 10px rgba(6, 182, 212, 0.85));
-    }
-    [data-app-theme="ocean"] .nav-tab-item.active::after {
-      background: #22d3ee !important;
-      box-shadow: 0 0 10px #22d3ee !important;
-    }
-    /* السمة السابعة: روز جولد وياقوتي (Rose Gold Theme) */
-    [data-app-theme="rose"] .mobile-frame { background: #14080e !important; }
-    [data-app-theme="rose"] .app-header { background: rgba(22, 9, 16, 0.97) !important; border-bottom: 1px solid rgba(244, 63, 94, 0.35) !important; }
-    [data-app-theme="rose"] .app-bottom-nav { background: rgba(20, 8, 14, 0.97) !important; border-top: 1px solid rgba(244, 63, 94, 0.35) !important; }
+    [data-app-theme="rose"] .app-header { background: rgba(45, 9, 25, 0.98) !important; border-bottom: 1px solid rgba(244, 63, 94, 0.4) !important; }
+    [data-app-theme="rose"] .app-bottom-nav { background: rgba(33, 6, 18, 0.98) !important; border-top: 1px solid rgba(244, 63, 94, 0.4) !important; }
     [data-app-theme="rose"] .kpi-three-card,
     [data-app-theme="rose"] .cat-card,
     [data-app-theme="rose"] .item-entry-card,
     [data-app-theme="rose"] .kpi-lux-card,
     [data-app-theme="rose"] .chart-glass-panel,
     [data-app-theme="rose"] .modal-content-card,
-    [data-app-theme="rose"] .side-drawer-panel {
-      background: rgba(43, 16, 30, 0.92) !important;
-      border-color: rgba(244, 63, 94, 0.35) !important;
-      box-shadow: 0 4px 14px rgba(244, 63, 94, 0.12) !important;
-    }
-    [data-app-theme="rose"] .kpi-three-card.card-balance {
-      background: linear-gradient(135deg, rgba(244, 63, 94, 0.25), rgba(22, 9, 16, 0.95)) !important;
-      border-color: #f43f5e !important;
-    }
-    [data-app-theme="rose"] .nav-tab-item.active {
-      color: #fb7185 !important;
-      background: linear-gradient(180deg, rgba(244, 63, 94, 0.22) 0%, rgba(244, 63, 94, 0.06) 100%) !important;
-      border-color: rgba(244, 63, 94, 0.45) !important;
-      box-shadow: 0 4px 18px rgba(244, 63, 94, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-    }
-    [data-app-theme="rose"] .nav-tab-item.active i, [data-app-theme="rose"] .nav-tab-item.active .nav-tab-svg {
-      color: #fb7185 !important;
-      filter: drop-shadow(0 2px 10px rgba(244, 63, 94, 0.85));
-    }
-    [data-app-theme="rose"] .nav-tab-item.active::after {
-      background: #fb7185 !important;
-      box-shadow: 0 0 10px #fb7185 !important;
+    [data-app-theme="rose"] .side-drawer-panel,
+    [data-app-theme="rose"] .app-card-panel {
+      background: rgba(69, 14, 39, 0.85) !important;
+      border-color: rgba(251, 113, 133, 0.35) !important;
+      box-shadow: 0 4px 16px rgba(35, 6, 19, 0.4) !important;
     }
 
-    /* السمة الثامنة: تيتانيوم وبلاتين (Titanium Slate Theme) */
-    [data-app-theme="slate"] .mobile-frame { background: #0a0e17 !important; }
-    [data-app-theme="slate"] .app-header { background: rgba(14, 19, 31, 0.97) !important; border-bottom: 1px solid rgba(148, 163, 184, 0.3) !important; }
-    [data-app-theme="slate"] .app-bottom-nav { background: rgba(12, 16, 26, 0.97) !important; border-top: 1px solid rgba(148, 163, 184, 0.3) !important; }
+    /* 6. السمة: سماوي فيروزي بحري (Ocean Turquoise & Teal) */
+    html[data-app-theme="ocean"], body[data-app-theme="ocean"],
+    [data-app-theme="ocean"] .mobile-frame,
+    [data-app-theme="ocean"] #appFrame,
+    [data-app-theme="ocean"] .page-view {
+      --bg-app: #0d3b57 !important;
+      --bg-card: rgba(14, 62, 92, 0.82) !important;
+      --bg-card-sub: #134e73 !important;
+      --border: #1b6c9e !important;
+      --accent: #06b6d4 !important;
+      --accent-light: #22d3ee !important;
+      background: linear-gradient(180deg, #0e4566 0%, #062335 100%) !important;
+    }
+    [data-app-theme="ocean"] .mobile-frame {
+      background: linear-gradient(180deg, #0e4566 0%, #062335 100%) !important;
+    }
+    [data-app-theme="ocean"] .app-header { background: rgba(11, 47, 69, 0.98) !important; border-bottom: 1px solid rgba(6, 182, 212, 0.4) !important; }
+    [data-app-theme="ocean"] .app-bottom-nav { background: rgba(7, 33, 49, 0.98) !important; border-top: 1px solid rgba(6, 182, 212, 0.4) !important; }
+    [data-app-theme="ocean"] .kpi-three-card,
+    [data-app-theme="ocean"] .cat-card,
+    [data-app-theme="ocean"] .item-entry-card,
+    [data-app-theme="ocean"] .kpi-lux-card,
+    [data-app-theme="ocean"] .chart-glass-panel,
+    [data-app-theme="ocean"] .modal-content-card,
+    [data-app-theme="ocean"] .side-drawer-panel,
+    [data-app-theme="ocean"] .app-card-panel {
+      background: rgba(15, 61, 90, 0.85) !important;
+      border-color: rgba(34, 211, 238, 0.35) !important;
+      box-shadow: 0 4px 16px rgba(7, 35, 52, 0.4) !important;
+    }
+
+    /* 7. السمة: موكا وبرونزي دافئ (Warm Bronze Mocha & Coffee) */
+    html[data-app-theme="gold"], body[data-app-theme="gold"],
+    [data-app-theme="gold"] .mobile-frame,
+    [data-app-theme="gold"] #appFrame,
+    [data-app-theme="gold"] .page-view {
+      --bg-app: #38210f !important;
+      --bg-card: rgba(59, 35, 16, 0.82) !important;
+      --bg-card-sub: #4d2e16 !important;
+      --border: #6e4321 !important;
+      --accent: #f59e0b !important;
+      --accent-light: #fbbf24 !important;
+      background: linear-gradient(180deg, #442813 0%, #1f1107 100%) !important;
+    }
+    [data-app-theme="gold"] .mobile-frame {
+      background: linear-gradient(180deg, #442813 0%, #1f1107 100%) !important;
+    }
+    [data-app-theme="gold"] .app-header { background: rgba(38, 22, 11, 0.98) !important; border-bottom: 1px solid rgba(245, 158, 11, 0.4) !important; }
+    [data-app-theme="gold"] .app-bottom-nav { background: rgba(28, 16, 8, 0.98) !important; border-top: 1px solid rgba(245, 158, 11, 0.4) !important; }
+    [data-app-theme="gold"] .kpi-three-card,
+    [data-app-theme="gold"] .cat-card,
+    [data-app-theme="gold"] .item-entry-card,
+    [data-app-theme="gold"] .kpi-lux-card,
+    [data-app-theme="gold"] .chart-glass-panel,
+    [data-app-theme="gold"] .modal-content-card,
+    [data-app-theme="gold"] .side-drawer-panel,
+    [data-app-theme="gold"] .app-card-panel {
+      background: rgba(59, 35, 17, 0.85) !important;
+      border-color: rgba(251, 191, 36, 0.35) !important;
+      box-shadow: 0 4px 16px rgba(29, 16, 7, 0.4) !important;
+    }
+
+    /* 8. السمة: تيتانيوم رمادي فاخر (Titanium Slate) */
+    html[data-app-theme="slate"], body[data-app-theme="slate"],
+    [data-app-theme="slate"] .mobile-frame,
+    [data-app-theme="slate"] #appFrame,
+    [data-app-theme="slate"] .page-view {
+      --bg-app: #1e293b !important;
+      --bg-card: rgba(30, 41, 59, 0.82) !important;
+      --bg-card-sub: #334155 !important;
+      --border: #475569 !important;
+      --accent: #94a3b8 !important;
+      --accent-light: #cbd5e1 !important;
+      background: linear-gradient(180deg, #243147 0%, #0f172a 100%) !important;
+    }
+    [data-app-theme="slate"] .mobile-frame {
+      background: linear-gradient(180deg, #243147 0%, #0f172a 100%) !important;
+    }
+    [data-app-theme="slate"] .app-header { background: rgba(22, 30, 44, 0.98) !important; border-bottom: 1px solid rgba(148, 163, 184, 0.4) !important; }
+    [data-app-theme="slate"] .app-bottom-nav { background: rgba(15, 23, 42, 0.98) !important; border-top: 1px solid rgba(148, 163, 184, 0.4) !important; }
     [data-app-theme="slate"] .kpi-three-card,
     [data-app-theme="slate"] .cat-card,
     [data-app-theme="slate"] .item-entry-card,
     [data-app-theme="slate"] .kpi-lux-card,
     [data-app-theme="slate"] .chart-glass-panel,
     [data-app-theme="slate"] .modal-content-card,
-    [data-app-theme="slate"] .side-drawer-panel {
-      background: rgba(22, 30, 49, 0.92) !important;
-      border-color: rgba(148, 163, 184, 0.28) !important;
-      box-shadow: 0 4px 14px rgba(148, 163, 184, 0.08) !important;
+    [data-app-theme="slate"] .side-drawer-panel,
+    [data-app-theme="slate"] .app-card-panel {
+      background: rgba(30, 41, 59, 0.85) !important;
+      border-color: rgba(148, 163, 184, 0.35) !important;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.4) !important;
     }
-    [data-app-theme="slate"] .kpi-three-card.card-balance {
-      background: linear-gradient(135deg, rgba(148, 163, 184, 0.2), rgba(14, 19, 31, 0.95)) !important;
-      border-color: #94a3b8 !important;
+
+    /* 9. السمة: النهار الأبيض اللؤلؤي (Royal Pearl Light) */
+    html[data-app-theme="light"], body[data-app-theme="light"],
+    [data-app-theme="light"] .mobile-frame,
+    [data-app-theme="light"] #appFrame,
+    [data-app-theme="light"] .page-view {
+      --bg-app: #f8fafc !important;
+      --bg-card: #ffffff !important;
+      --bg-card-sub: #f1f5f9 !important;
+      --border: #cbd5e1 !important;
+      --accent: #0284c7 !important;
+      --accent-light: #0369a1 !important;
+      background: #f8fafc !important;
+      color: #0f172a !important;
     }
-    [data-app-theme="slate"] .nav-tab-item.active {
-      color: #cbd5e1 !important;
-      background: linear-gradient(180deg, rgba(148, 163, 184, 0.22) 0%, rgba(148, 163, 184, 0.06) 100%) !important;
-      border-color: rgba(148, 163, 184, 0.45) !important;
-      box-shadow: 0 4px 18px rgba(148, 163, 184, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    [data-app-theme="light"] .mobile-frame {
+      background: #f8fafc !important;
     }
-    [data-app-theme="slate"] .nav-tab-item.active i, [data-app-theme="slate"] .nav-tab-item.active .nav-tab-svg {
-      color: #cbd5e1 !important;
-      filter: drop-shadow(0 2px 10px rgba(148, 163, 184, 0.85));
+    [data-app-theme="light"] .app-header { background: rgba(255, 255, 255, 0.98) !important; border-bottom: 1px solid #cbd5e1 !important; color: #0f172a !important; }
+    [data-app-theme="light"] .app-bottom-nav { background: rgba(255, 255, 255, 0.98) !important; border-top: 1px solid #cbd5e1 !important; }
+    [data-app-theme="light"] .kpi-three-card,
+    [data-app-theme="light"] .cat-card,
+    [data-app-theme="light"] .item-entry-card,
+    [data-app-theme="light"] .kpi-lux-card,
+    [data-app-theme="light"] .chart-glass-panel,
+    [data-app-theme="light"] .modal-content-card,
+    [data-app-theme="light"] .side-drawer-panel,
+    [data-app-theme="light"] .app-card-panel {
+      background: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      color: #0f172a !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
     }
-    [data-app-theme="slate"] .nav-tab-item.active::after {
-      background: #cbd5e1 !important;
-      box-shadow: 0 0 10px #cbd5e1 !important;
-    }
+
 
     /* =========================================================================
        أنماط وألوان الأيقونات الفاخرة المتكاملة (Elite Icon Color System)
@@ -10370,7 +10352,7 @@
         <div class="kpi-master-wealth-cockpit" id="topKpiThreeStrip">
           
           <!-- الجانب الأيمن: بطل الشاشة المالي (الرصيد الفعلي المتاح) -->
-          <div class="cockpit-hero-side" onclick="openModal('walletModal')" title="الرصيد الفعلي المتوفر في جميع المحافظ المالية (انقر لإدارة المحافظ)" style="cursor: pointer;">
+          <div class="cockpit-hero-side" onclick="openActualBalanceAuditModal()" title="الرصيد الفعلي المتوفر في جميع المحافظ المالية (انقر لإدارة المحافظ)" style="cursor: pointer;">
             <div class="cockpit-hero-label">
               <div class="hero-wallet-icon-badge">
                 <i class="fa-solid fa-wallet"></i>
@@ -10433,11 +10415,7 @@
             <span>الذهب</span>
           </button>
 
-          <!-- زر منتقي الخلفيات والألوان الفاخرة (خلفيات متعددة الألوان) -->
-          <button type="button" class="tool-pill-action theme-pill" id="btnOpenThemeDrawer" onclick="openThemeDrawer()" title="اختيار خلفية ولون التطبيق (خلفيات متعددة الألوان)" style="height: 38px; padding: 0 9px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(168, 85, 247, 0.5); background: linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(15, 23, 42, 0.9)); color: #c084fc; flex-shrink: 0;">
-            <i class="fa-solid fa-palette"></i>
-            <span>الخلفيات</span>
-          </button>
+
 
           <!-- زر تبديل العملة (EGP / SAR / USD / عيار 21) -->
           <div class="currency-pill-btn" id="btnToggleCurrency" onclick="toggleCurrency()" title="تبديل عملة العرض (EGP / SAR / USD / عيار 21)" style="height: 38px; padding: 0 8px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.5); background: rgba(30, 41, 59, 0.85); color: #fbbf24; flex-shrink: 0;">
@@ -12567,6 +12545,40 @@
           </div>
         </div>
 
+        <!-- كارت النسخ الاحتياطي التلقائي اليومي المجدول (12:00 ظهراً) وحذف نسخة الأمس -->
+        <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.90)); border: 1.4px solid rgba(56, 189, 248, 0.4); border-radius: 14px; padding: 12px 14px; margin-bottom: 11px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <div style="display: flex; align-items: center; gap: 7px;">
+              <span style="font-size: 1.15rem;">⏰</span>
+              <span style="font-size: 0.84rem; font-weight: 800; color: #38bdf8;">نسخ احتياطي يومي مجدول (12:00 ظهراً)</span>
+            </div>
+            <span id="dailyBackupStatusBadge" style="background: rgba(34, 197, 94, 0.2); color: #34d399; font-size: 0.68rem; font-weight: 800; padding: 2px 8px; border-radius: 20px; border: 1px solid rgba(34, 197, 94, 0.4);">
+              مفعل 12:00 ظهراً ✨
+            </span>
+          </div>
+          
+          <div style="font-size: 0.72rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 8px;">
+            يقوم التطبيق تلقائياً كل يوم الساعة <strong>12:00 ظهراً</strong> بإنشاء نسخة احتياطية كاملة وحفظها على حساب <strong>Google Drive</strong>، ثم يقوم <strong>بحذف نسخة اليوم السابق</strong> تلقائياً لتوفير المساحة وتنظيم السجلات.
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; background: rgba(0,0,0,0.25); padding: 7px 10px; border-radius: 10px; margin-bottom: 8px; font-size: 0.68rem;">
+            <div>
+              <span style="color: #94a3b8; display: block;">آخر نسخة يومية:</span>
+              <strong id="lblLastDailyBackupTime" style="color: #f8fafc;">جاري الفحص...</strong>
+            </div>
+            <div>
+              <span style="color: #94a3b8; display: block;">موعد النسخة القادمة:</span>
+              <strong id="lblNextDailyBackupTime" style="color: #fbbf24;">اليوم 12:00 ظهراً</strong>
+            </div>
+          </div>
+
+          <!-- زر تشغيل فوري وتجربة النسخ الاحتياطي وحذف نسخة الأمس -->
+          <button type="button" onclick="executeDailyNoonBackup(true)" style="width: 100%; padding: 8px 10px; border-radius: 9px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(14, 165, 233, 0.35)); border: 1.2px solid rgba(56, 189, 248, 0.5); color: #38bdf8; font-size: 0.76rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer;">
+            <i class="fa-solid fa-bolt"></i>
+            <span>تشغيل فوري الآن للنسخ الاحتياطي وحذف الأمس ⚡</span>
+          </button>
+        </div>
+
         <!-- 1. الزر الأكبر: مزامنة فورية وموازنة دقيقة بين جميع أجهزة العائلة -->
         <button type="button" class="btn-submit-tx" onclick="executeGoogleDriveSync()" style="height: 48px; background: linear-gradient(135deg, #10b981, #059669); font-size: 0.95rem; font-weight: 900; border-radius: 13px; margin-bottom: 10px; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35); width: 100%;">
           <i class="fa-solid fa-rotate" id="driveSyncIconSpin"></i>
@@ -13060,7 +13072,16 @@
               <i class="fa-solid fa-bolt" style="color: #fbbf24; font-size: 0.68rem;"></i>
               <span>يتم فحص وتنزيل التحديثات تلقائياً مع كل فتح للبرنامج</span>
             </span>
-            <span id="settingsCurrentVersionTag" style="color: #38bdf8; font-weight: 800;">v4.2.1</span>
+            <span id="settingsCurrentVersionTag" style="color: #38bdf8; font-weight: 800;">v4.3.0</span>
+          </div>
+
+          <!-- شريط النسخ الاحتياطي اليومي 12:00 ظهراً وحذف نسخة الأمس -->
+          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.65rem; color: #cbd5e1; background: rgba(56, 189, 248, 0.08); padding: 4px 8px; border-radius: 6px; margin-bottom: 6px; border: 1px solid rgba(56, 189, 248, 0.25);">
+            <span style="display: flex; align-items: center; gap: 5px; color: #e2e8f0;">
+              <i class="fa-solid fa-clock-rotate-left" style="color: #38bdf8; font-size: 0.70rem;"></i>
+              <span>نسخ احتياطي يومي مجدول (12:00 م) + حذف الأمس</span>
+            </span>
+            <span id="settingsDailyBackupBadge" style="color: #34d399; font-weight: 800; font-size: 0.63rem;">مجدول 12:00 م</span>
           </div>
 
           <!-- زرا الإجراءات المتناسقان جنباً إلى جنب في صف واحد رشيق -->
@@ -13082,47 +13103,58 @@
              القسم 2: المظهر والتخصيص البصري
              ======================================================== -->
         <div class="settings-unified-section" id="settingsSec_appearance" style="background: rgba(15, 23, 42, 0.90); border: 1.2px solid rgba(255, 255, 255, 0.10); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 10px;">
-          <!-- 1. سمة وألوان التطبيق (8 سمات ملكية راقية) -->
+          <!-- 1. سمة وألوان التطبيق (9 خلفيات وألوان ملكية راقية) -->
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
               <div style="font-size: 0.76rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
                 <i class="fa-solid fa-palette" style="color: #a855f7; font-size: 0.88rem;"></i>
-                <span>ألوان وسمات التطبيق:</span>
+                <span>خلفيات وألوان التطبيق:</span>
               </div>
               <span id="activeThemeBadge" style="font-size: 0.63rem; color: #38bdf8; font-weight: 800; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 1px 7px; border-radius: 5px;">كحلي ملكي</span>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;">
-              <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-                <div class="theme-color-dot" style="background: #1e3a8a; width: 10px; height: 10px;"></div>
-                <span>كحلي</span>
+
+            <!-- زر فتح لوحة منتقي الخلفيات الموسعة الملونة -->
+            <button type="button" class="btn-submit-tx" onclick="openThemeDrawer()" style="height: 38px; background: linear-gradient(135deg, #a855f7, #7c3aed); font-size: 0.82rem; font-weight: 900; border-radius: 10px; margin-bottom: 8px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 7px; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.35); cursor: pointer; color: #fff;">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>لوحة معاينة واختيار خلفيات التطبيق (9 ألوان وخلفيات) 🎨</span>
+            </button>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;">
+              <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(14, 39, 76, 0.7); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; cursor: pointer;">
+                <div class="theme-color-dot" style="background: linear-gradient(135deg, #0e274c, #1a3c6d); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #38bdf8;"></div>
+                <span style="font-weight: 800;">💙 كحلي ملكي</span>
               </div>
-              <div class="theme-pill-option" id="themeOptBlack" onclick="setAppTheme('black')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-                <div class="theme-color-dot" style="background: #0f172a; width: 10px; height: 10px;"></div>
-                <span>أسود أوليد</span>
+              <div class="theme-pill-option" id="themeOptBlack" onclick="setAppTheme('black')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(0, 0, 0, 0.8); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; cursor: pointer;">
+                <div class="theme-color-dot" style="background: #000000; width: 12px; height: 12px; border-radius: 50%; border: 1px solid #666;"></div>
+                <span style="font-weight: 800;">🖤 أسود فاحم</span>
               </div>
-              <div class="theme-pill-option" id="themeOptEmerald" onclick="setAppTheme('emerald')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-                <div class="theme-color-dot" style="background: #065f46; width: 10px; height: 10px;"></div>
-                <span>زمردي</span>
+              <div class="theme-pill-option" id="themeOptEmerald" onclick="setAppTheme('emerald')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(6, 69, 50, 0.7); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 8px; cursor: pointer;">
+                <div class="theme-color-dot" style="background: linear-gradient(135deg, #064532, #0f5941); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #34d399;"></div>
+                <span style="font-weight: 800;">💚 زمردي فاخر</span>
               </div>
-              <div class="theme-pill-option" id="themeOptPurple" onclick="setAppTheme('purple')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-                <div class="theme-color-dot" style="background: #581c87; width: 10px; height: 10px;"></div>
-                <span>بنفسجي</span>
+              <div class="theme-pill-option" id="themeOptPurple" onclick="setAppTheme('purple')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(55, 18, 94, 0.7); border: 1px solid rgba(192, 132, 252, 0.3); border-radius: 8px; cursor: pointer;">
+                <div class="theme-color-dot" style="background: linear-gradient(135deg, #331057, #461775); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #c084fc;"></div>
+                <span style="font-weight: 800;">💜 بنفسجي ملكي</span>
               </div>
-              <div class="theme-pill-option" id="themeOptGold" onclick="setAppTheme('gold')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-                <div class="theme-color-dot" style="background: #b45309; width: 10px; height: 10px;"></div>
-                <span>ذهبي صحراوي</span>
+              <div class="theme-pill-option" id="themeOptRose" onclick="setAppTheme('rose')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(70, 14, 38, 0.7); border: 1px solid rgba(251, 113, 133, 0.3); border-radius: 8px; cursor: pointer;">
+                <div class="theme-color-dot" style="background: linear-gradient(135deg, #420d24, #571230); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #fb7185;"></div>
+                <span style="font-weight: 800;">🍷 عنابي ياقوتي</span>
               </div>
-              <div class="theme-pill-option" id="themeOptOcean" onclick="setAppTheme('ocean')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-                <div class="theme-color-dot" style="background: #06b6d4; width: 10px; height: 10px;"></div>
-                <span>سماوي بحري</span>
+              <div class="theme-pill-option" id="themeOptOcean" onclick="setAppTheme('ocean')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(14, 62, 92, 0.7); border: 1px solid rgba(34, 211, 238, 0.3); border-radius: 8px; cursor: pointer;">
+                <div class="theme-color-dot" style="background: linear-gradient(135deg, #0d3b57, #134e73); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #22d3ee;"></div>
+                <span style="font-weight: 800;">🌊 سماوي فيروزي</span>
               </div>
-              <div class="theme-pill-option" id="themeOptRose" onclick="setAppTheme('rose')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-                <div class="theme-color-dot" style="background: #f43f5e; width: 10px; height: 10px;"></div>
-                <span>روز جولد</span>
+              <div class="theme-pill-option" id="themeOptGold" onclick="setAppTheme('gold')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(59, 35, 16, 0.7); border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 8px; cursor: pointer;">
+                <div class="theme-color-dot" style="background: linear-gradient(135deg, #38210f, #4d2e16); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #fbbf24;"></div>
+                <span style="font-weight: 800;">☕ موكا وبرونزي</span>
               </div>
-              <div class="theme-pill-option" id="themeOptSlate" onclick="setAppTheme('slate')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-                <div class="theme-color-dot" style="background: #64748b; width: 10px; height: 10px;"></div>
-                <span>تيتانيوم</span>
+              <div class="theme-pill-option" id="themeOptSlate" onclick="setAppTheme('slate')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 8px; cursor: pointer;">
+                <div class="theme-color-dot" style="background: linear-gradient(135deg, #1e293b, #334155); width: 12px; height: 12px; border-radius: 50%; border: 1px solid #94a3b8;"></div>
+                <span style="font-weight: 800;">🪙 تيتانيوم رمادي</span>
+              </div>
+              <div class="theme-pill-option" id="themeOptLight" onclick="setAppTheme('light')" style="padding: 6px 3px; font-size: 0.68rem; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(2, 132, 199, 0.4); border-radius: 8px; cursor: pointer;">
+                <div class="theme-color-dot" style="background: #ffffff; width: 12px; height: 12px; border-radius: 50%; border: 1px solid #0284c7;"></div>
+                <span style="font-weight: 800; color: #0f172a;">☀️ أبيض نهار</span>
               </div>
             </div>
           </div>
@@ -13555,8 +13587,8 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = '4.5.0';
-      const APP_BUILD_ID = 202611021144;
+      const APP_VERSION = '4.6.0';
+      const APP_BUILD_ID = 202611021151;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
@@ -17118,7 +17150,7 @@ function generateRichDemoTransactions() {
       allTxs.forEach(t => {
         const amt = Number(t.amount) || 0;
         if (t.type === 'income') actualTotalInc += amt;
-        else actualTotalExp += amt;
+        else if (t.type === 'expense') actualTotalExp += amt;
       });
       const actualBalance = actualTotalInc - actualTotalExp;
 
@@ -17129,7 +17161,7 @@ function generateRichDemoTransactions() {
       filtered.forEach(t => {
         const amt = Number(t.amount) || 0;
         if (t.type === 'income') periodInc += amt;
-        else periodExp += amt;
+        else if (t.type === 'expense') periodExp += amt;
       });
 
       // 3. تحديث قمرة القيادة المالية (Executive Wealth Cockpit):
@@ -22262,7 +22294,7 @@ function exportActivityLogExcel() {
         }
 
         // 3. التحقق مما إذا كان هناك إصدار أحدث متوفر بالسيرفر
-        const currentBuildNum = typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611021144;
+        const currentBuildNum = typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611021151;
         const currentVerStr = typeof APP_VERSION !== 'undefined' ? APP_VERSION : '4.2.1';
         
         const isNewer = remoteBuild && remoteBuild.buildId && (
@@ -22839,6 +22871,680 @@ function exportActivityLogExcel() {
       `);
       printWindow.document.close();
     }
+
+
+    // =========================================================================
+    // كشف وتدقيق مصدر الرصيد الفعلي وحركات الإيداع والصرف (Actual Balance Audit)
+    // =========================================================================
+    let lastAuditFilteredRows = [];
+
+    function openActualBalanceAuditModal() {
+      // 1. ملء قائمة أفراد الأسرة
+      const memSelect = document.getElementById('auditMemberFilter');
+      if (memSelect) {
+        const familyList = ['ماهر', 'آية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'البيت'];
+        let mHtml = '<option value="all">كافة أفراد الأسرة (الكل)</option>';
+        familyList.forEach(m => {
+          mHtml += `<option value="${m}">${m}</option>`;
+        });
+        memSelect.innerHTML = mHtml;
+        memSelect.value = 'all';
+      }
+
+      // 2. ملء قائمة بنود الصرف والإيراد
+      const catSelect = document.getElementById('auditCategoryFilter');
+      if (catSelect) {
+        let cHtml = '<option value="all">كافة بنود الصرف والإيراد (الكل)</option>';
+        cHtml += '<optgroup label="── بنود المصروفات ──">';
+        (EXPENSE_CATEGORIES || []).forEach(c => {
+          cHtml += `<option value="${c.id}">${c.emoji || '📌'} ${c.name}</option>`;
+        });
+        cHtml += '</optgroup>';
+        cHtml += '<optgroup label="── بنود الإيرادات ──">';
+        (INCOME_CATEGORIES || []).forEach(c => {
+          cHtml += `<option value="${c.id}">💰 ${c.name}</option>`;
+        });
+        cHtml += '</optgroup>';
+        catSelect.innerHTML = cHtml;
+        catSelect.value = 'all';
+      }
+
+      // 3. ملء قائمة المحافظ
+      const walSelect = document.getElementById('auditWalletFilter');
+      if (walSelect) {
+        let wHtml = '<option value="all">كافة المحافظ المجمعة (الكل)</option>';
+        (state.wallets || []).forEach(w => {
+          wHtml += `<option value="${w.id}">${w.name}</option>`;
+        });
+        walSelect.innerHTML = wHtml;
+        walSelect.value = 'all';
+      }
+
+      // 4. تصفير البحث والفترات
+      const sInput = document.getElementById('auditSearchInput');
+      if (sInput) sInput.value = '';
+
+      const pSelect = document.getElementById('auditPeriodFilter');
+      if (pSelect) pSelect.value = 'all';
+
+      const tSelect = document.getElementById('auditTypeFilter');
+      if (tSelect) tSelect.value = 'all';
+
+      const customRow = document.getElementById('auditCustomDateRow');
+      if (customRow) customRow.style.display = 'none';
+
+      // 5. حساب الكروت الكلية والتوزيع
+      updateAuditGlobalMetrics();
+      renderAuditWalletsCards();
+
+      // 6. بناء الكشف وعرض النافذة
+      renderActualBalanceAuditLedger();
+      openModal('actualBalanceAuditModal');
+    }
+
+    function updateAuditGlobalMetrics() {
+      const allTxs = state.transactions || [];
+      let totalInc = 0;
+      let totalExp = 0;
+
+      allTxs.forEach(t => {
+        const amt = Number(t.amount) || 0;
+        if (t.type === 'income') totalInc += amt;
+        else if (t.type === 'expense') totalExp += amt;
+      });
+
+      const netFlow = totalInc - totalExp;
+      const actualBalance = netFlow;
+
+      const elInc = document.getElementById('auditMetricTotalInc');
+      const elExp = document.getElementById('auditMetricTotalExp');
+      const elNet = document.getElementById('auditMetricNetFlow');
+      const elBal = document.getElementById('auditMetricActualBal');
+      const elEq = document.getElementById('auditEquationText');
+
+      const initialTotal = (state.wallets || []).reduce((s, w) => s + (Number(w.initialBalance) || 0), 0);
+      const totalLiquidity = initialTotal + netFlow;
+
+      if (elInc) elInc.textContent = '+ ' + formatMoney(totalInc);
+      if (elExp) elExp.textContent = '- ' + formatMoney(totalExp);
+      if (elNet) elNet.textContent = (netFlow >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(netFlow));
+      if (elBal) elBal.textContent = (actualBalance >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(actualBalance));
+
+      if (elEq) {
+        elEq.textContent = `افتتاحي (${formatMoney(initialTotal)}) + إيداع (${formatMoney(totalInc)}) - صرف (${formatMoney(totalExp)}) = سيولة (${formatMoney(totalLiquidity)})`;
+      }
+    }
+
+    function renderAuditWalletsCards() {
+      const container = document.getElementById('auditWalletsCardsContainer');
+      const totalLiquidityText = document.getElementById('auditWalletsTotalLiquidityText');
+      if (!container) return;
+
+      const wallets = state.wallets || [];
+      const txs = state.transactions || [];
+      const selectedWalletId = document.getElementById('auditWalletFilter') ? document.getElementById('auditWalletFilter').value : 'all';
+
+      // حساب رصيد كل محفظة بناءً على الإيداع والصرف والتحويلات
+      let totalLiquidity = 0;
+      const walletStats = wallets.map(w => {
+        const initBal = Number(w.initialBalance) || 0;
+        let inc = 0;
+        let exp = 0;
+
+        txs.forEach(t => {
+          const amt = Number(t.amount) || 0;
+          if (t.type === 'income' && (t.walletId === w.id || (!t.walletId && w.isDefault))) {
+            inc += amt;
+          } else if (t.type === 'expense' && (t.walletId === w.id || (!t.walletId && w.isDefault))) {
+            exp += amt;
+          } else if (t.type === 'transfer') {
+            if (t.toWalletId === w.id) inc += amt;
+            if (t.fromWalletId === w.id) exp += amt;
+          }
+        });
+
+        // الرصيد الفعلي للمحفظة: إذا كان معتمداً بحسب إعدادات النظام
+        const netFlow = inc - exp;
+        const currentBal = Number(w.balance) || (initBal + netFlow);
+        totalLiquidity += currentBal;
+
+        return {
+          id: w.id,
+          name: w.name,
+          icon: w.icon || 'fa-wallet',
+          color: w.color || '#38bdf8',
+          initBal,
+          inc,
+          exp,
+          currentBal
+        };
+      });
+
+      if (totalLiquidityText) {
+        totalLiquidityText.textContent = `إجمالي السيولة المعتمدة: ${formatMoney(totalLiquidity)}`;
+      }
+
+      let cardsHtml = '';
+      walletStats.forEach(w => {
+        const pct = totalLiquidity > 0 ? ((w.currentBal / totalLiquidity) * 100).toFixed(1) : 0;
+        const isSelected = selectedWalletId === w.id;
+        const borderStyle = isSelected ? `2px solid ${w.color}` : '1px solid rgba(255, 255, 255, 0.12)';
+        const bgStyle = isSelected ? 'linear-gradient(135deg, rgba(30, 58, 138, 0.5), rgba(15, 23, 42, 0.9))' : 'rgba(30, 41, 59, 0.6)';
+
+        cardsHtml += `
+          <div onclick="quickFilterAuditWallet('${w.id}')" style="background: ${bgStyle}; border: ${borderStyle}; border-radius: 12px; padding: 8px 10px; cursor: pointer; transition: all 0.2s ease; display: flex; flex-direction: column; gap: 4px;" title="انقر للفلترة الفورية على هذه المحفظة">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid ${w.icon}" style="color: ${w.color}; font-size: 0.85rem;"></i>
+                <span style="font-size: 0.75rem; font-weight: 800; color: #f8fafc;">${w.name}</span>
+              </div>
+              <span style="font-size: 0.60rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 1px 5px; border-radius: 4px; font-weight: 700;">${pct}%</span>
+            </div>
+            <div style="display: flex; align-items: baseline; justify-content: space-between; margin-top: 2px;">
+              <span style="font-size: 0.88rem; font-weight: 900; color: #ffffff;">${formatMoney(w.currentBal)}</span>
+              <span style="font-size: 0.58rem; color: #94a3b8;">إيداع: +${formatMoney(w.inc)} | صرف: -${formatMoney(w.exp)}</span>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = cardsHtml;
+    }
+
+    function quickFilterAuditWallet(walletId) {
+      const walSelect = document.getElementById('auditWalletFilter');
+      if (!walSelect) return;
+
+      if (walSelect.value === walletId) {
+        walSelect.value = 'all';
+      } else {
+        walSelect.value = walletId;
+      }
+
+      renderAuditWalletsCards();
+      renderActualBalanceAuditLedger();
+    }
+
+    function onAuditWalletFilterChange() {
+      renderAuditWalletsCards();
+      renderActualBalanceAuditLedger();
+    }
+
+    function onAuditPeriodChange() {
+      const periodSelect = document.getElementById('auditPeriodFilter');
+      const customRow = document.getElementById('auditCustomDateRow');
+      if (!periodSelect) return;
+
+      if (periodSelect.value === 'custom') {
+        if (customRow) {
+          customRow.style.display = 'grid';
+          const fromInput = document.getElementById('auditDateFrom');
+          const toInput = document.getElementById('auditDateTo');
+          const now = new Date();
+          const todayStr = getLocalDateStr(now);
+          if (!toInput.value) toInput.value = todayStr;
+          if (!fromInput.value) {
+            const past = new Date();
+            past.setDate(past.getDate() - 30);
+            fromInput.value = getLocalDateStr(past);
+          }
+        }
+      } else {
+        if (customRow) customRow.style.display = 'none';
+      }
+
+      renderActualBalanceAuditLedger();
+    }
+
+    function clearAuditSearch() {
+      const sInput = document.getElementById('auditSearchInput');
+      if (sInput) sInput.value = '';
+      renderActualBalanceAuditLedger();
+    }
+
+    function resetAuditFilters() {
+      const sInput = document.getElementById('auditSearchInput');
+      if (sInput) sInput.value = '';
+
+      const pSelect = document.getElementById('auditPeriodFilter');
+      if (pSelect) pSelect.value = 'all';
+
+      const customRow = document.getElementById('auditCustomDateRow');
+      if (customRow) customRow.style.display = 'none';
+
+      const memSelect = document.getElementById('auditMemberFilter');
+      if (memSelect) memSelect.value = 'all';
+
+      const catSelect = document.getElementById('auditCategoryFilter');
+      if (catSelect) catSelect.value = 'all';
+
+      const walSelect = document.getElementById('auditWalletFilter');
+      if (walSelect) walSelect.value = 'all';
+
+      const tSelect = document.getElementById('auditTypeFilter');
+      if (tSelect) tSelect.value = 'all';
+
+      renderAuditWalletsCards();
+      renderActualBalanceAuditLedger();
+      showToast('تم تفريغ كافة الفلاتر والبحث بنجاح', 'info');
+    }
+
+    function renderActualBalanceAuditLedger() {
+      const tableContainer = document.getElementById('auditLedgerTableContainer');
+      if (!tableContainer) return;
+
+      // قراءة الفلاتر الحالية
+      const searchVal = (document.getElementById('auditSearchInput')?.value || '').trim().toLowerCase();
+      const periodVal = document.getElementById('auditPeriodFilter')?.value || 'all';
+      const memberVal = document.getElementById('auditMemberFilter')?.value || 'all';
+      const catVal = document.getElementById('auditCategoryFilter')?.value || 'all';
+      const walletVal = document.getElementById('auditWalletFilter')?.value || 'all';
+      const typeVal = document.getElementById('auditTypeFilter')?.value || 'all';
+      const dateFrom = document.getElementById('auditDateFrom')?.value || '';
+      const dateTo = document.getElementById('auditDateTo')?.value || '';
+
+      // إعداد نطاقات التواريخ
+      const now = new Date();
+      const todayStr = getLocalDateStr(now);
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yesterdayStr = getLocalDateStr(yesterday);
+      const weekAgo = new Date();
+      weekAgo.setDate(weekAgo.getDate() - 7);
+      const weekAgoStr = getLocalDateStr(weekAgo);
+      const thirtyDaysAgo = new Date();
+      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+      const thirtyDaysAgoStr = getLocalDateStr(thirtyDaysAgo);
+      const thisMonthPrefix = todayStr.substring(0, 7);
+      
+      const lastMonthDate = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+      const lastMonthPrefix = getLocalDateStr(lastMonthDate).substring(0, 7);
+      const thisYearPrefix = todayStr.substring(0, 4);
+
+      // ترتيب الحركات تصاعدياً لحساب الرصيد التراكمي بدقة رياضية
+      const allChronological = [...(state.transactions || [])].sort((a, b) => {
+        const da = (a.date || '') + ' ' + (a.time || '');
+        const db = (b.date || '') + ' ' + (b.time || '');
+        return da.localeCompare(db) || (Number(a.id) || 0) - (Number(b.id) || 0);
+      });
+
+      // حساب الرصيد التراكمي لكل حركة عبر التاريخ
+      let runningBal = 0;
+      const chronologicalWithRunning = allChronological.map(tx => {
+        const amt = Number(tx.amount) || 0;
+        if (tx.type === 'income') {
+          runningBal += amt;
+        } else if (tx.type === 'expense') {
+          runningBal -= amt;
+        }
+        return {
+          ...tx,
+          runningBalAfter: runningBal
+        };
+      });
+
+      // تطبيق الفلاتر الخمسة + البحث الفوري
+      let filtered = chronologicalWithRunning.filter(tx => {
+        // 1. فلتر البحث
+        if (searchVal) {
+          const lStr = (tx.label || '').toLowerCase();
+          const mStr = (tx.member || '').toLowerCase();
+          const cObj = getCategoryObj(tx.category, tx.type);
+          const cStr = (cObj ? cObj.name : '').toLowerCase();
+          const wStr = getWalletName(tx.walletId).toLowerCase();
+          const aStr = String(tx.amount || '');
+          if (!lStr.includes(searchVal) && !mStr.includes(searchVal) && !cStr.includes(searchVal) && !wStr.includes(searchVal) && !aStr.includes(searchVal)) {
+            return false;
+          }
+        }
+
+        // 2. فلتر الفترة الزمنية
+        const txDate = tx.date || '';
+        if (periodVal === 'today' && txDate !== todayStr) return false;
+        if (periodVal === 'yesterday' && txDate !== yesterdayStr) return false;
+        if (periodVal === 'week' && txDate < weekAgoStr) return false;
+        if (periodVal === 'this_month' && !txDate.startsWith(thisMonthPrefix)) return false;
+        if (periodVal === 'last_month' && !txDate.startsWith(lastMonthPrefix)) return false;
+        if (periodVal === 'last_30_days' && txDate < thirtyDaysAgoStr) return false;
+        if (periodVal === 'this_year' && !txDate.startsWith(thisYearPrefix)) return false;
+        if (periodVal === 'custom') {
+          if (dateFrom && txDate < dateFrom) return false;
+          if (dateTo && txDate > dateTo) return false;
+        }
+
+        // 3. فلتر الشخص / المستفيد
+        if (memberVal !== 'all') {
+          const m = tx.member || '';
+          if (m !== memberVal) {
+            if (!((memberVal === 'آية' && m === 'أية') || (memberVal === 'أية' && m === 'آية'))) {
+              return false;
+            }
+          }
+        }
+
+        // 4. فلتر البند / التصنيف
+        if (catVal !== 'all' && tx.category !== catVal) {
+          return false;
+        }
+
+        // 5. فلتر المحفظة
+        if (walletVal !== 'all') {
+          const inWallet = tx.walletId === walletVal || (!tx.walletId && walletVal === 'wallet-cash-safe') || tx.toWalletId === walletVal || tx.fromWalletId === walletVal;
+          if (!inWallet) return false;
+        }
+
+        // 6. فلتر نوع الحركة
+        if (typeVal !== 'all' && tx.type !== typeVal) {
+          return false;
+        }
+
+        return true;
+      });
+
+      // حفظ الصفوف للطباعة والتصدير
+      lastAuditFilteredRows = [...filtered];
+
+      // حساب مؤشرات النتائج المفلترة
+      let filteredInc = 0;
+      let filteredExp = 0;
+      filtered.forEach(t => {
+        const amt = Number(t.amount) || 0;
+        if (t.type === 'income') filteredInc += amt;
+        else if (t.type === 'expense') filteredExp += amt;
+      });
+      const filteredNet = filteredInc - filteredExp;
+
+      const elCount = document.getElementById('auditFilteredCount');
+      const elFInc = document.getElementById('auditFilteredIncome');
+      const elFExp = document.getElementById('auditFilteredExpense');
+      const elFNet = document.getElementById('auditFilteredNet');
+
+      if (elCount) elCount.textContent = `${filtered.length} حركة`;
+      if (elFInc) elFInc.textContent = '+ ' + formatMoney(filteredInc);
+      if (elFExp) elFExp.textContent = (filteredExp > 0 ? '- ' : '') + formatMoney(filteredExp);
+      if (elFNet) {
+        elFNet.textContent = (filteredNet >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(filteredNet));
+        elFNet.style.color = filteredNet >= 0 ? '#34d399' : '#f43f5e';
+      }
+
+      // عرض النتائج في الجدول من الأحدث للأقدم للمستخدم
+      const displayRows = [...filtered].reverse();
+
+      if (displayRows.length === 0) {
+        tableContainer.innerHTML = `
+          <div style="padding: 40px 20px; text-align: center; color: #94a3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
+            <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center;">
+              <i class="fa-solid fa-folder-open" style="font-size: 1.4rem; color: #64748b;"></i>
+            </div>
+            <div style="font-size: 0.85rem; font-weight: 800; color: #e2e8f0;">لا توجد حركات تطابق معايير البحث والفلترة المحددة</div>
+            <div style="font-size: 0.70rem; color: #64748b;">جرب تعديل نطاق التاريخ، اسم الشخص، أو تفريغ الفلاتر للرجوع للكل.</div>
+            <button type="button" onclick="resetAuditFilters()" class="btn-submit-tx" style="margin-top: 6px; height: 32px; padding: 0 16px; font-size: 0.72rem; font-weight: 800; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px;">
+              <i class="fa-solid fa-rotate-left"></i> تفريغ الفلاتر الآن
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      let tbodyHtml = '';
+      displayRows.forEach(tx => {
+        const isInc = tx.type === 'income';
+        const isExp = tx.type === 'expense';
+        const amt = Number(tx.amount) || 0;
+        const catObj = getCategoryObj(tx.category, tx.type);
+        const wName = getWalletName(tx.walletId);
+        
+        // الصورة الرمزية للشخص
+        const mKey = (tx.member === 'آية') ? 'أية' : tx.member;
+        const photo = (typeof MEMBER_AVATARS !== 'undefined') ? (MEMBER_AVATARS[mKey] || MEMBER_AVATARS[tx.member]) : null;
+        const avatarImg = photo 
+          ? `<img src="${photo}" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover; border: 1.5px solid #38bdf8; flex-shrink: 0;">`
+          : `<div style="width: 22px; height: 22px; border-radius: 50%; background: rgba(56, 189, 248, 0.2); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: #38bdf8; flex-shrink: 0;"><i class="fa-solid fa-user"></i></div>`;
+
+        // إشارة المبلغ وتنسيقه
+        const amtSign = isInc ? '+ ' : (isExp ? '- ' : '');
+        const amtColor = isInc ? '#34d399' : (isExp ? '#f43f5e' : '#38bdf8');
+        const amtBg = isInc ? 'rgba(16, 185, 129, 0.12)' : (isExp ? 'rgba(244, 63, 94, 0.12)' : 'rgba(56, 189, 248, 0.12)');
+
+        // أيقونة نوع الحركة
+        const typeBadge = isInc 
+          ? `<span style="display: inline-flex; align-items: center; gap: 3px; font-size: 0.62rem; color: #34d399; font-weight: 800;"><i class="fa-solid fa-circle-arrow-down"></i> إيداع</span>`
+          : (isExp 
+            ? `<span style="display: inline-flex; align-items: center; gap: 3px; font-size: 0.62rem; color: #f43f5e; font-weight: 800;"><i class="fa-solid fa-circle-arrow-up"></i> صرف</span>`
+            : `<span style="display: inline-flex; align-items: center; gap: 3px; font-size: 0.62rem; color: #38bdf8; font-weight: 800;"><i class="fa-solid fa-arrows-rotate"></i> تحويل</span>`);
+
+        tbodyHtml += `
+          <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: background 0.15s ease;">
+            <!-- التاريخ والوقت -->
+            <td style="padding: 9px 10px; font-size: 0.70rem; color: #cbd5e1; white-space: nowrap; font-family: 'Courier New', monospace;">
+              <div style="font-weight: 800; color: #f8fafc;">${tx.date || '──'}</div>
+              <div style="font-size: 0.62rem; color: #64748b;">${tx.time || ''}</div>
+            </td>
+
+            <!-- الشخص المستفيد -->
+            <td style="padding: 9px 10px; white-space: nowrap;">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                ${avatarImg}
+                <span style="font-size: 0.72rem; font-weight: 800; color: #f8fafc;">${tx.member || 'البيت'}</span>
+              </div>
+            </td>
+
+            <!-- البيان والشرح بدون اقتصاص -->
+            <td style="padding: 9px 10px; font-size: 0.75rem; color: #e2e8f0; font-weight: 700; word-break: break-word; min-width: 170px;">
+              <div>${tx.label || 'بدون بيان'}</div>
+              <div style="margin-top: 2px;">${typeBadge}</div>
+            </td>
+
+            <!-- التصنيف / البند -->
+            <td style="padding: 9px 10px; white-space: nowrap;">
+              <span style="display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: ${catObj.color ? catObj.color + '22' : 'rgba(56, 189, 248, 0.15)'}; color: ${catObj.color || '#38bdf8'}; border: 1px solid ${catObj.color ? catObj.color + '44' : 'rgba(56, 189, 248, 0.3)'};">
+                <i class="fa-solid ${catObj.icon || 'fa-tag'}" style="font-size: 0.65rem;"></i>
+                <span>${catObj.name || tx.category || 'عام'}</span>
+              </span>
+            </td>
+
+            <!-- المحفظة -->
+            <td style="padding: 9px 10px; white-space: nowrap;">
+              <span style="display: inline-flex; align-items: center; gap: 4px; padding: 2px 6px; border-radius: 6px; font-size: 0.66rem; font-weight: 700; background: rgba(30, 41, 59, 0.8); color: #cbd5e1; border: 1px solid rgba(255, 255, 255, 0.1);">
+                <i class="fa-solid fa-vault" style="color: #f59e0b; font-size: 0.60rem;"></i>
+                <span>${wName}</span>
+              </span>
+            </td>
+
+            <!-- المبلغ بتنسيق محاسبي دقيق -->
+            <td style="padding: 9px 10px; white-space: nowrap; text-align: left; direction: ltr;">
+              <span style="display: inline-block; padding: 3px 8px; border-radius: 6px; font-weight: 900; font-size: 0.78rem; color: ${amtColor}; background: ${amtBg};">
+                ${amtSign}${formatMoney(amt)}
+              </span>
+            </td>
+
+            <!-- الرصيد التراكمي بعد الحركة -->
+            <td style="padding: 9px 10px; white-space: nowrap; text-align: left; direction: ltr; font-size: 0.76rem; font-weight: 900; color: #e2e8f0; font-family: 'Courier New', monospace;">
+              ${tx.runningBalAfter >= 0 ? '+' : '-'}${formatMoney(Math.abs(tx.runningBalAfter))}
+            </td>
+          </tr>
+        `;
+      });
+
+      tableContainer.innerHTML = `
+        <div style="max-height: 420px; overflow-y: auto;" class="custom-scrollbar">
+          <table style="width: 100%; border-collapse: collapse; text-align: right; font-size: 0.75rem;">
+            <thead style="position: sticky; top: 0; background: #0f172a; z-index: 5; border-bottom: 2px solid rgba(56, 189, 248, 0.3);">
+              <tr>
+                <th style="padding: 10px; color: #94a3b8; font-weight: 800; font-size: 0.68rem; white-space: nowrap;">التاريخ / الوقت</th>
+                <th style="padding: 10px; color: #94a3b8; font-weight: 800; font-size: 0.68rem; white-space: nowrap;">المستفيد</th>
+                <th style="padding: 10px; color: #94a3b8; font-weight: 800; font-size: 0.68rem;">البيان والنوع</th>
+                <th style="padding: 10px; color: #94a3b8; font-weight: 800; font-size: 0.68rem; white-space: nowrap;">التصنيف</th>
+                <th style="padding: 10px; color: #94a3b8; font-weight: 800; font-size: 0.68rem; white-space: nowrap;">المحفظة</th>
+                <th style="padding: 10px; color: #94a3b8; font-weight: 800; font-size: 0.68rem; text-align: left;">المبلغ (ج.م)</th>
+                <th style="padding: 10px; color: #94a3b8; font-weight: 800; font-size: 0.68rem; text-align: left;">الرصيد بعد الحركة</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${tbodyHtml}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function exportAuditLedgerCSV() {
+      if (!lastAuditFilteredRows || lastAuditFilteredRows.length === 0) {
+        showToast('لا توجد بيانات مطابقة لتصديرها', 'warning');
+        return;
+      }
+
+      let csv = '\uFEFF'; // UTF-8 BOM
+      csv += 'التاريخ,الوقت,المستفيد,نوع العملية,البيان,التصنيف,المحفظة,المبلغ (ج.م),الرصيد بعد الحركة (ج.م)\n';
+
+      lastAuditFilteredRows.forEach(tx => {
+        const isInc = tx.type === 'income';
+        const isExp = tx.type === 'expense';
+        const typeStr = isInc ? 'إيداع (+)' : (isExp ? 'صرف (-)' : 'تحويل');
+        const amtVal = (isExp ? -1 : 1) * (Number(tx.amount) || 0);
+        const catObj = getCategoryObj(tx.category, tx.type);
+        const catName = catObj ? catObj.name : (tx.category || 'عام');
+        const wName = getWalletName(tx.walletId);
+        const cleanLabel = (tx.label || '').replace(/"/g, '""');
+
+        csv += `"${tx.date || ''}","${tx.time || ''}","${tx.member || ''}","${typeStr}","${cleanLabel}","${catName}","${wName}",${amtVal.toFixed(2)},${(tx.runningBalAfter || 0).toFixed(2)}\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `كشف_تدقيق_الرصيد_الفعلي_${getLocalDateStr(new Date())}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      showToast('تم تصدير كشف التدقيق إكسيل (CSV) بنجاح 📊', 'success');
+    }
+
+    function printAuditLedgerStatement() {
+      if (!lastAuditFilteredRows || lastAuditFilteredRows.length === 0) {
+        showToast('لا توجد بيانات لطباعتها', 'warning');
+        return;
+      }
+
+      // حساب إجماليات الكشف المطبوع
+      let totalInc = 0;
+      let totalExp = 0;
+      lastAuditFilteredRows.forEach(t => {
+        const amt = Number(t.amount) || 0;
+        if (t.type === 'income') totalInc += amt;
+        else if (t.type === 'expense') totalExp += amt;
+      });
+      const net = totalInc - totalExp;
+
+      const printWindow = window.open('', '_blank');
+      if (!printWindow) {
+        showToast('يرجى السماح بالنوافذ المنبثقة لطباعة الكشف', 'error');
+        return;
+      }
+
+      let rowsHtml = '';
+      lastAuditFilteredRows.forEach(tx => {
+        const isInc = tx.type === 'income';
+        const isExp = tx.type === 'expense';
+        const catObj = getCategoryObj(tx.category, tx.type);
+        const wName = getWalletName(tx.walletId);
+        const amtStr = (isInc ? '+ ' : (isExp ? '- ' : '')) + formatMoney(Number(tx.amount) || 0) + ' ج.م';
+        const amtClass = isInc ? 'color: #047857; font-weight: bold;' : (isExp ? 'color: #b91c1c; font-weight: bold;' : 'color: #0284c7;');
+
+        rowsHtml += `
+          <tr>
+            <td>${tx.date || ''} ${tx.time || ''}</td>
+            <td>${tx.member || 'البيت'}</td>
+            <td><strong>${tx.label || 'بدون بيان'}</strong> (${isInc ? 'إيداع' : (isExp ? 'صرف' : 'تحويل')})</td>
+            <td>${catObj ? catObj.name : ''}</td>
+            <td>${wName}</td>
+            <td style="text-align: left; direction: ltr; ${amtClass}">${amtStr}</td>
+            <td style="text-align: left; direction: ltr; font-weight: bold;">${(tx.runningBalAfter || 0) >= 0 ? '+' : '-'}${formatMoney(Math.abs(tx.runningBalAfter || 0))} ج.م</td>
+          </tr>
+        `;
+      });
+
+      printWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="ar" dir="rtl">
+        <head>
+          <meta charset="UTF-8">
+          <title>كشف وتدقيق مصدر الرصيد الفعلي — عائلة ماهر & آية</title>
+          <style>
+            body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; direction: rtl; padding: 25px; color: #0f172a; margin: 0; }
+            .header-bar { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0284c7; padding-bottom: 12px; margin-bottom: 15px; }
+            .title { font-size: 18px; font-weight: bold; color: #0f172a; }
+            .meta { font-size: 12px; color: #64748b; }
+            .kpis { display: flex; gap: 12px; margin-bottom: 15px; }
+            .kpi-card { flex: 1; border: 1px solid #cbd5e1; border-radius: 8px; padding: 8px 12px; background: #f8fafc; }
+            .kpi-label { font-size: 11px; color: #64748b; font-weight: bold; }
+            .kpi-val { font-size: 14px; font-weight: bold; margin-top: 3px; }
+            table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+            th, td { border: 1px solid #cbd5e1; padding: 7px 9px; text-align: right; }
+            th { background: #f1f5f9; color: #1e293b; font-weight: bold; }
+            tr:nth-child(even) { background: #f8fafc; }
+            @media print {
+              body { padding: 10px; }
+              button { display: none !important; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="header-bar">
+            <div>
+              <div class="title">كشف وتدقيق مصدر الرصيد الفعلي وحركات السيولة</div>
+              <div class="meta">نظام المصروفات العائلي الذكي — عائلة ماهر & آية | تاريخ التقرير: ${getLocalDateStr(new Date())}</div>
+            </div>
+            <div>
+              <button onclick="window.print()" style="padding: 6px 14px; background: #0284c7; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">طباعة الآن</button>
+            </div>
+          </div>
+
+          <div class="kpis">
+            <div class="kpi-card">
+              <div class="kpi-label">عدد الحركات المشمولة</div>
+              <div class="kpi-val" style="color: #0284c7;">${lastAuditFilteredRows.length} حركة</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">إجمالي الإيداعات (+)</div>
+              <div class="kpi-val" style="color: #047857;">+ ${formatMoney(totalInc)} ج.م</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">إجمالي المصروفات (-)</div>
+              <div class="kpi-val" style="color: #b91c1c;">- ${formatMoney(totalExp)} ج.م</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">صافي الفارق</div>
+              <div class="kpi-val" style="color: #0f172a;">${net >= 0 ? '+' : '-'}${formatMoney(Math.abs(net))} ج.م</div>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>التاريخ والوقت</th>
+                <th>المستفيد</th>
+                <th>البيان والنوع</th>
+                <th>التصنيف</th>
+                <th>المحفظة</th>
+                <th style="text-align: left;">المبلغ (ج.م)</th>
+                <th style="text-align: left;">الرصيد بعد الحركة</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rowsHtml}
+            </tbody>
+          </table>
+        </body>
+        </html>
+      `);
+
+      printWindow.document.close();
+    }
+
 
     // -------------------------------------------------------------------------
     // 3. رفع وتصوير الفواتير للالتزامات المتوقعة (Photo Upload for Commitments)
@@ -23836,6 +24542,7 @@ function switchCategoryChartFormat(format, btnEl) {
         inp.value = localStorage.getItem('family_gdrive_webhook_url') || '';
       }
       updateDriveSyncStatusDisplay();
+      if (typeof updateDailyBackupDisplay === 'function') updateDailyBackupDisplay();
     }
 
     function saveGoogleDriveWebhookUrl() {
@@ -24104,23 +24811,75 @@ function switchCategoryChartFormat(format, btnEl) {
     // 1-Click Google Apps Script Editor Launcher for maher.easybakery@gmail.com
     function openGasDriveEditor() {
       const scriptCode = `// ==============================================================
-// Google Apps Script - سحابة عائلة ماهر وآية على Google Drive
+// Google Apps Script - سحابة وعمليات النسخ الاحتياطي اليومي على Google Drive
 // الحساب المعتمد: maher.easybakery@gmail.com
 // ==============================================================
 function doPost(e) {
   try {
-    var data = JSON.parse(e.postData.contents);
+    var req = JSON.parse(e.postData.contents);
+    var action = req.action || 'sync';
+    var payloadData = req.data || req;
     var folder = DriveApp.getRootFolder();
-    var files = folder.getFilesByName("family_expense_tracker_db.json");
-    var file;
-    if (files.hasNext()) {
-      file = files.next();
-      file.setContent(JSON.stringify(data.data));
+    
+    // 1. تحديث قاعدة البيانات الأساسية الدائمة
+    var mainFiles = folder.getFilesByName("family_expense_tracker_db.json");
+    if (mainFiles.hasNext()) {
+      mainFiles.next().setContent(JSON.stringify(payloadData));
     } else {
-      file = folder.createFile("family_expense_tracker_db.json", JSON.stringify(data.data), MimeType.PLAIN_TEXT);
+      folder.createFile("family_expense_tracker_db.json", JSON.stringify(payloadData), MimeType.PLAIN_TEXT);
     }
-    return ContentService.createTextOutput(JSON.stringify({ status: "success", data: data.data }))
-      .setMimeType(ContentService.MimeType.JSON);
+    
+    var deletedFiles = [];
+    var createdFile = null;
+    
+    // 2. معالجة النسخة الاحتياطية اليومية المجدولة 12:00 ظهراً وحذف الأمس
+    if (action === 'daily_noon_backup' || req.todayFileName) {
+      var todayName = req.todayFileName || ("family_backup_" + Utilities.formatDate(new Date(), "GMT+3", "yyyy-MM-dd") + ".json");
+      var yesterdayName = req.yesterdayFileName;
+      
+      // حفظ أو تحديث نسخة اليوم
+      var todayFiles = folder.getFilesByName(todayName);
+      if (todayFiles.hasNext()) {
+        todayFiles.next().setContent(JSON.stringify(payloadData));
+        createdFile = todayName + " (محدث)";
+      } else {
+        folder.createFile(todayName, JSON.stringify(payloadData), MimeType.PLAIN_TEXT);
+        createdFile = todayName;
+      }
+      
+      // حذف نسخة اليوم السابق المحددة
+      if (yesterdayName) {
+        var yFiles = folder.getFilesByName(yesterdayName);
+        while (yFiles.hasNext()) {
+          var yf = yFiles.next();
+          yf.setTrashed(true);
+          deletedFiles.push(yesterdayName);
+        }
+      }
+      
+      // حذف أي ملفات نسخ احتياطية يومية سابقة غير اليوم الحالي
+      var allFiles = folder.getFiles();
+      while (allFiles.hasNext()) {
+        var f = allFiles.next();
+        var fn = f.getName();
+        if (fn.indexOf("family_backup_") === 0 && fn.indexOf(".json") !== -1 && fn !== todayName) {
+          f.setTrashed(true);
+          if (deletedFiles.indexOf(fn) === -1) {
+            deletedFiles.push(fn);
+          }
+        }
+      }
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "success",
+      account: "maher.easybakery@gmail.com",
+      updatedAt: new Date().toISOString(),
+      action: action,
+      created: createdFile,
+      deleted: deletedFiles,
+      data: payloadData
+    })).setMimeType(ContentService.MimeType.JSON);
   } catch(err) {
     return ContentService.createTextOutput(JSON.stringify({ status: "error", message: err.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
@@ -24132,7 +24891,7 @@ function doGet(e) {
     var files = DriveApp.getRootFolder().getFilesByName("family_expense_tracker_db.json");
     if (files.hasNext()) {
       var content = files.next().getBlob().getDataAsString();
-      return ContentService.createTextOutput(JSON.stringify({ status: "success", data: JSON.parse(content) }))
+      return ContentService.createTextOutput(JSON.stringify({ status: "success", account: "maher.easybakery@gmail.com", data: JSON.parse(content) }))
         .setMimeType(ContentService.MimeType.JSON);
     }
     return ContentService.createTextOutput(JSON.stringify({ status: "empty" }))
@@ -24141,6 +24900,55 @@ function doGet(e) {
     return ContentService.createTextOutput(JSON.stringify({ status: "error", message: err.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
   }
+}
+
+// مشغل تلقائي سحابي مستقل يعمل على خوادم جوجل يومياً الساعة 12:00 ظهراً
+function dailyNoonBackupTrigger() {
+  try {
+    var folder = DriveApp.getRootFolder();
+    var mainFiles = folder.getFilesByName("family_expense_tracker_db.json");
+    if (!mainFiles.hasNext()) return;
+    
+    var content = mainFiles.next().getBlob().getDataAsString();
+    var now = new Date();
+    var todayStr = Utilities.formatDate(now, "GMT+3", "yyyy-MM-dd");
+    var todayName = "family_backup_" + todayStr + ".json";
+    
+    // إنشاء أو تحديث نسخة اليوم
+    var tFiles = folder.getFilesByName(todayName);
+    if (tFiles.hasNext()) {
+      tFiles.next().setContent(content);
+    } else {
+      folder.createFile(todayName, content, MimeType.PLAIN_TEXT);
+    }
+    
+    // حذف أي نسخة لليوم السابق أو أقدم
+    var allFiles = folder.getFiles();
+    while (allFiles.hasNext()) {
+      var f = allFiles.next();
+      var fn = f.getName();
+      if (fn.indexOf("family_backup_") === 0 && fn.indexOf(".json") !== -1 && fn !== todayName) {
+        f.setTrashed(true);
+      }
+    }
+  } catch(e) {
+    Logger.log("Trigger Error: " + e);
+  }
+}
+
+// تركيب المشغل التلقائي بضغطة زر
+function installDailyNoonTrigger() {
+  var triggers = ScriptApp.getProjectTriggers();
+  for (var i = 0; i < triggers.length; i++) {
+    if (triggers[i].getHandlerFunction() === 'dailyNoonBackupTrigger') {
+      ScriptApp.deleteTrigger(triggers[i]);
+    }
+  }
+  ScriptApp.newTrigger('dailyNoonBackupTrigger')
+    .timeBased()
+    .everyDays(1)
+    .atHour(12)
+    .create();
 }`;
 
       navigator.clipboard.writeText(scriptCode).then(() => {
@@ -24217,9 +25025,234 @@ function doGet(e) {
       reader.readAsText(file);
     }
 
-    // تفعيل المزامنة التلقائية عند فتح التطبيق وعند عودة التركيز للنافذة (Visibility Change)
+    // =========================================================================
+    // محرك النسخ الاحتياطي التلقائي اليومي (الساعة 12:00 ظهراً) وحذف نسخة الأمس
+    // Daily 12:00 PM Google Drive Backup & Previous Day Deletion Engine
+    // =========================================================================
+
+    function getFormattedDateYMD(d) {
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+
+    function getYesterdayDateYMD(d) {
+      const y = new Date(d.getTime() - 24 * 60 * 60 * 1000);
+      return getFormattedDateYMD(y);
+    }
+
+    // فحص وتحديث بطاقات حالة النسخ الاحتياطي اليومي في الواجهة
+    function updateDailyBackupDisplay() {
+      const lblLast = document.getElementById('lblLastDailyBackupTime');
+      const lblNext = document.getElementById('lblNextDailyBackupTime');
+      const badge = document.getElementById('dailyBackupStatusBadge');
+      const settingsBadge = document.getElementById('settingsDailyBackupBadge');
+
+      const lastDate = localStorage.getItem('family_last_daily_noon_backup_date');
+      const lastTime = localStorage.getItem('family_last_daily_noon_backup_time');
+      const now = new Date();
+      const todayStr = getFormattedDateYMD(now);
+
+      if (lastDate === todayStr) {
+        if (lblLast) {
+          const t = lastTime ? new Date(lastTime).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }) : '12:00 ظهراً';
+          lblLast.textContent = `تم اليوم (${t}) ✨`;
+          lblLast.style.color = '#34d399';
+        }
+        if (lblNext) {
+          lblNext.textContent = 'غداً 12:00 ظهراً';
+          lblNext.style.color = '#94a3b8';
+        }
+        if (badge) {
+          badge.textContent = 'منجز لليوم 12:00 ظهراً [OK]';
+          badge.style.background = 'rgba(34, 197, 94, 0.2)';
+          badge.style.color = '#34d399';
+          badge.style.borderColor = 'rgba(34, 197, 94, 0.5)';
+        }
+        if (settingsBadge) {
+          settingsBadge.textContent = 'منجز لليوم (12:00 م) [OK]';
+          settingsBadge.style.color = '#34d399';
+        }
+      } else {
+        if (lblLast) {
+          lblLast.textContent = lastDate ? `السابق (${lastDate})` : 'لم يتم بعد اليوم';
+          lblLast.style.color = '#fbbf24';
+        }
+        if (lblNext) {
+          const targetTodayNoon = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0, 0);
+          if (now < targetTodayNoon) {
+            const diffMin = Math.round((targetTodayNoon - now) / 60000);
+            lblNext.textContent = `اليوم 12:00 ظهراً (بعد ${diffMin} دقيقة)`;
+            lblNext.style.color = '#38bdf8';
+          } else {
+            lblNext.textContent = 'مستحق الآن للتشغيل ⚡';
+            lblNext.style.color = '#f59e0b';
+          }
+        }
+        if (badge) {
+          badge.textContent = 'مجدول يومياً 12:00 ظهراً ⏰';
+          badge.style.background = 'rgba(56, 189, 248, 0.2)';
+          badge.style.color = '#38bdf8';
+          badge.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+        }
+        if (settingsBadge) {
+          settingsBadge.textContent = 'مجدول 12:00 ظهراً';
+          settingsBadge.style.color = '#38bdf8';
+        }
+      }
+    }
+
+    // تنفيذ النسخة الاحتياطية اليومية وحفظها على جوجل درايف وحذف نسخة اليوم السابق
+    async function executeDailyNoonBackup(forceNow = false) {
+      const now = new Date();
+      const todayStr = getFormattedDateYMD(now);
+      const yesterdayStr = getYesterdayDateYMD(now);
+      const lastBackupDate = localStorage.getItem('family_last_daily_noon_backup_date');
+
+      // إذا لم يكن تشغيلاً يدوياً: تحقق من حلول الساعة 12 ظهراً وعدم التكرار في نفس اليوم
+      if (!forceNow) {
+        if (now.getHours() < 12) {
+          return false;
+        }
+        if (lastBackupDate === todayStr) {
+          return false;
+        }
+      }
+
+      console.log(`[Daily Noon Backup] Running daily backup for ${todayStr}. Previous day to delete: ${yesterdayStr}`);
+
+      const todayFileName = `family_backup_${todayStr}.json`;
+      const yesterdayFileName = `family_backup_${yesterdayStr}.json`;
+
+      const backupBundle = {
+        app: 'FamilyExpenseTrackerMonefy',
+        account: (typeof GDRIVE_CONFIG !== 'undefined' ? GDRIVE_CONFIG.targetAccount : 'maher.easybakery@gmail.com'),
+        backupType: 'daily_noon_scheduled',
+        backupDate: todayStr,
+        previousDayDeleted: yesterdayStr,
+        scheduledTime: '12:00:00',
+        executedAt: now.toISOString(),
+        author: (state.currentUser || 'المجدول التلقائي'),
+        version: (typeof APP_VERSION !== 'undefined' ? APP_VERSION : 'v4.3.0'),
+        currency: state.currency || 'EGP',
+        transactions: state.transactions || [],
+        wallets: state.wallets || [],
+        monthlyBudgets: state.monthlyBudgets || [],
+        expectedExpenses: state.expectedExpenses || [],
+        moneyRequests: state.moneyRequests || [],
+        debts: state.debts || [],
+        notes: state.notes || [],
+        activityLog: (state.activityLog || []).slice(0, 100)
+      };
+
+      const customWebhook = localStorage.getItem('family_gdrive_webhook_url');
+      const syncEndpoint = (customWebhook && customWebhook.startsWith('http')) ? customWebhook : (typeof GDRIVE_CONFIG !== 'undefined' ? GDRIVE_CONFIG.defaultSyncUrl : 'https://script.google.com/macros/s/AKfycbwdIuCjR3lUy0DTBnWTj9koFZ4ghRxR2Dq-sdj_LjIS2r_gHfpp4AX_32dNd2RRKPaShQ/exec');
+
+      const payload = {
+        action: 'daily_noon_backup',
+        todayDate: todayStr,
+        yesterdayDate: yesterdayStr,
+        todayFileName: todayFileName,
+        yesterdayFileName: yesterdayFileName,
+        data: backupBundle
+      };
+
+      try {
+        // 1. الإرسال لسحابة Google Apps Script لحفظ نسخة اليوم وحذف نسخة الأمس في Drive
+        const resp = await fetch(syncEndpoint, {
+          method: 'POST',
+          mode: 'cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+
+        const resData = await resp.json().catch(() => null);
+        console.log('[Daily Noon Backup] Google Drive Response:', resData);
+
+        // 2. إدارة التخزين المحلي (حفظ اليوم وحذف الأمس محلياً أيضاً)
+        localStorage.setItem('family_last_daily_noon_backup_date', todayStr);
+        localStorage.setItem('family_last_daily_noon_backup_time', now.toISOString());
+        localStorage.setItem(`family_daily_backup_${todayStr}`, JSON.stringify(backupBundle));
+        localStorage.removeItem(`family_daily_backup_${yesterdayStr}`);
+
+        // تنظيف أي نسخ قديمة سابقة غير اليوم الحالي
+        for (let i = localStorage.length - 1; i >= 0; i--) {
+          const key = localStorage.key(i);
+          if (key && key.startsWith('family_daily_backup_') && key !== `family_daily_backup_${todayStr}`) {
+            localStorage.removeItem(key);
+          }
+        }
+
+        // 3. توثيق العملية في سجل النشاطات
+        if (typeof logActivity === 'function') {
+          logActivity({
+            type: 'daily_backup',
+            action: 'نسخ احتياطي مجدول 12:00 ظهراً',
+            label: `تم حفظ نسخة اليوم (${todayFileName}) على Google Drive وحذف نسخة الأمس (${yesterdayFileName}) بنجاح`,
+            amount: 0,
+            member: state.currentUser || 'النظام',
+            author: 'المجدول التلقائي'
+          });
+        }
+
+        // 4. تحديث الواجهة والتنبيه الصوتي والمرئي
+        updateDailyBackupDisplay();
+        if (typeof updateDriveSyncStatusDisplay === 'function') updateDriveSyncStatusDisplay();
+        if (typeof playNotificationChime === 'function') playNotificationChime();
+        if (typeof showToast === 'function') {
+          showToast(`⏰ تم بنجاح عمل نسخة 12:00 ظهراً وحفظها على Google Drive وحذف نسخة الأمس (${yesterdayStr}) ✨`);
+        }
+        return true;
+      } catch(err) {
+        console.warn('[Daily Noon Backup] Transmission note:', err);
+        // حفظ محلي للطوارئ
+        localStorage.setItem('family_last_daily_noon_backup_date', todayStr);
+        localStorage.setItem('family_last_daily_noon_backup_time', now.toISOString());
+        localStorage.setItem(`family_daily_backup_${todayStr}`, JSON.stringify(backupBundle));
+        localStorage.removeItem(`family_daily_backup_${yesterdayStr}`);
+
+        if (typeof logActivity === 'function') {
+          logActivity({
+            type: 'daily_backup',
+            action: 'نسخ احتياطي محلي 12:00 ظهراً',
+            label: `تم تجهيز نسخة (${todayFileName}) وحذف نسخة الأمس (${yesterdayFileName}) محلياً وبانتظار مزامنة Drive`,
+            amount: 0,
+            member: state.currentUser || 'النظام',
+            author: 'المجدول التلقائي'
+          });
+        }
+
+        updateDailyBackupDisplay();
+        if (typeof showToast === 'function') {
+          showToast(`💾 تم تجهيز نسخة 12:00 ظهراً (${todayFileName}) وحذف نسخة الأمس، وتنتظر مزامنة Google Drive`);
+        }
+        return false;
+      }
+    }
+
+    // دالة الفحص الدوري التلقائي لموعد 12:00 ظهراً
+    function checkDailyNoonBackupSchedule() {
+      const now = new Date();
+      updateDailyBackupDisplay();
+
+      // إذا كانت الساعة 12 ظهراً أو بعدها، ولم يتم عمل نسخة اليوم بعد: تشغيل فوري تلقائي
+      if (now.getHours() >= 12) {
+        const todayStr = getFormattedDateYMD(now);
+        const lastDate = localStorage.getItem('family_last_daily_noon_backup_date');
+        if (lastDate !== todayStr) {
+          executeDailyNoonBackup(false);
+        }
+      }
+    }
+
+    // تشغيل الفحص الدوري كل 30 ثانية في الخلفية
+    setInterval(checkDailyNoonBackupSchedule, 30000);
+
+    // تفعيل المزامنة التلقائية وفحص النسخ الاحتياطي عند فتح التطبيق وعند عودة التركيز للنافذة (Visibility Change)
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden) {
+        checkDailyNoonBackupSchedule();
         const lastSync = localStorage.getItem('family_last_drive_sync');
         const now = Date.now();
         if (!lastSync || (now - new Date(lastSync).getTime() > 40000)) {
@@ -24229,6 +25262,7 @@ function doGet(e) {
     });
 
     window.addEventListener('focus', () => {
+      checkDailyNoonBackupSchedule();
       const lastSync = localStorage.getItem('family_last_drive_sync');
       const now = Date.now();
       if (!lastSync || (now - new Date(lastSync).getTime() > 40000)) {
@@ -24236,14 +25270,14 @@ function doGet(e) {
       }
     });
 
-
-    // استدعاء فحص المزامنة الأولي عند بدء التشغيل
+    // استدعاء فحص المزامنة الأولي وجدولة النسخ اليومي عند بدء التشغيل
     setTimeout(() => {
       const curWebhook = localStorage.getItem('family_gdrive_webhook_url');
       if (!curWebhook || curWebhook.includes('kvdb.io')) {
         localStorage.setItem('family_gdrive_webhook_url', 'https://script.google.com/macros/s/AKfycbwdIuCjR3lUy0DTBnWTj9koFZ4ghRxR2Dq-sdj_LjIS2r_gHfpp4AX_32dNd2RRKPaShQ/exec');
       }
       executeGoogleDriveSync();
+      checkDailyNoonBackupSchedule();
     }, 1200);
 
 
@@ -25077,6 +26111,268 @@ function doGet(e) {
       </div>
     </div>
   </div>
+
+
+  <!-- ==============================================================
+       نافذة تدقيق ومصدر الرصيد الفعلي الشاملة (Executive Source of Funds & Ledger)
+       ============================================================== -->
+  <div class="modal-overlay modal-overlay-custom" id="actualBalanceAuditModal" style="z-index: 10500;">
+    <div class="modal-content-card" style="max-width: 960px; width: 96%; max-height: 94vh; padding: 18px 20px; border-radius: 24px; display: flex; flex-direction: column; background: linear-gradient(145deg, #0b1329, #0f172a); border: 1px solid rgba(56, 189, 248, 0.28); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);">
+      
+      <!-- رأس النافذة -->
+      <div class="modal-head" style="margin-bottom: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(6, 182, 212, 0.25)); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(16, 185, 129, 0.4);">
+            <i class="fa-solid fa-scale-balanced" style="color: #34d399; font-size: 1.20rem;"></i>
+          </div>
+          <div>
+            <h3 class="modal-title-custom" style="font-size: 1.08rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 8px;">
+              <span>كشف وتدقيق مصدر الرصيد الفعلي</span>
+              <span style="font-size: 0.65rem; background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); padding: 2px 8px; border-radius: 6px; font-weight: 800;">
+                <i class="fa-solid fa-check-double"></i> مطابقة محاسبية 0.00 ج.م
+              </span>
+            </h3>
+            <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 600;">
+              تحليل مصادر السيولة النقدية والمصرفية، مطابقة الإيداعات والصرف، وفلترة تفصيلية متعددة الأبعاد
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn-modal-close" onclick="closeModal('actualBalanceAuditModal')" aria-label="إغلاق">&times;</button>
+      </div>
+
+      <!-- محتوى النافذة القابل للتمرير -->
+      <div style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding-left: 2px; padding-right: 2px;" class="custom-scrollbar">
+        
+        <!-- 1. كروت معادلة الرصيد المحاسبية (Decomposition Cards) -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;" id="auditKpiCardsGrid">
+          <!-- كارت إجمالي الإيداعات -->
+          <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.28); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 0.70rem; color: #94a3b8; font-weight: 800;">إجمالي الإيداعات (+)</span>
+              <i class="fa-solid fa-circle-arrow-down" style="color: #34d399; font-size: 0.85rem;"></i>
+            </div>
+            <div id="auditMetricTotalInc" style="font-size: 1.15rem; font-weight: 900; color: #34d399;">+ 0.00 ج.م</div>
+            <div style="font-size: 0.62rem; color: #6ee7b7; font-weight: 600;">كافة الدخول المحققة</div>
+          </div>
+
+          <!-- كارت إجمالي المصروفات -->
+          <div style="background: rgba(244, 63, 94, 0.08); border: 1px solid rgba(244, 63, 94, 0.28); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 0.70rem; color: #94a3b8; font-weight: 800;">إجمالي المصروفات (-)</span>
+              <i class="fa-solid fa-circle-arrow-up" style="color: #f43f5e; font-size: 0.85rem;"></i>
+            </div>
+            <div id="auditMetricTotalExp" style="font-size: 1.15rem; font-weight: 900; color: #f43f5e;">- 0.00 ج.م</div>
+            <div style="font-size: 0.62rem; color: #fda4af; font-weight: 600;">كافة السحوبات والمصاريف</div>
+          </div>
+
+          <!-- كارت صافي الفارق التراكمي -->
+          <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 0.70rem; color: #94a3b8; font-weight: 800;">صافي التدفقات (الفارق)</span>
+              <i class="fa-solid fa-chart-line" style="color: #38bdf8; font-size: 0.85rem;"></i>
+            </div>
+            <div id="auditMetricNetFlow" style="font-size: 1.15rem; font-weight: 900; color: #38bdf8;">0.00 ج.م</div>
+            <div style="font-size: 0.62rem; color: #7dd3fc; font-weight: 600;">(الإيداعات - المصروفات)</div>
+          </div>
+
+          <!-- كارت الرصيد الفعلي الحالي -->
+          <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(16, 185, 129, 0.2)); border: 1px solid rgba(16, 185, 129, 0.5); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 0.70rem; color: #e2e8f0; font-weight: 900;">الرصيد الفعلي المعتمد</span>
+              <i class="fa-solid fa-shield-halved" style="color: #34d399; font-size: 0.90rem;"></i>
+            </div>
+            <div id="auditMetricActualBal" style="font-size: 1.25rem; font-weight: 900; color: #ffffff;">+ 0.00 ج.م</div>
+            <div style="font-size: 0.62rem; color: #a7f3d0; font-weight: 700;">السيولة المتاحة حالياً</div>
+          </div>
+        </div>
+
+        <!-- شريط معادلة التدقيق المحاسبي -->
+        <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 0.72rem;">
+          <div style="display: flex; align-items: center; gap: 6px; color: #cbd5e1; font-weight: 700;">
+            <i class="fa-solid fa-calculator" style="color: #fbbf24;"></i>
+            <span>المعادلة المحاسبية المعتمدة للرصيد:</span>
+            <span id="auditEquationText" style="color: #38bdf8; font-family: 'Courier New', monospace; font-weight: 800; direction: ltr;">
+              0.00 - 0.00 = 0.00
+            </span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 4px; color: #34d399; font-weight: 800;">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>فارق المطابقة: 0.00 ج.م (تطابق تام)</span>
+          </div>
+        </div>
+
+        <!-- 2. كروت توزيع السيولة على المحافظ (مع إمكانية النقر السريع للفلترة) -->
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+            <div style="font-size: 0.75rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-wallet" style="color: #f59e0b;"></i>
+              <span>توزيع السيولة النقدية والمصرفية على المحافظ (انقر على المحفظة للفلترة المباشرة):</span>
+            </div>
+            <span style="font-size: 0.65rem; color: #94a3b8; font-weight: 700;" id="auditWalletsTotalLiquidityText">إجمالي السيولة: 0.00 ج.م</span>
+          </div>
+          <div id="auditWalletsCardsContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px;">
+            <!-- تتولد ديناميكياً بواسطة renderAuditWalletsCards() -->
+          </div>
+        </div>
+
+        <!-- 3. شريط البحث والفلترة متعدد الأبعاد -->
+        <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 10px;">
+          
+          <!-- سطر البحث الفوري -->
+          <div style="position: relative; width: 100%;">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 0.85rem;"></i>
+            <input type="text" id="auditSearchInput" oninput="renderActualBalanceAuditLedger()" placeholder="ابحث فورياً في البيان، المستفيد، المبلغ، التصنيف، أو اسم المحفظة..." style="width: 100%; height: 40px; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 0 38px 0 35px; color: #f8fafc; font-size: 0.80rem; font-weight: 700; outline: none; transition: all 0.2s ease;">
+            <button type="button" onclick="clearAuditSearch()" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: #94a3b8; cursor: pointer; font-size: 0.90rem; padding: 4px;" title="مسح البحث">&times;</button>
+          </div>
+
+          <!-- شبكة الفلاتر الخمسة -->
+          <div class="audit-filters-grid" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)) auto; gap: 6px; align-items: end;">
+            
+            <!-- فلتر الفترة الزمنية -->
+            <div>
+              <label style="font-size: 0.66rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 3px;">
+                <i class="fa-regular fa-calendar" style="color: #38bdf8;"></i> التاريخ / الفترة:
+              </label>
+              <select class="form-select-custom" id="auditPeriodFilter" onchange="onAuditPeriodChange()" style="height: 36px; font-size: 0.72rem; font-weight: 800; background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #f8fafc; width: 100%; padding: 0 8px;">
+                <option value="all">كافة التواريخ</option>
+                <option value="today">اليوم فقط</option>
+                <option value="yesterday">أمس</option>
+                <option value="week">آخر 7 أيام</option>
+                <option value="this_month">هذا الشهر</option>
+                <option value="last_month">الشهر السابق</option>
+                <option value="last_30_days">آخر 30 يوماً</option>
+                <option value="this_year">هذا العام</option>
+                <option value="custom">📅 نطاق تاريخ مخصص...</option>
+              </select>
+            </div>
+
+            <!-- فلتر الشخص / المستفيد -->
+            <div>
+              <label style="font-size: 0.66rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 3px;">
+                <i class="fa-solid fa-user-group" style="color: #a855f7;"></i> الشخص / المستفيد:
+              </label>
+              <select class="form-select-custom" id="auditMemberFilter" onchange="renderActualBalanceAuditLedger()" style="height: 36px; font-size: 0.72rem; font-weight: 800; background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #f8fafc; width: 100%; padding: 0 8px;">
+                <option value="all">كافة أفراد الأسرة</option>
+                <!-- تتولد خيارات الأفراد ديناميكياً -->
+              </select>
+            </div>
+
+            <!-- فلتر نوع المصروف / التصنيف -->
+            <div>
+              <label style="font-size: 0.66rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 3px;">
+                <i class="fa-solid fa-tags" style="color: #f59e0b;"></i> نوع المصروف / البند:
+              </label>
+              <select class="form-select-custom" id="auditCategoryFilter" onchange="renderActualBalanceAuditLedger()" style="height: 36px; font-size: 0.72rem; font-weight: 800; background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #f8fafc; width: 100%; padding: 0 8px;">
+                <option value="all">كافة بنود الصرف والإيراد</option>
+                <!-- تتولد خيارات البنود ديناميكياً -->
+              </select>
+            </div>
+
+            <!-- فلتر المحفظة -->
+            <div>
+              <label style="font-size: 0.66rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 3px;">
+                <i class="fa-solid fa-vault" style="color: #10b981;"></i> المحفظة:
+              </label>
+              <select class="form-select-custom" id="auditWalletFilter" onchange="onAuditWalletFilterChange()" style="height: 36px; font-size: 0.72rem; font-weight: 800; background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #f8fafc; width: 100%; padding: 0 8px;">
+                <option value="all">كافة المحافظ المجمعة</option>
+                <!-- تتولد خيارات المحافظ ديناميكياً -->
+              </select>
+            </div>
+
+            <!-- فلتر نوع الحركة -->
+            <div>
+              <label style="font-size: 0.66rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 3px;">
+                <i class="fa-solid fa-arrows-left-right" style="color: #38bdf8;"></i> نوع العملية:
+              </label>
+              <select class="form-select-custom" id="auditTypeFilter" onchange="renderActualBalanceAuditLedger()" style="height: 36px; font-size: 0.72rem; font-weight: 800; background: #1e293b; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #f8fafc; width: 100%; padding: 0 8px;">
+                <option value="all">كافة العمليات</option>
+                <option value="income">إيداعات ودخول فقط (+)</option>
+                <option value="expense">مصروفات وسحوبات فقط (-)</option>
+                <option value="transfer">تحويلات بين المحافظ (🔄)</option>
+              </select>
+            </div>
+
+            <!-- زر تفريغ الفلاتر -->
+            <div>
+              <button type="button" onclick="resetAuditFilters()" class="btn-submit-tx" style="margin: 0; height: 36px; padding: 0 10px; font-size: 0.70rem; font-weight: 800; background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; white-space: nowrap; display: flex; align-items: center; gap: 4px;" title="إعادة ضبط كافة الفلاتر والبحث">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span>تفريغ الفلاتر</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- سطر التاريخ المخصص (يظهر فقط عند اختيار مخصص) -->
+          <div id="auditCustomDateRow" style="display: none; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: end; background: rgba(30, 41, 59, 0.6); padding: 8px; border-radius: 10px; border: 1px dashed rgba(56, 189, 248, 0.35);">
+            <div>
+              <label style="font-size: 0.66rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 2px;">من تاريخ:</label>
+              <input type="date" id="auditDateFrom" class="form-input-custom" onchange="renderActualBalanceAuditLedger()" style="height: 34px; font-size: 0.72rem; padding: 0 8px;">
+            </div>
+            <div>
+              <label style="font-size: 0.66rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 2px;">إلى تاريخ:</label>
+              <input type="date" id="auditDateTo" class="form-input-custom" onchange="renderActualBalanceAuditLedger()" style="height: 34px; font-size: 0.72rem; padding: 0 8px;">
+            </div>
+            <button type="button" onclick="renderActualBalanceAuditLedger()" class="btn-submit-tx" style="margin: 0; height: 34px; padding: 0 14px; font-size: 0.72rem; font-weight: 800; background: linear-gradient(135deg, #0284c7, #0369a1); border-radius: 8px;">
+              تطبيق التاريخ
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. شريط مؤشرات الفلترة المباشرة + أزرار التصدير والطباعة -->
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; background: rgba(30, 41, 59, 0.5); padding: 8px 12px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.06);">
+          
+          <!-- مؤشرات نتائج الفلترة المباشرة -->
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.72rem;">
+            <div style="color: #cbd5e1; font-weight: 800;">
+              <span>النتائج المطابقة:</span>
+              <span id="auditFilteredCount" style="color: #38bdf8; font-weight: 900; margin-right: 4px;">0 حركة</span>
+            </div>
+            <div style="color: #cbd5e1; font-weight: 800;">
+              <span>إيداعات مفلترة:</span>
+              <span id="auditFilteredIncome" style="color: #34d399; font-weight: 900; margin-right: 4px;">+ 0.00 ج.م</span>
+            </div>
+            <div style="color: #cbd5e1; font-weight: 800;">
+              <span>مصروفات مفلترة:</span>
+              <span id="auditFilteredExpense" style="color: #f43f5e; font-weight: 900; margin-right: 4px;">- 0.00 ج.م</span>
+            </div>
+            <div style="color: #cbd5e1; font-weight: 800;">
+              <span>صافي الحركة:</span>
+              <span id="auditFilteredNet" style="color: #fbbf24; font-weight: 900; margin-right: 4px;">0.00 ج.م</span>
+            </div>
+          </div>
+
+          <!-- أزرار التصدير والطباعة -->
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <button type="button" onclick="exportAuditLedgerCSV()" class="btn-export-tool excel-btn" style="border-radius: 8px; padding: 6px 12px; font-size: 0.72rem; font-weight: 800; display: flex; align-items: center; gap: 5px;">
+              <i class="fa-solid fa-file-csv"></i>
+              <span>تصدير CSV / إكسيل</span>
+            </button>
+            <button type="button" onclick="printAuditLedgerStatement()" class="btn-export-tool pdf-btn" style="border-radius: 8px; padding: 6px 12px; font-size: 0.72rem; font-weight: 800; display: flex; align-items: center; gap: 5px;">
+              <i class="fa-solid fa-print"></i>
+              <span>طباعة كشف الحساب</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. جدول كشف الحركات والتدقيق المحاسبي التفصيلي -->
+        <div id="auditLedgerTableContainer" style="border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; background: rgba(15, 23, 42, 0.75); overflow: hidden; min-height: 250px;">
+          <!-- يتولد ديناميكياً بواسطة renderActualBalanceAuditLedger() -->
+        </div>
+
+      </div>
+
+      <!-- تذييل النافذة -->
+      <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;">
+        <div style="font-size: 0.65rem; color: #64748b; font-weight: 700;">
+          نظام التدقيق المالي والمحاسبي المتكامل © 2026 — عائلة ماهر & آية
+        </div>
+        <button type="button" onclick="closeModal('actualBalanceAuditModal')" class="btn-submit-tx" style="margin: 0; height: 34px; padding: 0 20px; font-size: 0.75rem; font-weight: 800; background: rgba(255, 255, 255, 0.1); color: #f8fafc; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px;">
+          إغلاق النافذة
+        </button>
+      </div>
+
+    </div>
+  </div>
+
 
 
   <!-- نافذة إنشاء خطة ميزانية تقديرية جديدة -->

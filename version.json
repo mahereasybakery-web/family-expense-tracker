@@ -1,8 +1,8 @@
 {
-  "version": "4.5.0",
-  "buildId": 202611021144,
-  "buildTimestamp": 1793609097804,
-  "releaseDate": "2026-11-02 11:44:57",
+  "version": "4.6.0",
+  "buildId": 202611021151,
+  "buildTimestamp": 1793609507131,
+  "releaseDate": "2026-11-02 11:51:47",
   "commit": "auto-update",
-  "notes": "تطوير شامل وفائق الفخامة لشريط الرصيد وقمرة القيادة المالية التنفيذية"
+  "notes": "Daily Google Drive 12:00 PM Backup and Previous Day Deletion"
 }
