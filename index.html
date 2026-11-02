@@ -10808,245 +10808,198 @@
            ========================================================== -->
       <div class="page-view" id="viewExpected" style="display: none;">
         
-        <!-- ترويسة قسم التخطيط المالي والمستقبلي -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; background: rgba(15, 23, 42, 0.7); padding: 8px 12px; border-radius: 14px; border: 1px solid var(--border-subtle);">
-          <div style="font-size: 0.88rem; font-weight: 800; color: #f1f5f9; display: flex; align-items: center; gap: 8px;">
-            <i class="fa-solid fa-chart-line" style="color: #38bdf8;"></i>
-            <span>التخطيط المالي والالتزامات والميزانية</span>
+        <!-- ========================================================
+             الهيدر الاستراتيجي والشريط الثلاثي المتناسق
+             ======================================================== -->
+        <div class="expected-top-hero" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1.5px solid rgba(56, 189, 248, 0.25); border-radius: 18px; padding: 12px 14px; margin-bottom: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(168, 85, 247, 0.2)); border: 1.2px solid rgba(56, 189, 248, 0.4); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #38bdf8;">
+                <i class="fa-solid fa-scale-balanced"></i>
+              </div>
+              <div>
+                <h2 style="font-size: 0.95rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 6px;">
+                  <span>التخطيط المالي والالتزامات والميزانية</span>
+                </h2>
+                <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 600;">إدارة الديون والأقساط، وبناء الميزانيات التقديرية بديناميكية وربط متعدد بالأفراد</div>
+              </div>
+            </div>
+            <button type="button" onclick="openNotesModal()" class="btn-wallet-action-pill" style="height: 32px; font-size: 0.74rem; padding: 0 12px; background: linear-gradient(135deg, #d97706, #b45309); border: none; color: #fff; font-weight: 800; border-radius: 9px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);">
+              <i class="fa-solid fa-book-open"></i> <span>دفتر الملاحظات</span>
+            </button>
           </div>
-          <button type="button" class="btn-tool-pill" id="btnOpenNotesModal" onclick="openNotesModal()" style="background: linear-gradient(135deg, #d97706, #b45309); color: #ffffff; border: none; padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 0.78rem; display: flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);">
-            <i class="fa-solid fa-note-sticky"></i>
-            <span>دفتر الملاحظات</span>
-          </button>
-        </div>
 
-        <!-- شريط التبويب الرئيسي الثلاثي: الالتزامات والديون | الميزانية التقديرية | سجل الميزانيات -->
-        <div class="expected-main-tabs-strip" style="display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 6px; margin-bottom: 12px; background: rgba(15, 23, 42, 0.90); padding: 6px; border-radius: 16px; border: 1.5px solid rgba(56,189,248,0.18); box-shadow: 0 6px 20px rgba(0,0,0,0.45);">
-          <button type="button" id="tabExpectedCommitments" onclick="switchExpectedMainTab('commitments')" class="exp-main-tab-btn active" style="padding: 11px 8px; border-radius: 11px; font-weight: 900; font-size: 0.80rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.25s cubic-bezier(0.4,0,0.2,1); background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.40);">
-            <i class="fa-solid fa-thumbtack"></i> <span>الالتزامات والديون</span>
-          </button>
-          <button type="button" id="tabExpectedMonthlyBudget" onclick="switchExpectedMainTab('monthly_budget')" class="exp-main-tab-btn" style="padding: 11px 8px; border-radius: 11px; font-weight: 900; font-size: 0.80rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.25s cubic-bezier(0.4,0,0.2,1); background: rgba(255,255,255,0.05); color: #94a3b8; border: 1px solid rgba(255,255,255,0.07);">
-            <i class="fa-solid fa-calculator"></i> <span>الميزانية التقديرية</span>
-          </button>
-          <button type="button" id="tabExpectedBudgetHistory" onclick="switchExpectedMainTab('budget_history')" class="exp-main-tab-btn" style="padding: 11px 8px; border-radius: 11px; font-weight: 900; font-size: 0.80rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.25s cubic-bezier(0.4,0,0.2,1); background: rgba(255,255,255,0.05); color: #94a3b8; border: 1px solid rgba(255,255,255,0.07);">
-            <i class="fa-solid fa-clock-rotate-left"></i> <span>سجل الميزانيات</span>
-          </button>
+          <!-- شريط التبويب الرئيسي الثلاثي الفاخر والمستقل تماماً -->
+          <div class="expected-main-tabs-strip" style="display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 6px; background: rgba(15, 23, 42, 0.92); padding: 5px; border-radius: 14px; border: 1.2px solid rgba(255, 255, 255, 0.08);">
+            <button type="button" id="tabExpectedCommitments" onclick="switchExpectedMainTab('commitments')" class="exp-main-tab-btn active" style="padding: 10px 6px; border-radius: 10px; font-weight: 900; font-size: 0.80rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s; background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
+              <i class="fa-solid fa-thumbtack"></i> <span>الالتزامات والديون</span>
+            </button>
+            <button type="button" id="tabExpectedMonthlyBudget" onclick="switchExpectedMainTab('monthly_budget')" class="exp-main-tab-btn" style="padding: 10px 6px; border-radius: 10px; font-weight: 900; font-size: 0.80rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s; background: transparent; color: #94a3b8;">
+              <i class="fa-solid fa-calculator"></i> <span>الميزانية التقديرية</span>
+            </button>
+            <button type="button" id="tabExpectedBudgetHistory" onclick="switchExpectedMainTab('budget_history')" class="exp-main-tab-btn" style="padding: 10px 6px; border-radius: 10px; font-weight: 900; font-size: 0.80rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; transition: all 0.2s; background: transparent; color: #94a3b8;">
+              <i class="fa-solid fa-clock-rotate-left"></i> <span>سجل الميزانيات</span>
+            </button>
+          </div>
         </div>
 
         <!-- ==========================================================
-             1. قسم الالتزامات والديون المستقبلية (subViewCommitments)
+             1. قسم الالتزامات والديون والمصاريف القادمة (subViewCommitments)
              ========================================================== -->
         <div id="subViewCommitments">
           <!-- كروت المؤشرات المالية الأربعة للالتزامات -->
-          <div class="expected-kpi-cockpit" id="expectedKpiCockpit">
+          <div class="expected-kpi-cockpit" id="expectedKpiCockpit" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin-bottom: 12px;">
             <!-- 1. مصاريف وفواتير قادمة -->
-            <div class="exp-kpi-card exp-card-amber" id="cardExpUpcoming" onclick="toggleExpectedFilter('upcoming_bill')" title="انقر لتصفية وععرض المصاريف والفواتير القادمة">
-              <div class="exp-kpi-top">
-                <div class="exp-kpi-icon"><i class="fa-solid fa-clock"></i></div>
-                <span class="exp-kpi-badge" id="expectedCountUpcoming">0 بند</span>
+            <div class="exp-kpi-card exp-card-amber" id="cardExpUpcoming" onclick="toggleExpectedFilter('upcoming_bill')" title="انقر لتصفية المصاريف والفواتير القادمة" style="background: rgba(30, 41, 59, 0.85); border: 1.2px solid rgba(245, 158, 11, 0.4); border-radius: 12px; padding: 8px 10px; cursor: pointer;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                <span style="font-size: 0.95rem; color: #fbbf24;"><i class="fa-solid fa-clock"></i></span>
+                <span class="exp-kpi-badge" id="expectedCountUpcoming" style="font-size: 0.65rem; background: rgba(245, 158, 11, 0.2); color: #fbbf24; padding: 1px 6px; border-radius: 6px; font-weight: 800;">0 بند</span>
               </div>
-              <div class="exp-kpi-label">مصاريف قادمة</div>
-              <div class="exp-kpi-val" id="expectedTotalUpcoming" style="color: #fbbf24;">0.00 ج.م</div>
-              <div class="exp-kpi-foot">
-                <i class="fa-regular fa-calendar-check"></i> <span>فواتير وأقساط</span>
-              </div>
+              <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 800;">مصاريف قادمة</div>
+              <div class="exp-kpi-val" id="expectedTotalUpcoming" style="font-size: 0.95rem; font-weight: 900; color: #fbbf24; margin-top: 2px;">0.00 ج.م</div>
             </div>
 
-            <!-- 2. ديون علينا (واجبة السداد) -->
-            <div class="exp-kpi-card exp-card-red" id="cardExpDebtsOnUs" onclick="toggleExpectedFilter('debt_on_us')" title="انقر لتصفية وعرض الديون المستحقة علينا">
-              <div class="exp-kpi-top">
-                <div class="exp-kpi-icon"><i class="fa-solid fa-handshake-angle"></i></div>
-                <span class="exp-kpi-badge" id="expectedCountDebtsOnUs">0 بند</span>
+            <!-- 2. ديون علينا للغير -->
+            <div class="exp-kpi-card exp-card-rose" id="cardExpDebtsOnUs" onclick="toggleExpectedFilter('debt_on_us')" title="انقر لتصفية الديون المستحقة علينا" style="background: rgba(30, 41, 59, 0.85); border: 1.2px solid rgba(244, 63, 94, 0.4); border-radius: 12px; padding: 8px 10px; cursor: pointer;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                <span style="font-size: 0.95rem; color: #f43f5e;"><i class="fa-solid fa-hand-holding-dollar"></i></span>
+                <span class="exp-kpi-badge" id="expectedCountDebtsOnUs" style="font-size: 0.65rem; background: rgba(244, 63, 94, 0.2); color: #f43f5e; padding: 1px 6px; border-radius: 6px; font-weight: 800;">0 بند</span>
               </div>
-              <div class="exp-kpi-label">ديون علينا</div>
-              <div class="exp-kpi-val" id="expectedTotalDebtsOnUs" style="color: #f87171;">- 0.00 ج.م</div>
-              <div class="exp-kpi-foot">
-                <i class="fa-solid fa-arrow-down-long"></i> <span>واجبة السداد</span>
-              </div>
+              <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 800;">ديون علينا</div>
+              <div class="exp-kpi-val" id="expectedTotalDebtsOnUs" style="font-size: 0.95rem; font-weight: 900; color: #f43f5e; margin-top: 2px;">0.00 ج.م</div>
             </div>
 
-            <!-- 3. ديون لنا (مستحقات تحصيل) -->
-            <div class="exp-kpi-card exp-card-green" id="cardExpDebtsForUs" onclick="toggleExpectedFilter('debt_for_us')" title="انقر لتصفية وعرض الأموال المستحقة لنا عند الغير">
-              <div class="exp-kpi-top">
-                <div class="exp-kpi-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                <span class="exp-kpi-badge" id="expectedCountDebtsForUs">0 بند</span>
+            <!-- 3. ديون لنا عند الغير -->
+            <div class="exp-kpi-card exp-card-emerald" id="cardExpDebtsForUs" onclick="toggleExpectedFilter('debt_for_us')" title="انقر لتصفية الديون المستحقة لنا" style="background: rgba(30, 41, 59, 0.85); border: 1.2px solid rgba(16, 185, 129, 0.4); border-radius: 12px; padding: 8px 10px; cursor: pointer;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                <span style="font-size: 0.95rem; color: #34d399;"><i class="fa-solid fa-sack-dollar"></i></span>
+                <span class="exp-kpi-badge" id="expectedCountDebtsForUs" style="font-size: 0.65rem; background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 1px 6px; border-radius: 6px; font-weight: 800;">0 بند</span>
               </div>
-              <div class="exp-kpi-label">ديون لنا</div>
-              <div class="exp-kpi-val" id="expectedTotalDebtsForUs" style="color: #34d399;">+ 0.00 ج.م</div>
-              <div class="exp-kpi-foot">
-                <i class="fa-solid fa-arrow-up-long"></i> <span>مستحقة التحصيل</span>
-              </div>
+              <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 800;">ديون لنا</div>
+              <div class="exp-kpi-val" id="expectedTotalDebtsForUs" style="font-size: 0.95rem; font-weight: 900; color: #34d399; margin-top: 2px;">+ 0.00 ج.م</div>
             </div>
 
             <!-- 4. تم سداده / تحصيله -->
-            <div class="exp-kpi-card exp-card-blue" id="cardExpPaid" onclick="toggleExpectedFilter('paid')" title="انقر لتصفية وعرض البنود المسددة والمكتملة">
-              <div class="exp-kpi-top">
-                <div class="exp-kpi-icon"><i class="fa-solid fa-circle-check"></i></div>
-                <span class="exp-kpi-badge" id="expectedCountPaid">0 مكتمل</span>
+            <div class="exp-kpi-card exp-card-cyan" id="cardExpPaid" onclick="toggleExpectedFilter('paid')" title="انقر لتصفية الحركات المنتهية والمسددة" style="background: rgba(30, 41, 59, 0.85); border: 1.2px solid rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 8px 10px; cursor: pointer;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                <span style="font-size: 0.95rem; color: #38bdf8;"><i class="fa-solid fa-circle-check"></i></span>
+                <span class="exp-kpi-badge" id="expectedCountPaid" style="font-size: 0.65rem; background: rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 1px 6px; border-radius: 6px; font-weight: 800;">0 مكتمل</span>
               </div>
-              <div class="exp-kpi-label">تم سداده/تحصيله</div>
-              <div class="exp-kpi-val" id="expectedTotalPaid" style="color: #38bdf8;">0.00 ج.م</div>
-              <div class="exp-kpi-foot">
-                <i class="fa-solid fa-check-double"></i> <span>حركات مكتملة</span>
-              </div>
+              <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 800;">تم سداده/تحصيله</div>
+              <div class="exp-kpi-val" id="expectedTotalPaid" style="font-size: 0.95rem; font-weight: 900; color: #38bdf8; margin-top: 2px;">0.00 ج.م</div>
             </div>
           </div>
 
-          <!-- شريط ملخص صافي المركز المالي للالتزامات -->
-          <div id="expectedNetPositionBanner" style="display: flex; align-items: center; justify-content: space-between; background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-subtle); padding: 8px 12px; border-radius: 12px; margin-bottom: 12px; font-size: 0.78rem;">
-            <div style="display: flex; align-items: center; gap: 6px; color: #cbd5e1; font-weight: 800;">
-              <i class="fa-solid fa-scale-balanced" style="color: #38bdf8;"></i>
-              <span id="expectedNetPositionLabel">صافي الالتزامات المستقبلية المطلوبة:</span>
+          <!-- شريط صافي الالتزامات المستقبلية -->
+          <div class="expected-net-position-banner" id="expectedNetPositionBanner" style="display: flex; justify-content: space-between; align-items: center; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 8px 12px; margin-bottom: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-scale-unbalanced" style="color: #38bdf8;"></i>
+              <span style="font-size: 0.76rem; font-weight: 800; color: #cbd5e1;">صافي الالتزامات المستقبلية المطلوب تدبيرها:</span>
             </div>
-            <div id="expectedNetPositionVal" style="font-weight: 900; font-size: 0.95rem; color: #fbbf24; direction: ltr;">
-              0.00 ج.م
-            </div>
+            <div id="expectedNetPositionVal" style="font-size: 0.92rem; font-weight: 900; color: #f43f5e; direction: ltr;">- 0.00 ج.م</div>
           </div>
 
-          <!-- شريط التبديل بين إضافة التزام وجدول الالتزامات -->
-          <div class="expected-view-switcher" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; background: rgba(15, 23, 42, 0.7); padding: 5px; border-radius: 12px; border: 1px solid var(--border-subtle);">
-            <button type="button" id="btnTabListExpected" onclick="switchExpectedTab('list')" class="exp-tab-btn active" style="padding: 8px 10px; border-radius: 9px; font-weight: 800; font-size: 0.80rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border: none; background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff;">
+          <!-- شريط التبديل بين عرض الجدول وتسجيل التزام جديد -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+            <button type="button" id="btnTabListExpected" onclick="switchExpectedTab('list')" class="exp-tab-btn active" style="padding: 9px 10px; border-radius: 10px; font-weight: 900; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border: none; background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);">
               <i class="fa-solid fa-table-list"></i> <span>جدول الالتزامات</span>
-              <span class="badge-req-counter" id="expectedPendingBadgeTab" style="background: rgba(255, 255, 255, 0.2); color: #fff; padding: 1px 7px; border-radius: 8px; font-size: 0.70rem; margin-right: 4px;">0</span>
+              <span class="badge-req-counter" id="expectedPendingBadgeTab" style="background: rgba(255, 255, 255, 0.25); color: #fff; padding: 1px 7px; border-radius: 8px; font-size: 0.70rem;">0</span>
             </button>
-            <button type="button" id="btnTabNewExpected" onclick="switchExpectedTab('new')" class="exp-tab-btn" style="padding: 8px 10px; border-radius: 9px; font-weight: 800; font-size: 0.80rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border: none; background: transparent; color: #94a3b8;">
+            <button type="button" id="btnTabNewExpected" onclick="switchExpectedTab('new')" class="exp-tab-btn" style="padding: 9px 10px; border-radius: 10px; font-weight: 900; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border: none; background: rgba(255,255,255,0.06); color: #94a3b8; border: 1px solid rgba(255,255,255,0.08);">
               <i class="fa-solid fa-plus-circle"></i> <span>إضافة التزام / دين جديد</span>
             </button>
           </div>
 
-          <!-- لوحة النموذج: تسجيل التزام مالي أو دين قادم (الزر مضمّن بداخلها بدقة) -->
-          <div id="panelNewExpected" class="app-card-panel" style="display: none;">
-            <div class="app-card-title">
-              <i class="fa-solid fa-calendar-plus" style="color: #38bdf8;"></i>
-              <span>تسجيل التزام مالي أو دين جديد</span>
+          <!-- لوحة النموذج: تسجيل التزام مالي أو دين قادم -->
+          <div id="panelNewExpected" class="app-card-panel" style="display: none; background: rgba(30, 41, 59, 0.85); border: 1.2px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 14px; margin-bottom: 14px;">
+            <div style="font-size: 0.88rem; font-weight: 900; color: #38bdf8; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-file-invoice-dollar"></i> <span>تسجيل التزام مالي أو دين جديد:</span>
             </div>
-            <div class="form-group-custom">
-              <label class="form-label-custom">نوع الالتزام <span class="req">*</span></label>
-              <select class="form-select-custom" id="inpExpType" onchange="onExpectedTypeChange(this.value)">
-                <option value="upcoming_bill">📅 مصروف وفاتورة قادمة (إيجار / أقساط / فواتير دورية)</option>
-                <option value="debt_on_us">🔴 دين مستحق علينا للغير (واجب السداد - خروج نقدي)</option>
-                <option value="debt_for_us">🟢 دين لنا عند الغير (مستحق تحصيله - أصل ودخول نقدي)</option>
+
+            <!-- اختيار نوع الالتزام -->
+            <div class="form-group-custom" style="margin-bottom: 8px;">
+              <label class="form-label-custom" style="font-size: 0.72rem; font-weight: 800; margin-bottom: 2px;">نوع الحركة <span class="req">*</span></label>
+              <select id="inpExpType" class="form-select-custom" onchange="onExpectedTypeChange(this.value)" style="height: 38px; font-weight: 800; font-size: 0.82rem; width: 100%;">
+                <option value="upcoming_bill">⚡ فاتورة أو مصروف أو قسط قادم (مستقبلي)</option>
+                <option value="debt_on_us">🔻 دين علينا للغير (واجب السداد)</option>
+                <option value="debt_for_us">🔺 دين لنا عند الغير (مستحق التحصيل والإيداع)</option>
               </select>
             </div>
-            <div class="form-group-custom">
-              <label class="form-label-custom" id="lblExpTitle">البيان / اسم الجهة أو الشخص <span class="req">*</span></label>
-              <input type="text" class="form-input-custom" id="inpExpTitle" placeholder="مثال: قسط مدرسة الأولاد، فاتورة الغاز، سلفة لأحمد، قسط جمعية...">
-            </div>
-            <div class="form-group-custom">
-              <label class="form-label-custom">المبلغ (ج.م) <span class="req">*</span></label>
-              <input type="number" step="0.01" class="form-input-custom" id="inpExpAmount" placeholder="0.00">
-            </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-              <div class="form-group-custom">
-                <label class="form-label-custom">تاريخ الاستحقاق المتوقع</label>
-                <input type="date" class="form-input-custom" id="inpExpDueDate">
+
+            <!-- بيان الالتزام والمبلغ -->
+            <div style="display: grid; grid-template-columns: 2fr 1.2fr; gap: 8px; margin-bottom: 8px;">
+              <div class="form-group-custom" style="margin-bottom: 0;">
+                <label class="form-label-custom" id="lblExpTitle" style="font-size: 0.72rem; font-weight: 800; margin-bottom: 2px;">البيان / الوصف <span class="req">*</span></label>
+                <input type="text" id="inpExpTitle" class="form-input-custom" placeholder="مثال: قسط مدرسة، فاتورة غاز، سلفة..." style="height: 38px; font-size: 0.82rem; font-weight: 800;">
               </div>
-              <div class="form-group-custom">
-                <label class="form-label-custom">درجة الأولوية</label>
-                <select class="form-select-custom" id="inpExpPriority">
-                  <option value="normal">⚪ عادية</option>
-                  <option value="medium">🟡 متوسطة</option>
-                  <option value="urgent">🔴 عاجلة وهامة جداً</option>
+              <div class="form-group-custom" style="margin-bottom: 0;">
+                <label class="form-label-custom" style="font-size: 0.72rem; font-weight: 800; margin-bottom: 2px;">المبلغ (ج.م) <span class="req">*</span></label>
+                <input type="number" id="inpExpAmount" step="10" class="form-input-custom" placeholder="0.00" style="height: 38px; font-size: 1rem; font-weight: 900; text-align: center; color: #f87171;">
+              </div>
+            </div>
+
+            <!-- تاريخ الاستحقاق والأولوية -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+              <div class="form-group-custom" style="margin-bottom: 0;">
+                <label class="form-label-custom" style="font-size: 0.72rem; font-weight: 800; margin-bottom: 2px;">تاريخ الاستحقاق المحدد</label>
+                <input type="date" id="inpExpDueDate" class="form-input-custom" style="height: 38px; font-size: 0.82rem; font-weight: 800;">
+              </div>
+              <div class="form-group-custom" style="margin-bottom: 0;">
+                <label class="form-label-custom" style="font-size: 0.72rem; font-weight: 800; margin-bottom: 2px;">الأولوية</label>
+                <select id="inpExpPriority" class="form-select-custom" style="height: 38px; font-weight: 800; font-size: 0.82rem; width: 100%;">
+                  <option value="normal">عادي (اعتيادي)</option>
+                  <option value="important">⭐ هام</option>
+                  <option value="urgent">🔥 عاجل وطارئ</option>
                 </select>
               </div>
             </div>
+
+            <!-- يخص من في الأسرة -->
             <div class="form-group-custom" style="margin-bottom: 10px;">
-              <label class="form-label-custom" style="font-size: 0.78rem; font-weight: 800; margin-bottom: 5px; display: block;">
-                <i class="fa-solid fa-users" style="color: #38bdf8;"></i> يخص من في العائلة؟ (بالصور الفعلية):
-              </label>
-              <input type="hidden" id="inpExpMember" value="البيت">
-              <div class="member-photo-picker-strip" id="expMemberPhotoPicker" style="justify-content: space-between; overflow-x: hidden; gap: 2px; padding: 3px 0;">
-                <!-- تتولد ديناميكياً بالصور الحقيقية لجميع أفراد الأسرة -->
-              </div>
-            </div>
-
-            <!-- إرفاق صورة أو مستند الالتزام -->
-            <div class="form-group-custom" style="margin-bottom: 12px;">
-              <label class="form-label-custom" style="font-size: 0.76rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                <span><i class="fa-solid fa-paperclip" style="color: #38bdf8;"></i> إرفاق صورة أو مستند (اختياري):</span>
-                <span id="expPhotoStatusBadge" style="font-size: 0.65rem; color: #34d399; display: none;"><i class="fa-solid fa-check"></i> تم إرفاق الملف بنجاح</span>
-              </label>
-              <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-                <label for="inpExpCameraPhoto" class="btn-wallet-action-pill" style="height: 38px; padding: 0 12px; border-radius: 10px; font-size: 0.76rem; font-weight: 800; background: rgba(56, 189, 248, 0.16); border: 1.2px solid rgba(56, 189, 248, 0.45); color: #38bdf8; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
-                  <i class="fa-solid fa-camera"></i>
-                  <span>التقاط صورة 📷</span>
-                </label>
-                <input type="file" id="inpExpCameraPhoto" accept="image/*" capture="environment" style="display: none;" onchange="handleExpectedPhotoUpload(event)">
-
-                <label for="inpExpDocFile" class="btn-wallet-action-pill" style="height: 38px; padding: 0 12px; border-radius: 10px; font-size: 0.76rem; font-weight: 800; background: rgba(16, 185, 129, 0.16); border: 1.2px solid rgba(16, 185, 129, 0.45); color: #34d399; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
-                  <i class="fa-solid fa-file-arrow-up"></i>
-                  <span>رفع مستند / ملف 📁</span>
-                </label>
-                <input type="file" id="inpExpDocFile" accept="image/*,.pdf" style="display: none;" onchange="handleExpectedPhotoUpload(event)">
-
-                <button type="button" id="btnRemoveExpPhoto" onclick="removeExpectedPhoto()" style="display: none; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #f87171; border-radius: 8px; height: 38px; padding: 0 10px; font-size: 0.75rem; font-weight: 800; cursor: pointer;">
-                  <i class="fa-solid fa-trash"></i> حذف
-                </button>
-              </div>
-
-              <!-- معاينة الصورة أو المستند المرفق -->
-              <div id="expPhotoPreviewContainer" style="display: none; margin-top: 8px;">
-                <img id="expPhotoPreviewImg" src="" style="max-height: 120px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);">
-              </div>
-            </div>
-
-            <!-- زر حفظ الالتزام المالي داخل النموذج فقط بدلاً من ظهوره بشكل عائم -->
-            <button type="button" class="btn-submit-tx" onclick="submitExpectedExpense()" style="background: linear-gradient(135deg, #0284c7, #0369a1); margin-top: 10px; width: 100%; border: none; padding: 12px; border-radius: 12px; color: #fff; font-weight: 800; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
-              <i class="fa-solid fa-plus-circle"></i> حفظ وتسجيل الالتزام المالي
-            </button>
-          </div>
-
-          <!-- لوحة الجدول: جدول الالتزامات والديون القادمة -->
-          <div id="panelListExpected" class="app-card-panel" style="display: block; margin-top: 6px;">
-            <div class="app-card-title" style="justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
-              <div style="display: flex; align-items: center; gap: 6px;">
-                <i class="fa-solid fa-table-list" style="color: #38bdf8;"></i>
-                <span>جدول الالتزامات والديون</span>
-              </div>
-              <!-- فلتر الشخص داخل الجدول -->
-              <select id="selExpectedMemberFilter" class="form-select-custom" onchange="renderExpectedList()" style="height: 32px; font-size: 0.75rem; padding: 2px 8px; width: auto; min-width: 120px;">
-                <option value="all">👤 كافة الأفراد والبيت</option>
-                <option value="البيت">🏠 البيت</option>
-                <option value="ماهر">ماهر</option>
-                <option value="آية">آية</option>
-                <option value="محمد">محمد</option>
-                <option value="مريم">مريم</option>
-                <option value="الحاجة">الحاجة</option>
-                <option value="النونو">النونو</option>
-                <option value="أخرى">أخرى</option>
+              <label class="form-label-custom" style="font-size: 0.72rem; font-weight: 800; margin-bottom: 4px; display: block;">يخص من في الأسرة؟</label>
+              <select id="inpExpMember" class="form-select-custom" style="height: 38px; font-weight: 800; font-size: 0.84rem; width: 100%;">
+                <option value="البيت">🏠 البيت (مشترك)</option>
+                <option value="ماهر">👤 ماهر</option>
+                <option value="أية">🧕 أية</option>
+                <option value="محمد">👦 محمد</option>
+                <option value="مريم">👧 مريم</option>
+                <option value="الحاجة">👵 الحاجة</option>
+                <option value="النونو">👶 النونو</option>
+                <option value="أخرى">📦 أخرى</option>
               </select>
             </div>
 
-            <!-- شريط الفلاتر السريعة الدقيقة (Pills) لمنع أي تداخل بالبنود -->
-            <div class="expected-filter-pills-bar" style="display: flex; gap: 5px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 10px; scrollbar-width: thin;">
-              <button type="button" class="exp-filter-pill active" id="btnFilterExpAll" onclick="setExpectedPillFilter('all')">
-                <span>الكل</span> (<span id="pillCountAll">0</span>)
-              </button>
-              <button type="button" class="exp-filter-pill" id="btnFilterExpUpcoming" onclick="setExpectedPillFilter('upcoming_bill')">
-                <i class="fa-solid fa-clock" style="color: #fbbf24;"></i> <span>مصاريف قادمة</span> (<span id="pillCountUpcoming">0</span>)
-              </button>
-              <button type="button" class="exp-filter-pill" id="btnFilterExpDebtsOnUs" onclick="setExpectedPillFilter('debt_on_us')">
-                <i class="fa-solid fa-handshake-angle" style="color: #f87171;"></i> <span>ديون علينا</span> (<span id="pillCountDebtsOnUs">0</span>)
-              </button>
-              <button type="button" class="exp-filter-pill" id="btnFilterExpDebtsForUs" onclick="setExpectedPillFilter('debt_for_us')">
-                <i class="fa-solid fa-hand-holding-dollar" style="color: #34d399;"></i> <span>ديون لنا</span> (<span id="pillCountDebtsForUs">0</span>)
-              </button>
-              <button type="button" class="exp-filter-pill" id="btnFilterExpPaid" onclick="setExpectedPillFilter('paid')">
-                <i class="fa-solid fa-circle-check" style="color: #38bdf8;"></i> <span>المسددة</span> (<span id="pillCountPaid">0</span>)
-              </button>
+            <!-- زر حفظ الالتزام -->
+            <button type="button" class="btn-submit-tx" onclick="submitExpectedExpense()" style="background: linear-gradient(135deg, #10b981, #059669); border: none; height: 42px; border-radius: 10px; color: #fff; font-weight: 900; font-size: 0.88rem; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);">
+              <i class="fa-solid fa-check-circle"></i> تثبيت وحفظ الالتزام المالي
+            </button>
+          </div>
+
+          <!-- لوحة الجدول: عرض وتصفية كافة الالتزامات -->
+          <div id="panelListExpected">
+            <!-- فلاتر التصفية السريعة -->
+            <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 10px;">
+              <button type="button" class="btn-export-tool active exp-filter-pill" id="btnFilterExpAll" onclick="setExpectedPillFilter('all')" style="border-radius: 8px; padding: 5px 12px; font-size: 0.76rem; font-weight: 800; white-space: nowrap;">الكل</button>
+              <button type="button" class="btn-export-tool exp-filter-pill" id="btnFilterExpUpcoming" onclick="setExpectedPillFilter('upcoming_bill')" style="border-radius: 8px; padding: 5px 12px; font-size: 0.76rem; font-weight: 800; white-space: nowrap; color: #fbbf24;">⚡ فواتير قادمة</button>
+              <button type="button" class="btn-export-tool exp-filter-pill" id="btnFilterExpDebtsOnUs" onclick="setExpectedPillFilter('debt_on_us')" style="border-radius: 8px; padding: 5px 12px; font-size: 0.76rem; font-weight: 800; white-space: nowrap; color: #f43f5e;">🔻 ديون علينا</button>
+              <button type="button" class="btn-export-tool exp-filter-pill" id="btnFilterExpDebtsForUs" onclick="setExpectedPillFilter('debt_for_us')" style="border-radius: 8px; padding: 5px 12px; font-size: 0.76rem; font-weight: 800; white-space: nowrap; color: #34d399;">🔺 ديون لنا</button>
+              <button type="button" class="btn-export-tool exp-filter-pill" id="btnFilterExpPaid" onclick="setExpectedPillFilter('paid')" style="border-radius: 8px; padding: 5px 12px; font-size: 0.76rem; font-weight: 800; white-space: nowrap; color: #38bdf8;">✅ المسددة</button>
             </div>
 
-            <div id="expectedListContainer">
-              <!-- تتولد بنود الالتزامات ديناميكياً بدقة مطلقة -->
+            <!-- حاوية عرض كروت الالتزامات المفصولة بدقة ونقاء -->
+            <div id="expectedListContainer" style="display: flex; flex-direction: column; gap: 8px;">
+              <!-- تتولد كروت الالتزامات ديناميكياً مع خيارات السداد والحذف -->
             </div>
           </div>
         </div>
 
         <!-- ==========================================================
-             2. لوحة الميزانية التقديرية متعددة الخطط (subViewMonthlyBudget)
+             2. قسم الميزانية التقديرية الشهرية الحية (panelMonthlyBudget)
+             معاد بناؤها بالكامل: اختيار بنود ديناميكية وربط متعدد بالأفراد
              ========================================================== -->
-        <div id="panelMonthlyBudget" class="app-card-panel" style="display: none;">
-          <!-- شريط إدارة الخطط والميزانيات المتعددة -->
+        <div id="panelMonthlyBudget" class="app-card-panel" style="display: none; background: rgba(30, 41, 59, 0.7); border: 1.2px solid rgba(56, 189, 248, 0.25); border-radius: 16px; padding: 12px 14px; margin-bottom: 12px;">
+          
+          <!-- شريط إدارة الخطط والميزانيات التقديرية -->
           <div style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 10px 12px; margin-bottom: 12px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
               <div style="font-size: 0.84rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
@@ -11071,11 +11024,11 @@
             </select>
           </div>
 
-          <!-- بيانات الميزانية المحددة: الاسم والشهر -->
-          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-bottom: 10px;">
+          <!-- بيانات الميزانية المحددة: الاسم والشهر المستهدف -->
+          <div style="display: grid; grid-template-columns: 2fr 1.2fr; gap: 8px; margin-bottom: 10px;">
             <div>
               <label style="font-size: 0.70rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 2px;">مسمى الخطة التقديرية:</label>
-              <input type="text" id="inpBudgetName" class="form-input-custom" placeholder="مثال: ميزانية نوفمبر 2026 الأساسية" oninput="onBudgetNameChange(this.value)" style="height: 36px; font-size: 0.82rem; font-weight: 800;">
+              <input type="text" id="inpBudgetName" class="form-input-custom" placeholder="مثال: ميزانية نوفمبر 2026 التقديرية" oninput="onBudgetNameChange(this.value)" style="height: 36px; font-size: 0.82rem; font-weight: 800;">
             </div>
             <div>
               <label style="font-size: 0.70rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 2px;">الشهر المستهدف:</label>
@@ -11083,50 +11036,7 @@
             </div>
           </div>
 
-          <!-- أزرار التقسيم التناسبي للميزانية -->
-          <div style="display: flex; gap: 6px; margin-bottom: 10px; background: rgba(15, 23, 42, 0.7); padding: 4px 6px; border-radius: 10px; border: 1px solid var(--border-subtle); align-items: center; justify-content: space-between;">
-            <span style="font-size: 0.70rem; color: #cbd5e1; font-weight: 800;"><i class="fa-solid fa-sliders"></i> المعاينة التناسبية:</span>
-            <div style="display: flex; gap: 4px;">
-              <button type="button" class="btn-export-tool active" id="btnProrateMonth" onclick="setProrateView('month', this)" style="border-radius: 6px; padding: 4px 10px; font-size: 0.72rem; font-weight: 800; background: rgba(56, 189, 248, 0.2); color: #38bdf8;">🗓️ الشهر كاملاً</button>
-              <button type="button" class="btn-export-tool" id="btnProrateWeek" onclick="setProrateView('week', this)" style="border-radius: 6px; padding: 4px 10px; font-size: 0.72rem; font-weight: 800;">📆 الأسبوع (تناسبي)</button>
-              <button type="button" class="btn-export-tool" id="btnProrateDay" onclick="setProrateView('day', this)" style="border-radius: 6px; padding: 4px 10px; font-size: 0.72rem; font-weight: 800;">📅 اليوم (تناسبي)</button>
-            </div>
-          </div>
-
-          <!-- فلاتر الميزانية بالفرد والتصنيف -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
-            <div>
-              <label style="font-size: 0.70rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 2px;">تصفية بالفرد:</label>
-              <select id="budgetMemberFilter" class="form-select-custom" onchange="renderMonthlyBudgetAllocations()" style="height: 36px; font-weight: 800; font-size: 0.80rem; width: 100%;">
-                <option value="all">👤 كافة أفراد الأسرة</option>
-                <option value="البيت">البيت (المشترك)</option>
-                <option value="ماهر">ماهر</option>
-                <option value="آية">آية</option>
-                <option value="محمد">محمد</option>
-                <option value="مريم">مريم</option>
-                <option value="الحاجة">الحاجة</option>
-                <option value="النونو">النونو</option>
-                <option value="أخرى">أخرى</option>
-              </select>
-            </div>
-            <div>
-              <label style="font-size: 0.70rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 2px;">تصفية بنوع المصروف:</label>
-              <select id="budgetCategoryFilter" class="form-select-custom" onchange="renderMonthlyBudgetAllocations()" style="height: 36px; font-weight: 800; font-size: 0.80rem; width: 100%;">
-                <option value="all">📁 كافة البنود والتصنيفات</option>
-                <option value="food">🛒 طعام ومشتريات</option>
-                <option value="daily">☕ مصروف يومي</option>
-                <option value="bills">⚡ فواتير والتزامات</option>
-                <option value="transport">🚗 مواصلات وبنزين</option>
-                <option value="house">🛋️ مستلزمات منزل</option>
-                <option value="health">💊 صحة وعلاج</option>
-                <option value="clothes">👔 ملابس وأحذية</option>
-                <option value="education">🎓 تعليم ودروس</option>
-                <option value="other">🎁 أخرى ونثريات</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- كروت ملخص الميزانية التقديرية مع الدقة الحسابية الصارمة -->
+          <!-- كروت ملخص الميزانية التقديرية بدقة رياضية صارمة -->
           <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 10px;">
             <div style="background: rgba(16, 185, 129, 0.12); border: 1.2px solid rgba(16, 185, 129, 0.35); border-radius: 10px; padding: 6px 8px; text-align: center;">
               <div style="font-size: 0.65rem; color: #34d399; font-weight: 800;">إجمالي الدخل المتوقع</div>
@@ -11143,9 +11053,9 @@
           </div>
 
           <!-- شريط مقارنة الفعلي بالمقدر للشهر المحدد -->
-          <div id="budgetActualVsPlannedBar" style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 8px 12px; margin-bottom: 12px; font-size: 0.76rem;">
+          <div id="budgetActualVsPlannedBar" style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 8px 12px; margin-bottom: 12px; font-size: 0.76rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-              <span style="color: #cbd5e1; font-weight: 800;"><i class="fa-solid fa-chart-pie" style="color: #fbbf24;"></i> الرقابة المالية (الفعلي مقابل المقدر للشهر):</span>
+              <span style="color: #cbd5e1; font-weight: 800;"><i class="fa-solid fa-chart-pie" style="color: #fbbf24;"></i> الرقابة المالية (الفعلي مقابل المقدر):</span>
               <span id="budgetActualSummaryTxt" style="font-weight: 900; color: #38bdf8;">الفعلي: 0.00 ج.م من أصل 0.00 ج.م</span>
             </div>
             <div style="width: 100%; height: 8px; background: rgba(15, 23, 42, 0.8); border-radius: 4px; overflow: hidden; display: flex;">
@@ -11153,46 +11063,109 @@
             </div>
           </div>
 
-          <!-- بنود تخصيص الميزانية حسب التصنيفات التسعة مع المقارنة الحية -->
-          <div style="font-size: 0.80rem; font-weight: 800; color: #fbbf24; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
-            <span><i class="fa-solid fa-list-check"></i> توزيع بنود المصروفات التقديرية (مع الفعلي):</span>
-            <span id="budgetProrateNoteBadge" style="font-size: 0.68rem; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 2px 6px; border-radius: 6px;">معروض بالشهر كاملاً</span>
+          <!-- ========================================================
+               كارت إضافة بند مصروف للميزانية بديناميكية وربط متعدد بالأفراد
+               ======================================================== -->
+          <div style="background: rgba(15, 23, 42, 0.85); border: 1.4px solid rgba(56, 189, 248, 0.4); border-radius: 14px; padding: 12px 14px; margin-bottom: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.35);">
+            <div style="font-size: 0.85rem; font-weight: 900; color: #38bdf8; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-plus-circle"></i> <span>إضافة بند مصروف تقديري (باختيار التصنيف وربط الأفراد):</span>
+            </div>
+
+            <!-- اختيار التصنيف والمبلغ -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+              <div class="form-group-custom" style="margin-bottom: 0;">
+                <label class="form-label-custom" style="font-size: 0.70rem; font-weight: 800; color: #cbd5e1; display: block; margin-bottom: 2px;">
+                  نوع / بند المصروف <span class="req">*</span>:
+                </label>
+                <select id="inpBudgetItemCategory" class="form-select-custom" onchange="onBudgetItemCategorySelect(this.value)" style="height: 38px; font-weight: 800; font-size: 0.82rem; width: 100%;">
+                  <option value="food">🛒 طعام ومشتريات</option>
+                  <option value="daily">☕ مصروف يومي</option>
+                  <option value="bills">⚡ فواتير والتزامات</option>
+                  <option value="transport">🚗 مواصلات وبنزين</option>
+                  <option value="house">🛋️ مستلزمات منزل</option>
+                  <option value="health">🩺 صحة وعلاج</option>
+                  <option value="clothes">👔 ملابس وأحذية</option>
+                  <option value="education">📚 تعليم ودروس</option>
+                  <option value="other">📦 أخرى ونثريات</option>
+                </select>
+              </div>
+
+              <div class="form-group-custom" style="margin-bottom: 0;">
+                <label class="form-label-custom" style="font-size: 0.70rem; font-weight: 800; color: #cbd5e1; display: block; margin-bottom: 2px;">
+                  المبلغ المقدر (ج.م) <span class="req">*</span>:
+                </label>
+                <input type="number" id="inpBudgetItemAmount" step="100" class="form-input-custom" placeholder="مثال: 5000" style="height: 38px; font-weight: 900; font-size: 1rem; text-align: center; color: #f87171;">
+              </div>
+            </div>
+
+            <!-- بيان وتفاصيل البند المخصص -->
+            <div class="form-group-custom" style="margin-bottom: 8px;">
+              <label class="form-label-custom" style="font-size: 0.70rem; font-weight: 800; color: #cbd5e1; display: block; margin-bottom: 2px;">
+                بيان تفصيلي للبند (اختياري):
+              </label>
+              <input type="text" id="inpBudgetItemTitle" class="form-input-custom" placeholder="مثال: دروس خصوصية سناتر ومذكرات، سوبرماركت ولحوم..." style="height: 36px; font-size: 0.80rem; font-weight: 700;">
+            </div>
+
+            <!-- ربط المصروف المعين بأكثر من شخص (شريط شرائح متعددة التحديد) -->
+            <div class="form-group-custom" style="margin-bottom: 10px;">
+              <label class="form-label-custom" style="font-size: 0.72rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+                <i class="fa-solid fa-users"></i> ربط المصروف بأكثر من شخص (حدد كل من يخصهم هذا البند):
+              </label>
+              <div id="budgetMembersMultiPicker" style="display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 0;">
+                <!-- تتولد شرائح أفراد الأسرة ديناميكياً مع الصور واختيار أكثر من شخص -->
+              </div>
+              <div id="budgetSelectedMembersNotice" style="font-size: 0.68rem; color: #94a3b8; margin-top: 4px;">
+                المحدد حالياً: <strong style="color: #38bdf8;" id="budgetSelectedMembersText">البيت (مشترك)</strong>
+              </div>
+            </div>
+
+            <!-- زر إضافة البند للميزانية -->
+            <button type="button" onclick="addBudgetItemToCurrentPlan()" style="background: linear-gradient(135deg, #0284c7, #0369a1); border: none; height: 42px; border-radius: 10px; color: #fff; font-weight: 900; font-size: 0.88rem; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
+              <i class="fa-solid fa-plus-circle"></i> إضافة البند إلى الميزانية التقديرية ➕
+            </button>
           </div>
 
-          <div id="budgetCategoryInputsGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px; margin-bottom: 12px;">
-            <!-- تتولد ديناميكياً لتشمل بنود المصروفات مع خانات إدخال المبالغ التقديرية والمقارنة الفعلية -->
+          <!-- قائمة بنود المصروفات التقديرية المضافة للخطة الحالية -->
+          <div style="font-size: 0.82rem; font-weight: 800; color: #fbbf24; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+            <span><i class="fa-solid fa-list-check"></i> بنود المصروفات المقدرة في الخطة:</span>
+            <span id="budgetItemsCountBadge" style="font-size: 0.70rem; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 8px; font-weight: 800;">0 بند</span>
           </div>
 
-          <!-- مصادر الدخل التقديرية -->
-          <div style="font-size: 0.80rem; font-weight: 800; color: #34d399; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+          <div id="budgetItemsListContainer" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
+            <!-- تتولد بنود المصروفات ديناميكياً مع شارات أفراد الأسرة المرتبطين بكل بند -->
+          </div>
+
+          <!-- مصادر الإيرادات والدخل التقديرية -->
+          <div style="font-size: 0.82rem; font-weight: 800; color: #34d399; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
             <span><i class="fa-solid fa-money-bill-wave"></i> مصادر الإيرادات والدخل التقديرية:</span>
-            <button type="button" onclick="addBudgetIncomeRow()" style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; border-radius: 6px; font-size: 0.70rem; font-weight: 800; padding: 3px 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
+            <button type="button" onclick="addBudgetIncomeRow()" style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; border-radius: 7px; font-size: 0.72rem; font-weight: 800; padding: 4px 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
               <i class="fa-solid fa-plus"></i> إضافة مصدر دخل
             </button>
           </div>
-          <div id="budgetIncomeRowsContainer" style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;"></div>
+          <div id="budgetIncomeRowsContainer" style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px;">
+            <!-- تتولد مصادر الدخل ديناميكياً -->
+          </div>
 
-          <!-- زر حفظ وتثبيت الميزانية الشهرية النشطة -->
-          <button type="button" class="btn-submit-tx" onclick="saveMonthlyBudget()" style="background: linear-gradient(135deg, #0284c7, #0369a1); height: 46px; font-size: 0.95rem; font-weight: 800; width: 100%; border: none; border-radius: 12px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
+          <!-- زر حفظ وتثبيت الخطة التقديرية النشطة -->
+          <button type="button" class="btn-submit-tx" onclick="saveMonthlyBudget()" style="background: linear-gradient(135deg, #0284c7, #0369a1); height: 46px; font-size: 0.95rem; font-weight: 900; width: 100%; border: none; border-radius: 12px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
             <i class="fa-solid fa-floppy-disk"></i> حفظ وتثبيت الخطة التقديرية الحالية 💾
           </button>
         </div>
 
         <!-- ==========================================================
-             3. لوحة سجل الميزانيات المحفوظة (subViewBudgetHistory)
+             3. لوحة سجل الميزانيات المحفوظة (panelBudgetHistory)
              ========================================================== -->
-        <div id="panelBudgetHistory" class="app-card-panel" style="display: none;">
-          <div class="app-card-title" style="justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <i class="fa-solid fa-clock-rotate-left" style="color: #fbbf24;"></i>
-              <span>سجل الخطط والميزانيات التقديرية المحفوظة</span>
+        <div id="panelBudgetHistory" class="app-card-panel" style="display: none; background: rgba(30, 41, 59, 0.7); border: 1.2px solid rgba(56, 189, 248, 0.25); border-radius: 16px; padding: 12px 14px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <div style="font-size: 0.88rem; font-weight: 900; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-clock-rotate-left"></i> <span>سجل الخطط والميزانيات التقديرية المحفوظة:</span>
             </div>
-            <button type="button" onclick="openNewBudgetPlanModal()" class="btn-wallet-action-pill" style="height: 32px; font-size: 0.75rem; padding: 0 12px; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; font-weight: 800; cursor: pointer; border-radius: 8px; display: inline-flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-plus"></i> إنشاء ميزانية جديدة +
+            <button type="button" onclick="openNewBudgetPlanModal()" class="btn-wallet-action-pill" style="height: 30px; font-size: 0.72rem; padding: 0 10px; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; font-weight: 800; cursor: pointer; border-radius: 8px; display: inline-flex; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-plus"></i> خطة جديدة
             </button>
           </div>
-          <div id="budgetHistoryListContainer">
-            <!-- تتولد ديناميكياً بواسطة renderBudgetHistory() -->
+          <div id="budgetHistoryListContainer" style="display: flex; flex-direction: column; gap: 8px;">
+            <!-- تتولد خطط الميزانيات السابقة ديناميكياً -->
           </div>
         </div>
 
@@ -11467,7 +11440,7 @@
     </div>
 
     <div class="modal-overlay modal-overlay-custom" id="txModal">
-      <div class="modal-content-card" id="txModalCard" style="max-height: 95vh; padding: 10px 14px 12px; border-radius: 20px 20px 0 0; gap: 3px; overflow-y: hidden;">
+      <div class="modal-content-card" id="txModalCard" style="max-height: 92vh; padding: 12px 14px 14px; border-radius: 20px 20px 0 0; gap: 4px; overflow-y: auto !important;">
         <div class="modal-head" style="margin-bottom: 2px; padding-bottom: 3px;">
           <h3 class="modal-title-custom" id="txModalTitle" style="font-size: 0.92rem; margin: 0; display: flex; align-items: center; gap: 6px;">
             <i class="fa-solid fa-receipt" id="txModalTitleIcon" style="color: var(--primary);"></i>
@@ -11561,35 +11534,52 @@
         </div>
 
         <!-- التاريخ + تصوير الفاتورة في صف أفقي مقسم لعمودين متساويين -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; align-items: end;">
-          <div class="form-group-custom" style="margin-bottom: 0;">
-            <label class="form-label-custom" style="font-size: 0.68rem; margin-bottom: 1px; display: block; font-weight: 700;">التاريخ</label>
-            <input type="date" class="form-input-custom" id="inpTxDate" style="height: 34px; font-size: 0.78rem; padding: 3px 6px; width: 100%; box-sizing: border-box;">
+        <!-- التاريخ المنفصل بعرض كامل وأنيق -->
+        <div class="form-group-custom" style="margin-bottom: 5px;">
+          <label class="form-label-custom" style="font-size: 0.70rem; margin-bottom: 2px; display: block; font-weight: 700; color: #cbd5e1;">
+            <i class="fa-solid fa-calendar-day" style="color: #38bdf8;"></i> تاريخ تنفيذ الحركة:
+          </label>
+          <input type="date" class="form-input-custom" id="inpTxDate" style="height: 36px; font-size: 0.82rem; padding: 4px 8px; width: 100%; box-sizing: border-box; font-weight: 800;">
+        </div>
+
+        <!-- كارت إرفاق وتصوير الفاتورة / الإيصال البارز والاحترافي -->
+        <div class="form-group-custom" style="margin-bottom: 6px; background: rgba(15, 23, 42, 0.75); border: 1.4px dashed rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 8px 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label class="form-label-custom" style="font-size: 0.72rem; margin: 0; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-camera"></i> صورة الفاتورة أو الإيصال (تصوير بالكاميرا أو المعرض):
+            </label>
+            <span id="txPhotoAttachedBadge" style="display: none; font-size: 0.65rem; background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); padding: 1px 7px; border-radius: 6px; font-weight: 800;">
+              <i class="fa-solid fa-circle-check"></i> تم إرفاق صورة
+            </span>
           </div>
-          <div class="form-group-custom" style="margin-bottom: 0;">
-            <label class="form-label-custom" style="font-size: 0.68rem; margin-bottom: 1px; display: block; font-weight: 700;">📷 صورة الفاتورة</label>
-            <div class="receipt-upload-box" style="display: flex; gap: 6px;">
-              <!-- خيار 1: اختيار صورة من المعرض أو الملفات -->
-              <input type="file" id="inpTxReceipt" accept="image/*" style="display:none;" onchange="handleReceiptUpload(event)">
-              <!-- خيار 2: التقاط صورة مباشرة بالكاميرا -->
-              <input type="file" id="inpTxReceiptCamera" accept="image/*" capture="environment" style="display:none;" onchange="handleReceiptUpload(event)">
-              
-              <button type="button" class="btn-receipt-action" onclick="document.getElementById('inpTxReceiptCamera').click()" style="height: 35px; font-size: 0.76rem; font-weight: 800; padding: 4px 8px; flex: 1; margin: 0; white-space: nowrap; border-radius: 9px; background: rgba(56, 189, 248, 0.16); border: 1.4px solid #38bdf8; color: #38bdf8; display: flex; align-items: center; justify-content: center; gap: 5px;" title="التقاط صورة فورية بالكاميرا">
-                <i class="fa-solid fa-camera"></i> تصوير
-              </button>
 
-              <button type="button" class="btn-receipt-action" onclick="document.getElementById('inpTxReceipt').click()" style="height: 35px; font-size: 0.76rem; font-weight: 800; padding: 4px 8px; flex: 1; margin: 0; white-space: nowrap; border-radius: 9px; background: rgba(16, 185, 129, 0.16); border: 1.4px solid #10b981; color: #34d399; display: flex; align-items: center; justify-content: center; gap: 5px;" title="اختيار صورة الفاتورة من الاستوديو أو المعرض">
-                <i class="fa-solid fa-image"></i> رفع صورة
-              </button>
+          <!-- حقول الملفات المخفية -->
+          <input type="file" id="inpTxReceipt" accept="image/*" style="display:none;" onchange="handleReceiptUpload(event)">
+          <input type="file" id="inpTxReceiptCamera" accept="image/*" capture="environment" style="display:none;" onchange="handleReceiptUpload(event)">
 
-              <button type="button" class="btn-receipt-action clear-receipt-btn" id="btnClearReceipt" style="display:none; height: 35px; padding: 4px 8px; border-radius: 9px; background: rgba(244, 63, 94, 0.2); border: 1.4px solid #f43f5e; color: #ff4d6d;" onclick="clearReceiptUpload()" title="حذف الصورة">
-                <i class="fa-solid fa-trash"></i>
-              </button>
+          <!-- زرا التصوير والاختيار البارزان -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <button type="button" class="btn-receipt-action" onclick="document.getElementById('inpTxReceiptCamera').click()" style="height: 40px; font-size: 0.80rem; font-weight: 900; padding: 4px 10px; border-radius: 10px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(14, 165, 233, 0.32)); border: 1.4px solid #38bdf8; color: #38bdf8; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(56, 189, 248, 0.15);">
+              <i class="fa-solid fa-camera" style="font-size: 1rem;"></i> تصوير بالكاميرا 📷
+            </button>
+
+            <button type="button" class="btn-receipt-action" onclick="document.getElementById('inpTxReceipt').click()" style="height: 40px; font-size: 0.80rem; font-weight: 900; padding: 4px 10px; border-radius: 10px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(5, 150, 105, 0.32)); border: 1.4px solid #10b981; color: #34d399; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);">
+              <i class="fa-solid fa-images" style="font-size: 1rem;"></i> اختيار من المعرض 🖼️
+            </button>
+          </div>
+
+          <!-- صندوق معاينة الصورة المرفقة مع خيار الحذف والتكبير -->
+          <div id="receiptPreviewContainer" style="display:none; margin-top: 8px; text-align: center; background: rgba(0,0,0,0.35); border-radius: 10px; padding: 8px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
+              <img id="receiptPreviewImg" src="" onclick="openReceiptLightbox(this.src, 'معاينة الفاتورة')" style="max-height: 95px; max-width: 170px; border-radius: 8px; border: 1.5px solid rgba(56, 189, 248, 0.5); object-fit: cover; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.5);" title="انقر للتكبير">
+              <div style="display: flex; flex-direction: column; gap: 6px; align-items: flex-start;">
+                <span style="font-size: 0.72rem; color: #38bdf8; font-weight: 800;"><i class="fa-solid fa-magnifying-glass-plus"></i> انقر على الصورة لتكبيرها</span>
+                <button type="button" onclick="clearReceiptUpload()" style="padding: 5px 12px; border-radius: 8px; background: rgba(239, 68, 68, 0.22); border: 1px solid rgba(239, 68, 68, 0.5); color: #f87171; font-size: 0.74rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                  <i class="fa-solid fa-trash-can"></i> إزالة الصورة المرفقة
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <div id="receiptPreviewContainer" style="display:none; margin-bottom: 4px; text-align: center;">
-          <img id="receiptPreviewImg" src="" style="max-height: 80px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); object-fit: cover;">
         </div>
 
         <!-- زرا التأكيد والإلغاء في الأسفل بحجم مثالي وواضح جداً -->
@@ -17279,6 +17269,7 @@ function filterOperationsList() {
           if (previewImg) previewImg.src = compressedDataUri;
           if (previewCont) previewCont.style.display = 'block';
           if (clearBtn) clearBtn.style.display = 'inline-flex';
+          const badge = document.getElementById('txPhotoAttachedBadge'); if (badge) badge.style.display = 'inline-flex';
           showToast('📷 تم تحميل صورة الفاتورة بنجاح');
         };
         img.src = e.target.result;
@@ -17294,6 +17285,7 @@ function filterOperationsList() {
       const clearBtn = document.getElementById('btnClearReceipt');
       if (previewCont) previewCont.style.display = 'none';
       if (clearBtn) clearBtn.style.display = 'none';
+      const badge = document.getElementById('txPhotoAttachedBadge'); if (badge) badge.style.display = 'none';
     }
 
     function openReceiptLightbox(source, optionalTitle = '') {
@@ -21888,10 +21880,12 @@ function exportActivityLogExcel() {
     // 4. التبديل الرئيسي في صفحة المتوقعة (Commitments vs Monthly Budget)
     // -------------------------------------------------------------------------
     // =========================================================================
-    // محرك الميزانيات التقديرية المتعددة وسجل الخطط (Multi-Budget Engine)
+    // =========================================================================
+    // محرك الميزانيات التقديرية الديناميكية والربط المتعدد بالأفراد (v5.0)
     // =========================================================================
 
     let currentBudgetMonthData = null;
+    let selectedBudgetItemMembers = ['البيت']; // قائمة الأفراد المحددين للبند الجديد
 
     function switchExpectedMainTab(tab) {
       const btnCommitments = document.getElementById('tabExpectedCommitments');
@@ -21916,7 +21910,7 @@ function exportActivityLogExcel() {
           btnCommitments.classList.add('active');
           btnCommitments.style.background = 'linear-gradient(135deg, #0284c7, #0369a1)';
           btnCommitments.style.color = '#fff';
-          btnCommitments.style.boxShadow = '0 4px 12px rgba(2, 132, 199, 0.35)';
+          btnCommitments.style.boxShadow = '0 4px 14px rgba(2, 132, 199, 0.35)';
         }
         if (subCommitments) subCommitments.style.display = 'block';
         if (panelBudget) panelBudget.style.display = 'none';
@@ -21947,6 +21941,7 @@ function exportActivityLogExcel() {
       }
     }
 
+    // تهيئة محرك الميزانيات وضمان ترحيل البيانات القديمة بسلاسة
     function initMonthlyBudgetUI() {
       const stored = localStorage.getItem('family_monefy_monthly_budgets');
       if (stored) {
@@ -21954,43 +21949,20 @@ function exportActivityLogExcel() {
       }
 
       if (!state.monthlyBudgets || !Array.isArray(state.monthlyBudgets) || state.monthlyBudgets.length === 0) {
-        const defaultBudget = {
-          id: 'bgt-default-2026-11',
-          name: 'ميزانية نوفمبر 2026 (الأساسية)',
-          month: '2026-11',
-          isDefault: true,
-          categories: {
-            food: 20000,
-            daily: 4000,
-            bills: 8000,
-            transport: 6000,
-            house: 6000,
-            health: 5000,
-            clothes: 6000,
-            education: 15000,
-            other: 6000
-          },
-          incomes: [
-            { id: 'inc-1', name: 'راتب ماهر الأساسي', amount: 85000, member: 'ماهر' },
-            { id: 'inc-2', name: 'استشارات وأعمال حرة', amount: 30000, member: 'ماهر' }
-          ],
-          notes: 'الميزانية التقديرية الأساسية لشهر نوفمبر 2026',
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString()
-        };
-        state.monthlyBudgets = [defaultBudget];
+        state.monthlyBudgets = generateRichDemoBudgets();
         try {
           localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
         } catch(e) {}
       }
 
-      // ضمان وجود ID واسم سليم لكل ميزانية
+      // ترقية وتأكيد سلامة كل خطة
       state.monthlyBudgets.forEach((b, idx) => {
         if (!b.id) b.id = 'bgt-' + (b.month || 'plan') + '-' + (idx + 1);
         if (!b.name) b.name = b.title || (`ميزانية شهر ${b.month || 'الحالي'}`);
         if (!b.month) b.month = '2026-11';
         if (!b.categories) b.categories = {};
         if (!b.incomes) b.incomes = [];
+        ensureBudgetItems(b);
       });
 
       if (!state.activeBudgetId || !state.monthlyBudgets.some(b => b.id === state.activeBudgetId)) {
@@ -21998,6 +21970,49 @@ function exportActivityLogExcel() {
       }
 
       populateBudgetPlanSelector();
+      renderBudgetMembersMultiPicker();
+    }
+
+    // ضمان وجود قائمة بنود ديناميكية وترحيل التصنيفات القديمة إن وجدت
+    function ensureBudgetItems(b) {
+      if (!b.items || !Array.isArray(b.items)) {
+        b.items = [];
+        const catMap = {
+          food: 'طعام ومشتريات',
+          daily: 'مصروف يومي',
+          bills: 'فواتير والتزامات',
+          transport: 'مواصلات وبنزين',
+          house: 'مستلزمات منزل',
+          health: 'صحة وعلاج',
+          clothes: 'ملابس وأحذية',
+          education: 'تعليم ودروس',
+          other: 'أخرى ونثريات'
+        };
+        Object.keys(b.categories || {}).forEach((catId, idx) => {
+          const amt = Number(b.categories[catId]) || 0;
+          if (amt > 0) {
+            b.items.push({
+              id: 'item-' + catId + '-' + (idx + 1),
+              category: catId,
+              title: catMap[catId] || catId,
+              amount: amt,
+              members: ['البيت'],
+              notes: ''
+            });
+          }
+        });
+      }
+      syncBudgetCategoriesMap(b);
+    }
+
+    // مزامنة خريطة categories القديمة لمنع كسر أي كود يعتمد عليها
+    function syncBudgetCategoriesMap(b) {
+      if (!b) return;
+      b.categories = {};
+      (b.items || []).forEach(it => {
+        const cat = it.category || 'other';
+        b.categories[cat] = (b.categories[cat] || 0) + (Number(it.amount) || 0);
+      });
     }
 
     function populateBudgetPlanSelector() {
@@ -22006,7 +22021,7 @@ function exportActivityLogExcel() {
       if (!state.monthlyBudgets) state.monthlyBudgets = [];
 
       sel.innerHTML = state.monthlyBudgets.map(b => {
-        const totalExp = Object.values(b.categories || {}).reduce((s, v) => s + (Number(v) || 0), 0);
+        const totalExp = (b.items || []).reduce((s, it) => s + (Number(it.amount) || 0), 0);
         return `<option value="${b.id}" ${b.id === state.activeBudgetId ? 'selected' : ''}>📋 ${escapeHtml(b.name)} [${b.month}] - مقدر: ${formatMoney(totalExp)}</option>`;
       }).join('');
     }
@@ -22023,6 +22038,7 @@ function exportActivityLogExcel() {
       }
 
       currentBudgetMonthData = activePlan;
+      ensureBudgetItems(currentBudgetMonthData);
 
       const inpName = document.getElementById('inpBudgetName');
       const inpMonth = document.getElementById('inpBudgetMonth');
@@ -22031,6 +22047,7 @@ function exportActivityLogExcel() {
       if (inpMonth) inpMonth.value = activePlan.month || '2026-11';
 
       populateBudgetPlanSelector();
+      renderBudgetMembersMultiPicker();
       renderMonthlyBudgetAllocations();
     }
 
@@ -22045,230 +22062,173 @@ function exportActivityLogExcel() {
     }
 
     function onBudgetNameChange(val) {
-      if (!currentBudgetMonthData) return;
-      currentBudgetMonthData.name = val;
-      populateBudgetPlanSelector();
+      if (currentBudgetMonthData) {
+        currentBudgetMonthData.name = val;
+      }
     }
 
     function onBudgetMonthChange(val) {
-      if (!currentBudgetMonthData) return;
-      currentBudgetMonthData.month = val;
-      populateBudgetPlanSelector();
-      renderMonthlyBudgetAllocations();
+      if (currentBudgetMonthData) {
+        currentBudgetMonthData.month = val;
+        renderMonthlyBudgetAllocations();
+      }
     }
 
-    function openNewBudgetPlanModal() {
-      const cloneSel = document.getElementById('newPlanCloneSourceSelect');
-      const nameInp = document.getElementById('newPlanNameInput');
-      const monthInp = document.getElementById('newPlanMonthInput');
-      const incInp = document.getElementById('newPlanTargetIncomeInput');
+    function onBudgetItemCategorySelect(catId) {
+      const titleInp = document.getElementById('inpBudgetItemTitle');
+      if (titleInp && !titleInp.value) {
+        const cat = EXPENSE_CATEGORIES.find(c => c.id === catId);
+        if (cat) titleInp.placeholder = `مثال: ${cat.name}...`;
+      }
+    }
 
-      if (cloneSel) {
-        cloneSel.innerHTML = `
-          <option value="none">✨ خطة فارغة جديدة (قيم افتراضية متوازنة)</option>
-          ${(state.monthlyBudgets || []).map(b => `<option value="${b.id}">📋 استنساخ من: ${escapeHtml(b.name)} [${b.month}]</option>`).join('')}
+    // رسم شريط تحديد أفراد الأسرة المتعدد للبند الجديد
+    function renderBudgetMembersMultiPicker() {
+      const container = document.getElementById('budgetMembersMultiPicker');
+      if (!container) return;
+
+      const members = typeof FAMILY_MEMBERS !== 'undefined' ? FAMILY_MEMBERS : ['البيت', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
+      
+      container.innerHTML = members.map(m => {
+        const isSelected = selectedBudgetItemMembers.includes(m);
+        const avatar = (typeof MEMBER_AVATARS !== 'undefined' && MEMBER_AVATARS[m]) ? MEMBER_AVATARS[m] : '';
+        const bg = isSelected ? 'linear-gradient(135deg, #0284c7, #0369a1)' : 'rgba(30, 41, 59, 0.7)';
+        const border = isSelected ? '#38bdf8' : 'rgba(255, 255, 255, 0.12)';
+        const color = isSelected ? '#ffffff' : '#cbd5e1';
+        const shadow = isSelected ? '0 3px 10px rgba(56, 189, 248, 0.35)' : 'none';
+
+        return `
+          <button type="button" onclick="toggleBudgetItemMember('${m}')" 
+                  style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 9px; border: 1.4px solid ${border}; background: ${bg}; color: ${color}; font-size: 0.74rem; font-weight: 800; cursor: pointer; transition: all 0.2s; box-shadow: ${shadow};">
+            ${avatar ? `<img src="${avatar}" style="width: 18px; height: 18px; border-radius: 50%; object-fit: cover;">` : ''}
+            <span>${m}</span>
+            ${isSelected ? '<i class="fa-solid fa-check" style="font-size: 0.65rem; margin-right: 2px;"></i>' : ''}
+          </button>
         `;
+      }).join('');
+
+      const textEl = document.getElementById('budgetSelectedMembersText');
+      if (textEl) {
+        textEl.textContent = selectedBudgetItemMembers.length > 0 ? selectedBudgetItemMembers.join(' + ') : 'البيت (مشترك)';
       }
-
-      // حساب الشهر التالي افتراضياً
-      const now = new Date();
-      now.setMonth(now.getMonth() + 1);
-      const nextMonthStr = now.toISOString().substring(0, 7);
-
-      if (monthInp) monthInp.value = nextMonthStr;
-      if (nameInp) nameInp.value = `ميزانية شهر ${nextMonthStr}`;
-      if (incInp) incInp.value = '85000';
-
-      openModal('newBudgetPlanModal');
     }
 
-    function submitNewBudgetPlan() {
-      const nameInp = document.getElementById('newPlanNameInput');
-      const monthInp = document.getElementById('newPlanMonthInput');
-      const incInp = document.getElementById('newPlanTargetIncomeInput');
-      const cloneSel = document.getElementById('newPlanCloneSourceSelect');
-
-      const name = nameInp ? nameInp.value.trim() : '';
-      const month = monthInp && monthInp.value ? monthInp.value : '2026-12';
-      const targetInc = parseFloat(incInp ? incInp.value : 0) || 85000;
-      const cloneSourceId = cloneSel ? cloneSel.value : 'none';
-
-      if (!name) {
-        showToast('⚠️ الرجاء إدخال مسمى للميزانية التقديرية الجديدة');
-        if (nameInp) nameInp.focus();
-        return;
-      }
-
-      let categories = {
-        food: 20000, daily: 4000, bills: 8000, transport: 6000,
-        house: 6000, health: 5000, clothes: 6000, education: 15000, other: 6000
-      };
-      let incomes = [
-        { id: 'inc-' + Date.now(), name: 'الدخل الشهري الأساسي', amount: targetInc, member: 'ماهر' }
-      ];
-
-      if (cloneSourceId !== 'none') {
-        const sourcePlan = (state.monthlyBudgets || []).find(b => b.id === cloneSourceId);
-        if (sourcePlan) {
-          categories = JSON.parse(JSON.stringify(sourcePlan.categories || categories));
-          incomes = JSON.parse(JSON.stringify(sourcePlan.incomes || incomes));
+    // التبديل بين تحديد/إلغاء تحديد فرد للبند الجديد (اختيار فرد أو أكثر)
+    function toggleBudgetItemMember(name) {
+      if (name === 'البيت') {
+        selectedBudgetItemMembers = ['البيت'];
+      } else {
+        // إزالة البيت إن وُجد اختيار فردي محدد
+        selectedBudgetItemMembers = selectedBudgetItemMembers.filter(m => m !== 'البيت');
+        if (selectedBudgetItemMembers.includes(name)) {
+          selectedBudgetItemMembers = selectedBudgetItemMembers.filter(m => m !== name);
+        } else {
+          selectedBudgetItemMembers.push(name);
+        }
+        if (selectedBudgetItemMembers.length === 0) {
+          selectedBudgetItemMembers = ['البيت'];
         }
       }
-
-      const newPlan = {
-        id: 'bgt-' + Date.now(),
-        name: name,
-        month: month,
-        categories: categories,
-        incomes: incomes,
-        notes: '',
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      };
-
-      if (!state.monthlyBudgets) state.monthlyBudgets = [];
-      state.monthlyBudgets.push(newPlan);
-      state.activeBudgetId = newPlan.id;
-
-      try {
-        localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
-      } catch(e) {}
-
-      closeModal('newBudgetPlanModal');
-      switchExpectedMainTab('monthly_budget');
-      showToast(`🎉 تم إنشاء الميزانية (${name}) وتفعيلها بنجاح! ✨`);
-      triggerDriveAutoSync();
+      renderBudgetMembersMultiPicker();
     }
 
-    function cloneCurrentBudgetPlan() {
+    // إضافة بند مصروف جديد للخطة التقديرية بديناميكية وربط متعدد بالأفراد
+    function addBudgetItemToCurrentPlan() {
       if (!currentBudgetMonthData) return;
-      const copy = JSON.parse(JSON.stringify(currentBudgetMonthData));
-      copy.id = 'bgt-' + Date.now();
-      copy.name = 'نسخة من ' + copy.name;
-      copy.createdAt = new Date().toISOString();
-      copy.updatedAt = new Date().toISOString();
 
-      state.monthlyBudgets.push(copy);
-      state.activeBudgetId = copy.id;
+      const catSel = document.getElementById('inpBudgetItemCategory');
+      const amtInp = document.getElementById('inpBudgetItemAmount');
+      const titleInp = document.getElementById('inpBudgetItemTitle');
 
-      try {
-        localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
-      } catch(e) {}
+      const catId = catSel ? catSel.value : 'other';
+      const amt = parseFloat(amtInp ? amtInp.value : 0);
+      let title = titleInp ? titleInp.value.trim() : '';
 
-      loadActiveBudgetPlan();
-      showToast(`📋 تم استنساخ الميزانية (${copy.name}) بنجاح!`);
-      triggerDriveAutoSync();
-    }
-
-    function deleteCurrentBudgetPlan() {
-      if (!currentBudgetMonthData) return;
-      if (state.monthlyBudgets.length <= 1) {
-        showToast('⚠️ لا يمكن حذف الميزانية الوحيدة المتبقية في النظام');
+      if (isNaN(amt) || amt <= 0) {
+        showToast('⚠️ الرجاء إدخال مبلغ تقديري صحيح للبند');
+        if (amtInp) amtInp.focus();
         return;
       }
 
-      if (!confirm(`هل أنت متأكد من حذف الميزانية (${currentBudgetMonthData.name}) نهائياً؟`)) return;
-
-      const deletedName = currentBudgetMonthData.name;
-      state.monthlyBudgets = state.monthlyBudgets.filter(b => b.id !== currentBudgetMonthData.id);
-      state.activeBudgetId = state.monthlyBudgets[0].id;
-
-      try {
-        localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
-      } catch(e) {}
-
-      loadActiveBudgetPlan();
-      showToast(`🗑️ تم حذف الميزانية (${deletedName})`);
-      triggerDriveAutoSync();
-    }
-
-    function saveMonthlyBudget() {
-      if (!currentBudgetMonthData) return;
-
-      const nameInp = document.getElementById('inpBudgetName');
-      const monthInp = document.getElementById('inpBudgetMonth');
-      if (nameInp && nameInp.value.trim()) currentBudgetMonthData.name = nameInp.value.trim();
-      if (monthInp && monthInp.value) currentBudgetMonthData.month = monthInp.value;
-
-      currentBudgetMonthData.updatedAt = new Date().toISOString();
-
-      const idx = state.monthlyBudgets.findIndex(b => b.id === currentBudgetMonthData.id);
-      if (idx !== -1) {
-        state.monthlyBudgets[idx] = currentBudgetMonthData;
-      } else {
-        state.monthlyBudgets.push(currentBudgetMonthData);
+      if (!title) {
+        const catObj = EXPENSE_CATEGORIES.find(c => c.id === catId);
+        title = catObj ? catObj.name : 'بند مصروف';
       }
 
-      try {
-        localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
-      } catch(e) {}
+      if (!currentBudgetMonthData.items) currentBudgetMonthData.items = [];
 
-      logActivity({
-        type: 'budget_updated',
-        action: 'تثبيت ميزانية تقديرية',
-        label: `اعتماد الميزانية التقديرية (${currentBudgetMonthData.name}) لشهر (${currentBudgetMonthData.month})`,
-        amount: Object.values(currentBudgetMonthData.categories).reduce((s, v) => s + v, 0),
-        member: 'البيت',
-        author: state.currentUser || 'ماهر'
-      });
+      const newItem = {
+        id: 'b-item-' + Date.now(),
+        category: catId,
+        title: title,
+        amount: amt,
+        members: selectedBudgetItemMembers.length > 0 ? [...selectedBudgetItemMembers] : ['البيت'],
+        notes: ''
+      };
 
-      populateBudgetPlanSelector();
-      playNotificationChime();
-      showToast(`💾 تم حفظ وتثبيت الميزانية (${currentBudgetMonthData.name}) بنجاح! ✨`);
+      currentBudgetMonthData.items.push(newItem);
+      syncBudgetCategoriesMap(currentBudgetMonthData);
 
-      if (typeof renderComparisonsSection === 'function') {
-        renderComparisonsSection();
-      }
-      triggerDriveAutoSync();
-    }
-
-    function setProrateView(view, btnEl) {
-      state.activeProrateView = view;
-      document.querySelectorAll('#panelMonthlyBudget .btn-export-tool').forEach(b => {
-        b.classList.remove('active');
-        b.style.background = '';
-        b.style.color = '';
-      });
-      if (btnEl) {
-        btnEl.classList.add('active');
-        btnEl.style.background = 'rgba(56, 189, 248, 0.2)';
-        btnEl.style.color = '#38bdf8';
-      }
-
-      const badge = document.getElementById('budgetProrateNoteBadge');
-      if (badge) {
-        if (view === 'day') badge.textContent = 'معروض باليوم (نسبة 1/30)';
-        else if (view === 'week') badge.textContent = 'معروض بالأسبوع (نسبة 7/30)';
-        else badge.textContent = 'معروض بالشهر كاملاً';
-      }
+      // تنظيف الخانات بعد الإضافة
+      if (amtInp) amtInp.value = '';
+      if (titleInp) titleInp.value = '';
+      selectedBudgetItemMembers = ['البيت'];
+      renderBudgetMembersMultiPicker();
 
       renderMonthlyBudgetAllocations();
+      showToast(`➕ تم إضافة بند (${title} - ${formatMoney(amt)}) بنجاح! ✨`);
     }
 
+    // حذف بند مصروف من الميزانية
+    function deleteBudgetItem(itemId) {
+      if (!currentBudgetMonthData || !currentBudgetMonthData.items) return;
+      const it = currentBudgetMonthData.items.find(i => i.id === itemId);
+      const title = it ? it.title : 'هذا البند';
+      currentBudgetMonthData.items = currentBudgetMonthData.items.filter(i => i.id !== itemId);
+      syncBudgetCategoriesMap(currentBudgetMonthData);
+      renderMonthlyBudgetAllocations();
+      showToast(`🗑️ تم حذف بند: ${title}`);
+    }
+
+    // تعديل مبلغ بند مصروف
+    function editBudgetItemAmount(itemId) {
+      if (!currentBudgetMonthData || !currentBudgetMonthData.items) return;
+      const it = currentBudgetMonthData.items.find(i => i.id === itemId);
+      if (!it) return;
+
+      const newAmtStr = prompt(`تعديل المبلغ التقديري لبند "${it.title}" (ج.م):`, it.amount);
+      if (newAmtStr === null) return;
+      const newAmt = parseFloat(newAmtStr);
+      if (isNaN(newAmt) || newAmt <= 0) {
+        showToast('⚠️ تم إلغاء التعديل: المبلغ غير صالح');
+        return;
+      }
+      it.amount = newAmt;
+      syncBudgetCategoriesMap(currentBudgetMonthData);
+      renderMonthlyBudgetAllocations();
+      showToast(`✏️ تم تعديل بند "${it.title}" إلى ${formatMoney(newAmt)}`);
+    }
+
+    // رسم كافة بنود الميزانية التقديرية الحالية
     function renderMonthlyBudgetAllocations() {
       if (!currentBudgetMonthData) return;
+      ensureBudgetItems(currentBudgetMonthData);
 
-      const grid = document.getElementById('budgetCategoryInputsGrid');
+      const itemsContainer = document.getElementById('budgetItemsListContainer');
       const incCont = document.getElementById('budgetIncomeRowsContainer');
-      const catFilter = document.getElementById('budgetCategoryFilter');
-      const selectedCat = catFilter ? catFilter.value : 'all';
-
-      // معامل التوزيع التناسبي
-      let multiplier = 1;
-      if (state.activeProrateView === 'week') multiplier = 7 / 30;
-      else if (state.activeProrateView === 'day') multiplier = 1 / 30;
+      const countBadge = document.getElementById('budgetItemsCountBadge');
 
       const targetMonth = currentBudgetMonthData.month || '2026-11';
       const monthExpenses = (state.transactions || []).filter(t => t.type === 'expense' && t.date && t.date.startsWith(targetMonth));
       const totalActualMonth = monthExpenses.reduce((s, t) => s + (Number(t.amount) || 0), 0);
-      const totalBudgetMonth = Object.values(currentBudgetMonthData.categories || {}).reduce((s, v) => s + (Number(v) || 0), 0);
+      const totalBudgetMonth = (currentBudgetMonthData.items || []).reduce((s, it) => s + (Number(it.amount) || 0), 0);
 
       // تحديث شريط الرقابة المالية الإجمالي (الفعلي مقابل المقدر)
       const summaryTxt = document.getElementById('budgetActualSummaryTxt');
       const progBar = document.getElementById('budgetActualProgressBar');
       if (summaryTxt) {
         const overallPct = totalBudgetMonth > 0 ? ((totalActualMonth / totalBudgetMonth) * 100).toFixed(1) : 0;
-        summaryTxt.innerHTML = `الفعلي لشهر (${targetMonth}): <strong>${formatMoney(totalActualMonth)}</strong> من أصل <strong>${formatMoney(totalBudgetMonth)}</strong> (${overallPct}%)`;
+        summaryTxt.innerHTML = `المنصرف الفعلي لشهر (${targetMonth}): <strong>${formatMoney(totalActualMonth)}</strong> من أصل مقدر <strong>${formatMoney(totalBudgetMonth)}</strong> (${overallPct}%)`;
       }
       if (progBar) {
         const pctVal = totalBudgetMonth > 0 ? Math.min(100, (totalActualMonth / totalBudgetMonth) * 100) : 0;
@@ -22276,79 +22236,109 @@ function exportActivityLogExcel() {
         progBar.style.background = (totalActualMonth > totalBudgetMonth) ? '#ef4444' : '#38bdf8';
       }
 
-      // 1. رسم بنود المصروفات مع المقارنة الحية الفعلية
-      if (grid) {
-        const cats = typeof EXPENSE_CATEGORIES !== 'undefined' ? EXPENSE_CATEGORIES : [];
-
-        grid.innerHTML = cats.map(c => {
-          if (selectedCat !== 'all' && c.id !== selectedCat) return '';
-
-          const baseAmt = currentBudgetMonthData.categories[c.id] || 0;
-          const displayAmt = Math.round(baseAmt * multiplier);
-
-          // حساب المنصرف الفعلي في هذا البند
-          const catActual = monthExpenses.filter(t => t.category === c.id).reduce((s, t) => s + (Number(t.amount) || 0), 0);
-          const catPct = baseAmt > 0 ? ((catActual / baseAmt) * 100).toFixed(0) : 0;
-          const isOver = catActual > baseAmt;
-
-          return `
-            <div style="background: rgba(30, 41, 59, 0.7); border: 1.2px solid ${c.color}50; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px;">
-              <div style="display: flex; align-items: center; justify-content: space-between;">
-                <span style="font-size: 0.82rem; font-weight: 800; color: #f1f5f9; display: flex; align-items: center; gap: 6px;">
-                  <i class="fa-solid ${c.icon}" style="color: ${c.color};"></i> ${c.name}
-                </span>
-                <span style="font-size: 0.70rem; color: #38bdf8; font-weight: 800;">
-                  ${state.activeProrateView === 'month' ? 'شهري' : (state.activeProrateView === 'week' ? 'أسبوعي' : 'يومي')}
-                </span>
-              </div>
-
-              <!-- خانة إدخال التقدير -->
-              <div style="display: flex; align-items: center; gap: 6px;">
-                <input type="number" step="100" class="form-input-custom budget-cat-input" data-cat-id="${c.id}" value="${displayAmt}" oninput="onBudgetCategoryInputChange('${c.id}', this.value)" style="flex: 1; height: 36px; font-weight: 900; font-size: 0.95rem; text-align: center; color: #f87171; border-radius: 8px; box-sizing: border-box;">
-                <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 800;">ج.م</span>
-              </div>
-
-              <!-- مؤشر المقارنة الفعلية -->
-              <div style="background: rgba(15, 23, 42, 0.6); padding: 5px 8px; border-radius: 8px; font-size: 0.70rem; display: flex; justify-content: space-between; align-items: center;">
-                <span style="color: #94a3b8;">المنصرف الفعلي:</span>
-                <span style="font-weight: 800; color: ${isOver ? '#f87171' : '#34d399'};">
-                  ${formatMoney(catActual)} (${catPct}%)
-                </span>
-              </div>
-              <div style="width: 100%; height: 5px; background: rgba(15, 23, 42, 0.9); border-radius: 3px; overflow: hidden;">
-                <div style="height: 100%; width: ${Math.min(100, catPct)}%; background: ${isOver ? '#ef4444' : c.color};"></div>
-              </div>
-              ${isOver ? `<div style="font-size: 0.66rem; color: #f87171; font-weight: 800;"><i class="fa-solid fa-triangle-exclamation"></i> تجاوز للميزانية (+${formatMoney(catActual - baseAmt)})</div>` : ''}
-            </div>
-          `;
-        }).join('');
+      if (countBadge) {
+        countBadge.textContent = `${(currentBudgetMonthData.items || []).length} بند`;
       }
 
-      // 2. رسم مصادر الدخل
+      // رسم كروت بنود المصروفات التقديرية
+      if (itemsContainer) {
+        const items = currentBudgetMonthData.items || [];
+        if (items.length === 0) {
+          itemsContainer.innerHTML = `
+            <div style="background: rgba(15, 23, 42, 0.6); border: 1.5px dashed rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; text-align: center; color: #94a3b8;">
+              <i class="fa-solid fa-clipboard-list" style="font-size: 1.8rem; color: #38bdf8; margin-bottom: 6px;"></i>
+              <div style="font-size: 0.85rem; font-weight: 800; color: #cbd5e1;">لا توجد بنود مصروفات مضافة بعد</div>
+              <div style="font-size: 0.72rem; margin-top: 3px;">اختر نوع المصروف وحدد الأفراد والمبلغ من الأعلى، ثم انقر "إضافة البند للميزانية"</div>
+            </div>
+          `;
+        } else {
+          itemsContainer.innerHTML = items.map((it, idx) => {
+            const cat = EXPENSE_CATEGORIES.find(c => c.id === it.category) || { name: 'أخرى', icon: 'fa-cube', color: '#38bdf8', emoji: '📦' };
+            
+            // حساب المنصرف الفعلي في هذا التصنيف للشهر
+            const catActual = monthExpenses.filter(t => t.category === it.category).reduce((s, t) => s + (Number(t.amount) || 0), 0);
+            const isOver = catActual > it.amount;
+
+            // شارات أفراد الأسرة المرتبطين بهذا البند
+            const memberChips = (it.members || ['البيت']).map(m => {
+              const avatar = (typeof MEMBER_AVATARS !== 'undefined' && MEMBER_AVATARS[m]) ? MEMBER_AVATARS[m] : '';
+              return `
+                <span style="display: inline-flex; align-items: center; gap: 4px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; padding: 2px 7px; border-radius: 6px; font-size: 0.68rem; font-weight: 800;">
+                  ${avatar ? `<img src="${avatar}" style="width: 14px; height: 14px; border-radius: 50%; object-fit: cover;">` : ''}
+                  ${m}
+                </span>
+              `;
+            }).join(' ');
+
+            return `
+              <div style="background: rgba(30, 41, 59, 0.82); border: 1.4px solid ${cat.color}45; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+                <!-- سطر العنوان والتصنيف والأفراد -->
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                  <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+                    <div style="width: 32px; height: 32px; border-radius: 8px; background: ${cat.color}25; border: 1px solid ${cat.color}50; color: ${cat.color}; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;">
+                      <i class="fa-solid ${cat.icon}"></i>
+                    </div>
+                    <div>
+                      <div style="font-size: 0.86rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                        <span>${escapeHtml(it.title)}</span>
+                        <span style="font-size: 0.65rem; background: ${cat.color}20; color: ${cat.color}; border: 1px solid ${cat.color}40; padding: 1px 6px; border-radius: 5px;">${cat.name}</span>
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 4px; margin-top: 3px; flex-wrap: wrap;">
+                        <span style="font-size: 0.66rem; color: #94a3b8; font-weight: 700;">يخص:</span>
+                        ${memberChips}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- المبلغ وأزرار التعديل والحذف -->
+                  <div style="text-align: left; display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+                    <div style="font-size: 1.05rem; font-weight: 900; color: #f87171; direction: ltr;">
+                      - ${formatMoney(it.amount)}
+                    </div>
+                    <div style="display: flex; gap: 5px;">
+                      <button type="button" onclick="editBudgetItemAmount('${it.id}')" title="تعديل المبلغ" style="padding: 2px 7px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; font-size: 0.68rem; font-weight: 800; cursor: pointer;">
+                        <i class="fa-solid fa-pencil"></i> تعديل
+                      </button>
+                      <button type="button" onclick="deleteBudgetItem('${it.id}')" title="حذف البند" style="padding: 2px 7px; border-radius: 6px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171; font-size: 0.68rem; font-weight: 800; cursor: pointer;">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- شريط المقارنة الحية الفعلية للتصنيف -->
+                <div style="background: rgba(15, 23, 42, 0.7); border-radius: 6px; padding: 4px 8px; font-size: 0.68rem; display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: #94a3b8;">إجمالي منصرف تصنيف (${cat.name}) فعلياً: <strong style="color: #cbd5e1;">${formatMoney(catActual)}</strong></span>
+                  <span style="font-weight: 800; color: ${isOver ? '#f87171' : '#34d399'};">
+                    ${isOver ? '⚠️ تجاوز التقدير' : '✅ ضمن الميزانية'}
+                  </span>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
+      // رسم صفوف مصادر الدخل
       if (incCont) {
         const incomes = currentBudgetMonthData.incomes || [];
-        incCont.innerHTML = incomes.map((inc, idx) => {
-          return `
-            <div style="display: flex; gap: 6px; align-items: center; background: rgba(30, 41, 59, 0.6); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06);">
-              <input type="text" value="${escapeHtml(inc.name)}" placeholder="مصدر الدخل" onchange="updateBudgetIncome(${idx}, 'name', this.value)" style="flex: 2; height: 32px; font-size: 0.76rem; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 6px; padding: 0 8px;">
-              <input type="number" step="500" value="${inc.amount}" placeholder="المبلغ" onchange="updateBudgetIncome(${idx}, 'amount', this.value)" style="flex: 1.2; height: 32px; font-size: 0.85rem; font-weight: 900; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; text-align: center; border-radius: 6px;">
-              <button type="button" onclick="removeBudgetIncome(${idx})" style="width: 32px; height: 32px; border-radius: 6px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; cursor: pointer;"><i class="fa-solid fa-trash-can"></i></button>
+        incCont.innerHTML = incomes.map((inc, idx) => `
+          <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr auto; gap: 6px; align-items: center; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 9px; padding: 6px 8px;">
+            <input type="text" class="form-input-custom" value="${escapeHtml(inc.name || '')}" placeholder="مصدر الدخل" onchange="updateBudgetIncome(${idx}, 'name', this.value)" style="height: 32px; font-size: 0.76rem; font-weight: 800;">
+            <div style="display: flex; align-items: center; gap: 4px;">
+              <input type="number" step="500" class="form-input-custom" value="${inc.amount || 0}" oninput="updateBudgetIncome(${idx}, 'amount', this.value)" style="height: 32px; font-size: 0.84rem; font-weight: 900; text-align: center; color: #34d399; flex: 1;">
+              <span style="font-size: 0.68rem; color: #94a3b8;">ج.م</span>
             </div>
-          `;
-        }).join('');
+            <select class="form-select-custom" onchange="updateBudgetIncome(${idx}, 'member', this.value)" style="height: 32px; font-size: 0.74rem; font-weight: 800;">
+              ${(typeof FAMILY_MEMBERS !== 'undefined' ? FAMILY_MEMBERS : ['ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'البيت']).map(m => `<option value="${m}" ${inc.member === m ? 'selected' : ''}>${m}</option>`).join('')}
+            </select>
+            <button type="button" onclick="removeBudgetIncome(${idx})" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171; border-radius: 6px; width: 30px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+              <i class="fa-solid fa-trash-can" style="font-size: 0.75rem;"></i>
+            </button>
+          </div>
+        `).join('');
       }
 
-      updateBudgetKpis();
-    }
-
-    function onBudgetCategoryInputChange(catId, val) {
-      if (!currentBudgetMonthData) return;
-      const num = parseFloat(val) || 0;
-      let multiplier = 1;
-      if (state.activeProrateView === 'week') multiplier = 7 / 30;
-      else if (state.activeProrateView === 'day') multiplier = 1 / 30;
-
-      currentBudgetMonthData.categories[catId] = Math.round(num / multiplier);
       updateBudgetKpis();
     }
 
@@ -22357,20 +22347,17 @@ function exportActivityLogExcel() {
       if (!currentBudgetMonthData.incomes) currentBudgetMonthData.incomes = [];
       currentBudgetMonthData.incomes.push({
         id: 'inc-' + Date.now(),
-        name: 'إيراد إضافي جديد',
-        amount: 5000,
-        member: state.currentUser || 'ماهر'
+        name: 'مصدر دخل جديد',
+        amount: 10000,
+        member: 'ماهر'
       });
       renderMonthlyBudgetAllocations();
     }
 
     function updateBudgetIncome(idx, field, val) {
-      if (!currentBudgetMonthData || !currentBudgetMonthData.incomes[idx]) return;
-      if (field === 'amount') {
-        currentBudgetMonthData.incomes[idx].amount = parseFloat(val) || 0;
-      } else {
-        currentBudgetMonthData.incomes[idx].name = val;
-      }
+      if (!currentBudgetMonthData || !currentBudgetMonthData.incomes || !currentBudgetMonthData.incomes[idx]) return;
+      if (field === 'amount') val = parseFloat(val) || 0;
+      currentBudgetMonthData.incomes[idx][field] = val;
       updateBudgetKpis();
     }
 
@@ -22383,26 +22370,161 @@ function exportActivityLogExcel() {
     function updateBudgetKpis() {
       if (!currentBudgetMonthData) return;
 
-      let multiplier = 1;
-      if (state.activeProrateView === 'week') multiplier = 7 / 30;
-      else if (state.activeProrateView === 'day') multiplier = 1 / 30;
+      const totalIncome = (currentBudgetMonthData.incomes || []).reduce((s, inc) => s + (Number(inc.amount) || 0), 0);
+      const totalExpense = (currentBudgetMonthData.items || []).reduce((s, it) => s + (Number(it.amount) || 0), 0);
+      const surplus = totalIncome - totalExpense;
 
-      const totalMonthlyInc = (currentBudgetMonthData.incomes || []).reduce((s, i) => s + (Number(i.amount) || 0), 0);
-      const totalMonthlyExp = Object.values(currentBudgetMonthData.categories || {}).reduce((s, v) => s + (Number(v) || 0), 0);
+      const incEl = document.getElementById('budgetKpiIncome');
+      const expEl = document.getElementById('budgetKpiExpense');
+      const surEl = document.getElementById('budgetKpiSurplus');
 
-      const dispInc = Math.round(totalMonthlyInc * multiplier);
-      const dispExp = Math.round(totalMonthlyExp * multiplier);
-      const surplus = dispInc - dispExp;
+      if (incEl) incEl.textContent = `+ ${formatMoney(totalIncome)}`;
+      if (expEl) expEl.textContent = `- ${formatMoney(totalExpense)}`;
+      if (surEl) {
+        surEl.textContent = (surplus >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(surplus));
+        surEl.style.color = (surplus >= 0) ? '#34d399' : '#f87171';
+      }
+    }
 
-      const kpiInc = document.getElementById('budgetKpiIncome');
-      const kpiExp = document.getElementById('budgetKpiExpense');
-      const kpiSurplus = document.getElementById('budgetKpiSurplus');
+    function saveMonthlyBudget() {
+      if (!currentBudgetMonthData) return;
+      currentBudgetMonthData.updatedAt = new Date().toISOString();
+      syncBudgetCategoriesMap(currentBudgetMonthData);
 
-      if (kpiInc) kpiInc.textContent = '+ ' + formatMoney(dispInc);
-      if (kpiExp) kpiExp.textContent = '- ' + formatMoney(dispExp);
-      if (kpiSurplus) {
-        kpiSurplus.textContent = (surplus >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(surplus));
-        kpiSurplus.style.color = surplus >= 0 ? '#38bdf8' : '#f87171';
+      const idx = state.monthlyBudgets.findIndex(b => b.id === currentBudgetMonthData.id);
+      if (idx >= 0) {
+        state.monthlyBudgets[idx] = currentBudgetMonthData;
+      } else {
+        state.monthlyBudgets.push(currentBudgetMonthData);
+      }
+
+      try {
+        localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
+      } catch(e) {}
+
+      populateBudgetPlanSelector();
+      playNotificationChime();
+      showToast(`💾 تم حفظ وتثبيت خطة (${currentBudgetMonthData.name}) بنجاح! ✨`);
+      triggerDriveAutoSync();
+    }
+
+    function openNewBudgetPlanModal() {
+      const monthInp = document.getElementById('newPlanMonthInput');
+      const nameInp = document.getElementById('newPlanNameInput');
+      const incInp = document.getElementById('newPlanTargetIncomeInput');
+      const cloneSel = document.getElementById('newPlanCloneSourceSelect');
+
+      const nextMonth = new Date();
+      nextMonth.setMonth(nextMonth.getMonth() + 1);
+      const yyyyMm = nextMonth.toISOString().slice(0, 7);
+
+      if (monthInp) monthInp.value = yyyyMm;
+      if (nameInp) nameInp.value = `ميزانية شهر ${yyyyMm} التقديرية`;
+      if (incInp) incInp.value = 85000;
+
+      if (cloneSel) {
+        cloneSel.innerHTML = '<option value="none">✨ خطة فارغة جديدة (قيم افتراضية متوازنة)</option>' +
+          (state.monthlyBudgets || []).map(b => `<option value="${b.id}">📑 استنساخ من: ${escapeHtml(b.name)} [${b.month}]</option>`).join('');
+      }
+
+      openModal('newBudgetPlanModal');
+    }
+
+    function submitNewBudgetPlan() {
+      const monthInp = document.getElementById('newPlanMonthInput');
+      const nameInp = document.getElementById('newPlanNameInput');
+      const incInp = document.getElementById('newPlanTargetIncomeInput');
+      const cloneSel = document.getElementById('newPlanCloneSourceSelect');
+
+      const month = monthInp && monthInp.value ? monthInp.value : '2026-12';
+      const name = nameInp && nameInp.value.trim() ? nameInp.value.trim() : `ميزانية شهر ${month}`;
+      const targetIncome = parseFloat(incInp ? incInp.value : 85000) || 85000;
+      const cloneFromId = cloneSel ? cloneSel.value : 'none';
+
+      let items = [];
+      let incomes = [
+        { id: 'inc-' + Date.now(), name: 'راتب ماهر الأساسي', amount: targetIncome, member: 'ماهر' }
+      ];
+
+      if (cloneFromId !== 'none') {
+        const src = (state.monthlyBudgets || []).find(b => b.id === cloneFromId);
+        if (src) {
+          ensureBudgetItems(src);
+          items = JSON.parse(JSON.stringify(src.items || []));
+          incomes = JSON.parse(JSON.stringify(src.incomes || []));
+        }
+      } else {
+        items = [
+          { id: 'it-1', category: 'food', title: 'طعام ومشتريات وسوبرماركت', amount: 20000, members: ['البيت'], notes: '' },
+          { id: 'it-2', category: 'bills', title: 'فواتير والتزامات شهرية', amount: 8000, members: ['البيت'], notes: '' },
+          { id: 'it-3', category: 'transport', title: 'مواصلات وبنزين سيارة', amount: 6000, members: ['ماهر'], notes: '' },
+          { id: 'it-4', category: 'education', title: 'تعليم ودروس سناتر ومذكرات', amount: 15000, members: ['محمد', 'مريم'], notes: '' },
+          { id: 'it-5', category: 'daily', title: 'مصروف يومي شخصي', amount: 4000, members: ['ماهر', 'أية'], notes: '' }
+        ];
+      }
+
+      const newPlan = {
+        id: 'bgt-' + month + '-' + Date.now(),
+        name: name,
+        month: month,
+        items: items,
+        incomes: incomes,
+        categories: {},
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+      syncBudgetCategoriesMap(newPlan);
+
+      if (!state.monthlyBudgets) state.monthlyBudgets = [];
+      state.monthlyBudgets.unshift(newPlan);
+      state.activeBudgetId = newPlan.id;
+
+      try {
+        localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
+      } catch(e) {}
+
+      closeModal('newBudgetPlanModal');
+      loadActiveBudgetPlan();
+      showToast(`🎉 تم إنشاء وتفعيل الخطة التقديرية الجديدة: (${name})`);
+      triggerDriveAutoSync();
+    }
+
+    function cloneCurrentBudgetPlan() {
+      if (!currentBudgetMonthData) return;
+      ensureBudgetItems(currentBudgetMonthData);
+
+      const clone = JSON.parse(JSON.stringify(currentBudgetMonthData));
+      clone.id = 'bgt-copy-' + Date.now();
+      clone.name = clone.name + ' (نسخة)';
+      clone.createdAt = new Date().toISOString();
+      clone.updatedAt = new Date().toISOString();
+
+      state.monthlyBudgets.unshift(clone);
+      state.activeBudgetId = clone.id;
+
+      try {
+        localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
+      } catch(e) {}
+
+      loadActiveBudgetPlan();
+      showToast(`📑 تم استنساخ الخطة بنجاح`);
+    }
+
+    function deleteCurrentBudgetPlan() {
+      if (!currentBudgetMonthData) return;
+      if ((state.monthlyBudgets || []).length <= 1) {
+        showToast('⚠️ لا يمكن حذف الخطة الوحيدة المتبقية في النظام');
+        return;
+      }
+
+      if (confirm(`هل أنت متأكد من حذف خطة "${currentBudgetMonthData.name}" نهائياً؟`)) {
+        state.monthlyBudgets = state.monthlyBudgets.filter(b => b.id !== currentBudgetMonthData.id);
+        state.activeBudgetId = state.monthlyBudgets[0].id;
+        try {
+          localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
+        } catch(e) {}
+        loadActiveBudgetPlan();
+        showToast('🗑️ تم حذف الخطة بنجاح');
       }
     }
 
@@ -22410,54 +22532,54 @@ function exportActivityLogExcel() {
       const container = document.getElementById('budgetHistoryListContainer');
       if (!container) return;
 
-      const list = state.monthlyBudgets || [];
-      if (list.length === 0) {
-        container.innerHTML = `
-          <div style="text-align: center; padding: 24px; color: #64748b; font-size: 0.85rem;">
-            <i class="fa-solid fa-clock-rotate-left" style="font-size: 2rem; margin-bottom: 8px; opacity: 0.5;"></i>
-            <p>لا توجد ميزانيات تقديرية محفوظة في السجل حتى الآن</p>
-          </div>
-        `;
+      if (!state.monthlyBudgets || state.monthlyBudgets.length === 0) {
+        container.innerHTML = '<div style="text-align: center; color: #94a3b8; padding: 20px;">لا توجد خطط سابقة محفوظة</div>';
         return;
       }
 
-      container.innerHTML = list.map(b => {
-        const totalInc = (b.incomes || []).reduce((s, i) => s + (Number(i.amount) || 0), 0);
-        const totalExp = Object.values(b.categories || {}).reduce((s, v) => s + (Number(v) || 0), 0);
+      container.innerHTML = state.monthlyBudgets.map(b => {
+        ensureBudgetItems(b);
+        const totalInc = (b.incomes || []).reduce((s, inc) => s + (Number(inc.amount) || 0), 0);
+        const totalExp = (b.items || []).reduce((s, it) => s + (Number(it.amount) || 0), 0);
         const surplus = totalInc - totalExp;
-        const isCurrent = b.id === state.activeBudgetId;
-
-        // حساب الفعلي في ذلك الشهر
-        const actualMonth = (state.transactions || []).filter(t => t.type === 'expense' && t.date && t.date.startsWith(b.month)).reduce((s, t) => s + (Number(t.amount) || 0), 0);
+        const isActive = (b.id === state.activeBudgetId);
 
         return `
-          <div class="budget-plan-card" style="${isCurrent ? 'border-color: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);' : ''}">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 0.95rem; font-weight: 800; color: #f1f5f9;">${escapeHtml(b.name)}</span>
-                <span style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 1px 7px; border-radius: 6px; font-size: 0.70rem; font-weight: 800; white-space: nowrap;">
-                  📅 ${b.month}
-                </span>
-                ${isCurrent ? '<span style="background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 1px 7px; border-radius: 6px; font-size: 0.68rem; font-weight: 800;">الخطة النشطة ✔</span>' : ''}
+          <div style="background: rgba(30, 41, 59, 0.85); border: 1.4px solid ${isActive ? '#38bdf8' : 'rgba(255,255,255,0.08)'}; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 0.90rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                  <span>${escapeHtml(b.name)}</span>
+                  ${isActive ? '<span style="font-size: 0.65rem; background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 1px 6px; border-radius: 5px;">الخطة النشطة</span>' : ''}
+                </div>
+                <div style="font-size: 0.70rem; color: #94a3b8; margin-top: 2px;">
+                  الشهر: <strong style="color: #cbd5e1;">${b.month}</strong> • عدد البنود: <strong style="color: #38bdf8;">${(b.items || []).length} بند</strong>
+                </div>
               </div>
+
               <div style="display: flex; gap: 6px;">
-                <button type="button" onclick="restoreBudgetForView('${b.id}')" class="btn-wallet-action-pill" style="height: 30px; padding: 0 10px; font-size: 0.72rem; font-weight: 800; background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; cursor: pointer; border-radius: 6px; border: none;">
-                  <i class="fa-solid fa-eye"></i> فتح وتعديل
+                <button type="button" onclick="restoreBudgetForView('${b.id}')" style="padding: 6px 12px; border-radius: 8px; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; color: #fff; font-size: 0.74rem; font-weight: 800; cursor: pointer;">
+                  <i class="fa-solid fa-folder-open"></i> عرض وتعديل
                 </button>
-                <button type="button" onclick="cloneBudgetFromHistory('${b.id}')" class="btn-wallet-action-pill" style="height: 30px; padding: 0 8px; font-size: 0.72rem; font-weight: 800; background: rgba(56, 189, 248, 0.15); color: #38bdf8; cursor: pointer; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.35);" title="استنساخ هذه الميزانية">
-                  <i class="fa-solid fa-copy"></i>
-                </button>
-                <button type="button" onclick="deleteBudgetFromHistory('${b.id}')" class="btn-wallet-action-pill" style="height: 30px; padding: 0 8px; font-size: 0.72rem; font-weight: 800; background: rgba(239, 68, 68, 0.15); color: #f87171; cursor: pointer; border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.35);" title="حذف هذه الميزانية">
+                <button type="button" onclick="deleteBudgetFromHistory('${b.id}')" style="padding: 6px 8px; border-radius: 8px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171; font-size: 0.74rem; font-weight: 800; cursor: pointer;" title="حذف">
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
               </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 6px; margin-top: 8px; background: rgba(15, 23, 42, 0.6); padding: 8px 10px; border-radius: 8px; font-size: 0.74rem;">
-              <div>الدخل المتوقع: <strong style="color: #34d399; direction: ltr; display: inline-block;">+${formatMoney(totalInc)}</strong></div>
-              <div>المصروف المقدر: <strong style="color: #f87171; direction: ltr; display: inline-block;">-${formatMoney(totalExp)}</strong></div>
-              <div>الفائض التقديري: <strong style="color: ${surplus >= 0 ? '#38bdf8' : '#f87171'}; direction: ltr; display: inline-block;">${formatMoney(surplus)}</strong></div>
-              <div>الفعلي المنصرف: <strong style="color: #fbbf24; direction: ltr; display: inline-block;">${formatMoney(actualMonth)}</strong></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; background: rgba(15, 23, 42, 0.6); border-radius: 8px; padding: 6px 8px; text-align: center; font-size: 0.74rem;">
+              <div>
+                <div style="font-size: 0.64rem; color: #34d399;">دخل متوقع</div>
+                <div style="font-weight: 900; color: #34d399;">+ ${formatMoney(totalInc)}</div>
+              </div>
+              <div>
+                <div style="font-size: 0.64rem; color: #f87171;">مصروفات مقدرة</div>
+                <div style="font-weight: 900; color: #f87171;">- ${formatMoney(totalExp)}</div>
+              </div>
+              <div>
+                <div style="font-size: 0.64rem; color: #38bdf8;">فائض / عجز</div>
+                <div style="font-weight: 900; color: ${surplus >= 0 ? '#34d399' : '#f87171'};">${(surplus >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(surplus))}</div>
+              </div>
             </div>
           </div>
         `;
@@ -22469,95 +22591,33 @@ function exportActivityLogExcel() {
       switchExpectedMainTab('monthly_budget');
     }
 
-    function cloneBudgetFromHistory(budgetId) {
-      const source = (state.monthlyBudgets || []).find(b => b.id === budgetId);
-      if (!source) return;
-      const copy = JSON.parse(JSON.stringify(source));
-      copy.id = 'bgt-' + Date.now();
-      copy.name = 'نسخة من ' + copy.name;
-      copy.createdAt = new Date().toISOString();
-      copy.updatedAt = new Date().toISOString();
-
-      state.monthlyBudgets.push(copy);
-      state.activeBudgetId = copy.id;
-
-      try {
-        localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
-      } catch(e) {}
-
-      renderBudgetHistory();
-      showToast(`📋 تم استنساخ الميزانية (${copy.name}) بنجاح!`);
-      triggerDriveAutoSync();
-    }
-
     function deleteBudgetFromHistory(budgetId) {
-      if (state.monthlyBudgets.length <= 1) {
-        showToast('⚠️ لا يمكن حذف الميزانية الوحيدة المتبقية');
+      if ((state.monthlyBudgets || []).length <= 1) {
+        showToast('⚠️ لا يمكن حذف الخطة الوحيدة المتبقية في النظام');
         return;
       }
-      const target = (state.monthlyBudgets || []).find(b => b.id === budgetId);
-      if (!target) return;
-
-      if (!confirm(`هل أنت متأكد من حذف الميزانية (${target.name})؟`)) return;
-
-      state.monthlyBudgets = state.monthlyBudgets.filter(b => b.id !== budgetId);
-      if (state.activeBudgetId === budgetId) {
-        state.activeBudgetId = state.monthlyBudgets[0].id;
+      if (confirm('هل أنت متأكد من حذف هذه الخطة من السجل؟')) {
+        state.monthlyBudgets = state.monthlyBudgets.filter(b => b.id !== budgetId);
+        if (state.activeBudgetId === budgetId) {
+          state.activeBudgetId = state.monthlyBudgets[0].id;
+        }
+        try {
+          localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
+        } catch(e) {}
+        renderBudgetHistory();
+        showToast('🗑️ تم حذف الخطة من السجل');
       }
-
-      try {
-        localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
-      } catch(e) {}
-
-      renderBudgetHistory();
-      showToast(`🗑️ تم حذف الميزانية (${target.name})`);
-      triggerDriveAutoSync();
     }
 
     function getProratedBudgetForPeriod(periodStr) {
-      if (!state.monthlyBudgets || state.monthlyBudgets.length === 0) return { totalExp: 0, byCat: {} };
-
-      const now = new Date();
-      const currentMonthKey = (typeof getLocalDateStr === 'function' ? getLocalDateStr(now) : now.toISOString()).substring(0, 7);
-      const bData = (state.monthlyBudgets || []).find(b => b.month === currentMonthKey) || state.monthlyBudgets[0];
-
-      if (!bData) return { totalExp: 0, byCat: {} };
-
-      let multiplier = 1;
-      if (periodStr === 'day' || periodStr === 'today') multiplier = 1 / 30;
-      else if (periodStr === 'week') multiplier = 7 / 30;
-      else if (periodStr === 'month') multiplier = 1;
-      else multiplier = 1;
-
-      const byCat = {};
-      let totalExp = 0;
-      for (const [cId, val] of Object.entries(bData.categories || {})) {
-        const prorated = Math.round((Number(val) || 0) * multiplier);
-        byCat[cId] = prorated;
-        totalExp += prorated;
-      }
-
-      return { totalExp, byCat };
+      if (!currentBudgetMonthData) return 0;
+      ensureBudgetItems(currentBudgetMonthData);
+      const totalBudget = (currentBudgetMonthData.items || []).reduce((s, it) => s + (Number(it.amount) || 0), 0);
+      if (periodStr === 'month') return totalBudget;
+      if (periodStr === 'week') return Math.round(totalBudget * (7 / 30));
+      if (periodStr === 'day' || periodStr === 'today') return Math.round(totalBudget / 30);
+      return totalBudget;
     }
-
-    function renderMemberAnalyticsSelectorStrip() {
-      const strip = document.getElementById('memberAnalyticsSelectorStrip');
-      if (!strip) return;
-
-      const members = ['الكل', 'البيت', 'ماهر', 'آية', 'محمد', 'مريم', 'الحاجة', 'النونُو', 'أخرى'];
-      strip.innerHTML = members.map(m => {
-        const isAct = (typeof currentAnalyticsMember !== 'undefined' ? currentAnalyticsMember : 'الكل') === m;
-        const photo = (m !== 'الكل' && typeof MEMBER_AVATARS !== 'undefined') ? MEMBER_AVATARS[m] : null;
-
-        return `
-          <button type="button" class="btn-mem-analytics-chip ${isAct ? 'active' : ''}" onclick="selectAnalyticsMemberBreakdown('${m}')" style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 12px; border: 1.5px solid ${isAct ? '#38bdf8' : 'rgba(255,255,255,0.1)'}; background: ${isAct ? 'rgba(56, 189, 248, 0.2)' : 'rgba(30, 41, 59, 0.8)'}; color: ${isAct ? '#38bdf8' : '#cbd5e1'}; font-weight: 800; font-size: 0.78rem; cursor: pointer; white-space: nowrap; transition: all 0.2s;">
-            ${photo ? `<img src="${photo}" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover;">` : `<i class="fa-solid fa-users" style="font-size: 0.8rem;"></i>`}
-            <span>${m}</span>
-          </button>
-        `;
-      }).join('');
-    }
-
     // -------------------------------------------------------------------------
     // 7. تبديل أشكال شارت التحليل (أعمدة - دونات - دائري - قطبي)
     // -------------------------------------------------------------------------
