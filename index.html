@@ -28,6 +28,7 @@
         var cs = localStorage.getItem('family_monefy_design_style') || 'glass';
         document.documentElement.setAttribute('data-card-style', cs);
         var fk = localStorage.getItem('family_expense_app_font') || 'tajawal';
+        document.documentElement.setAttribute('data-font-family', fk);
         var fontMap = {
           tajawal: "'Tajawal', -apple-system, sans-serif",
           cairo: "'Cairo', 'Tajawal', sans-serif",
@@ -6797,7 +6798,18 @@
       border-radius: 18px !important;
     }
 
-    [data-card-style="glass"] .cockpit-hero-side,
+    [data-card-style="glass"] 
+    body.light-theme .cockpit-hero-side {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+
+    .cockpit-hero-side {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
     [data-card-style="glass"] .stat-capsule-twin {
       background: rgba(30, 41, 59, 0.45) !important;
       border-color: rgba(255, 255, 255, 0.14) !important;
@@ -6828,7 +6840,11 @@
       border-radius: 9px !important;
     }
 
-    [data-card-style="minimal"] .cockpit-hero-side,
+    [data-card-style="minimal"] .cockpit-hero-side {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
     [data-card-style="minimal"] .stat-capsule-twin {
       background: #1e293b !important;
       border-radius: 7px !important;
@@ -8141,7 +8157,7 @@
 
     /* الجانب الأيمن: بطل الشاشة المالي (الرصيد الفعلي) */
     .cockpit-hero-side {
-      flex: 1.45 !important;
+      flex: 1.20 !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
@@ -8395,11 +8411,16 @@
        ========================================================== */
     .expected-kpi-cockpit {
       display: grid !important;
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 8px !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 6px !important;
       margin: 4px 0 10px 0 !important;
       width: 100% !important;
       box-sizing: border-box !important;
+      overflow-x: auto !important;
+      scrollbar-width: none !important;
+    }
+    .expected-kpi-cockpit::-webkit-scrollbar {
+      display: none;
     }
 
     .exp-kpi-card.exp-card-blue {
@@ -8499,9 +8520,9 @@
       box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
     }
     html[data-card-style="glass"] body .cockpit-hero-side {
-      background: rgba(30, 41, 59, 0.45) !important;
-      border: 1px solid rgba(255, 255, 255, 0.14) !important;
-      border-radius: 16px !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
     }
     html[data-card-style="glass"] body .stat-capsule-twin {
       background: rgba(30, 41, 59, 0.45) !important;
@@ -8531,9 +8552,9 @@
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6) !important;
     }
     html[data-card-style="minimal"] body .cockpit-hero-side {
-      background: #151f33 !important;
-      border: 1px solid rgba(255, 255, 255, 0.10) !important;
-      border-radius: 6px !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
     }
     html[data-card-style="minimal"] body .stat-capsule-twin {
       background: #151f33 !important;
@@ -8566,7 +8587,11 @@
       border-radius: 20px !important;
       box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
     }
-    html[data-card-style="glass"] body .cockpit-hero-side,
+    html[data-card-style="glass"] body .cockpit-hero-side {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
     html[data-card-style="glass"] body .stat-capsule-twin {
       background: rgba(30, 41, 59, 0.45) !important;
       border: 1px solid rgba(255, 255, 255, 0.14) !important;
@@ -8594,7 +8619,11 @@
       border-radius: 8px !important;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6) !important;
     }
-    html[data-card-style="minimal"] body .cockpit-hero-side,
+    html[data-card-style="minimal"] body .cockpit-hero-side {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
     html[data-card-style="minimal"] body .stat-capsule-twin {
       background: #151f33 !important;
       border: 1px solid rgba(255, 255, 255, 0.10) !important;
@@ -8622,7 +8651,11 @@
       border-radius: 14px !important;
       box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.15), inset -2px -2px 6px rgba(0, 0, 0, 0.8), 0 8px 24px rgba(0, 0, 0, 0.7) !important;
     }
-    html[data-card-style="neumorphic"] body .cockpit-hero-side,
+    html[data-card-style="neumorphic"] body .cockpit-hero-side {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
     html[data-card-style="neumorphic"] body .stat-capsule-twin {
       background: linear-gradient(145deg, #1e293b, #111c2e) !important;
       border: 1px solid rgba(255, 255, 255, 0.10) !important;
@@ -8651,7 +8684,11 @@
       border-radius: 14px !important;
       box-shadow: 0 0 20px rgba(6, 182, 212, 0.45), inset 0 0 12px rgba(6, 182, 212, 0.20), 0 8px 30px rgba(0, 0, 0, 0.9) !important;
     }
-    html[data-card-style="neon"] body .cockpit-hero-side,
+    html[data-card-style="neon"] body .cockpit-hero-side {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
     html[data-card-style="neon"] body .stat-capsule-twin {
       background: #090e1a !important;
       border: 1.5px solid rgba(6, 182, 212, 0.5) !important;
@@ -9968,11 +10005,16 @@
        ================================================================ */
     .expected-kpi-cockpit {
       display: grid !important;
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 8px !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 6px !important;
       margin: 4px 0 10px 0 !important;
       width: 100% !important;
       box-sizing: border-box !important;
+      overflow-x: auto !important;
+      scrollbar-width: none !important;
+    }
+    .expected-kpi-cockpit::-webkit-scrollbar {
+      display: none;
     }
 
     .exp-kpi-card {
@@ -9989,8 +10031,7 @@
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       overflow: hidden;
       user-select: none;
-      min-height: 64px !important;
-      max-height: 72px !important;
+      min-height:  58px !important; max-height: 70px !important; min-width: 0 !important;
       height: 68px !important;
     }
 
@@ -10256,7 +10297,7 @@
 
     /* الجانب الأيمن: بطل الشاشة المالي (الرصيد الفعلي) */
     .cockpit-hero-side {
-      flex: 1.45 !important;
+      flex: 1.20 !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
@@ -10391,7 +10432,7 @@
 
     /* الجانب الأيسر: كبسولات التدفقات التوأم */
     .cockpit-flow-side {
-      flex: 1.05 !important;
+      flex: 1.25 !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
@@ -10407,7 +10448,7 @@
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
-      padding: 0 10px !important;
+      padding: 0 7px !important;
       border-radius: 12px !important;
       font-size: 0.82rem !important;
       white-space: nowrap !important;
@@ -10466,17 +10507,18 @@
     .flow-pill-left-group {
       display: flex !important;
       align-items: center !important;
-      gap: 7px !important;
+      gap: 5px !important;
+      flex-shrink: 0 !important;
     }
 
     .flow-icon-badge {
-      width: 22px !important;
-      height: 22px !important;
-      border-radius: 7px !important;
+      width: 19px !important;
+      height: 19px !important;
+      border-radius: 6px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      font-size: 0.72rem !important;
+      font-size: 0.65rem !important;
       flex-shrink: 0 !important;
       transition: all 0.2s ease !important;
     }
@@ -10508,7 +10550,7 @@
 
     .flow-title {
       font-weight: 800 !important;
-      font-size: 0.76rem !important;
+      font-size: 0.68rem !important;
       letter-spacing: -0.2px !important;
     }
     .flow-title.inflow-color { color: #6ee7b7 !important; }
@@ -10517,12 +10559,15 @@
     body.light-theme .flow-title.outflow-color { color: #be123c !important; }
 
     .flow-amount {
-      font-size: 0.88rem !important;
+      font-size: 0.80rem !important;
       font-weight: 900 !important;
       font-variant-numeric: tabular-nums !important;
       letter-spacing: -0.2px !important;
       direction: rtl !important;
       text-align: left !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: clip !important;
     }
     .flow-amount.inflow-color {
       color: #34d399 !important;
@@ -10541,21 +10586,21 @@
       text-shadow: none !important;
     }
 
-    /* ══ Permanent Balanced 2x2 Grid for Commitments KPI Cards ══ */
+    /* ══ Seamless 4-Column Single Row for Commitments KPI Cards ══ */
     #expectedKpiCockpit {
       display: grid !important;
-      grid-template-columns: repeat(2, 1fr) !important;
-      gap: 8px !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 6px !important;
       margin: 4px 0 12px 0 !important;
       width: 100% !important;
       box-sizing: border-box !important;
     }
     #expectedKpiCockpit .exp-kpi-card {
-      border-radius: 12px !important;
-      padding: 8px 10px !important;
-      min-height: 64px !important;
-      max-height: 72px !important;
-      height: 68px !important;
+      border-radius: 10px !important;
+      padding: 6px 6px !important;
+      min-height: 58px !important;
+      max-height: 68px !important;
+      min-width: 0 !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: space-between !important;
@@ -10579,7 +10624,520 @@
       line-height: 1.2 !important;
     }
 
-</style>
+
+    /* =========================================================================
+       Universal Typography & Proportional Card Containment Engine (v4.9.0)
+       Guarantees 100% flawless card containment across ALL fonts and font sizes:
+       - Fonts: Tajawal, Cairo, IBM Plex, Almarai, Readex Pro, Alexandria
+       - Sizes: Small, Medium, Large
+       Eliminates all text/number overflows, clipping, and card boundary breaches!
+       ========================================================================= */
+
+    /* --- 1. Base Variables & Font Normalization --- */
+    :root {
+      --font-width-factor: 1;
+      --app-card-title-size: clamp(0.70rem, 2.1vw, 0.82rem);
+      --app-card-amt-size: clamp(0.72rem, 2.2vw, 0.86rem);
+      --app-cat-bubble-size: clamp(42px, 11vw, 48px);
+      --app-cat-emoji-size: clamp(1.70rem, 4.4vw, 2.05rem);
+    }
+
+    /* Font Family Width Compensation (Normalize wide fonts: Cairo, Alexandria, IBM Plex) */
+    html[data-font-family="cairo"], body[data-font-family="cairo"] {
+      --font-width-factor: 1.08;
+      --app-card-title-size: clamp(0.66rem, 1.9vw, 0.76rem) !important;
+      --app-card-amt-size: clamp(0.68rem, 2vw, 0.82rem) !important;
+      letter-spacing: -0.3px;
+    }
+    html[data-font-family="alexandria"], body[data-font-family="alexandria"] {
+      --font-width-factor: 1.12;
+      --app-card-title-size: clamp(0.64rem, 1.8vw, 0.74rem) !important;
+      --app-card-amt-size: clamp(0.66rem, 1.9vw, 0.80rem) !important;
+      letter-spacing: -0.4px;
+    }
+    html[data-font-family="ibm"], body[data-font-family="ibm"] {
+      --font-width-factor: 1.06;
+      --app-card-title-size: clamp(0.68rem, 2vw, 0.78rem) !important;
+      --app-card-amt-size: clamp(0.70rem, 2vw, 0.84rem) !important;
+      letter-spacing: -0.2px;
+    }
+    html[data-font-family="readex"], body[data-font-family="readex"] {
+      --font-width-factor: 1.05;
+      --app-card-title-size: clamp(0.68rem, 2vw, 0.78rem) !important;
+      --app-card-amt-size: clamp(0.70rem, 2vw, 0.84rem) !important;
+    }
+
+    /* --- 2. Font Size Scaling: Strict Proportional Containment --- */
+    html[data-font-size="small"], body[data-font-size="small"] {
+      font-size: 12.5px !important;
+      --app-font-scale: 0.88;
+      --app-grid-row-min: 94px;
+      --app-grid-row-max: 114px;
+      --app-card-max-h: 114px;
+      --app-cat-bubble-size: 40px !important;
+      --app-cat-emoji-size: 1.65rem !important;
+      --app-card-title-size: 0.70rem !important;
+      --app-card-amt-size: 0.76rem !important;
+      --app-card-padding: 5px 3px 4px !important;
+    }
+
+    html[data-font-size="medium"], body[data-font-size="medium"] {
+      font-size: 13.8px !important;
+      --app-font-scale: 1;
+      --app-grid-row-min: 104px;
+      --app-grid-row-max: 126px;
+      --app-card-max-h: 126px;
+      --app-cat-bubble-size: clamp(42px, 11vw, 48px) !important;
+      --app-cat-emoji-size: clamp(1.75rem, 4.5vw, 2.05rem) !important;
+      --app-card-title-size: clamp(0.72rem, 2.1vw, 0.82rem) !important;
+      --app-card-amt-size: clamp(0.76rem, 2.2vw, 0.88rem) !important;
+      --app-card-padding: 6px 4px 5px !important;
+    }
+
+    html[data-font-size="large"], body[data-font-size="large"] {
+      font-size: 14.8px !important;
+      --app-font-scale: 1.08;
+      --app-grid-row-min: 108px;
+      --app-grid-row-max: 132px;
+      --app-card-max-h: 132px;
+      --app-cat-bubble-size: 40px !important;
+      --app-cat-emoji-size: 1.70rem !important;
+      --app-card-title-size: clamp(0.74rem, 2.2vw, 0.84rem) !important;
+      --app-card-amt-size: clamp(0.78rem, 2.3vw, 0.90rem) !important;
+      --app-card-padding: 6px 3px 5px !important;
+    }
+
+    /* Specific compensation for Large + Wide Fonts (Cairo, Alexandria, IBM) */
+    html[data-font-size="large"][data-font-family="cairo"],
+    body[data-font-size="large"][data-font-family="cairo"],
+    html[data-font-size="large"][data-font-family="alexandria"],
+    body[data-font-size="large"][data-font-family="alexandria"] {
+      --app-card-title-size: clamp(0.68rem, 2vw, 0.78rem) !important;
+      --app-card-amt-size: clamp(0.72rem, 2.1vw, 0.84rem) !important;
+      --app-cat-bubble-size: 38px !important;
+      --app-cat-emoji-size: 1.60rem !important;
+    }
+
+    /* --- 3. Top Header Brand Row Containment --- */
+    .app-header {
+      box-sizing: border-box !important;
+      width: 100% !important;
+    }
+    .header-brand-row {
+      width: 100% !important;
+      max-width: 100% !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      min-width: 0 !important;
+      gap: 4px !important;
+      box-sizing: border-box !important;
+    }
+    .brand-box {
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      min-width: 0 !important;
+      flex: 1 1 auto !important;
+      overflow: hidden !important;
+    }
+    .brand-title {
+      font-size: clamp(0.70rem, 2.7vw, 0.88rem) !important;
+      margin: 0 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      min-width: 0 !important;
+    }
+    .version-badge {
+      font-size: 0.58rem !important;
+      padding: 1px 4px !important;
+      flex-shrink: 0 !important;
+    }
+    .header-settings-btn {
+      padding: 4px 7px !important;
+      min-height: 28px !important;
+      flex-shrink: 0 !important;
+      font-size: 0.70rem !important;
+      gap: 5px !important;
+    }
+    .header-settings-btn#btnMainSettings {
+      padding: 4px 7px !important;
+    }
+
+    /* --- 4. Executive Wealth Cockpit Containment (Widened Flow Side) --- */
+    .kpi-master-wealth-cockpit {
+      width: calc(100% - 10px) !important;
+      margin: 3px 5px 6px !important;
+      min-height: 88px !important;
+      height: auto !important;
+      max-height: none !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 6px 8px !important;
+      gap: 6px !important;
+      position: relative !important;
+      overflow: hidden !important;
+      transition: all 0.25s ease !important;
+    }
+
+    .cockpit-flow-side {
+      flex: 1.65 !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      gap: 6px !important;
+    }
+
+    .cockpit-hero-side {
+      flex: 1.10 !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      gap: 2px !important;
+      padding: 2px 4px !important;
+    }
+
+    .cockpit-flow-pill {
+      width: 100% !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 5px 8px !important;
+      border-radius: 11px !important;
+      min-height: 37px !important;
+      height: 37px !important;
+      overflow: hidden !important;
+      min-width: 0 !important;
+      gap: 4px !important;
+      white-space: nowrap !important;
+    }
+
+    .flow-pill-left-group {
+      display: flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      flex-shrink: 0 !important;
+    }
+
+    .flow-title {
+      font-size: clamp(0.70rem, 2.1vw, 0.78rem) !important;
+      font-weight: 800 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+      flex-shrink: 0 !important;
+      white-space: nowrap !important;
+    }
+
+    .flow-amount {
+      font-size: clamp(0.75rem, 2.2vw, 0.84rem) !important;
+      font-weight: 900 !important;
+      direction: ltr !important;
+      unicode-bidi: isolate !important;
+      text-align: left !important;
+      white-space: nowrap !important;
+      overflow: visible !important;
+      min-width: 0 !important;
+      flex-shrink: 0 !important;
+      font-variant-numeric: tabular-nums !important;
+      letter-spacing: -0.2px !important;
+    }
+
+    .cockpit-hero-label {
+      font-size: clamp(0.64rem, 1.9vw, 0.72rem) !important;
+      font-weight: 800 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      min-width: 0 !important;
+    }
+
+    .cockpit-hero-value {
+      font-size: clamp(0.85rem, 2.7vw, 1.05rem) !important;
+      font-weight: 900 !important;
+      letter-spacing: -0.4px !important;
+      direction: rtl !important;
+      text-align: right !important;
+      white-space: nowrap !important;
+    }
+
+    .cockpit-hero-sub {
+      font-size: clamp(0.55rem, 1.6vw, 0.62rem) !important;
+      font-weight: 700 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      min-width: 0 !important;
+    }
+
+    /* Wide font overrides for Cockpit */
+    html[data-font-family="cairo"] .flow-title,
+    html[data-font-family="alexandria"] .flow-title {
+      font-size: clamp(0.58rem, 1.7vw, 0.66rem) !important;
+      gap: 3px !important;
+    }
+    html[data-font-family="cairo"] .flow-amount,
+    html[data-font-family="alexandria"] .flow-amount {
+      font-size: clamp(0.64rem, 1.9vw, 0.76rem) !important;
+      letter-spacing: -0.4px !important;
+    }
+    html[data-font-family="cairo"] .cockpit-hero-value,
+    html[data-font-family="alexandria"] .cockpit-hero-value {
+      font-size: clamp(0.88rem, 3vw, 1.12rem) !important;
+      letter-spacing: -0.4px !important;
+    }
+
+    /* --- 5. Category Cards (Monefy 3x3 Grid) Containment --- */
+    .categories-monefy-grid, #catGrid {
+      flex: 1 1 auto !important;
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      grid-template-rows: repeat(3, minmax(var(--app-grid-row-min, 104px), var(--app-grid-row-max, 126px))) !important;
+      align-content: space-evenly !important;
+      gap: 6px !important;
+      width: calc(100% - 10px) !important;
+      margin: 3px 5px 6px !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    .cat-card {
+      height: 100% !important;
+      max-height: var(--app-card-max-h, 126px) !important;
+      min-height: 0 !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 2px !important;
+      padding: var(--app-card-padding, 6px 3px 5px) !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      position: relative !important;
+      min-width: 0 !important;
+    }
+
+    .cat-icon-bubble {
+      width: var(--app-cat-bubble-size, 46px) !important;
+      height: var(--app-cat-bubble-size, 46px) !important;
+      min-width: 38px !important;
+      min-height: 38px !important;
+      border-radius: 13px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+      margin-top: 1px !important;
+      box-sizing: border-box !important;
+    }
+
+    .cat-icon-bubble span {
+      font-size: var(--app-cat-emoji-size, 1.85rem) !important;
+      line-height: 1 !important;
+    }
+
+    .cat-label-text {
+      font-family: var(--font-family) !important;
+      font-size: var(--app-card-title-size, clamp(0.70rem, 2.1vw, 0.82rem)) !important;
+      font-weight: 800 !important;
+      text-align: center !important;
+      margin: 1px 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      padding: 0 2px !important;
+      box-sizing: border-box !important;
+    }
+
+    .cat-amount-pill {
+      width: 96% !important;
+      max-width: 96% !important;
+      padding: 2px 3px !important;
+      border-radius: 8px !important;
+      text-align: center !important;
+      direction: rtl !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+      min-width: 0 !important;
+    }
+
+    .cat-amount-pill span {
+      font-family: var(--font-numbers) !important;
+      font-size: var(--app-card-amt-size, clamp(0.72rem, 2.2vw, 0.86rem)) !important;
+      font-weight: 900 !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-width: 100% !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+
+    /* --- 6. Period Selector & Quick Bar Containment --- */
+    .period-selector-top-strip {
+      width: calc(100% - 14px) !important;
+      margin: 2px 7px 4px !important;
+      box-sizing: border-box !important;
+      padding: 2px 4px !important;
+    }
+
+    .period-group {
+      display: flex !important;
+      width: 100% !important;
+      gap: 2px !important;
+    }
+
+    .period-btn {
+      flex: 1 1 0 !important;
+      min-width: 0 !important;
+      padding: 5px 2px !important;
+      font-size: clamp(0.66rem, 1.9vw, 0.76rem) !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      text-align: center !important;
+    }
+
+    /* --- 7. Wallets Dropdown & Currency Cluster Containment --- */
+    .wallet-select-cluster {
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      width: calc(100% - 14px) !important;
+      margin: 3px 7px !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    .wallet-dropdown-compact, #walletsDropdownBtn {
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+      white-space: nowrap !important;
+      text-overflow: ellipsis !important;
+      font-size: clamp(0.72rem, 2.2vw, 0.82rem) !important;
+      box-sizing: border-box !important;
+    }
+
+    .gold-pill, .currency-pill-btn {
+      flex-shrink: 0 !important;
+      font-size: clamp(0.68rem, 2vw, 0.78rem) !important;
+      padding: 4px 8px !important;
+      white-space: nowrap !important;
+    }
+
+    /* --- 8. Operations (Transactions) Cards Containment --- */
+    .ops-tx-card-lux {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 8px !important;
+      padding: 10px 12px !important;
+      box-sizing: border-box !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .ops-tx-right-cluster {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .ops-tx-info-block {
+      min-width: 0 !important;
+      flex: 1 1 auto !important;
+      overflow: hidden !important;
+    }
+
+    .ops-tx-label-text {
+      font-size: clamp(0.80rem, 2.4vw, 0.88rem) !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      max-width: 100% !important;
+    }
+
+    .ops-tx-left-cluster {
+      display: flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      flex-shrink: 0 !important;
+      text-align: left !important;
+    }
+
+    .ops-tx-amount-text {
+      font-size: clamp(0.84rem, 2.6vw, 0.95rem) !important;
+      font-variant-numeric: tabular-nums !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* --- 9. Expected Commitments Cards Containment --- */
+    .item-entry-card {
+      width: 100% !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+      word-break: break-word !important;
+      padding: 10px 12px !important;
+    }
+
+    .item-entry-head, .item-entry-body {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      gap: 8px !important;
+      min-width: 0 !important;
+      width: 100% !important;
+    }
+
+    .item-entry-head > div:first-child {
+      min-width: 0 !important;
+      flex: 1 1 auto !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+    }
+
+    /* --- 10. Analytics & Stat Cards Containment --- */
+    .stat-card, .metric-card, #memberSelectedHeroCard {
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+    }
+
+    #memberSelectedHeroCard span,
+    #memberSelectedHeroCard div {
+      min-width: 0 !important;
+    }
+
+  </style>
 </head>
 <body>
 
@@ -10972,6 +11530,9 @@
             <button class="btn-export-tool active" onclick="filterArchiveType('all', this)" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">الكل</button>
             <button class="btn-export-tool" onclick="filterArchiveType('expense', this)">خصم ومصروف</button>
             <button class="btn-export-tool" onclick="filterArchiveType('income', this)">إضافة ودخل</button>
+            <button class="btn-export-tool" onclick="filterArchiveType('expected', this)">التزامات وسداد</button>
+            <button class="btn-export-tool" onclick="filterArchiveType('budget', this)">ميزانيات</button>
+            <button class="btn-export-tool" onclick="filterArchiveType('transfer', this)">تحويلات</button>
             <button class="btn-export-tool" onclick="filterArchiveType('delete', this)">حذف</button>
             <button class="btn-export-tool excel-btn" onclick="exportActivityLogExcel()" style="margin-right: auto;">
               <i class="fa-solid fa-file-excel"></i> تصدير الأرشيف
@@ -11888,53 +12449,54 @@
              ========================================================== -->
         <div id="subViewCommitments">
           <!-- كروت المؤشرات المالية الأربعة للالتزامات (في صف واحد فائق الرشاقة والتنسيق) -->
+          <!-- كروت المؤشرات الأربعة في صف واحد فائق الدقة والتناسق (الالتزامات والديون) -->
           <div class="expected-kpi-cockpit" id="expectedKpiCockpit">
             <!-- 1. مصاريف قادمة -->
-            <div class="exp-kpi-card exp-card-amber" id="cardExpUpcoming" onclick="toggleExpectedFilter('upcoming_bill')" title="انقر لتصفية المصاريف والفواتير القادمة">
+            <div class="exp-kpi-card exp-card-amber" id="cardExpUpcoming" onclick="toggleExpectedFilter('upcoming_bill')" title="انقر لتصفية المصاريف والفواتير القادمة" style="border-radius: 10px; padding: 6px 6px;">
               <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                <div style="display: flex; align-items: center; gap: 6px; min-width: 0;">
-                  <span style="font-size: 0.82rem; color: #fbbf24;"><i class="fa-solid fa-clock"></i></span>
-                  <span class="exp-kpi-title">مصاريف قادمة</span>
+                <div style="display: flex; align-items: center; gap: 4px; min-width: 0;">
+                  <span style="font-size: 0.76rem; color: #fbbf24;"><i class="fa-solid fa-clock"></i></span>
+                  <span class="exp-kpi-title" style="font-size: clamp(0.64rem, 1.8vw, 0.72rem); font-weight: 800; white-space: nowrap;">مصاريف قادمة</span>
                 </div>
-                <span class="exp-kpi-badge" id="expectedCountUpcoming" style="font-size: 0.62rem; background: rgba(245, 158, 11, 0.22); color: #fbbf24; padding: 1px 6px; border-radius: 5px; font-weight: 800; line-height: 1.2;">0 بند</span>
+                <span class="exp-kpi-badge" id="expectedCountUpcoming" style="font-size: 0.58rem; background: rgba(245, 158, 11, 0.25); color: #fbbf24; padding: 1px 5px; border-radius: 5px; font-weight: 800; line-height: 1.2;">0 بند</span>
               </div>
-              <div class="exp-kpi-val" id="expectedTotalUpcoming" style="font-size: clamp(0.82rem, 2.6vw, 0.95rem); font-weight: 900; color: #fbbf24; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; font-variant-numeric: tabular-nums; text-align: left; direction: ltr;">0.00 ج.م</div>
+              <div class="exp-kpi-val" id="expectedTotalUpcoming" style="font-size: clamp(0.70rem, 2.1vw, 0.86rem); font-weight: 900; color: #fbbf24; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; font-variant-numeric: tabular-nums; text-align: left; direction: ltr;">0.00 ج.م</div>
             </div>
 
             <!-- 2. ديون علينا للغير -->
-            <div class="exp-kpi-card exp-card-rose" id="cardExpDebtsOnUs" onclick="toggleExpectedFilter('debt_on_us')" title="انقر لتصفية الديون المستحقة علينا">
+            <div class="exp-kpi-card exp-card-rose" id="cardExpDebtsOnUs" onclick="toggleExpectedFilter('debt_on_us')" title="انقر لتصفية الديون المستحقة علينا" style="border-radius: 10px; padding: 6px 6px;">
               <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                <div style="display: flex; align-items: center; gap: 6px; min-width: 0;">
-                  <span style="font-size: 0.82rem; color: #f43f5e;"><i class="fa-solid fa-hand-holding-dollar"></i></span>
-                  <span class="exp-kpi-title">ديون علينا</span>
+                <div style="display: flex; align-items: center; gap: 4px; min-width: 0;">
+                  <span style="font-size: 0.76rem; color: #f43f5e;"><i class="fa-solid fa-hand-holding-dollar"></i></span>
+                  <span class="exp-kpi-title" style="font-size: clamp(0.64rem, 1.8vw, 0.72rem); font-weight: 800; white-space: nowrap;">ديون علينا</span>
                 </div>
-                <span class="exp-kpi-badge" id="expectedCountDebtsOnUs" style="font-size: 0.62rem; background: rgba(244, 63, 94, 0.22); color: #f43f5e; padding: 1px 6px; border-radius: 5px; font-weight: 800; line-height: 1.2;">0 بند</span>
+                <span class="exp-kpi-badge" id="expectedCountDebtsOnUs" style="font-size: 0.58rem; background: rgba(244, 63, 94, 0.25); color: #f43f5e; padding: 1px 5px; border-radius: 5px; font-weight: 800; line-height: 1.2;">0 بند</span>
               </div>
-              <div class="exp-kpi-val" id="expectedTotalDebtsOnUs" style="font-size: clamp(0.82rem, 2.6vw, 0.95rem); font-weight: 900; color: #f43f5e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; font-variant-numeric: tabular-nums; text-align: left; direction: ltr;">- 0.00 ج.م</div>
+              <div class="exp-kpi-val" id="expectedTotalDebtsOnUs" style="font-size: clamp(0.70rem, 2.1vw, 0.86rem); font-weight: 900; color: #f43f5e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; font-variant-numeric: tabular-nums; text-align: left; direction: ltr;">- 0.00 ج.م</div>
             </div>
 
             <!-- 3. ديون لنا عند الغير -->
-            <div class="exp-kpi-card exp-card-emerald" id="cardExpDebtsForUs" onclick="toggleExpectedFilter('debt_for_us')" title="انقر لتصفية الديون المستحقة لنا">
+            <div class="exp-kpi-card exp-card-emerald" id="cardExpDebtsForUs" onclick="toggleExpectedFilter('debt_for_us')" title="انقر لتصفية الديون المستحقة لنا" style="border-radius: 10px; padding: 6px 6px;">
               <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                <div style="display: flex; align-items: center; gap: 6px; min-width: 0;">
-                  <span style="font-size: 0.82rem; color: #34d399;"><i class="fa-solid fa-sack-dollar"></i></span>
-                  <span class="exp-kpi-title">ديون لنا</span>
+                <div style="display: flex; align-items: center; gap: 4px; min-width: 0;">
+                  <span style="font-size: 0.76rem; color: #34d399;"><i class="fa-solid fa-sack-dollar"></i></span>
+                  <span class="exp-kpi-title" style="font-size: clamp(0.64rem, 1.8vw, 0.72rem); font-weight: 800; white-space: nowrap;">ديون لنا</span>
                 </div>
-                <span class="exp-kpi-badge" id="expectedCountDebtsForUs" style="font-size: 0.62rem; background: rgba(16, 185, 129, 0.22); color: #34d399; padding: 1px 6px; border-radius: 5px; font-weight: 800; line-height: 1.2;">0 بند</span>
+                <span class="exp-kpi-badge" id="expectedCountDebtsForUs" style="font-size: 0.58rem; background: rgba(16, 185, 129, 0.25); color: #34d399; padding: 1px 5px; border-radius: 5px; font-weight: 800; line-height: 1.2;">0 بند</span>
               </div>
-              <div class="exp-kpi-val" id="expectedTotalDebtsForUs" style="font-size: clamp(0.82rem, 2.6vw, 0.95rem); font-weight: 900; color: #34d399; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; font-variant-numeric: tabular-nums; text-align: left; direction: ltr;">+ 0.00 ج.م</div>
+              <div class="exp-kpi-val" id="expectedTotalDebtsForUs" style="font-size: clamp(0.70rem, 2.1vw, 0.86rem); font-weight: 900; color: #34d399; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; font-variant-numeric: tabular-nums; text-align: left; direction: ltr;">+ 0.00 ج.م</div>
             </div>
 
             <!-- 4. تم سداده / تحصيله -->
-            <div class="exp-kpi-card exp-card-cyan" id="cardExpPaid" onclick="toggleExpectedFilter('paid')" title="انقر لتصفية الحركات المنتهية والمسددة">
+            <div class="exp-kpi-card exp-card-cyan" id="cardExpPaid" onclick="toggleExpectedFilter('paid')" title="انقر لتصفية الحركات المنتهية والمسددة" style="border-radius: 10px; padding: 6px 6px;">
               <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                <div style="display: flex; align-items: center; gap: 6px; min-width: 0;">
-                  <span style="font-size: 0.82rem; color: #38bdf8;"><i class="fa-solid fa-circle-check"></i></span>
-                  <span class="exp-kpi-title">تم سداده/تحصيله</span>
+                <div style="display: flex; align-items: center; gap: 4px; min-width: 0;">
+                  <span style="font-size: 0.76rem; color: #38bdf8;"><i class="fa-solid fa-circle-check"></i></span>
+                  <span class="exp-kpi-title" style="font-size: clamp(0.64rem, 1.8vw, 0.72rem); font-weight: 800; white-space: nowrap;">تم السداد</span>
                 </div>
-                <span class="exp-kpi-badge" id="expectedCountPaid" style="font-size: 0.62rem; background: rgba(56, 189, 248, 0.22); color: #38bdf8; padding: 1px 6px; border-radius: 5px; font-weight: 800; line-height: 1.2;">0 مكتمل</span>
+                <span class="exp-kpi-badge" id="expectedCountPaid" style="font-size: 0.58rem; background: rgba(56, 189, 248, 0.25); color: #38bdf8; padding: 1px 5px; border-radius: 5px; font-weight: 800; line-height: 1.2;">0 مكتمل</span>
               </div>
-              <div class="exp-kpi-val" id="expectedTotalPaid" style="font-size: clamp(0.82rem, 2.6vw, 0.95rem); font-weight: 900; color: #38bdf8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; font-variant-numeric: tabular-nums; text-align: left; direction: ltr;">0.00 ج.م</div>
+              <div class="exp-kpi-val" id="expectedTotalPaid" style="font-size: clamp(0.70rem, 2.1vw, 0.86rem); font-weight: 900; color: #38bdf8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.15; font-variant-numeric: tabular-nums; text-align: left; direction: ltr;">0.00 ج.م</div>
             </div>
           </div>
 
@@ -13504,6 +14066,19 @@
               <div style="width: 30px; height: 30px; border-radius: 8px; background: rgba(56, 189, 248, 0.2); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 1rem; border: 1px solid rgba(56, 189, 248, 0.35);">
                 <i class="fa-solid fa-users-gear"></i>
               </div>
+          <!-- بطاقة العائلة الفاخرة (عائلة ماهر ❤️ أية) -->
+          <div id="family_portrait_settings_card" style="margin: 10px 0 14px; border-radius: 14px; overflow: hidden; position: relative; border: 1.5px solid rgba(56, 189, 248, 0.4); box-shadow: 0 8px 24px rgba(0,0,0,0.5); cursor: pointer;" onclick="openReceiptLightbox('family_portrait.jpg', 'عائلة ماهر ❤️ أية - بيت عامر بالحب والبركة')" title="انقر لعرض صورة العائلة بدقة عالية">
+            <img src="family_portrait.jpg" alt="عائلة ماهر وأية" style="width: 100%; height: 160px; object-fit: cover; display: block;">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(15,23,42,0.96) 0%, rgba(15,23,42,0.7) 65%, transparent 100%); padding: 10px 14px; display: flex; justify-content: space-between; align-items: flex-end;">
+              <div>
+                <div style="font-size: 0.92rem; font-weight: 900; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">عائلة ماهر ❤️ أية</div>
+                <div style="font-size: 0.68rem; color: #cbd5e1; font-weight: 700;">ماهر، أية، محمد، مريم، النونو، والحاجة الغالية 👨‍👩‍👧‍👦👵</div>
+              </div>
+              <span style="font-size: 0.64rem; background: rgba(56, 189, 248, 0.3); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.5); padding: 3px 8px; border-radius: 6px; font-weight: 800; backdrop-filter: blur(4px);">
+                <i class="fa-solid fa-expand"></i> تكبير الصورة
+              </span>
+            </div>
+          </div>
               <div>
                 <span style="font-weight: 900; font-size: 0.85rem; color: #f8fafc;">إدارة وتبديل حسابات العائلة</span>
                 <div style="font-size: 0.62rem; color: #94a3b8;">التبديل الفوري بين الأفراد وقفل الخصوصية برمز PIN</div>
@@ -14082,7 +14657,7 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = '4.8.1';
+      const APP_VERSION = '4.8.2';
       const APP_BUILD_ID = 202611021456;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
@@ -14408,6 +14983,18 @@
         });
         saveTx();
       }
+
+      logActivity({
+        type: 'create_wallet',
+        action: 'إنشاء محفظة مالية',
+        label: `إنشاء محفظة جديدة: ${name} (رصيد افتتاحي: ${formatMoney(initBal)})`,
+        amount: initBal,
+        sign: initBal > 0 ? '+' : '',
+        member: state.currentUser || 'ماهر',
+        author: state.currentUser || 'ماهر',
+        wallet: name,
+        notes: 'تم تأسيس المحفظة وإدراجها بالنظام'
+      });
 
       closeModal('walletModal');
       populateWalletDropdowns();
@@ -16515,10 +17102,12 @@
       logActivity({
         type: 'add_note',
         action: 'تسجيل ملاحظة',
-        label: `ملاحظة: ${title} - ${contentText}${newNote.image ? ' (مرفق صورة)' : ''}`,
+        label: `ملاحظة: ${title} - ${contentText}`,
         amount: 0,
         member: member,
-        author: state.currentUser || 'ماهر'
+        author: state.currentUser || 'ماهر',
+        receipt: newNote.image,
+        notes: contentText
       });
 
       if (titleInp) titleInp.value = '';
@@ -17673,22 +18262,30 @@ function generateRichDemoTransactions() {
 
       if (elInc) {
         elInc.textContent = isCockpitBalanceHidden ? '••••••' : ('+ ' + formatMoney(periodInc));
-        if (elInc.textContent.length > 15) {
-          elInc.style.fontSize = '0.74rem';
-          elInc.style.letterSpacing = '-0.3px';
+        const l = elInc.textContent.length;
+        if (l > 15) {
+          elInc.style.fontSize = '0.66rem';
+          elInc.style.letterSpacing = '-0.4px';
+        } else if (l > 12) {
+          elInc.style.fontSize = '0.72rem';
+          elInc.style.letterSpacing = '-0.2px';
         } else {
-          elInc.style.fontSize = '';
-          elInc.style.letterSpacing = '';
+          elInc.style.fontSize = '0.80rem';
+          elInc.style.letterSpacing = '-0.1px';
         }
       }
       if (elExp) {
         elExp.textContent = isCockpitBalanceHidden ? '••••••' : ((periodExp > 0 ? '- ' : '') + formatMoney(periodExp));
-        if (elExp.textContent.length > 15) {
-          elExp.style.fontSize = '0.74rem';
-          elExp.style.letterSpacing = '-0.3px';
+        const l = elExp.textContent.length;
+        if (l > 15) {
+          elExp.style.fontSize = '0.66rem';
+          elExp.style.letterSpacing = '-0.4px';
+        } else if (l > 12) {
+          elExp.style.fontSize = '0.72rem';
+          elExp.style.letterSpacing = '-0.2px';
         } else {
-          elExp.style.fontSize = '';
-          elExp.style.letterSpacing = '';
+          elExp.style.fontSize = '0.80rem';
+          elExp.style.letterSpacing = '-0.1px';
         }
       }
       if (elBal) {
@@ -18019,26 +18616,26 @@ function generateRichDemoTransactions() {
         card.setAttribute('data-cat-id', cat.id);
 
         card.style.cssText = `
-          background: ${cardBg};
-          border: ${cardBorder};
-          border-radius: ${cardRadius};
-          backdrop-filter: ${cardBackdrop};
-          -webkit-backdrop-filter: ${cardBackdrop};
-          padding: var(--app-card-padding, 7px 4px 6px);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 3px;
-          height: 100%;
-          max-height: var(--app-card-max-h, 126px);
-          min-height: 0;
-          cursor: pointer;
-          box-shadow: ${cardShadow};
-          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-          position: relative;
-          box-sizing: border-box;
-          overflow: hidden;
+          background: ${cardBg} !important;
+          border: ${cardBorder} !important;
+          border-radius: ${cardRadius} !important;
+          backdrop-filter: ${cardBackdrop} !important;
+          -webkit-backdrop-filter: ${cardBackdrop} !important;
+          padding: var(--app-card-padding, 7px 4px 6px) !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          justify-content: center !important;
+          gap: 3px !important;
+          height: 100% !important;
+          max-height: var(--app-card-max-h, 126px) !important;
+          min-height: 0 !important;
+          cursor: pointer !important;
+          box-shadow: ${cardShadow} !important;
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          position: relative !important;
+          box-sizing: border-box !important;
+          overflow: hidden !important;
         `;
 
         card.onclick = () => {
@@ -18078,13 +18675,13 @@ function generateRichDemoTransactions() {
         card.innerHTML = `
           <!-- 1. صورة/أيقونة التصنيف ثلاثية الأبعاد الفاخرة بحجم متناسق -->
           <div class="cat-icon-bubble" 
-               style="background: ${bubbleGradient}; width: clamp(48px, 12.5vw, 54px); height: clamp(48px, 12.5vw, 54px); min-width: 48px; min-height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 12px ${bubbleGlow}; border: 1.5px solid rgba(255, 255, 255, 0.25); margin-top: 1px; flex-shrink: 0;">
-            <span style="font-size: clamp(2rem, 5.2vw, 2.35rem); line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.45)); transform: translateZ(0);">${theme.emoji}</span>
+               style="background: ${bubbleGradient}; width: var(--app-cat-bubble-size, clamp(42px, 11vw, 48px)); height: var(--app-cat-bubble-size, clamp(42px, 11vw, 48px)); min-width: 38px; min-height: 38px; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 12px ${bubbleGlow}; border: 1.5px solid rgba(255, 255, 255, 0.25); margin-top: 1px; flex-shrink: 0;">
+            <span style="font-size: var(--app-cat-emoji-size, clamp(1.70rem, 4.4vw, 2.05rem)); line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.45)); transform: translateZ(0);">${theme.emoji}</span>
           </div>
 
           <!-- 2. اسم التصنيف بخط عربي فخم وواضح متناسق بين الفاتح والداكن -->
           <div class="cat-label-text" 
-               style="font-family: var(--font-family); font-size: clamp(0.80rem, 2.3vw, 0.90rem); font-weight: 800; color: ${catLabelColor} !important; text-align: center; margin: 2px 0 1px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: clip;">
+               style="font-family: var(--font-family); font-size: var(--app-card-title-size, clamp(0.70rem, 2.1vw, 0.82rem)); font-weight: 800; color: ${catLabelColor} !important; text-align: center; margin: 1px 0; width: 100%; max-width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 2px; box-sizing: border-box;">
             ${theme.name}
           </div>
 
@@ -18093,7 +18690,7 @@ function generateRichDemoTransactions() {
                onclick="event.stopPropagation(); openOperationsFiltered({ category: '${cat.id}', categoryName: '${cat.name}', type: 'expense' });" 
                title="انقر لفتح ومراجعة عمليات ${cat.name} في شاشة العمليات" 
                style="cursor: pointer; background: ${pillBg}; border: 1.2px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 2px; border-radius: 9px; width: 98%; max-width: 98%; text-align: center; direction: rtl; box-sizing: border-box; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-            <span style="font-family: var(--font-numbers); font-size: ${pillFontSize}; letter-spacing: ${pillLetterSpacing}; font-weight: 900; line-height: 1.2; white-space: nowrap; font-variant-numeric: tabular-nums;">${amtDisplay}</span>
+            <span style="font-family: var(--font-numbers); font-size: var(--app-card-amt-size, ${pillFontSize}); letter-spacing: ${pillLetterSpacing}; font-weight: 900; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-variant-numeric: tabular-nums;">${amtDisplay}</span>
           </div>
         `;
 
@@ -18762,8 +19359,13 @@ function filterOperationsList() {
         action: currentModalType === 'income' ? 'إضافة دخل' : 'تسجيل مصروف',
         label: `${label} (${getCategoryName(newTx.category)})`,
         amount: amount,
+        sign: currentModalType === 'income' ? '+' : '-',
         member: newTx.member,
-        author: state.currentUser || 'ماهر'
+        author: state.currentUser || 'ماهر',
+        wallet: (typeof getWalletName === 'function' ? getWalletName(newTx.walletId) : newTx.walletId),
+        category: (typeof getCategoryName === 'function' ? getCategoryName(newTx.category) : newTx.category),
+        receipt: newTx.receipt,
+        notes: `مسجل في محفظة: ${(typeof getWalletName === 'function' ? getWalletName(newTx.walletId) : newTx.walletId)}`
       });
 
       playNotificationChime();
@@ -19466,6 +20068,17 @@ function filterOperationsList() {
       });
 
       playNotificationChime();
+      logActivity({
+        type: 'submit_request',
+        action: 'تقديم طلب مصروف',
+        label: `طلب مصروف: ${reason}`,
+        amount: amount,
+        member: member,
+        author: state.currentUser || 'ماهر',
+        receipt: (typeof currentRequestPhotoDataUri !== 'undefined' ? currentRequestPhotoDataUri : null),
+        notes: `تاريخ الطلب: ${reqDate}`
+      });
+
       renderRequestsList();
       showToast(`💌 تم إرسال طلب المصروف بنجاح (${formatMoney(amount)}) وتوزيعه بالكامل!`);
       triggerDriveAutoSync();
@@ -19620,6 +20233,17 @@ function filterOperationsList() {
       req.approvedBy = state.currentUser || 'ماهر';
       localStorage.setItem('family_monefy_requests', JSON.stringify(state.moneyRequests));
 
+      logActivity({
+        type: 'approve_request',
+        action: 'اعتماد طلب مصروف',
+        label: `اعتماد وصرف طلب: ${req.reason || 'طلب عائلي'}`,
+        amount: Number(req.amount) || 0,
+        member: req.member || 'أية',
+        author: state.currentUser || 'ماهر',
+        receipt: req.photo || null,
+        notes: 'تم اعتماد الطلب وتثبيته كالتزام فوري'
+      });
+
       renderRequestsList();
       renderUI();
       saveEmailVault();
@@ -19631,6 +20255,17 @@ function filterOperationsList() {
       if (!req) return;
       req.status = 'rejected';
       localStorage.setItem('family_monefy_requests', JSON.stringify(state.moneyRequests));
+
+      logActivity({
+        type: 'reject_request',
+        action: 'رفض طلب مصروف',
+        label: `رفض طلب: ${req.reason || 'طلب عائلي'}`,
+        amount: Number(req.amount) || 0,
+        member: req.member || 'أية',
+        author: state.currentUser || 'ماهر',
+        notes: 'تم رفض هذا الطلب'
+      });
+
       renderRequestsList();
       showToast('❌ تم رفض الطلب');
     }
@@ -19721,10 +20356,13 @@ function filterOperationsList() {
       logActivity({
         type: 'expected_created',
         action: 'تسجيل التزام مالي',
-        label: `تسجيل ${title} بمبلغ ${formatMoney(amount)} [${type}]`,
+        label: `تسجيل ${title} [${type === 'debt_on_us' ? 'دين علينا' : (type === 'debt_for_us' ? 'دين لنا' : 'فاتورة قادمة')}]`,
         amount: amount,
+        sign: type === 'debt_for_us' ? '+' : '-',
         member: member,
-        author: state.currentUser || 'ماهر'
+        author: state.currentUser || 'ماهر',
+        receipt: newExp.photo,
+        notes: `تاريخ الاستحقاق: ${dueDate || 'غير محدد'} | الأولوية: ${priority}`
       });
 
       playNotificationChime();
@@ -19819,6 +20457,25 @@ function filterOperationsList() {
       if (elDebOnUs) elDebOnUs.textContent = '- ' + formatMoney(totDebtsOnUs);
       if (elDebForUs) elDebForUs.textContent = '+ ' + formatMoney(totDebtsForUs);
       if (elPaid) elPaid.textContent = formatMoney(totPaid);
+
+      const autoScaleKpi = (el) => {
+        if (!el) return;
+        const l = (el.textContent || '').length;
+        if (l > 15) {
+          el.style.fontSize = '0.70rem';
+          el.style.letterSpacing = '-0.4px';
+        } else if (l > 12) {
+          el.style.fontSize = '0.78rem';
+          el.style.letterSpacing = '-0.2px';
+        } else {
+          el.style.fontSize = '0.88rem';
+          el.style.letterSpacing = '-0.1px';
+        }
+      };
+      autoScaleKpi(elUp);
+      autoScaleKpi(elDebOnUs);
+      autoScaleKpi(elDebForUs);
+      autoScaleKpi(elPaid);
 
       if (cntUp) cntUp.textContent = `${countUpcoming} بند`;
       if (cntDebOnUs) cntDebOnUs.textContent = `${countDebtsOnUs} بند`;
@@ -20173,10 +20830,15 @@ function filterOperationsList() {
       logActivity({
         type: isCollection ? 'debt_collected' : 'expected_paid',
         action: isCollection ? 'تحصيل دين' : 'سداد التزام',
-        label: isCollection ? `تم تحصيل ${exp.title} بمبلغ ${formatMoney(exp.amount)} وإيداعه في ${targetWallet ? targetWallet.name : 'المحفظة'}` : `تم سداد ${exp.title} بمبلغ ${formatMoney(exp.amount)} وخصمه من ${targetWallet ? targetWallet.name : 'المحفظة'}`,
-        amount: exp.amount,
-        member: exp.member,
-        author: state.currentUser || 'ماهر'
+        label: isCollection ? `تم تحصيل ${exp.title} وإيداعه في ${targetWallet ? targetWallet.name : 'المحفظة'}` : `تم سداد ${exp.title} وخصمه من ${targetWallet ? targetWallet.name : 'المحفظة'}`,
+        amount: Number(exp.amount),
+        sign: isCollection ? '+' : '-',
+        member: exp.member || 'البيت',
+        author: state.currentUser || 'ماهر',
+        wallet: targetWallet ? targetWallet.name : 'المحفظة',
+        category: category,
+        receipt: finalReceipt,
+        notes: note || 'سداد معتمد بالكامل'
       });
 
       closeModal('payExpectedModal');
@@ -20193,6 +20855,18 @@ function filterOperationsList() {
 
     function deleteExpected(expId) {
       if (!confirm('هل أنت متأكد من رغبتك في حذف هذا الالتزام؟')) return;
+      const targetExp = (state.expectedExpenses || []).find(e => e.id === expId);
+      if (targetExp) {
+        logActivity({
+          type: 'delete_expected',
+          action: 'حذف التزام مالي',
+          label: `حذف التزام: ${targetExp.title}`,
+          amount: targetExp.amount || 0,
+          member: targetExp.member || 'البيت',
+          author: state.currentUser || 'ماهر',
+          notes: 'تم حذف هذا الالتزام من جدول الالتزامات'
+        });
+      }
       state.expectedExpenses = (state.expectedExpenses || []).filter(e => e.id !== expId);
       try {
         localStorage.setItem('family_monefy_expected', JSON.stringify(state.expectedExpenses));
@@ -20559,6 +21233,10 @@ function openSettingsModal(targetSection = '') {
       if (typeof renderAnalyticsUI === 'function') {
         renderAnalyticsUI();
       }
+      if (typeof renderUI === 'function') {
+        renderUI();
+      }
+      try { window.dispatchEvent(new Event('resize')); } catch(e) {}
 
       if (notify) showToast(`🔠 تم تفعيل حجم الخط: ${labels[size]} وتكييف الشاشات تلقائياً`);
     }
@@ -20586,6 +21264,8 @@ function openSettingsModal(targetSection = '') {
       };
 
       const selected = fonts[fontKey] || fonts.tajawal;
+      document.documentElement.setAttribute('data-font-family', fontKey);
+      document.body.setAttribute('data-font-family', fontKey);
       document.documentElement.style.setProperty('--font-family', selected.family, 'important');
       document.documentElement.style.setProperty('--font-numbers', selected.family, 'important');
 
@@ -20619,8 +21299,12 @@ function openSettingsModal(targetSection = '') {
       if (typeof renderAnalyticsUI === 'function') {
         renderAnalyticsUI();
       }
+      if (typeof renderUI === 'function') {
+        renderUI();
+      }
+      try { window.dispatchEvent(new Event('resize')); } catch(e) {}
       if (persist && typeof showToast === 'function') {
-        showToast(`🔤 تم تطبيق خط (${selected.name}) لكافة الكلمات والأرقام`);
+        showToast(`🔤 تم تطبيق خط (${selected.name}) وتنسيق الكروت بدقة`);
       }
     }
 
@@ -22423,12 +23107,223 @@ function openSettingsModal(targetSection = '') {
 
     let archiveRenderLimit = 50;
 
+    
+    // =========================================================================
+    // نظام عرض تفاصيل حركات الأرشيف المتقدم (Executive Activity Details)
+    // =========================================================================
+    let currentSelectedActivityItem = null;
+
+    function openActivityDetails(actId) {
+      if (!state.activityLog || state.activityLog.length === 0) {
+        initActivityLog();
+      }
+      const item = (state.activityLog || []).find(a => a.id === actId);
+      if (!item) {
+        showToast('⚠️ لم يتم العثور على تفاصيل هذه الحركة في سجل الأرشيف');
+        return;
+      }
+
+      currentSelectedActivityItem = item;
+
+      // 1. تحديد العنوان والأيقونة
+      const titleEl = document.getElementById('actDetailActionTitle');
+      const iconEl = document.getElementById('actDetailHeaderIcon');
+      const typeBadge = document.getElementById('actDetailTypeBadge');
+      const badgeBox = document.getElementById('actDetailHeaderIconBadge');
+
+      const actionTitle = item.action || 'حركة موثقة في الأرشيف';
+      if (titleEl) titleEl.textContent = actionTitle;
+      if (typeBadge) typeBadge.textContent = item.type || 'سجل النظام';
+
+      // 2. المبلغ المحاسبي الصارم
+      const amtEl = document.getElementById('actDetailAmountVal');
+      const rawAmt = parseFloat(item.amount) || 0;
+      let displayAmt = formatMoney(Math.abs(rawAmt));
+      let amtColor = '#38bdf8';
+
+      const isOutflow = ['add_expense', 'delete_tx', 'expected_paid', 'delete_expected', 'reject_request'].includes(item.type) || (item.sign === '-');
+      const isInflow = ['add_income', 'debt_collected', 'expected_created_for_us'].includes(item.type) || (item.sign === '+');
+
+      if (rawAmt > 0) {
+        if (isOutflow) {
+          displayAmt = '- ' + displayAmt;
+          amtColor = '#f43f5e';
+          if (badgeBox) { badgeBox.style.background = 'rgba(244, 63, 94, 0.15)'; badgeBox.style.borderColor = 'rgba(244, 63, 94, 0.35)'; badgeBox.style.color = '#f43f5e'; }
+          if (iconEl) iconEl.className = 'fa-solid fa-circle-minus';
+        } else if (isInflow) {
+          displayAmt = '+ ' + displayAmt;
+          amtColor = '#10b981';
+          if (badgeBox) { badgeBox.style.background = 'rgba(16, 185, 129, 0.15)'; badgeBox.style.borderColor = 'rgba(16, 185, 129, 0.35)'; badgeBox.style.color = '#10b981'; }
+          if (iconEl) iconEl.className = 'fa-solid fa-circle-plus';
+        } else {
+          displayAmt = displayAmt;
+          amtColor = '#38bdf8';
+          if (badgeBox) { badgeBox.style.background = 'rgba(56, 189, 248, 0.15)'; badgeBox.style.borderColor = 'rgba(56, 189, 248, 0.35)'; badgeBox.style.color = '#38bdf8'; }
+          if (iconEl) iconEl.className = 'fa-solid fa-file-invoice-dollar';
+        }
+      } else {
+        displayAmt = '0.00 ج.م';
+        amtColor = '#94a3b8';
+      }
+
+      if (amtEl) {
+        amtEl.textContent = displayAmt;
+        amtEl.style.color = amtColor;
+      }
+
+      // 3. البيان الكامل دون اختصار
+      const labelEl = document.getElementById('actDetailFullLabel');
+      if (labelEl) {
+        labelEl.textContent = item.label || item.action || 'لا يوجد بيان مسجل';
+      }
+
+      // 4. التاريخ والوقت
+      const dtEl = document.getElementById('actDetailDateTime');
+      if (dtEl) {
+        const timePart = item.time || (item.timestamp ? new Date(item.timestamp).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }) : '');
+        const datePart = item.date || (item.timestamp ? item.timestamp.split('T')[0] : '');
+        dtEl.textContent = `${datePart} ${timePart ? '• ' + timePart : ''}`;
+      }
+
+      // 5. المنفذ (بواسطة)
+      const authorEl = document.getElementById('actDetailAuthor');
+      if (authorEl) {
+        const authorName = item.author || state.currentUser || 'ماهر';
+        const av = MEMBER_AVATARS[authorName] || null;
+        authorEl.innerHTML = `
+          ${av ? `<img src="${av}" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover; border: 1.2px solid #a855f7;">` : `<i class="fa-solid fa-circle-user" style="color: #a855f7;"></i>`}
+          <span>${authorName}</span>
+        `;
+      }
+
+      // 6. يخص من في الأسرة
+      const memEl = document.getElementById('actDetailMember');
+      if (memEl) {
+        const memName = item.member || 'العائلة';
+        const av = MEMBER_AVATARS[memName] || null;
+        memEl.innerHTML = `
+          ${av ? `<img src="${av}" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover; border: 1.2px solid #f59e0b;">` : `<i class="fa-solid fa-house-user" style="color: #f59e0b;"></i>`}
+          <span>${memName}</span>
+        `;
+      }
+
+      // 7. المحفظة
+      const walEl = document.getElementById('actDetailWallet');
+      if (walEl) {
+        let walName = item.wallet || null;
+        if (!walName && item.walletId) {
+          const w = (state.wallets || []).find(x => x.id === item.walletId);
+          walName = w ? w.name : item.walletId;
+        }
+        walEl.textContent = walName || 'محفظة رئيسية';
+      }
+
+      // 8. الملاحظات الإضافية
+      const notesBox = document.getElementById('actDetailNotesCard');
+      const notesTxt = document.getElementById('actDetailNotesTxt');
+      if (item.notes && item.notes.trim()) {
+        if (notesBox) notesBox.style.display = 'block';
+        if (notesTxt) notesTxt.textContent = item.notes;
+      } else {
+        if (notesBox) notesBox.style.display = 'none';
+      }
+
+      // 9. فحص المستند المرفق (الفاتورة / الإيصال)
+      const receiptData = item.receipt || item.photo || item.settleReceipt || null;
+      const rImgBox = document.getElementById('actDetailReceiptImgBox');
+      const rImg = document.getElementById('actDetailReceiptImg');
+      const noRMsg = document.getElementById('actDetailNoReceiptMsg');
+      const rStatusBadge = document.getElementById('actDetailReceiptStatusBadge');
+
+      if (receiptData && typeof receiptData === 'string' && (receiptData.startsWith('data:image') || receiptData.startsWith('http') || receiptData.startsWith('blob:'))) {
+        if (rImgBox) rImgBox.style.display = 'block';
+        if (rImg) rImg.src = receiptData;
+        if (noRMsg) noRMsg.style.display = 'none';
+        if (rStatusBadge) {
+          rStatusBadge.style.display = 'inline-block';
+          rStatusBadge.style.background = 'rgba(16, 185, 129, 0.2)';
+          rStatusBadge.style.color = '#34d399';
+          rStatusBadge.innerHTML = '<i class="fa-solid fa-check"></i> مرفق فاتورة موثقة';
+        }
+      } else {
+        if (rImgBox) rImgBox.style.display = 'none';
+        if (noRMsg) noRMsg.style.display = 'block';
+        if (rStatusBadge) {
+          rStatusBadge.style.display = 'inline-block';
+          rStatusBadge.style.background = 'rgba(148, 163, 184, 0.15)';
+          rStatusBadge.style.color = '#94a3b8';
+          rStatusBadge.textContent = 'بدون مرفق';
+        }
+      }
+
+      // 10. زر الانتقال السياقي
+      const jumpTxt = document.getElementById('actDetailJumpBtnTxt');
+      if (jumpTxt) {
+        if (item.type && item.type.includes('expected')) {
+          jumpTxt.textContent = 'الانتقال لجدول الالتزامات والديون';
+        } else if (item.type && item.type.includes('budget')) {
+          jumpTxt.textContent = 'الانتقال لصفحة الميزانية التقديرية';
+        } else if (item.type && item.type.includes('request')) {
+          jumpTxt.textContent = 'الانتقال لقسم طلبات المصروف';
+        } else {
+          jumpTxt.textContent = 'الانتقال لسجل العمليات الرئيسية';
+        }
+      }
+
+      openModal('activityDetailsModal');
+    }
+
+    function openReceiptFromActDetail() {
+      if (!currentSelectedActivityItem) return;
+      const receiptData = currentSelectedActivityItem.receipt || currentSelectedActivityItem.photo || currentSelectedActivityItem.settleReceipt;
+      if (receiptData) {
+        openReceiptLightbox(receiptData, currentSelectedActivityItem.label || 'مستند وفاتورة العملية');
+      }
+    }
+
+    function downloadReceiptFromActDetail() {
+      if (!currentSelectedActivityItem) return;
+      const receiptData = currentSelectedActivityItem.receipt || currentSelectedActivityItem.photo || currentSelectedActivityItem.settleReceipt;
+      if (!receiptData) return;
+      try {
+        const link = document.createElement('a');
+        link.href = receiptData;
+        link.download = `receipt-${currentSelectedActivityItem.id || Date.now()}.jpg`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast('📥 جاري تنزيل الفاتورة المرفقة...');
+      } catch(e) {
+        showToast('⚠️ تعذر تنزيل المستند تلقائياً');
+      }
+    }
+
+    function jumpToActivityContext() {
+      if (!currentSelectedActivityItem) return;
+      closeModal('activityDetailsModal');
+      const t = currentSelectedActivityItem.type || '';
+      if (t.includes('expected')) {
+        switchAppPage('expected');
+        switchExpectedMainTab('commitments');
+      } else if (t.includes('budget')) {
+        switchAppPage('expected');
+        switchExpectedMainTab('monthly_budget');
+      } else if (t.includes('request')) {
+        switchAppPage('requests');
+      } else {
+        switchAppPage('operations');
+      }
+    }
+
     function renderActivityLogUI(appendMore = false) {
-      const container = document.getElementById('archiveLogListContainer') || document.getElementById('activityListContainer');
-      if (!container) return;
+      const containers = [
+        document.getElementById('archiveLogListContainer'),
+        document.getElementById('activityListContainer')
+      ].filter(Boolean);
+      if (containers.length === 0) return;
 
       if (!appendMore) {
-        container.innerHTML = '';
+        containers.forEach(c => c.innerHTML = '');
         archiveRenderLimit = 50;
       }
 
@@ -22440,13 +23335,19 @@ function openSettingsModal(targetSection = '') {
         list = state.activityLog || [];
       }
 
-      // 1. فلترة النوع
+      // 1. فلترة الأرشيف الموسعة والشاملة
       if (currentActivityTab === 'expense') {
-        list = list.filter(a => a.type === 'add_expense');
+        list = list.filter(a => a.type === 'add_expense' || (a.sign === '-' && !a.type.includes('delete')));
       } else if (currentActivityTab === 'income') {
-        list = list.filter(a => a.type === 'add_income');
+        list = list.filter(a => a.type === 'add_income' || a.sign === '+');
+      } else if (currentActivityTab === 'expected') {
+        list = list.filter(a => a.type && a.type.includes('expected'));
+      } else if (currentActivityTab === 'budget') {
+        list = list.filter(a => a.type && a.type.includes('budget'));
+      } else if (currentActivityTab === 'transfer') {
+        list = list.filter(a => a.type && (a.type.includes('transfer') || a.type.includes('wallet')));
       } else if (currentActivityTab === 'delete') {
-        list = list.filter(a => a.type === 'delete_tx');
+        list = list.filter(a => a.type && a.type.includes('delete'));
       }
 
       // 2. فلترة البحث
@@ -22461,113 +23362,156 @@ function openSettingsModal(targetSection = '') {
       }
 
       if (list.length === 0) {
-        container.innerHTML = `
+        const emptyHtml = `
           <div style="text-align: center; padding: 40px 10px; color: var(--text-muted);">
             <i class="fa-solid fa-clock-rotate-left" style="font-size: 2.2rem; margin-bottom: 10px; opacity: 0.5;"></i>
             <p style="font-size: 0.95rem; font-weight: 700;">لا توجد نشاطات مسجلة في الأرشيف تطابق الفلتر</p>
           </div>
         `;
+        containers.forEach(c => c.innerHTML = emptyHtml);
         return;
       }
-
-      const prevBtn = document.getElementById('btnLoadMoreArchive');
-      if (prevBtn) prevBtn.remove();
 
       const totalArchiveCount = list.length;
       const startIndex = appendMore ? (archiveRenderLimit - 50) : 0;
       const endIndex = Math.min(archiveRenderLimit, totalArchiveCount);
       const itemsToRender = list.slice(startIndex, endIndex);
 
-      const memberEmoji = { 'ماهر': '👨', 'أية': '👩', 'آية': '👩', 'محمد': '👦', 'مريم': '👧', 'الحاجة': '👵', 'النونو': '👶', 'العائلة': '👨‍👩‍👧‍👦', 'أخرى': '🤲', 'صدقات وأخرى': '🤲' };
-
       const htmlCards = itemsToRender.map(item => {
         let borderClass = 'border-expense';
         let badgeClass = 'badge-exp';
         let badgeIcon = 'fa-circle-minus';
         let sign = '-';
-        if (item.type === 'add_income') {
+        let valColor = '#f43f5e';
+
+        if (item.type === 'add_income' || item.type === 'debt_collected' || item.sign === '+') {
           borderClass = 'border-income';
           badgeClass = 'badge-inc';
           badgeIcon = 'fa-circle-plus';
           sign = '+';
-        } else if (item.type === 'delete_tx') {
+          valColor = '#10b981';
+        } else if (item.type && item.type.includes('delete')) {
           borderClass = 'border-delete';
           badgeClass = 'badge-del';
           badgeIcon = 'fa-trash-can';
           sign = '';
+          valColor = '#94a3b8';
+        } else if (item.type && (item.type.includes('expected') || item.type.includes('bill'))) {
+          borderClass = 'border-expected';
+          badgeClass = 'badge-exp';
+          badgeIcon = 'fa-thumbtack';
+          sign = item.sign || '';
+          valColor = item.sign === '+' ? '#10b981' : '#fbbf24';
+        } else if (item.type && item.type.includes('budget')) {
+          borderClass = 'border-budget';
+          badgeClass = 'badge-lux';
+          badgeIcon = 'fa-calculator';
+          sign = '';
+          valColor = '#38bdf8';
+        } else if (item.type && item.type.includes('transfer')) {
+          borderClass = 'border-transfer';
+          badgeClass = 'badge-trans';
+          badgeIcon = 'fa-arrow-right-arrow-left';
+          sign = '↔';
+          valColor = '#38bdf8';
+        } else if (item.type && item.type.includes('request')) {
+          borderClass = 'border-request';
+          badgeClass = 'badge-req';
+          badgeIcon = 'fa-paper-plane';
+          sign = '';
+          valColor = '#eab308';
         } else if (item.type === 'add_note') {
           borderClass = 'border-note';
           badgeClass = 'badge-note';
           badgeIcon = 'fa-note-sticky';
           sign = '';
+          valColor = '#fbbf24';
         }
 
-        const dateStr = item.timestamp ? new Date(item.timestamp).toLocaleString('ar-EG', { dateStyle: 'short', timeStyle: 'short' }) : (item.date || '');
+        const dateStr = item.time ? `${item.date || ''} • ${item.time}` : (item.timestamp ? new Date(item.timestamp).toLocaleString('ar-EG', { dateStyle: 'short', timeStyle: 'short' }) : (item.date || ''));
         const authorImg = MEMBER_AVATARS[item.author] || null;
         const memberImg = MEMBER_AVATARS[item.member] || null;
         const authorAvatar = authorImg 
-          ? `<img src="${authorImg}" style="width: 17px; height: 17px; border-radius: 50%; object-fit: cover;">`
-          : `<i class="fa-solid fa-user" style="font-size: 0.68rem; color: #38bdf8;"></i>`;
+          ? `<img src="${authorImg}" style="width: 18px; height: 18px; border-radius: 50%; object-fit: cover; border: 1.2px solid #a855f7;">`
+          : `<i class="fa-solid fa-circle-user" style="color: #a855f7; font-size: 0.75rem;"></i>`;
         const memberAvatar = memberImg
-          ? `<img src="${memberImg}" style="width: 17px; height: 17px; border-radius: 50%; object-fit: cover;">`
-          : `<i class="fa-solid fa-users" style="font-size: 0.68rem; color: #fbbf24;"></i>`;
+          ? `<img src="${memberImg}" style="width: 18px; height: 18px; border-radius: 50%; object-fit: cover; border: 1.2px solid #38bdf8;">`
+          : `<i class="fa-solid fa-house-user" style="color: #38bdf8; font-size: 0.75rem;"></i>`;
+
+        const hasReceipt = Boolean(item.receipt || item.photo || item.settleReceipt);
+        const receiptBadge = hasReceipt 
+          ? `<span style="font-size: 0.60rem; background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 1px 6px; border-radius: 5px; font-weight: 800; display: inline-flex; align-items: center; gap: 3px;"><i class="fa-solid fa-paperclip"></i> فاتورة</span>` 
+          : '';
+
+        const rawAmount = parseFloat(item.amount) || 0;
+        const amountDisplay = rawAmount > 0 ? `${sign ? sign + ' ' : ''}${formatMoney(rawAmount)}` : '';
 
         return `
-          <div class="archive-item ${borderClass}">
-            <div class="archive-item-head">
-              <span class="archive-badge ${badgeClass}">
-                <i class="fa-solid ${badgeIcon}"></i> ${item.action || 'عملية'}
-              </span>
-              <span class="archive-time"><i class="fa-regular fa-clock"></i> ${dateStr}</span>
+          <div class="activity-card-item ${borderClass}" onclick="openActivityDetails('${item.id}')" title="انقر لعرض التفاصيل الكاملة والمستند المرفق" style="cursor: pointer; transition: transform 0.15s, background 0.15s; margin-bottom: 7px; background: rgba(30, 41, 59, 0.6); border-radius: 12px; padding: 10px 12px; border-left: 3.5px solid ${valColor}; box-shadow: 0 4px 14px rgba(0,0,0,0.25);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span class="activity-type-badge ${badgeClass}" style="font-size: 0.68rem; font-weight: 800; padding: 2px 7px; border-radius: 6px;">
+                  <i class="fa-solid ${badgeIcon}"></i> ${item.action || 'نشاط'}
+                </span>
+                ${receiptBadge}
+              </div>
+              <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+                <i class="fa-regular fa-clock"></i> <span>${dateStr}</span>
+              </div>
             </div>
-            <div class="archive-item-body">
+
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
               <div style="flex: 1; min-width: 0;">
-                <div class="archive-label">${escapeHtml(item.label || 'بدون بيان')}</div>
-                <div class="archive-sub-meta">
-                  <span class="archive-meta-chip">
-                    ${authorAvatar}
-                    <span>منفذ: <strong>${escapeHtml(item.author || 'ماهر')}</strong></span>
+                <div style="font-size: 0.84rem; font-weight: 800; color: #f8fafc; line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                  ${item.label || item.action}
+                </div>
+                <div style="font-size: 0.68rem; color: #94a3b8; display: flex; align-items: center; gap: 8px; margin-top: 4px;">
+                  <span style="display: flex; align-items: center; gap: 4px;" title="المنفذ">
+                    ${authorAvatar} <strong>${item.author || 'ماهر'}</strong>
                   </span>
-                  <span class="archive-meta-chip">
-                    ${memberAvatar}
-                    <span>المحمل: <strong>${escapeHtml(item.member || 'العائلة')}</strong></span>
-                  </span>
-                  ${item.wallet ? `<span class="archive-meta-chip"><i class="fa-solid fa-vault" style="color: #f59e0b;"></i> <span>${escapeHtml(item.wallet)}</span></span>` : ''}
+                  ${item.member ? `
+                    <span style="display: flex; align-items: center; gap: 4px;" title="المستفيد">
+                      ${memberAvatar} <span>${item.member}</span>
+                    </span>
+                  ` : ''}
                 </div>
               </div>
-              ${item.amount ? `<span class="archive-amount ${item.type === 'add_income' ? 'amt-inc' : 'amt-exp'}">${sign}${formatMoney(item.amount)}</span>` : ''}
+
+              ${amountDisplay ? `
+                <div style="text-align: left; font-size: 0.94rem; font-weight: 900; color: ${valColor}; font-variant-numeric: tabular-nums; direction: ltr; flex-shrink: 0;">
+                  ${amountDisplay}
+                </div>
+              ` : `
+                <div style="font-size: 0.72rem; color: #38bdf8; display: flex; align-items: center; gap: 3px;">
+                  <span>عرض</span> <i class="fa-solid fa-chevron-left" style="font-size: 0.62rem;"></i>
+                </div>
+              `}
             </div>
           </div>
         `;
       }).join('');
 
-      if (!appendMore) {
-        container.innerHTML = htmlCards;
-      } else {
-        container.insertAdjacentHTML('beforeend', htmlCards);
-      }
+      containers.forEach(c => {
+        if (!appendMore) {
+          c.innerHTML = htmlCards;
+        } else {
+          c.insertAdjacentHTML('beforeend', htmlCards);
+        }
 
-      if (totalArchiveCount > archiveRenderLimit) {
-        const remaining = totalArchiveCount - archiveRenderLimit;
-        const loadMoreBox = document.createElement('div');
-        loadMoreBox.id = 'btnLoadMoreArchive';
-        loadMoreBox.style.cssText = 'text-align: center; margin: 14px 0 24px;';
-        loadMoreBox.innerHTML = `
-          <button type="button" class="btn-export-tool" onclick="loadMoreArchive()" style="padding: 10px 22px; font-size: 0.82rem; font-weight: 800; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: none; border-radius: 12px; cursor: pointer;">
-            <i class="fa-solid fa-angles-down"></i> عرض 50 سجل إضافي (المتبقي: ${remaining.toLocaleString()})
-          </button>
-        `;
-        container.appendChild(loadMoreBox);
-      }
+        if (endIndex < totalArchiveCount) {
+          const loadMoreHtml = `
+            <div id="btnLoadMoreArchive" style="text-align: center; margin: 12px 0 6px;">
+              <button type="button" onclick="loadMoreArchiveActivities()" style="background: rgba(56, 189, 248, 0.15); border: 1.2px solid rgba(56, 189, 248, 0.35); color: #38bdf8; font-size: 0.76rem; font-weight: 800; padding: 8px 18px; border-radius: 10px; cursor: pointer; transition: all 0.2s;">
+                <i class="fa-solid fa-arrow-down"></i> عرض المزيد من الأنشطة (${totalArchiveCount - endIndex} متبقية)
+              </button>
+            </div>
+          `;
+          c.insertAdjacentHTML('beforeend', loadMoreHtml);
+        }
+      });
     }
 
-    function loadMoreArchive() {
-      archiveRenderLimit += 50;
-      renderActivityLogUI(true);
-    }
-
-
-function exportActivityLogExcel() {
+    function exportActivityLogExcel() {
       if (!state.activityLog || state.activityLog.length === 0) {
         alert('لا توجد حركات في السجل لتصديرها');
         return;
@@ -23272,6 +24216,18 @@ function exportActivityLogExcel() {
       }
 
       closeModal('editTxModal');
+      logActivity({
+        type: 'edit_tx',
+        action: 'تعديل حركة مالية',
+        label: `تعديل حركة: ${labelVal} (${formatMoney(amountVal)})`,
+        amount: amountVal,
+        sign: typeVal === 'income' ? '+' : '-',
+        member: memberVal,
+        author: state.currentUser || 'ماهر',
+        wallet: walletVal,
+        notes: 'تم تعديل بيانات الحركة وتحديث الحسابات'
+      });
+
       showToast('تم حفظ وتعديل العملية بنجاح! ✨', 'success');
 
       // إعادة رسم الواجهة وقائمة العمليات
@@ -23651,7 +24607,118 @@ function exportActivityLogExcel() {
           <script>
             window.onload = function() { window.print(); };
           <\/script>
-        </body>
+        
+  <!-- =========================================================================
+       نافذة تفاصيل عملية الأرشيف الفاخرة (Activity Details Modal)
+       تعرض كامل تفاصيل العملية دون اختصار مع المستند المرفق وزر الانتقال
+       ========================================================================= -->
+  <div class="modal-overlay modal-overlay-custom" id="activityDetailsModal" style="display: none; z-index: 100020 !important; align-items: center !important; justify-content: center !important; padding: 14px; direction: rtl;" dir="rtl" onclick="if(event.target === this) closeModal('activityDetailsModal')">
+    <div class="modal-content-card" style="max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto; background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.98)); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.85); padding: 18px; box-sizing: border-box;">
+      
+      <!-- هيدر النافذة -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div id="actDetailHeaderIconBadge" style="width: 38px; height: 38px; border-radius: 12px; background: rgba(56, 189, 248, 0.15); border: 1.2px solid rgba(56, 189, 248, 0.35); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; color: #38bdf8;">
+            <i class="fa-solid fa-clock-rotate-left" id="actDetailHeaderIcon"></i>
+          </div>
+          <div>
+            <h3 id="actDetailActionTitle" style="font-size: 0.98rem; font-weight: 900; color: #f8fafc; margin: 0;">تفاصيل حركة الأرشيف</h3>
+            <span id="actDetailTypeBadge" style="font-size: 0.65rem; color: #94a3b8; font-weight: 700;">سجل الحركة الموثقة</span>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('activityDetailsModal')" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- بانر المبلغ المالي الضخم والمدقق محاسبياً -->
+      <div id="actDetailAmountBanner" style="background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(56, 189, 248, 0.25); border-radius: 14px; padding: 12px; text-align: center; margin-bottom: 14px; box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);">
+        <div style="font-size: 0.70rem; color: #94a3b8; font-weight: 800; margin-bottom: 3px;">قيمة العملية المالية</div>
+        <div id="actDetailAmountVal" style="font-size: 1.75rem; font-weight: 900; color: #38bdf8; direction: ltr; font-variant-numeric: tabular-nums;">+ 0.00 ج.م</div>
+      </div>
+
+      <!-- نص البيان والوصف الكامل دون أي اختصار -->
+      <div style="margin-bottom: 12px;">
+        <label style="font-size: 0.70rem; font-weight: 800; color: #94a3b8; margin-bottom: 4px; display: block;">البيان والوصف الكامل للعملية:</label>
+        <div id="actDetailFullLabel" style="font-size: 0.88rem; font-weight: 800; color: #f8fafc; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px 12px; line-height: 1.5; word-break: break-word;"></div>
+      </div>
+
+      <!-- شبكة البيانات التفصيلية (التاريخ، المنفذ، المستفيد، المحفظة، البند) -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+        <!-- التاريخ والوقت -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-regular fa-calendar-check" style="color: #38bdf8;"></i> التاريخ والوقت</div>
+          <div id="actDetailDateTime" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0;"></div>
+        </div>
+
+        <!-- المنفذ (المستخدم الفعلي) -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-solid fa-user-pen" style="color: #a855f7;"></i> المنفذ (بواسطة)</div>
+          <div id="actDetailAuthor" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0; display: flex; align-items: center; gap: 6px;"></div>
+        </div>
+
+        <!-- يخص من في الأسرة -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-solid fa-people-roof" style="color: #f59e0b;"></i> يخص في الأسرة</div>
+          <div id="actDetailMember" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0; display: flex; align-items: center; gap: 6px;"></div>
+        </div>
+
+        <!-- المحفظة أو الحساب -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-solid fa-wallet" style="color: #10b981;"></i> المحفظة / الخزينة</div>
+          <div id="actDetailWallet" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0;"></div>
+        </div>
+      </div>
+
+      <!-- بند الملاحظات الإضافية (إن وجد) -->
+      <div id="actDetailNotesCard" style="display: none; background: rgba(245, 158, 11, 0.08); border: 1.2px solid rgba(245, 158, 11, 0.25); border-radius: 10px; padding: 8px 12px; margin-bottom: 12px;">
+        <div style="font-size: 0.68rem; font-weight: 800; color: #fbbf24; margin-bottom: 2px;"><i class="fa-solid fa-note-sticky"></i> ملاحظات إضافية:</div>
+        <div id="actDetailNotesTxt" style="font-size: 0.78rem; font-weight: 700; color: #f8fafc; line-height: 1.4;"></div>
+      </div>
+
+      <!-- معاينة المستند المرفق (الفاتورة / الإيصال / الصورة) -->
+      <div id="actDetailReceiptCard" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 10px; margin-bottom: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 0.72rem; font-weight: 800; color: #cbd5e1; display: flex; align-items: center; gap: 5px;">
+            <i class="fa-solid fa-file-invoice-dollar" style="color: #38bdf8;"></i> المستند المرفق / الفاتورة:
+          </span>
+          <span id="actDetailReceiptStatusBadge" style="font-size: 0.62rem; padding: 1px 6px; border-radius: 5px; font-weight: 800;"></span>
+        </div>
+
+        <!-- صورة المستند المرفق إن وجدت -->
+        <div id="actDetailReceiptImgBox" style="display: none; position: relative; border-radius: 10px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.12);">
+          <img id="actDetailReceiptImg" src="" style="width: 100%; max-height: 200px; object-fit: contain; display: block; cursor: pointer;" onclick="openReceiptFromActDetail()" title="انقر لتكبير المستند بالشاشة الكاملة">
+          <div style="position: absolute; bottom: 6px; right: 6px; display: flex; gap: 6px;">
+            <button type="button" onclick="openReceiptFromActDetail()" style="background: rgba(0,0,0,0.75); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.70rem; padding: 4px 8px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-expand"></i> تكبير
+            </button>
+            <button type="button" onclick="downloadReceiptFromActDetail()" style="background: rgba(0,0,0,0.75); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.70rem; padding: 4px 8px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-download"></i> حفظ
+            </button>
+          </div>
+        </div>
+
+        <!-- حالة عدم وجود مرفق -->
+        <div id="actDetailNoReceiptMsg" style="display: block; text-align: center; padding: 12px; color: #64748b; font-size: 0.75rem; font-weight: 700;">
+          <i class="fa-regular fa-image" style="font-size: 1.3rem; margin-bottom: 4px; display: block; opacity: 0.4;"></i>
+          لا توجد صورة أو فاتورة مرفقة مع هذه الحركة
+        </div>
+      </div>
+
+      <!-- أزرار الإجراءات السريعة (الانتقال لقسم الحركة + الإغلاق) -->
+      <div style="display: flex; gap: 8px;">
+        <button type="button" id="btnActDetailContextJump" onclick="jumpToActivityContext()" class="btn-submit-tx" style="flex: 1; height: 40px; font-size: 0.82rem; font-weight: 800; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; border-radius: 10px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="actDetailJumpBtnTxt">الانتقال للقسم المعني</span>
+        </button>
+        <button type="button" onclick="closeModal('activityDetailsModal')" style="height: 40px; padding: 0 16px; font-size: 0.82rem; font-weight: 800; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; cursor: pointer;">
+          إغلاق
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</body>
         </html>
       `);
       printWindow.document.close();
@@ -24335,7 +25402,118 @@ function exportActivityLogExcel() {
               ${rowsHtml}
             </tbody>
           </table>
-        </body>
+        
+  <!-- =========================================================================
+       نافذة تفاصيل عملية الأرشيف الفاخرة (Activity Details Modal)
+       تعرض كامل تفاصيل العملية دون اختصار مع المستند المرفق وزر الانتقال
+       ========================================================================= -->
+  <div class="modal-overlay modal-overlay-custom" id="activityDetailsModal" style="display: none; z-index: 100020 !important; align-items: center !important; justify-content: center !important; padding: 14px; direction: rtl;" dir="rtl" onclick="if(event.target === this) closeModal('activityDetailsModal')">
+    <div class="modal-content-card" style="max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto; background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.98)); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.85); padding: 18px; box-sizing: border-box;">
+      
+      <!-- هيدر النافذة -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div id="actDetailHeaderIconBadge" style="width: 38px; height: 38px; border-radius: 12px; background: rgba(56, 189, 248, 0.15); border: 1.2px solid rgba(56, 189, 248, 0.35); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; color: #38bdf8;">
+            <i class="fa-solid fa-clock-rotate-left" id="actDetailHeaderIcon"></i>
+          </div>
+          <div>
+            <h3 id="actDetailActionTitle" style="font-size: 0.98rem; font-weight: 900; color: #f8fafc; margin: 0;">تفاصيل حركة الأرشيف</h3>
+            <span id="actDetailTypeBadge" style="font-size: 0.65rem; color: #94a3b8; font-weight: 700;">سجل الحركة الموثقة</span>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('activityDetailsModal')" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- بانر المبلغ المالي الضخم والمدقق محاسبياً -->
+      <div id="actDetailAmountBanner" style="background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(56, 189, 248, 0.25); border-radius: 14px; padding: 12px; text-align: center; margin-bottom: 14px; box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);">
+        <div style="font-size: 0.70rem; color: #94a3b8; font-weight: 800; margin-bottom: 3px;">قيمة العملية المالية</div>
+        <div id="actDetailAmountVal" style="font-size: 1.75rem; font-weight: 900; color: #38bdf8; direction: ltr; font-variant-numeric: tabular-nums;">+ 0.00 ج.م</div>
+      </div>
+
+      <!-- نص البيان والوصف الكامل دون أي اختصار -->
+      <div style="margin-bottom: 12px;">
+        <label style="font-size: 0.70rem; font-weight: 800; color: #94a3b8; margin-bottom: 4px; display: block;">البيان والوصف الكامل للعملية:</label>
+        <div id="actDetailFullLabel" style="font-size: 0.88rem; font-weight: 800; color: #f8fafc; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px 12px; line-height: 1.5; word-break: break-word;"></div>
+      </div>
+
+      <!-- شبكة البيانات التفصيلية (التاريخ، المنفذ، المستفيد، المحفظة، البند) -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+        <!-- التاريخ والوقت -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-regular fa-calendar-check" style="color: #38bdf8;"></i> التاريخ والوقت</div>
+          <div id="actDetailDateTime" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0;"></div>
+        </div>
+
+        <!-- المنفذ (المستخدم الفعلي) -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-solid fa-user-pen" style="color: #a855f7;"></i> المنفذ (بواسطة)</div>
+          <div id="actDetailAuthor" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0; display: flex; align-items: center; gap: 6px;"></div>
+        </div>
+
+        <!-- يخص من في الأسرة -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-solid fa-people-roof" style="color: #f59e0b;"></i> يخص في الأسرة</div>
+          <div id="actDetailMember" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0; display: flex; align-items: center; gap: 6px;"></div>
+        </div>
+
+        <!-- المحفظة أو الحساب -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-solid fa-wallet" style="color: #10b981;"></i> المحفظة / الخزينة</div>
+          <div id="actDetailWallet" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0;"></div>
+        </div>
+      </div>
+
+      <!-- بند الملاحظات الإضافية (إن وجد) -->
+      <div id="actDetailNotesCard" style="display: none; background: rgba(245, 158, 11, 0.08); border: 1.2px solid rgba(245, 158, 11, 0.25); border-radius: 10px; padding: 8px 12px; margin-bottom: 12px;">
+        <div style="font-size: 0.68rem; font-weight: 800; color: #fbbf24; margin-bottom: 2px;"><i class="fa-solid fa-note-sticky"></i> ملاحظات إضافية:</div>
+        <div id="actDetailNotesTxt" style="font-size: 0.78rem; font-weight: 700; color: #f8fafc; line-height: 1.4;"></div>
+      </div>
+
+      <!-- معاينة المستند المرفق (الفاتورة / الإيصال / الصورة) -->
+      <div id="actDetailReceiptCard" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 10px; margin-bottom: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 0.72rem; font-weight: 800; color: #cbd5e1; display: flex; align-items: center; gap: 5px;">
+            <i class="fa-solid fa-file-invoice-dollar" style="color: #38bdf8;"></i> المستند المرفق / الفاتورة:
+          </span>
+          <span id="actDetailReceiptStatusBadge" style="font-size: 0.62rem; padding: 1px 6px; border-radius: 5px; font-weight: 800;"></span>
+        </div>
+
+        <!-- صورة المستند المرفق إن وجدت -->
+        <div id="actDetailReceiptImgBox" style="display: none; position: relative; border-radius: 10px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.12);">
+          <img id="actDetailReceiptImg" src="" style="width: 100%; max-height: 200px; object-fit: contain; display: block; cursor: pointer;" onclick="openReceiptFromActDetail()" title="انقر لتكبير المستند بالشاشة الكاملة">
+          <div style="position: absolute; bottom: 6px; right: 6px; display: flex; gap: 6px;">
+            <button type="button" onclick="openReceiptFromActDetail()" style="background: rgba(0,0,0,0.75); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.70rem; padding: 4px 8px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-expand"></i> تكبير
+            </button>
+            <button type="button" onclick="downloadReceiptFromActDetail()" style="background: rgba(0,0,0,0.75); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.70rem; padding: 4px 8px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-download"></i> حفظ
+            </button>
+          </div>
+        </div>
+
+        <!-- حالة عدم وجود مرفق -->
+        <div id="actDetailNoReceiptMsg" style="display: block; text-align: center; padding: 12px; color: #64748b; font-size: 0.75rem; font-weight: 700;">
+          <i class="fa-regular fa-image" style="font-size: 1.3rem; margin-bottom: 4px; display: block; opacity: 0.4;"></i>
+          لا توجد صورة أو فاتورة مرفقة مع هذه الحركة
+        </div>
+      </div>
+
+      <!-- أزرار الإجراءات السريعة (الانتقال لقسم الحركة + الإغلاق) -->
+      <div style="display: flex; gap: 8px;">
+        <button type="button" id="btnActDetailContextJump" onclick="jumpToActivityContext()" class="btn-submit-tx" style="flex: 1; height: 40px; font-size: 0.82rem; font-weight: 800; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; border-radius: 10px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="actDetailJumpBtnTxt">الانتقال للقسم المعني</span>
+        </button>
+        <button type="button" onclick="closeModal('activityDetailsModal')" style="height: 40px; padding: 0 16px; font-size: 0.82rem; font-weight: 800; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; cursor: pointer;">
+          إغلاق
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</body>
         </html>
       `);
 
@@ -24704,6 +25882,16 @@ function exportActivityLogExcel() {
       selectedBudgetItemMembers = ['البيت'];
       renderBudgetMembersMultiPicker();
 
+      logActivity({
+        type: 'add_budget_item',
+        action: 'إضافة بند ميزانية',
+        label: `إضافة بند: ${title} بمخصص ${formatMoney(amt)}`,
+        amount: amt,
+        member: 'البيت',
+        author: state.currentUser || 'ماهر',
+        notes: `الفئة: ${catId}`
+      });
+
       renderMonthlyBudgetAllocations();
       showToast(`➕ تم إضافة بند (${title} - ${formatMoney(amt)}) بنجاح! ✨`);
     }
@@ -24713,6 +25901,16 @@ function exportActivityLogExcel() {
       if (!currentBudgetMonthData || !currentBudgetMonthData.items) return;
       const it = currentBudgetMonthData.items.find(i => i.id === itemId);
       const title = it ? it.title : 'هذا البند';
+      if (it) {
+        logActivity({
+          type: 'delete_budget_item',
+          action: 'حذف بند ميزانية',
+          label: `حذف بند: ${title}`,
+          amount: it.amount || 0,
+          member: 'البيت',
+          author: state.currentUser || 'ماهر'
+        });
+      }
       currentBudgetMonthData.items = currentBudgetMonthData.items.filter(i => i.id !== itemId);
       syncBudgetCategoriesMap(currentBudgetMonthData);
       renderMonthlyBudgetAllocations();
@@ -24732,209 +25930,26 @@ function exportActivityLogExcel() {
         showToast('⚠️ تم إلغاء التعديل: المبلغ غير صالح');
         return;
       }
+      const oldAmt = it.amount;
       it.amount = newAmt;
       syncBudgetCategoriesMap(currentBudgetMonthData);
-      renderMonthlyBudgetAllocations();
-      showToast(`✏️ تم تعديل بند "${it.title}" إلى ${formatMoney(newAmt)}`);
-    }
 
-    // رسم كافة بنود الميزانية التقديرية الحالية
-    function renderMonthlyBudgetAllocations() {
-      if (!currentBudgetMonthData) return;
-      ensureBudgetItems(currentBudgetMonthData);
-
-      const itemsContainer = document.getElementById('budgetItemsListContainer');
-      const incCont = document.getElementById('budgetIncomeRowsContainer');
-      const countBadge = document.getElementById('budgetItemsCountBadge');
-
-      const targetMonth = currentBudgetMonthData.month || '2026-11';
-      const monthExpenses = (state.transactions || []).filter(t => t.type === 'expense' && t.date && t.date.startsWith(targetMonth));
-      const totalActualMonth = monthExpenses.reduce((s, t) => s + (Number(t.amount) || 0), 0);
-      const totalBudgetMonth = (currentBudgetMonthData.items || []).reduce((s, it) => s + (Number(it.amount) || 0), 0);
-
-      // تحديث شريط الرقابة المالية الإجمالي (الفعلي مقابل المقدر)
-      const summaryTxt = document.getElementById('budgetActualSummaryTxt');
-      const progBar = document.getElementById('budgetActualProgressBar');
-      if (summaryTxt) {
-        const overallPct = totalBudgetMonth > 0 ? ((totalActualMonth / totalBudgetMonth) * 100).toFixed(1) : 0;
-        summaryTxt.innerHTML = `المنصرف الفعلي لشهر (${targetMonth}): <strong>${formatMoney(totalActualMonth)}</strong> من أصل مقدر <strong>${formatMoney(totalBudgetMonth)}</strong> (${overallPct}%)`;
-      }
-      if (progBar) {
-        const pctVal = totalBudgetMonth > 0 ? Math.min(100, (totalActualMonth / totalBudgetMonth) * 100) : 0;
-        progBar.style.width = pctVal + '%';
-        progBar.style.background = (totalActualMonth > totalBudgetMonth) ? '#ef4444' : '#38bdf8';
-      }
-
-      if (countBadge) {
-        countBadge.textContent = `${(currentBudgetMonthData.items || []).length} بند`;
-      }
-
-      // رسم كروت بنود المصروفات التقديرية
-      if (itemsContainer) {
-        const items = currentBudgetMonthData.items || [];
-        if (items.length === 0) {
-          itemsContainer.innerHTML = `
-            <div style="background: rgba(15, 23, 42, 0.6); border: 1.5px dashed rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; text-align: center; color: #94a3b8;">
-              <i class="fa-solid fa-clipboard-list" style="font-size: 1.8rem; color: #38bdf8; margin-bottom: 6px;"></i>
-              <div style="font-size: 0.85rem; font-weight: 800; color: #cbd5e1;">لا توجد بنود مصروفات مضافة بعد</div>
-              <div style="font-size: 0.72rem; margin-top: 3px;">اختر نوع المصروف وحدد الأفراد والمبلغ من الأعلى، ثم انقر "إضافة البند للميزانية"</div>
-            </div>
-          `;
-        } else {
-          itemsContainer.innerHTML = items.map((it, idx) => {
-            const cat = EXPENSE_CATEGORIES.find(c => c.id === it.category) || { name: 'أخرى', icon: 'fa-cube', color: '#38bdf8', emoji: '📦' };
-            
-            // حساب المنصرف الفعلي في هذا التصنيف للشهر
-            const catActual = monthExpenses.filter(t => t.category === it.category).reduce((s, t) => s + (Number(t.amount) || 0), 0);
-            const isOver = catActual > it.amount;
-
-            // شارات أفراد الأسرة المرتبطين بهذا البند
-            const memberChips = (it.members || ['البيت']).map(m => {
-              const avatar = (typeof MEMBER_AVATARS !== 'undefined' && MEMBER_AVATARS[m]) ? MEMBER_AVATARS[m] : '';
-              return `
-                <span style="display: inline-flex; align-items: center; gap: 4px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; padding: 2px 7px; border-radius: 6px; font-size: 0.68rem; font-weight: 800;">
-                  ${avatar ? `<img src="${avatar}" style="width: 14px; height: 14px; border-radius: 50%; object-fit: cover;">` : ''}
-                  ${m}
-                </span>
-              `;
-            }).join(' ');
-
-            return `
-              <div style="background: rgba(30, 41, 59, 0.82); border: 1.4px solid ${cat.color}45; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
-                <!-- سطر العنوان والتصنيف والأفراد -->
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
-                  <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
-                    <div style="width: 32px; height: 32px; border-radius: 8px; background: ${cat.color}25; border: 1px solid ${cat.color}50; color: ${cat.color}; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;">
-                      <i class="fa-solid ${cat.icon}"></i>
-                    </div>
-                    <div>
-                      <div style="font-size: 0.86rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-                        <span>${escapeHtml(it.title)}</span>
-                        <span style="font-size: 0.65rem; background: ${cat.color}20; color: ${cat.color}; border: 1px solid ${cat.color}40; padding: 1px 6px; border-radius: 5px;">${cat.name}</span>
-                      </div>
-                      <div style="display: flex; align-items: center; gap: 4px; margin-top: 3px; flex-wrap: wrap;">
-                        <span style="font-size: 0.66rem; color: #94a3b8; font-weight: 700;">يخص:</span>
-                        ${memberChips}
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- المبلغ وأزرار التعديل والحذف -->
-                  <div style="text-align: left; display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
-                    <div style="font-size: 1.05rem; font-weight: 900; color: #f87171; direction: ltr;">
-                      - ${formatMoney(it.amount)}
-                    </div>
-                    <div style="display: flex; gap: 5px;">
-                      <button type="button" onclick="editBudgetItemAmount('${it.id}')" title="تعديل المبلغ" style="padding: 2px 7px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; font-size: 0.68rem; font-weight: 800; cursor: pointer;">
-                        <i class="fa-solid fa-pencil"></i> تعديل
-                      </button>
-                      <button type="button" onclick="deleteBudgetItem('${it.id}')" title="حذف البند" style="padding: 2px 7px; border-radius: 6px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171; font-size: 0.68rem; font-weight: 800; cursor: pointer;">
-                        <i class="fa-solid fa-trash-can"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- شريط المقارنة الحية الفعلية للتصنيف -->
-                <div style="background: rgba(15, 23, 42, 0.7); border-radius: 6px; padding: 4px 8px; font-size: 0.68rem; display: flex; justify-content: space-between; align-items: center;">
-                  <span style="color: #94a3b8;">إجمالي منصرف تصنيف (${cat.name}) فعلياً: <strong style="color: #cbd5e1;">${formatMoney(catActual)}</strong></span>
-                  <span style="font-weight: 800; color: ${isOver ? '#f87171' : '#34d399'};">
-                    ${isOver ? '⚠️ تجاوز التقدير' : '✅ ضمن الميزانية'}
-                  </span>
-                </div>
-              </div>
-            `;
-          }).join('');
-        }
-      }
-
-      // رسم صفوف مصادر الدخل
-      if (incCont) {
-        const incomes = currentBudgetMonthData.incomes || [];
-        incCont.innerHTML = incomes.map((inc, idx) => `
-          <div style="display: grid; grid-template-columns: 2fr 1.5fr 1fr auto; gap: 6px; align-items: center; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 9px; padding: 6px 8px;">
-            <input type="text" class="form-input-custom" value="${escapeHtml(inc.name || '')}" placeholder="مصدر الدخل" onchange="updateBudgetIncome(${idx}, 'name', this.value)" style="height: 32px; font-size: 0.76rem; font-weight: 800;">
-            <div style="display: flex; align-items: center; gap: 4px;">
-              <input type="number" step="500" class="form-input-custom" value="${inc.amount || 0}" oninput="updateBudgetIncome(${idx}, 'amount', this.value)" style="height: 32px; font-size: 0.84rem; font-weight: 900; text-align: center; color: #34d399; flex: 1;">
-              <span style="font-size: 0.68rem; color: #94a3b8;">ج.م</span>
-            </div>
-            <select class="form-select-custom" onchange="updateBudgetIncome(${idx}, 'member', this.value)" style="height: 32px; font-size: 0.74rem; font-weight: 800;">
-              ${(typeof FAMILY_MEMBERS !== 'undefined' ? FAMILY_MEMBERS : ['ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'البيت']).map(m => `<option value="${m}" ${inc.member === m ? 'selected' : ''}>${m}</option>`).join('')}
-            </select>
-            <button type="button" onclick="removeBudgetIncome(${idx})" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171; border-radius: 6px; width: 30px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
-              <i class="fa-solid fa-trash-can" style="font-size: 0.75rem;"></i>
-            </button>
-          </div>
-        `).join('');
-      }
-
-      updateBudgetKpis();
-    }
-
-    function addBudgetIncomeRow() {
-      if (!currentBudgetMonthData) return;
-      if (!currentBudgetMonthData.incomes) currentBudgetMonthData.incomes = [];
-      currentBudgetMonthData.incomes.push({
-        id: 'inc-' + Date.now(),
-        name: 'مصدر دخل جديد',
-        amount: 10000,
-        member: 'ماهر'
+      logActivity({
+        type: 'edit_budget_item',
+        action: 'تعديل مخصص ميزانية',
+        label: `تعديل بند "${it.title}" من ${formatMoney(oldAmt)} إلى ${formatMoney(newAmt)}`,
+        amount: newAmt,
+        member: 'البيت',
+        author: state.currentUser || 'ماهر'
       });
+
       renderMonthlyBudgetAllocations();
-    }
-
-    function updateBudgetIncome(idx, field, val) {
-      if (!currentBudgetMonthData || !currentBudgetMonthData.incomes || !currentBudgetMonthData.incomes[idx]) return;
-      if (field === 'amount') val = parseFloat(val) || 0;
-      currentBudgetMonthData.incomes[idx][field] = val;
-      updateBudgetKpis();
-    }
-
-    function removeBudgetIncome(idx) {
-      if (!currentBudgetMonthData || !currentBudgetMonthData.incomes) return;
-      currentBudgetMonthData.incomes.splice(idx, 1);
-      renderMonthlyBudgetAllocations();
-    }
-
-    function updateBudgetKpis() {
-      if (!currentBudgetMonthData) return;
-
-      const totalIncome = (currentBudgetMonthData.incomes || []).reduce((s, inc) => s + (Number(inc.amount) || 0), 0);
-      const totalExpense = (currentBudgetMonthData.items || []).reduce((s, it) => s + (Number(it.amount) || 0), 0);
-      const surplus = totalIncome - totalExpense;
-
-      const incEl = document.getElementById('budgetKpiIncome');
-      const expEl = document.getElementById('budgetKpiExpense');
-      const surEl = document.getElementById('budgetKpiSurplus');
-
-      if (incEl) incEl.textContent = `+ ${formatMoney(totalIncome)}`;
-      if (expEl) expEl.textContent = `- ${formatMoney(totalExpense)}`;
-      if (surEl) {
-        surEl.textContent = (surplus >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(surplus));
-        surEl.style.color = (surplus >= 0) ? '#34d399' : '#f87171';
-      }
-    }
-
-    function saveMonthlyBudget() {
-      if (!currentBudgetMonthData) return;
-      currentBudgetMonthData.updatedAt = new Date().toISOString();
-      syncBudgetCategoriesMap(currentBudgetMonthData);
-
-      const idx = state.monthlyBudgets.findIndex(b => b.id === currentBudgetMonthData.id);
-      if (idx >= 0) {
-        state.monthlyBudgets[idx] = currentBudgetMonthData;
-      } else {
-        state.monthlyBudgets.push(currentBudgetMonthData);
-      }
-
-      try {
-        localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
-      } catch(e) {}
-
-      populateBudgetPlanSelector();
-      playNotificationChime();
-      showToast(`💾 تم حفظ وتثبيت خطة (${currentBudgetMonthData.name}) بنجاح! ✨`);
+      showToast(`✏️ تم تحديث مخصص "${it.title}" إلى ${formatMoney(newAmt)}`);
       triggerDriveAutoSync();
+      return;
+    }
+    // removed duplicate
+    function _dummy_unused() {
     }
 
     function openNewBudgetPlanModal() {
@@ -25008,6 +26023,16 @@ function exportActivityLogExcel() {
       state.monthlyBudgets.unshift(newPlan);
       state.activeBudgetId = newPlan.id;
 
+      logActivity({
+        type: 'budget_created',
+        action: 'إنشاء خطة ميزانية',
+        label: `إنشاء خطة ميزانية: ${name} (دخل مستهدف: ${formatMoney(targetIncome)})`,
+        amount: targetIncome,
+        member: 'البيت',
+        author: state.currentUser || 'ماهر',
+        notes: `شهر الخطة: ${month}`
+      });
+
       try {
         localStorage.setItem('family_monefy_monthly_budgets', JSON.stringify(state.monthlyBudgets));
       } catch(e) {}
@@ -25047,6 +26072,14 @@ function exportActivityLogExcel() {
       }
 
       if (confirm(`هل أنت متأكد من حذف خطة "${currentBudgetMonthData.name}" نهائياً؟`)) {
+        logActivity({
+          type: 'delete_budget_plan',
+          action: 'حذف خطة ميزانية',
+          label: `حذف خطة ميزانية: ${currentBudgetMonthData.name}`,
+          amount: currentBudgetMonthData.totalIncome || 0,
+          member: 'البيت',
+          author: state.currentUser || 'ماهر'
+        });
         state.monthlyBudgets = state.monthlyBudgets.filter(b => b.id !== currentBudgetMonthData.id);
         state.activeBudgetId = state.monthlyBudgets[0].id;
         try {
@@ -26584,6 +27617,18 @@ function installDailyNoonTrigger() {
         saveTx();
       }
 
+      logActivity({
+        type: 'create_wallet',
+        action: 'إنشاء محفظة مالية',
+        label: `إنشاء محفظة جديدة: ${name} (رصيد افتتاحي: ${formatMoney(initBal)})`,
+        amount: initBal,
+        sign: initBal > 0 ? '+' : '',
+        member: state.currentUser || 'ماهر',
+        author: state.currentUser || 'ماهر',
+        wallet: name,
+        notes: 'تم تأسيس المحفظة وإدراجها بالنظام من إدارة المحافظ'
+      });
+
       showToast(`🎉 تم إنشاء وتثبيت محفظة "${name}" بنجاح!`);
       playNotificationChime();
 
@@ -26647,6 +27692,18 @@ function installDailyNoonTrigger() {
 
       state.transactions.unshift(transferTx);
       saveTx();
+
+      logActivity({
+        type: 'wallet_transfer',
+        action: 'تحويل بين المحافظ',
+        label: `تحويل ${formatMoney(amount)} من [${fromWallet.name}] إلى [${toWallet.name}]`,
+        amount: amount,
+        sign: '↔',
+        member: state.currentUser || 'ماهر',
+        author: state.currentUser || 'ماهر',
+        wallet: `${fromWallet.name} ⬅ ${toWallet.name}`,
+        notes: notes || 'تحويل رصيد نقدي'
+      });
 
       showToast(`✔ تم تحويل ${formatMoney(amount)} من ${fromWallet.name} إلى ${toWallet.name} بنجاح!`);
       playNotificationChime();
@@ -26909,7 +27966,118 @@ function installDailyNoonTrigger() {
           <script>
             window.onload = function() { window.print(); }
           <\/script>
-        </body>
+        
+  <!-- =========================================================================
+       نافذة تفاصيل عملية الأرشيف الفاخرة (Activity Details Modal)
+       تعرض كامل تفاصيل العملية دون اختصار مع المستند المرفق وزر الانتقال
+       ========================================================================= -->
+  <div class="modal-overlay modal-overlay-custom" id="activityDetailsModal" style="display: none; z-index: 100020 !important; align-items: center !important; justify-content: center !important; padding: 14px; direction: rtl;" dir="rtl" onclick="if(event.target === this) closeModal('activityDetailsModal')">
+    <div class="modal-content-card" style="max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto; background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.98)); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.85); padding: 18px; box-sizing: border-box;">
+      
+      <!-- هيدر النافذة -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div id="actDetailHeaderIconBadge" style="width: 38px; height: 38px; border-radius: 12px; background: rgba(56, 189, 248, 0.15); border: 1.2px solid rgba(56, 189, 248, 0.35); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; color: #38bdf8;">
+            <i class="fa-solid fa-clock-rotate-left" id="actDetailHeaderIcon"></i>
+          </div>
+          <div>
+            <h3 id="actDetailActionTitle" style="font-size: 0.98rem; font-weight: 900; color: #f8fafc; margin: 0;">تفاصيل حركة الأرشيف</h3>
+            <span id="actDetailTypeBadge" style="font-size: 0.65rem; color: #94a3b8; font-weight: 700;">سجل الحركة الموثقة</span>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('activityDetailsModal')" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- بانر المبلغ المالي الضخم والمدقق محاسبياً -->
+      <div id="actDetailAmountBanner" style="background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(56, 189, 248, 0.25); border-radius: 14px; padding: 12px; text-align: center; margin-bottom: 14px; box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);">
+        <div style="font-size: 0.70rem; color: #94a3b8; font-weight: 800; margin-bottom: 3px;">قيمة العملية المالية</div>
+        <div id="actDetailAmountVal" style="font-size: 1.75rem; font-weight: 900; color: #38bdf8; direction: ltr; font-variant-numeric: tabular-nums;">+ 0.00 ج.م</div>
+      </div>
+
+      <!-- نص البيان والوصف الكامل دون أي اختصار -->
+      <div style="margin-bottom: 12px;">
+        <label style="font-size: 0.70rem; font-weight: 800; color: #94a3b8; margin-bottom: 4px; display: block;">البيان والوصف الكامل للعملية:</label>
+        <div id="actDetailFullLabel" style="font-size: 0.88rem; font-weight: 800; color: #f8fafc; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px 12px; line-height: 1.5; word-break: break-word;"></div>
+      </div>
+
+      <!-- شبكة البيانات التفصيلية (التاريخ، المنفذ، المستفيد، المحفظة، البند) -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+        <!-- التاريخ والوقت -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-regular fa-calendar-check" style="color: #38bdf8;"></i> التاريخ والوقت</div>
+          <div id="actDetailDateTime" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0;"></div>
+        </div>
+
+        <!-- المنفذ (المستخدم الفعلي) -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-solid fa-user-pen" style="color: #a855f7;"></i> المنفذ (بواسطة)</div>
+          <div id="actDetailAuthor" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0; display: flex; align-items: center; gap: 6px;"></div>
+        </div>
+
+        <!-- يخص من في الأسرة -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-solid fa-people-roof" style="color: #f59e0b;"></i> يخص في الأسرة</div>
+          <div id="actDetailMember" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0; display: flex; align-items: center; gap: 6px;"></div>
+        </div>
+
+        <!-- المحفظة أو الحساب -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-solid fa-wallet" style="color: #10b981;"></i> المحفظة / الخزينة</div>
+          <div id="actDetailWallet" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0;"></div>
+        </div>
+      </div>
+
+      <!-- بند الملاحظات الإضافية (إن وجد) -->
+      <div id="actDetailNotesCard" style="display: none; background: rgba(245, 158, 11, 0.08); border: 1.2px solid rgba(245, 158, 11, 0.25); border-radius: 10px; padding: 8px 12px; margin-bottom: 12px;">
+        <div style="font-size: 0.68rem; font-weight: 800; color: #fbbf24; margin-bottom: 2px;"><i class="fa-solid fa-note-sticky"></i> ملاحظات إضافية:</div>
+        <div id="actDetailNotesTxt" style="font-size: 0.78rem; font-weight: 700; color: #f8fafc; line-height: 1.4;"></div>
+      </div>
+
+      <!-- معاينة المستند المرفق (الفاتورة / الإيصال / الصورة) -->
+      <div id="actDetailReceiptCard" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 10px; margin-bottom: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 0.72rem; font-weight: 800; color: #cbd5e1; display: flex; align-items: center; gap: 5px;">
+            <i class="fa-solid fa-file-invoice-dollar" style="color: #38bdf8;"></i> المستند المرفق / الفاتورة:
+          </span>
+          <span id="actDetailReceiptStatusBadge" style="font-size: 0.62rem; padding: 1px 6px; border-radius: 5px; font-weight: 800;"></span>
+        </div>
+
+        <!-- صورة المستند المرفق إن وجدت -->
+        <div id="actDetailReceiptImgBox" style="display: none; position: relative; border-radius: 10px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.12);">
+          <img id="actDetailReceiptImg" src="" style="width: 100%; max-height: 200px; object-fit: contain; display: block; cursor: pointer;" onclick="openReceiptFromActDetail()" title="انقر لتكبير المستند بالشاشة الكاملة">
+          <div style="position: absolute; bottom: 6px; right: 6px; display: flex; gap: 6px;">
+            <button type="button" onclick="openReceiptFromActDetail()" style="background: rgba(0,0,0,0.75); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.70rem; padding: 4px 8px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-expand"></i> تكبير
+            </button>
+            <button type="button" onclick="downloadReceiptFromActDetail()" style="background: rgba(0,0,0,0.75); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.70rem; padding: 4px 8px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-download"></i> حفظ
+            </button>
+          </div>
+        </div>
+
+        <!-- حالة عدم وجود مرفق -->
+        <div id="actDetailNoReceiptMsg" style="display: block; text-align: center; padding: 12px; color: #64748b; font-size: 0.75rem; font-weight: 700;">
+          <i class="fa-regular fa-image" style="font-size: 1.3rem; margin-bottom: 4px; display: block; opacity: 0.4;"></i>
+          لا توجد صورة أو فاتورة مرفقة مع هذه الحركة
+        </div>
+      </div>
+
+      <!-- أزرار الإجراءات السريعة (الانتقال لقسم الحركة + الإغلاق) -->
+      <div style="display: flex; gap: 8px;">
+        <button type="button" id="btnActDetailContextJump" onclick="jumpToActivityContext()" class="btn-submit-tx" style="flex: 1; height: 40px; font-size: 0.82rem; font-weight: 800; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; border-radius: 10px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="actDetailJumpBtnTxt">الانتقال للقسم المعني</span>
+        </button>
+        <button type="button" onclick="closeModal('activityDetailsModal')" style="height: 40px; padding: 0 16px; font-size: 0.82rem; font-weight: 800; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; cursor: pointer;">
+          إغلاق
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</body>
         </html>
       `);
       printWindow.document.close();
@@ -27435,6 +28603,117 @@ function installDailyNoonTrigger() {
           </button>
         </div>
       </div>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       نافذة تفاصيل عملية الأرشيف الفاخرة (Activity Details Modal)
+       تعرض كامل تفاصيل العملية دون اختصار مع المستند المرفق وزر الانتقال
+       ========================================================================= -->
+  <div class="modal-overlay modal-overlay-custom" id="activityDetailsModal" style="display: none; z-index: 100020 !important; align-items: center !important; justify-content: center !important; padding: 14px; direction: rtl;" dir="rtl" onclick="if(event.target === this) closeModal('activityDetailsModal')">
+    <div class="modal-content-card" style="max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto; background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.98)); border: 1.5px solid rgba(56, 189, 248, 0.4); border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.85); padding: 18px; box-sizing: border-box;">
+      
+      <!-- هيدر النافذة -->
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid rgba(255, 255, 255, 0.08); padding-bottom: 10px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div id="actDetailHeaderIconBadge" style="width: 38px; height: 38px; border-radius: 12px; background: rgba(56, 189, 248, 0.15); border: 1.2px solid rgba(56, 189, 248, 0.35); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; color: #38bdf8;">
+            <i class="fa-solid fa-clock-rotate-left" id="actDetailHeaderIcon"></i>
+          </div>
+          <div>
+            <h3 id="actDetailActionTitle" style="font-size: 0.98rem; font-weight: 900; color: #f8fafc; margin: 0;">تفاصيل حركة الأرشيف</h3>
+            <span id="actDetailTypeBadge" style="font-size: 0.65rem; color: #94a3b8; font-weight: 700;">سجل الحركة الموثقة</span>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('activityDetailsModal')" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- بانر المبلغ المالي الضخم والمدقق محاسبياً -->
+      <div id="actDetailAmountBanner" style="background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(56, 189, 248, 0.25); border-radius: 14px; padding: 12px; text-align: center; margin-bottom: 14px; box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);">
+        <div style="font-size: 0.70rem; color: #94a3b8; font-weight: 800; margin-bottom: 3px;">قيمة العملية المالية</div>
+        <div id="actDetailAmountVal" style="font-size: 1.75rem; font-weight: 900; color: #38bdf8; direction: ltr; font-variant-numeric: tabular-nums;">+ 0.00 ج.م</div>
+      </div>
+
+      <!-- نص البيان والوصف الكامل دون أي اختصار -->
+      <div style="margin-bottom: 12px;">
+        <label style="font-size: 0.70rem; font-weight: 800; color: #94a3b8; margin-bottom: 4px; display: block;">البيان والوصف الكامل للعملية:</label>
+        <div id="actDetailFullLabel" style="font-size: 0.88rem; font-weight: 800; color: #f8fafc; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px 12px; line-height: 1.5; word-break: break-word;"></div>
+      </div>
+
+      <!-- شبكة البيانات التفصيلية (التاريخ، المنفذ، المستفيد، المحفظة، البند) -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+        <!-- التاريخ والوقت -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-regular fa-calendar-check" style="color: #38bdf8;"></i> التاريخ والوقت</div>
+          <div id="actDetailDateTime" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0;"></div>
+        </div>
+
+        <!-- المنفذ (المستخدم الفعلي) -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-solid fa-user-pen" style="color: #a855f7;"></i> المنفذ (بواسطة)</div>
+          <div id="actDetailAuthor" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0; display: flex; align-items: center; gap: 6px;"></div>
+        </div>
+
+        <!-- يخص من في الأسرة -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-solid fa-people-roof" style="color: #f59e0b;"></i> يخص في الأسرة</div>
+          <div id="actDetailMember" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0; display: flex; align-items: center; gap: 6px;"></div>
+        </div>
+
+        <!-- المحفظة أو الحساب -->
+        <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 8px 10px;">
+          <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700; margin-bottom: 2px;"><i class="fa-solid fa-wallet" style="color: #10b981;"></i> المحفظة / الخزينة</div>
+          <div id="actDetailWallet" style="font-size: 0.78rem; font-weight: 800; color: #e2e8f0;"></div>
+        </div>
+      </div>
+
+      <!-- بند الملاحظات الإضافية (إن وجد) -->
+      <div id="actDetailNotesCard" style="display: none; background: rgba(245, 158, 11, 0.08); border: 1.2px solid rgba(245, 158, 11, 0.25); border-radius: 10px; padding: 8px 12px; margin-bottom: 12px;">
+        <div style="font-size: 0.68rem; font-weight: 800; color: #fbbf24; margin-bottom: 2px;"><i class="fa-solid fa-note-sticky"></i> ملاحظات إضافية:</div>
+        <div id="actDetailNotesTxt" style="font-size: 0.78rem; font-weight: 700; color: #f8fafc; line-height: 1.4;"></div>
+      </div>
+
+      <!-- معاينة المستند المرفق (الفاتورة / الإيصال / الصورة) -->
+      <div id="actDetailReceiptCard" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 10px; margin-bottom: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 0.72rem; font-weight: 800; color: #cbd5e1; display: flex; align-items: center; gap: 5px;">
+            <i class="fa-solid fa-file-invoice-dollar" style="color: #38bdf8;"></i> المستند المرفق / الفاتورة:
+          </span>
+          <span id="actDetailReceiptStatusBadge" style="font-size: 0.62rem; padding: 1px 6px; border-radius: 5px; font-weight: 800;"></span>
+        </div>
+
+        <!-- صورة المستند المرفق إن وجدت -->
+        <div id="actDetailReceiptImgBox" style="display: none; position: relative; border-radius: 10px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.12);">
+          <img id="actDetailReceiptImg" src="" style="width: 100%; max-height: 200px; object-fit: contain; display: block; cursor: pointer;" onclick="openReceiptFromActDetail()" title="انقر لتكبير المستند بالشاشة الكاملة">
+          <div style="position: absolute; bottom: 6px; right: 6px; display: flex; gap: 6px;">
+            <button type="button" onclick="openReceiptFromActDetail()" style="background: rgba(0,0,0,0.75); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.70rem; padding: 4px 8px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-expand"></i> تكبير
+            </button>
+            <button type="button" onclick="downloadReceiptFromActDetail()" style="background: rgba(0,0,0,0.75); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.70rem; padding: 4px 8px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-download"></i> حفظ
+            </button>
+          </div>
+        </div>
+
+        <!-- حالة عدم وجود مرفق -->
+        <div id="actDetailNoReceiptMsg" style="display: block; text-align: center; padding: 12px; color: #64748b; font-size: 0.75rem; font-weight: 700;">
+          <i class="fa-regular fa-image" style="font-size: 1.3rem; margin-bottom: 4px; display: block; opacity: 0.4;"></i>
+          لا توجد صورة أو فاتورة مرفقة مع هذه الحركة
+        </div>
+      </div>
+
+      <!-- أزرار الإجراءات السريعة (الانتقال لقسم الحركة + الإغلاق) -->
+      <div style="display: flex; gap: 8px;">
+        <button type="button" id="btnActDetailContextJump" onclick="jumpToActivityContext()" class="btn-submit-tx" style="flex: 1; height: 40px; font-size: 0.82rem; font-weight: 800; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; border-radius: 10px; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> <span id="actDetailJumpBtnTxt">الانتقال للقسم المعني</span>
+        </button>
+        <button type="button" onclick="closeModal('activityDetailsModal')" style="height: 40px; padding: 0 16px; font-size: 0.82rem; font-weight: 800; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; cursor: pointer;">
+          إغلاق
+        </button>
+      </div>
+
     </div>
   </div>
 
