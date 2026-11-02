@@ -1,8 +1,8 @@
 {
-  "version": "4.8.2",
-  "buildId": 202611021257,
-  "buildTimestamp": 1793613475449,
-  "releaseDate": "2026-11-02 12:57:55",
+  "version": "4.7.0",
+  "buildId": 202611021302,
+  "buildTimestamp": 1793613779849,
+  "releaseDate": "2026-11-02 13:02:59",
   "commit": "auto-update",
-  "notes": "اعتماد وتوليد صورة الكل العائلية المجمعة بناء على صور أفراد العائلة الفعلية"
+  "notes": "Relocate reconciliation result to top-left header note and include executor column in all statements"
 }

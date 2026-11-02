@@ -11549,6 +11549,7 @@
                       <th style="padding: 7px 6px;">البيان</th>
                       <th style="padding: 7px 6px;">الفرد</th>
                       <th style="padding: 7px 6px;">البند</th>
+                      <th style="padding: 7px 6px;">منفذ العملية</th>
                       <th style="padding: 7px 6px;">المبلغ</th>
                       <th style="padding: 7px 6px;">الرصيد</th>
                     </tr>
@@ -13742,8 +13743,8 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = '4.8.2';
-      const APP_BUILD_ID = 202611021257;
+      const APP_VERSION = '4.7.0';
+      const APP_BUILD_ID = 202611021302;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
@@ -21461,7 +21462,7 @@ function openSettingsModal() {
           'المدين / مصروف (-)',
           'الدائن / دخل (+)',
           'الرصيد التراكمي (ج.م)',
-          'سجلت بواسطة'
+          'منفذ العملية'
         ]
       ];
 
@@ -21593,6 +21594,7 @@ function openSettingsModal() {
             <td>${catObj.name}</td>
             <td>${tx.member || ''}</td>
             <td>${wObj.name}</td>
+            <td style="font-weight: 700; color: #0284c7;">${escapeHtml(tx.author || tx.member || state.currentUser || 'ماهر')}</td>
             <td class="debit-val">${debitTxt !== '-' ? debitTxt : ''}</td>
             <td class="credit-val">${creditTxt !== '-' ? creditTxt : ''}</td>
             <td class="running-val">${runningBal.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</td>
@@ -21648,15 +21650,16 @@ function openSettingsModal() {
           <table class="print-ledger-table">
             <thead>
               <tr>
-                <th style="width: 5%;">م</th>
-                <th style="width: 11%;">التاريخ</th>
-                <th style="width: 28%;">البيان التفصيلي</th>
-                <th style="width: 14%;">بند الصرف</th>
+                <th style="width: 4%;">م</th>
+                <th style="width: 10%;">التاريخ</th>
+                <th style="width: 24%;">البيان التفصيلي</th>
+                <th style="width: 12%;">بند الصرف</th>
                 <th style="width: 9%;">العضو</th>
-                <th style="width: 11%;">المحفظة</th>
-                <th style="width: 11%;">مدين (-)</th>
-                <th style="width: 11%;">دائن (+)</th>
-                <th style="width: 13%;">الرصيد التراكمي</th>
+                <th style="width: 10%;">المحفظة</th>
+                <th style="width: 10%;">منفذ العملية</th>
+                <th style="width: 10%;">مدين (-)</th>
+                <th style="width: 10%;">دائن (+)</th>
+                <th style="width: 11%;">الرصيد التراكمي</th>
               </tr>
             </thead>
             <tbody>
@@ -21664,7 +21667,7 @@ function openSettingsModal() {
             </tbody>
             <tfoot>
               <tr style="background: #e2e8f0; font-weight: 900;">
-                <td colspan="6" style="text-align: right; padding: 10px;">الإجمالي المدقق والمطابق رياضياً</td>
+                <td colspan="7" style="text-align: right; padding: 10px;">الإجمالي المدقق والمطابق رياضياً</td>
                 <td class="debit-val">-${totalDebits.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</td>
                 <td class="credit-val">+${totalCredits.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</td>
                 <td class="running-val">${finalNet.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</td>
@@ -22521,7 +22524,7 @@ function exportActivityLogExcel() {
         }
 
         // 3. التحقق مما إذا كان هناك إصدار أحدث متوفر بالسيرفر
-        const currentBuildNum = typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611021257;
+        const currentBuildNum = typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611021302;
         const currentVerStr = typeof APP_VERSION !== 'undefined' ? APP_VERSION : '4.2.1';
         
         const isNewer = remoteBuild && remoteBuild.buildId && (
@@ -22937,6 +22940,7 @@ function exportActivityLogExcel() {
           amount: rowAmount,
           balanceAfter: running,
           member: tx.member || '',
+          author: tx.author || tx.member || state.currentUser || 'ماهر',
           walletName: getWalletName(tx.walletId || tx.toWalletId || tx.fromWalletId)
         };
       });
@@ -22974,6 +22978,7 @@ function exportActivityLogExcel() {
                 <th style="padding: 8px 10px;">التاريخ</th>
                 <th style="padding: 8px;">البيان</th>
                 <th style="padding: 8px;">نوع الحركة</th>
+                <th style="padding: 8px;">منفذ العملية</th>
                 <th style="padding: 8px; text-align: center;">المبلغ</th>
                 <th style="padding: 8px 10px; text-align: left;">الرصيد التراكمي</th>
               </tr>
@@ -23001,6 +23006,7 @@ function exportActivityLogExcel() {
                       <div style="font-size: 0.65rem; color: #64748b;">${r.walletName} • ${r.member}</div>
                     </td>
                     <td style="padding: 8px;">${badge}</td>
+                    <td style="padding: 8px; font-weight: 700; color: #38bdf8;">${escapeHtml(r.author || r.member || 'ماهر')}</td>
                     <td style="padding: 8px; text-align: center; white-space: nowrap;">${amtDisplay}</td>
                     <td style="padding: 8px 10px; text-align: left; font-weight: 900; color: #38bdf8; font-variant-numeric: tabular-nums;">${formatMoney(r.balanceAfter)}</td>
                   </tr>
@@ -23027,7 +23033,7 @@ function exportActivityLogExcel() {
       rows.push(['المحفظة:', wName]);
       rows.push(['تاريخ التصدير:', new Date().toLocaleDateString('ar-EG')]);
       rows.push([]);
-      rows.push(['التاريخ', 'البيان', 'نوع الحركة', 'المحفظة', 'المبلغ', 'الرصيد التراكمي', 'المسؤول']);
+      rows.push(['التاريخ', 'البيان', 'نوع الحركة', 'المحفظة', 'منفذ العملية', 'المبلغ', 'الرصيد التراكمي']);
 
       const tableEl = document.querySelector('#walletStatementTableContainer table');
       if (!tableEl) {
@@ -23038,13 +23044,14 @@ function exportActivityLogExcel() {
       const trs = tableEl.querySelectorAll('tbody tr');
       trs.forEach(tr => {
         const tds = tr.querySelectorAll('td');
-        if (tds.length >= 5) {
+        if (tds.length >= 6) {
           const date = tds[0].textContent.trim();
           const label = tds[1].textContent.trim().replace(/\s+/g, ' ');
           const type = tds[2].textContent.trim();
-          const amt = tds[3].textContent.trim();
-          const bal = tds[4].textContent.trim();
-          rows.push([date, label, type, wName, amt, bal, state.currentUser || 'ماهر']);
+          const executor = tds[3].textContent.trim();
+          const amt = tds[4].textContent.trim();
+          const bal = tds[5].textContent.trim();
+          rows.push([date, label, type, wName, executor, amt, bal]);
         }
       });
 
@@ -23578,6 +23585,14 @@ function exportActivityLogExcel() {
               </span>
             </td>
 
+            <!-- منفذ العملية -->
+            <td style="padding: 9px 10px; white-space: nowrap;">
+              <span style="display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 6px; font-size: 0.66rem; font-weight: 800; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.25);">
+                <i class="fa-solid fa-user-check" style="font-size: 0.60rem;"></i>
+                <span>${escapeHtml(tx.author || tx.member || state.currentUser || 'ماهر')}</span>
+              </span>
+            </td>
+
             <!-- المبلغ بتنسيق محاسبي دقيق -->
             <td style="padding: 9px 10px; white-space: nowrap; text-align: left; direction: ltr;">
               <span style="display: inline-block; padding: 3px 8px; border-radius: 6px; font-weight: 900; font-size: 0.78rem; color: ${amtColor}; background: ${amtBg};">
@@ -23603,6 +23618,7 @@ function exportActivityLogExcel() {
                 <th style="padding: 10px; color: #94a3b8; font-weight: 800; font-size: 0.68rem;">البيان والنوع</th>
                 <th style="padding: 10px; color: #94a3b8; font-weight: 800; font-size: 0.68rem; white-space: nowrap;">التصنيف</th>
                 <th style="padding: 10px; color: #94a3b8; font-weight: 800; font-size: 0.68rem; white-space: nowrap;">المحفظة</th>
+                <th style="padding: 10px; color: #94a3b8; font-weight: 800; font-size: 0.68rem; white-space: nowrap;">منفذ العملية</th>
                 <th style="padding: 10px; color: #94a3b8; font-weight: 800; font-size: 0.68rem; text-align: left;">المبلغ (ج.م)</th>
                 <th style="padding: 10px; color: #94a3b8; font-weight: 800; font-size: 0.68rem; text-align: left;">الرصيد بعد الحركة</th>
               </tr>
@@ -23622,7 +23638,7 @@ function exportActivityLogExcel() {
       }
 
       let csv = '\uFEFF'; // UTF-8 BOM
-      csv += 'التاريخ,الوقت,المستفيد,نوع العملية,البيان,التصنيف,المحفظة,المبلغ (ج.م),الرصيد بعد الحركة (ج.م)\n';
+      csv += 'التاريخ,الوقت,المستفيد,نوع العملية,البيان,التصنيف,المحفظة,منفذ العملية,المبلغ (ج.م),الرصيد بعد الحركة (ج.م)\n';
 
       lastAuditFilteredRows.forEach(tx => {
         const isInc = tx.type === 'income';
@@ -23634,7 +23650,8 @@ function exportActivityLogExcel() {
         const wName = getWalletName(tx.walletId);
         const cleanLabel = (tx.label || '').replace(/"/g, '""');
 
-        csv += `"${tx.date || ''}","${tx.time || ''}","${tx.member || ''}","${typeStr}","${cleanLabel}","${catName}","${wName}",${amtVal.toFixed(2)},${(tx.runningBalAfter || 0).toFixed(2)}\n`;
+        const executor = (tx.author || tx.member || state.currentUser || "ماهر").replace(/"/g, '""');
+        csv += `"${tx.date || ''}","${tx.time || ''}","${tx.member || ''}","${typeStr}","${cleanLabel}","${catName}","${wName}","${executor}",${amtVal.toFixed(2)},${(tx.runningBalAfter || 0).toFixed(2)}\n`;
       });
 
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -23688,6 +23705,7 @@ function exportActivityLogExcel() {
             <td><strong>${tx.label || 'بدون بيان'}</strong> (${isInc ? 'إيداع' : (isExp ? 'صرف' : 'تحويل')})</td>
             <td>${catObj ? catObj.name : ''}</td>
             <td>${wName}</td>
+            <td style="font-weight: bold; color: #0284c7;">${escapeHtml(tx.author || tx.member || state.currentUser || 'ماهر')}</td>
             <td style="text-align: left; direction: ltr; ${amtClass}">${amtStr}</td>
             <td style="text-align: left; direction: ltr; font-weight: bold;">${(tx.runningBalAfter || 0) >= 0 ? '+' : '-'}${formatMoney(Math.abs(tx.runningBalAfter || 0))} ج.م</td>
           </tr>
@@ -23757,6 +23775,7 @@ function exportActivityLogExcel() {
                 <th>البيان والنوع</th>
                 <th>التصنيف</th>
                 <th>المحفظة</th>
+                <th>منفذ العملية</th>
                 <th style="text-align: left;">المبلغ (ج.م)</th>
                 <th style="text-align: left;">الرصيد بعد الحركة</th>
               </tr>
@@ -26107,6 +26126,7 @@ function installDailyNoonTrigger() {
             <td style="padding: 7px 6px; font-weight: 700; color: #f8fafc; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(tx.description || tx.reason || 'عملية مالية')}</td>
             <td style="padding: 7px 6px;">${memberBadge}</td>
             <td style="padding: 7px 6px;">${catBadge}</td>
+            <td style="padding: 7px 6px; font-weight: 700; color: #38bdf8;">${escapeHtml(tx.author || tx.member || state.currentUser || 'ماهر')}</td>
             <td style="padding: 7px 6px; text-align: left;">${amtFormatted}</td>
             <td style="padding: 7px 6px; font-weight: 800; color: #38bdf8; direction: rtl; text-align: left;">${formatMoney(running)}</td>
           </tr>
@@ -26144,21 +26164,22 @@ function installDailyNoonTrigger() {
       rows.push(['المحفظة المستهدفة:', wName]);
       rows.push(['تاريخ التصدير:', new Date().toLocaleDateString('ar-EG')]);
       rows.push([]);
-      rows.push(['التاريخ', 'البيان', 'الفرد', 'البند والتصنيف', 'المبلغ', 'الرصيد التراكمي']);
+      rows.push(['التاريخ', 'البيان', 'الفرد', 'البند والتصنيف', 'منفذ العملية', 'المبلغ', 'الرصيد التراكمي']);
 
       const tbody = document.getElementById('secWalletTableBody');
       if (!tbody) return;
 
       tbody.querySelectorAll('tr').forEach(tr => {
         const tds = tr.querySelectorAll('td');
-        if (tds.length >= 6) {
+        if (tds.length >= 7) {
           rows.push([
             tds[0].textContent.trim(),
             tds[1].textContent.trim(),
             tds[2].textContent.trim(),
             tds[3].textContent.trim(),
             tds[4].textContent.trim(),
-            tds[5].textContent.trim()
+            tds[5].textContent.trim(),
+            tds[6].textContent.trim()
           ]);
         }
       });
@@ -26207,6 +26228,7 @@ function installDailyNoonTrigger() {
                 <th>البيان</th>
                 <th>الفرد</th>
                 <th>البند</th>
+                <th>منفذ العملية</th>
                 <th>المبلغ</th>
                 <th>الرصيد</th>
               </tr>
@@ -26355,16 +26377,26 @@ function installDailyNoonTrigger() {
           <div>
             <h3 class="modal-title-custom" style="font-size: 1.08rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 8px;">
               <span>كشف وتدقيق مصدر الرصيد الفعلي</span>
-              <span style="font-size: 0.65rem; background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); padding: 2px 8px; border-radius: 6px; font-weight: 800;">
-                <i class="fa-solid fa-check-double"></i> مطابقة محاسبية 0.00 ج.م
-              </span>
             </h3>
             <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 600;">
               تحليل مصادر السيولة النقدية والمصرفية، مطابقة الإيداعات والصرف، وفلترة تفصيلية متعددة الأبعاد
             </div>
           </div>
         </div>
-        <button type="button" class="btn-modal-close" onclick="closeModal('actualBalanceAuditModal')" aria-label="إغلاق">&times;</button>
+
+        <!-- الجانب الأيسر العلوي: ملحوظة جانبية لنتيجة وقيمة المطابقة المحاسبية وزر الإغلاق -->
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div id="auditHeaderReconNote" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(15, 23, 42, 0.90)); border: 1.2px solid rgba(34, 197, 94, 0.5); border-radius: 10px; padding: 4px 11px; display: flex; flex-direction: column; align-items: flex-start; gap: 1px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+            <div style="display: flex; align-items: center; gap: 5px; font-size: 0.72rem; font-weight: 900; color: #34d399;">
+              <i class="fa-solid fa-circle-check" style="color: #22c55e;"></i>
+              <span>فارق المطابقة: <strong style="color: #ffffff; text-decoration: underline;">0.00 ج.م</strong> (تطابق تام)</span>
+            </div>
+            <div id="auditEquationText" style="font-size: 0.60rem; color: #7dd3fc; font-family: 'Courier New', monospace; font-weight: 700; direction: ltr;">
+              0.00 - 0.00 = 0.00
+            </div>
+          </div>
+          <button type="button" class="btn-modal-close" onclick="closeModal('actualBalanceAuditModal')" aria-label="إغلاق">&times;</button>
+        </div>
       </div>
 
       <!-- محتوى النافذة القابل للتمرير -->
@@ -26413,20 +26445,7 @@ function installDailyNoonTrigger() {
           </div>
         </div>
 
-        <!-- شريط معادلة التدقيق المحاسبي -->
-        <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 12px; padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 0.72rem;">
-          <div style="display: flex; align-items: center; gap: 6px; color: #cbd5e1; font-weight: 700;">
-            <i class="fa-solid fa-calculator" style="color: #fbbf24;"></i>
-            <span>المعادلة المحاسبية المعتمدة للرصيد:</span>
-            <span id="auditEquationText" style="color: #38bdf8; font-family: 'Courier New', monospace; font-weight: 800; direction: ltr;">
-              0.00 - 0.00 = 0.00
-            </span>
-          </div>
-          <div style="display: flex; align-items: center; gap: 4px; color: #34d399; font-weight: 800;">
-            <i class="fa-solid fa-circle-check"></i>
-            <span>فارق المطابقة: 0.00 ج.م (تطابق تام)</span>
-          </div>
-        </div>
+
 
         <!-- 2. كروت توزيع السيولة على المحافظ (مع إمكانية النقر السريع للفلترة) -->
         <div>
