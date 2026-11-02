@@ -1,8 +1,8 @@
 {
-  "version": "4.7.0",
-  "buildId": 202611021302,
-  "buildTimestamp": 1793613779849,
-  "releaseDate": "2026-11-02 13:02:59",
+  "version": "4.8.0",
+  "buildId": 202611021446,
+  "buildTimestamp": 1793619971714,
+  "releaseDate": "2026-11-02 14:46:11",
   "commit": "auto-update",
-  "notes": "Relocate reconciliation result to top-left header note and include executor column in all statements"
+  "notes": "دمج نظام إدارة وتبديل المستخدمين العائلي وإدخال رمز PIN ضمن الإعدادات وإضافة عمود منفذ العملية في كافة التقارير وضبط ملحوظة المطابقة"
 }

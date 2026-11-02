@@ -6310,6 +6310,8 @@
       border-top: 1.5px solid rgba(56, 189, 248, 0.35) !important;
       backdrop-filter: blur(12px) !important;
     }
+    [data-app-theme="navy"] .kpi-master-wealth-cockpit,
+    [data-app-theme="navy"] .executive-cockpit-card,
     [data-app-theme="navy"] .kpi-three-card,
     [data-app-theme="navy"] .cat-card,
     [data-app-theme="navy"] .item-entry-card,
@@ -6340,6 +6342,8 @@
     [data-app-theme="black"] .mobile-frame { background: #000000 !important; }
     [data-app-theme="black"] .app-header { background: #09090b !important; border-bottom: 1.5px solid #27272a !important; }
     [data-app-theme="black"] .app-bottom-nav { background: #09090b !important; border-top: 1.5px solid #27272a !important; }
+    [data-app-theme="black"] .kpi-master-wealth-cockpit,
+    [data-app-theme="black"] .executive-cockpit-card,
     [data-app-theme="black"] .kpi-three-card,
     [data-app-theme="black"] .cat-card,
     [data-app-theme="black"] .item-entry-card,
@@ -6380,6 +6384,8 @@
       border-top: 1.5px solid rgba(16, 185, 129, 0.4) !important;
       backdrop-filter: blur(12px) !important;
     }
+    [data-app-theme="emerald"] .kpi-master-wealth-cockpit,
+    [data-app-theme="emerald"] .executive-cockpit-card,
     [data-app-theme="emerald"] .kpi-three-card,
     [data-app-theme="emerald"] .cat-card,
     [data-app-theme="emerald"] .item-entry-card,
@@ -6420,6 +6426,8 @@
       border-top: 1.5px solid rgba(168, 85, 247, 0.4) !important;
       backdrop-filter: blur(12px) !important;
     }
+    [data-app-theme="purple"] .kpi-master-wealth-cockpit,
+    [data-app-theme="purple"] .executive-cockpit-card,
     [data-app-theme="purple"] .kpi-three-card,
     [data-app-theme="purple"] .cat-card,
     [data-app-theme="purple"] .item-entry-card,
@@ -6460,6 +6468,8 @@
       border-top: 1.5px solid rgba(244, 63, 94, 0.4) !important;
       backdrop-filter: blur(12px) !important;
     }
+    [data-app-theme="rose"] .kpi-master-wealth-cockpit,
+    [data-app-theme="rose"] .executive-cockpit-card,
     [data-app-theme="rose"] .kpi-three-card,
     [data-app-theme="rose"] .cat-card,
     [data-app-theme="rose"] .item-entry-card,
@@ -6500,6 +6510,8 @@
       border-top: 1.5px solid rgba(6, 182, 212, 0.4) !important;
       backdrop-filter: blur(12px) !important;
     }
+    [data-app-theme="ocean"] .kpi-master-wealth-cockpit,
+    [data-app-theme="ocean"] .executive-cockpit-card,
     [data-app-theme="ocean"] .kpi-three-card,
     [data-app-theme="ocean"] .cat-card,
     [data-app-theme="ocean"] .item-entry-card,
@@ -6540,6 +6552,8 @@
       border-top: 1.5px solid rgba(245, 158, 11, 0.4) !important;
       backdrop-filter: blur(12px) !important;
     }
+    [data-app-theme="gold"] .kpi-master-wealth-cockpit,
+    [data-app-theme="gold"] .executive-cockpit-card,
     [data-app-theme="gold"] .kpi-three-card,
     [data-app-theme="gold"] .cat-card,
     [data-app-theme="gold"] .item-entry-card,
@@ -6580,6 +6594,8 @@
       border-top: 1.5px solid rgba(148, 163, 184, 0.4) !important;
       backdrop-filter: blur(12px) !important;
     }
+    [data-app-theme="slate"] .kpi-master-wealth-cockpit,
+    [data-app-theme="slate"] .executive-cockpit-card,
     [data-app-theme="slate"] .kpi-three-card,
     [data-app-theme="slate"] .cat-card,
     [data-app-theme="slate"] .item-entry-card,
@@ -6620,6 +6636,8 @@
       background: rgba(255, 255, 255, 0.98) !important;
       border-top: 1.5px solid #cbd5e1 !important;
     }
+    [data-app-theme="light"] .kpi-master-wealth-cockpit,
+    [data-app-theme="light"] .executive-cockpit-card,
     [data-app-theme="light"] .kpi-three-card,
     [data-app-theme="light"] .cat-card,
     [data-app-theme="light"] .item-entry-card,
@@ -8123,7 +8141,7 @@
 
     /* الجانب الأيمن: بطل الشاشة المالي (الرصيد الفعلي) */
     .cockpit-hero-side {
-      flex: 1.1 !important;
+      flex: 1.45 !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
@@ -8144,17 +8162,17 @@
       color: #0284c7 !important;
     }
     .cockpit-hero-value {
-      font-size: clamp(1.0rem, 4.0vw, 1.22rem) !important;
+      font-size: clamp(0.98rem, 3.6vw, 1.22rem) !important;
       font-weight: 900 !important;
       color: #38bdf8 !important;
-      letter-spacing: -0.2px !important;
+      letter-spacing: -0.3px !important;
       direction: rtl !important;
       text-align: right !important;
       font-variant-numeric: tabular-nums !important;
       line-height: 1.15 !important;
       white-space: nowrap !important;
       overflow: hidden !important;
-      text-overflow: ellipsis !important;
+      text-overflow: clip !important;
     }
     body.light-theme .cockpit-hero-value {
       color: #0284c7 !important;
@@ -8463,6 +8481,268 @@
     body.light-theme .budget-plan-card:hover {
       border-color: #0284c7;
       box-shadow: 0 6px 16px rgba(2, 132, 199, 0.15);
+    }
+
+
+    /* =========================================================================
+       قواعد الأنماط النهائية فائقة الأولوية (Master High-Priority Card Styles)
+       تضمن الفارق البصري الصريح والدرامي بين النمط الزجاجي الشفاف والنمط المدمج المصمت
+       ========================================================================= */
+    /* 1. النمط الزجاجي الفاخر الشفاف (Glassmorphism Luxury) */
+    html[data-card-style="glass"] body .kpi-master-wealth-cockpit,
+    html[data-card-style="glass"] body #topKpiThreeStrip {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.65), rgba(30, 41, 59, 0.50)) !important;
+      backdrop-filter: blur(20px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
+      border-radius: 20px !important;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    }
+    html[data-card-style="glass"] body .cockpit-hero-side {
+      background: rgba(30, 41, 59, 0.45) !important;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      border-radius: 16px !important;
+    }
+    html[data-card-style="glass"] body .stat-capsule-twin {
+      background: rgba(30, 41, 59, 0.45) !important;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      border-radius: 14px !important;
+    }
+    html[data-card-style="glass"] body .ops-tx-card-lux,
+    html[data-card-style="glass"] body .commitment-card-lux,
+    html[data-card-style="glass"] body .settings-unified-section,
+    html[data-card-style="glass"] body .app-card-panel {
+      background: rgba(15, 23, 42, 0.65) !important;
+      backdrop-filter: blur(20px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      border-radius: 18px !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    }
+
+    /* 2. النمط العصري المدمج المصمت (Compact Solid Minimalist) */
+    html[data-card-style="minimal"] body .kpi-master-wealth-cockpit,
+    html[data-card-style="minimal"] body #topKpiThreeStrip {
+      background: #0b1329 !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: 1.5px solid #1e293b !important;
+      border-radius: 8px !important;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6) !important;
+    }
+    html[data-card-style="minimal"] body .cockpit-hero-side {
+      background: #151f33 !important;
+      border: 1px solid rgba(255, 255, 255, 0.10) !important;
+      border-radius: 6px !important;
+    }
+    html[data-card-style="minimal"] body .stat-capsule-twin {
+      background: #151f33 !important;
+      border: 1px solid rgba(255, 255, 255, 0.10) !important;
+      border-radius: 6px !important;
+    }
+    html[data-card-style="minimal"] body .ops-tx-card-lux,
+    html[data-card-style="minimal"] body .commitment-card-lux,
+    html[data-card-style="minimal"] body .settings-unified-section,
+    html[data-card-style="minimal"] body .app-card-panel {
+      background: #0f172a !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 8px !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5) !important;
+    }
+
+
+    /* =========================================================================
+       أنماط وتصاميم عرض الكروت الأربعة الفاخرة (4 Master Card Styles)
+       ========================================================================= */
+    /* 1. ✨ النمط الزجاجي الفاخر الشفاف (Glassmorphism Luxury) */
+    html[data-card-style="glass"] body .kpi-master-wealth-cockpit,
+    html[data-card-style="glass"] body #topKpiThreeStrip {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.65), rgba(30, 41, 59, 0.50)) !important;
+      backdrop-filter: blur(20px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
+      border-radius: 20px !important;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    }
+    html[data-card-style="glass"] body .cockpit-hero-side,
+    html[data-card-style="glass"] body .stat-capsule-twin {
+      background: rgba(30, 41, 59, 0.45) !important;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      border-radius: 16px !important;
+    }
+    html[data-card-style="glass"] body .ops-tx-card-lux,
+    html[data-card-style="glass"] body .commitment-card-lux,
+    html[data-card-style="glass"] body .settings-unified-section,
+    html[data-card-style="glass"] body .app-card-panel {
+      background: rgba(15, 23, 42, 0.65) !important;
+      backdrop-filter: blur(20px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      border-radius: 18px !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    }
+
+    /* 2. 📐 النمط العصري المدمج المصمت (Compact Solid Minimalist) */
+    html[data-card-style="minimal"] body .kpi-master-wealth-cockpit,
+    html[data-card-style="minimal"] body #topKpiThreeStrip {
+      background: #0b1329 !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: 1.5px solid #1e293b !important;
+      border-radius: 8px !important;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6) !important;
+    }
+    html[data-card-style="minimal"] body .cockpit-hero-side,
+    html[data-card-style="minimal"] body .stat-capsule-twin {
+      background: #151f33 !important;
+      border: 1px solid rgba(255, 255, 255, 0.10) !important;
+      border-radius: 6px !important;
+    }
+    html[data-card-style="minimal"] body .ops-tx-card-lux,
+    html[data-card-style="minimal"] body .commitment-card-lux,
+    html[data-card-style="minimal"] body .settings-unified-section,
+    html[data-card-style="minimal"] body .app-card-panel {
+      background: #0f172a !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 8px !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    /* 3. 🌟 النمط الكلاسيكي المجسم 3D (Neumorphic 3D Embossed) */
+    html[data-card-style="neumorphic"] body .kpi-master-wealth-cockpit,
+    html[data-card-style="neumorphic"] body #topKpiThreeStrip {
+      background: linear-gradient(145deg, #1e293b, #0b1329) !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 14px !important;
+      box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.15), inset -2px -2px 6px rgba(0, 0, 0, 0.8), 0 8px 24px rgba(0, 0, 0, 0.7) !important;
+    }
+    html[data-card-style="neumorphic"] body .cockpit-hero-side,
+    html[data-card-style="neumorphic"] body .stat-capsule-twin {
+      background: linear-gradient(145deg, #1e293b, #111c2e) !important;
+      border: 1px solid rgba(255, 255, 255, 0.10) !important;
+      border-radius: 10px !important;
+      box-shadow: inset 1px 1px 3px rgba(255, 255, 255, 0.12), inset -1px -1px 4px rgba(0, 0, 0, 0.8) !important;
+    }
+    html[data-card-style="neumorphic"] body .ops-tx-card-lux,
+    html[data-card-style="neumorphic"] body .commitment-card-lux,
+    html[data-card-style="neumorphic"] body .settings-unified-section,
+    html[data-card-style="neumorphic"] body .app-card-panel {
+      background: linear-gradient(145deg, #1e293b, #0f172a) !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 14px !important;
+      box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.12), inset -2px -2px 6px rgba(0, 0, 0, 0.8), 0 6px 18px rgba(0, 0, 0, 0.6) !important;
+    }
+
+    /* 4. 💎 نمط النيون المتوهج (Cyber Neon Edge Glow) */
+    html[data-card-style="neon"] body .kpi-master-wealth-cockpit,
+    html[data-card-style="neon"] body #topKpiThreeStrip {
+      background: #040711 !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: 2px solid #06b6d4 !important;
+      border-radius: 14px !important;
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.45), inset 0 0 12px rgba(6, 182, 212, 0.20), 0 8px 30px rgba(0, 0, 0, 0.9) !important;
+    }
+    html[data-card-style="neon"] body .cockpit-hero-side,
+    html[data-card-style="neon"] body .stat-capsule-twin {
+      background: #090e1a !important;
+      border: 1.5px solid rgba(6, 182, 212, 0.5) !important;
+      border-radius: 10px !important;
+      box-shadow: 0 0 8px rgba(6, 182, 212, 0.3) !important;
+    }
+    html[data-card-style="neon"] body .ops-tx-card-lux,
+    html[data-card-style="neon"] body .commitment-card-lux,
+    html[data-card-style="neon"] body .settings-unified-section,
+    html[data-card-style="neon"] body .app-card-panel {
+      background: #050b14 !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: 1.8px solid #06b6d4 !important;
+      border-radius: 12px !important;
+      box-shadow: 0 0 16px rgba(6, 182, 212, 0.40), inset 0 0 8px rgba(6, 182, 212, 0.18), 0 4px 20px rgba(0, 0, 0, 0.85) !important;
+    }
+
+
+    /* =========================================================================
+       تحسين عرض نافذة تدقيق الرصيد الفعلي للشاشات والجوالات الذكية (Mobile Responsive)
+       ========================================================================= */
+    @media (max-width: 768px) {
+      #actualBalanceAuditModal {
+        padding: 6px !important;
+      }
+      #actualBalanceAuditModal .modal-content-card {
+        width: 98% !important;
+        max-width: 98% !important;
+        padding: 12px 10px !important;
+        border-radius: 18px !important;
+        max-height: 96vh !important;
+      }
+      #actualBalanceAuditModal .modal-head {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px !important;
+        padding-bottom: 8px !important;
+      }
+      #actualBalanceAuditModal .modal-head > div:first-child {
+        justify-content: space-between !important;
+      }
+      #auditHeaderReconNote {
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      #auditKpiCardsGrid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6px !important;
+      }
+      #auditWalletsCardsContainer {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6px !important;
+      }
+      .audit-filters-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6px !important;
+      }
+      .audit-filters-grid > div:last-child {
+        grid-column: span 2 !important;
+      }
+      .audit-filters-grid > div:last-child button {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      #auditLiveMetricsStrip {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px !important;
+      }
+      #auditLiveMetricsStrip > div:first-child {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6px !important;
+      }
+      #auditLiveMetricsStrip > div:last-child {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 6px !important;
+      }
+      #auditLiveMetricsStrip > div:last-child button {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      #auditLedgerTableContainer {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+      #auditLedgerTableContainer table {
+        min-width: 620px !important;
+      }
     }
 
 </style>
@@ -9976,7 +10256,7 @@
 
     /* الجانب الأيمن: بطل الشاشة المالي (الرصيد الفعلي) */
     .cockpit-hero-side {
-      flex: 1.15 !important;
+      flex: 1.45 !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
@@ -10050,7 +10330,7 @@
     }
 
     .cockpit-hero-value {
-      font-size: clamp(1.22rem, 4.6vw, 1.45rem) !important;
+      font-size: clamp(1.02rem, 3.8vw, 1.25rem) !important;
       font-weight: 900 !important;
       color: #38bdf8 !important;
       letter-spacing: -0.4px !important;
@@ -10060,7 +10340,7 @@
       line-height: 1.18 !important;
       white-space: nowrap !important;
       overflow: hidden !important;
-      text-overflow: ellipsis !important;
+      text-overflow: clip !important;
       text-shadow: 0 2px 10px rgba(56, 189, 248, 0.3) !important;
     }
     body.light-theme .cockpit-hero-value {
@@ -10111,7 +10391,7 @@
 
     /* الجانب الأيسر: كبسولات التدفقات التوأم */
     .cockpit-flow-side {
-      flex: 1.35 !important;
+      flex: 1.05 !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
@@ -10331,7 +10611,7 @@
               <span id="topDriveSyncStatusText">متزامن</span>
             </span>
           </button>
-          <button class="header-settings-btn" id="btnAuthProfile" onclick="openModal('authModal')" title="حساب العائلة والمستخدمين" style="background: rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.4); color: #c084fc; font-weight: 800;">
+          <button class="header-settings-btn" id="btnAuthProfile" onclick="openSettingsModal('users')" title="حساب العائلة والمستخدمين" style="background: rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.4); color: #c084fc; font-weight: 800;">
             <i class="fa-solid fa-user-circle"></i>
             <span id="headerCurrentUserName" style="font-size: 0.70rem;">ماهر</span>
           </button>
@@ -12752,7 +13032,7 @@
         </div>
 
         <!-- 1. الزر الأكبر: مزامنة فورية وموازنة دقيقة بين جميع أجهزة العائلة -->
-        <button type="button" class="btn-submit-tx" onclick="executeGoogleDriveSync()" style="height: 48px; background: linear-gradient(135deg, #10b981, #059669); font-size: 0.95rem; font-weight: 900; border-radius: 13px; margin-bottom: 10px; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35); width: 100%;">
+        <button type="button" class="btn-submit-tx" onclick="executeGoogleDriveSync(true)" style="height: 48px; background: linear-gradient(135deg, #10b981, #059669); font-size: 0.95rem; font-weight: 900; border-radius: 13px; margin-bottom: 10px; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35); width: 100%;">
           <i class="fa-solid fa-rotate" id="driveSyncIconSpin"></i>
           <span>مزامنة فورية وموازنة الحسابات الآن 🔄</span>
         </button>
@@ -13218,6 +13498,67 @@
       <div style="padding: 6px 10px; overflow-y: auto; flex: 1; max-height: calc(94vh - 115px); display: flex; flex-direction: column; gap: 8px;" class="custom-scrollbar">
 
         <!-- ========================================================
+             قسم إدارة وتبديل حسابات العائلة وقفل الأمان (مدمج في الإعدادات)
+             ======================================================== -->
+        <div class="settings-unified-section" id="settingsSec_users" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.94)); border: 1.4px solid rgba(56, 189, 248, 0.45); border-radius: 14px; padding: 12px 14px; margin-bottom: 8px; box-shadow: 0 4px 18px rgba(0,0,0,0.25);">
+          
+          <!-- رأس القسم -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 30px; height: 30px; border-radius: 8px; background: rgba(56, 189, 248, 0.2); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 1rem; border: 1px solid rgba(56, 189, 248, 0.35);">
+                <i class="fa-solid fa-users-gear"></i>
+              </div>
+              <div>
+                <span style="font-weight: 900; font-size: 0.85rem; color: #f8fafc;">إدارة وتبديل حسابات العائلة</span>
+                <div style="font-size: 0.62rem; color: #94a3b8;">التبديل الفوري بين الأفراد وقفل الخصوصية برمز PIN</div>
+              </div>
+            </div>
+            <!-- شارة الحساب النشط حالياً -->
+            <div id="settingsActiveUserBadge" style="display: flex; align-items: center; gap: 5px; background: rgba(34, 197, 94, 0.18); border: 1.2px solid rgba(34, 197, 94, 0.5); padding: 3px 9px; border-radius: 12px; font-size: 0.66rem; font-weight: 800; color: #34d399;">
+              <i class="fa-solid fa-circle-check" style="font-size: 0.55rem; color: #22c55e;"></i>
+              <span>الحساب الحالي: <strong id="settingsActiveUserNameTxt" style="color: #ffffff;">ماهر</strong></span>
+            </div>
+          </div>
+
+          <!-- شاشة شبكة ملفات أفراد الأسرة للتبديل (Settings Profiles Grid View) -->
+          <div id="settingsProfilesGridView">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-bottom: 8px;" id="settingsMembersGridContainer">
+              <!-- تتولد الكروت تفاعلياً بواسطة renderSettingsMembersGrid() -->
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.62rem; color: #94a3b8; background: rgba(0,0,0,0.3); padding: 5px 9px; border-radius: 7px; border: 1px dashed rgba(56, 189, 248, 0.25);">
+              <span><i class="fa-solid fa-shield-halved" style="color: #38bdf8;"></i> الحسابات محمية برمز قفل سري 🔒</span>
+              <span style="color: #cbd5e1;">انقر على أي فرد للتبديل المباشر لحسابه</span>
+            </div>
+          </div>
+
+          <!-- شاشة إدخال رمز القفل المدمجة داخل الإعدادات (Settings PIN Verification View) -->
+          <div id="settingsPinVerificationView" style="display: none; background: rgba(15, 23, 42, 0.95); border: 1.4px solid rgba(56, 189, 248, 0.5); border-radius: 12px; padding: 14px 12px; text-align: center;">
+            <div style="margin-bottom: 8px;">
+              <img id="settingsPinTargetAvatar" src="" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2.5px solid #38bdf8; box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35); margin: 0 auto 6px; display: block;">
+              <div id="settingsPinTargetTitle" style="font-size: 0.90rem; font-weight: 900; color: #f8fafc;">قفل الحساب</div>
+              <div style="font-size: 0.66rem; color: #94a3b8; margin-top: 2px;">أدخل رمز PIN الخاص بهذا الحساب للتبديل إليه 🔒</div>
+            </div>
+
+            <div style="margin-bottom: 10px;">
+              <input type="password" id="inpSettingsMemberPin" class="form-input-custom" placeholder="رمز القفل •••••" maxlength="15" inputmode="numeric" onkeydown="if(event.key==='Enter') verifySettingsMemberPinSubmit();" style="height: 40px; font-size: 1.15rem; text-align: center; letter-spacing: 4px; border-radius: 9px; background: rgba(30, 41, 59, 0.9); border: 1.4px solid rgba(56, 189, 248, 0.45); color: #fff; width: 100%; box-sizing: border-box;">
+              <div id="settingsPinErrorHint" style="display: none; font-size: 0.68rem; color: #f43f5e; font-weight: 800; margin-top: 6px;">
+                ⚠️ رمز القفل غير صحيح! يرجى المحاولة مرة أخرى.
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 7px;">
+              <button type="button" class="btn-submit-tx" onclick="verifySettingsMemberPinSubmit()" style="flex: 2; height: 38px; background: linear-gradient(135deg, #0284c7, #0ea5e9); font-size: 0.82rem; font-weight: 800; border-radius: 8px; margin: 0;">
+                <i class="fa-solid fa-unlock"></i> تأكيد ودخول
+              </button>
+              <button type="button" onclick="cancelSettingsPinVerification()" style="flex: 1; height: 38px; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; font-weight: 800; font-size: 0.76rem; cursor: pointer;">
+                إلغاء
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ========================================================
              القسم 1: كارت المزامنة السحابية وتحديث النظام (كارت موحد فائق الرشاقة)
              ======================================================== -->
         <div class="settings-unified-section" id="settingsSec_sync" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.10), rgba(15, 23, 42, 0.90)); border: 1.2px solid rgba(34, 197, 94, 0.35); border-radius: 14px; padding: 10px 12px; margin-bottom: 8px;">
@@ -13242,7 +13583,7 @@
           <!-- زرا الإجراءات المتناسقان جنباً إلى جنب في صف واحد رشيق -->
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
             <!-- زر المزامنة السحابية -->
-            <button type="button" class="btn-submit-tx" onclick="executeGoogleDriveSync()" style="margin: 0; height: 38px; padding: 0 10px; background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 10px; font-weight: 900; font-size: 0.78rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35); cursor: pointer; transition: all 0.2s ease;">
+            <button type="button" class="btn-submit-tx" onclick="executeGoogleDriveSync(true)" style="margin: 0; height: 38px; padding: 0 10px; background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 10px; font-weight: 900; font-size: 0.78rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35); cursor: pointer; transition: all 0.2s ease;">
               <i class="fa-solid fa-arrows-rotate" id="settingsDriveSyncIconSpin"></i>
               <span>مزامنة سحابية فورية</span>
             </button>
@@ -13422,9 +13763,11 @@
               <div style="font-size: 0.73rem; font-weight: 800; color: #cbd5e1; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
                 <i class="fa-solid fa-shapes" style="color: #38bdf8;"></i> نمط الكروت:
               </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3px;">
-                <button type="button" class="analytics-sec-btn active" id="designStyleGlass" onclick="setAppDesignStyle('glass')" style="padding: 5px 2px; font-size: 0.65rem;">✨ زجاجي</button>
-                <button type="button" class="analytics-sec-btn" id="designStyleMin" onclick="setAppDesignStyle('minimal')" style="padding: 5px 2px; font-size: 0.65rem;">📐 مدمج</button>
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;" id="cardStyleButtonsContainer">
+                <button type="button" class="analytics-sec-btn active" id="designStyleGlass" onclick="setAppDesignStyle('glass')" style="padding: 6px 2px; font-size: 0.64rem; justify-content: center;">✨ زجاجي</button>
+                <button type="button" class="analytics-sec-btn" id="designStyleMin" onclick="setAppDesignStyle('minimal')" style="padding: 6px 2px; font-size: 0.64rem; justify-content: center;">📐 مدمج</button>
+                <button type="button" class="analytics-sec-btn" id="designStyleNeu" onclick="setAppDesignStyle('neumorphic')" style="padding: 6px 2px; font-size: 0.64rem; justify-content: center;">🌟 مجسم 3D</button>
+                <button type="button" class="analytics-sec-btn" id="designStyleNeon" onclick="setAppDesignStyle('neon')" style="padding: 6px 2px; font-size: 0.64rem; justify-content: center;">💎 نيون</button>
               </div>
             </div>
           </div>
@@ -13743,8 +14086,8 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = '4.7.0';
-      const APP_BUILD_ID = 202611021302;
+      const APP_VERSION = '4.8.0';
+      const APP_BUILD_ID = 202611021446;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
@@ -17334,9 +17677,23 @@ function generateRichDemoTransactions() {
 
       if (elInc) {
         elInc.textContent = isCockpitBalanceHidden ? '••••••' : ('+ ' + formatMoney(periodInc));
+        if (elInc.textContent.length > 15) {
+          elInc.style.fontSize = '0.74rem';
+          elInc.style.letterSpacing = '-0.3px';
+        } else {
+          elInc.style.fontSize = '';
+          elInc.style.letterSpacing = '';
+        }
       }
       if (elExp) {
         elExp.textContent = isCockpitBalanceHidden ? '••••••' : ((periodExp > 0 ? '- ' : '') + formatMoney(periodExp));
+        if (elExp.textContent.length > 15) {
+          elExp.style.fontSize = '0.74rem';
+          elExp.style.letterSpacing = '-0.3px';
+        } else {
+          elExp.style.fontSize = '';
+          elExp.style.letterSpacing = '';
+        }
       }
       if (elBal) {
         elBal.textContent = isCockpitBalanceHidden ? '••••••••' : ((actualBalance >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(actualBalance)));
@@ -17345,6 +17702,22 @@ function generateRichDemoTransactions() {
           elBal.style.color = actualBalance >= 0 ? '#0284c7' : '#b91c1c';
         } else {
           elBal.style.color = actualBalance >= 0 ? '#38bdf8' : '#f43f5e';
+        }
+
+        // تحجيم ذكي للأرقام الكبيرة حتى لا تتجاوز حدود البطاقة أو تظهر نقاط اختصار (...)
+        const balStr = elBal.textContent || '';
+        if (balStr.length > 16) {
+          elBal.style.fontSize = 'clamp(0.80rem, 2.7vw, 0.95rem)';
+          elBal.style.letterSpacing = '-0.5px';
+        } else if (balStr.length > 13) {
+          elBal.style.fontSize = 'clamp(0.88rem, 3.1vw, 1.06rem)';
+          elBal.style.letterSpacing = '-0.3px';
+        } else if (balStr.length > 10) {
+          elBal.style.fontSize = 'clamp(0.98rem, 3.6vw, 1.18rem)';
+          elBal.style.letterSpacing = '-0.2px';
+        } else {
+          elBal.style.fontSize = 'clamp(1.08rem, 4.0vw, 1.30rem)';
+          elBal.style.letterSpacing = '-0.1px';
         }
       }
 
@@ -17514,7 +17887,78 @@ function generateRichDemoTransactions() {
         }
       };
 
-      const isLight = document.body.classList.contains('light-theme');
+      const activeTheme = state.appTheme || localStorage.getItem('family_monefy_theme') || 'navy';
+      const isLight = (activeTheme === 'light') || document.body.classList.contains('light-theme');
+      const activeIconTheme = state.iconTheme || localStorage.getItem('family_monefy_icon_theme') || 'vibrant';
+
+      // باليت خلفيات الكروت الداخلية الفاخرة المنسجمة 100% مع كل سمة من سمات التطبيق الـ 9
+      const THEME_CARD_STYLES = {
+        navy: {
+          bg: 'linear-gradient(150deg, rgba(20, 52, 98, 0.88) 0%, rgba(10, 28, 54, 0.97) 100%)',
+          border: 'rgba(56, 189, 248, 0.40)',
+          shadow: '0 4px 18px rgba(7, 18, 36, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.10)',
+          labelColor: '#f8fafc'
+        },
+        black: {
+          bg: 'linear-gradient(150deg, #18181b 0%, #09090b 100%)',
+          border: 'rgba(255, 255, 255, 0.16)',
+          shadow: '0 4px 18px rgba(0, 0, 0, 0.90), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+          labelColor: '#f8fafc'
+        },
+        emerald: {
+          bg: 'linear-gradient(150deg, rgba(6, 78, 59, 0.88) 0%, rgba(2, 44, 34, 0.97) 100%)',
+          border: 'rgba(16, 185, 129, 0.45)',
+          shadow: '0 4px 18px rgba(2, 44, 34, 0.65), inset 0 1px 0 rgba(52, 211, 153, 0.15)',
+          labelColor: '#ecfdf5'
+        },
+        purple: {
+          bg: 'linear-gradient(150deg, rgba(59, 7, 100, 0.88) 0%, rgba(30, 7, 52, 0.97) 100%)',
+          border: 'rgba(168, 85, 247, 0.45)',
+          shadow: '0 4px 18px rgba(30, 7, 52, 0.65), inset 0 1px 0 rgba(192, 132, 252, 0.15)',
+          labelColor: '#faf5ff'
+        },
+        gold: {
+          bg: 'linear-gradient(150deg, rgba(69, 36, 15, 0.90) 0%, rgba(33, 17, 7, 0.97) 100%)',
+          border: 'rgba(245, 158, 11, 0.45)',
+          shadow: '0 4px 18px rgba(33, 17, 7, 0.65), inset 0 1px 0 rgba(251, 191, 36, 0.15)',
+          labelColor: '#fffbeb'
+        },
+        ocean: {
+          bg: 'linear-gradient(150deg, rgba(14, 52, 82, 0.90) 0%, rgba(6, 28, 46, 0.97) 100%)',
+          border: 'rgba(6, 182, 212, 0.45)',
+          shadow: '0 4px 18px rgba(6, 28, 46, 0.65), inset 0 1px 0 rgba(34, 211, 238, 0.15)',
+          labelColor: '#f0fdfa'
+        },
+        rose: {
+          bg: 'linear-gradient(150deg, rgba(76, 12, 30, 0.90) 0%, rgba(35, 6, 14, 0.97) 100%)',
+          border: 'rgba(244, 63, 94, 0.45)',
+          shadow: '0 4px 18px rgba(35, 6, 14, 0.65), inset 0 1px 0 rgba(251, 113, 133, 0.15)',
+          labelColor: '#fff1f2'
+        },
+        slate: {
+          bg: 'linear-gradient(150deg, rgba(51, 65, 85, 0.90) 0%, rgba(20, 27, 39, 0.97) 100%)',
+          border: 'rgba(148, 163, 184, 0.45)',
+          shadow: '0 4px 18px rgba(15, 23, 42, 0.65), inset 0 1px 0 rgba(203, 213, 225, 0.15)',
+          labelColor: '#f8fafc'
+        },
+        light: {
+          bg: '#ffffff',
+          border: '#cbd5e1',
+          shadow: '0 4px 14px rgba(0, 0, 0, 0.08), inset 0 1px 0 #ffffff',
+          labelColor: '#0f172a'
+        }
+      };
+
+      const curThemeStyle = THEME_CARD_STYLES[activeTheme] || THEME_CARD_STYLES.navy;
+
+      // تدرجات ألوان الأيقونات الموحدة
+      const ICON_THEME_GRADIENTS = {
+        gold: { grad: 'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)', glow: 'rgba(245, 158, 11, 0.50)' },
+        emerald: { grad: 'linear-gradient(135deg, #10b981 0%, #047857 100%)', glow: 'rgba(16, 185, 129, 0.50)' },
+        ocean: { grad: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)', glow: 'rgba(2, 132, 199, 0.50)' },
+        purple: { grad: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)', glow: 'rgba(139, 92, 246, 0.50)' },
+        silver: { grad: 'linear-gradient(135deg, #64748b 0%, #1e293b 100%)', glow: 'rgba(148, 163, 184, 0.50)' }
+      };
 
       EXPENSE_CATEGORIES.forEach(cat => {
         const spent = catTotals[cat.id] || (cat.id === 'other' ? (catTotals['entertainment'] || 0) : 0);
@@ -17527,38 +17971,42 @@ function generateRichDemoTransactions() {
           border: cat.color
         };
 
-        const cardBg = isLight 
-          ? '#ffffff' 
-          : `linear-gradient(155deg, rgba(30, 41, 59, 0.90) 0%, rgba(15, 23, 42, 0.98) 100%)`;
-        const cardBorder = isLight 
-          ? theme.border 
-          : `${theme.border}bb`;
-        const cardShadow = isLight 
-          ? `0 4px 14px rgba(0, 0, 0, 0.08), 0 0 10px ${theme.accent}20` 
-          : `0 4px 18px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 12px ${theme.accent}35`;
+        const cardBg = curThemeStyle.bg;
+        const cardBorder = isLight ? theme.border : (theme.border || curThemeStyle.border);
+        const cardShadow = curThemeStyle.shadow;
+        const catLabelColor = curThemeStyle.labelColor;
+
+        // اختيار تدرج فقاعة الأيقونة بناءً على نمط الأيقونات المختار
+        let bubbleGradient = theme.gradient;
+        let bubbleGlow = `${theme.accent}50`;
+        if (activeIconTheme !== 'vibrant' && ICON_THEME_GRADIENTS[activeIconTheme]) {
+          bubbleGradient = ICON_THEME_GRADIENTS[activeIconTheme].grad;
+          bubbleGlow = ICON_THEME_GRADIENTS[activeIconTheme].glow;
+        }
 
         const card = document.createElement('div');
         card.className = `cat-card cat-theme-${cat.id}`;
         card.setAttribute('data-cat-id', cat.id);
 
         card.style.cssText = `
-          background: ${cardBg} !important;
-          border: 1.6px solid ${cardBorder} !important;
-          border-radius: 16px !important;
-          padding: var(--app-card-padding, 7px 4px 6px) !important;
-          display: flex !important;
-          flex-direction: column !important;
-          align-items: center !important;
-          justify-content: center !important;
-          gap: 3px !important;
-          height: 100% !important;
-          max-height: var(--app-card-max-h, 126px) !important;
-          min-height: 0 !important;
-          cursor: pointer !important;
-          box-shadow: ${cardShadow} !important;
-          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-          position: relative !important;
-          box-sizing: border-box !important;
+          background: ${cardBg};
+          border: 1.6px solid ${cardBorder};
+          border-radius: 16px;
+          padding: var(--app-card-padding, 7px 4px 6px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 3px;
+          height: 100%;
+          max-height: var(--app-card-max-h, 126px);
+          min-height: 0;
+          cursor: pointer;
+          box-shadow: ${cardShadow};
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          box-sizing: border-box;
+          overflow: hidden;
         `;
 
         card.onclick = () => {
@@ -17571,8 +18019,22 @@ function generateRichDemoTransactions() {
           amtDisplay = '- ' + formatMoney(spent, true);
         }
 
+        // تحجيم خط المبلغ بالكبسولة تلقائياً حتى لا يتجاوز حدود البطاقة إطلاقاً
+        let pillFontSize = 'clamp(0.80rem, 2.3vw, 0.90rem)';
+        let pillLetterSpacing = '0px';
+        if (amtDisplay.length > 15) {
+          pillFontSize = 'clamp(0.60rem, 1.7vw, 0.68rem)';
+          pillLetterSpacing = '-0.4px';
+        } else if (amtDisplay.length > 12) {
+          pillFontSize = 'clamp(0.66rem, 1.9vw, 0.74rem)';
+          pillLetterSpacing = '-0.3px';
+        } else if (amtDisplay.length > 9) {
+          pillFontSize = 'clamp(0.72rem, 2.1vw, 0.80rem)';
+          pillLetterSpacing = '-0.1px';
+        }
+
         const pillBg = spent > 0 
-          ? (isLight ? 'rgba(239, 68, 68, 0.12)' : 'rgba(244, 63, 94, 0.24)') 
+          ? (isLight ? 'rgba(239, 68, 68, 0.12)' : 'rgba(244, 63, 94, 0.22)') 
           : (isLight ? '#f1f5f9' : 'rgba(255, 255, 255, 0.05)');
         const pillBorder = spent > 0 
           ? (isLight ? 'rgba(239, 68, 68, 0.5)' : 'rgba(244, 63, 94, 0.7)') 
@@ -17580,27 +18042,26 @@ function generateRichDemoTransactions() {
         const pillTextColor = spent > 0 
           ? (isLight ? '#b91c1c' : '#ff4d6d') 
           : (isLight ? '#475569' : '#94a3b8');
-        const catLabelColor = isLight ? '#0f172a' : '#f8fafc';
 
         card.innerHTML = `
           <!-- 1. صورة/أيقونة التصنيف ثلاثية الأبعاد الفاخرة بحجم متناسق -->
           <div class="cat-icon-bubble" 
-               style="background: ${theme.gradient}; width: clamp(48px, 12.5vw, 54px); height: clamp(48px, 12.5vw, 54px); min-width: 48px; min-height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 12px ${theme.accent}50; border: 1.5px solid rgba(255, 255, 255, 0.25); margin-top: 1px; flex-shrink: 0;">
+               style="background: ${bubbleGradient}; width: clamp(48px, 12.5vw, 54px); height: clamp(48px, 12.5vw, 54px); min-width: 48px; min-height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 12px ${bubbleGlow}; border: 1.5px solid rgba(255, 255, 255, 0.25); margin-top: 1px; flex-shrink: 0;">
             <span style="font-size: clamp(2rem, 5.2vw, 2.35rem); line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.45)); transform: translateZ(0);">${theme.emoji}</span>
           </div>
 
           <!-- 2. اسم التصنيف بخط عربي فخم وواضح متناسق بين الفاتح والداكن -->
           <div class="cat-label-text" 
-               style="font-family: var(--font-family); font-size: clamp(0.82rem, 2.4vw, 0.92rem); font-weight: 800; color: ${catLabelColor} !important; text-align: center; margin: 2px 0 1px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: clip;">
+               style="font-family: var(--font-family); font-size: clamp(0.80rem, 2.3vw, 0.90rem); font-weight: 800; color: ${catLabelColor} !important; text-align: center; margin: 2px 0 1px; width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: clip;">
             ${theme.name}
           </div>
 
-          <!-- 3. كبسولة المبلغ المصروف بخط عريض وأرقام واضحة -->
+          <!-- 3. كبسولة المبلغ المصروف بخط عريض وأرقام متناسقة ومضبوطة داخل الحدود 100% -->
           <div class="cat-amount-pill ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
                onclick="event.stopPropagation(); openOperationsFiltered({ category: '${cat.id}', categoryName: '${cat.name}', type: 'expense' });" 
                title="انقر لفتح ومراجعة عمليات ${cat.name} في شاشة العمليات" 
-               style="cursor: pointer; background: ${pillBg}; border: 1.2px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 4px; border-radius: 9px; width: 95%; text-align: center; direction: rtl; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
-            <span style="font-family: var(--font-numbers); font-size: clamp(0.98rem, 2.8vw, 1.15rem); font-weight: 900; line-height: 1.2; white-space: nowrap; font-variant-numeric: tabular-nums;">${amtDisplay}</span>
+               style="cursor: pointer; background: ${pillBg}; border: 1.2px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 2px; border-radius: 9px; width: 98%; max-width: 98%; text-align: center; direction: rtl; box-sizing: border-box; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+            <span style="font-family: var(--font-numbers); font-size: ${pillFontSize}; letter-spacing: ${pillLetterSpacing}; font-weight: 900; line-height: 1.2; white-space: nowrap; font-variant-numeric: tabular-nums;">${amtDisplay}</span>
           </div>
         `;
 
@@ -19721,9 +20182,19 @@ function filterOperationsList() {
       });
     }
 
-function openSettingsModal() {
+function openSettingsModal(targetSection = '') {
       updateSettingsModalDisplay();
       openModal('settingsModal');
+      if (targetSection === 'users') {
+        setTimeout(() => {
+          const sec = document.getElementById('settingsSec_users');
+          if (sec) {
+            sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            sec.style.boxShadow = '0 0 20px rgba(56, 189, 248, 0.6)';
+            setTimeout(() => sec.style.boxShadow = '', 1500);
+          }
+        }, 150);
+      }
     }
 
     function updateSettingsModalDisplay() {
@@ -19748,6 +20219,11 @@ function openSettingsModal() {
       } catch(e) {}
       const nameEl = document.getElementById('settingsCurrentMemberName');
       if (nameEl) nameEl.textContent = user;
+
+      const activeNameTxt = document.getElementById('settingsActiveUserNameTxt');
+      if (activeNameTxt) activeNameTxt.textContent = user;
+
+      if (typeof renderSettingsMembersGrid === 'function') renderSettingsMembersGrid();
 
       const emailEl = document.getElementById('settingsModalUserEmail');
       if (emailEl) emailEl.textContent = (typeof GDRIVE_CONFIG !== 'undefined' ? GDRIVE_CONFIG.targetAccount : 'maher.easybakery@gmail.com');
@@ -19904,6 +20380,15 @@ function openSettingsModal() {
 
       updateThemeCheckDots();
 
+      // إعادة رسم وتحديث كافة الكروت الداخلية وقمرة القيادة فورياً لتتخذ مظهر السمة المختارة
+      try {
+        if (typeof renderUI === 'function') renderUI();
+        if (typeof renderExpectedList === 'function') renderExpectedList();
+        if (typeof updateAnalyticsChart === 'function') updateAnalyticsChart();
+      } catch(e) {
+        console.warn('Theme live render error:', e);
+      }
+
       if (persist && typeof showToast === 'function') {
         showToast(`🎨 تم تطبيق خلفية ولون: ${names[theme] || theme}`);
       }
@@ -19971,6 +20456,11 @@ function openSettingsModal() {
 
       const badge = document.getElementById('activeIconThemeBadge');
       if (badge) badge.textContent = names[iconTheme] || iconTheme;
+
+      // تحديث فوري للكروت وشبكة المصروفات لتأخذ ألوان الأيقونات الجديدة
+      try {
+        if (typeof renderUI === 'function') renderUI();
+      } catch(e) {}
 
       if (persist && typeof showToast === 'function') {
         showToast(`✨ تم تفعيل نمط ألوان الأيقونات: ${names[iconTheme] || iconTheme}`);
@@ -20103,23 +20593,48 @@ function openSettingsModal() {
     }
 
     function setAppDesignStyle(style, notify = true) {
-      document.documentElement.setAttribute('data-card-style', style);
-      document.body.setAttribute('data-card-style', style);
-      localStorage.setItem('family_monefy_design_style', style);
-      
-      const btnGlass = document.getElementById('designStyleGlass');
-      const btnMin = document.getElementById('designStyleMin');
-      if (btnGlass && btnMin) {
-        if (style === 'glass') {
-          btnGlass.classList.add('active');
-          btnMin.classList.remove('active');
-        } else {
-          btnMin.classList.add('active');
-          btnGlass.classList.remove('active');
+      const validStyles = ['glass', 'minimal', 'neumorphic', 'neon'];
+      const targetStyle = validStyles.includes(style) ? style : 'glass';
+
+      document.documentElement.setAttribute('data-card-style', targetStyle);
+      document.body.setAttribute('data-card-style', targetStyle);
+      localStorage.setItem('family_monefy_design_style', targetStyle);
+
+      const btnMap = {
+        glass: document.getElementById('designStyleGlass'),
+        minimal: document.getElementById('designStyleMin'),
+        neumorphic: document.getElementById('designStyleNeu'),
+        neon: document.getElementById('designStyleNeon')
+      };
+
+      Object.keys(btnMap).forEach(k => {
+        if (btnMap[k]) {
+          if (k === targetStyle) btnMap[k].classList.add('active');
+          else btnMap[k].classList.remove('active');
         }
+      });
+
+      // إعادة رسم الكروت فورياً لتطبيق النمط الجديد أمام عين المستخدم في نفس اللحظة
+      try {
+        if (typeof renderCategoriesGrid === 'function') {
+          const currentFiltered = typeof getFilteredTransactions === 'function' ? getFilteredTransactions() : state.transactions;
+          renderCategoriesGrid(currentFiltered);
+        }
+        if (typeof renderUI === 'function') {
+          renderUI();
+        }
+      } catch(e) {
+        console.warn('Error refreshing UI on card style change:', e);
       }
+
       if (notify && typeof showToast === 'function') {
-        showToast(style === 'glass' ? '✨ تم تفعيل نمط الزجاجي الفخم' : '📐 تم تفعيل نمط العصري المدمج');
+        const labels = {
+          glass: '✨ تم تفعيل النمط الزجاجي الفخم (شفافية ولمعان)',
+          minimal: '📐 تم تفعيل النمط العصري المدمج (مصمت ورشيق)',
+          neumorphic: '🌟 تم تفعيل النمط الكلاسيكي المجسم 3D',
+          neon: '💎 تم تفعيل نمط النيون المتوهج السيبراني'
+        };
+        showToast(labels[targetStyle] || 'تم تغيير نمط الكروت بنجاح');
       }
     }
 
@@ -21766,6 +22281,10 @@ function openSettingsModal() {
     }
 
     function openModal(id) {
+      if (id === 'authModal') {
+        openSettingsModal('users');
+        return;
+      }
       const el = document.getElementById(id);
       if (el) {
         el.classList.add('open');
@@ -22524,7 +23043,7 @@ function exportActivityLogExcel() {
         }
 
         // 3. التحقق مما إذا كان هناك إصدار أحدث متوفر بالسيرفر
-        const currentBuildNum = typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611021302;
+        const currentBuildNum = typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611021446;
         const currentVerStr = typeof APP_VERSION !== 'undefined' ? APP_VERSION : '4.2.1';
         
         const isNewer = remoteBuild && remoteBuild.buildId && (
@@ -24659,7 +25178,121 @@ function switchCategoryChartFormat(format, btnEl) {
     let pendingPinTargetMember = null;
 
     // طلب التحقق برمز القفل عند الانتقال من حساب لآخر أو التسجيل الجديد
-    function promptMemberPin(memberName) {
+        // =========================================================================
+    // نظام إدارة وتبديل المستخدمين المدمج في الإعدادات (Family Users Switching)
+    // =========================================================================
+
+    const SETTINGS_FAMILY_MEMBERS = [
+      { name: 'ماهر', role: 'رب الأسرة', color: '#38bdf8', key: 'ماهر' },
+      { name: 'آية', role: 'ربة المنزل', color: '#ec4899', key: 'أية' },
+      { name: 'محمد', role: 'الابن', color: '#f59e0b', key: 'محمد' },
+      { name: 'مريم', role: 'الابنة', color: '#8b5cf6', key: 'مريم' },
+      { name: 'الحاجة', role: 'البركة', color: '#10b981', key: 'الحاجة' },
+      { name: 'النونُو', role: 'أصغر العائلة', color: '#f43f5e', key: 'النونو' }
+    ];
+
+    let pendingSettingsPinTargetMember = null;
+
+    function renderSettingsMembersGrid() {
+      const container = document.getElementById('settingsMembersGridContainer');
+      if (!container) return;
+
+      const activeUser = state.currentUser || 'ماهر';
+
+      container.innerHTML = SETTINGS_FAMILY_MEMBERS.map(m => {
+        const isActive = (activeUser === m.name || (activeUser === 'أية' && m.name === 'آية') || (activeUser === 'آية' && m.name === 'أية'));
+        const avatarSrc = (typeof MEMBER_AVATARS !== 'undefined') ? (MEMBER_AVATARS[m.key] || MEMBER_AVATARS[m.name]) : '';
+        const hasPin = Boolean(FAMILY_PIN_CODES[m.name] || FAMILY_PIN_CODES[m.key]);
+
+        return `
+          <div onclick="handleSettingsMemberClick('${m.name}')" style="background: ${isActive ? 'rgba(34, 197, 94, 0.18)' : 'rgba(30, 41, 59, 0.75)'}; border: ${isActive ? '2px solid #22c55e' : '1.3px solid rgba(255, 255, 255, 0.1)'}; border-radius: 12px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all 0.2s; position: relative; box-shadow: ${isActive ? '0 4px 16px rgba(34, 197, 94, 0.25)' : 'none'};">
+            ${hasPin ? `<div style="position: absolute; top: 5px; left: 5px; font-size: 0.60rem; color: ${m.color};"><i class="fa-solid fa-lock"></i></div>` : ''}
+            ${isActive ? `<div style="position: absolute; top: 5px; right: 5px; font-size: 0.62rem; color: #22c55e;"><i class="fa-solid fa-circle-check"></i></div>` : ''}
+            <img src="${avatarSrc}" alt="${m.name}" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; margin: 0 auto 4px; display: block; border: 2px solid ${isActive ? '#22c55e' : m.color};">
+            <div style="font-size: 0.80rem; font-weight: 900; color: #ffffff;">${m.name}</div>
+            <div style="font-size: 0.60rem; color: ${isActive ? '#34d399' : m.color}; font-weight: 700;">${isActive ? '✔ الحساب النشط' : m.role}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function handleSettingsMemberClick(memberName) {
+      const activeUser = state.currentUser || 'ماهر';
+      if (activeUser === memberName || (activeUser === 'أية' && memberName === 'آية') || (activeUser === 'آية' && memberName === 'أية')) {
+        showToast(`👤 أنت مسجل الدخول حالياً بحساب ${memberName}`);
+        return;
+      }
+
+      const pin = FAMILY_PIN_CODES[memberName] || (memberName === 'آية' ? FAMILY_PIN_CODES['أية'] : null);
+      if (!pin) {
+        completeUserLogin(memberName);
+        updateSettingsModalDisplay();
+        showToast(`✔ تم التبديل إلى حساب ${memberName} بنجاح!`);
+        return;
+      }
+
+      pendingSettingsPinTargetMember = memberName;
+
+      const vGrid = document.getElementById('settingsProfilesGridView');
+      const vPin = document.getElementById('settingsPinVerificationView');
+      const pinTitle = document.getElementById('settingsPinTargetTitle');
+      const pinAvatar = document.getElementById('settingsPinTargetAvatar');
+      const inpPin = document.getElementById('inpSettingsMemberPin');
+      const errHint = document.getElementById('settingsPinErrorHint');
+
+      if (vGrid) vGrid.style.display = 'none';
+      if (vPin) vPin.style.display = 'block';
+      if (pinTitle) pinTitle.textContent = `قفل حساب: ${memberName}`;
+      if (errHint) errHint.style.display = 'none';
+      if (inpPin) {
+        inpPin.value = '';
+        setTimeout(() => inpPin.focus(), 200);
+      }
+
+      if (pinAvatar) {
+        let mKey = memberName;
+        if (mKey === 'النونُو') mKey = 'النونو';
+        if (mKey === 'آية') mKey = 'أية';
+        const photo = (typeof MEMBER_AVATARS !== 'undefined') ? (MEMBER_AVATARS[mKey] || MEMBER_AVATARS[memberName]) : null;
+        pinAvatar.src = photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(memberName)}&background=0284c7&color=fff`;
+      }
+    }
+
+    function cancelSettingsPinVerification() {
+      pendingSettingsPinTargetMember = null;
+      const vGrid = document.getElementById('settingsProfilesGridView');
+      const vPin = document.getElementById('settingsPinVerificationView');
+      if (vGrid) vGrid.style.display = 'block';
+      if (vPin) vPin.style.display = 'none';
+    }
+
+    function verifySettingsMemberPinSubmit() {
+      if (!pendingSettingsPinTargetMember) return;
+
+      const inpPin = document.getElementById('inpSettingsMemberPin');
+      const errHint = document.getElementById('settingsPinErrorHint');
+      const entered = inpPin ? inpPin.value.trim() : '';
+
+      const correctPin = FAMILY_PIN_CODES[pendingSettingsPinTargetMember] || (pendingSettingsPinTargetMember === 'آية' ? FAMILY_PIN_CODES['أية'] : null);
+
+      if (entered === correctPin) {
+        const memberName = pendingSettingsPinTargetMember;
+        completeUserLogin(memberName);
+        cancelSettingsPinVerification();
+        updateSettingsModalDisplay();
+        if (typeof renderUI === 'function') renderUI();
+        if (typeof playNotificationChime === 'function') playNotificationChime();
+        showToast(`🔓 تم التحقق بنجاح! تم التبديل إلى حساب ${memberName} ✨`);
+      } else {
+        if (errHint) errHint.style.display = 'block';
+        if (inpPin) {
+          inpPin.classList.add('shake');
+          setTimeout(() => inpPin.classList.remove('shake'), 400);
+        }
+      }
+    }
+
+function promptMemberPin(memberName) {
       // إذا كان المستخدم حالياً هو نفس الفرد، أغلق النافذة مباشرة
       if (state.currentUser === memberName) {
         closeModal('authModal');
@@ -24827,7 +25460,7 @@ function switchCategoryChartFormat(format, btnEl) {
     }
 
     // المزامنة الشاملة والموازنة الحسابية التامة
-    async function executeGoogleDriveSync() {
+    async function executeGoogleDriveSync(isManual = false) {
       const icon = document.getElementById('driveSyncIconSpin');
       const settingsIcon = document.getElementById('settingsDriveSyncIconSpin');
       const headerIcon = document.getElementById('headerDriveSyncIcon');
@@ -24908,8 +25541,10 @@ function switchCategoryChartFormat(format, btnEl) {
         // إعادة موازنة الأرصدة حسابياً
         auditAndRecomputeAllWalletBalances();
 
-        showToast('☁️ تم التزامن السحابي والموازنة الدقيقة مع Google Drive بنجاح! ✨');
-        playNotificationChime();
+        if (isManual) {
+          showToast('☁️ تم التزامن السحابي والموازنة الدقيقة مع Google Drive بنجاح! ✨');
+          playNotificationChime();
+        }
       } catch(err) {
         console.warn('Google Drive Sync error:', err);
         localStorage.setItem('family_master_cloud_sync', JSON.stringify(payload));
