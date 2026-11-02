@@ -1,8 +1,8 @@
 {
-  "version": "4.8.0",
-  "buildId": 202611021255,
-  "buildTimestamp": 1793613167640,
-  "releaseDate": "2026-11-02 12:55:00",
+  "version": "4.8.2",
+  "buildId": 202611021257,
+  "buildTimestamp": 1793613475449,
+  "releaseDate": "2026-11-02 12:57:55",
   "commit": "auto-update",
-  "notes": "Redesign Settings Button, clean sync clutter text, activate true Glassmorphism vs Minimal card styles"
+  "notes": "اعتماد وتوليد صورة الكل العائلية المجمعة بناء على صور أفراد العائلة الفعلية"
 }
