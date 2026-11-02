@@ -1,8 +1,8 @@
 {
-  "version": "4.8.1",
-  "buildId": 202611021252,
+  "version": "4.8.0",
+  "buildId": 202611021255,
   "buildTimestamp": 1793613167640,
-  "releaseDate": "2026-11-02 12:52:47",
+  "releaseDate": "2026-11-02 12:55:00",
   "commit": "auto-update",
-  "notes": "Added photo/receipt upload to commitment payment and swapped tabs layout (Pay on Right, List on Left)"
+  "notes": "Redesign Settings Button, clean sync clutter text, activate true Glassmorphism vs Minimal card styles"
 }
