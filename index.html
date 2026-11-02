@@ -4429,6 +4429,22 @@
       gap: 10px;
       margin-top: 10px;
     }
+        /* أنماط أزرار اختيار شعار ورمز العائلة */
+    .emblem-opt-btn {
+      position: relative !important;
+      cursor: pointer !important;
+      user-select: none !important;
+      outline: none !important;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    .emblem-opt-btn:hover {
+      transform: translateY(-2px) !important;
+      filter: brightness(1.15) !important;
+    }
+    .emblem-opt-btn.active {
+      transform: translateY(-2px) scale(1.05) !important;
+    }
+
     .theme-pill-option {
       position: relative !important;
       display: flex !important;
@@ -14257,15 +14273,26 @@
              قسم إدارة وتبديل حسابات العائلة وقفل الأمان (مدمج في الإعدادات)
              ======================================================== -->
         <div class="settings-unified-section" id="settingsSec_users" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.94)); border: 1.4px solid rgba(56, 189, 248, 0.45); border-radius: 14px; padding: 12px 14px; margin-bottom: 8px; box-shadow: 0 4px 18px rgba(0,0,0,0.25);">
-          
-          <!-- رأس القسم -->
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 8px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="width: 30px; height: 30px; border-radius: 8px; background: rgba(56, 189, 248, 0.2); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 1rem; border: 1px solid rgba(56, 189, 248, 0.35);">
+          <!-- رأس القسم: عنوان إدارة الحسابات + شارة الحساب الحالي -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px; min-width: 0;">
+              <div style="width: 30px; height: 30px; border-radius: 8px; background: rgba(56, 189, 248, 0.2); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 1rem; border: 1px solid rgba(56, 189, 248, 0.35); flex-shrink: 0;">
                 <i class="fa-solid fa-users-gear"></i>
               </div>
+              <div style="min-width: 0;">
+                <span style="font-weight: 900; font-size: 0.85rem; color: #f8fafc; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">إدارة وتبديل حسابات العائلة</span>
+                <div style="font-size: 0.62rem; color: #94a3b8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">التبديل الفوري بين الأفراد وقفل الخصوصية برمز PIN</div>
+              </div>
+            </div>
+            <!-- شارة الحساب النشط حالياً (داخل الكارت ومحكومة بالكامل) -->
+            <div id="settingsActiveUserBadge" style="display: inline-flex; align-items: center; gap: 5px; background: rgba(34, 197, 94, 0.18); border: 1.2px solid rgba(34, 197, 94, 0.5); padding: 3px 9px; border-radius: 12px; font-size: 0.66rem; font-weight: 800; color: #34d399; white-space: nowrap; flex-shrink: 0;">
+              <i class="fa-solid fa-circle-check" style="font-size: 0.55rem; color: #22c55e;"></i>
+              <span>الحساب الحالي: <strong id="settingsActiveUserNameTxt" style="color: #ffffff;">ماهر</strong></span>
+            </div>
+          </div>
+
           <!-- بطاقة العائلة الفاخرة (عائلة ماهر ❤️ أية) -->
-          <div id="family_portrait_settings_card" style="margin: 10px 0 14px; border-radius: 14px; overflow: hidden; position: relative; border: 1.5px solid rgba(56, 189, 248, 0.4); box-shadow: 0 8px 24px rgba(0,0,0,0.5); cursor: pointer;" onclick="openReceiptLightbox('family_portrait.jpg', 'عائلة ماهر ❤️ أية - بيت عامر بالحب والبركة')" title="انقر لعرض صورة العائلة بدقة عالية">
+          <div id="family_portrait_settings_card" style="margin: 0 0 10px; border-radius: 14px; overflow: hidden; position: relative; border: 1.5px solid rgba(56, 189, 248, 0.4); box-shadow: 0 8px 24px rgba(0,0,0,0.5); cursor: pointer;" onclick="openReceiptLightbox('family_portrait.jpg', 'عائلة ماهر ❤️ أية - بيت عامر بالحب والبركة')" title="انقر لعرض صورة العائلة بدقة عالية">
             <img src="family_portrait.jpg" alt="عائلة ماهر وأية" id="settingsFamilyPortraitImg" style="width: 100%; height: 160px; object-fit: cover; display: block;">
             <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(15,23,42,0.96) 0%, rgba(15,23,42,0.7) 65%, transparent 100%); padding: 10px 14px; display: flex; justify-content: space-between; align-items: flex-end;">
               <div>
@@ -14282,10 +14309,10 @@
           <div style="background: rgba(15, 23, 42, 0.75); border: 1.2px solid rgba(251, 191, 36, 0.35); border-radius: 12px; padding: 10px; margin-bottom: 12px;">
             <div style="font-size: 0.72rem; font-weight: 800; color: #fbbf24; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
               <span><i class="fa-solid fa-wand-magic-sparkles"></i> اختر نمط رمز وشعار العائلة المفضل لديك:</span>
-              <span id="activeEmblemNameBadge" style="font-size: 0.62rem; color: #38bdf8; background: rgba(56, 189, 248, 0.16); border: 1px solid rgba(56, 189, 248, 0.3); padding: 2px 7px; border-radius: 6px; font-weight: 800;">الدرع الملكي المذهب</span>
+              <span id="activeEmblemNameBadge" style="font-size: 0.62rem; color: #fbbf24; background: rgba(251, 191, 36, 0.16); border: 1px solid rgba(251, 191, 36, 0.4); padding: 2px 7px; border-radius: 6px; font-weight: 800;">الدرع الملكي المذهب ✓</span>
             </div>
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;" id="emblemOptionButtonsGroup">
-              <button type="button" onclick="switchFamilyEmblem(1)" class="emblem-opt-btn" id="btnEmblemOpt1" style="background: rgba(30, 41, 59, 0.85); border: 1.5px solid #fbbf24; border-radius: 10px; padding: 5px 2px; cursor: pointer; text-align: center; color: #f8fafc; transition: all 0.2s ease; box-shadow: 0 0 10px rgba(251, 191, 36, 0.35);">
+              <button type="button" onclick="switchFamilyEmblem(1)" class="emblem-opt-btn active" id="btnEmblemOpt1" style="background: rgba(30, 41, 59, 0.85); border: 2.2px solid #fbbf24; border-radius: 10px; padding: 5px 2px; cursor: pointer; text-align: center; color: #f8fafc; transition: all 0.2s ease; box-shadow: 0 0 12px rgba(251, 191, 36, 0.45);">
                 <img src="assets/family_option1_gold_crest.jpg" style="width: 38px; height: 38px; border-radius: 8px; object-fit: cover; display: block; margin: 0 auto 3px;">
                 <div style="font-size: 0.58rem; font-weight: 800; white-space: nowrap;">الدرع الملكي</div>
               </button>
@@ -14303,19 +14330,6 @@
               </button>
             </div>
           </div>
-              <div>
-                <span style="font-weight: 900; font-size: 0.85rem; color: #f8fafc;">إدارة وتبديل حسابات العائلة</span>
-                <div style="font-size: 0.62rem; color: #94a3b8;">التبديل الفوري بين الأفراد وقفل الخصوصية برمز PIN</div>
-              </div>
-            </div>
-            <!-- شارة الحساب النشط حالياً -->
-            <div id="settingsActiveUserBadge" style="display: flex; align-items: center; gap: 5px; background: rgba(34, 197, 94, 0.18); border: 1.2px solid rgba(34, 197, 94, 0.5); padding: 3px 9px; border-radius: 12px; font-size: 0.66rem; font-weight: 800; color: #34d399;">
-              <i class="fa-solid fa-circle-check" style="font-size: 0.55rem; color: #22c55e;"></i>
-              <span>الحساب الحالي: <strong id="settingsActiveUserNameTxt" style="color: #ffffff;">ماهر</strong></span>
-            </div>
-          </div>
-
-          <!-- شاشة شبكة ملفات أفراد الأسرة للتبديل (Settings Profiles Grid View) -->
           <div id="settingsProfilesGridView">
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-bottom: 8px;" id="settingsMembersGridContainer">
               <!-- تتولد الكروت تفاعلياً بواسطة renderSettingsMembersGrid() -->
@@ -14456,7 +14470,6 @@
                 <span style="font-weight: 800; font-size: 0.68rem; color: #0f172a;">☀️ أبيض نهار</span>
                 <span class="theme-selected-badge">مفعل ✓</span>
               </div>
-            </div>
             </div>
           </div>
 
@@ -14832,7 +14845,13 @@
     let analyticsChartInstance = null;
     let currentModalType = 'expense';
 
-    function initApp() {
+        function initApp() {
+      // استعادة شعار العائلة المفضل
+      try {
+        const savedEmblem = localStorage.getItem('family_monefy_emblem') || 1;
+        if (typeof switchFamilyEmblem === 'function') switchFamilyEmblem(savedEmblem, false);
+      } catch(e) {}
+
       // إغلاق أي نوافذ منبثقة مفتوحة من الجلسة السابقة
       document.querySelectorAll('.modal-overlay[style*="flex"], .modal-overlay[style*="block"]').forEach(m => { m.style.display = 'none'; });
 
@@ -21130,8 +21149,73 @@ function openSettingsModal(targetSection = '') {
       }
     }
 
-    function updateSettingsModalDisplay() {
+        // =========================================================================
+    // محرك تبديل واختيار شعار ورمز عائلة ماهر وأية الملكي (Family Emblem Engine)
+    // =========================================================================
+    const FAMILY_EMBLEMS = {
+      1: { name: 'الدرع الملكي المذهب', src: 'assets/family_option1_gold_crest.jpg', color: '#fbbf24' },
+      2: { name: 'الموزاييك الهندسي الراقي', src: 'assets/family_option2_mosaic.jpg', color: '#38bdf8' },
+      3: { name: 'المدار الزجاجي السماوي', src: 'assets/family_option3_rosette.jpg', color: '#818cf8' },
+      4: { name: 'الزمرد والنيون العصري', src: 'assets/family_option4_emerald.jpg', color: '#34d399' }
+    };
+
+    function switchFamilyEmblem(num, persist = true) {
+      num = parseInt(num) || 1;
+      if (!FAMILY_EMBLEMS[num]) num = 1;
+      const emblem = FAMILY_EMBLEMS[num];
+
+      state.familyEmblem = num;
+      if (persist) {
+        try { localStorage.setItem('family_monefy_emblem', num); } catch(e) {}
+      }
+
+      // 1. تحديث شعار العائلة في الهيدر الرئيسي فورياً
+      const headerLogo = document.getElementById('headerBrandFamilyLogo');
+      if (headerLogo) headerLogo.src = emblem.src;
+
+      // 2. تحديث صورة الأيقونة لكل العائلة في شريط الأفراد
+      const avatarAll = document.getElementById('avatarImgAllFamily');
+      if (avatarAll) avatarAll.src = emblem.src;
+
+      // 3. تحديث مظهر الأزرار الأربعة وحالة التحديد والوهج
+      for (let i = 1; i <= 4; i++) {
+        const btn = document.getElementById('btnEmblemOpt' + i);
+        if (!btn) continue;
+        if (i === num) {
+          btn.classList.add('active');
+          btn.style.border = `2.2px solid ${emblem.color}`;
+          btn.style.boxShadow = `0 0 14px ${emblem.color}88, inset 0 0 8px ${emblem.color}33`;
+          btn.style.transform = 'translateY(-2px) scale(1.05)';
+          btn.style.background = 'rgba(15, 23, 42, 0.95)';
+        } else {
+          btn.classList.remove('active');
+          btn.style.border = '1.5px solid rgba(255, 255, 255, 0.12)';
+          btn.style.boxShadow = 'none';
+          btn.style.transform = 'none';
+          btn.style.background = 'rgba(30, 41, 59, 0.85)';
+        }
+      }
+
+      // 4. تحديث بادج اسم الشعار المختار
+      const badge = document.getElementById('activeEmblemNameBadge');
+      if (badge) {
+        badge.textContent = emblem.name + ' ✓';
+        badge.style.color = emblem.color;
+        badge.style.borderColor = emblem.color;
+        badge.style.background = `${emblem.color}22`;
+      }
+
+      // 5. إشعار التغيير
+      if (persist && typeof showToast === 'function') {
+        showToast(`👑 تم تغيير وتثبيت شعار العائلة: ${emblem.name}`);
+      }
+    }
+
+function updateSettingsModalDisplay() {
       const user = state.currentUser || 'ماهر';
+        const curEmblem = localStorage.getItem('family_monefy_emblem') || 1;
+        if (typeof switchFamilyEmblem === 'function') switchFamilyEmblem(curEmblem, false);
+
 
       // مزامنة حالة الأزرار والبادجات للمظهر
       try {
