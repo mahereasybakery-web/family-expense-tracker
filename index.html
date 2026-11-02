@@ -10264,7 +10264,7 @@
             </div>
           </div>
 
-        </div></div>
+        </div>
 
         <!-- أدوات سريعة متناسقة ومريحة: المحفظة النشطة بحجم موسع + الذهب والبورصة + زر العملة المطور -->
         <div class="executive-quick-tools-strip" style="margin: 2px 6px 8px; display: flex; align-items: center; justify-content: space-between; gap: 6px; width: calc(100% - 12px); box-sizing: border-box;">
@@ -12803,84 +12803,163 @@
         <!-- ========================================================
              القسم 2: المظهر والتخصيص البصري
              ======================================================== -->
-        <div class="settings-unified-section" id="settingsSec_appearance" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 8px 10px;">
-          <!-- 1. سمة وألوان التطبيق -->
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-            <div style="font-size: 0.74rem; font-weight: 800; color: #cbd5e1; display: flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-paint-brush" style="color: #a855f7;"></i>
-              <span>سمة وألوان التطبيق:</span>
+        <div class="settings-unified-section" id="settingsSec_appearance" style="background: rgba(15, 23, 42, 0.90); border: 1.2px solid rgba(255, 255, 255, 0.10); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 10px;">
+          <!-- 1. سمة وألوان التطبيق (8 سمات ملكية راقية) -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <div style="font-size: 0.76rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-palette" style="color: #a855f7; font-size: 0.88rem;"></i>
+                <span>ألوان وسمات التطبيق:</span>
+              </div>
+              <span id="activeThemeBadge" style="font-size: 0.63rem; color: #38bdf8; font-weight: 800; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 1px 7px; border-radius: 5px;">كحلي ملكي</span>
             </div>
-            <span style="font-size: 0.62rem; color: #94a3b8; font-weight: 700;">6 سمات ملكية</span>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;">
+              <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <div class="theme-color-dot" style="background: #1e3a8a; width: 10px; height: 10px;"></div>
+                <span>كحلي</span>
+              </div>
+              <div class="theme-pill-option" id="themeOptBlack" onclick="setAppTheme('black')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <div class="theme-color-dot" style="background: #0f172a; width: 10px; height: 10px;"></div>
+                <span>أسود أوليد</span>
+              </div>
+              <div class="theme-pill-option" id="themeOptEmerald" onclick="setAppTheme('emerald')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <div class="theme-color-dot" style="background: #065f46; width: 10px; height: 10px;"></div>
+                <span>زمردي</span>
+              </div>
+              <div class="theme-pill-option" id="themeOptPurple" onclick="setAppTheme('purple')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <div class="theme-color-dot" style="background: #581c87; width: 10px; height: 10px;"></div>
+                <span>بنفسجي</span>
+              </div>
+              <div class="theme-pill-option" id="themeOptGold" onclick="setAppTheme('gold')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <div class="theme-color-dot" style="background: #b45309; width: 10px; height: 10px;"></div>
+                <span>ذهبي صحراوي</span>
+              </div>
+              <div class="theme-pill-option" id="themeOptOcean" onclick="setAppTheme('ocean')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <div class="theme-color-dot" style="background: #06b6d4; width: 10px; height: 10px;"></div>
+                <span>سماوي بحري</span>
+              </div>
+              <div class="theme-pill-option" id="themeOptRose" onclick="setAppTheme('rose')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <div class="theme-color-dot" style="background: #f43f5e; width: 10px; height: 10px;"></div>
+                <span>روز جولد</span>
+              </div>
+              <div class="theme-pill-option" id="themeOptSlate" onclick="setAppTheme('slate')" style="padding: 5px 2px; font-size: 0.65rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
+                <div class="theme-color-dot" style="background: #64748b; width: 10px; height: 10px;"></div>
+                <span>تيتانيوم</span>
+              </div>
+            </div>
           </div>
-          <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; margin-bottom: 6px;">
-            <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')" style="padding: 4px 1px; font-size: 0.64rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-              <div class="theme-color-dot" style="background: #1e3a8a; width: 9px; height: 9px;"></div>
-              <span>كحلي</span>
+
+          <!-- 2. ألوان ونمط الأيقونات (Icon Color Palettes) -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+              <div style="font-size: 0.76rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-icons" style="color: #fbbf24; font-size: 0.88rem;"></i>
+                <span>ألوان ونمط الأيقونات:</span>
+              </div>
+              <span id="activeIconThemeBadge" style="font-size: 0.63rem; color: #fbbf24; font-weight: 800; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); padding: 1px 7px; border-radius: 5px;">ملون فينتك (افتراضي)</span>
             </div>
-            <div class="theme-pill-option" id="themeOptBlack" onclick="setAppTheme('black')" style="padding: 4px 1px; font-size: 0.64rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-              <div class="theme-color-dot" style="background: #0f172a; width: 9px; height: 9px;"></div>
-              <span>أسود</span>
-            </div>
-            <div class="theme-pill-option" id="themeOptEmerald" onclick="setAppTheme('emerald')" style="padding: 4px 1px; font-size: 0.64rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-              <div class="theme-color-dot" style="background: #065f46; width: 9px; height: 9px;"></div>
-              <span>زمردي</span>
-            </div>
-            <div class="theme-pill-option" id="themeOptPurple" onclick="setAppTheme('purple')" style="padding: 4px 1px; font-size: 0.64rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-              <div class="theme-color-dot" style="background: #581c87; width: 9px; height: 9px;"></div>
-              <span>بنفسجي</span>
-            </div>
-            <div class="theme-pill-option" id="themeOptGold" onclick="setAppTheme('gold')" style="padding: 4px 1px; font-size: 0.64rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-              <div class="theme-color-dot" style="background: #b45309; width: 9px; height: 9px;"></div>
-              <span>ذهبي</span>
-            </div>
-            <div class="theme-pill-option" id="themeOptOcean" onclick="setAppTheme('ocean')" style="padding: 4px 1px; font-size: 0.64rem; display: flex; flex-direction: column; align-items: center; gap: 2px;">
-              <div class="theme-color-dot" style="background: #06b6d4; width: 9px; height: 9px;"></div>
-              <span>سماوي</span>
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px;">
+              <div class="icon-theme-pill active" id="iconThemeOptVibrant" onclick="setAppIconTheme('vibrant')">
+                <div class="icon-palette-preview">
+                  <span class="icon-palette-dot" style="background:#10b981;"></span>
+                  <span class="icon-palette-dot" style="background:#0284c7;"></span>
+                  <span class="icon-palette-dot" style="background:#f59e0b;"></span>
+                </div>
+                <span>ملون</span>
+              </div>
+              <div class="icon-theme-pill" id="iconThemeOptGold" onclick="setAppIconTheme('gold')">
+                <div class="icon-palette-preview">
+                  <span class="icon-palette-dot" style="background:#f59e0b;"></span>
+                  <span class="icon-palette-dot" style="background:#fbbf24;"></span>
+                  <span class="icon-palette-dot" style="background:#d97706;"></span>
+                </div>
+                <span>ذهبي</span>
+              </div>
+              <div class="icon-theme-pill" id="iconThemeOptEmerald" onclick="setAppIconTheme('emerald')">
+                <div class="icon-palette-preview">
+                  <span class="icon-palette-dot" style="background:#10b981;"></span>
+                  <span class="icon-palette-dot" style="background:#34d399;"></span>
+                  <span class="icon-palette-dot" style="background:#059669;"></span>
+                </div>
+                <span>زمردي</span>
+              </div>
+              <div class="icon-theme-pill" id="iconThemeOptOcean" onclick="setAppIconTheme('ocean')">
+                <div class="icon-palette-preview">
+                  <span class="icon-palette-dot" style="background:#0284c7;"></span>
+                  <span class="icon-palette-dot" style="background:#38bdf8;"></span>
+                  <span class="icon-palette-dot" style="background:#06b6d4;"></span>
+                </div>
+                <span>سماوي</span>
+              </div>
+              <div class="icon-theme-pill" id="iconThemeOptPurple" onclick="setAppIconTheme('purple')">
+                <div class="icon-palette-preview">
+                  <span class="icon-palette-dot" style="background:#8b5cf6;"></span>
+                  <span class="icon-palette-dot" style="background:#c084fc;"></span>
+                  <span class="icon-palette-dot" style="background:#ec4899;"></span>
+                </div>
+                <span>ياقوتي</span>
+              </div>
+              <div class="icon-theme-pill" id="iconThemeOptSilver" onclick="setAppIconTheme('silver')">
+                <div class="icon-palette-preview">
+                  <span class="icon-palette-dot" style="background:#94a3b8;"></span>
+                  <span class="icon-palette-dot" style="background:#cbd5e1;"></span>
+                  <span class="icon-palette-dot" style="background:#64748b;"></span>
+                </div>
+                <span>بلاتيني</span>
+              </div>
             </div>
           </div>
 
-          <!-- 2. خط الكلمات والأرقام -->
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-            <div style="font-size: 0.74rem; font-weight: 800; color: #cbd5e1; display: flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-font" style="color: #38bdf8;"></i>
-              <span>خط الكلمات والأرقام:</span>
+          <!-- 3. خط الكلمات والأرقام (6 فونتات عربية ومصرفية رائدة) -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+              <div style="font-size: 0.76rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-font" style="color: #38bdf8; font-size: 0.88rem;"></i>
+                <span>خط الكلمات والأرقام:</span>
+              </div>
+              <span id="activeFontBadge" style="font-size: 0.63rem; color: #34d399; font-weight: 800; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); padding: 1px 7px; border-radius: 5px;">تاجوال (افتراضي)</span>
             </div>
-            <span id="activeFontBadge" style="font-size: 0.63rem; color: #34d399; font-weight: 800;">تاجوال (افتراضي)</span>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 6px;">
-            <button type="button" class="analytics-sec-btn font-choice-pill active" id="fontChoiceTajawal" onclick="setAppFont('tajawal')" style="padding: 5px 1px; font-size: 0.67rem; font-family: 'Tajawal', sans-serif !important;">
-              ✨ تاجوال
-            </button>
-            <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceIBM" onclick="setAppFont('ibm')" style="padding: 5px 1px; font-size: 0.67rem; font-family: 'IBM Plex Sans Arabic', sans-serif !important;">
-              🏢 IBM
-            </button>
-            <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceAlmarai" onclick="setAppFont('almarai')" style="padding: 5px 1px; font-size: 0.67rem; font-family: 'Almarai', sans-serif !important;">
-              📱 المراعي
-            </button>
-            <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceReadex" onclick="setAppFont('readex')" style="padding: 5px 1px; font-size: 0.67rem; font-family: 'Readex Pro', sans-serif !important;">
-              📐 ريدكس
-            </button>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;">
+              <button type="button" class="analytics-sec-btn font-choice-pill active" id="fontChoiceTajawal" onclick="setAppFont('tajawal')" style="padding: 5px 2px; font-size: 0.70rem; font-family: 'Tajawal', sans-serif !important;">
+                ✨ تاجوال
+              </button>
+              <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceCairo" onclick="setAppFont('cairo')" style="padding: 5px 2px; font-size: 0.70rem; font-family: 'Cairo', sans-serif !important;">
+                🏦 كايرو
+              </button>
+              <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceIBM" onclick="setAppFont('ibm')" style="padding: 5px 2px; font-size: 0.70rem; font-family: 'IBM Plex Sans Arabic', sans-serif !important;">
+                🏢 IBM Plex
+              </button>
+              <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceAlmarai" onclick="setAppFont('almarai')" style="padding: 5px 2px; font-size: 0.70rem; font-family: 'Almarai', sans-serif !important;">
+                📱 المراعي
+              </button>
+              <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceReadex" onclick="setAppFont('readex')" style="padding: 5px 2px; font-size: 0.70rem; font-family: 'Readex Pro', sans-serif !important;">
+                📐 ريدكس
+              </button>
+              <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceAlexandria" onclick="setAppFont('alexandria')" style="padding: 5px 2px; font-size: 0.70rem; font-family: 'Alexandria', sans-serif !important;">
+                🏛️ الإسكندرية
+              </button>
+            </div>
           </div>
 
-          <!-- 3. حجم الخط ونمط الكروت (صف واحد مدمج) -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 7px;">
+          <!-- 4. حجم الخط ونمط الكروت (صف واحد مدمج) -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
             <div>
-              <div style="font-size: 0.71rem; font-weight: 800; color: #cbd5e1; margin-bottom: 3px; display: flex; align-items: center; gap: 3px;">
+              <div style="font-size: 0.73rem; font-weight: 800; color: #cbd5e1; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
                 <i class="fa-solid fa-text-height" style="color: #38bdf8;"></i> حجم الخط:
               </div>
               <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;">
-                <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeSmall" onclick="setAppFontSize('small')" style="padding: 4px 1px; font-size: 0.65rem;">صغير</button>
-                <button type="button" class="analytics-sec-btn font-size-pill active" id="fontSizeMedium" onclick="setAppFontSize('medium')" style="padding: 4px 1px; font-size: 0.67rem;">وسط</button>
-                <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeLarge" onclick="setAppFontSize('large')" style="padding: 4px 1px; font-size: 0.69rem;">كبير</button>
+                <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeSmall" onclick="setAppFontSize('small')" style="padding: 5px 1px; font-size: 0.65rem;">صغير</button>
+                <button type="button" class="analytics-sec-btn font-size-pill active" id="fontSizeMedium" onclick="setAppFontSize('medium')" style="padding: 5px 1px; font-size: 0.68rem;">وسط</button>
+                <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeLarge" onclick="setAppFontSize('large')" style="padding: 5px 1px; font-size: 0.70rem;">كبير</button>
               </div>
             </div>
             <div>
-              <div style="font-size: 0.71rem; font-weight: 800; color: #cbd5e1; margin-bottom: 3px; display: flex; align-items: center; gap: 3px;">
+              <div style="font-size: 0.73rem; font-weight: 800; color: #cbd5e1; margin-bottom: 4px; display: flex; align-items: center; gap: 4px;">
                 <i class="fa-solid fa-shapes" style="color: #38bdf8;"></i> نمط الكروت:
               </div>
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3px;">
-                <button type="button" class="analytics-sec-btn active" id="designStyleGlass" onclick="setAppDesignStyle('glass')" style="padding: 4px 2px; font-size: 0.65rem;">✨ زجاجي</button>
-                <button type="button" class="analytics-sec-btn" id="designStyleMin" onclick="setAppDesignStyle('minimal')" style="padding: 4px 2px; font-size: 0.65rem;">📐 مدمج</button>
+                <button type="button" class="analytics-sec-btn active" id="designStyleGlass" onclick="setAppDesignStyle('glass')" style="padding: 5px 2px; font-size: 0.65rem;">✨ زجاجي</button>
+                <button type="button" class="analytics-sec-btn" id="designStyleMin" onclick="setAppDesignStyle('minimal')" style="padding: 5px 2px; font-size: 0.65rem;">📐 مدمج</button>
               </div>
             </div>
           </div>
@@ -13307,6 +13386,24 @@
       } catch(e) {
         state.notes = [];
       }
+
+      // استعادة وتطبيق التخصيصات المحفوظة (المظهر، ألوان الأيقونات، الخطوط، وأحجامها)
+      try {
+        const savedTheme = localStorage.getItem('family_monefy_theme') || 'navy';
+        setAppTheme(savedTheme, false);
+
+        const savedIconTheme = localStorage.getItem('family_monefy_icon_theme') || 'vibrant';
+        setAppIconTheme(savedIconTheme, false);
+
+        const savedFont = localStorage.getItem('family_expense_app_font') || 'tajawal';
+        setAppFont(savedFont, false);
+
+        const savedFontSize = localStorage.getItem('family_expense_font_size') || 'medium';
+        setAppFontSize(savedFontSize, false);
+
+        const savedCardStyle = localStorage.getItem('family_monefy_design_style') || 'glass';
+        setAppDesignStyle(savedCardStyle, false);
+      } catch(e) {}
 
       // تحديث قوائم المحافظ
       populateWalletDropdowns();
@@ -19075,6 +19172,24 @@ function openSettingsModal() {
 
     function updateSettingsModalDisplay() {
       const user = state.currentUser || 'ماهر';
+
+      // مزامنة حالة الأزرار والبادجات للمظهر
+      try {
+        const curTheme = document.documentElement.getAttribute('data-app-theme') || localStorage.getItem('family_monefy_theme') || 'navy';
+        setAppTheme(curTheme, false);
+
+        const curIconTheme = document.documentElement.getAttribute('data-icon-theme') || localStorage.getItem('family_monefy_icon_theme') || 'vibrant';
+        setAppIconTheme(curIconTheme, false);
+
+        const curFont = localStorage.getItem('family_expense_app_font') || 'tajawal';
+        setAppFont(curFont, false);
+
+        const curFontSize = document.documentElement.getAttribute('data-font-size') || localStorage.getItem('family_expense_font_size') || 'medium';
+        setAppFontSize(curFontSize, false);
+
+        const curCardStyle = document.documentElement.getAttribute('data-card-style') || localStorage.getItem('family_monefy_design_style') || 'glass';
+        setAppDesignStyle(curCardStyle, false);
+      } catch(e) {}
       const nameEl = document.getElementById('settingsCurrentMemberName');
       if (nameEl) nameEl.textContent = user;
 
@@ -19189,13 +19304,19 @@ function openSettingsModal() {
       reader.readAsText(file);
     }
 
-    function setAppTheme(theme) {
+    function setAppTheme(theme, persist = true) {
+      const validThemes = ['navy', 'black', 'emerald', 'purple', 'gold', 'ocean', 'rose', 'slate'];
+      if (!validThemes.includes(theme)) theme = 'navy';
+
       state.appTheme = theme;
       document.documentElement.setAttribute('data-app-theme', theme);
       document.body.setAttribute('data-app-theme', theme);
-      localStorage.setItem('family_monefy_theme', theme);
 
-      const opts = ['Navy', 'Black', 'Emerald', 'Purple', 'Gold', 'Ocean'];
+      if (persist) {
+        try { localStorage.setItem('family_monefy_theme', theme); } catch(e) {}
+      }
+
+      const opts = ['Navy', 'Black', 'Emerald', 'Purple', 'Gold', 'Ocean', 'Rose', 'Slate'];
       opts.forEach(o => {
         const el = document.getElementById('themeOpt' + o);
         if (el) {
@@ -19203,16 +19324,61 @@ function openSettingsModal() {
           else el.classList.remove('active');
         }
       });
+
       const names = {
-        'navy': 'كحلي ملكي 🔵',
-        'black': 'أسود أسطوري ⚫',
-        'emerald': 'زمردي فاخر 🟢',
-        'purple': 'بنفسجي فخم 🟣',
-        'gold': 'ذهبي ملكي 👑',
-        'ocean': 'أزرق سماوي 🌊'
+        'navy': 'كحلي ملكي',
+        'black': 'أسود أوليد',
+        'emerald': 'زمردي فاخر',
+        'purple': 'بنفسجي ملكي',
+        'gold': 'ذهبي صحراوي',
+        'ocean': 'سماوي بحري',
+        'rose': 'روز جولد وياقوتي',
+        'slate': 'تيتانيوم وبلاتين'
       };
-      if (typeof showToast === 'function') {
+
+      const badge = document.getElementById('activeThemeBadge');
+      if (badge) badge.textContent = names[theme] || theme;
+
+      if (persist && typeof showToast === 'function') {
         showToast(`🎨 تم تفعيل مظهر التطبيق: ${names[theme] || theme}`);
+      }
+    }
+
+    function setAppIconTheme(iconTheme, persist = true) {
+      const validThemes = ['vibrant', 'gold', 'emerald', 'ocean', 'purple', 'silver'];
+      if (!validThemes.includes(iconTheme)) iconTheme = 'vibrant';
+
+      state.iconTheme = iconTheme;
+      document.documentElement.setAttribute('data-icon-theme', iconTheme);
+      document.body.setAttribute('data-icon-theme', iconTheme);
+
+      if (persist) {
+        try { localStorage.setItem('family_monefy_icon_theme', iconTheme); } catch(e) {}
+      }
+
+      const opts = ['Vibrant', 'Gold', 'Emerald', 'Ocean', 'Purple', 'Silver'];
+      opts.forEach(o => {
+        const el = document.getElementById('iconThemeOpt' + o);
+        if (el) {
+          if (o.toLowerCase() === iconTheme) el.classList.add('active');
+          else el.classList.remove('active');
+        }
+      });
+
+      const names = {
+        'vibrant': 'ملون فينتك (افتراضي)',
+        'gold': 'ذهبي ملكي',
+        'emerald': 'زمردي فاخر',
+        'ocean': 'سماوي بحري',
+        'purple': 'بنفسجي ياقوتي',
+        'silver': 'بلاتيني مونوكروم'
+      };
+
+      const badge = document.getElementById('activeIconThemeBadge');
+      if (badge) badge.textContent = names[iconTheme] || iconTheme;
+
+      if (persist && typeof showToast === 'function') {
+        showToast(`✨ تم تفعيل نمط ألوان الأيقونات: ${names[iconTheme] || iconTheme}`);
       }
     }
 
@@ -19292,35 +19458,41 @@ function openSettingsModal() {
     window.addEventListener('resize', applyScreenAdaptiveLayout);
     applyScreenAdaptiveLayout();
 
-    function setAppFont(fontKey) {
+    function setAppFont(fontKey, persist = true) {
       const fonts = {
         tajawal: { name: 'تاجوال (افتراضي)', family: "'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" },
-        ibm: { name: 'آي بي إم فليكس', family: "'IBM Plex Sans Arabic', sans-serif" },
-        almarai: { name: 'المراعي', family: "'Almarai', sans-serif" },
-        readex: { name: 'ريدكس برو', family: "'Readex Pro', sans-serif" }
+        cairo: { name: 'كايرو المصرفي', family: "'Cairo', 'Tajawal', -apple-system, sans-serif" },
+        ibm: { name: 'IBM Plex الفاخر', family: "'IBM Plex Sans Arabic', 'Tajawal', sans-serif" },
+        almarai: { name: 'المراعي الهادئ', family: "'Almarai', 'Tajawal', sans-serif" },
+        readex: { name: 'ريدكس برو الهندسي', family: "'Readex Pro', 'Tajawal', sans-serif" },
+        alexandria: { name: 'الإسكندرية العصري', family: "'Alexandria', 'Tajawal', sans-serif" }
       };
 
       const selected = fonts[fontKey] || fonts.tajawal;
       document.documentElement.style.setProperty('--font-family', selected.family, 'important');
       document.documentElement.style.setProperty('--font-numbers', selected.family, 'important');
 
+      if (persist) {
+        try { localStorage.setItem('family_expense_app_font', fontKey); } catch (e) {}
+      }
+
       // تحديث حالة الأزرار في نافذة الإعدادات
       document.querySelectorAll('.font-choice-pill').forEach(btn => {
         btn.classList.remove('active');
       });
-      const activeBtn = document.getElementById(
-        fontKey === 'ibm' ? 'fontChoiceIBM' :
-        (fontKey === 'almarai' ? 'fontChoiceAlmarai' :
-        (fontKey === 'readex' ? 'fontChoiceReadex' : 'fontChoiceTajawal'))
-      );
+      const btnMap = {
+        tajawal: 'fontChoiceTajawal',
+        cairo: 'fontChoiceCairo',
+        ibm: 'fontChoiceIBM',
+        almarai: 'fontChoiceAlmarai',
+        readex: 'fontChoiceReadex',
+        alexandria: 'fontChoiceAlexandria'
+      };
+      const activeBtn = document.getElementById(btnMap[fontKey] || 'fontChoiceTajawal');
       if (activeBtn) activeBtn.classList.add('active');
 
       const badge = document.getElementById('activeFontBadge');
       if (badge) badge.textContent = selected.name;
-
-      try {
-        localStorage.setItem('family_expense_app_font', fontKey);
-      } catch (e) {}
 
       // إعادة رسم شبكة المصروفات والشارتات فوراً لتطبيق الفونت المختار
       if (typeof renderCategoriesGrid === 'function') {
@@ -19330,7 +19502,9 @@ function openSettingsModal() {
       if (typeof renderAnalyticsUI === 'function') {
         renderAnalyticsUI();
       }
-      showToast(`🔤 تم تطبيق خط (${selected.name}) لكافة الكلمات والأرقام`);
+      if (persist && typeof showToast === 'function') {
+        showToast(`🔤 تم تطبيق خط (${selected.name}) لكافة الكلمات والأرقام`);
+      }
     }
 
     function setAppDesignStyle(style) {
