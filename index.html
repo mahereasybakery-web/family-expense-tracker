@@ -11641,7 +11641,7 @@
             <div style="display: grid; grid-template-columns: 2fr 1.2fr; gap: 8px; margin-bottom: 8px;">
               <div class="form-group-custom" style="margin-bottom: 0;">
                 <label class="form-label-custom" id="lblExpTitle" style="font-size: 0.72rem; font-weight: 800; margin-bottom: 2px;">البيان / الوصف <span class="req">*</span></label>
-                <input type="text" id="inpExpTitle" class="form-input-custom" placeholder="مثال: قسط مدرسة، فاتورة غاز، سلفة..." style="height: 38px; font-size: 0.82rem; font-weight: 800;">
+                <input type="text" id="inpExpTitle" class="form-input-custom" placeholder="مثال: قسط مدرسة" style="height: 38px; font-size: 0.82rem; font-weight: 800;">
               </div>
               <div class="form-group-custom" style="margin-bottom: 0;">
                 <label class="form-label-custom" style="font-size: 0.72rem; font-weight: 800; margin-bottom: 2px;">المبلغ (ج.م) <span class="req">*</span></label>
@@ -19113,14 +19113,14 @@ function filterOperationsList() {
       const inp = document.getElementById('inpExpTitle');
       if (!lbl || !inp) return;
       if (type === 'debt_on_us') {
-        lbl.innerHTML = 'البيان / اسم الدائن أو المستحق له <span class="req">*</span>';
-        inp.placeholder = 'مثال: دين لمحمد أحمد، سلفة مؤجلة، قسط سيارة...';
+        lbl.innerHTML = 'البيان / المستحق له <span class="req">*</span>';
+        inp.placeholder = 'مثال: دين لمحمد';
       } else if (type === 'debt_for_us') {
-        lbl.innerHTML = 'البيان / اسم المدين (من عليه الدين لنا) <span class="req">*</span>';
-        inp.placeholder = 'مثال: سلفة لخالد، أموال مستحقة عند جهة، متبقي مبيعات...';
+        lbl.innerHTML = 'البيان / المدين لنا <span class="req">*</span>';
+        inp.placeholder = 'مثال: سلفة لخالد';
       } else {
-        lbl.innerHTML = 'البيان / اسم الجهة أو الفاتورة <span class="req">*</span>';
-        inp.placeholder = 'مثال: قسط مدرسة، فاتورة غاز، صيانة منزل...';
+        lbl.innerHTML = 'البيان / الوصف <span class="req">*</span>';
+        inp.placeholder = 'مثال: قسط مدرسة';
       }
     }
 
