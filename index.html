@@ -18,10 +18,10 @@
   <!-- Early CSS Customization Restorer to prevent FOUS -->
   <script>
     var currentEditTxReceiptDataUri = null;
-    var APP_VERSION = '4.9.2';
-    var APP_BUILD_ID = 202611071200;
-    window.APP_VERSION = '4.9.2';
-    window.APP_BUILD_ID = 202611071200;
+    var APP_VERSION = '4.9.3';
+    var APP_BUILD_ID = 202611071400;
+    window.APP_VERSION = '4.9.3';
+    window.APP_BUILD_ID = 202611071400;
     (function() {
       try {
         var t = localStorage.getItem('family_monefy_theme') || 'navy';
@@ -11534,7 +11534,7 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">عيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
-            <span class="version-badge">v4.9.2</span>
+            <span class="version-badge">v4.9.3</span>
           </div>
         </div>
 
@@ -14658,6 +14658,11 @@
               <i class="fa-solid fa-rotate" id="settingsAppUpdateIconSpin"></i>
               <span>فحص التحديثات الآن</span>
             </button>
+            <!-- زر التحديث الإجباري ومسح الذاكرة المؤقتة -->
+            <button type="button" class="btn-submit-tx" onclick="forcePurgeCacheAndReload()" style="margin: 0; height: 38px; padding: 0 10px; background: linear-gradient(135deg, #ef4444, #dc2626); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 10px; font-weight: 900; font-size: 0.78rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 10px rgba(239, 68, 68, 0.3); cursor: pointer; transition: all 0.2s ease;" title="مسح ذاكرة الهاتف المؤقتة وتنزيل التعديلات فوراً">
+              <i class="fa-solid fa-arrows-rotate"></i>
+              <span>تحديث إجباري ومسح الكاش</span>
+            </button>
           </div>
         </div>
 
@@ -15172,8 +15177,8 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = '4.9.2';
-      const APP_BUILD_ID = 202611071200;
+      const APP_VERSION = '4.9.3';
+      const APP_BUILD_ID = 202611071400;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
@@ -24599,6 +24604,29 @@ function updateSettingsModalDisplay() {
      * البحث التلقائي عن التحديثات الجديدة وتنزيلها وتطبيقها تلقائياً مع كل فتح للبرنامج
      * @param {Object} options { isManual: boolean, silent: boolean }
      */
+    function forcePurgeCacheAndReload() {
+      showToast('🚀 جاري مسح الذاكرة المؤقتة وتحديث البرنامج بالكامل لأحدث نسخة...', 'info', 4000);
+      try {
+        if ('caches' in window) {
+          caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
+        }
+      } catch(e) {}
+      try {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(regs => {
+            regs.forEach(r => r.unregister());
+          });
+        }
+      } catch(e) {}
+      localStorage.removeItem('family_monefy_version');
+      localStorage.removeItem('family_monefy_etag');
+      sessionStorage.clear();
+      setTimeout(() => {
+        const cleanUrl = window.location.origin + window.location.pathname;
+        window.location.replace(`${cleanUrl}?_fresh=${Date.now()}`);
+      }, 700);
+    }
+
     async function checkAndApplyAppUpdates(options = { isManual: false, silent: true }) {
       const now = Date.now();
       // منع التكرار اللحظي إذا كان قد تم الفحص قبل أقل من 8 ثوانٍ إلا إذا كان يدوياً
@@ -24670,8 +24698,8 @@ function updateSettingsModalDisplay() {
         }
 
         // 3. التحقق مما إذا كان هناك إصدار أحدث متوفر بالسيرفر
-        const currentBuildNum = (typeof window !== 'undefined' && window.APP_BUILD_ID) ? Number(window.APP_BUILD_ID) : (typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611071200);
-        const currentVerStr = (typeof window !== 'undefined' && window.APP_VERSION) ? window.APP_VERSION : (typeof APP_VERSION !== 'undefined' ? APP_VERSION : '4.9.2');
+        const currentBuildNum = (typeof window !== 'undefined' && window.APP_BUILD_ID) ? Number(window.APP_BUILD_ID) : (typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611071400);
+        const currentVerStr = (typeof window !== 'undefined' && window.APP_VERSION) ? window.APP_VERSION : (typeof APP_VERSION !== 'undefined' ? APP_VERSION : '4.9.3');
         
         const isNewer = remoteBuild && remoteBuild.buildId && (
           Number(remoteBuild.buildId) > currentBuildNum || 
@@ -27259,6 +27287,12 @@ function promptMemberPin(memberName) {
           showToast('☁️ تم التزامن السحابي والموازنة الدقيقة مع Google Drive بنجاح! ✨');
           playNotificationChime();
         }
+        // فحص وتطبيق التحديثات البرمجية تلقائياً مع المزامنة
+        setTimeout(() => {
+          if (typeof checkAndApplyAppUpdates === 'function') {
+            checkAndApplyAppUpdates({ isManual: isManual, silent: !isManual });
+          }
+        }, 800);
       } catch(err) {
         console.warn('Google Drive Sync error:', err);
         localStorage.setItem('family_master_cloud_sync', JSON.stringify(payload));

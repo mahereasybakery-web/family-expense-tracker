@@ -91,7 +91,7 @@ with sync_playwright() as p:
     drawer_open = "open" in (page.locator("#summaryLeftDrawer").get_attribute("class") or "")
     print(f"   Summary drawer opened: {drawer_open}")
     page.screenshot(path=r"C:\Users\96656\.gemini\antigravity\brain\0de95090-23a6-4a7f-a9b2-09153ee49670\summary_drawer_mobile.png")
-    page.locator("#summaryLeftDrawer button:has-text('×')").click()
+    page.locator("#summaryLeftDrawer button").first.click()
     page.wait_for_timeout(500)
 
     # Open Tasks Modal (Microsoft To-Do)
