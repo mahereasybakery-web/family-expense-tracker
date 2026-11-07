@@ -1,23 +1,31 @@
-import sys, io
-from playwright.sync_api import sync_playwright
+import asyncio
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
+from playwright.async_api import async_playwright
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+async def run():
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        page = await browser.new_page(viewport={"width": 412, "height": 915})
+        
+        await page.goto('file:///C:/Users/96656/.gemini/antigravity/scratch/family_expense_tracker_monefy/index.html')
+        await page.wait_for_timeout(2000)
+        
+        # Check why txMemberPhotoPicker was empty
+        res = await page.evaluate("""() => {
+            const el = document.getElementById('txMemberPhotoPicker');
+            const beforeLen = el ? el.children.length : -1;
+            
+            // call initMemberPhotoPickers()
+            if (typeof initMemberPhotoPickers === 'function') {
+                initMemberPhotoPickers();
+            }
+            const afterLen = el ? el.children.length : -1;
+            return { beforeLen, afterLen, inner: el ? el.innerHTML : '' };
+        }""")
+        print("Test initMemberPhotoPickers:", res['beforeLen'], "->", res['afterLen'])
+        print("HTML length:", len(res['inner']))
+        
+        await browser.close()
 
-with sync_playwright() as p:
-    browser = p.chromium.launch(headless=True)
-    page = browser.new_page()
-
-    errors = []
-    page.on("pageerror", lambda err: errors.append(str(err)))
-    page.on("console", lambda msg: print(f"Console {msg.type}: {msg.text}") if msg.type in ['error', 'warning'] else None)
-
-    import os
-    html_path = os.path.abspath("index.html")
-    page.goto(f"file:///{html_path.replace(os.sep, '/')}")
-    page.wait_for_timeout(1000)
-
-    print("Page errors found:", len(errors))
-    for e in errors:
-        print("ERROR:", e)
-
-    browser.close()
+asyncio.run(run())
