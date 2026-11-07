@@ -1,6 +1,6 @@
 {
   "version": "4.9.5",
-  "build": 202611071445,
-  "updated_at": "2026-11-07 02:45 PM",
-  "description": "Comprehensive UI/UX overhaul: Prominent balance & cash flow, category card framing, receipt camera in edit modal, audit ledger column header filters, left drawer summary with gold 21 and tasks integration, Banque Misr rates & responsiveness optimization"
+  "build": 202611071515,
+  "updated_at": "2026-11-07 03:15 PM",
+  "description": "v4.9.5: Fixed bottom navigation tabs and right gold drawer visibility by resolving viewExpected container nesting. Merged sync button with status and time badge. Resolved update reload loop."
 }
