@@ -17,11 +17,134 @@
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Almarai:wght@300;400;700;800&family=Readex+Pro:wght@300;400;500;600;700&family=Alexandria:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <!-- Early CSS Customization Restorer to prevent FOUS -->
   <script>
+
+    // دوال مساعدة عامة أساسية
+    function escapeHtml(t) {
+      if (t === null || t === undefined) return '';
+      const d = document.createElement('div');
+      d.textContent = String(t);
+      return d.innerHTML;
+    }
+
+    function initDonutChart() {
+      // تم استبدال الشارت الدائري ببنود الرصيد والتحليلات الفاخرة
+    }
+
+    let currentActivityTab = 'all';
+    let currentSelectedActivityItem = null;
+    let archiveRenderLimit = 50;
+
+    function saveActivityLog() {
+      try {
+        localStorage.setItem('family_monefy_activity_log', JSON.stringify(state.activityLog || []));
+      } catch(e) {}
+    }
+
+    function logActivity(entry) {
+      if (!state.activityLog) state.activityLog = [];
+      const newEntry = {
+        id: 'act-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
+        timestamp: new Date().toISOString(),
+        date: entry.date || new Date().toISOString().split('T')[0],
+        time: entry.time || new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }),
+        author: state.currentUser || 'ماهر',
+        ...entry
+      };
+      state.activityLog.unshift(newEntry);
+      if (state.activityLog.length > 600) state.activityLog.pop();
+      saveActivityLog();
+      try {
+        if (typeof syncChannel !== 'undefined' && syncChannel) {
+          syncChannel.postMessage({ type: 'SYNC_ACTIVITY', activity: newEntry });
+        }
+      } catch(e) {}
+    }
+
+    function initActivityLog() {
+      const stored = localStorage.getItem('family_monefy_activity_log');
+      if (stored) {
+        try {
+          state.activityLog = JSON.parse(stored);
+        } catch(e) {
+          state.activityLog = [];
+        }
+      }
+      if (!state.activityLog) state.activityLog = [];
+    }
+
+    let activeModalsStack = [];
+
+    function pushModalState(id) {
+      if (!activeModalsStack.includes(id)) {
+        activeModalsStack.push(id);
+        try { window.history.pushState({ modalId: id }, ''); } catch(e){}
+      }
+    }
+
+    function popModalState(id) {
+      const idx = activeModalsStack.indexOf(id);
+      if (idx !== -1) {
+        activeModalsStack.splice(idx, 1);
+      }
+    }
+
+    function closeSpecificModalOrDrawer(id, fromPopState = false) {
+      popModalState(id);
+      if (id === 'goldDrawer' || id === 'tradingviewDrawer') {
+        if (typeof closeGoldDrawer === 'function') closeGoldDrawer(true);
+      } else if (id === 'summaryDrawer' || id === 'summaryLeftDrawer') {
+        if (typeof closeSummaryLeftDrawer === 'function') closeSummaryLeftDrawer(true);
+      } else {
+        const modal = document.getElementById(id);
+        if (modal) {
+          modal.classList.remove('open');
+          modal.classList.remove('active');
+          if (modal.style.display !== 'none' && modal.classList.contains('modal-overlay-custom')) {
+            modal.style.display = 'none';
+          }
+        }
+      }
+      if (!fromPopState) {
+        try {
+          if (window.history.state && window.history.state.modalId === id) {
+            window.history.back();
+          }
+        } catch(e) {}
+      }
+    }
+
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('open');
+        el.classList.add('active');
+        if (el.classList.contains('modal-overlay-custom') || el.classList.contains('modal-overlay')) {
+          el.style.display = 'flex';
+        }
+        pushModalState(id);
+      }
+    }
+
+    function closeModal(id) {
+      closeSpecificModalOrDrawer(id, false);
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastMsg');
+      const txt = document.getElementById('toastTxt');
+      if (txt) txt.textContent = msg;
+      if (t) {
+        t.classList.add('show');
+        clearTimeout(window._toastTimeout);
+        window._toastTimeout = setTimeout(() => t.classList.remove('show'), 3500);
+      }
+    }
+
     var currentEditTxReceiptDataUri = null;
-    var APP_VERSION = '4.9.5';
-    var APP_BUILD_ID = 202611071515;
-    window.APP_VERSION = '4.9.5';
-    window.APP_BUILD_ID = 202611071515;
+    var APP_VERSION = '4.9.7';
+    var APP_BUILD_ID = 202611071700;
+    window.APP_VERSION = '4.9.7';
+    window.APP_BUILD_ID = 202611071700;
     (function() {
       try {
         var t = localStorage.getItem('family_monefy_theme') || 'navy';
@@ -6456,8 +6579,7 @@
     [data-app-theme="navy"] .kpi-master-wealth-cockpit,
     [data-app-theme="navy"] .executive-cockpit-card,
     [data-app-theme="navy"] .kpi-three-card,
-    [data-app-theme="navy"] .cat-card,
-    [data-app-theme="navy"] .item-entry-card,
+        [data-app-theme="navy"] .item-entry-card,
     [data-app-theme="navy"] .kpi-lux-card,
     [data-app-theme="navy"] .chart-glass-panel,
     [data-app-theme="navy"] .modal-content-card,
@@ -6488,8 +6610,7 @@
     [data-app-theme="black"] .kpi-master-wealth-cockpit,
     [data-app-theme="black"] .executive-cockpit-card,
     [data-app-theme="black"] .kpi-three-card,
-    [data-app-theme="black"] .cat-card,
-    [data-app-theme="black"] .item-entry-card,
+        [data-app-theme="black"] .item-entry-card,
     [data-app-theme="black"] .kpi-lux-card,
     [data-app-theme="black"] .chart-glass-panel,
     [data-app-theme="black"] .modal-content-card,
@@ -6530,8 +6651,7 @@
     [data-app-theme="emerald"] .kpi-master-wealth-cockpit,
     [data-app-theme="emerald"] .executive-cockpit-card,
     [data-app-theme="emerald"] .kpi-three-card,
-    [data-app-theme="emerald"] .cat-card,
-    [data-app-theme="emerald"] .item-entry-card,
+        [data-app-theme="emerald"] .item-entry-card,
     [data-app-theme="emerald"] .kpi-lux-card,
     [data-app-theme="emerald"] .chart-glass-panel,
     [data-app-theme="emerald"] .modal-content-card,
@@ -6572,8 +6692,7 @@
     [data-app-theme="purple"] .kpi-master-wealth-cockpit,
     [data-app-theme="purple"] .executive-cockpit-card,
     [data-app-theme="purple"] .kpi-three-card,
-    [data-app-theme="purple"] .cat-card,
-    [data-app-theme="purple"] .item-entry-card,
+        [data-app-theme="purple"] .item-entry-card,
     [data-app-theme="purple"] .kpi-lux-card,
     [data-app-theme="purple"] .chart-glass-panel,
     [data-app-theme="purple"] .modal-content-card,
@@ -6614,8 +6733,7 @@
     [data-app-theme="rose"] .kpi-master-wealth-cockpit,
     [data-app-theme="rose"] .executive-cockpit-card,
     [data-app-theme="rose"] .kpi-three-card,
-    [data-app-theme="rose"] .cat-card,
-    [data-app-theme="rose"] .item-entry-card,
+        [data-app-theme="rose"] .item-entry-card,
     [data-app-theme="rose"] .kpi-lux-card,
     [data-app-theme="rose"] .chart-glass-panel,
     [data-app-theme="rose"] .modal-content-card,
@@ -6656,8 +6774,7 @@
     [data-app-theme="ocean"] .kpi-master-wealth-cockpit,
     [data-app-theme="ocean"] .executive-cockpit-card,
     [data-app-theme="ocean"] .kpi-three-card,
-    [data-app-theme="ocean"] .cat-card,
-    [data-app-theme="ocean"] .item-entry-card,
+        [data-app-theme="ocean"] .item-entry-card,
     [data-app-theme="ocean"] .kpi-lux-card,
     [data-app-theme="ocean"] .chart-glass-panel,
     [data-app-theme="ocean"] .modal-content-card,
@@ -6698,8 +6815,7 @@
     [data-app-theme="gold"] .kpi-master-wealth-cockpit,
     [data-app-theme="gold"] .executive-cockpit-card,
     [data-app-theme="gold"] .kpi-three-card,
-    [data-app-theme="gold"] .cat-card,
-    [data-app-theme="gold"] .item-entry-card,
+        [data-app-theme="gold"] .item-entry-card,
     [data-app-theme="gold"] .kpi-lux-card,
     [data-app-theme="gold"] .chart-glass-panel,
     [data-app-theme="gold"] .modal-content-card,
@@ -6740,8 +6856,7 @@
     [data-app-theme="slate"] .kpi-master-wealth-cockpit,
     [data-app-theme="slate"] .executive-cockpit-card,
     [data-app-theme="slate"] .kpi-three-card,
-    [data-app-theme="slate"] .cat-card,
-    [data-app-theme="slate"] .item-entry-card,
+        [data-app-theme="slate"] .item-entry-card,
     [data-app-theme="slate"] .kpi-lux-card,
     [data-app-theme="slate"] .chart-glass-panel,
     [data-app-theme="slate"] .modal-content-card,
@@ -6782,8 +6897,7 @@
     [data-app-theme="light"] .kpi-master-wealth-cockpit,
     [data-app-theme="light"] .executive-cockpit-card,
     [data-app-theme="light"] .kpi-three-card,
-    [data-app-theme="light"] .cat-card,
-    [data-app-theme="light"] .item-entry-card,
+        [data-app-theme="light"] .item-entry-card,
     [data-app-theme="light"] .kpi-lux-card,
     [data-app-theme="light"] .chart-glass-panel,
     [data-app-theme="light"] .modal-content-card,
@@ -11457,69 +11571,109 @@
     }
 
     /* ألوان كروت شبكة المصروفات والعمليات المنسجمة تماماً مع سمات التطبيق (لا سواد بعد اليوم) */
-    html[data-app-theme="emerald"] body .cat-card,
     html[data-app-theme="emerald"] body .ops-tx-card-lux,
-    [data-app-theme="emerald"] .cat-card,
-    [data-app-theme="emerald"] .ops-tx-card-lux {
+        [data-app-theme="emerald"] .ops-tx-card-lux {
       background: linear-gradient(150deg, rgba(6, 78, 59, 0.90) 0%, rgba(2, 44, 34, 0.98) 100%) !important;
       border-color: rgba(16, 185, 129, 0.45) !important;
       box-shadow: 0 4px 18px rgba(2, 44, 34, 0.65), inset 0 1px 0 rgba(52, 211, 153, 0.15) !important;
     }
-    html[data-app-theme="ocean"] body .cat-card,
     html[data-app-theme="ocean"] body .ops-tx-card-lux,
-    [data-app-theme="ocean"] .cat-card,
-    [data-app-theme="ocean"] .ops-tx-card-lux {
+        [data-app-theme="ocean"] .ops-tx-card-lux {
       background: linear-gradient(150deg, rgba(14, 62, 92, 0.90) 0%, rgba(6, 28, 46, 0.98) 100%) !important;
       border-color: rgba(6, 182, 212, 0.45) !important;
       box-shadow: 0 4px 18px rgba(6, 28, 46, 0.65), inset 0 1px 0 rgba(34, 211, 238, 0.15) !important;
     }
-    html[data-app-theme="purple"] body .cat-card,
     html[data-app-theme="purple"] body .ops-tx-card-lux,
-    [data-app-theme="purple"] .cat-card,
-    [data-app-theme="purple"] .ops-tx-card-lux {
+        [data-app-theme="purple"] .ops-tx-card-lux {
       background: linear-gradient(150deg, rgba(59, 7, 100, 0.90) 0%, rgba(30, 7, 52, 0.98) 100%) !important;
       border-color: rgba(168, 85, 247, 0.45) !important;
       box-shadow: 0 4px 18px rgba(30, 7, 52, 0.65), inset 0 1px 0 rgba(192, 132, 252, 0.15) !important;
     }
-    html[data-app-theme="rose"] body .cat-card,
     html[data-app-theme="rose"] body .ops-tx-card-lux,
-    [data-app-theme="rose"] .cat-card,
-    [data-app-theme="rose"] .ops-tx-card-lux {
+        [data-app-theme="rose"] .ops-tx-card-lux {
       background: linear-gradient(150deg, rgba(76, 12, 30, 0.90) 0%, rgba(35, 6, 14, 0.98) 100%) !important;
       border-color: rgba(244, 63, 94, 0.45) !important;
       box-shadow: 0 4px 18px rgba(35, 6, 14, 0.65), inset 0 1px 0 rgba(251, 113, 133, 0.15) !important;
     }
-    html[data-app-theme="gold"] body .cat-card,
     html[data-app-theme="gold"] body .ops-tx-card-lux,
-    [data-app-theme="gold"] .cat-card,
-    [data-app-theme="gold"] .ops-tx-card-lux {
+        [data-app-theme="gold"] .ops-tx-card-lux {
       background: linear-gradient(150deg, rgba(69, 36, 15, 0.90) 0%, rgba(33, 17, 7, 0.98) 100%) !important;
       border-color: rgba(245, 158, 11, 0.45) !important;
       box-shadow: 0 4px 18px rgba(33, 17, 7, 0.65), inset 0 1px 0 rgba(251, 191, 36, 0.15) !important;
     }
-    html[data-app-theme="slate"] body .cat-card,
     html[data-app-theme="slate"] body .ops-tx-card-lux,
-    [data-app-theme="slate"] .cat-card,
-    [data-app-theme="slate"] .ops-tx-card-lux {
+        [data-app-theme="slate"] .ops-tx-card-lux {
       background: linear-gradient(150deg, rgba(51, 65, 85, 0.90) 0%, rgba(20, 27, 39, 0.98) 100%) !important;
       border-color: rgba(148, 163, 184, 0.45) !important;
       box-shadow: 0 4px 18px rgba(15, 23, 42, 0.65), inset 0 1px 0 rgba(203, 213, 225, 0.15) !important;
     }
-    html[data-app-theme="navy"] body .cat-card,
     html[data-app-theme="navy"] body .ops-tx-card-lux,
-    [data-app-theme="navy"] .cat-card,
-    [data-app-theme="navy"] .ops-tx-card-lux {
+        [data-app-theme="navy"] .ops-tx-card-lux {
       background: linear-gradient(150deg, rgba(20, 52, 98, 0.90) 0%, rgba(10, 28, 54, 0.98) 100%) !important;
       border-color: rgba(56, 189, 248, 0.40) !important;
       box-shadow: 0 4px 18px rgba(7, 18, 36, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.10) !important;
     }
-    body.light-theme .cat-card,
     body.light-theme .ops-tx-card-lux {
       background: #ffffff !important;
       border-color: #cbd5e1 !important;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
     }
 </style>
+
+    /* =========================================================================
+       قواعد التباين العالي المحاسبي لكافة التسجيلات والكتابات (High Contrast Rules)
+       ========================================================================= */
+    .ops-tx-card-lux {
+      background: linear-gradient(135deg, rgba(20, 30, 48, 0.92) 0%, rgba(15, 23, 42, 0.96) 100%) !important;
+      border: 1.2px solid rgba(255, 255, 255, 0.12) !important;
+      border-radius: 14px !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.40) !important;
+      contain: content !important;
+      touch-action: manipulation !important;
+    }
+    .ops-tx-label-text {
+      color: #ffffff !important;
+      font-weight: 850 !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+    }
+    .ops-date-title {
+      color: #f8fafc !important;
+      font-weight: 800 !important;
+    }
+    .ops-date-group-header {
+      background: rgba(15, 23, 42, 0.90) !important;
+      border: 1px solid rgba(255, 255, 255, 0.10) !important;
+      border-radius: 10px !important;
+      padding: 6px 12px !important;
+      margin: 10px 0 6px !important;
+    }
+
+    body.light-theme .ops-tx-card-lux {
+      background: #ffffff !important;
+      border: 1.5px solid #cbd5e1 !important;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08) !important;
+    }
+    body.light-theme .ops-tx-label-text {
+      color: #0f172a !important;
+      font-weight: 850 !important;
+      text-shadow: none !important;
+    }
+    body.light-theme .ops-date-title {
+      color: #0f172a !important;
+      font-weight: 850 !important;
+    }
+    body.light-theme .ops-date-group-header {
+      background: #f1f5f9 !important;
+      border: 1.2px solid #cbd5e1 !important;
+    }
+    body.light-theme .ops-tx-chip {
+      border-width: 1.2px !important;
+      font-weight: 800 !important;
+    }
+    body.light-theme .empty-title {
+      color: #0f172a !important;
+    }
+
 </head>
 <body>
 
@@ -11797,16 +11951,9 @@
             <span>ملخص</span>
           </button>
 
-          <!-- زر مهام Microsoft To-Do المتكاملة (Tasks) -->
-          <button type="button" class="tool-pill-action" id="btnOpenTasksDrawer" onclick="openSummaryDrawer('tasks')" title="قائمة المهام والتذكيرات الذكية (Microsoft To-Do Clone)" style="height: 38px; padding: 0 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(168, 85, 247, 0.5); background: linear-gradient(135deg, rgba(168, 85, 247, 0.18), rgba(15, 23, 42, 0.9)); color: #c084fc; flex-shrink: 0;">
-            <i class="fa-solid fa-list-check"></i>
-            <span>Tasks</span>
-          </button>
+          
 
-          <button type="button" class="tool-pill-action gold-pill" id="btnOpenGold" onclick="openGoldDrawer()" title="حاسبة الصاغة وشارت الذهب" style="height: 38px; padding: 0 9px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.5); background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(15, 23, 42, 0.9)); color: #fbbf24; flex-shrink: 0;">
-            <i class="fa-solid fa-arrow-trend-up"></i>
-            <span>الذهب</span>
-          </button>
+          
 
 
 
@@ -15212,8 +15359,8 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = '4.9.5';
-      const APP_BUILD_ID = 202611071515;
+      const APP_VERSION = '4.9.7';
+      const APP_BUILD_ID = 202611071700;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
@@ -18909,30 +19056,30 @@ function generateRichDemoTransactions() {
         }
       });
 
-      // 5. تحديث العمليات وقائمة السجلات والأرشيف
-      filterOperationsList();
-      renderActivityLogUI();
-      initMemberPhotoPickers();
-
-      // 6. تحديث صفحة المؤشرات والشارتات فوراً
-      try {
-        updateAnalyticsChart();
-      } catch(e) {
-        console.warn('updateAnalyticsChart error:', e);
+      // 5. تحديث محتويات الصفحة النشطة فقط بذكاء وسرعة فائقة استجابة لطلب المستخدم (Ultra-Fast 60fps Lazy Rendering)
+      const activeP = state.activePage || 'expenses';
+      if (activeP === 'expenses') {
+        // الصفحة الرئيسية تم تحديث قمرتها وبنودها فوراً في أجزاء من الميلي ثانية
+      } else if (activeP === 'operations') {
+        if (typeof filterOperationsList === 'function') filterOperationsList();
+        if (state.activeOpsSubTab === 'archive' && typeof renderActivityLogUI === 'function') renderActivityLogUI();
+      } else if (activeP === 'analytics') {
+        try {
+          if (typeof updateAnalyticsChart === 'function') updateAnalyticsChart();
+          if (state.activeCategoryFilter && typeof showCategoryDetailBanner === 'function') {
+            showCategoryDetailBanner(state.activeCategoryFilter);
+          }
+        } catch(e) { console.warn('updateAnalyticsChart error:', e); }
+      } else if (activeP === 'requests') {
+        if (typeof renderRequestsList === 'function') renderRequestsList();
+      } else if (activeP === 'expected') {
+        if (typeof renderExpectedList === 'function') renderExpectedList();
       }
-
-      if (state.activeCategoryFilter && typeof showCategoryDetailBanner === 'function') {
-        showCategoryDetailBanner(state.activeCategoryFilter);
-      }
-
-      if (typeof renderRequestsList === 'function') renderRequestsList();
-      if (typeof renderExpectedList === 'function') renderExpectedList();
     }
 
     function renderCategoriesGrid(filtered) {
       const grid = document.getElementById('catGrid');
       if (!grid) return;
-      grid.innerHTML = '';
 
       const catTotals = {};
       (filtered || []).forEach(t => {
@@ -18945,14 +19092,14 @@ function generateRichDemoTransactions() {
         }
       });
 
-      // باليت ألوان وصور مجسمة ثلاثية الأبعاد واضحة وفائقة الدقة والجمال لكل بند
       const HIGH_CONTRAST_THEMES = {
         food: {
           name: 'طعام ومشتريات',
           emoji: '🛒',
           accent: '#10b981',
           gradient: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',
-          bg: 'linear-gradient(160deg, rgba(16, 185, 129, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
+          bgDark: 'linear-gradient(160deg, rgba(16, 185, 129, 0.32) 0%, rgba(16, 185, 129, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgLight: 'linear-gradient(160deg, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0.08) 40%, #ffffff 90%)',
           border: '#10b981'
         },
         daily: {
@@ -18960,7 +19107,8 @@ function generateRichDemoTransactions() {
           emoji: '☕',
           accent: '#f59e0b',
           gradient: 'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)',
-          bg: 'linear-gradient(160deg, rgba(245, 158, 11, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
+          bgDark: 'linear-gradient(160deg, rgba(245, 158, 11, 0.32) 0%, rgba(245, 158, 11, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgLight: 'linear-gradient(160deg, rgba(245, 158, 11, 0.22) 0%, rgba(245, 158, 11, 0.08) 40%, #ffffff 90%)',
           border: '#f59e0b'
         },
         bills: {
@@ -18968,7 +19116,8 @@ function generateRichDemoTransactions() {
           emoji: '⚡',
           accent: '#f97316',
           gradient: 'linear-gradient(135deg, #f97316 0%, #c2410c 100%)',
-          bg: 'linear-gradient(160deg, rgba(249, 115, 22, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
+          bgDark: 'linear-gradient(160deg, rgba(249, 115, 22, 0.32) 0%, rgba(249, 115, 22, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgLight: 'linear-gradient(160deg, rgba(249, 115, 22, 0.22) 0%, rgba(249, 115, 22, 0.08) 40%, #ffffff 90%)',
           border: '#f97316'
         },
         transport: {
@@ -18976,7 +19125,8 @@ function generateRichDemoTransactions() {
           emoji: '🚗',
           accent: '#0284c7',
           gradient: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
-          bg: 'linear-gradient(160deg, rgba(2, 132, 199, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
+          bgDark: 'linear-gradient(160deg, rgba(2, 132, 199, 0.32) 0%, rgba(2, 132, 199, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgLight: 'linear-gradient(160deg, rgba(2, 132, 199, 0.22) 0%, rgba(2, 132, 199, 0.08) 40%, #ffffff 90%)',
           border: '#0284c7'
         },
         house: {
@@ -18984,7 +19134,8 @@ function generateRichDemoTransactions() {
           emoji: '🛋️',
           accent: '#8b5cf6',
           gradient: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
-          bg: 'linear-gradient(160deg, rgba(139, 92, 246, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
+          bgDark: 'linear-gradient(160deg, rgba(139, 92, 246, 0.32) 0%, rgba(139, 92, 246, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgLight: 'linear-gradient(160deg, rgba(139, 92, 246, 0.22) 0%, rgba(139, 92, 246, 0.08) 40%, #ffffff 90%)',
           border: '#8b5cf6'
         },
         health: {
@@ -18992,7 +19143,8 @@ function generateRichDemoTransactions() {
           emoji: '💊',
           accent: '#ef4444',
           gradient: 'linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)',
-          bg: 'linear-gradient(160deg, rgba(239, 68, 68, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
+          bgDark: 'linear-gradient(160deg, rgba(239, 68, 68, 0.32) 0%, rgba(239, 68, 68, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgLight: 'linear-gradient(160deg, rgba(239, 68, 68, 0.22) 0%, rgba(239, 68, 68, 0.08) 40%, #ffffff 90%)',
           border: '#ef4444'
         },
         clothes: {
@@ -19000,7 +19152,8 @@ function generateRichDemoTransactions() {
           emoji: '👔',
           accent: '#ec4899',
           gradient: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)',
-          bg: 'linear-gradient(160deg, rgba(236, 72, 153, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
+          bgDark: 'linear-gradient(160deg, rgba(236, 72, 153, 0.32) 0%, rgba(236, 72, 153, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgLight: 'linear-gradient(160deg, rgba(236, 72, 153, 0.22) 0%, rgba(236, 72, 153, 0.08) 40%, #ffffff 90%)',
           border: '#ec4899'
         },
         education: {
@@ -19008,7 +19161,8 @@ function generateRichDemoTransactions() {
           emoji: '🎓',
           accent: '#3b82f6',
           gradient: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-          bg: 'linear-gradient(160deg, rgba(59, 130, 246, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
+          bgDark: 'linear-gradient(160deg, rgba(59, 130, 246, 0.32) 0%, rgba(59, 130, 246, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgLight: 'linear-gradient(160deg, rgba(59, 130, 246, 0.22) 0%, rgba(59, 130, 246, 0.08) 40%, #ffffff 90%)',
           border: '#3b82f6'
         },
         other: {
@@ -19016,241 +19170,175 @@ function generateRichDemoTransactions() {
           emoji: '🎁',
           accent: '#14b8a6',
           gradient: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
-          bg: 'linear-gradient(160deg, rgba(20, 184, 166, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
-          border: '#14b8a6'
-        },
-        entertainment: {
-          name: 'أخرى ونثريات',
-          emoji: '🎁',
-          accent: '#14b8a6',
-          gradient: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
-          bg: 'linear-gradient(160deg, rgba(20, 184, 166, 0.22) 0%, rgba(15, 23, 42, 0.95) 80%)',
+          bgDark: 'linear-gradient(160deg, rgba(20, 184, 166, 0.32) 0%, rgba(20, 184, 166, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgLight: 'linear-gradient(160deg, rgba(20, 184, 166, 0.22) 0%, rgba(20, 184, 166, 0.08) 40%, #ffffff 90%)',
           border: '#14b8a6'
         }
       };
 
       const activeTheme = state.appTheme || localStorage.getItem('family_monefy_theme') || 'navy';
       const isLight = (activeTheme === 'light') || document.body.classList.contains('light-theme');
-      const activeIconTheme = state.iconTheme || localStorage.getItem('family_monefy_icon_theme') || 'vibrant';
+      const isGold = state.currency === 'GOLD21';
+      const currSymbol = getCurrencySymbol();
 
-      // باليت خلفيات الكروت الداخلية الفاخرة المنسجمة 100% مع كل سمة من سمات التطبيق الـ 9
-      const THEME_CARD_STYLES = {
-        navy: {
-          bg: 'linear-gradient(150deg, rgba(20, 52, 98, 0.88) 0%, rgba(10, 28, 54, 0.97) 100%)',
-          border: 'rgba(56, 189, 248, 0.40)',
-          shadow: '0 4px 18px rgba(7, 18, 36, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.10)',
-          labelColor: '#f8fafc'
-        },
-        black: {
-          bg: 'linear-gradient(150deg, #18181b 0%, #09090b 100%)',
-          border: 'rgba(255, 255, 255, 0.16)',
-          shadow: '0 4px 18px rgba(0, 0, 0, 0.90), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
-          labelColor: '#f8fafc'
-        },
-        emerald: {
-          bg: 'linear-gradient(150deg, rgba(6, 78, 59, 0.88) 0%, rgba(2, 44, 34, 0.97) 100%)',
-          border: 'rgba(16, 185, 129, 0.45)',
-          shadow: '0 4px 18px rgba(2, 44, 34, 0.65), inset 0 1px 0 rgba(52, 211, 153, 0.15)',
-          labelColor: '#ecfdf5'
-        },
-        purple: {
-          bg: 'linear-gradient(150deg, rgba(59, 7, 100, 0.88) 0%, rgba(30, 7, 52, 0.97) 100%)',
-          border: 'rgba(168, 85, 247, 0.45)',
-          shadow: '0 4px 18px rgba(30, 7, 52, 0.65), inset 0 1px 0 rgba(192, 132, 252, 0.15)',
-          labelColor: '#faf5ff'
-        },
-        gold: {
-          bg: 'linear-gradient(150deg, rgba(69, 36, 15, 0.90) 0%, rgba(33, 17, 7, 0.97) 100%)',
-          border: 'rgba(245, 158, 11, 0.45)',
-          shadow: '0 4px 18px rgba(33, 17, 7, 0.65), inset 0 1px 0 rgba(251, 191, 36, 0.15)',
-          labelColor: '#fffbeb'
-        },
-        ocean: {
-          bg: 'linear-gradient(150deg, rgba(14, 52, 82, 0.90) 0%, rgba(6, 28, 46, 0.97) 100%)',
-          border: 'rgba(6, 182, 212, 0.45)',
-          shadow: '0 4px 18px rgba(6, 28, 46, 0.65), inset 0 1px 0 rgba(34, 211, 238, 0.15)',
-          labelColor: '#f0fdfa'
-        },
-        rose: {
-          bg: 'linear-gradient(150deg, rgba(76, 12, 30, 0.90) 0%, rgba(35, 6, 14, 0.97) 100%)',
-          border: 'rgba(244, 63, 94, 0.45)',
-          shadow: '0 4px 18px rgba(35, 6, 14, 0.65), inset 0 1px 0 rgba(251, 113, 133, 0.15)',
-          labelColor: '#fff1f2'
-        },
-        slate: {
-          bg: 'linear-gradient(150deg, rgba(51, 65, 85, 0.90) 0%, rgba(20, 27, 39, 0.97) 100%)',
-          border: 'rgba(148, 163, 184, 0.45)',
-          shadow: '0 4px 18px rgba(15, 23, 42, 0.65), inset 0 1px 0 rgba(203, 213, 225, 0.15)',
-          labelColor: '#f8fafc'
-        },
-        light: {
-          bg: '#ffffff',
-          border: '#cbd5e1',
-          shadow: '0 4px 14px rgba(0, 0, 0, 0.08), inset 0 1px 0 #ffffff',
-          labelColor: '#0f172a'
-        }
-      };
+      const existingCards = grid.querySelectorAll('.cat-card');
+      const needRebuild = (existingCards.length !== EXPENSE_CATEGORIES.length) || (grid.dataset.themeMode !== (isLight ? 'light' : 'dark'));
 
-      const curThemeStyle = THEME_CARD_STYLES[activeTheme] || THEME_CARD_STYLES.navy;
+      if (needRebuild) {
+        grid.innerHTML = '';
+        grid.dataset.themeMode = isLight ? 'light' : 'dark';
 
-      // تدرجات ألوان الأيقونات الموحدة
-      const ICON_THEME_GRADIENTS = {
-        gold: { grad: 'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)', glow: 'rgba(245, 158, 11, 0.50)' },
-        emerald: { grad: 'linear-gradient(135deg, #10b981 0%, #047857 100%)', glow: 'rgba(16, 185, 129, 0.50)' },
-        ocean: { grad: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)', glow: 'rgba(2, 132, 199, 0.50)' },
-        purple: { grad: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)', glow: 'rgba(139, 92, 246, 0.50)' },
-        silver: { grad: 'linear-gradient(135deg, #64748b 0%, #1e293b 100%)', glow: 'rgba(148, 163, 184, 0.50)' }
-      };
+        EXPENSE_CATEGORIES.forEach(cat => {
+          const spent = catTotals[cat.id] || (cat.id === 'other' ? (catTotals['entertainment'] || 0) : 0);
+          const theme = HIGH_CONTRAST_THEMES[cat.id] || {
+            name: cat.name,
+            emoji: '📦',
+            accent: cat.color || '#38bdf8',
+            gradient: `linear-gradient(135deg, ${cat.color}, #334155)`,
+            bgDark: 'linear-gradient(160deg, rgba(56, 189, 248, 0.28) 0%, rgba(15, 23, 42, 0.94) 100%)',
+            bgLight: 'linear-gradient(160deg, rgba(56, 189, 248, 0.18) 0%, #ffffff 90%)',
+            border: cat.color
+          };
 
-      EXPENSE_CATEGORIES.forEach(cat => {
-        const spent = catTotals[cat.id] || (cat.id === 'other' ? (catTotals['entertainment'] || 0) : 0);
-        const theme = HIGH_CONTRAST_THEMES[cat.id] || {
-          name: cat.name,
-          emoji: '📦',
-          accent: cat.color || '#38bdf8',
-          gradient: `linear-gradient(135deg, ${cat.color}, #334155)`,
-          bg: 'rgba(15, 23, 42, 0.9)',
-          border: cat.color
-        };
+          const cardBg = isLight ? theme.bgLight : theme.bgDark;
+          const cardBorder = isLight ? `2px solid ${theme.accent}` : `2px solid ${theme.accent}cc`;
+          const cardShadow = isLight 
+            ? `0 4px 14px rgba(0, 0, 0, 0.08), 0 0 10px ${theme.accent}20` 
+            : `0 4px 18px rgba(0, 0, 0, 0.45), 0 0 12px ${theme.accent}30, inset 0 1px 0 rgba(255, 255, 255, 0.15)`;
 
-        const currentCardStyle = document.documentElement.getAttribute('data-card-style') || localStorage.getItem('family_monefy_design_style') || 'glass';
+          const converted = convertAmount(spent);
+          let numStr = '0.00';
+          if (spent > 0) {
+            numStr = converted.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: isGold ? 3 : 2 });
+          }
+          const signStr = (spent > 0) ? '-' : '';
 
-        let cardBg = curThemeStyle.bg;
-        let cardBorder = isLight ? theme.border : (theme.border || curThemeStyle.border);
-        let cardRadius = '18px';
-        let cardBackdrop = 'blur(16px)';
-        let cardShadow = curThemeStyle.shadow;
+          let amtFontSize = 'clamp(0.72rem, 2.1vw, 0.84rem)';
+          let amtLetterSpacing = '0px';
+          const totalLen = numStr.length;
+          if (totalLen >= 14 || isGold) {
+            amtFontSize = 'clamp(0.50rem, 1.45vw, 0.60rem)';
+            amtLetterSpacing = '-0.5px';
+          } else if (totalLen >= 10) {
+            amtFontSize = 'clamp(0.58rem, 1.65vw, 0.68rem)';
+            amtLetterSpacing = '-0.4px';
+          } else if (totalLen >= 8) {
+            amtFontSize = 'clamp(0.66rem, 1.9vw, 0.76rem)';
+            amtLetterSpacing = '-0.2px';
+          }
 
-        if (currentCardStyle === 'minimal') {
-          cardBg = isLight ? '#ffffff' : '#0f172a';
-          cardBorder = `1.5px solid ${theme.accent}77`;
-          cardRadius = '8px';
-          cardBackdrop = 'none';
-          cardShadow = isLight ? '0 2px 4px rgba(0, 0, 0, 0.08)' : '0 2px 5px rgba(0, 0, 0, 0.5)';
-        } else if (currentCardStyle === 'neumorphic') {
-          cardBg = isLight ? '#f1f5f9' : 'linear-gradient(145deg, #1e293b, #0f172a)';
-          cardBorder = isLight ? '1.5px solid rgba(255, 255, 255, 0.08)' : '1.5px solid rgba(255, 255, 255, 0.08)';
-          cardRadius = '14px';
-          cardBackdrop = 'none';
-          cardShadow = isLight 
-            ? '5px 5px 12px #cbd5e1, -4px -4px 10px #ffffff, inset 1px 1px 1px rgba(255, 255, 255, 0.8)' 
-            : '5px 5px 12px #070b12, -4px -4px 10px rgba(255, 255, 255, 0.05), inset 1px 1px 1px rgba(255, 255, 255, 0.1)';
-        } else if (currentCardStyle === 'neon') {
-          cardBg = isLight ? '#f8fafc' : '#050b14';
-          cardBorder = `2px solid ${theme.accent}`;
-          cardRadius = '14px';
-          cardBackdrop = 'none';
-          cardShadow = `0 0 14px ${theme.accent}80, inset 0 0 8px ${theme.accent}33`;
-        } else {
-          // glass (default)
-          cardBg = isLight ? 'rgba(255, 255, 255, 0.80)' : curThemeStyle.bg;
-          cardBorder = isLight ? '1.5px solid rgba(0, 0, 0, 0.12)' : `1.5px solid ${theme.border || curThemeStyle.border}`;
-          cardRadius = '18px';
-          cardBackdrop = 'blur(16px)';
-          cardShadow = isLight ? '0 8px 24px rgba(0, 0, 0, 0.08)' : (curThemeStyle.shadow || '0 8px 24px rgba(0, 0, 0, 0.45)');
-        }
+          const lowerCardBg = spent > 0 
+            ? (isLight ? 'rgba(239, 68, 68, 0.12)' : 'rgba(239, 68, 68, 0.24)') 
+            : (isLight ? 'rgba(241, 245, 249, 0.90)' : 'rgba(15, 23, 42, 0.72)');
+          const lowerCardBorder = spent > 0 
+            ? (isLight ? 'rgba(239, 68, 68, 0.5)' : '#f43f5e') 
+            : (isLight ? 'rgba(203, 213, 225, 0.7)' : `${theme.accent}44`);
+          const amtColor = spent > 0 
+            ? (isLight ? '#b91c1c' : '#ff4d6d') 
+            : (isLight ? '#475569' : '#cbd5e1');
 
-        const catLabelColor = curThemeStyle.labelColor;
+          const card = document.createElement('div');
+          card.className = `cat-card cat-theme-${cat.id}`;
+          card.setAttribute('data-cat-id', cat.id);
+          card.style.cssText = `
+            background: ${cardBg} !important;
+            border: ${cardBorder} !important;
+            border-radius: 16px !important;
+            padding: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            justify-content: space-between !important;
+            height: 100% !important;
+            max-height: var(--app-card-max-h, 135px) !important;
+            min-height: 0 !important;
+            box-shadow: ${cardShadow} !important;
+            transition: transform 0.12s ease !important;
+            position: relative !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
+            touch-action: manipulation !important;
+            contain: content !important;
+          `;
 
-        // اختيار تدرج فقاعة الأيقونة بناءً على نمط الأيقونات المختار
-        let bubbleGradient = theme.gradient;
-        let bubbleGlow = `${theme.accent}50`;
-        if (activeIconTheme !== 'vibrant' && ICON_THEME_GRADIENTS[activeIconTheme]) {
-          bubbleGradient = ICON_THEME_GRADIENTS[activeIconTheme].grad;
-          bubbleGlow = ICON_THEME_GRADIENTS[activeIconTheme].glow;
-        }
+          card.innerHTML = `
+            <div class="cat-card-top-half" 
+                 onclick="event.stopPropagation(); openQuickCategoryExpense('${cat.id}');"
+                 title="انقر على الرمز لتسجيل مصروف جديد في ${theme.name}"
+                 style="flex: 1.4 1 66%; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 6px 3px 2px; cursor: pointer; transition: background 0.15s ease; box-sizing: border-box; overflow: hidden; touch-action: manipulation;">
+              
+              <div class="cat-icon-bubble" 
+                   style="background: ${theme.gradient}; width: clamp(34px, 9.2vw, 42px) !important; height: clamp(34px, 9.2vw, 42px) !important; min-width: 32px !important; min-height: 32px !important; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45), inset 0 0 5px rgba(255, 255, 255, 0.40); border: 1.8px solid rgba(255, 255, 255, 0.85); outline: 1.5px solid ${theme.accent}; flex-shrink: 0;">
+                <span style="font-size: clamp(1.35rem, 3.8vw, 1.70rem) !important; line-height: 1; filter: drop-shadow(0 3px 5px rgba(0,0,0,0.5));">${theme.emoji}</span>
+              </div>
 
-        const card = document.createElement('div');
-        card.className = `cat-card cat-theme-${cat.id}`;
-        card.setAttribute('data-cat-id', cat.id);
+              <div class="cat-label-text" 
+                   style="font-family: var(--font-family); font-size: clamp(0.72rem, 2.1vw, 0.82rem) !important; font-weight: 900 !important; color: ${isLight ? '#0f172a' : '#ffffff'} !important; text-shadow: ${isLight ? 'none' : '0 1px 3px rgba(0,0,0,0.9)'}; text-align: center; margin: 0; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; max-width: 100%; padding: 0 2px; box-sizing: border-box;">
+                ${theme.name}
+              </div>
+            </div>
 
-        card.style.cssText = `
-          background: ${cardBg} !important;
-          border: ${cardBorder} !important;
-          border-radius: ${cardRadius} !important;
-          backdrop-filter: ${cardBackdrop} !important;
-          -webkit-backdrop-filter: ${cardBackdrop} !important;
-          padding: var(--app-card-padding, 7px 4px 6px) !important;
-          display: flex !important;
-          flex-direction: column !important;
-          align-items: center !important;
-          justify-content: center !important;
-          gap: 3px !important;
-          height: 100% !important;
-          max-height: var(--app-card-max-h, 126px) !important;
-          min-height: 0 !important;
-          cursor: pointer !important;
-          box-shadow: ${cardShadow} !important;
-          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-          position: relative !important;
-          box-sizing: border-box !important;
-          overflow: hidden !important;
-        `;
+            <div class="cat-card-bottom-half ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
+                 onclick="event.stopPropagation(); openOperationsFiltered({ category: '${cat.id}', categoryName: '${cat.name}', type: 'expense' });" 
+                 title="انقر لعرض حركات ${theme.name}" 
+                 style="flex: 0.65 1 34%; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; padding: 2px 3px; cursor: pointer; background: ${lowerCardBg}; border-top: 1.5px solid ${lowerCardBorder}; box-sizing: border-box; transition: all 0.15s ease; overflow: hidden; touch-action: manipulation;">
+              <div class="cat-amount-val" 
+                   style="font-family: var(--font-numbers); font-size: ${amtFontSize}; letter-spacing: ${amtLetterSpacing}; font-weight: 850; color: ${amtColor}; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; max-width: 100%; direction: rtl; text-align: center; font-variant-numeric: tabular-nums; display: flex; align-items: baseline; justify-content: center; gap: 2.5px; box-sizing: border-box; padding: 0 2px;">
+                ${signStr ? `<span style="font-weight: 950; margin-left: 2px; order: 1;">${signStr}</span>` : ''}
+                <span style="font-variant-numeric: tabular-nums; order: 2;">${numStr}</span>
+                <span style="font-size: 0.78em; font-weight: 800; opacity: 0.9; margin-right: 2px; order: 3;">${currSymbol}</span>
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      } else {
+        // Fast in-place DOM updates without wiping grid
+        EXPENSE_CATEGORIES.forEach(cat => {
+          const card = grid.querySelector(`[data-cat-id="${cat.id}"]`);
+          if (!card) return;
+          const spent = catTotals[cat.id] || (cat.id === 'other' ? (catTotals['entertainment'] || 0) : 0);
+          const converted = convertAmount(spent);
+          let numStr = '0.00';
+          if (spent > 0) {
+            numStr = converted.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: isGold ? 3 : 2 });
+          }
+          const signStr = (spent > 0) ? '-' : '';
 
-        card.onclick = () => {
-          openQuickCategoryExpense(cat.id);
-        };
+          let amtFontSize = 'clamp(0.72rem, 2.1vw, 0.84rem)';
+          let amtLetterSpacing = '0px';
+          const totalLen = numStr.length;
+          if (totalLen >= 14 || isGold) {
+            amtFontSize = 'clamp(0.50rem, 1.45vw, 0.60rem)';
+            amtLetterSpacing = '-0.5px';
+          } else if (totalLen >= 10) {
+            amtFontSize = 'clamp(0.58rem, 1.65vw, 0.68rem)';
+            amtLetterSpacing = '-0.4px';
+          } else if (totalLen >= 8) {
+            amtFontSize = 'clamp(0.66rem, 1.9vw, 0.76rem)';
+            amtLetterSpacing = '-0.2px';
+          }
 
-        let amtDisplay = '0.00 ' + getCurrencySymbol();
-        if (state.currency === 'USD') amtDisplay = '$0.00';
-        if (spent > 0) {
-          amtDisplay = '- ' + formatMoney(spent, true);
-        }
-
-        // تحجيم خط المبلغ بالكبسولة تلقائياً حتى لا يتجاوز حدود البطاقة إطلاقاً
-        let pillFontSize = 'clamp(0.80rem, 2.3vw, 0.90rem)';
-        let pillLetterSpacing = '0px';
-        if (amtDisplay.length > 15) {
-          pillFontSize = 'clamp(0.60rem, 1.7vw, 0.68rem)';
-          pillLetterSpacing = '-0.4px';
-        } else if (amtDisplay.length > 12) {
-          pillFontSize = 'clamp(0.66rem, 1.9vw, 0.74rem)';
-          pillLetterSpacing = '-0.3px';
-        } else if (amtDisplay.length > 9) {
-          pillFontSize = 'clamp(0.72rem, 2.1vw, 0.80rem)';
-          pillLetterSpacing = '-0.1px';
-        }
-
-        const pillBg = spent > 0 
-          ? (isLight ? 'rgba(239, 68, 68, 0.12)' : 'rgba(244, 63, 94, 0.22)') 
-          : (isLight ? '#f1f5f9' : 'rgba(255, 255, 255, 0.05)');
-        const pillBorder = spent > 0 
-          ? (isLight ? 'rgba(239, 68, 68, 0.5)' : 'rgba(244, 63, 94, 0.7)') 
-          : (isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.12)');
-        const pillTextColor = spent > 0 
-          ? (isLight ? '#b91c1c' : '#ff4d6d') 
-          : (isLight ? '#475569' : '#94a3b8');
-
-        card.innerHTML = `
-          <!-- 1. صورة/أيقونة التصنيف ثلاثية الأبعاد الفاخرة بإطار داخلي بارز - النقر عليها يفتح تسجيل جديد -->
-          <div class="cat-icon-bubble" 
-               onclick="event.stopPropagation(); openQuickCategoryExpense('${cat.id}');"
-               title="انقر على الرمز لتسجيل مصروف جديد في ${theme.name}"
-               style="background: ${bubbleGradient}; width: var(--app-cat-bubble-size, clamp(42px, 11vw, 48px)); height: var(--app-cat-bubble-size, clamp(42px, 11vw, 48px)); min-width: 38px; min-height: 38px; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 0 6px rgba(255, 255, 255, 0.35), 0 0 14px ${bubbleGlow}; border: 2.2px solid rgba(255, 255, 255, 0.6); outline: 1.5px solid ${theme.accent}; margin-top: 2px; flex-shrink: 0; cursor: pointer; transition: transform 0.15s ease;">
-            <span style="font-size: var(--app-cat-emoji-size, clamp(1.70rem, 4.4vw, 2.05rem)); line-height: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.45)); transform: translateZ(0);">${theme.emoji}</span>
-          </div>
-
-          <!-- 2. اسم التصنيف بخط عربي فخم وواضح متناسق بين الفاتح والداكن -->
-          <div class="cat-label-text" 
-               style="font-family: var(--font-family); font-size: var(--app-card-title-size, clamp(0.72rem, 2.2vw, 0.84rem)); font-weight: 800; color: ${catLabelColor} !important; text-align: center; margin: 2px 0 1px; width: 100%; max-width: 100%; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 2px; box-sizing: border-box;">
-            ${theme.name}
-          </div>
-
-          <!-- 3. كبسولة المبلغ المصروف بإطار داخلي بارز - النقر عليها يفتح كشف العمليات والتفاصيل -->
-          <div class="cat-amount-pill ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
-               onclick="event.stopPropagation(); openOperationsFiltered({ category: '${cat.id}', categoryName: '${cat.name}', type: 'expense' });" 
-               title="انقر على الرقم لعرض كشف وتفاصيل حركات ${theme.name}" 
-               style="cursor: pointer; background: ${pillBg}; border: 1.8px solid ${pillBorder}; color: ${pillTextColor}; padding: 3px 4px; border-radius: 9px; width: 98%; max-width: 98%; text-align: center; direction: rtl; box-sizing: border-box; display: flex; align-items: center; justify-content: center; gap: 3px; overflow: hidden; box-shadow: inset 0 0 8px ${spent > 0 ? 'rgba(244, 63, 94, 0.3)' : 'rgba(255, 255, 255, 0.08)'}; transition: all 0.15s ease;">
-            <i class="fa-solid fa-list-ul" style="font-size: 0.58rem; opacity: 0.8; flex-shrink: 0;"></i>
-            <span style="font-family: var(--font-numbers); font-size: var(--app-card-amt-size, ${pillFontSize}); letter-spacing: ${pillLetterSpacing}; font-weight: 900; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-variant-numeric: tabular-nums;">${amtDisplay}</span>
-          </div>
-        `;
-
-        grid.appendChild(card);
-      });
+          const lowerHalf = card.querySelector('.cat-card-bottom-half');
+          const amtEl = card.querySelector('.cat-amount-val');
+          if (lowerHalf && amtEl) {
+            const amtColor = spent > 0 ? (isLight ? '#b91c1c' : '#ff4d6d') : (isLight ? '#475569' : '#cbd5e1');
+            const lowerBg = spent > 0 ? (isLight ? 'rgba(239, 68, 68, 0.12)' : 'rgba(239, 68, 68, 0.24)') : (isLight ? 'rgba(241, 245, 249, 0.90)' : 'rgba(15, 23, 42, 0.72)');
+            lowerHalf.style.background = lowerBg;
+            amtEl.style.fontSize = amtFontSize;
+            amtEl.style.letterSpacing = amtLetterSpacing;
+            amtEl.style.color = amtColor;
+            amtEl.innerHTML = `
+              ${signStr ? `<span style="font-weight: 950; margin-left: 2px; order: 1;">${signStr}</span>` : ''}
+              <span style="font-variant-numeric: tabular-nums; order: 2;">${numStr}</span>
+              <span style="font-size: 0.78em; font-weight: 800; opacity: 0.9; margin-right: 2px; order: 3;">${currSymbol}</span>
+            `;
+          }
+        });
+      }
     }
 
-    function openQuickCategoryExpense(catId) {
+        function openQuickCategoryExpense(catId) {
       // فتح نافذة المصروف وتحديد البند تلقائياً
       openTxModal('expense', catId);
     }
@@ -23449,12 +23537,30 @@ function updateSettingsModalDisplay() {
 
     
     function toggleCurrency() {
-      if (state.currency === 'EGP') state.currency = 'SAR';
-      else if (state.currency === 'SAR') state.currency = 'USD';
-      else if (state.currency === 'USD') state.currency = 'GOLD21';
+      // دورة العملات الأربعة: جنيه -> دولار -> ريال -> ذهب عيار 21 -> جنيه
+      if (state.currency === 'EGP') state.currency = 'USD';
+      else if (state.currency === 'USD') state.currency = 'SAR';
+      else if (state.currency === 'SAR') state.currency = 'GOLD21';
       else state.currency = 'EGP';
+
       const el = document.getElementById('activeCurrencyText');
-      if (el) el.textContent = state.currency === 'GOLD21' ? 'ذهب 21' : state.currency;
+      if (el) {
+        if (state.currency === 'GOLD21') el.textContent = 'ذهب 21';
+        else el.textContent = state.currency;
+      }
+
+      const btn = document.getElementById('btnToggleCurrency');
+      if (btn) {
+        if (state.currency === 'GOLD21') {
+          btn.style.borderColor = '#f59e0b';
+          btn.style.color = '#fbbf24';
+          btn.title = 'العملة الحالية: تقويم جرام الذهب عيار 21 (انقر للتبديل)';
+        } else {
+          btn.style.borderColor = 'rgba(245, 158, 11, 0.5)';
+          btn.style.color = '#fbbf24';
+          btn.title = `العملة الحالية: ${state.currency} (انقر للتبديل)`;
+        }
+      }
       
       // إعادة رسم كامل الواجهة والبطاقات والرسوم البيانية بالعملة الجديدة
       renderUI();
@@ -23467,67 +23573,51 @@ function updateSettingsModalDisplay() {
         if (typeof renderComparisonsSection === 'function') renderComparisonsSection();
       } catch(e) { console.error('Error refreshing charts on currency change:', e); }
 
-      showToast(`💱 تم التبديل إلى: ${state.currency} (${getCurrencySymbol()})`);
+      const labelToast = state.currency === 'GOLD21' ? 'جرام الذهب عيار 21' : state.currency;
+      showToast(`💱 تم التبديل إلى: ${labelToast} (${getCurrencySymbol()})`);
     }
 
-    function initDonutChart() {
-      // تم استبدال الشارت الدائري ببنود الرصيد الثلاثة الفاخرة بناءً على طلب المستخدم
-    }
 
+    // =========================================================================
+    // التصدير المحاسبي: Excel و PDF لكافة حركات الفترة
+    // =========================================================================
     function exportExcel() {
-      const filtered = getFilteredTransactions();
+      const filtered = typeof getFilteredTransactions === 'function' ? getFilteredTransactions() : (state.transactions || []);
       if (!filtered || filtered.length === 0) {
-        alert('لا توجد حركات مسجلة في الفترة المحددة للتصدير');
+        showToast('⚠️ لا توجد حركات مسجلة في الفترة المحددة للتصدير');
         return;
       }
 
-      // فرز العمليات تصاعدياً بالتاريخ لحساب دفتر الأستاذ والرصيد التراكمي
       const sortedTx = [...filtered].sort((a, b) => new Date(a.date) - new Date(b.date));
-
-      let totalDebits = 0;  // إجمالي المدين (المصروفات -)
-      let totalCredits = 0; // إجمالي الدائن (المداخيل +)
-      let runningBal = 0;   // الرصيد التراكمي المستمر
+      let totalDebits = 0;
+      let totalCredits = 0;
+      let runningBal = 0;
 
       const periodLabelMap = { 'today': 'اليوم', 'week': 'الأسبوع الحالي', 'month': 'الشهر الحالي', 'all': 'كافة العمليات المسجلة', 'custom': 'فترة مخصصة' };
       const currentPeriodDesc = state.period === 'custom' 
         ? (state.customDate ? `يوم محدد: ${state.customDate}` : `من ${state.customDateFrom} إلى ${state.customDateTo}`)
         : (periodLabelMap[state.period] || state.period);
 
-      // رأس التقرير المحاسبي المعتمد
       const headerBlock = [
         ['كشف حساب وتدقيق العمليات المالية - عائلة ماهر ❤️ أية'],
         ['نوع التقرير:', 'دفتر الأستاذ العام وتفاصيل الحركات المحاسبية', 'تاريخ ووقت الاستخراج:', new Date().toLocaleString('ar-EG')],
         ['الفترة المالية المحددة:', currentPeriodDesc, 'الحساب المالي:', state.selectedMember, 'المحفظة النشطة:', state.currentWalletId === 'all' ? 'كافة المحافظ مجتمعة' : (state.wallets.find(w => w.id === state.currentWalletId)?.name || state.currentWalletId)],
         [],
-        // عناوين الأعمدة المحاسبية المعتمدة (11 عمود كامل)
-        [
-          'م',
-          'التاريخ',
-          'رقم المرجع (ID)',
-          'البيان التفصيلي للحركة',
-          'بند الصرف / التصنيف',
-          'العضو المعني',
-          'المحفظة / الحساب البنكي',
-          'المدين / مصروف (-)',
-          'الدائن / دخل (+)',
-          'الرصيد التراكمي (ج.م)',
-          'منفذ العملية'
-        ]
+        ['م', 'التاريخ', 'رقم المرجع (ID)', 'البيان التفصيلي للحركة', 'بند الصرف / التصنيف', 'العضو المعني', 'المحفظة / الحساب البنكي', 'المدين / مصروف (-)', 'الدائن / دخل (+)', 'الرصيد التراكمي (ج.م)', 'سجلت بواسطة']
       ];
 
       const dataRows = [];
       sortedTx.forEach((tx, idx) => {
         const amt = parseFloat(tx.amount) || 0;
         const isExp = tx.type === 'expense';
-        
         let debit = 0;
         let credit = 0;
         if (isExp) {
-          debit = -amt; // الالتزام الصارم بالإشارة السالبة للمدين
+          debit = -amt;
           totalDebits += amt;
           runningBal -= amt;
         } else {
-          credit = amt; // الالتزام بالإشارة الموجبة للدائن
+          credit = amt;
           totalCredits += amt;
           runningBal += amt;
         }
@@ -23540,7 +23630,7 @@ function updateSettingsModalDisplay() {
           idx + 1,
           tx.date || '',
           tx.id || `TX-${idx + 1}`,
-          tx.label || '', // البيان كاملاً بدون أي اقتطاع
+          tx.label || '',
           catObj.name,
           tx.member || 'العائلة',
           wObj.name,
@@ -23551,60 +23641,35 @@ function updateSettingsModalDisplay() {
         ]);
       });
 
-      // صف ملخص الحسابات والتحقق الرياضي الدقيق (Audit Balance Reconciliation)
       const finalNet = totalCredits - totalDebits;
       const summaryRow = [
-        'الإجمالي',
-        '',
-        `عدد العمليات: ${sortedTx.length}`,
-        'إجمالي العمليات المالية المدققة',
-        '',
-        '',
-        '',
-        -totalDebits, // إجمالي المدين بالسالب
-        totalCredits, // إجمالي الدائن بالموجب
-        finalNet,     // الرصيد النهائي المتطابق رياضياً
-        `الصافي: ${finalNet >= 0 ? '+' : ''}${finalNet.toLocaleString()} ج.م`
+        'الإجمالي', '', `عدد العمليات: ${sortedTx.length}`, 'إجمالي العمليات المالية المدققة', '', '', '',
+        -totalDebits, totalCredits, finalNet, `الصافي: ${finalNet >= 0 ? '+' : ''}${finalNet.toLocaleString()} ج.م`
       ];
 
       const allRows = [...headerBlock, ...dataRows, [], summaryRow];
       const ws = XLSX.utils.aoa_to_sheet(allRows);
-
-      // تمكين اتجاه اليمين لليسار Right-to-Left للأوراق العربية
       ws['!views'] = [{ RTL: true }];
-
-      // أبعاد أعمدة احترافية تضمن ظهور البيان كاملاً بدون اقتطاع
       ws['!cols'] = [
-        { wch: 6 },   // م
-        { wch: 13 },  // التاريخ
-        { wch: 18 },  // كود المرجع
-        { wch: 44 },  // البيان التفصيلي (عرض سخي يمنع الاقتطاع)
-        { wch: 22 },  // بند الصرف
-        { wch: 14 },  // العضو
-        { wch: 20 },  // المحفظة
-        { wch: 18 },  // مدين (-)
-        { wch: 18 },  // دائن (+)
-        { wch: 20 },  // الرصيد التراكمي
-        { wch: 16 }   // سجلت بواسطة
+        { wch: 6 }, { wch: 13 }, { wch: 18 }, { wch: 44 }, { wch: 22 }, { wch: 14 },
+        { wch: 20 }, { wch: 18 }, { wch: 18 }, { wch: 20 }, { wch: 16 }
       ];
 
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, 'دفتر الأستاذ المحاسبي');
       const fileDate = new Date().toISOString().split('T')[0];
       XLSX.writeFile(wb, `دفتر_أستاذ_العائلة_${state.selectedMember}_${fileDate}.xlsx`);
-      showToast('📊 تم تصدير دفتر الأستاذ المحاسبي التفصيلي (Excel) بنجاح');
+      showToast('📊 تم تصدير دفتر الأستاذ المحاسبي (Excel) بنجاح');
     }
 
     function exportPdf() {
-      const filtered = getFilteredTransactions();
+      const filtered = typeof getFilteredTransactions === 'function' ? getFilteredTransactions() : (state.transactions || []);
       if (!filtered || filtered.length === 0) {
-        alert('لا توجد حركات مسجلة للطباعة في الفترة المحددة');
+        showToast('⚠️ لا توجد حركات مسجلة للطباعة في الفترة المحددة');
         return;
       }
 
-      // فرز العمليات تصاعدياً بالتاريخ
       const sortedTx = [...filtered].sort((a, b) => new Date(a.date) - new Date(b.date));
-
       let totalDebits = 0;
       let totalCredits = 0;
       let runningBal = 0;
@@ -23643,7 +23708,6 @@ function updateSettingsModalDisplay() {
             <td>${catObj.name}</td>
             <td>${tx.member || ''}</td>
             <td>${wObj.name}</td>
-            <td style="font-weight: 700; color: #0284c7;">${escapeHtml(tx.author || tx.member || state.currentUser || 'ماهر')}</td>
             <td class="debit-val">${debitTxt !== '-' ? debitTxt : ''}</td>
             <td class="credit-val">${creditTxt !== '-' ? creditTxt : ''}</td>
             <td class="running-val">${runningBal.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</td>
@@ -23652,7 +23716,6 @@ function updateSettingsModalDisplay() {
       });
 
       const finalNet = totalCredits - totalDebits;
-
       const printContainer = document.getElementById('printableStatementSheet');
       if (printContainer) {
         printContainer.innerHTML = `
@@ -23699,16 +23762,15 @@ function updateSettingsModalDisplay() {
           <table class="print-ledger-table">
             <thead>
               <tr>
-                <th style="width: 4%;">م</th>
-                <th style="width: 10%;">التاريخ</th>
-                <th style="width: 24%;">البيان التفصيلي</th>
-                <th style="width: 12%;">بند الصرف</th>
+                <th style="width: 5%;">م</th>
+                <th style="width: 11%;">التاريخ</th>
+                <th style="width: 28%;">البيان التفصيلي</th>
+                <th style="width: 14%;">بند الصرف</th>
                 <th style="width: 9%;">العضو</th>
-                <th style="width: 10%;">المحفظة</th>
-                <th style="width: 10%;">منفذ العملية</th>
-                <th style="width: 10%;">مدين (-)</th>
-                <th style="width: 10%;">دائن (+)</th>
-                <th style="width: 11%;">الرصيد التراكمي</th>
+                <th style="width: 11%;">المحفظة</th>
+                <th style="width: 11%;">مدين (-)</th>
+                <th style="width: 11%;">دائن (+)</th>
+                <th style="width: 13%;">الرصيد التراكمي</th>
               </tr>
             </thead>
             <tbody>
@@ -23716,7 +23778,7 @@ function updateSettingsModalDisplay() {
             </tbody>
             <tfoot>
               <tr style="background: #e2e8f0; font-weight: 900;">
-                <td colspan="7" style="text-align: right; padding: 10px;">الإجمالي المدقق والمطابق رياضياً</td>
+                <td colspan="6" style="text-align: right; padding: 10px;">الإجمالي المدقق والمطابق رياضياً</td>
                 <td class="debit-val">-${totalDebits.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</td>
                 <td class="credit-val">+${totalCredits.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</td>
                 <td class="running-val">${finalNet.toLocaleString('en-US', { minimumFractionDigits: 2 })} ج.م</td>
@@ -23730,390 +23792,7 @@ function updateSettingsModalDisplay() {
           </div>
         `;
       }
-
-      // إطلاق نافذة الطباعة لإنشاء PDF محاسبي معتمد
       window.print();
-    }
-
-    
-    // =========================================================================
-    // نظام زر الرجوع للجوال (Hardware / Browser Mobile Back Button Integration)
-    // عند فتح أي شاشة (دخل/مصروف/حاسبة/ذهب/إلخ)، الضغط على رجوع من الجوال
-    // يعود للصفحة السابقة دون الخروج من التطبيق - يطبق على كامل التطبيق
-    // =========================================================================
-        let activeModalsStack = [];
-    let programmaticBackCount = 0;
-
-    function pushModalState(id) {
-      if (!activeModalsStack.includes(id)) {
-        activeModalsStack.push(id);
-        window.history.pushState({ modalId: id }, '');
-      }
-    }
-
-    function popModalState(id) {
-      const idx = activeModalsStack.indexOf(id);
-      if (idx !== -1) {
-        activeModalsStack.splice(idx, 1);
-      }
-    }
-
-    // إدارة زر الرجوع في الهواتف الذكية (Android / iOS Mobile Back Button)
-    // يدعم إغلاق النوافذ المنبثقة بالترتيب مع منع إغلاق شاشة تسجيل المعاملة عند تطبيق الآلة الحاسبة
-    window.addEventListener('popstate', (event) => {
-      // إذا كان الرجوع تم برمجياً (عبر إغلاق نافذة داخلية مثل الآلة الحاسبة) نتجاهل إغلاق أي نافذة أخرى
-      if (programmaticBackCount > 0) {
-        programmaticBackCount--;
-        return;
-      }
-
-      // 1. إغلاق أعلى نافذة منبثقة أو درج في المكدس
-      if (activeModalsStack.length > 0) {
-        const topId = activeModalsStack.pop();
-        closeSpecificModalOrDrawer(topId, true);
-        return;
-      }
-
-      // 2. درج التواريخ المخصص
-      const customDrawer = document.getElementById('customDatePickerDrawer');
-      if (customDrawer && customDrawer.style.display !== 'none') {
-        toggleCustomDatePicker(false);
-        return;
-      }
-
-      // 3. الآلة الحاسبة المضمنة السريعة
-      const calcPad = document.getElementById('txInlineCalcPad');
-      if (calcPad && calcPad.style.display !== 'none') {
-        toggleTxCalcPad(false);
-        return;
-      }
-
-      // 4. الرجوع للشاشة الرئيسية إذا كنا في صفحة فرعية
-      if (state.activePage && state.activePage !== 'expenses') {
-        switchAppPage('expenses', false);
-        return;
-      }
-    });
-
-    function closeSpecificModalOrDrawer(id, fromPopState = false) {
-      popModalState(id);
-      
-      if (id === 'goldDrawer') {
-        closeGoldDrawer(true);
-      } else {
-        const modal = document.getElementById(id);
-        if (modal) modal.classList.remove('open');
-      }
-
-      if (!fromPopState) {
-        // إذا أغلق المستخدم المودال برمجياً، نسحب حالة history مع حماية المودالات الأبوية
-        if (window.history.state && window.history.state.modalId === id) {
-          programmaticBackCount++;
-          window.history.back();
-        }
-      }
-    }
-
-    function openModal(id) {
-      if (id === 'authModal') {
-        openSettingsModal('users');
-        return;
-      }
-      const el = document.getElementById(id);
-      if (el) {
-        el.classList.add('open');
-        pushModalState(id);
-      }
-    }
-
-    function closeModal(id) {
-      closeSpecificModalOrDrawer(id, false);
-    }
-    function showToast(msg) {
-      const t = document.getElementById('toastMsg');
-      document.getElementById('toastTxt').textContent = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 3500);
-    }
-    function escapeHtml(t) {
-      const d = document.createElement('div'); d.textContent = t; return d.innerHTML;
-    }
-
-    
-
-    // ==============================================================
-    // 8. محرك سجل النشاطات والعمليات الشامل (Activity & Audit Log Engine)
-    // ==============================================================
-    
-    let currentActivityTab = 'all';
-
-        function initActivityLog() {
-      const stored = localStorage.getItem('family_monefy_activity_log');
-      if (stored) {
-        try {
-          state.activityLog = JSON.parse(stored);
-        } catch(e) {
-          state.activityLog = [];
-        }
-      }
-      if (!state.activityLog || state.activityLog.length === 0) {
-        const todayStr = new Date().toISOString().split('T')[0];
-        state.activityLog = [
-          { id: 'act-1', type: 'add_expense', action: 'تسجيل مصروف', label: 'سوبرماركت ومستلزمات منزلية', amount: 850, member: 'العائلة', author: 'ماهر', date: todayStr, time: '11:30 ص' },
-          { id: 'act-2', type: 'add_expense', action: 'تسجيل مصروف', label: 'كشف وصيدلية وعلاج', amount: 420, member: 'النونو', author: 'أية', date: todayStr, time: '01:15 م' },
-          { id: 'act-3', type: 'add_income', action: 'إضافة دخل', label: 'تحويل نقدي وإيداع عائلي', amount: 5000, member: 'ماهر', author: 'ماهر', date: todayStr, time: '10:00 ص' },
-          { id: 'act-4', type: 'add_expense', action: 'تسجيل مصروف', label: 'مستلزمات دراسية وكتب', amount: 350, member: 'محمد', author: 'ماهر', date: todayStr, time: '02:45 م' }
-        ];
-        saveActivityLog();
-      }
-    }
-
-        function logActivity(entry) {
-      if (!state.activityLog) state.activityLog = [];
-      const newEntry = {
-        id: 'act-' + Date.now() + '-' + Math.random().toString(36).substr(2, 4),
-        timestamp: new Date().toISOString(),
-        date: entry.date || new Date().toISOString().split('T')[0],
-        time: entry.time || new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }),
-        author: state.currentUser || 'ماهر',
-        ...entry
-      };
-      state.activityLog.unshift(newEntry);
-      if (state.activityLog.length > 600) state.activityLog.pop();
-      saveActivityLog();
-      try {
-        if (typeof syncChannel !== 'undefined' && syncChannel) {
-          syncChannel.postMessage({ type: 'SYNC_ACTIVITY', activity: newEntry });
-        }
-      } catch(e) {}
-    }
-
-    function saveActivityLog() {
-      try {
-        localStorage.setItem('family_monefy_activity_log', JSON.stringify(state.activityLog || []));
-      } catch(e) {}
-    }
-
-    function filterArchiveType(tab, btnEl) {
-      currentActivityTab = tab;
-      document.querySelectorAll('.archive-filter-row .btn-export-tool').forEach(b => {
-        b.classList.remove('active');
-        b.style.background = '';
-        b.style.color = '';
-      });
-      if (btnEl) {
-        btnEl.classList.add('active');
-        btnEl.style.background = 'rgba(56, 189, 248, 0.2)';
-        btnEl.style.color = '#38bdf8';
-      }
-      renderActivityLogUI();
-      initMemberPhotoPickers();
-    }
-
-    function selectActivityTab(type, el) {
-      currentActivityTab = type;
-      document.querySelectorAll('.activity-tab-chip').forEach(b => b.classList.remove('active'));
-      if (el) el.classList.add('active');
-      renderActivityLogUI();
-      initMemberPhotoPickers();
-    }
-
-    function filterActivityLogUI() {
-      renderActivityLogUI();
-      initMemberPhotoPickers();
-    }
-
-    let archiveRenderLimit = 50;
-
-    
-    // =========================================================================
-    // نظام عرض تفاصيل حركات الأرشيف المتقدم (Executive Activity Details)
-    // =========================================================================
-    let currentSelectedActivityItem = null;
-
-    function openActivityDetails(actId) {
-      if (!state.activityLog || state.activityLog.length === 0) {
-        initActivityLog();
-      }
-      const item = (state.activityLog || []).find(a => a.id === actId);
-      if (!item) {
-        showToast('⚠️ لم يتم العثور على تفاصيل هذه الحركة في سجل الأرشيف');
-        return;
-      }
-
-      currentSelectedActivityItem = item;
-
-      // 1. تحديد العنوان والأيقونة
-      const titleEl = document.getElementById('actDetailActionTitle');
-      const iconEl = document.getElementById('actDetailHeaderIcon');
-      const typeBadge = document.getElementById('actDetailTypeBadge');
-      const badgeBox = document.getElementById('actDetailHeaderIconBadge');
-
-      const actionTitle = item.action || 'حركة موثقة في الأرشيف';
-      if (titleEl) titleEl.textContent = actionTitle;
-      if (typeBadge) typeBadge.textContent = item.type || 'سجل النظام';
-
-      // 2. المبلغ المحاسبي الصارم
-      const amtEl = document.getElementById('actDetailAmountVal');
-      const rawAmt = parseFloat(item.amount) || 0;
-      let displayAmt = formatMoney(Math.abs(rawAmt));
-      let amtColor = '#38bdf8';
-
-      const isOutflow = ['add_expense', 'delete_tx', 'expected_paid', 'delete_expected', 'reject_request'].includes(item.type) || (item.sign === '-');
-      const isInflow = ['add_income', 'debt_collected', 'expected_created_for_us'].includes(item.type) || (item.sign === '+');
-
-      if (rawAmt > 0) {
-        if (isOutflow) {
-          displayAmt = '- ' + displayAmt;
-          amtColor = '#f43f5e';
-          if (badgeBox) { badgeBox.style.background = 'rgba(244, 63, 94, 0.15)'; badgeBox.style.borderColor = 'rgba(244, 63, 94, 0.35)'; badgeBox.style.color = '#f43f5e'; }
-          if (iconEl) iconEl.className = 'fa-solid fa-circle-minus';
-        } else if (isInflow) {
-          displayAmt = '+ ' + displayAmt;
-          amtColor = '#10b981';
-          if (badgeBox) { badgeBox.style.background = 'rgba(16, 185, 129, 0.15)'; badgeBox.style.borderColor = 'rgba(16, 185, 129, 0.35)'; badgeBox.style.color = '#10b981'; }
-          if (iconEl) iconEl.className = 'fa-solid fa-circle-plus';
-        } else {
-          displayAmt = displayAmt;
-          amtColor = '#38bdf8';
-          if (badgeBox) { badgeBox.style.background = 'rgba(56, 189, 248, 0.15)'; badgeBox.style.borderColor = 'rgba(56, 189, 248, 0.35)'; badgeBox.style.color = '#38bdf8'; }
-          if (iconEl) iconEl.className = 'fa-solid fa-file-invoice-dollar';
-        }
-      } else {
-        displayAmt = '0.00 ج.م';
-        amtColor = '#94a3b8';
-      }
-
-      if (amtEl) {
-        amtEl.textContent = displayAmt;
-        amtEl.style.color = amtColor;
-      }
-
-      // 3. البيان الكامل دون اختصار
-      const labelEl = document.getElementById('actDetailFullLabel');
-      if (labelEl) {
-        labelEl.textContent = item.label || item.action || 'لا يوجد بيان مسجل';
-      }
-
-      // 4. التاريخ والوقت
-      const dtEl = document.getElementById('actDetailDateTime');
-      if (dtEl) {
-        const timePart = item.time || (item.timestamp ? new Date(item.timestamp).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }) : '');
-        const datePart = item.date || (item.timestamp ? item.timestamp.split('T')[0] : '');
-        dtEl.textContent = `${datePart} ${timePart ? '• ' + timePart : ''}`;
-      }
-
-      // 5. المنفذ (بواسطة)
-      const authorEl = document.getElementById('actDetailAuthor');
-      if (authorEl) {
-        const authorName = item.author || state.currentUser || 'ماهر';
-        const av = MEMBER_AVATARS[authorName] || null;
-        authorEl.innerHTML = `
-          ${av ? `<img src="${av}" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover; border: 1.2px solid #a855f7;">` : `<i class="fa-solid fa-circle-user" style="color: #a855f7;"></i>`}
-          <span>${authorName}</span>
-        `;
-      }
-
-      // 6. يخص من في الأسرة
-      const memEl = document.getElementById('actDetailMember');
-      if (memEl) {
-        const memName = item.member || 'العائلة';
-        const av = MEMBER_AVATARS[memName] || null;
-        memEl.innerHTML = `
-          ${av ? `<img src="${av}" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover; border: 1.2px solid #f59e0b;">` : `<i class="fa-solid fa-house-user" style="color: #f59e0b;"></i>`}
-          <span>${memName}</span>
-        `;
-      }
-
-      // 7. المحفظة
-      const walEl = document.getElementById('actDetailWallet');
-      if (walEl) {
-        let walName = item.wallet || null;
-        if (!walName && item.walletId) {
-          const w = (state.wallets || []).find(x => x.id === item.walletId);
-          walName = w ? w.name : item.walletId;
-        }
-        walEl.textContent = walName || 'محفظة رئيسية';
-      }
-
-      // 8. الملاحظات الإضافية
-      const notesBox = document.getElementById('actDetailNotesCard');
-      const notesTxt = document.getElementById('actDetailNotesTxt');
-      if (item.notes && item.notes.trim()) {
-        if (notesBox) notesBox.style.display = 'block';
-        if (notesTxt) notesTxt.textContent = item.notes;
-      } else {
-        if (notesBox) notesBox.style.display = 'none';
-      }
-
-      // 9. فحص المستند المرفق (الفاتورة / الإيصال)
-      const receiptData = item.receipt || item.photo || item.settleReceipt || null;
-      const rImgBox = document.getElementById('actDetailReceiptImgBox');
-      const rImg = document.getElementById('actDetailReceiptImg');
-      const noRMsg = document.getElementById('actDetailNoReceiptMsg');
-      const rStatusBadge = document.getElementById('actDetailReceiptStatusBadge');
-
-      if (receiptData && typeof receiptData === 'string' && (receiptData.startsWith('data:image') || receiptData.startsWith('http') || receiptData.startsWith('blob:'))) {
-        if (rImgBox) rImgBox.style.display = 'block';
-        if (rImg) rImg.src = receiptData;
-        if (noRMsg) noRMsg.style.display = 'none';
-        if (rStatusBadge) {
-          rStatusBadge.style.display = 'inline-block';
-          rStatusBadge.style.background = 'rgba(16, 185, 129, 0.2)';
-          rStatusBadge.style.color = '#34d399';
-          rStatusBadge.innerHTML = '<i class="fa-solid fa-check"></i> مرفق فاتورة موثقة';
-        }
-      } else {
-        if (rImgBox) rImgBox.style.display = 'none';
-        if (noRMsg) noRMsg.style.display = 'block';
-        if (rStatusBadge) {
-          rStatusBadge.style.display = 'inline-block';
-          rStatusBadge.style.background = 'rgba(148, 163, 184, 0.15)';
-          rStatusBadge.style.color = '#94a3b8';
-          rStatusBadge.textContent = 'بدون مرفق';
-        }
-      }
-
-      // 10. زر الانتقال السياقي
-      const jumpTxt = document.getElementById('actDetailJumpBtnTxt');
-      if (jumpTxt) {
-        if (item.type && item.type.includes('expected')) {
-          jumpTxt.textContent = 'الانتقال لجدول الالتزامات والديون';
-        } else if (item.type && item.type.includes('budget')) {
-          jumpTxt.textContent = 'الانتقال لصفحة الميزانية التقديرية';
-        } else if (item.type && item.type.includes('request')) {
-          jumpTxt.textContent = 'الانتقال لقسم طلبات المصروف';
-        } else {
-          jumpTxt.textContent = 'الانتقال لسجل العمليات الرئيسية';
-        }
-      }
-
-      openModal('activityDetailsModal');
-    }
-
-    function openReceiptFromActDetail() {
-      if (!currentSelectedActivityItem) return;
-      const receiptData = currentSelectedActivityItem.receipt || currentSelectedActivityItem.photo || currentSelectedActivityItem.settleReceipt;
-      if (receiptData) {
-        openReceiptLightbox(receiptData, currentSelectedActivityItem.label || 'مستند وفاتورة العملية');
-      }
-    }
-
-    function downloadReceiptFromActDetail() {
-      if (!currentSelectedActivityItem) return;
-      const receiptData = currentSelectedActivityItem.receipt || currentSelectedActivityItem.photo || currentSelectedActivityItem.settleReceipt;
-      if (!receiptData) return;
-      try {
-        const link = document.createElement('a');
-        link.href = receiptData;
-        link.download = `receipt-${currentSelectedActivityItem.id || Date.now()}.jpg`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        showToast('📥 جاري تنزيل الفاتورة المرفقة...');
-      } catch(e) {
-        showToast('⚠️ تعذر تنزيل المستند تلقائياً');
-      }
     }
 
     function jumpToActivityContext() {
@@ -29357,6 +29036,7 @@ function installDailyNoonTrigger() {
     function handleDrawerAddNewTask() {
       const titleInp = document.getElementById('drawerNewTaskTitleInput');
       const dateInp = document.getElementById('drawerNewTaskDateInput');
+      const timeInp = document.getElementById('drawerNewTaskTimeInput');
       const title = titleInp ? titleInp.value.trim() : '';
       if (!title) {
         showToast('⚠️ يرجى كتابة بيان أو عنوان المهمة');
@@ -29368,10 +29048,12 @@ function installDailyNoonTrigger() {
         id: 'task-' + Date.now(),
         title: title,
         dueDate: dateInp && dateInp.value ? dateInp.value : '',
+        dueTime: timeInp && timeInp.value ? timeInp.value : '',
         completed: false,
         starred: currentDrawerTodoSection === 'important',
         photo: currentPendingTaskPhotoUri || null,
         subtasks: [],
+        reminderFired: false,
         createdAt: new Date().toISOString(),
         author: state.currentUser || 'ماهر'
       };
@@ -29380,10 +29062,27 @@ function installDailyNoonTrigger() {
       saveTodoTasks(tasks);
 
       if (titleInp) titleInp.value = '';
+      if (dateInp) dateInp.value = '';
+      if (timeInp) timeInp.value = '';
       clearTaskPendingPhoto();
       playNotificationChime();
       renderDrawerTasksList();
       showToast('✨ تمت إضافة المهمة بنجاح!');
+    }
+
+    window.pendingSubtaskPhotos = window.pendingSubtaskPhotos || {};
+
+    function handleSubtaskPhotoPicked(event, taskId) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        window.pendingSubtaskPhotos[taskId] = evt.target.result;
+        const badge = document.getElementById(`subtaskPhotoBadge_${taskId}`);
+        if (badge) badge.style.display = 'inline';
+        showToast('📷 تم إرفاق صورة للمهمة الفرعية');
+      };
+      reader.readAsDataURL(file);
     }
 
     function toggleSubtaskCompleted(taskId, subtaskId) {
@@ -29394,7 +29093,9 @@ function installDailyNoonTrigger() {
         if (sub) {
           sub.completed = !sub.completed;
           saveTodoTasks(tasks);
+          playNotificationChime();
           renderDrawerTasksList();
+          showToast(sub.completed ? '✓ اكتملت المهمة الفرعية' : 'تمت إعادة فتح المهمة الفرعية');
         }
       }
     }
@@ -29402,22 +29103,31 @@ function installDailyNoonTrigger() {
     function addSubtaskToTask(taskId) {
       const titleInp = document.getElementById(`inpSubtaskTitle_${taskId}`);
       const dateInp = document.getElementById(`inpSubtaskDate_${taskId}`);
+      const timeInp = document.getElementById(`inpSubtaskTime_${taskId}`);
       const title = titleInp ? titleInp.value.trim() : '';
-      if (!title) return;
+      if (!title) {
+        showToast('⚠️ يرجى كتابة عنوان المهمة الفرعية');
+        return;
+      }
 
       const tasks = getTodoTasks();
       const task = tasks.find(t => t.id === taskId);
       if (task) {
         if (!task.subtasks) task.subtasks = [];
+        const photo = (window.pendingSubtaskPhotos && window.pendingSubtaskPhotos[taskId]) || null;
         task.subtasks.push({
           id: 'sub-' + Date.now(),
           title: title,
           dueDate: dateInp && dateInp.value ? dateInp.value : '',
-          completed: false
+          dueTime: timeInp && timeInp.value ? timeInp.value : '',
+          photo: photo,
+          completed: false,
+          reminderFired: false
         });
+        if (window.pendingSubtaskPhotos) delete window.pendingSubtaskPhotos[taskId];
         saveTodoTasks(tasks);
         renderDrawerTasksList();
-        showToast('✓ تمت إضافة المهمة الفرعية');
+        showToast('✓ تمت إضافة المهمة الفرعية بنجاح');
       }
     }
 
@@ -29428,6 +29138,7 @@ function installDailyNoonTrigger() {
         task.subtasks = task.subtasks.filter(s => s.id !== subtaskId);
         saveTodoTasks(tasks);
         renderDrawerTasksList();
+        showToast('🗑️ تم حذف المهمة الفرعية');
       }
     }
 
@@ -29459,9 +29170,10 @@ function installDailyNoonTrigger() {
 
       if (filtered.length === 0) {
         container.innerHTML = `
-          <div style="text-align: center; padding: 30px 10px; color: #94a3b8; font-size: 0.78rem;">
-            <i class="fa-solid fa-list-check" style="font-size: 1.8rem; color: #a855f7; opacity: 0.5; margin-bottom: 8px;"></i>
-            <div>لا توجد مهام في هذا القسم حالياً</div>
+          <div style="text-align: center; padding: 35px 10px; color: #94a3b8; font-size: 0.80rem;">
+            <i class="fa-solid fa-list-check" style="font-size: 2.2rem; color: #a855f7; opacity: 0.45; margin-bottom: 10px; display: block;"></i>
+            <div style="font-weight: 800; color: #cbd5e1;">لا توجد مهام في هذا القسم حالياً</div>
+            <div style="font-size: 0.70rem; color: #64748b; margin-top: 4px;">يمكنك إضافة مهمة جديدة وتحديد موعد وساعة تنبيه بالأعلى</div>
           </div>
         `;
         return;
@@ -29472,57 +29184,109 @@ function installDailyNoonTrigger() {
         const isStar = t.starred;
         const subtasks = t.subtasks || [];
         const completedSubs = subtasks.filter(s => s.completed).length;
+        const hasSubs = subtasks.length > 0;
+        const progressPct = hasSubs ? Math.round((completedSubs / subtasks.length) * 100) : 0;
 
-        const subtasksHtml = subtasks.map(s => `
-          <div style="display: flex; align-items: center; justify-content: space-between; padding: 4px 6px; background: rgba(15, 23, 42, 0.6); border-radius: 6px; margin-top: 3px; font-size: 0.72rem;">
-            <div style="display: flex; align-items: center; gap: 6px; flex: 1;">
-              <input type="checkbox" ${s.completed ? 'checked' : ''} onchange="toggleSubtaskCompleted('${t.id}', '${s.id}')" style="cursor: pointer;">
-              <span style="color: ${s.completed ? '#64748b' : '#cbd5e1'}; text-decoration: ${s.completed ? 'line-through' : 'none'};">${escapeHtml(s.title)}</span>
-              ${s.dueDate ? `<span style="font-size: 0.60rem; color: #c084fc;">(تاريخ: ${s.dueDate})</span>` : ''}
+        // حالة الموعد: متأخرة أو اليوم أو لاحقاً
+        let dueBadgeHtml = '';
+        if (t.dueDate) {
+          const isOverdue = !isDone && t.dueDate < todayStr;
+          const isToday = !isDone && t.dueDate === todayStr;
+          const timeText = t.dueTime ? ` ⏰ ${t.dueTime}` : '';
+
+          if (isOverdue) {
+            dueBadgeHtml = `<span style="font-size: 0.62rem; color: #f87171; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 6px; padding: 2px 6px; font-weight: 800;"><i class="fa-solid fa-triangle-exclamation"></i> متأخرة: ${t.dueDate}${timeText}</span>`;
+          } else if (isToday) {
+            dueBadgeHtml = `<span style="font-size: 0.62rem; color: #fbbf24; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 6px; padding: 2px 6px; font-weight: 800;"><i class="fa-regular fa-clock"></i> استحقاق اليوم${timeText}</span>`;
+          } else {
+            dueBadgeHtml = `<span style="font-size: 0.62rem; color: #c084fc; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 6px; padding: 2px 6px; font-weight: 700;"><i class="fa-regular fa-calendar"></i> ${t.dueDate}${timeText}</span>`;
+          }
+        }
+
+        // تفاصيل المهام الفرعية مع دعم إرفاق صورة وعرضها
+        const subtasksHtml = subtasks.map(s => {
+          const subDone = s.completed;
+          const subTimeText = s.dueTime ? ` ⏰ ${s.dueTime}` : '';
+          return `
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; background: rgba(15, 23, 42, 0.65); border: 1px solid ${subDone ? 'rgba(52, 211, 153, 0.25)' : 'rgba(255, 255, 255, 0.08)'}; border-radius: 8px; margin-top: 4px; font-size: 0.72rem; transition: all 0.15s ease;">
+              <div style="display: flex; align-items: center; gap: 7px; flex: 1; min-width: 0;">
+                <input type="checkbox" ${subDone ? 'checked' : ''} onchange="toggleSubtaskCompleted('${t.id}', '${s.id}')" style="cursor: pointer; width: 14px; height: 14px; accent-color: #10b981;">
+                <span style="color: ${subDone ? '#64748b' : '#e2e8f0'}; text-decoration: ${subDone ? 'line-through' : 'none'}; word-break: break-word; font-weight: 600; flex: 1;">${escapeHtml(s.title)}</span>
+                ${s.dueDate ? `<span style="font-size: 0.60rem; color: #c084fc; white-space: nowrap;">(${s.dueDate}${subTimeText})</span>` : ''}
+              </div>
+
+              <!-- صورة المهمة الفرعية المصغرة وزر حذفها -->
+              <div style="display: flex; align-items: center; gap: 5px; margin-right: 6px; flex-shrink: 0;">
+                ${s.photo ? `
+                  <img src="${s.photo}" onclick="openReceiptLightbox(this.src, 'صورة المهمة الفرعية: ${escapeHtml(s.title)}')" style="width: 24px; height: 24px; border-radius: 5px; object-fit: cover; border: 1.2px solid #38bdf8; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3);" title="انقر لتكبير صورة المهمة الفرعية">
+                ` : ''}
+                <button type="button" onclick="deleteSubtask('${t.id}', '${s.id}')" title="حذف المهمة الفرعية" style="background: transparent; border: none; color: #ef4444; font-size: 0.75rem; cursor: pointer; opacity: 0.75; padding: 0 3px;">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
             </div>
-            <button type="button" onclick="deleteSubtask('${t.id}', '${s.id}')" style="background: transparent; border: none; color: #ef4444; font-size: 0.68rem; cursor: pointer; opacity: 0.7;">&times;</button>
-          </div>
-        `).join('');
+          `;
+        }).join('');
 
         return `
-          <div style="background: rgba(30, 41, 59, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 9px 12px; display: flex; flex-direction: column; gap: 6px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
-              <div style="display: flex; align-items: center; gap: 9px; flex: 1;">
-                <button type="button" onclick="toggleTaskCompleted('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: ${isDone ? '#34d399' : '#94a3b8'}; font-size: 1.15rem; padding: 0;">
+          <div class="task-card-item" style="background: rgba(30, 41, 59, 0.85); border: 1.2px solid ${isDone ? 'rgba(52, 211, 153, 0.4)' : (t.starred ? 'rgba(245, 158, 11, 0.4)' : 'rgba(168, 85, 247, 0.35)')}; border-radius: 14px; padding: 11px 13px; display: flex; flex-direction: column; gap: 7px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);">
+            <!-- السطر العلوي: علامة الاكتمال + العنوان + الأيقونات والتنبيهات -->
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;">
+              <div style="display: flex; align-items: flex-start; gap: 9px; flex: 1; min-width: 0;">
+                <button type="button" onclick="toggleTaskCompleted('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: ${isDone ? '#34d399' : '#94a3b8'}; font-size: 1.25rem; padding: 0; line-height: 1; margin-top: 1px; transition: transform 0.15s ease;" title="${isDone ? 'إعادة فتح المهمة' : 'تعيين المهمة كمكتملة'}">
                   <i class="fa-${isDone ? 'solid fa-circle-check' : 'regular fa-circle'}"></i>
                 </button>
-                <div style="flex: 1;">
-                  <div style="font-size: 0.82rem; font-weight: 800; color: ${isDone ? '#94a3b8' : '#f8fafc'}; text-decoration: ${isDone ? 'line-through' : 'none'};">
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 0.84rem; font-weight: 800; color: ${isDone ? '#94a3b8' : '#f8fafc'}; text-decoration: ${isDone ? 'line-through' : 'none'}; word-break: break-word; line-height: 1.3;">
                     ${escapeHtml(t.title)}
                   </div>
-                  <div style="display: flex; align-items: center; gap: 8px; margin-top: 2px;">
-                    ${t.dueDate ? `<span style="font-size: 0.62rem; color: #c084fc;"><i class="fa-regular fa-calendar"></i> ${t.dueDate}</span>` : ''}
-                    ${subtasks.length > 0 ? `<span style="font-size: 0.62rem; color: #38bdf8;"><i class="fa-solid fa-list-ol"></i> ${completedSubs}/${subtasks.length} مهام فرعية</span>` : ''}
+                  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 4px;">
+                    ${dueBadgeHtml}
+                    ${hasSubs ? `<span style="font-size: 0.62rem; color: #38bdf8; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 6px; padding: 2px 6px; font-weight: 800;"><i class="fa-solid fa-list-ol"></i> ${completedSubs}/${subtasks.length} مكتملة (${progressPct}%)</span>` : ''}
                   </div>
                 </div>
               </div>
 
               <!-- صورة المهمة المصغرة وزر النجمة والحذف -->
-              <div style="display: flex; align-items: center; gap: 6px;">
-                ${t.photo ? `<img src="${t.photo}" onclick="openReceiptLightbox(this.src, 'مرفق المهمة: ${escapeHtml(t.title)}')" style="width: 28px; height: 28px; border-radius: 6px; object-fit: cover; border: 1px solid #a855f7; cursor: pointer;" title="انقر لتكبير صورة المهمة">` : ''}
-                <button type="button" onclick="toggleTaskStarred('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: ${isStar ? '#fbbf24' : '#64748b'}; font-size: 0.95rem; padding: 2px;">
+              <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
+                ${t.photo ? `
+                  <img src="${t.photo}" onclick="openReceiptLightbox(this.src, 'مرفق المهمة: ${escapeHtml(t.title)}')" style="width: 30px; height: 30px; border-radius: 7px; object-fit: cover; border: 1.5px solid #a855f7; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.4);" title="انقر لتكبير صورة المهمة">
+                ` : ''}
+                <button type="button" onclick="toggleTaskStarred('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: ${isStar ? '#fbbf24' : '#64748b'}; font-size: 1.05rem; padding: 2px;" title="${isStar ? 'إلغاء التمييز بنجمة' : 'تمييز كمهمة هامة'}">
                   <i class="fa-${isStar ? 'solid' : 'regular'} fa-star"></i>
                 </button>
-                <button type="button" onclick="deleteTaskItem('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: #ef4444; font-size: 0.85rem; padding: 2px; opacity: 0.7;">
+                <button type="button" onclick="deleteTaskItem('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: #ef4444; font-size: 0.90rem; padding: 2px; opacity: 0.75;" title="حذف المهمة">
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
               </div>
             </div>
 
-            <!-- تفاصيل المهام الفرعية وإمكانية إضافتها تحت المهمة -->
-            <div style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px;">
+            <!-- شريط تقدم إنجاز المهام الفرعية (Progress Bar) -->
+            ${hasSubs ? `
+              <div style="width: 100%; height: 4px; background: rgba(15, 23, 42, 0.8); border-radius: 3px; overflow: hidden; margin-top: 2px;">
+                <div style="width: ${progressPct}%; height: 100%; background: ${progressPct === 100 ? '#10b981' : 'linear-gradient(90deg, #a855f7, #38bdf8)'}; transition: width 0.3s ease;"></div>
+              </div>
+            ` : ''}
+
+            <!-- تفاصيل المهام الفرعية وإمكانية إضافة مهمة فرعية جديدة مع صورة وتاريخ ووقت -->
+            <div style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 2px;">
               ${subtasksHtml}
-              <!-- سطر إضافة مهمة فرعية جديدة -->
-              <div style="display: flex; gap: 4px; margin-top: 5px;">
-                <input type="text" id="inpSubtaskTitle_${t.id}" placeholder="إضافة مهمة فرعية تحت هذه المهمة..." style="flex: 1; height: 26px; border-radius: 5px; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(168, 85, 247, 0.25); color: #fff; font-size: 0.68rem; padding: 0 6px;">
-                <input type="date" id="inpSubtaskDate_${t.id}" style="width: 95px; height: 26px; border-radius: 5px; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(168, 85, 247, 0.25); color: #cbd5e1; font-size: 0.62rem; padding: 0 2px;">
-                <button type="button" onclick="addSubtaskToTask('${t.id}')" style="padding: 0 8px; height: 26px; border-radius: 5px; background: rgba(168, 85, 247, 0.25); border: 1px solid #a855f7; color: #c084fc; font-size: 0.68rem; font-weight: 800; cursor: pointer;">
-                  + فرعية
+
+              <!-- سطر إضافة مهمة فرعية جديدة مع موعد وصورة -->
+              <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; align-items: center; background: rgba(15, 23, 42, 0.55); border-radius: 8px; padding: 5px;">
+                <input type="text" id="inpSubtaskTitle_${t.id}" placeholder="إضافة خطوة أو مهمة فرعية..." style="flex: 1 1 120px; height: 28px; border-radius: 6px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(168, 85, 247, 0.3); color: #fff; font-size: 0.70rem; padding: 0 8px; outline: none;">
+                <input type="date" id="inpSubtaskDate_${t.id}" style="width: 95px; height: 28px; border-radius: 6px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(168, 85, 247, 0.3); color: #cbd5e1; font-size: 0.64rem; padding: 0 2px;" title="تاريخ المهمة الفرعية">
+                <input type="time" id="inpSubtaskTime_${t.id}" style="width: 70px; height: 28px; border-radius: 6px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(168, 85, 247, 0.3); color: #cbd5e1; font-size: 0.64rem; padding: 0 2px;" title="ساعة المهمة الفرعية">
+                
+                <!-- إرفاق صورة للمهمة الفرعية -->
+                <input type="file" id="inpSubtaskPhoto_${t.id}" accept="image/*" style="display: none;" onchange="handleSubtaskPhotoPicked(event, '${t.id}')">
+                <button type="button" onclick="document.getElementById('inpSubtaskPhoto_${t.id}').click()" title="إرفاق صورة للمهمة الفرعية" id="btnSubtaskPhoto_${t.id}" style="height: 28px; padding: 0 7px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; font-size: 0.70rem; cursor: pointer; display: flex; align-items: center; gap: 3px;">
+                  <i class="fa-solid fa-camera"></i>
+                  <span id="subtaskPhotoBadge_${t.id}" style="display: none; font-size: 0.60rem; color: #34d399; font-weight: 800;">✓</span>
+                </button>
+
+                <button type="button" onclick="addSubtaskToTask('${t.id}')" style="height: 28px; padding: 0 10px; border-radius: 6px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.70rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-plus"></i> إضافة
                 </button>
               </div>
             </div>
@@ -30032,18 +29796,126 @@ function installDailyNoonTrigger() {
       if (e.changedTouches.length === 1) {
         const deltaX = e.changedTouches[0].clientX - touchStartX;
         const deltaY = e.changedTouches[0].clientY - touchStartY;
-        if (Math.abs(deltaX) > 60 && Math.abs(deltaY) < 50) {
-          // سحب من اليسار لليمين عند حافة الشاشة اليسرى -> فتح الملخص
-          if (deltaX > 0 && touchStartX < 60) {
-            openSummaryDrawer();
+
+        // التحقق من أن التمرير أفقي واضح
+        if (Math.abs(deltaX) > 40 && Math.abs(deltaY) < 90) {
+          const leftDrawer = document.getElementById('summaryLeftDrawer');
+          const isLeftOpen = leftDrawer && (leftDrawer.classList.contains('open') || leftDrawer.classList.contains('active'));
+          
+          const rightDrawer = document.getElementById('goldDrawerPanel');
+          const isRightOpen = rightDrawer && (rightDrawer.classList.contains('open') || rightDrawer.classList.contains('active'));
+
+          // 1. إذا كان الدرج الأيسر (الملخص والمهام) مفتوحاً: التمرير لليسار يغلقه فوراً
+          if (isLeftOpen && deltaX < -35) {
+            closeSummaryLeftDrawer();
+            return;
           }
-          // سحب من اليمين لليسار عند حافة الشاشة اليمنى -> فتح الذهب
-          else if (deltaX < 0 && touchStartX > window.innerWidth - 60) {
+
+          // 2. إذا كان الدرج الأيمن (الذهب والبورصة) مفتوحاً: التمرير لليمين يغلقه فوراً
+          if (isRightOpen && deltaX > 35) {
+            closeGoldDrawer();
+            return;
+          }
+
+          // 3. فتح الدرج الأيسر: سحب من أقصى اليسار إلى اليمين
+          if (!isLeftOpen && !isRightOpen && deltaX > 45 && touchStartX < 95) {
+            openSummaryDrawer();
+            return;
+          }
+
+          // 4. فتح الدرج الأيمن: سحب من أقصى اليمين إلى اليسار
+          if (!isLeftOpen && !isRightOpen && deltaX < -45 && touchStartX > (window.innerWidth - 95)) {
             openGoldDrawer();
+            return;
           }
         }
       }
     }, { passive: true });
+
+
+    // ========================================================
+    // نظام فحص تذكيرات وتنبيهات المهام المجدولة بالساعة والتاريخ
+    // ========================================================
+    function checkScheduledTaskReminders() {
+      const tasks = getTodoTasks();
+      if (!tasks || tasks.length === 0) return;
+
+      const now = new Date();
+      const todayStr = getLocalDateStr(now);
+      const currentHHMM = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+
+      let changed = false;
+
+      tasks.forEach(t => {
+        // 1. فحص المهمة الرئيسية
+        if (!t.completed && !t.reminderFired && t.dueDate) {
+          let isDue = false;
+          if (t.dueDate < todayStr) {
+            isDue = true;
+          } else if (t.dueDate === todayStr) {
+            if (!t.dueTime || t.dueTime <= currentHHMM) {
+              isDue = true;
+            }
+          }
+
+          if (isDue) {
+            t.reminderFired = true;
+            changed = true;
+            playNotificationChime();
+            const timeLabel = t.dueTime ? `الساعة ${t.dueTime}` : 'اليوم';
+            addSystemNotification({
+              type: 'task',
+              title: `⏰ تذكير موعد مهمة: ${t.title}`,
+              body: `حان موعد إنجاز المهمة المجدولة (${timeLabel} - ${t.dueDate})`,
+              txId: null
+            });
+            triggerSystemNotification(`⏰ تذكير مهمة: ${t.title}`, `حان موعد إنجاز المهمة المجدولة (${timeLabel})`);
+            showToast(`⏰ حان موعد المهمة: ${t.title}`);
+          }
+        }
+
+        // 2. فحص المهام الفرعية
+        if (t.subtasks && t.subtasks.length > 0) {
+          t.subtasks.forEach(sub => {
+            if (!sub.completed && !sub.reminderFired && sub.dueDate) {
+              let isSubDue = false;
+              if (sub.dueDate < todayStr) {
+                isSubDue = true;
+              } else if (sub.dueDate === todayStr) {
+                if (!sub.dueTime || sub.dueTime <= currentHHMM) {
+                  isSubDue = true;
+                }
+              }
+              if (isSubDue) {
+                sub.reminderFired = true;
+                changed = true;
+                playNotificationChime();
+                const subTimeLabel = sub.dueTime ? `الساعة ${sub.dueTime}` : 'اليوم';
+                addSystemNotification({
+                  type: 'task',
+                  title: `⏰ تذكير مهمة فرعية: ${sub.title}`,
+                  body: `المهمة التابعة لـ [${t.title}] حان موعدها (${subTimeLabel})`,
+                  txId: null
+                });
+                triggerSystemNotification(`⏰ مهمة فرعية: ${sub.title}`, `حان موعد إنجاز المهمة الفرعية`);
+                showToast(`⏰ تذكير فرعي: ${sub.title}`);
+              }
+            }
+          });
+        }
+      });
+
+      if (changed) {
+        saveTodoTasks(tasks);
+        renderDrawerTasksList();
+      }
+    }
+
+    // إطلاق فاحص التذكيرات عند التشغيل وكل 20 ثانية
+    if (!window._taskReminderInterval) {
+      window._taskReminderInterval = setInterval(checkScheduledTaskReminders, 20000);
+      setTimeout(checkScheduledTaskReminders, 2000);
+    }
 
 </script>
 
@@ -30854,7 +30726,8 @@ function installDailyNoonTrigger() {
       <div style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(168, 85, 247, 0.4); border-radius: 12px; padding: 10px;">
         <div style="display: flex; gap: 6px; margin-bottom: 6px;">
           <input type="text" id="drawerNewTaskTitleInput" placeholder="أضف مهمة جديدة... (مثال: سداد اشتراك النادي)" style="flex: 1; height: 38px; border-radius: 8px; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(168, 85, 247, 0.3); color: #fff; font-size: 0.82rem; font-weight: 800; padding: 0 10px; outline: none;">
-          <input type="date" id="drawerNewTaskDateInput" style="height: 38px; width: 120px; border-radius: 8px; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(168, 85, 247, 0.3); color: #cbd5e1; font-size: 0.72rem; padding: 0 4px;">
+          <input type="date" id="drawerNewTaskDateInput" style="height: 38px; width: 110px; border-radius: 8px; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(168, 85, 247, 0.3); color: #cbd5e1; font-size: 0.72rem; padding: 0 4px;" title="تاريخ الاستحقاق">
+          <input type="time" id="drawerNewTaskTimeInput" style="height: 38px; width: 88px; border-radius: 8px; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(168, 85, 247, 0.3); color: #cbd5e1; font-size: 0.72rem; padding: 0 4px;" title="ساعة التنبيه (اختياري)">
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <div style="display: flex; gap: 6px;">

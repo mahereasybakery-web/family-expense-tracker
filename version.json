@@ -1,6 +1,6 @@
 {
-  "version": "4.9.5",
-  "build": 202611071515,
-  "updated_at": "2026-11-07 03:15 PM",
-  "description": "v4.9.5: Fixed bottom navigation tabs and right gold drawer visibility by resolving viewExpected container nesting. Merged sync button with status and time badge. Resolved update reload loop."
+  "version": "4.9.7",
+  "buildId": 202611071700,
+  "updatedAt": "2026-11-07T17:00:00+03:00",
+  "releaseNotes": "الحل الجذري الشامل لتسريع استجابة النظام الفائقة، إزالة بطاقات الكاش والتكرار البرمجي، تصحيح تباين الألوان في العمليات والكروت، ضبط ظهور واختفاء الشاشات الجانبية بالسحب، دعم تقويم الذهب عيار 21، وضبط مواضع العملة والإشارة بدقة محاسبية"
 }
