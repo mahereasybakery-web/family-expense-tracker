@@ -141,10 +141,10 @@
     }
 
     var currentEditTxReceiptDataUri = null;
-    var APP_VERSION = '4.9.7';
-    var APP_BUILD_ID = 202611071700;
-    window.APP_VERSION = '4.9.7';
-    window.APP_BUILD_ID = 202611071700;
+    var APP_VERSION = '4.9.8';
+    var APP_BUILD_ID = 202611071730;
+    window.APP_VERSION = '4.9.8';
+    window.APP_BUILD_ID = 202611071730;
     (function() {
       try {
         var t = localStorage.getItem('family_monefy_theme') || 'navy';
@@ -11618,8 +11618,6 @@
       border-color: #cbd5e1 !important;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
     }
-</style>
-
     /* =========================================================================
        قواعد التباين العالي المحاسبي لكافة التسجيلات والكتابات (High Contrast Rules)
        ========================================================================= */
@@ -11674,6 +11672,136 @@
       color: #0f172a !important;
     }
 
+
+    /* حماية صارمة لمنع تمدد شعار العائلة أو خروج إطار التطبيق عن الشاشة */
+    body {
+      overflow-x: hidden !important;
+      width: 100% !important;
+      max-width: 100vw !important;
+      margin: 0 auto !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    .mobile-frame, #appFrame {
+      margin: 0 auto !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      max-width: 480px !important;
+      overflow-x: hidden !important;
+    }
+    .brand-icon {
+      width: 36px !important;
+      height: 36px !important;
+      min-width: 36px !important;
+      min-height: 36px !important;
+      max-width: 36px !important;
+      max-height: 36px !important;
+      border-radius: 12px !important;
+      overflow: hidden !important;
+      flex-shrink: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    .brand-icon img, #headerBrandFamilyLogo {
+      width: 36px !important;
+      height: 36px !important;
+      max-width: 36px !important;
+      max-height: 36px !important;
+      object-fit: cover !important;
+      border-radius: 12px !important;
+      display: block !important;
+    }
+
+
+    /* حماية صارمة لمنع تمدد القوائم الجانبية المغلقة لتفادي أي تمدد أفقي في المتصفح */
+    .side-drawer-panel:not(.open) { display: none !important; }
+    .summary-left-drawer:not(.open) { display: none !important; }
+    .side-drawer-panel.open, .summary-left-drawer.open { display: flex !important; }
+
+    /* أنماط وتنسيقات نظام المهام الاحترافي الحديث (Tasks Pro System) */
+    .task-kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .task-kpi-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 6px 4px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .task-kpi-card:hover {
+      border-color: rgba(168, 85, 247, 0.5);
+      background: rgba(30, 41, 59, 0.85);
+    }
+    .task-kpi-num {
+      font-family: var(--font-numbers);
+      font-size: 0.95rem;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+    .task-kpi-label {
+      font-size: 0.60rem;
+      font-weight: 800;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+    .task-card-item {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.92) 0%, rgba(15, 23, 42, 0.96) 100%);
+      border: 1.2px solid rgba(168, 85, 247, 0.35);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      position: relative;
+    }
+    .task-card-item.is-overdue {
+      border-color: rgba(239, 68, 68, 0.65) !important;
+      box-shadow: 0 0 14px rgba(239, 68, 68, 0.25) !important;
+    }
+    .task-card-item.is-today {
+      border-color: rgba(245, 158, 11, 0.60) !important;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.20) !important;
+    }
+    .task-card-item.is-completed {
+      border-color: rgba(52, 211, 153, 0.40) !important;
+      opacity: 0.85;
+    }
+    .task-preset-chip {
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      color: #c084fc;
+      font-size: 0.64rem;
+      font-weight: 800;
+      border-radius: 6px;
+      padding: 3px 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .task-preset-chip:hover {
+      background: rgba(168, 85, 247, 0.30);
+      color: #fff;
+    }
+    .task-datetime-input {
+      color-scheme: dark;
+    }
+    body.light-theme .task-datetime-input {
+      color-scheme: light;
+    }
+  </style>
 </head>
 <body>
 
@@ -11684,8 +11812,8 @@
       <!-- السطر 1: الشعار واسم العائلة + شارة الحساب السحابي بالإيميل -->
       <div class="header-brand-row">
         <div class="brand-box">
-          <div class="brand-icon" title="رمز عائلة ماهر ❤️ أية (انقر للإعدادات وشعار العائلة)" onclick="openSettingsModal('brand_section')" style="cursor: pointer;">
-            <img src="assets/family_option2_mosaic.jpg" id="headerBrandFamilyLogo">
+          <div class="brand-icon" title="رمز عائلة ماهر ❤️ أية (انقر للإعدادات وشعار العائلة)" onclick="openSettingsModal('brand_section')" style="width: 36px !important; height: 36px !important; min-width: 36px !important; min-height: 36px !important; max-width: 36px !important; max-height: 36px !important; border-radius: 12px !important; overflow: hidden !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important; cursor: pointer; box-sizing: border-box !important;">
+            <img src="assets/family_option2_mosaic.jpg" id="headerBrandFamilyLogo" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: cover !important; border-radius: 12px !important; display: block !important;">
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">عيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
@@ -15359,8 +15487,8 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = '4.9.7';
-      const APP_BUILD_ID = 202611071700;
+      const APP_VERSION = '4.9.8';
+      const APP_BUILD_ID = 202611071730;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
@@ -19098,7 +19226,7 @@ function generateRichDemoTransactions() {
           emoji: '🛒',
           accent: '#10b981',
           gradient: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(16, 185, 129, 0.32) 0%, rgba(16, 185, 129, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgDark: 'linear-gradient(160deg, rgba(16, 185, 129, 0.35) 0%, rgba(16, 185, 129, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
           bgLight: 'linear-gradient(160deg, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0.08) 40%, #ffffff 90%)',
           border: '#10b981'
         },
@@ -19107,7 +19235,7 @@ function generateRichDemoTransactions() {
           emoji: '☕',
           accent: '#f59e0b',
           gradient: 'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(245, 158, 11, 0.32) 0%, rgba(245, 158, 11, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgDark: 'linear-gradient(160deg, rgba(245, 158, 11, 0.35) 0%, rgba(245, 158, 11, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
           bgLight: 'linear-gradient(160deg, rgba(245, 158, 11, 0.22) 0%, rgba(245, 158, 11, 0.08) 40%, #ffffff 90%)',
           border: '#f59e0b'
         },
@@ -19116,7 +19244,7 @@ function generateRichDemoTransactions() {
           emoji: '⚡',
           accent: '#f97316',
           gradient: 'linear-gradient(135deg, #f97316 0%, #c2410c 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(249, 115, 22, 0.32) 0%, rgba(249, 115, 22, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgDark: 'linear-gradient(160deg, rgba(249, 115, 22, 0.35) 0%, rgba(249, 115, 22, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
           bgLight: 'linear-gradient(160deg, rgba(249, 115, 22, 0.22) 0%, rgba(249, 115, 22, 0.08) 40%, #ffffff 90%)',
           border: '#f97316'
         },
@@ -19125,7 +19253,7 @@ function generateRichDemoTransactions() {
           emoji: '🚗',
           accent: '#0284c7',
           gradient: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(2, 132, 199, 0.32) 0%, rgba(2, 132, 199, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgDark: 'linear-gradient(160deg, rgba(2, 132, 199, 0.35) 0%, rgba(2, 132, 199, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
           bgLight: 'linear-gradient(160deg, rgba(2, 132, 199, 0.22) 0%, rgba(2, 132, 199, 0.08) 40%, #ffffff 90%)',
           border: '#0284c7'
         },
@@ -19134,7 +19262,7 @@ function generateRichDemoTransactions() {
           emoji: '🛋️',
           accent: '#8b5cf6',
           gradient: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(139, 92, 246, 0.32) 0%, rgba(139, 92, 246, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgDark: 'linear-gradient(160deg, rgba(139, 92, 246, 0.35) 0%, rgba(139, 92, 246, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
           bgLight: 'linear-gradient(160deg, rgba(139, 92, 246, 0.22) 0%, rgba(139, 92, 246, 0.08) 40%, #ffffff 90%)',
           border: '#8b5cf6'
         },
@@ -19143,7 +19271,7 @@ function generateRichDemoTransactions() {
           emoji: '💊',
           accent: '#ef4444',
           gradient: 'linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(239, 68, 68, 0.32) 0%, rgba(239, 68, 68, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgDark: 'linear-gradient(160deg, rgba(239, 68, 68, 0.35) 0%, rgba(239, 68, 68, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
           bgLight: 'linear-gradient(160deg, rgba(239, 68, 68, 0.22) 0%, rgba(239, 68, 68, 0.08) 40%, #ffffff 90%)',
           border: '#ef4444'
         },
@@ -19152,7 +19280,7 @@ function generateRichDemoTransactions() {
           emoji: '👔',
           accent: '#ec4899',
           gradient: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(236, 72, 153, 0.32) 0%, rgba(236, 72, 153, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgDark: 'linear-gradient(160deg, rgba(236, 72, 153, 0.35) 0%, rgba(236, 72, 153, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
           bgLight: 'linear-gradient(160deg, rgba(236, 72, 153, 0.22) 0%, rgba(236, 72, 153, 0.08) 40%, #ffffff 90%)',
           border: '#ec4899'
         },
@@ -19161,7 +19289,7 @@ function generateRichDemoTransactions() {
           emoji: '🎓',
           accent: '#3b82f6',
           gradient: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(59, 130, 246, 0.32) 0%, rgba(59, 130, 246, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgDark: 'linear-gradient(160deg, rgba(59, 130, 246, 0.35) 0%, rgba(59, 130, 246, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
           bgLight: 'linear-gradient(160deg, rgba(59, 130, 246, 0.22) 0%, rgba(59, 130, 246, 0.08) 40%, #ffffff 90%)',
           border: '#3b82f6'
         },
@@ -19170,7 +19298,7 @@ function generateRichDemoTransactions() {
           emoji: '🎁',
           accent: '#14b8a6',
           gradient: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(20, 184, 166, 0.32) 0%, rgba(20, 184, 166, 0.14) 40%, rgba(15, 23, 42, 0.94) 100%)',
+          bgDark: 'linear-gradient(160deg, rgba(20, 184, 166, 0.35) 0%, rgba(20, 184, 166, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
           bgLight: 'linear-gradient(160deg, rgba(20, 184, 166, 0.22) 0%, rgba(20, 184, 166, 0.08) 40%, #ffffff 90%)',
           border: '#14b8a6'
         }
@@ -19201,10 +19329,10 @@ function generateRichDemoTransactions() {
           };
 
           const cardBg = isLight ? theme.bgLight : theme.bgDark;
-          const cardBorder = isLight ? `2px solid ${theme.accent}` : `2px solid ${theme.accent}cc`;
+          const cardBorder = isLight ? `2px solid ${theme.accent}` : `2px solid ${theme.accent}dd`;
           const cardShadow = isLight 
             ? `0 4px 14px rgba(0, 0, 0, 0.08), 0 0 10px ${theme.accent}20` 
-            : `0 4px 18px rgba(0, 0, 0, 0.45), 0 0 12px ${theme.accent}30, inset 0 1px 0 rgba(255, 255, 255, 0.15)`;
+            : `0 4px 18px rgba(0, 0, 0, 0.45), 0 0 14px ${theme.accent}35, inset 0 1px 0 rgba(255, 255, 255, 0.15)`;
 
           const converted = convertAmount(spent);
           let numStr = '0.00';
@@ -19213,29 +19341,30 @@ function generateRichDemoTransactions() {
           }
           const signStr = (spent > 0) ? '-' : '';
 
-          let amtFontSize = 'clamp(0.72rem, 2.1vw, 0.84rem)';
-          let amtLetterSpacing = '0px';
+          // خط أرقام أكبر وأجرأ يملأ فراغ النصف السفلي
+          let amtFontSize = 'clamp(0.92rem, 2.8vw, 1.08rem)';
+          let amtLetterSpacing = '-0.2px';
           const totalLen = numStr.length;
           if (totalLen >= 14 || isGold) {
-            amtFontSize = 'clamp(0.50rem, 1.45vw, 0.60rem)';
+            amtFontSize = 'clamp(0.64rem, 1.85vw, 0.74rem)';
             amtLetterSpacing = '-0.5px';
           } else if (totalLen >= 10) {
-            amtFontSize = 'clamp(0.58rem, 1.65vw, 0.68rem)';
+            amtFontSize = 'clamp(0.72rem, 2.1vw, 0.84rem)';
             amtLetterSpacing = '-0.4px';
           } else if (totalLen >= 8) {
-            amtFontSize = 'clamp(0.66rem, 1.9vw, 0.76rem)';
-            amtLetterSpacing = '-0.2px';
+            amtFontSize = 'clamp(0.82rem, 2.5vw, 0.95rem)';
+            amtLetterSpacing = '-0.3px';
           }
 
           const lowerCardBg = spent > 0 
-            ? (isLight ? 'rgba(239, 68, 68, 0.12)' : 'rgba(239, 68, 68, 0.24)') 
-            : (isLight ? 'rgba(241, 245, 249, 0.90)' : 'rgba(15, 23, 42, 0.72)');
+            ? (isLight ? 'rgba(239, 68, 68, 0.14)' : 'rgba(239, 68, 68, 0.28)') 
+            : (isLight ? 'rgba(241, 245, 249, 0.95)' : 'rgba(15, 23, 42, 0.78)');
           const lowerCardBorder = spent > 0 
-            ? (isLight ? 'rgba(239, 68, 68, 0.5)' : '#f43f5e') 
-            : (isLight ? 'rgba(203, 213, 225, 0.7)' : `${theme.accent}44`);
+            ? (isLight ? 'rgba(239, 68, 68, 0.6)' : '#f43f5e') 
+            : (isLight ? 'rgba(203, 213, 225, 0.8)' : `${theme.accent}55`);
           const amtColor = spent > 0 
             ? (isLight ? '#b91c1c' : '#ff4d6d') 
-            : (isLight ? '#475569' : '#cbd5e1');
+            : (isLight ? '#334155' : '#f1f5f9');
 
           const card = document.createElement('div');
           card.className = `cat-card cat-theme-${cat.id}`;
@@ -19250,7 +19379,7 @@ function generateRichDemoTransactions() {
             align-items: stretch !important;
             justify-content: space-between !important;
             height: 100% !important;
-            max-height: var(--app-card-max-h, 135px) !important;
+            max-height: var(--app-card-max-h, 140px) !important;
             min-height: 0 !important;
             box-shadow: ${cardShadow} !important;
             transition: transform 0.12s ease !important;
@@ -19262,31 +19391,35 @@ function generateRichDemoTransactions() {
           `;
 
           card.innerHTML = `
+            <!-- 1. النصف العلوي: رمز أكبر واسم أكبر يملأ الفراغ المخصص له بالكامل -->
             <div class="cat-card-top-half" 
                  onclick="event.stopPropagation(); openQuickCategoryExpense('${cat.id}');"
                  title="انقر على الرمز لتسجيل مصروف جديد في ${theme.name}"
-                 style="flex: 1.4 1 66%; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 6px 3px 2px; cursor: pointer; transition: background 0.15s ease; box-sizing: border-box; overflow: hidden; touch-action: manipulation;">
+                 style="flex: 1.4 1 64%; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 6px 3px 2px; cursor: pointer; transition: background 0.15s ease; box-sizing: border-box; overflow: hidden; touch-action: manipulation;">
               
+              <!-- بالون الرمز أكبر ومجسم يملأ مساحته بروعة -->
               <div class="cat-icon-bubble" 
-                   style="background: ${theme.gradient}; width: clamp(34px, 9.2vw, 42px) !important; height: clamp(34px, 9.2vw, 42px) !important; min-width: 32px !important; min-height: 32px !important; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45), inset 0 0 5px rgba(255, 255, 255, 0.40); border: 1.8px solid rgba(255, 255, 255, 0.85); outline: 1.5px solid ${theme.accent}; flex-shrink: 0;">
-                <span style="font-size: clamp(1.35rem, 3.8vw, 1.70rem) !important; line-height: 1; filter: drop-shadow(0 3px 5px rgba(0,0,0,0.5));">${theme.emoji}</span>
+                   style="background: ${theme.gradient}; width: clamp(40px, 10.5vw, 46px) !important; height: clamp(40px, 10.5vw, 46px) !important; min-width: 38px !important; min-height: 38px !important; border-radius: 13px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 0 6px rgba(255, 255, 255, 0.40); border: 2px solid rgba(255, 255, 255, 0.85); outline: 1.5px solid ${theme.accent}; flex-shrink: 0;">
+                <span style="font-size: clamp(1.60rem, 4.2vw, 1.95rem) !important; line-height: 1; filter: drop-shadow(0 3px 5px rgba(0,0,0,0.5));">${theme.emoji}</span>
               </div>
 
+              <!-- اسم بند المصروف أكبر وواضح يملأ الفراغ مباشرة تحت الرمز -->
               <div class="cat-label-text" 
-                   style="font-family: var(--font-family); font-size: clamp(0.72rem, 2.1vw, 0.82rem) !important; font-weight: 900 !important; color: ${isLight ? '#0f172a' : '#ffffff'} !important; text-shadow: ${isLight ? 'none' : '0 1px 3px rgba(0,0,0,0.9)'}; text-align: center; margin: 0; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; max-width: 100%; padding: 0 2px; box-sizing: border-box;">
+                   style="font-family: var(--font-family); font-size: clamp(0.80rem, 2.4vw, 0.92rem) !important; font-weight: 950 !important; color: ${isLight ? '#0f172a' : '#ffffff'} !important; text-shadow: ${isLight ? 'none' : '0 1px 3px rgba(0,0,0,0.95)'}; text-align: center; margin: 0; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; max-width: 100%; padding: 0 2px; box-sizing: border-box;">
                 ${theme.name}
               </div>
             </div>
 
+            <!-- 2. النصف السفلي: كبسولة أرقام أكبر تملأ الفراغ المخصص لها تماماً -->
             <div class="cat-card-bottom-half ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
                  onclick="event.stopPropagation(); openOperationsFiltered({ category: '${cat.id}', categoryName: '${cat.name}', type: 'expense' });" 
                  title="انقر لعرض حركات ${theme.name}" 
-                 style="flex: 0.65 1 34%; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; padding: 2px 3px; cursor: pointer; background: ${lowerCardBg}; border-top: 1.5px solid ${lowerCardBorder}; box-sizing: border-box; transition: all 0.15s ease; overflow: hidden; touch-action: manipulation;">
+                 style="flex: 0.8 1 36%; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; padding: 4px 3px; cursor: pointer; background: ${lowerCardBg}; border-top: 1.5px solid ${lowerCardBorder}; box-sizing: border-box; transition: all 0.15s ease; overflow: hidden; touch-action: manipulation;">
               <div class="cat-amount-val" 
-                   style="font-family: var(--font-numbers); font-size: ${amtFontSize}; letter-spacing: ${amtLetterSpacing}; font-weight: 850; color: ${amtColor}; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; max-width: 100%; direction: rtl; text-align: center; font-variant-numeric: tabular-nums; display: flex; align-items: baseline; justify-content: center; gap: 2.5px; box-sizing: border-box; padding: 0 2px;">
-                ${signStr ? `<span style="font-weight: 950; margin-left: 2px; order: 1;">${signStr}</span>` : ''}
+                   style="font-family: var(--font-numbers); font-size: ${amtFontSize}; letter-spacing: ${amtLetterSpacing}; font-weight: 950; color: ${amtColor}; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; max-width: 100%; direction: rtl; text-align: center; font-variant-numeric: tabular-nums; display: flex; align-items: baseline; justify-content: center; gap: 3px; box-sizing: border-box; padding: 0 2px;">
+                ${signStr ? `<span style="font-weight: 950; margin-left: 2px; order: 1; font-size: 1.05em;">${signStr}</span>` : ''}
                 <span style="font-variant-numeric: tabular-nums; order: 2;">${numStr}</span>
-                <span style="font-size: 0.78em; font-weight: 800; opacity: 0.9; margin-right: 2px; order: 3;">${currSymbol}</span>
+                <span style="font-size: 0.78em; font-weight: 850; opacity: 0.95; margin-right: 2px; order: 3;">${currSymbol}</span>
               </div>
             </div>
           `;
@@ -19305,33 +19438,33 @@ function generateRichDemoTransactions() {
           }
           const signStr = (spent > 0) ? '-' : '';
 
-          let amtFontSize = 'clamp(0.72rem, 2.1vw, 0.84rem)';
-          let amtLetterSpacing = '0px';
+          let amtFontSize = 'clamp(0.92rem, 2.8vw, 1.08rem)';
+          let amtLetterSpacing = '-0.2px';
           const totalLen = numStr.length;
           if (totalLen >= 14 || isGold) {
-            amtFontSize = 'clamp(0.50rem, 1.45vw, 0.60rem)';
+            amtFontSize = 'clamp(0.64rem, 1.85vw, 0.74rem)';
             amtLetterSpacing = '-0.5px';
           } else if (totalLen >= 10) {
-            amtFontSize = 'clamp(0.58rem, 1.65vw, 0.68rem)';
+            amtFontSize = 'clamp(0.72rem, 2.1vw, 0.84rem)';
             amtLetterSpacing = '-0.4px';
           } else if (totalLen >= 8) {
-            amtFontSize = 'clamp(0.66rem, 1.9vw, 0.76rem)';
-            amtLetterSpacing = '-0.2px';
+            amtFontSize = 'clamp(0.82rem, 2.5vw, 0.95rem)';
+            amtLetterSpacing = '-0.3px';
           }
 
           const lowerHalf = card.querySelector('.cat-card-bottom-half');
           const amtEl = card.querySelector('.cat-amount-val');
           if (lowerHalf && amtEl) {
-            const amtColor = spent > 0 ? (isLight ? '#b91c1c' : '#ff4d6d') : (isLight ? '#475569' : '#cbd5e1');
-            const lowerBg = spent > 0 ? (isLight ? 'rgba(239, 68, 68, 0.12)' : 'rgba(239, 68, 68, 0.24)') : (isLight ? 'rgba(241, 245, 249, 0.90)' : 'rgba(15, 23, 42, 0.72)');
+            const amtColor = spent > 0 ? (isLight ? '#b91c1c' : '#ff4d6d') : (isLight ? '#334155' : '#f1f5f9');
+            const lowerBg = spent > 0 ? (isLight ? 'rgba(239, 68, 68, 0.14)' : 'rgba(239, 68, 68, 0.28)') : (isLight ? 'rgba(241, 245, 249, 0.95)' : 'rgba(15, 23, 42, 0.78)');
             lowerHalf.style.background = lowerBg;
             amtEl.style.fontSize = amtFontSize;
             amtEl.style.letterSpacing = amtLetterSpacing;
             amtEl.style.color = amtColor;
             amtEl.innerHTML = `
-              ${signStr ? `<span style="font-weight: 950; margin-left: 2px; order: 1;">${signStr}</span>` : ''}
+              ${signStr ? `<span style="font-weight: 950; margin-left: 2px; order: 1; font-size: 1.05em;">${signStr}</span>` : ''}
               <span style="font-variant-numeric: tabular-nums; order: 2;">${numStr}</span>
-              <span style="font-size: 0.78em; font-weight: 800; opacity: 0.9; margin-right: 2px; order: 3;">${currSymbol}</span>
+              <span style="font-size: 0.78em; font-weight: 850; opacity: 0.95; margin-right: 2px; order: 3;">${currSymbol}</span>
             `;
           }
         });
@@ -28965,25 +29098,96 @@ function installDailyNoonTrigger() {
     // =========================================================================
     // محرك المهام والمهام الفرعية والصور المتكامل (Drawer Tasks Engine with Subtasks)
     // =========================================================================
+    // =========================================================================
+    // نظام المهام الذكية الاحترافي المتكامل (Tasks Pro Engine)
+    // =========================================================================
     let currentDrawerTodoSection = 'my_day';
+    window.currentPendingTaskPhotoUri = null;
+    window.pendingSubtaskPhotos = window.pendingSubtaskPhotos || {};
+
+    // اختصارات التاريخ والوقت الذكية الموحدة بنقرة زر
+    function setTaskDateTimePreset(preset, targetInputId = 'drawerNewTaskDateTimeInput') {
+      const inp = document.getElementById(targetInputId);
+      if (!inp) return;
+
+      const now = new Date();
+      if (preset === 'clear') {
+        inp.value = '';
+        showToast('تم مسح موعد المهمة');
+        return;
+      }
+
+      let targetDate = new Date(now.getTime());
+      if (preset === 'today_evening') {
+        targetDate.setHours(20, 0, 0, 0);
+      } else if (preset === 'tomorrow_morning') {
+        targetDate.setDate(targetDate.getDate() + 1);
+        targetDate.setHours(10, 0, 0, 0);
+      } else if (preset === 'after_two_days') {
+        targetDate.setDate(targetDate.getDate() + 2);
+        targetDate.setHours(12, 0, 0, 0);
+      } else if (preset === 'weekend') {
+        // الجمعة القادمة الساعة 5 مساءً
+        const day = targetDate.getDay();
+        const diff = (5 - day + 7) % 7 || 7;
+        targetDate.setDate(targetDate.getDate() + diff);
+        targetDate.setHours(17, 0, 0, 0);
+      }
+
+      const yyyy = targetDate.getFullYear();
+      const mm = String(targetDate.getMonth() + 1).padStart(2, '0');
+      const dd = String(targetDate.getDate()).padStart(2, '0');
+      const hh = String(targetDate.getHours()).padStart(2, '0');
+      const min = String(targetDate.getMinutes()).padStart(2, '0');
+
+      inp.value = `${yyyy}-${mm}-${dd}T${hh}:${min}`;
+      showToast(`⏰ تم ضبط الموعد: ${formatArabicDateTime(inp.value)}`);
+    }
+
+    function formatArabicDateTime(dtStr) {
+      if (!dtStr) return '';
+      try {
+        const parts = dtStr.split('T');
+        const dParts = parts[0].split('-');
+        const year = dParts[0];
+        const month = parseInt(dParts[1], 10);
+        const day = parseInt(dParts[2], 10);
+        
+        const monthNames = ['', 'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+        const mName = monthNames[month] || dParts[1];
+
+        let timeStr = '';
+        if (parts[1]) {
+          const tParts = parts[1].split(':');
+          let hours = parseInt(tParts[0], 10);
+          const minutes = tParts[1] || '00';
+          const period = hours >= 12 ? 'م' : 'ص';
+          hours = hours % 12 || 12;
+          timeStr = ` - ${hours}:${minutes} ${period}`;
+        }
+        return `${day} ${mName}${timeStr}`;
+      } catch(e) {
+        return dtStr;
+      }
+    }
 
     function switchDrawerTodoSection(sec) {
       currentDrawerTodoSection = sec;
-      const tabs = ['my_day', 'important', 'planned', 'all', 'completed'];
+      const tabs = ['my_day', 'important', 'planned', 'overdue', 'all', 'completed'];
       tabs.forEach(t => {
-        const btnId = 'btnDrawerTodo' + (t === 'my_day' ? 'MyDay' : (t === 'important' ? 'Important' : (t === 'planned' ? 'Planned' : (t === 'all' ? 'All' : 'Completed'))));
+        const btnId = 'btnDrawerTodo' + (t === 'my_day' ? 'MyDay' : (t === 'important' ? 'Important' : (t === 'planned' ? 'Planned' : (t === 'overdue' ? 'Overdue' : (t === 'all' ? 'All' : 'Completed')))));
         const btn = document.getElementById(btnId);
         if (btn) {
           if (t === sec) {
             btn.className = 'exp-tab-btn active';
-            btn.style.background = 'rgba(168, 85, 247, 0.25)';
-            btn.style.color = '#c084fc';
+            btn.style.background = (sec === 'overdue') ? 'rgba(239, 68, 68, 0.25)' : 'rgba(168, 85, 247, 0.25)';
+            btn.style.color = (sec === 'overdue') ? '#f87171' : '#c084fc';
             btn.style.border = 'none';
           } else {
             btn.className = 'exp-tab-btn';
             btn.style.background = 'transparent';
-            btn.style.color = '#94a3b8';
-            btn.style.border = '1px solid rgba(255,255,255,0.1)';
+            btn.style.color = (t === 'overdue') ? '#ef4444' : '#94a3b8';
+            btn.style.border = (t === 'overdue') ? '1px solid rgba(239,68,68,0.25)' : '1px solid rgba(255,255,255,0.1)';
           }
         }
       });
@@ -28998,7 +29202,7 @@ function installDailyNoonTrigger() {
       reader.onload = function(e) {
         const img = new Image();
         img.onload = function() {
-          const maxDim = 1000;
+          const maxDim = 900;
           let w = img.width, h = img.height;
           if (w > maxDim || h > maxDim) {
             if (w > h) { h = Math.round((h * maxDim) / w); w = maxDim; }
@@ -29010,10 +29214,8 @@ function installDailyNoonTrigger() {
           ctx.drawImage(img, 0, 0, w, h);
           currentPendingTaskPhotoUri = canvas.toDataURL('image/jpeg', 0.80);
           
-          const badge = document.getElementById('taskPhotoAttachedBadge');
           const preview = document.getElementById('taskPendingPhotoPreview');
           const previewImg = document.getElementById('taskPendingPhotoImg');
-          if (badge) badge.style.display = 'inline-block';
           if (preview) preview.style.display = 'block';
           if (previewImg) previewImg.src = currentPendingTaskPhotoUri;
           showToast('📸 تم إرفاق صورة للمهمة بنجاح');
@@ -29025,32 +29227,47 @@ function installDailyNoonTrigger() {
 
     function clearTaskPendingPhoto() {
       currentPendingTaskPhotoUri = null;
-      const badge = document.getElementById('taskPhotoAttachedBadge');
       const preview = document.getElementById('taskPendingPhotoPreview');
       const previewImg = document.getElementById('taskPendingPhotoImg');
-      if (badge) badge.style.display = 'none';
       if (preview) preview.style.display = 'none';
       if (previewImg) previewImg.src = '';
     }
 
     function handleDrawerAddNewTask() {
       const titleInp = document.getElementById('drawerNewTaskTitleInput');
-      const dateInp = document.getElementById('drawerNewTaskDateInput');
-      const timeInp = document.getElementById('drawerNewTaskTimeInput');
+      const dtInp = document.getElementById('drawerNewTaskDateTimeInput');
+      const prioritySel = document.getElementById('drawerNewTaskPriority');
+      const tagSel = document.getElementById('drawerNewTaskTag');
+
       const title = titleInp ? titleInp.value.trim() : '';
       if (!title) {
-        showToast('⚠️ يرجى كتابة بيان أو عنوان المهمة');
+        showToast('⚠️ يرجى كتابة عنوان أو بيان المهمة');
+        if (titleInp) titleInp.focus();
         return;
       }
+
+      const dtVal = dtInp ? dtInp.value : '';
+      let dueDate = '', dueTime = '';
+      if (dtVal) {
+        const parts = dtVal.split('T');
+        dueDate = parts[0] || '';
+        dueTime = parts[1] ? parts[1].slice(0, 5) : '';
+      }
+
+      const priority = prioritySel ? prioritySel.value : 'normal';
+      const tag = tagSel ? tagSel.value : 'general';
 
       const tasks = getTodoTasks();
       const newTask = {
         id: 'task-' + Date.now(),
         title: title,
-        dueDate: dateInp && dateInp.value ? dateInp.value : '',
-        dueTime: timeInp && timeInp.value ? timeInp.value : '',
+        dueDateTime: dtVal,
+        dueDate: dueDate,
+        dueTime: dueTime,
+        priority: priority,
+        tag: tag,
         completed: false,
-        starred: currentDrawerTodoSection === 'important',
+        starred: (currentDrawerTodoSection === 'important' || priority === 'high'),
         photo: currentPendingTaskPhotoUri || null,
         subtasks: [],
         reminderFired: false,
@@ -29062,25 +29279,37 @@ function installDailyNoonTrigger() {
       saveTodoTasks(tasks);
 
       if (titleInp) titleInp.value = '';
-      if (dateInp) dateInp.value = '';
-      if (timeInp) timeInp.value = '';
+      if (dtInp) dtInp.value = '';
       clearTaskPendingPhoto();
       playNotificationChime();
       renderDrawerTasksList();
-      showToast('✨ تمت إضافة المهمة بنجاح!');
+      showToast('✨ تمت إضافة المهمة والموعد بنجاح!');
     }
-
-    window.pendingSubtaskPhotos = window.pendingSubtaskPhotos || {};
 
     function handleSubtaskPhotoPicked(event, taskId) {
       const file = event.target.files && event.target.files[0];
       if (!file) return;
       const reader = new FileReader();
       reader.onload = function(evt) {
-        window.pendingSubtaskPhotos[taskId] = evt.target.result;
-        const badge = document.getElementById(`subtaskPhotoBadge_${taskId}`);
-        if (badge) badge.style.display = 'inline';
-        showToast('📷 تم إرفاق صورة للمهمة الفرعية');
+        const img = new Image();
+        img.onload = function() {
+          const maxDim = 800;
+          let w = img.width, h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) { h = Math.round((h * maxDim) / w); w = maxDim; }
+            else { w = Math.round((w * maxDim) / h); h = maxDim; }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          window.pendingSubtaskPhotos[taskId] = canvas.toDataURL('image/jpeg', 0.80);
+          
+          const badge = document.getElementById(`subtaskPhotoBadge_${taskId}`);
+          if (badge) badge.style.display = 'inline';
+          showToast('📷 تم إرفاق صورة للمهمة الفرعية');
+        };
+        img.src = evt.target.result;
       };
       reader.readAsDataURL(file);
     }
@@ -29102,12 +29331,20 @@ function installDailyNoonTrigger() {
 
     function addSubtaskToTask(taskId) {
       const titleInp = document.getElementById(`inpSubtaskTitle_${taskId}`);
-      const dateInp = document.getElementById(`inpSubtaskDate_${taskId}`);
-      const timeInp = document.getElementById(`inpSubtaskTime_${taskId}`);
+      const dtInp = document.getElementById(`inpSubtaskDateTime_${taskId}`);
       const title = titleInp ? titleInp.value.trim() : '';
       if (!title) {
         showToast('⚠️ يرجى كتابة عنوان المهمة الفرعية');
+        if (titleInp) titleInp.focus();
         return;
+      }
+
+      const dtVal = dtInp ? dtInp.value : '';
+      let dueDate = '', dueTime = '';
+      if (dtVal) {
+        const parts = dtVal.split('T');
+        dueDate = parts[0] || '';
+        dueTime = parts[1] ? parts[1].slice(0, 5) : '';
       }
 
       const tasks = getTodoTasks();
@@ -29118,8 +29355,9 @@ function installDailyNoonTrigger() {
         task.subtasks.push({
           id: 'sub-' + Date.now(),
           title: title,
-          dueDate: dateInp && dateInp.value ? dateInp.value : '',
-          dueTime: timeInp && timeInp.value ? timeInp.value : '',
+          dueDateTime: dtVal,
+          dueDate: dueDate,
+          dueTime: dueTime,
           photo: photo,
           completed: false,
           reminderFired: false
@@ -29142,26 +29380,104 @@ function installDailyNoonTrigger() {
       }
     }
 
+    // تحويل المهمة إلى مصروف أو التزام مالي بلمسة واحدة
+    function convertTaskToExpense(taskId) {
+      const tasks = getTodoTasks();
+      const task = tasks.find(t => t.id === taskId);
+      if (!task) return;
+
+      closeSummaryLeftDrawer();
+      
+      let preCat = 'other';
+      if (task.tag === 'bills') preCat = 'bills';
+      else if (task.tag === 'shopping') preCat = 'food';
+      else if (task.tag === 'home') preCat = 'house';
+
+      setTimeout(() => {
+        openTxModal('expense', preCat);
+        const labelInp = document.getElementById('inpTxLabel');
+        if (labelInp) {
+          labelInp.value = task.title;
+        }
+        showToast(`💡 تم تجهيز تسجيل مصروف للمهمة: ${task.title}`);
+      }, 250);
+    }
+
+    // تعديل المهمة سريعا
+    function openEditTaskPrompt(taskId) {
+      const tasks = getTodoTasks();
+      const task = tasks.find(t => t.id === taskId);
+      if (!task) return;
+
+      const newTitle = prompt('تعديل عنوان المهمة:', task.title);
+      if (newTitle !== null && newTitle.trim()) {
+        task.title = newTitle.trim();
+        saveTodoTasks(tasks);
+        renderDrawerTasksList();
+        showToast('✓ تم تحديث عنوان المهمة بنجاح');
+      }
+    }
+
     function renderDrawerTasksList() {
       const container = document.getElementById('drawerTasksContainerList');
       const badge = document.getElementById('drawerTasksCountBadge');
       if (!container) return;
 
       const allTasks = getTodoTasks();
-      const todayStr = getLocalDateStr(new Date());
+      const now = new Date();
+      const todayStr = getLocalDateStr(now);
+      const currentHHMM = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+      const currentIsoPrefix = `${todayStr}T${currentHHMM}`;
 
-      if (badge) {
-        const activeCount = allTasks.filter(t => !t.completed).length;
-        badge.textContent = activeCount;
-      }
+      // 1. حساب مؤشرات الـ KPIs المعتمدة
+      const totalCount = allTasks.length;
+      const activeCount = allTasks.filter(t => !t.completed).length;
+      const completedCount = allTasks.filter(t => t.completed).length;
+      const overdueCount = allTasks.filter(t => {
+        if (t.completed) return false;
+        if (t.dueDateTime) return t.dueDateTime < currentIsoPrefix;
+        if (t.dueDate) {
+          if (t.dueDate < todayStr) return true;
+          if (t.dueDate === todayStr && t.dueTime && t.dueTime < currentHHMM) return true;
+        }
+        return false;
+      }).length;
 
+      const kpiTotalEl = document.getElementById('kpiTasksTotal');
+      const kpiActiveEl = document.getElementById('kpiTasksActive');
+      const kpiOverdueEl = document.getElementById('kpiTasksOverdue');
+      const kpiDoneEl = document.getElementById('kpiTasksDone');
+      const progBarEl = document.getElementById('tasksOverallProgressBar');
+      const progPctEl = document.getElementById('tasksOverallProgressPct');
+
+      if (kpiTotalEl) kpiTotalEl.textContent = totalCount;
+      if (kpiActiveEl) kpiActiveEl.textContent = activeCount;
+      if (kpiOverdueEl) kpiOverdueEl.textContent = overdueCount;
+      if (kpiDoneEl) kpiDoneEl.textContent = completedCount;
+      if (badge) badge.textContent = activeCount;
+
+      const overallPct = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+      if (progBarEl) progBarEl.style.width = overallPct + '%';
+      if (progPctEl) progPctEl.textContent = overallPct + '%';
+
+      // 2. الفلترة حسب القسم المحدد
       let filtered = allTasks;
       if (currentDrawerTodoSection === 'my_day') {
         filtered = allTasks.filter(t => !t.completed && (t.dueDate === todayStr || !t.dueDate));
       } else if (currentDrawerTodoSection === 'important') {
-        filtered = allTasks.filter(t => !t.completed && t.starred);
+        filtered = allTasks.filter(t => !t.completed && (t.starred || t.priority === 'high'));
       } else if (currentDrawerTodoSection === 'planned') {
-        filtered = allTasks.filter(t => !t.completed && Boolean(t.dueDate));
+        filtered = allTasks.filter(t => !t.completed && Boolean(t.dueDate || t.dueDateTime));
+      } else if (currentDrawerTodoSection === 'overdue') {
+        filtered = allTasks.filter(t => {
+          if (t.completed) return false;
+          if (t.dueDateTime) return t.dueDateTime < currentIsoPrefix;
+          if (t.dueDate) {
+            if (t.dueDate < todayStr) return true;
+            if (t.dueDate === todayStr && t.dueTime && t.dueTime < currentHHMM) return true;
+          }
+          return false;
+        });
       } else if (currentDrawerTodoSection === 'completed') {
         filtered = allTasks.filter(t => t.completed);
       } else {
@@ -29173,11 +29489,27 @@ function installDailyNoonTrigger() {
           <div style="text-align: center; padding: 35px 10px; color: #94a3b8; font-size: 0.80rem;">
             <i class="fa-solid fa-list-check" style="font-size: 2.2rem; color: #a855f7; opacity: 0.45; margin-bottom: 10px; display: block;"></i>
             <div style="font-weight: 800; color: #cbd5e1;">لا توجد مهام في هذا القسم حالياً</div>
-            <div style="font-size: 0.70rem; color: #64748b; margin-top: 4px;">يمكنك إضافة مهمة جديدة وتحديد موعد وساعة تنبيه بالأعلى</div>
+            <div style="font-size: 0.70rem; color: #64748b; margin-top: 4px;">يمكنك إضافة مهمة وتحديد موعد ووقت التنبيه بالأعلى</div>
           </div>
         `;
         return;
       }
+
+      // قواميس الوسوم والأولويات
+      const TAG_LABELS = {
+        bills: { name: 'فواتير والتزامات', icon: 'fa-receipt', color: '#f97316' },
+        shopping: { name: 'مشتريات', icon: 'fa-cart-shopping', color: '#10b981' },
+        home: { name: 'منزل', icon: 'fa-house', color: '#8b5cf6' },
+        family: { name: 'أسرة وشخصي', icon: 'fa-heart', color: '#ec4899' },
+        work: { name: 'عمل ودراسة', icon: 'fa-briefcase', color: '#0284c7' },
+        general: { name: 'عام', icon: 'fa-tag', color: '#94a3b8' }
+      };
+
+      const PRIORITY_BADGES = {
+        high: `<span style="font-size: 0.60rem; font-weight: 900; color: #f87171; background: rgba(239, 68, 68, 0.18); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 5px; padding: 1px 5px;"><i class="fa-solid fa-fire"></i> عالي جداً</span>`,
+        medium: `<span style="font-size: 0.60rem; font-weight: 900; color: #fbbf24; background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 5px; padding: 1px 5px;">متوسط</span>`,
+        normal: ''
+      };
 
       container.innerHTML = filtered.map(t => {
         const isDone = t.completed;
@@ -29187,38 +29519,52 @@ function installDailyNoonTrigger() {
         const hasSubs = subtasks.length > 0;
         const progressPct = hasSubs ? Math.round((completedSubs / subtasks.length) * 100) : 0;
 
-        // حالة الموعد: متأخرة أو اليوم أو لاحقاً
+        // حالة الموعد والوقت الموحد
         let dueBadgeHtml = '';
-        if (t.dueDate) {
-          const isOverdue = !isDone && t.dueDate < todayStr;
-          const isToday = !isDone && t.dueDate === todayStr;
-          const timeText = t.dueTime ? ` ⏰ ${t.dueTime}` : '';
+        let cardStateClass = '';
+
+        const effectiveDt = t.dueDateTime || (t.dueDate ? `${t.dueDate}${t.dueTime ? 'T' + t.dueTime : ''}` : '');
+        if (effectiveDt) {
+          const isOverdue = !isDone && effectiveDt < currentIsoPrefix;
+          const isToday = !isDone && (t.dueDate === todayStr || effectiveDt.startsWith(todayStr));
+          const formattedDt = formatArabicDateTime(effectiveDt);
 
           if (isOverdue) {
-            dueBadgeHtml = `<span style="font-size: 0.62rem; color: #f87171; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 6px; padding: 2px 6px; font-weight: 800;"><i class="fa-solid fa-triangle-exclamation"></i> متأخرة: ${t.dueDate}${timeText}</span>`;
+            cardStateClass = 'is-overdue';
+            dueBadgeHtml = `<span style="font-size: 0.62rem; color: #f87171; background: rgba(239, 68, 68, 0.20); border: 1px solid rgba(239, 68, 68, 0.45); border-radius: 6px; padding: 2px 7px; font-weight: 900;"><i class="fa-solid fa-triangle-exclamation"></i> متأخرة: ${formattedDt}</span>`;
           } else if (isToday) {
-            dueBadgeHtml = `<span style="font-size: 0.62rem; color: #fbbf24; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 6px; padding: 2px 6px; font-weight: 800;"><i class="fa-regular fa-clock"></i> استحقاق اليوم${timeText}</span>`;
+            cardStateClass = 'is-today';
+            dueBadgeHtml = `<span style="font-size: 0.62rem; color: #fbbf24; background: rgba(245, 158, 11, 0.20); border: 1px solid rgba(245, 158, 11, 0.45); border-radius: 6px; padding: 2px 7px; font-weight: 900;"><i class="fa-regular fa-clock"></i> اليوم: ${formattedDt}</span>`;
           } else {
-            dueBadgeHtml = `<span style="font-size: 0.62rem; color: #c084fc; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 6px; padding: 2px 6px; font-weight: 700;"><i class="fa-regular fa-calendar"></i> ${t.dueDate}${timeText}</span>`;
+            dueBadgeHtml = `<span style="font-size: 0.62rem; color: #c084fc; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 6px; padding: 2px 7px; font-weight: 800;"><i class="fa-regular fa-calendar-check"></i> ${formattedDt}</span>`;
           }
         }
 
-        // تفاصيل المهام الفرعية مع دعم إرفاق صورة وعرضها
+        const tagInfo = TAG_LABELS[t.tag] || TAG_LABELS.general;
+        const tagBadgeHtml = (t.tag && t.tag !== 'general') 
+          ? `<span style="font-size: 0.60rem; font-weight: 800; color: ${tagInfo.color}; background: rgba(255,255,255,0.06); border: 1px solid ${tagInfo.color}40; border-radius: 5px; padding: 1px 6px;"><i class="fa-solid ${tagInfo.icon}"></i> ${tagInfo.name}</span>`
+          : '';
+
+        const prioBadgeHtml = PRIORITY_BADGES[t.priority] || '';
+
+        // المهام الفرعية التفاعلية مع دعم إرفاق صورة وعرضها
         const subtasksHtml = subtasks.map(s => {
           const subDone = s.completed;
-          const subTimeText = s.dueTime ? ` ⏰ ${s.dueTime}` : '';
+          const subDt = s.dueDateTime || (s.dueDate ? `${s.dueDate}${s.dueTime ? 'T' + s.dueTime : ''}` : '');
+          const subDtText = subDt ? formatArabicDateTime(subDt) : '';
+
           return `
-            <div style="display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; background: rgba(15, 23, 42, 0.65); border: 1px solid ${subDone ? 'rgba(52, 211, 153, 0.25)' : 'rgba(255, 255, 255, 0.08)'}; border-radius: 8px; margin-top: 4px; font-size: 0.72rem; transition: all 0.15s ease;">
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; background: rgba(15, 23, 42, 0.70); border: 1px solid ${subDone ? 'rgba(52, 211, 153, 0.3)' : 'rgba(255, 255, 255, 0.08)'}; border-radius: 8px; margin-top: 4px; font-size: 0.72rem; transition: all 0.15s ease;">
               <div style="display: flex; align-items: center; gap: 7px; flex: 1; min-width: 0;">
                 <input type="checkbox" ${subDone ? 'checked' : ''} onchange="toggleSubtaskCompleted('${t.id}', '${s.id}')" style="cursor: pointer; width: 14px; height: 14px; accent-color: #10b981;">
-                <span style="color: ${subDone ? '#64748b' : '#e2e8f0'}; text-decoration: ${subDone ? 'line-through' : 'none'}; word-break: break-word; font-weight: 600; flex: 1;">${escapeHtml(s.title)}</span>
-                ${s.dueDate ? `<span style="font-size: 0.60rem; color: #c084fc; white-space: nowrap;">(${s.dueDate}${subTimeText})</span>` : ''}
+                <span style="color: ${subDone ? '#64748b' : '#e2e8f0'}; text-decoration: ${subDone ? 'line-through' : 'none'}; word-break: break-word; font-weight: 700; flex: 1;">${escapeHtml(s.title)}</span>
+                ${subDtText ? `<span style="font-size: 0.60rem; color: #c084fc; white-space: nowrap;">(${subDtText})</span>` : ''}
               </div>
 
               <!-- صورة المهمة الفرعية المصغرة وزر حذفها -->
-              <div style="display: flex; align-items: center; gap: 5px; margin-right: 6px; flex-shrink: 0;">
+              <div style="display: flex; align-items: center; gap: 6px; margin-right: 6px; flex-shrink: 0;">
                 ${s.photo ? `
-                  <img src="${s.photo}" onclick="openReceiptLightbox(this.src, 'صورة المهمة الفرعية: ${escapeHtml(s.title)}')" style="width: 24px; height: 24px; border-radius: 5px; object-fit: cover; border: 1.2px solid #38bdf8; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3);" title="انقر لتكبير صورة المهمة الفرعية">
+                  <img src="${s.photo}" onclick="openReceiptLightbox(this.src, 'صورة المهمة الفرعية: ${escapeHtml(s.title)}')" style="width: 26px; height: 26px; border-radius: 6px; object-fit: cover; border: 1.2px solid #38bdf8; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3);" title="انقر لتكبير صورة المهمة الفرعية">
                 ` : ''}
                 <button type="button" onclick="deleteSubtask('${t.id}', '${s.id}')" title="حذف المهمة الفرعية" style="background: transparent; border: none; color: #ef4444; font-size: 0.75rem; cursor: pointer; opacity: 0.75; padding: 0 3px;">
                   <i class="fa-solid fa-xmark"></i>
@@ -29229,33 +29575,41 @@ function installDailyNoonTrigger() {
         }).join('');
 
         return `
-          <div class="task-card-item" style="background: rgba(30, 41, 59, 0.85); border: 1.2px solid ${isDone ? 'rgba(52, 211, 153, 0.4)' : (t.starred ? 'rgba(245, 158, 11, 0.4)' : 'rgba(168, 85, 247, 0.35)')}; border-radius: 14px; padding: 11px 13px; display: flex; flex-direction: column; gap: 7px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);">
-            <!-- السطر العلوي: علامة الاكتمال + العنوان + الأيقونات والتنبيهات -->
+          <div class="task-card-item ${cardStateClass} ${isDone ? 'is-completed' : ''}">
+            <!-- السطر العلوي: علامة الاكتمال + العنوان + الأوسمة والأزرار -->
             <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;">
               <div style="display: flex; align-items: flex-start; gap: 9px; flex: 1; min-width: 0;">
                 <button type="button" onclick="toggleTaskCompleted('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: ${isDone ? '#34d399' : '#94a3b8'}; font-size: 1.25rem; padding: 0; line-height: 1; margin-top: 1px; transition: transform 0.15s ease;" title="${isDone ? 'إعادة فتح المهمة' : 'تعيين المهمة كمكتملة'}">
                   <i class="fa-${isDone ? 'solid fa-circle-check' : 'regular fa-circle'}"></i>
                 </button>
                 <div style="flex: 1; min-width: 0;">
-                  <div style="font-size: 0.84rem; font-weight: 800; color: ${isDone ? '#94a3b8' : '#f8fafc'}; text-decoration: ${isDone ? 'line-through' : 'none'}; word-break: break-word; line-height: 1.3;">
+                  <div style="font-size: 0.84rem; font-weight: 850; color: ${isDone ? '#94a3b8' : '#f8fafc'}; text-decoration: ${isDone ? 'line-through' : 'none'}; word-break: break-word; line-height: 1.3;">
                     ${escapeHtml(t.title)}
                   </div>
-                  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 4px;">
+                  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 4px;">
                     ${dueBadgeHtml}
-                    ${hasSubs ? `<span style="font-size: 0.62rem; color: #38bdf8; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 6px; padding: 2px 6px; font-weight: 800;"><i class="fa-solid fa-list-ol"></i> ${completedSubs}/${subtasks.length} مكتملة (${progressPct}%)</span>` : ''}
+                    ${prioBadgeHtml}
+                    ${tagBadgeHtml}
+                    ${hasSubs ? `<span style="font-size: 0.60rem; color: #38bdf8; background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 5px; padding: 1px 6px; font-weight: 800;"><i class="fa-solid fa-list-check"></i> ${completedSubs}/${subtasks.length} مكتملة (${progressPct}%)</span>` : ''}
                   </div>
                 </div>
               </div>
 
-              <!-- صورة المهمة المصغرة وزر النجمة والحذف -->
-              <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
+              <!-- أدوات التحكم السريعة: تحويل لمصروف، تعديل، صورة، نجمة، حذف -->
+              <div style="display: flex; align-items: center; gap: 5px; flex-shrink: 0;">
                 ${t.photo ? `
-                  <img src="${t.photo}" onclick="openReceiptLightbox(this.src, 'مرفق المهمة: ${escapeHtml(t.title)}')" style="width: 30px; height: 30px; border-radius: 7px; object-fit: cover; border: 1.5px solid #a855f7; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.4);" title="انقر لتكبير صورة المهمة">
+                  <img src="${t.photo}" onclick="openReceiptLightbox(this.src, 'مرفق المهمة: ${escapeHtml(t.title)}')" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover; border: 1.5px solid #a855f7; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.4);" title="انقر لتكبير صورة المهمة">
                 ` : ''}
+                <button type="button" onclick="convertTaskToExpense('${t.id}')" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 6px; cursor: pointer; color: #34d399; font-size: 0.72rem; padding: 3px 6px; font-weight: 800;" title="تحويل المهمة إلى مصروف مالي">
+                  <i class="fa-solid fa-money-bill-transfer"></i>
+                </button>
+                <button type="button" onclick="openEditTaskPrompt('${t.id}')" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; cursor: pointer; color: #cbd5e1; font-size: 0.72rem; padding: 3px 6px;" title="تعديل عنوان المهمة">
+                  <i class="fa-solid fa-pen"></i>
+                </button>
                 <button type="button" onclick="toggleTaskStarred('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: ${isStar ? '#fbbf24' : '#64748b'}; font-size: 1.05rem; padding: 2px;" title="${isStar ? 'إلغاء التمييز بنجمة' : 'تمييز كمهمة هامة'}">
                   <i class="fa-${isStar ? 'solid' : 'regular'} fa-star"></i>
                 </button>
-                <button type="button" onclick="deleteTaskItem('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: #ef4444; font-size: 0.90rem; padding: 2px; opacity: 0.75;" title="حذف المهمة">
+                <button type="button" onclick="deleteTaskItem('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: #ef4444; font-size: 0.88rem; padding: 2px; opacity: 0.75;" title="حذف المهمة">
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
               </div>
@@ -29268,24 +29622,25 @@ function installDailyNoonTrigger() {
               </div>
             ` : ''}
 
-            <!-- تفاصيل المهام الفرعية وإمكانية إضافة مهمة فرعية جديدة مع صورة وتاريخ ووقت -->
+            <!-- تفاصيل المهام الفرعية وإمكانية إضافة مهمة فرعية جديدة مع صورة وتاريخ ووقت موحد -->
             <div style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; margin-top: 2px;">
               ${subtasksHtml}
 
-              <!-- سطر إضافة مهمة فرعية جديدة مع موعد وصورة -->
-              <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; align-items: center; background: rgba(15, 23, 42, 0.55); border-radius: 8px; padding: 5px;">
-                <input type="text" id="inpSubtaskTitle_${t.id}" placeholder="إضافة خطوة أو مهمة فرعية..." style="flex: 1 1 120px; height: 28px; border-radius: 6px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(168, 85, 247, 0.3); color: #fff; font-size: 0.70rem; padding: 0 8px; outline: none;">
-                <input type="date" id="inpSubtaskDate_${t.id}" style="width: 95px; height: 28px; border-radius: 6px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(168, 85, 247, 0.3); color: #cbd5e1; font-size: 0.64rem; padding: 0 2px;" title="تاريخ المهمة الفرعية">
-                <input type="time" id="inpSubtaskTime_${t.id}" style="width: 70px; height: 28px; border-radius: 6px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(168, 85, 247, 0.3); color: #cbd5e1; font-size: 0.64rem; padding: 0 2px;" title="ساعة المهمة الفرعية">
+              <!-- سطر إضافة مهمة فرعية جديدة مع موعد ووقت موحد وصورة -->
+              <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; align-items: center; background: rgba(15, 23, 42, 0.55); border-radius: 8px; padding: 6px;">
+                <input type="text" id="inpSubtaskTitle_${t.id}" placeholder="إضافة خطوة أو مهمة فرعية..." style="flex: 1 1 120px; height: 30px; border-radius: 6px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(168, 85, 247, 0.3); color: #fff; font-size: 0.72rem; padding: 0 8px; outline: none;">
+                
+                <!-- حقل تاريخ ووقت المهمة الفرعية الموحد -->
+                <input type="datetime-local" id="inpSubtaskDateTime_${t.id}" class="task-datetime-input" style="width: 135px; height: 30px; border-radius: 6px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(168, 85, 247, 0.3); color: #cbd5e1; font-size: 0.65rem; padding: 0 4px;" title="تحديد موعد وساعة المهمة الفرعية معاً">
                 
                 <!-- إرفاق صورة للمهمة الفرعية -->
                 <input type="file" id="inpSubtaskPhoto_${t.id}" accept="image/*" style="display: none;" onchange="handleSubtaskPhotoPicked(event, '${t.id}')">
-                <button type="button" onclick="document.getElementById('inpSubtaskPhoto_${t.id}').click()" title="إرفاق صورة للمهمة الفرعية" id="btnSubtaskPhoto_${t.id}" style="height: 28px; padding: 0 7px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; font-size: 0.70rem; cursor: pointer; display: flex; align-items: center; gap: 3px;">
+                <button type="button" onclick="document.getElementById('inpSubtaskPhoto_${t.id}').click()" title="إرفاق صورة للمهمة الفرعية" id="btnSubtaskPhoto_${t.id}" style="height: 30px; padding: 0 8px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 3px;">
                   <i class="fa-solid fa-camera"></i>
                   <span id="subtaskPhotoBadge_${t.id}" style="display: none; font-size: 0.60rem; color: #34d399; font-weight: 800;">✓</span>
                 </button>
 
-                <button type="button" onclick="addSubtaskToTask('${t.id}')" style="height: 28px; padding: 0 10px; border-radius: 6px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.70rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                <button type="button" onclick="addSubtaskToTask('${t.id}')" style="height: 30px; padding: 0 12px; border-radius: 6px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.72rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 4px;">
                   <i class="fa-solid fa-plus"></i> إضافة
                 </button>
               </div>
@@ -29294,8 +29649,7 @@ function installDailyNoonTrigger() {
         `;
       }).join('');
     }
-    
-    // =========================================================================
+        // =========================================================================
     // 2. مهام Microsoft To-Do المتكاملة (Tasks Engine)
     // =========================================================================
     let currentTodoSection = 'my_day';
@@ -29344,15 +29698,27 @@ function installDailyNoonTrigger() {
 
     function handleAddNewTask() {
       const titleInp = document.getElementById('newTaskTitleInput');
-      const dateInp = document.getElementById('newTaskDueDateInput');
+      const dtInp = document.getElementById('newTaskDateTimeInput') || document.getElementById('newTaskDueDateInput');
       const title = titleInp ? titleInp.value.trim() : '';
       if (!title) return;
+
+      const dtVal = dtInp ? dtInp.value : '';
+      let dueDate = '', dueTime = '';
+      if (dtVal) {
+        const parts = dtVal.split('T');
+        dueDate = parts[0] || '';
+        dueTime = parts[1] ? parts[1].slice(0, 5) : '';
+      }
 
       const tasks = getTodoTasks();
       const newTask = {
         id: 'task-' + Date.now(),
         title: title,
-        dueDate: dateInp && dateInp.value ? dateInp.value : '',
+        dueDateTime: dtVal,
+        dueDate: dueDate,
+        dueTime: dueTime,
+        priority: 'normal',
+        tag: 'general',
         completed: false,
         starred: currentTodoSection === 'important',
         createdAt: new Date().toISOString(),
@@ -29362,9 +29728,10 @@ function installDailyNoonTrigger() {
       tasks.unshift(newTask);
       saveTodoTasks(tasks);
       if (titleInp) titleInp.value = '';
+      if (dtInp) dtInp.value = '';
       playNotificationChime();
       renderTasksList();
-      showToast('✨ تمت إضافة المهمة بنجاح!');
+      showToast('✨ تمت إضافة المهمة والموعد بنجاح!');
     }
 
     function toggleTaskCompleted(taskId) {
@@ -29431,7 +29798,8 @@ function installDailyNoonTrigger() {
       container.innerHTML = filtered.map(t => {
         const isDone = t.completed;
         const isStar = t.starred;
-        const dueText = t.dueDate ? `📅 استحقاق: ${t.dueDate}` : '';
+        const effectiveDt = t.dueDateTime || (t.dueDate ? `${t.dueDate}${t.dueTime ? 'T' + t.dueTime : ''}` : '');
+        const dueText = effectiveDt ? `📅 موعد التنبيه: ${formatArabicDateTime(effectiveDt)}` : '';
 
         return `
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 9px 12px; margin-bottom: 6px; transition: all 0.2s;">
@@ -29847,15 +30215,17 @@ function installDailyNoonTrigger() {
       let changed = false;
 
       tasks.forEach(t => {
-        // 1. فحص المهمة الرئيسية
-        if (!t.completed && !t.reminderFired && t.dueDate) {
+        // 1. فحص المهمة الرئيسية المجدولة
+        if (!t.completed && !t.reminderFired && (t.dueDate || t.dueDateTime)) {
           let isDue = false;
-          if (t.dueDate < todayStr) {
+          const effectiveDt = t.dueDateTime || (t.dueDate ? `${t.dueDate}${t.dueTime ? 'T' + t.dueTime : ''}` : '');
+          const currentIsoPrefix = `${todayStr}T${currentHHMM}`;
+          if (effectiveDt && effectiveDt <= currentIsoPrefix) {
             isDue = true;
-          } else if (t.dueDate === todayStr) {
-            if (!t.dueTime || t.dueTime <= currentHHMM) {
-              isDue = true;
-            }
+          } else if (t.dueDate < todayStr) {
+            isDue = true;
+          } else if (t.dueDate === todayStr && (!t.dueTime || t.dueTime <= currentHHMM)) {
+            isDue = true;
           }
 
           if (isDue) {
@@ -29874,17 +30244,19 @@ function installDailyNoonTrigger() {
           }
         }
 
-        // 2. فحص المهام الفرعية
+        // 2. فحص المهام الفرعية المجدولة
         if (t.subtasks && t.subtasks.length > 0) {
           t.subtasks.forEach(sub => {
-            if (!sub.completed && !sub.reminderFired && sub.dueDate) {
+            if (!sub.completed && !sub.reminderFired && (sub.dueDate || sub.dueDateTime)) {
               let isSubDue = false;
-              if (sub.dueDate < todayStr) {
+              const subDt = sub.dueDateTime || (sub.dueDate ? `${sub.dueDate}${sub.dueTime ? 'T' + sub.dueTime : ''}` : '');
+              const currentIsoPrefix = `${todayStr}T${currentHHMM}`;
+              if (subDt && subDt <= currentIsoPrefix) {
                 isSubDue = true;
-              } else if (sub.dueDate === todayStr) {
-                if (!sub.dueTime || sub.dueTime <= currentHHMM) {
-                  isSubDue = true;
-                }
+              } else if (sub.dueDate < todayStr) {
+                isSubDue = true;
+              } else if (sub.dueDate === todayStr && (!sub.dueTime || sub.dueTime <= currentHHMM)) {
+                isSubDue = true;
               }
               if (isSubDue) {
                 sub.reminderFired = true;
@@ -30720,47 +31092,126 @@ function installDailyNoonTrigger() {
       <div id="summaryDrawerContent" style="display: flex; flex-direction: column; gap: 12px;"></div>
     </div>
 
-    <!-- 2. لوحة محتوى المهام المتكاملة (Tasks View Section) -->
+    <!-- 2. لوحة محتوى المهام المتكاملة الاحترافية (Tasks Pro System) -->
     <div id="drawerTasksViewSection" style="display: none; flex: 1; overflow-y: auto; padding: 12px; flex-direction: column; gap: 10px;" class="custom-scrollbar">
-      <!-- نموذج إضافة مهمة جديدة مع تحديد التاريخ والصورة -->
-      <div style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(168, 85, 247, 0.4); border-radius: 12px; padding: 10px;">
-        <div style="display: flex; gap: 6px; margin-bottom: 6px;">
-          <input type="text" id="drawerNewTaskTitleInput" placeholder="أضف مهمة جديدة... (مثال: سداد اشتراك النادي)" style="flex: 1; height: 38px; border-radius: 8px; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(168, 85, 247, 0.3); color: #fff; font-size: 0.82rem; font-weight: 800; padding: 0 10px; outline: none;">
-          <input type="date" id="drawerNewTaskDateInput" style="height: 38px; width: 110px; border-radius: 8px; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(168, 85, 247, 0.3); color: #cbd5e1; font-size: 0.72rem; padding: 0 4px;" title="تاريخ الاستحقاق">
-          <input type="time" id="drawerNewTaskTimeInput" style="height: 38px; width: 88px; border-radius: 8px; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(168, 85, 247, 0.3); color: #cbd5e1; font-size: 0.72rem; padding: 0 4px;" title="ساعة التنبيه (اختياري)">
+      
+      <!-- شريط مؤشرات إنجاز المهام الذكي (KPIs & Metrics) -->
+      <div class="task-kpi-strip">
+        <div class="task-kpi-card" onclick="switchDrawerTodoSection('all')" style="cursor: pointer;" title="عرض كافة المهام النشطة">
+          <span class="task-kpi-num" id="kpiTasksTotal" style="color: #38bdf8;">0</span>
+          <span class="task-kpi-label">إجمالي المهام</span>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <div style="display: flex; gap: 6px;">
-            <input type="file" id="inpTaskPhotoCamera" accept="image/*" capture="environment" style="display: none;" onchange="handleTaskPhotoUpload(event)">
-            <input type="file" id="inpTaskPhotoGallery" accept="image/*" style="display: none;" onchange="handleTaskPhotoUpload(event)">
-            <button type="button" onclick="document.getElementById('inpTaskPhotoCamera').click()" style="padding: 4px 8px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-size: 0.68rem; font-weight: 800; cursor: pointer;">
-              <i class="fa-solid fa-camera"></i> تصوير
-            </button>
-            <button type="button" onclick="document.getElementById('inpTaskPhotoGallery').click()" style="padding: 4px 8px; border-radius: 6px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; font-size: 0.68rem; font-weight: 800; cursor: pointer;">
-              <i class="fa-solid fa-images"></i> صورة
-            </button>
-            <span id="taskPhotoAttachedBadge" style="display: none; font-size: 0.62rem; color: #34d399; font-weight: 800; align-self: center;">
-              <i class="fa-solid fa-check"></i> تم إرفاق صورة
-            </span>
-          </div>
-          <button type="button" onclick="handleDrawerAddNewTask()" style="padding: 6px 16px; border-radius: 8px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.78rem; font-weight: 900; cursor: pointer;">
-            <i class="fa-solid fa-plus"></i> إضافة مهمة
-          </button>
+        <div class="task-kpi-card" onclick="switchDrawerTodoSection('my_day')" style="cursor: pointer;" title="عرض مهام اليوم">
+          <span class="task-kpi-num" id="kpiTasksActive" style="color: #c084fc;">0</span>
+          <span class="task-kpi-label">قيد التنفيذ</span>
         </div>
-        <!-- معاينة صورة المهمة المعلقة -->
-        <div id="taskPendingPhotoPreview" style="display: none; margin-top: 6px; text-align: center; position: relative;">
-          <img id="taskPendingPhotoImg" src="" style="max-height: 70px; border-radius: 6px; border: 1px solid rgba(168, 85, 247, 0.5);">
-          <button type="button" onclick="clearTaskPendingPhoto()" style="position: absolute; top: -5px; right: 40%; background: #ef4444; border: none; border-radius: 50%; color: #fff; width: 20px; height: 20px; font-size: 0.70rem; cursor: pointer;">&times;</button>
+        <div class="task-kpi-card" onclick="switchDrawerTodoSection('overdue')" style="cursor: pointer;" title="عرض المهام المتأخرة">
+          <span class="task-kpi-num" id="kpiTasksOverdue" style="color: #ef4444;">0</span>
+          <span class="task-kpi-label">متأخرة ⚠️</span>
+        </div>
+        <div class="task-kpi-card" onclick="switchDrawerTodoSection('completed')" style="cursor: pointer;" title="عرض المهام المنجزة">
+          <span class="task-kpi-num" id="kpiTasksDone" style="color: #34d399;">0</span>
+          <span class="task-kpi-label">مكتملة ✅</span>
         </div>
       </div>
 
-      <!-- تبويبات أقسام المهام: مهام اليوم / الهامة / المخططة / الكل / المكتملة -->
-      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;">
-        <button type="button" class="exp-tab-btn active" id="btnDrawerTodoMyDay" onclick="switchDrawerTodoSection('my_day')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.66rem; background: rgba(168, 85, 247, 0.25); color: #c084fc; border: none; cursor: pointer; text-align: center;">يومي</button>
-        <button type="button" class="exp-tab-btn" id="btnDrawerTodoImportant" onclick="switchDrawerTodoSection('important')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.66rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">هام ⭐</button>
-        <button type="button" class="exp-tab-btn" id="btnDrawerTodoPlanned" onclick="switchDrawerTodoSection('planned')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.66rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">مخطط</button>
-        <button type="button" class="exp-tab-btn" id="btnDrawerTodoAll" onclick="switchDrawerTodoSection('all')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.66rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">الكل</button>
-        <button type="button" class="exp-tab-btn" id="btnDrawerTodoCompleted" onclick="switchDrawerTodoSection('completed')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.66rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">المكتملة</button>
+      <!-- شريط نسبة الإنجاز التراكمي -->
+      <div style="background: rgba(15, 23, 42, 0.82); border-radius: 9px; padding: 6px 10px; border: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <i class="fa-solid fa-chart-line" style="color: #a855f7; font-size: 0.80rem;"></i>
+          <span style="font-size: 0.68rem; font-weight: 800; color: #cbd5e1;">معدل إنجاز المهام:</span>
+        </div>
+        <div style="flex: 1; max-width: 150px; height: 6px; background: rgba(30, 41, 59, 0.9); border-radius: 4px; overflow: hidden;">
+          <div id="tasksOverallProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #10b981); transition: width 0.4s ease;"></div>
+        </div>
+        <span id="tasksOverallProgressPct" style="font-size: 0.70rem; font-weight: 900; color: #10b981; font-family: var(--font-numbers);">0%</span>
+      </div>
+
+      <!-- صندوق إضافة مهمة جديدة احترافي مع اختيار موعد ووقت موحد وصور وتصنيفات -->
+      <div style="background: rgba(15, 23, 42, 0.88); border: 1.2px solid rgba(168, 85, 247, 0.4); border-radius: 14px; padding: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.35);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <span style="font-size: 0.74rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 5px;">
+            <i class="fa-solid fa-circle-plus" style="color: #a855f7;"></i> إضافة مهمة ذكية جديدة
+          </span>
+          <span style="font-size: 0.62rem; color: #c084fc; font-weight: 700;">تنبيه آلي بالموعد ⏰</span>
+        </div>
+
+        <!-- 1. بيان وعنوان المهمة -->
+        <div style="margin-bottom: 8px;">
+          <input type="text" id="drawerNewTaskTitleInput" placeholder="اكتب عنوان المهمة أو الالتزام... (مثال: سداد قسط المدرسة)" style="width: 100%; height: 38px; border-radius: 9px; background: rgba(30, 41, 59, 0.85); border: 1.2px solid rgba(168, 85, 247, 0.35); color: #fff; font-size: 0.80rem; font-weight: 800; padding: 0 10px; outline: none; box-sizing: border-box;">
+        </div>
+
+        <!-- 2. سطر تحديد التاريخ والوقت في نفس الاختيار (Unified DateTime Selection) -->
+        <div style="margin-bottom: 6px;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <div style="position: relative; flex: 1;">
+              <span style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 0.76rem; color: #a855f7; pointer-events: none;">
+                <i class="fa-regular fa-clock"></i>
+              </span>
+              <input type="datetime-local" id="drawerNewTaskDateTimeInput" class="task-datetime-input" style="width: 100%; height: 36px; border-radius: 9px; background: rgba(30, 41, 59, 0.85); border: 1.2px solid rgba(168, 85, 247, 0.35); color: #cbd5e1; font-size: 0.74rem; font-weight: 700; padding: 0 32px 0 8px; outline: none; box-sizing: border-box;" title="تحديد التاريخ والوقت معاً في نفس الاختيار">
+            </div>
+          </div>
+
+          <!-- اختصارات سريعة لضبط الموعد بنقرة زر -->
+          <div style="display: flex; gap: 4px; overflow-x: auto; padding: 5px 0 2px;" class="custom-scrollbar">
+            <button type="button" class="task-preset-chip" onclick="setTaskDateTimePreset('today_evening')">⚡ اليوم 8:00 م</button>
+            <button type="button" class="task-preset-chip" onclick="setTaskDateTimePreset('tomorrow_morning')">☀️ غداً 10:00 ص</button>
+            <button type="button" class="task-preset-chip" onclick="setTaskDateTimePreset('after_two_days')">📅 بعد يومين</button>
+            <button type="button" class="task-preset-chip" onclick="setTaskDateTimePreset('weekend')">🗓️ عطلة الأسبوع</button>
+            <button type="button" class="task-preset-chip" onclick="setTaskDateTimePreset('clear')" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.35); background: rgba(239, 68, 68, 0.1);">❌ مسح</button>
+          </div>
+        </div>
+
+        <!-- 3. الأولوية والتصنيف والأزرار -->
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 8px;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <select id="drawerNewTaskPriority" style="height: 30px; border-radius: 7px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(168, 85, 247, 0.3); color: #cbd5e1; font-size: 0.68rem; font-weight: 800; padding: 0 6px; outline: none;">
+              <option value="normal">🟢 عادي</option>
+              <option value="medium">🟡 متوسط</option>
+              <option value="high">🔴 عالي جداً</option>
+            </select>
+
+            <select id="drawerNewTaskTag" style="height: 30px; border-radius: 7px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(168, 85, 247, 0.3); color: #cbd5e1; font-size: 0.68rem; font-weight: 800; padding: 0 6px; outline: none;">
+              <option value="general">📋 عام</option>
+              <option value="bills">📄 فواتير والتزامات</option>
+              <option value="shopping">🛒 مشتريات وسوبرماركت</option>
+              <option value="home">🏠 مستلزمات منزل</option>
+              <option value="family">👨‍👩‍👧 أسرة وشخصي</option>
+              <option value="work">💼 عمل ودراسة</option>
+            </select>
+          </div>
+
+          <!-- التقاط وإرفاق صورة -->
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <input type="file" id="inpTaskPhotoCamera" accept="image/*" capture="environment" style="display: none;" onchange="handleTaskPhotoUpload(event)">
+            <input type="file" id="inpTaskPhotoGallery" accept="image/*" style="display: none;" onchange="handleTaskPhotoUpload(event)">
+            <button type="button" onclick="document.getElementById('inpTaskPhotoCamera').click()" title="تصوير عبر الكاميرا" style="height: 30px; padding: 0 8px; border-radius: 7px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-size: 0.68rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-camera"></i> تصوير
+            </button>
+            <button type="button" onclick="document.getElementById('inpTaskPhotoGallery').click()" title="صورة من الاستوديو" style="height: 30px; padding: 0 8px; border-radius: 7px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; font-size: 0.68rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+              <i class="fa-solid fa-images"></i> صورة
+            </button>
+            <button type="button" onclick="handleDrawerAddNewTask()" style="height: 30px; padding: 0 14px; border-radius: 7px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.76rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.4);">
+              <i class="fa-solid fa-plus"></i> إضافة مهمة
+            </button>
+          </div>
+        </div>
+
+        <!-- معاينة الصورة المعلقة للمهمة -->
+        <div id="taskPendingPhotoPreview" style="display: none; margin-top: 8px; background: rgba(0,0,0,0.3); border-radius: 8px; padding: 6px; text-align: center; position: relative;">
+          <img id="taskPendingPhotoImg" src="" style="max-height: 80px; border-radius: 6px; border: 1.5px solid #a855f7; object-fit: contain;">
+          <button type="button" onclick="clearTaskPendingPhoto()" style="position: absolute; top: 4px; left: 8px; background: #ef4444; border: none; border-radius: 50%; color: #fff; width: 22px; height: 22px; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center;">&times;</button>
+        </div>
+      </div>
+
+      <!-- تبويبات أقسام المهام الستة: يومي / هام / مخطط / متأخرة / الكل / المكتملة -->
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px; margin: 2px 0;">
+        <button type="button" class="exp-tab-btn active" id="btnDrawerTodoMyDay" onclick="switchDrawerTodoSection('my_day')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.64rem; background: rgba(168, 85, 247, 0.25); color: #c084fc; border: none; cursor: pointer; text-align: center;">يومي</button>
+        <button type="button" class="exp-tab-btn" id="btnDrawerTodoImportant" onclick="switchDrawerTodoSection('important')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.64rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">هام ⭐</button>
+        <button type="button" class="exp-tab-btn" id="btnDrawerTodoPlanned" onclick="switchDrawerTodoSection('planned')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.64rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">مخطط</button>
+        <button type="button" class="exp-tab-btn" id="btnDrawerTodoOverdue" onclick="switchDrawerTodoSection('overdue')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.64rem; background: transparent; color: #ef4444; border: 1px solid rgba(239,68,68,0.25); cursor: pointer; text-align: center;">متأخرة ⚠️</button>
+        <button type="button" class="exp-tab-btn" id="btnDrawerTodoAll" onclick="switchDrawerTodoSection('all')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.64rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">الكل</button>
+        <button type="button" class="exp-tab-btn" id="btnDrawerTodoCompleted" onclick="switchDrawerTodoSection('completed')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.64rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">المكتملة</button>
       </div>
 
       <!-- قائمة المهام التفاعلية المتطورة مع المهام الفرعية والصور -->
@@ -30808,7 +31259,7 @@ function installDailyNoonTrigger() {
       <!-- إدخال مهمة جديدة سريعة -->
       <form onsubmit="event.preventDefault(); handleAddNewTask();" style="display: flex; gap: 6px; margin-bottom: 10px;">
         <input type="text" id="newTaskTitleInput" class="form-input-custom" placeholder="+ إضافة مهمة جديدة... (اضغط Enter)" required style="flex: 1; height: 38px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 10px; padding: 0 10px; color: #f8fafc; font-size: 0.78rem; font-weight: 700; outline: none;">
-        <input type="date" id="newTaskDueDateInput" title="تاريخ الاستحقاق" style="width: 105px; height: 38px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 10px; padding: 0 6px; color: #c084fc; font-size: 0.70rem; outline: none;">
+        <input type="datetime-local" id="newTaskDateTimeInput" class="task-datetime-input" title="تحديد التاريخ والوقت في نفس الاختيار" style="width: 145px; height: 38px; background: rgba(30, 41, 59, 0.85); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 10px; padding: 0 6px; color: #c084fc; font-size: 0.70rem; outline: none;">
         <button type="submit" style="background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; width: 40px; height: 38px; border-radius: 10px; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center;">
           <i class="fa-solid fa-plus"></i>
         </button>
