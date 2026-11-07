@@ -142,9 +142,9 @@
 
     var currentEditTxReceiptDataUri = null;
     var APP_VERSION = '4.9.9';
-    var APP_BUILD_ID = 202611071830;
+    var APP_BUILD_ID = 202611071845;
     window.APP_VERSION = '4.9.9';
-    window.APP_BUILD_ID = 202611071830;
+    window.APP_BUILD_ID = 202611071845;
     (function() {
       try {
         var t = localStorage.getItem('family_monefy_theme') || 'navy';
@@ -11801,6 +11801,102 @@
     body.light-theme .task-datetime-input {
       color-scheme: light;
     }
+    /* نسق تدفق المبالغ والعملة: علامة الزائد والناقص يمين الرقم ورمز العملة يسار الرقم */
+    .amount-flow-cluster {
+      display: inline-flex !important;
+      flex-direction: row !important;
+      align-items: baseline !important;
+      gap: 3px !important;
+      direction: rtl !important;
+      unicode-bidi: isolate !important;
+      white-space: nowrap !important;
+    }
+    .amount-flow-cluster .tx-sign-symbol {
+      font-weight: 900 !important;
+      font-size: 1.05em !important;
+      line-height: 1 !important;
+      margin-left: 2px !important;
+      flex-shrink: 0 !important;
+    }
+    .amount-flow-cluster .tx-sign-symbol.sign-expense {
+      color: #f43f5e !important;
+    }
+    .amount-flow-cluster .tx-sign-symbol.sign-income {
+      color: #10b981 !important;
+    }
+    .amount-flow-cluster .tx-number-val {
+      font-family: var(--font-numbers) !important;
+      font-variant-numeric: tabular-nums !important;
+      font-weight: 900 !important;
+      line-height: 1 !important;
+    }
+    .amount-flow-cluster .tx-currency-label {
+      font-size: 0.74em !important;
+      font-weight: 800 !important;
+      opacity: 0.9 !important;
+      margin-right: 2px !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* تحسينات متقدمة لنظام المهام والخطوات الفرعية الاحترافي */
+    .task-card-item {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+      border: 1.3px solid rgba(168, 85, 247, 0.35) !important;
+      border-radius: 16px !important;
+      padding: 12px 14px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 8px !important;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.40) !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .task-card-item:hover {
+      border-color: rgba(168, 85, 247, 0.60) !important;
+      box-shadow: 0 6px 22px rgba(168, 85, 247, 0.18) !important;
+    }
+    .task-card-item.is-overdue {
+      border-color: rgba(239, 68, 68, 0.75) !important;
+      box-shadow: 0 0 16px rgba(239, 68, 68, 0.22) !important;
+    }
+    .task-card-item.is-today {
+      border-color: rgba(245, 158, 11, 0.75) !important;
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.20) !important;
+    }
+    .task-card-item.is-completed {
+      border-color: rgba(52, 211, 153, 0.45) !important;
+      opacity: 0.85 !important;
+    }
+    .task-check-circle {
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      cursor: pointer !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      transition: transform 0.15s ease !important;
+    }
+    .task-check-circle:active {
+      transform: scale(0.85) !important;
+    }
+    .subtask-row-item {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 8px !important;
+      background: rgba(15, 23, 42, 0.65) !important;
+      border: 1px solid rgba(255, 255, 255, 0.06) !important;
+      border-radius: 8px !important;
+      padding: 6px 8px !important;
+      transition: background 0.15s ease !important;
+    }
+    .subtask-row-item:hover {
+      background: rgba(30, 41, 59, 0.85) !important;
+      border-color: rgba(168, 85, 247, 0.30) !important;
+    }
+    .subtask-row-item.done {
+      opacity: 0.72 !important;
+    }
   </style>
 </head>
 <body>
@@ -12077,6 +12173,12 @@
           <button type="button" class="tool-pill-action" id="btnOpenSummaryDrawer" onclick="openSummaryDrawer()" title="ملخص العمليات والنشاط المالي (اليوم / الأسبوع / الشهر)" style="height: 38px; padding: 0 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(56, 189, 248, 0.5); background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.9)); color: #38bdf8; flex-shrink: 0;">
             <i class="fa-solid fa-chart-pie"></i>
             <span>ملخص</span>
+          </button>
+
+          <!-- زر درج المهام والالتزامات العائلية والخطوات الفرعية (1-tap shortcut) -->
+          <button type="button" class="tool-pill-action" id="btnOpenTasksDrawer" onclick="openSummaryDrawer('tasks')" title="إدارة المهام والالتزامات العائلية والخطوات الفرعية" style="height: 38px; padding: 0 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(168, 85, 247, 0.5); background: linear-gradient(135deg, rgba(168, 85, 247, 0.20), rgba(15, 23, 42, 0.9)); color: #c084fc; flex-shrink: 0;">
+            <i class="fa-solid fa-list-check" style="color: #c084fc;"></i>
+            <span>المهام</span>
           </button>
 
           
@@ -15432,7 +15534,7 @@
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
       const APP_VERSION = '4.9.9';
-      const APP_BUILD_ID = 202611071830;
+      const APP_BUILD_ID = 202611071845;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
@@ -18013,24 +18115,50 @@
       return 'ج.م';
     }
 
-    function formatMoney(n, compact = false) {
-      const num = Number(n) || 0;
-      if (Math.abs(num) < 0.005) {
-        if (state.currency === 'USD') return '$0.00';
-        if (state.currency === 'GOLD21') return '0.00 جم ذهب 21';
-        return `0.00 ${getCurrencySymbol()}`;
-      }
+    // منسق المبالغ الاحترافي المعتمد: علامة الزائد والناقص إلى يمين الرقم ورمز العملة إلى يسار الرقم دائماً في RTL
+    function formatMoneyWithSignHtml(amount, typeOrSign = null, customClass = '') {
+      const raw = Number(amount) || 0;
+      const num = Math.abs(raw);
       const converted = convertAmount(num);
-      const isUSD = state.currency === 'USD';
       const isGold = state.currency === 'GOLD21';
-      
-      if (isGold) {
-        let formatted = converted.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 3 });
-        return `${formatted} جم ذهب 21`;
+      const curr = getCurrencySymbol();
+      let formatted = converted.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: isGold ? 3 : 2
+      });
+
+      let sign = '';
+      let signClass = '';
+      if (typeOrSign === 'expense' || typeOrSign === '-' || (typeOrSign === null && raw < -0.0001)) {
+        sign = '-';
+        signClass = 'sign-expense';
+      } else if (typeOrSign === 'income' || typeOrSign === '+' || (typeOrSign === null && raw > 0.0001)) {
+        sign = '+';
+        signClass = 'sign-income';
       }
-      
-      let formatted = converted.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      return isUSD ? `$${formatted}` : `${formatted} ${getCurrencySymbol()}`;
+
+      return `<span class="amount-flow-cluster ${customClass}" dir="rtl">` +
+        (sign ? `<span class="tx-sign-symbol ${signClass}">${sign}</span>` : '') +
+        `<span class="tx-number-val">${formatted}</span>` +
+        `<span class="tx-currency-label">${curr}</span>` +
+      `</span>`;
+    }
+
+    function formatMoney(n, compact = false) {
+      const raw = Number(n) || 0;
+      const num = Math.abs(raw);
+      const converted = convertAmount(num);
+      const isGold = state.currency === 'GOLD21';
+      const curr = getCurrencySymbol();
+      let formatted = converted.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: isGold ? 3 : 2
+      });
+      // قاعدة التنسيق الصارمة: علامة الزائد والناقص يمين الرقم ورمز العملة يسار الرقم
+      if (raw < -0.0001) {
+        return `\u200F- \u200E${formatted} \u200F${curr}`;
+      }
+      return `\u200E${formatted} \u200F${curr}`;
     }
 
     // =========================================================================
@@ -19483,7 +19611,7 @@ function generateRichDemoTransactions() {
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(10, 16, 26, 0.75); border-radius: 12px; padding: 10px 14px; border: 1px solid rgba(255,255,255,0.06);">
               <span style="font-size: 0.8rem; font-weight: 700; color: #cbd5e1;">إجمالي المنصرف في هذا البند:</span>
-              <span style="font-size: 1.25rem; font-weight: 900; color: #ef4444; direction: ltr;">- ${formatMoney(totalSpent)}</span>
+              ${formatMoneyWithSignHtml(totalSpent, '-', 'style="font-size: 1.22rem;"')}
             </div>
             
             <!-- قائمة الحركات المفصلة لبند المصروف المختار -->
@@ -19498,7 +19626,7 @@ function generateRichDemoTransactions() {
                       <span style="color: #f1f5f9; font-weight: 700;">${escapeHtml(t.label)}</span>
                       <span style="color: #64748b; font-size: 0.7rem; margin-right: 6px;">(${t.date})</span>
                     </div>
-                    <span style="color: #ef4444; font-weight: 800; direction: ltr;">- ${formatMoney(t.amount)}</span>
+                    ${formatMoneyWithSignHtml(t.amount, '-')}
                   </div>
                 `;
               }).join('') : '<div style="font-size: 0.78rem; color: #94a3b8; text-align: center; padding: 14px;">لا توجد حركات مسجلة لهذا البند في الفترة المحددة</div>'}
@@ -19809,11 +19937,11 @@ function generateRichDemoTransactions() {
         headerEl.className = 'ops-date-group-header';
         let subtotalBadge = '';
         if (dayExpSum > 0 && dayIncSum > 0) {
-          subtotalBadge = `<span class="ops-date-subtotal exp">- ${formatMoney(dayExpSum)}</span> <span class="ops-date-subtotal inc">+ ${formatMoney(dayIncSum)}</span>`;
+          subtotalBadge = `${formatMoneyWithSignHtml(dayExpSum, '-', 'ops-date-subtotal exp')} ${formatMoneyWithSignHtml(dayIncSum, '+', 'ops-date-subtotal inc')}`;
         } else if (dayExpSum > 0) {
-          subtotalBadge = `<span class="ops-date-subtotal exp">إجمالي المنصرف: - ${formatMoney(dayExpSum)}</span>`;
+          subtotalBadge = `<span style="font-size: 0.70rem; color: #94a3b8; margin-left: 3px;">إجمالي المنصرف:</span> ${formatMoneyWithSignHtml(dayExpSum, '-', 'ops-date-subtotal exp')}`;
         } else {
-          subtotalBadge = `<span class="ops-date-subtotal inc">إجمالي الدخل: + ${formatMoney(dayIncSum)}</span>`;
+          subtotalBadge = `<span style="font-size: 0.70rem; color: #94a3b8; margin-left: 3px;">إجمالي الدخل:</span> ${formatMoneyWithSignHtml(dayIncSum, '+', 'ops-date-subtotal inc')}`;
         }
 
         headerEl.innerHTML = `
@@ -19885,9 +20013,7 @@ function generateRichDemoTransactions() {
               </div>
             </div>
             <div class="ops-tx-left-cluster">
-              <span class="ops-tx-amount-text" style="color: ${color};">
-                ${sign}${formatMoney(amt)}
-              </span>
+              ${formatMoneyWithSignHtml(amt, sign, 'ops-tx-amount-text')}
               <button class="ops-tx-edit-btn" onclick="openEditTxModal('${tx.id}')" title="تعديل وتفاصيل الحركة" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; margin-left: 4px; transition: all 0.2s;">
                 <i class="fa-solid fa-pen-to-square" style="font-size: 0.76rem;"></i>
               </button>
@@ -24646,7 +24772,7 @@ function openSettingsModal(targetSection = '') {
 
       let total = 0;
       incomeList.forEach(t => { total += (Number(t.amount) || 0); });
-      if (totalAmtEl) totalAmtEl.textContent = '+ ' + formatMoney(total);
+      if (totalAmtEl) totalAmtEl.innerHTML = formatMoneyWithSignHtml(total, '+');
 
       if (incomeList.length === 0) {
         container.innerHTML = `
@@ -24691,9 +24817,7 @@ function openSettingsModal(targetSection = '') {
               </div>
             </div>
             <div class="ops-tx-left-cluster">
-              <span class="ops-tx-amount-text" style="color: #10b981; font-weight: 900;">
-                + ${formatMoney(amt)}
-              </span>
+              ${formatMoneyWithSignHtml(amt, '+', 'ops-tx-amount-text')}
               <button class="ops-tx-edit-btn" onclick="closeModal('incomeHistoryModal'); openEditTxModal('${t.id}')" title="تعديل الإيداع" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; margin-left: 4px;">
                 <i class="fa-solid fa-pen-to-square" style="font-size: 0.76rem;"></i>
               </button>
@@ -29714,7 +29838,7 @@ function installDailyNoonTrigger() {
       const currentHHMM = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
       const currentIsoPrefix = `${todayStr}T${currentHHMM}`;
 
-      // 1. حساب مؤشرات الـ KPIs المعتمدة
+      // 1. حساب مؤشرات الـ KPIs المعتمدة بدقة رياضية
       const totalCount = allTasks.length;
       const activeCount = allTasks.filter(t => !t.completed).length;
       const completedCount = allTasks.filter(t => t.completed).length;
@@ -29745,7 +29869,7 @@ function installDailyNoonTrigger() {
       if (progBarEl) progBarEl.style.width = overallPct + '%';
       if (progPctEl) progPctEl.textContent = overallPct + '%';
 
-      // 2. الفلترة حسب القسم المحدد
+      // 2. الفلترة المتقدمة حسب القسم المختار
       let filtered = allTasks;
       if (currentDrawerTodoSection === 'my_day') {
         filtered = allTasks.filter(t => !t.completed && (t.dueDate === todayStr || !t.dueDate));
@@ -29771,16 +29895,21 @@ function installDailyNoonTrigger() {
 
       if (filtered.length === 0) {
         container.innerHTML = `
-          <div style="text-align: center; padding: 35px 10px; color: #94a3b8; font-size: 0.80rem;">
-            <i class="fa-solid fa-list-check" style="font-size: 2.2rem; color: #a855f7; opacity: 0.45; margin-bottom: 10px; display: block;"></i>
-            <div style="font-weight: 800; color: #cbd5e1;">لا توجد مهام في هذا القسم حالياً</div>
-            <div style="font-size: 0.70rem; color: #64748b; margin-top: 4px;">يمكنك إضافة مهمة وتحديد موعد ووقت التنبيه بالأعلى</div>
+          <div style="text-align: center; padding: 40px 14px; background: rgba(15, 23, 42, 0.65); border: 1.5px dashed rgba(168, 85, 247, 0.30); border-radius: 16px; margin-top: 6px;">
+            <div style="width: 52px; height: 52px; border-radius: 50%; background: rgba(168, 85, 247, 0.15); color: #c084fc; display: inline-flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 10px;">
+              <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div style="font-weight: 850; font-size: 0.88rem; color: #f8fafc;">لا توجد مهام في هذا القسم حالياً</div>
+            <div style="font-size: 0.72rem; color: #94a3b8; margin: 6px 0 14px;">يمكنك إضافة مهمة جديدة وتحديد الموعد والتنبيهات الموحدة بخطوة واحدة</div>
+            <button type="button" onclick="openNewTaskDrawerModal()" style="height: 36px; padding: 0 18px; border-radius: 10px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.76rem; font-weight: 850; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 10px rgba(168, 85, 247, 0.35);">
+              <i class="fa-solid fa-plus"></i> + إضافة مهمة جديدة الآن
+            </button>
           </div>
         `;
         return;
       }
 
-      // قواميس الوسوم والأولويات
+      // قواميس الوسوم والتصنيفات والأولويات
       const TAG_LABELS = {
         bills: { name: 'فواتير والتزامات', icon: 'fa-receipt', color: '#f97316' },
         shopping: { name: 'مشتريات', icon: 'fa-cart-shopping', color: '#10b981' },
@@ -29791,8 +29920,8 @@ function installDailyNoonTrigger() {
       };
 
       const PRIORITY_BADGES = {
-        high: `<span style="font-size: 0.60rem; font-weight: 900; color: #f87171; background: rgba(239, 68, 68, 0.18); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 5px; padding: 1px 5px;"><i class="fa-solid fa-fire"></i> عالي جداً</span>`,
-        medium: `<span style="font-size: 0.60rem; font-weight: 900; color: #fbbf24; background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 5px; padding: 1px 5px;">متوسط</span>`,
+        high: `<span class="task-badge task-badge-urgent"><i class="fa-solid fa-fire"></i> عاجل</span>`,
+        medium: `<span class="task-badge" style="background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.35); color: #fbbf24;"><i class="fa-solid fa-star"></i> متوسط</span>`,
         normal: ''
       };
 
@@ -29816,43 +29945,47 @@ function installDailyNoonTrigger() {
 
           if (isOverdue) {
             cardStateClass = 'is-overdue';
-            dueBadgeHtml = `<span style="font-size: 0.62rem; color: #f87171; background: rgba(239, 68, 68, 0.20); border: 1px solid rgba(239, 68, 68, 0.45); border-radius: 6px; padding: 2px 7px; font-weight: 900;"><i class="fa-solid fa-triangle-exclamation"></i> متأخرة: ${formattedDt}</span>`;
+            dueBadgeHtml = `<span class="task-badge task-badge-overdue"><i class="fa-solid fa-triangle-exclamation"></i> متأخرة: ${formattedDt}</span>`;
           } else if (isToday) {
             cardStateClass = 'is-today';
-            dueBadgeHtml = `<span style="font-size: 0.62rem; color: #fbbf24; background: rgba(245, 158, 11, 0.20); border: 1px solid rgba(245, 158, 11, 0.45); border-radius: 6px; padding: 2px 7px; font-weight: 900;"><i class="fa-regular fa-clock"></i> اليوم: ${formattedDt}</span>`;
+            dueBadgeHtml = `<span class="task-badge task-badge-today"><i class="fa-regular fa-sun"></i> اليوم: ${formattedDt}</span>`;
           } else {
-            dueBadgeHtml = `<span style="font-size: 0.62rem; color: #c084fc; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 6px; padding: 2px 7px; font-weight: 800;"><i class="fa-regular fa-calendar-check"></i> ${formattedDt}</span>`;
+            dueBadgeHtml = `<span class="task-badge task-badge-planned"><i class="fa-regular fa-calendar"></i> ${formattedDt}</span>`;
           }
         }
 
         const tagInfo = TAG_LABELS[t.tag] || TAG_LABELS.general;
-        const tagBadgeHtml = (t.tag && t.tag !== 'general') 
-          ? `<span style="font-size: 0.60rem; font-weight: 800; color: ${tagInfo.color}; background: rgba(255,255,255,0.06); border: 1px solid ${tagInfo.color}40; border-radius: 5px; padding: 1px 6px;"><i class="fa-solid ${tagInfo.icon}"></i> ${tagInfo.name}</span>`
+        const tagBadgeHtml = (t.tag && t.tag !== 'general')
+          ? `<span class="task-badge" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); color: ${tagInfo.color};"><i class="fa-solid ${tagInfo.icon}"></i> ${tagInfo.name}</span>`
           : '';
 
         const prioBadgeHtml = PRIORITY_BADGES[t.priority] || '';
 
-        // المهام الفرعية التفاعلية مع دعم إرفاق صورة وعرضها
+        // قائمة الخطوات الفرعية التفاعلية
         const subtasksHtml = subtasks.map(s => {
           const subDone = s.completed;
           const subDt = s.dueDateTime || (s.dueDate ? `${s.dueDate}${s.dueTime ? 'T' + s.dueTime : ''}` : '');
           const subDtText = subDt ? formatArabicDateTime(subDt) : '';
 
           return `
-            <div style="display: flex; align-items: center; justify-content: space-between; padding: 5px 8px; background: rgba(15, 23, 42, 0.70); border: 1px solid ${subDone ? 'rgba(52, 211, 153, 0.3)' : 'rgba(255, 255, 255, 0.08)'}; border-radius: 8px; margin-top: 4px; font-size: 0.72rem; transition: all 0.15s ease;">
-              <div style="display: flex; align-items: center; gap: 7px; flex: 1; min-width: 0;">
-                <input type="checkbox" ${subDone ? 'checked' : ''} onchange="toggleSubtaskCompleted('${t.id}', '${s.id}')" style="cursor: pointer; width: 14px; height: 14px; accent-color: #10b981;">
-                <span style="color: ${subDone ? '#64748b' : '#e2e8f0'}; text-decoration: ${subDone ? 'line-through' : 'none'}; word-break: break-word; font-weight: 700; flex: 1;">${escapeHtml(s.title)}</span>
-                ${subDtText ? `<span style="font-size: 0.60rem; color: #c084fc; white-space: nowrap;">(${subDtText})</span>` : ''}
+            <div class="subtask-row-item ${subDone ? 'done' : ''}">
+              <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0;">
+                <button type="button" onclick="toggleSubtaskCompleted('${t.id}', '${s.id}')" title="${subDone ? 'إعادة فتح الخطوة' : 'تعليم كمكتملة'}" style="background: transparent; border: none; padding: 0; cursor: pointer; color: ${subDone ? '#10b981' : '#c084fc'}; font-size: 1rem; display: flex; align-items: center; flex-shrink: 0;">
+                  <i class="fa-${subDone ? 'solid fa-circle-check' : 'regular fa-circle'}"></i>
+                </button>
+                <span style="font-size: 0.76rem; font-weight: 750; color: ${subDone ? '#64748b' : '#e2e8f0'}; text-decoration: ${subDone ? 'line-through' : 'none'}; word-break: break-word;">
+                  ${escapeHtml(s.title)}
+                </span>
+                ${subDtText ? `<span style="font-size: 0.60rem; color: #c084fc; background: rgba(168, 85, 247, 0.14); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 4px; padding: 1px 5px; white-space: nowrap;"><i class="fa-regular fa-clock"></i> ${subDtText}</span>` : ''}
               </div>
 
-              <!-- صورة المهمة الفرعية المصغرة وزر حذفها -->
-              <div style="display: flex; align-items: center; gap: 6px; margin-right: 6px; flex-shrink: 0;">
+              <!-- صورة الخطوة الفرعية وزر حذفها -->
+              <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
                 ${s.photo ? `
-                  <img src="${s.photo}" onclick="openReceiptLightbox(this.src, 'صورة المهمة الفرعية: ${escapeHtml(s.title)}')" style="width: 26px; height: 26px; border-radius: 6px; object-fit: cover; border: 1.2px solid #38bdf8; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3);" title="انقر لتكبير صورة المهمة الفرعية">
+                  <img src="${s.photo}" onclick="openReceiptLightbox(this.src, 'مرفق الخطوة الفرعية: ${escapeHtml(s.title)}')" style="width: 22px; height: 22px; border-radius: 5px; object-fit: cover; border: 1.2px solid #a855f7; cursor: zoom-in;" title="تكبير الصورة">
                 ` : ''}
-                <button type="button" onclick="deleteSubtask('${t.id}', '${s.id}')" title="حذف المهمة الفرعية" style="background: transparent; border: none; color: #ef4444; font-size: 0.75rem; cursor: pointer; opacity: 0.75; padding: 0 3px;">
-                  <i class="fa-solid fa-xmark"></i>
+                <button type="button" onclick="deleteSubtask('${t.id}', '${s.id}')" title="حذف الخطوة الفرعية" style="background: transparent; border: none; color: #ef4444; opacity: 0.75; cursor: pointer; font-size: 0.74rem; padding: 2px 4px;">
+                  <i class="fa-solid fa-trash-can"></i>
                 </button>
               </div>
             </div>
@@ -29864,18 +29997,19 @@ function installDailyNoonTrigger() {
             <!-- السطر العلوي: علامة الاكتمال + العنوان + الأوسمة والأزرار -->
             <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;">
               <div style="display: flex; align-items: flex-start; gap: 9px; flex: 1; min-width: 0;">
-                <button type="button" onclick="toggleTaskCompleted('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: ${isDone ? '#34d399' : '#94a3b8'}; font-size: 1.25rem; padding: 0; line-height: 1; margin-top: 1px; transition: transform 0.15s ease;" title="${isDone ? 'إعادة فتح المهمة' : 'تعيين المهمة كمكتملة'}">
+                <button type="button" onclick="toggleTaskCompleted('${t.id}')" class="task-check-circle" title="${isDone ? 'إعادة فتح المهمة' : 'تعليم كمكتملة'}" style="margin-top: 1px; color: ${isDone ? '#10b981' : '#c084fc'}; font-size: 1.18rem;">
                   <i class="fa-${isDone ? 'solid fa-circle-check' : 'regular fa-circle'}"></i>
                 </button>
                 <div style="flex: 1; min-width: 0;">
-                  <div style="font-size: 0.84rem; font-weight: 850; color: ${isDone ? '#94a3b8' : '#f8fafc'}; text-decoration: ${isDone ? 'line-through' : 'none'}; word-break: break-word; line-height: 1.3;">
+                  <div style="font-size: 0.86rem; font-weight: 850; line-height: 1.35; color: ${isDone ? '#94a3b8' : '#f8fafc'}; text-decoration: ${isDone ? 'line-through' : 'none'}; word-break: break-word;">
                     ${escapeHtml(t.title)}
                   </div>
-                  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 4px;">
+                  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 5px;">
                     ${dueBadgeHtml}
                     ${prioBadgeHtml}
                     ${tagBadgeHtml}
-                    ${hasSubs ? `<span style="font-size: 0.60rem; color: #38bdf8; background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 5px; padding: 1px 6px; font-weight: 800;"><i class="fa-solid fa-list-check"></i> ${completedSubs}/${subtasks.length} مكتملة (${progressPct}%)</span>` : ''}
+                    ${hasSubs ? `<span class="task-badge" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8;"><i class="fa-solid fa-list-check"></i> ${completedSubs}/${subtasks.length} خطوة</span>` : ''}
+                    <span style="font-size: 0.58rem; color: #64748b;">بواسطة: ${escapeHtml(t.author || 'العائلة')}</span>
                   </div>
                 </div>
               </div>
@@ -29883,18 +30017,19 @@ function installDailyNoonTrigger() {
               <!-- أدوات التحكم السريعة: تحويل لمصروف، تعديل، صورة، نجمة، حذف -->
               <div style="display: flex; align-items: center; gap: 5px; flex-shrink: 0;">
                 ${t.photo ? `
-                  <img src="${t.photo}" onclick="openReceiptLightbox(this.src, 'مرفق المهمة: ${escapeHtml(t.title)}')" style="width: 32px; height: 32px; border-radius: 8px; object-fit: cover; border: 1.5px solid #a855f7; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.4);" title="انقر لتكبير صورة المهمة">
+                  <img src="${t.photo}" onclick="openReceiptLightbox(this.src, 'مرفق المهمة: ${escapeHtml(t.title)}')" style="width: 26px; height: 26px; border-radius: 6px; object-fit: cover; border: 1.3px solid #a855f7; cursor: zoom-in;" title="تكبير الصورة المرفقة">
                 ` : ''}
-                <button type="button" onclick="convertTaskToExpense('${t.id}')" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 6px; cursor: pointer; color: #34d399; font-size: 0.72rem; padding: 3px 6px; font-weight: 800;" title="تحويل المهمة إلى مصروف مالي">
+                <button type="button" onclick="convertTaskToExpense('${t.id}')" title="تحويل لمصروف مسجل بلمسة واحدة" style="height: 28px; padding: 0 8px; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.35); color: #34d399; border-radius: 8px; font-size: 0.68rem; font-weight: 850; display: inline-flex; align-items: center; gap: 4px; cursor: pointer;">
                   <i class="fa-solid fa-money-bill-transfer"></i>
+                  <span>تحويل لمصروف</span>
                 </button>
-                <button type="button" onclick="openEditTaskPrompt('${t.id}')" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; cursor: pointer; color: #cbd5e1; font-size: 0.72rem; padding: 3px 6px;" title="تعديل عنوان المهمة">
-                  <i class="fa-solid fa-pen"></i>
+                <button type="button" onclick="openEditTaskPrompt('${t.id}')" title="تعديل عنوان المهمة" style="width: 28px; height: 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;">
+                  <i class="fa-solid fa-pen" style="font-size: 0.72rem;"></i>
                 </button>
-                <button type="button" onclick="toggleTaskStarred('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: ${isStar ? '#fbbf24' : '#64748b'}; font-size: 1.05rem; padding: 2px;" title="${isStar ? 'إلغاء التمييز بنجمة' : 'تمييز كمهمة هامة'}">
+                <button type="button" onclick="toggleTaskStarred('${t.id}')" title="${isStar ? 'إلغاء التمييز' : 'تمييز كمهمة هامة'}" style="width: 28px; height: 28px; background: transparent; border: none; color: ${isStar ? '#fbbf24' : '#64748b'}; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.85rem;">
                   <i class="fa-${isStar ? 'solid' : 'regular'} fa-star"></i>
                 </button>
-                <button type="button" onclick="deleteTaskItem('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: #ef4444; font-size: 0.88rem; padding: 2px; opacity: 0.75;" title="حذف المهمة">
+                <button type="button" onclick="deleteTaskItem('${t.id}')" title="حذف المهمة" style="width: 28px; height: 28px; background: transparent; border: none; color: #ef4444; opacity: 0.8; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.85rem;">
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
               </div>
@@ -29902,8 +30037,8 @@ function installDailyNoonTrigger() {
 
             <!-- شريط تقدم إنجاز المهام الفرعية (Progress Bar) -->
             ${hasSubs ? `
-              <div style="width: 100%; height: 4px; background: rgba(15, 23, 42, 0.8); border-radius: 3px; overflow: hidden; margin-top: 2px;">
-                <div style="width: ${progressPct}%; height: 100%; background: ${progressPct === 100 ? '#10b981' : 'linear-gradient(90deg, #a855f7, #38bdf8)'}; transition: width 0.3s ease;"></div>
+              <div style="width: 100%; height: 5px; background: rgba(15, 23, 42, 0.9); border-radius: 4px; overflow: hidden; margin-top: 4px;">
+                <div style="width: ${progressPct}%; height: 100%; background: ${progressPct === 100 ? 'linear-gradient(90deg, #10b981, #059669)' : 'linear-gradient(90deg, #a855f7, #38bdf8)'}; border-radius: 4px; transition: width 0.3s ease;"></div>
               </div>
             ` : ''}
 
@@ -29912,61 +30047,61 @@ function installDailyNoonTrigger() {
               <!-- هيدر الخطوات الفرعية مع زر الإضافة المنسق -->
               <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
                 <div style="display: flex; align-items: center; gap: 6px;">
-                  <i class="fa-solid fa-list-check" style="color: #c084fc; font-size: 0.78rem;"></i>
-                  <span style="font-size: 0.72rem; font-weight: 850; color: #f8fafc;">الخطوات والمهام الفرعية:</span>
-                  ${hasSubs ? `<span style="font-size: 0.62rem; color: #34d399; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.35); padding: 1px 7px; border-radius: 6px; font-weight: 900;">${completedSubs} من ${subtasks.length} مكتملة (${progressPct}%)</span>` : ''}
+                  <i class="fa-solid fa-list-check" style="color: #c084fc; font-size: 0.80rem;"></i>
+                  <span style="font-size: 0.74rem; font-weight: 850; color: #f8fafc;">الخطوات والمهام الفرعية:</span>
+                  ${hasSubs ? `<span style="font-size: 0.62rem; color: #34d399; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; padding: 1px 5px; font-weight: 800;">${completedSubs} من ${subtasks.length} مكتملة (${progressPct}%)</span>` : ''}
                 </div>
-                <button type="button" onclick="toggleSubtaskForm('${t.id}')" style="background: rgba(168, 85, 247, 0.16); border: 1.2px solid rgba(168, 85, 247, 0.4); border-radius: 8px; color: #c084fc; font-size: 0.68rem; font-weight: 850; padding: 3px 9px; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;">
+                <button type="button" onclick="toggleSubtaskForm('${t.id}')" style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.40); color: #c084fc; border-radius: 7px; padding: 3px 8px; font-size: 0.68rem; font-weight: 850; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; transition: all 0.15s ease;">
                   <i class="fa-solid fa-plus"></i> إضافة خطوة فرعية
                 </button>
               </div>
 
               <!-- قائمة الخطوات الفرعية المسجلة -->
               ${hasSubs ? `
-                <div style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px;">
+                <div style="display: flex; flex-direction: column; gap: 5px; margin-bottom: 6px;">
                   ${subtasksHtml}
                 </div>
               ` : `
-                <div style="font-size: 0.66rem; color: #64748b; padding: 3px 2px; text-align: right; margin-bottom: 4px;">
-                  💡 لم تتم إضافة خطوات فرعية بعد. انقر على "+ إضافة خطوة فرعية" لتفتيت المهمة.
+                <div style="font-size: 0.68rem; color: #64748b; padding: 4px 2px; text-align: right; margin-bottom: 4px;">
+                  💡 لم تتم إضافة خطوات فرعية بعد. انقر على "+ إضافة خطوة فرعية" لتفتيت المهمة لخطوات تنفيذية.
                 </div>
               `}
 
               <!-- صندوق ونموذج إضافة خطوة فرعية مخصص ومنسق هندسياً -->
-              <div id="subtaskAddBox_${t.id}" style="display: none; background: rgba(15, 23, 42, 0.95); border: 1.3px solid rgba(168, 85, 247, 0.45); border-radius: 12px; padding: 10px 12px; margin-top: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.4);">
-                <div style="font-size: 0.72rem; font-weight: 900; color: #c084fc; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+              <div id="subtaskAddBox_${t.id}" style="display: none; background: rgba(15, 23, 42, 0.98); border: 1.5px solid rgba(168, 85, 247, 0.45); border-radius: 12px; padding: 10px 12px; margin-top: 8px; box-shadow: 0 4px 18px rgba(0,0,0,0.45);">
+                <div style="font-size: 0.74rem; font-weight: 900; color: #c084fc; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
                   <span style="display: flex; align-items: center; gap: 5px;">
                     <i class="fa-solid fa-circle-plus"></i> إضافة خطوة أو مهمة فرعية جديدة:
                   </span>
-                  <button type="button" onclick="toggleSubtaskForm('${t.id}', false)" style="background: transparent; border: none; color: #94a3b8; font-size: 1.1rem; cursor: pointer; padding: 0 4px;">&times;</button>
+                  <button type="button" onclick="toggleSubtaskForm('${t.id}', false)" style="background: transparent; border: none; color: #94a3b8; font-size: 1.1rem; cursor: pointer;">&times;</button>
                 </div>
-                
+
                 <!-- 1. عنوان وبيان الخطوة الفرعية -->
-                <div style="margin-bottom: 6px;">
-                  <input type="text" id="inpSubtaskTitle_${t.id}" placeholder="اكتب بيان الخطوة الفرعية... (مثال: سحب إيصال الدفع من البنك)" style="width: 100%; height: 36px; border-radius: 8px; background: rgba(30, 41, 59, 0.9); border: 1px solid rgba(168, 85, 247, 0.35); color: #fff; font-size: 0.76rem; font-weight: 700; padding: 0 10px; outline: none; box-sizing: border-box;">
+                <div style="margin-bottom: 8px;">
+                  <input type="text" id="inpSubtaskTitle_${t.id}" placeholder="اكتب بيان الخطوة الفرعية... (مثال: سحب إيصال، شراء خضار)" style="width: 100%; height: 36px; background: rgba(30, 41, 59, 0.95); border: 1.2px solid rgba(168, 85, 247, 0.35); border-radius: 8px; color: #fff; padding: 0 10px; font-size: 0.78rem; font-weight: 700; outline: none;">
                 </div>
-                
+
                 <!-- 2. صف التاريخ والوقت الموحد + تصوير وإرفاق الصورة -->
-                <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 8px;">
+                <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 10px;">
                   <div style="flex: 1; position: relative;">
-                    <input type="datetime-local" id="inpSubtaskDateTime_${t.id}" class="task-datetime-input" style="width: 100%; height: 34px; border-radius: 8px; background: rgba(30, 41, 59, 0.9); border: 1px solid rgba(168, 85, 247, 0.35); color: #cbd5e1; font-size: 0.70rem; padding: 0 8px; box-sizing: border-box;" title="تحديد موعد وساعة إنجاز الخطوة الفرعية">
+                    <input type="datetime-local" id="inpSubtaskDateTime_${t.id}" class="task-datetime-input" style="width: 100%; height: 34px; background: rgba(30, 41, 59, 0.95); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; color: #fff; padding: 0 8px; font-size: 0.72rem; outline: none;">
                   </div>
-                  
+
                   <!-- زر إرفاق صورة للخطوة الفرعية -->
                   <input type="file" id="inpSubtaskPhoto_${t.id}" accept="image/*" style="display: none;" onchange="handleSubtaskPhotoPicked(event, '${t.id}')">
-                  <button type="button" onclick="document.getElementById('inpSubtaskPhoto_${t.id}').click()" title="إرفاق صورة للخطوة الفرعية" id="btnSubtaskPhoto_${t.id}" style="height: 34px; padding: 0 10px; border-radius: 8px; background: rgba(56, 189, 248, 0.16); border: 1.2px solid rgba(56, 189, 248, 0.4); color: #38bdf8; font-size: 0.74rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 4px; white-space: nowrap;">
+                  <button type="button" onclick="document.getElementById('inpSubtaskPhoto_${t.id}').click()" title="إرفاق صورة للخطوة الفرعية" id="btnSubtaskPhoto_${t.id}" style="height: 34px; padding: 0 10px; border-radius: 8px; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.35); color: #c084fc; font-size: 0.72rem; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; cursor: pointer;">
                     <i class="fa-solid fa-camera"></i>
                     <span>صورة</span>
                     <span id="subtaskPhotoBadge_${t.id}" style="display: none; font-size: 0.65rem; color: #34d399; font-weight: 900;">✓</span>
                   </button>
                 </div>
-                
+
                 <!-- 3. أزرار الحفظ والإلغاء المنسقة -->
-                <div style="display: flex; gap: 6px;">
-                  <button type="button" onclick="addSubtaskToTask('${t.id}')" style="flex: 2; height: 34px; border-radius: 8px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.76rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.35);">
+                <div style="display: flex; gap: 8px;">
+                  <button type="button" onclick="addSubtaskToTask('${t.id}')" style="flex: 2; height: 34px; border-radius: 8px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.76rem; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.3);">
                     <i class="fa-solid fa-check"></i> حفظ الخطوة الفرعية
                   </button>
-                  <button type="button" onclick="toggleSubtaskForm('${t.id}', false)" style="flex: 1; height: 34px; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; font-size: 0.72rem; font-weight: 800; cursor: pointer;">
+                  <button type="button" onclick="toggleSubtaskForm('${t.id}', false)" style="flex: 1; height: 34px; border-radius: 8px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); color: #94a3b8; font-size: 0.74rem; font-weight: 800; cursor: pointer;">
                     إلغاء
                   </button>
                 </div>
@@ -29976,7 +30111,7 @@ function installDailyNoonTrigger() {
         `;
       }).join('');
     }
-        // =========================================================================
+    // =========================================================================
     // 2. مهام Microsoft To-Do المتكاملة (Tasks Engine)
     // =========================================================================
     let currentTodoSection = 'my_day';
