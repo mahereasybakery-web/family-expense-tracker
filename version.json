@@ -1,8 +1,6 @@
 {
-  "version": "4.9.4",
-  "buildId": 202611071415,
-  "buildTimestamp": 1794057300000,
-  "releaseDate": "2026-11-07 14:15:00",
-  "commit": "master-unified-single-sync-v494",
-  "notes": "التحديث والمزامنة الشاملة بنقرة واحدة (v4.9.4): تفعيل المزامنة والتحديث التلقائي الشامل مع كل عملية فتح للبرنامج بدون تأخير، وتوحيد كافة أزرار المزامنة والتحديث في زر رئيسي موحد وشامل (الكل في واحد) يقوم بمزامنة حسابات Google Drive، وتحديث أسعار الذهب والعملات، وتنزيل وتطبيق أحدث كود ومسح الذاكرة المؤقتة بضغطة واحدة."
+  "version": "4.9.5",
+  "build": 202611071445,
+  "updated_at": "2026-11-07 02:45 PM",
+  "description": "Comprehensive UI/UX overhaul: Prominent balance & cash flow, category card framing, receipt camera in edit modal, audit ledger column header filters, left drawer summary with gold 21 and tasks integration, Banque Misr rates & responsiveness optimization"
 }

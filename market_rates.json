@@ -4,46 +4,46 @@
     "banque_misr": "https://ta3weem.com/ar/banks/banque-misr-bm",
     "gold_idsc": "https://ta3weem.com/ar/gold-data-sources/information-and-decision-support-center-gold"
   },
-  "updated_at": "2026-11-06T20:12:48.266657",
-  "updated_at_display": "2026-11-06 08:12 PM",
+  "updated_at": "2026-11-07T14:23:59.079142",
+  "updated_at_display": "2026-11-07 02:23 PM",
   "currencies": {
     "USD": {
       "code": "USD",
       "name": "دولار أمريكي",
-      "buy": 55.74,
-      "sell": 55.84,
+      "buy": 53.87,
+      "sell": 53.97,
       "chg": "0%",
       "bank": "بنك مصر"
     },
     "SAR": {
       "code": "SAR",
       "name": "ريال سعودي",
-      "buy": 14.78,
-      "sell": 14.87,
-      "chg": "0.003%",
+      "buy": 14.28,
+      "sell": 14.37,
+      "chg": "0%",
       "bank": "بنك مصر"
     },
     "EUR": {
       "code": "EUR",
       "name": "يورو",
-      "buy": 62.18,
-      "sell": 62.46,
-      "chg": "0.250%",
+      "buy": 60.16,
+      "sell": 60.63,
+      "chg": "0%",
       "bank": "بنك مصر"
     },
     "AED": {
       "code": "AED",
       "name": "درهم إماراتي",
-      "buy": 15.16,
-      "sell": 15.21,
-      "chg": "0.008%",
+      "buy": 14.65,
+      "sell": 14.7,
+      "chg": "0%",
       "bank": "بنك مصر"
     },
     "KWD": {
       "code": "KWD",
       "name": "دينار كويتي",
-      "buy": 176.95,
-      "sell": 181.5,
+      "buy": 171.02,
+      "sell": 175.43,
       "chg": "0%",
       "bank": "بنك مصر"
     }
@@ -52,24 +52,24 @@
     "gold24": {
       "karat": 24,
       "name": "ذهب عيار 24 (سبائك)",
-      "buy": 7280.0,
-      "sell": 7308.5,
+      "buy": 7091.5,
+      "sell": 7160.0,
       "chg": "0%",
       "source": "مركز المعلومات ودعم اتخاذ القرار"
     },
     "gold21": {
       "karat": 21,
       "name": "ذهب عيار 21 (الأكثر طلباً)",
-      "buy": 6370.0,
-      "sell": 6395.0,
+      "buy": 6205.0,
+      "sell": 6265.0,
       "chg": "0%",
       "source": "مركز المعلومات ودعم اتخاذ القرار"
     },
     "gold18": {
       "karat": 18,
       "name": "ذهب عيار 18",
-      "buy": 5460.0,
-      "sell": 5481.5,
+      "buy": 5318.5,
+      "sell": 5370.0,
       "chg": "0%",
       "source": "مركز المعلومات ودعم اتخاذ القرار"
     },
@@ -77,8 +77,8 @@
       "karat": 21,
       "weight": 8,
       "name": "جنيه الذهب (BTC)",
-      "buy": 48920.0,
-      "sell": 49320.0,
+      "buy": 49640.0,
+      "sell": 50120.0,
       "chg": "0%",
       "source": "مركز المعلومات ودعم اتخاذ القرار"
     },
