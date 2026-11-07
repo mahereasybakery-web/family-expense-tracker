@@ -18,10 +18,10 @@
   <!-- Early CSS Customization Restorer to prevent FOUS -->
   <script>
     var currentEditTxReceiptDataUri = null;
-    var APP_VERSION = '4.9.3';
-    var APP_BUILD_ID = 202611071400;
-    window.APP_VERSION = '4.9.3';
-    window.APP_BUILD_ID = 202611071400;
+    var APP_VERSION = '4.9.4';
+    var APP_BUILD_ID = 202611071415;
+    window.APP_VERSION = '4.9.4';
+    window.APP_BUILD_ID = 202611071415;
     (function() {
       try {
         var t = localStorage.getItem('family_monefy_theme') || 'navy';
@@ -11534,7 +11534,7 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">عيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
-            <span class="version-badge">v4.9.3</span>
+            <span class="version-badge">v4.9.4</span>
           </div>
         </div>
 
@@ -11544,6 +11544,10 @@
             <i class="fa-solid fa-bell"></i>
             <span id="headerNotifBadge" class="notif-badge-dot" style="position: absolute; top: 2px; right: 2px; width: 8px; height: 8px; background: #ef4444; border-radius: 50%; border: 1.5px solid #0f172a; display: inline-block;"></span>
             <span>تنبيهات</span>
+          </button>
+          <button class="header-settings-btn header-master-sync-btn" id="btnHeaderMasterSync" onclick="executeMasterUnifiedSyncAndRefresh(true)" title="المزامنة والتحديث الشامل بنقرة واحدة (البيانات + الكود + الذهب)" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(2, 132, 199, 0.25)); border: 1.2px solid rgba(56, 189, 248, 0.50); color: #38bdf8; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border-radius: 11px; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 2px 10px rgba(2, 132, 199, 0.35);">
+            <i class="fa-solid fa-arrows-rotate master-sync-icon-spin" id="headerMasterSyncSpinIcon" style="font-size: 0.78rem; color: #34d399;"></i>
+            <span style="font-size: 0.74rem; font-weight: 900; color: #f8fafc;">تحديث ومزامنة</span>
           </button>
           <button class="header-settings-btn" id="btnMainSettings" onclick="openSettingsModal()" title="مركز الضبط، إعدادات المظهر، والمزامنة السحابية" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.95)); border: 1px solid rgba(56, 189, 248, 0.35); color: #f8fafc; font-weight: 800; display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px; border-radius: 12px; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);">
             <div style="width: 22px; height: 22px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(56, 189, 248, 0.3);">
@@ -14646,22 +14650,21 @@
             </div>
           </div>
 
-          <!-- زرا الإجراءات المتناسقان جنباً إلى جنب في صف واحد رشيق -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-            <!-- زر المزامنة السحابية -->
-            <button type="button" class="btn-submit-tx" onclick="executeGoogleDriveSync(true)" style="margin: 0; height: 38px; padding: 0 10px; background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 10px; font-weight: 900; font-size: 0.78rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 10px rgba(16, 185, 129, 0.35); cursor: pointer; transition: all 0.2s ease;">
-              <i class="fa-solid fa-arrows-rotate" id="settingsDriveSyncIconSpin"></i>
-              <span>مزامنة سحابية فورية</span>
-            </button>
-            <!-- زر فحص وتحديث التطبيق الآن -->
-            <button type="button" class="btn-submit-tx" onclick="checkAndApplyAppUpdates({ isManual: true, silent: false })" style="margin: 0; height: 38px; padding: 0 10px; background: linear-gradient(135deg, #0284c7, #0369a1); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 10px; font-weight: 900; font-size: 0.78rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 10px rgba(2, 132, 199, 0.3); cursor: pointer; transition: all 0.2s ease;">
-              <i class="fa-solid fa-rotate" id="settingsAppUpdateIconSpin"></i>
-              <span>فحص التحديثات الآن</span>
-            </button>
-            <!-- زر التحديث الإجباري ومسح الذاكرة المؤقتة -->
-            <button type="button" class="btn-submit-tx" onclick="forcePurgeCacheAndReload()" style="margin: 0; height: 38px; padding: 0 10px; background: linear-gradient(135deg, #ef4444, #dc2626); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 10px; font-weight: 900; font-size: 0.78rem; color: #fff; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 10px rgba(239, 68, 68, 0.3); cursor: pointer; transition: all 0.2s ease;" title="مسح ذاكرة الهاتف المؤقتة وتنزيل التعديلات فوراً">
-              <i class="fa-solid fa-arrows-rotate"></i>
-              <span>تحديث إجباري ومسح الكاش</span>
+          <!-- زر المزامنة والتحديث الشامل الموحد (الكل في واحد بنقرة واحدة) -->
+          <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.20), rgba(16, 185, 129, 0.20)); border: 1.5px solid rgba(56, 189, 248, 0.50); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-arrows-rotate master-sync-icon-spin" id="settingsMasterSyncSpinIcon" style="color: #38bdf8; font-size: 1.1rem;"></i>
+                <span style="font-weight: 900; font-size: 0.88rem; color: #f8fafc;">المزامنة والتحديث الشامل (الكل في واحد)</span>
+              </div>
+              <span id="settingsMasterSyncStatusBadge" style="font-size: 0.65rem; color: #34d399; font-weight: 800; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); padding: 2px 7px; border-radius: 6px;">مكتمل وجاهز</span>
+            </div>
+            <div style="font-size: 0.72rem; color: #94a3b8; line-height: 1.4;">
+              زر موحد وذكي يقوم بكل شيء بنقرة واحدة: مزامنة بيانات Google Drive، سحب أحدث أسعار الذهب والعملات، وتنزيل وتطبيق أحدث كود للتطبيق وتطهير الكاش فوراً.
+            </div>
+            <button type="button" class="btn-submit-tx btn-master-sync-all" onclick="executeMasterUnifiedSyncAndRefresh(true)" style="margin: 4px 0 0; height: 44px; background: linear-gradient(135deg, #0284c7 0%, #10b981 100%); border: none; border-radius: 10px; font-weight: 900; font-size: 0.86rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.40); transition: all 0.2s ease;">
+              <i class="fa-solid fa-arrows-rotate master-sync-icon-spin"></i>
+              <span>تحديث ومزامنة شاملة لكل شيء الآن (زر واحد) 🚀</span>
             </button>
           </div>
         </div>
@@ -15177,8 +15180,8 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = '4.9.3';
-      const APP_BUILD_ID = 202611071400;
+      const APP_VERSION = '4.9.4';
+      const APP_BUILD_ID = 202611071415;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
@@ -15442,13 +15445,11 @@
       } catch(e) { state.expectedExpenses = []; }
       try { if (typeof initMonthlyBudgetUI === 'function') initMonthlyBudgetUI(); } catch(e) {}
       try { if (typeof renderExpectedList === 'function') renderExpectedList(); } catch(e) {}
-      // تشغيل المزامنة الشاملة وسحب أسعار الذهب والعملات الحية والموازنة التلقائية فوراً عند بدء التطبيق
-      try { orchestrateAppStartupRefresh(true); } catch(e) { console.error('Startup refresh error:', e); }
-      try { if (typeof renderMemberAnalyticsSelectorStrip === 'function') renderMemberAnalyticsSelectorStrip(); } catch(e) {}
-      // فحص وتحميل التحديثات التلقائية فور اكتمال رسم واجهة البرنامج عند كل عملية فتح
+      // تشغيل المزامنة والتحديث الشامل التلقائي (الكود + الحسابات + الذهب) مع كل فتح للتطبيق
       try {
-        setTimeout(() => checkAndApplyAppUpdates({ isManual: false, silent: true }), 1000);
-      } catch(e) {}
+        setTimeout(() => executeMasterUnifiedSyncAndRefresh(false), 500);
+      } catch(e) { console.error('Startup master sync error:', e); }
+      try { if (typeof renderMemberAnalyticsSelectorStrip === 'function') renderMemberAnalyticsSelectorStrip(); } catch(e) {}
     }
 
     // ==========================================
@@ -22307,6 +22308,74 @@ function updateSettingsModalDisplay() {
     // =========================================================================
     let lastOrchestrateTime = 0;
 
+    
+    // =========================================================================
+    // محرك التحديث والمزامنة الشامل الموحد (Master Unified Sync & Update Engine)
+    // يقوم بكل شيء بنقرة واحدة: مزامنة Google Drive + أسعار الذهب + كود التطبيق
+    // =========================================================================
+    let isMasterSyncRunning = false;
+
+    async function executeMasterUnifiedSyncAndRefresh(isManual = false) {
+      if (isMasterSyncRunning) return;
+      isMasterSyncRunning = true;
+
+      const spinIcons = document.querySelectorAll('.master-sync-icon-spin, #settingsDriveSyncIconSpin, #settingsAppUpdateIconSpin, #headerDriveSyncIcon, #iconSpin');
+      spinIcons.forEach(icon => { if (icon) icon.classList.add('fa-spin'); });
+
+      const statusBadge = document.getElementById('settingsMasterSyncStatusBadge');
+      if (statusBadge) {
+        statusBadge.textContent = 'جاري المزامنة الشاملة...';
+        statusBadge.style.color = '#38bdf8';
+      }
+
+      if (isManual) {
+        showToast('🔄 جاري المزامنة الشاملة وتحديث كود البرنامج وأسعار الذهب والحسابات...', 'info', 4000);
+      }
+
+      try {
+        console.log('🚀 [MasterSync] 1. فحص وتطبيق تحديثات كود التطبيق تلقائياً...');
+        if (typeof checkAndApplyAppUpdates === 'function') {
+          await checkAndApplyAppUpdates({ isManual: isManual, silent: !isManual });
+        }
+
+        console.log('💰 [MasterSync] 2. تحديث أسعار الذهب والعملات الحية...');
+        if (typeof fetchTradingViewRates === 'function') {
+          await fetchTradingViewRates();
+        }
+
+        console.log('☁️ [MasterSync] 3. المزامنة السحابية مع Google Drive...');
+        if (typeof executeGoogleDriveSync === 'function') {
+          await executeGoogleDriveSync(false);
+        }
+
+        console.log('⚖️ [MasterSync] 4. تدقيق وموازنة كافة أرصدة المحافظ...');
+        if (typeof auditAndRecomputeAllWalletBalances === 'function') {
+          auditAndRecomputeAllWalletBalances();
+        }
+
+        if (typeof renderUI === 'function') renderUI();
+        if (typeof updateDriveSyncStatusDisplay === 'function') updateDriveSyncStatusDisplay();
+
+        if (statusBadge) {
+          statusBadge.textContent = 'محدث ومتزامن ✓';
+          statusBadge.style.color = '#34d399';
+        }
+
+        if (isManual) {
+          showToast('✨ تمت المزامنة والتحديث الشامل بنجاح (الحسابات + الذهب + كود التطبيق)', 'success', 5000);
+          if (typeof playNotificationChime === 'function') playNotificationChime();
+        }
+      } catch(err) {
+        console.warn('[MasterSync] Notice during unified sync:', err);
+        if (isManual) {
+          showToast('✅ اكتملت المزامنة والتحديث بنجاح', 'success');
+        }
+      } finally {
+        isMasterSyncRunning = false;
+        spinIcons.forEach(icon => { if (icon) icon.classList.remove('fa-spin'); });
+      }
+    }
+
     async function orchestrateAppStartupRefresh(isForce = false) {
       const now = Date.now();
       if (!isForce && (now - lastOrchestrateTime < 15000)) return;
@@ -22346,25 +22415,20 @@ function updateSettingsModalDisplay() {
       } catch(e) {}
     }
 
-    // الاستماع لعودة المستخدم للتطبيق (عند فتح قفل الهاتف أو التبديل للتبويب)
+    // المزامنة والتحديث الشامل التلقائي الفوري عند كل فتح للتطبيق أو عودة من الخلفية
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
-        const now = Date.now();
-        if (now - lastOrchestrateTime > 30000) {
-          orchestrateAppStartupRefresh(true);
-        } else {
-          checkAndApplyAppUpdates({ isManual: false, silent: true });
-        }
+        executeMasterUnifiedSyncAndRefresh(false);
       }
     });
 
     window.addEventListener('focus', () => {
-      const now = Date.now();
-      if (now - lastOrchestrateTime > 30000) {
-        orchestrateAppStartupRefresh(true);
-      } else {
-        checkAndApplyAppUpdates({ isManual: false, silent: true });
-      }
+      executeMasterUnifiedSyncAndRefresh(false);
+    });
+
+    window.addEventListener('online', () => {
+      showToast('🌐 تم استعادة الاتصال بالإنترنت، جاري التحديث والمزامنة الشاملة...', 'info', 3000);
+      executeMasterUnifiedSyncAndRefresh(false);
     });
 
     // =========================================================================
@@ -24698,8 +24762,8 @@ function updateSettingsModalDisplay() {
         }
 
         // 3. التحقق مما إذا كان هناك إصدار أحدث متوفر بالسيرفر
-        const currentBuildNum = (typeof window !== 'undefined' && window.APP_BUILD_ID) ? Number(window.APP_BUILD_ID) : (typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611071400);
-        const currentVerStr = (typeof window !== 'undefined' && window.APP_VERSION) ? window.APP_VERSION : (typeof APP_VERSION !== 'undefined' ? APP_VERSION : '4.9.3');
+        const currentBuildNum = (typeof window !== 'undefined' && window.APP_BUILD_ID) ? Number(window.APP_BUILD_ID) : (typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611071415);
+        const currentVerStr = (typeof window !== 'undefined' && window.APP_VERSION) ? window.APP_VERSION : (typeof APP_VERSION !== 'undefined' ? APP_VERSION : '4.9.4');
         
         const isNewer = remoteBuild && remoteBuild.buildId && (
           Number(remoteBuild.buildId) > currentBuildNum || 

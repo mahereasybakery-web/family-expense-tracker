@@ -80,6 +80,10 @@ with sync_playwright() as p:
     page.locator('.avatar-card[data-member="الكل"]').click()
     page.wait_for_timeout(500)
 
+    # Master Sync Button Test
+    has_header_master_sync = page.locator("#btnHeaderMasterSync").is_visible()
+    print(f"   Header Master Sync button visible: {has_header_master_sync}")
+    
     # 5. Test Quick Tools Buttons (Summary & Tasks)
     has_summary_btn = page.locator("#btnOpenSummaryDrawer").is_visible()
     has_tasks_btn = page.locator("#btnOpenTasksDrawer").is_visible()
