@@ -1,14 +1,14 @@
 {
-  "version": "v5.2.1",
-  "updatedAt": "2026-11-08T13:53:00+03:00",
+  "version": "v5.2.2",
+  "updatedAt": "2026-11-08T14:35:00+03:00",
   "changelog": [
-    "v5.2.1: Rebuilt Commitments & Debts & Bills from scratch with clear separation between Debts and Bills",
-    "v5.2.1: Modern coordinated Add screen for Bills and Debts with camera/photo attachments",
-    "v5.2.1: Moved Tasks button to top header replacing family brand text",
-    "v5.2.1: Re-engineered touch-friendly Task Date & Time Picker Modal with quick presets",
-    "v5.2.1: Unified Master Sync & Balance button in top header merging offline balancing, live gold, and app update checks",
-    "v5.2.1: Comprehensive Luxury FinTech theme redesign across all 9 palettes and subtle card styles",
-    "v5.2.1: Fixed Operations filtering synchronization and Summary Drawer category/member drilldown",
-    "v5.2.1: Hierarchical Back Navigation preserving filter state and sub-pages"
+    "v5.2.2: Commitments page restructured into two clean top sections: [ الفواتير والديون ] & [ الميزانيات ]",
+    "v5.2.2: Under Bills & Debts: Comprehensive KPI summary, 5-segment filter pills (الكل, فواتير, ديون علينا, ديون لنا, مسددة), and unified add form",
+    "v5.2.2: Under Budgets: Full monthly budget plan management, planned vs actual KPIs, and category/member budget tracking",
+    "v5.2.2: Mobile Tasks single-screen inline add with independent date and time rows preventing any digit overlap",
+    "v5.2.2: Removed 'قائمة المهام والتخطيط اليومي' from tasks header for clean mobile layout",
+    "v5.2.2: Complete icon palette engine across all 6 themes (ملون, ذهبي, زمردي, سماوي, ياقوتي, بلاتيني)",
+    "v5.2.2: Complete typography engine applying all 6 fonts (Alexandria, Cairo, IBM Plex, Almarai, Readex Pro, Tajawal) across the entire UI",
+    "v5.2.2: Eliminated generic 'بيان' label in operations list, displaying actual category and member statement"
   ]
 }
