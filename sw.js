@@ -1,5 +1,5 @@
 // Service Worker for Family Expense Tracker (Offline First & PWA)
-const CACHE_NAME = "family-expense-tracker-v5.2.6-202611081720";;
+const CACHE_NAME = "family-expense-tracker-v5.2.7-202611081730";
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -43,7 +43,7 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   const req = e.request;
-  
+
   // Only handle GET requests
   if (req.method !== 'GET') return;
 
@@ -51,14 +51,14 @@ self.addEventListener('fetch', (e) => {
 
   // 1. استراتيجية Network-First لكافة طلبات التنقل وملفات HTML والإصدارات لمنع احتجاز المستخدم في الكاش القديم
   const isHtmlOrNavigate = (
-    req.mode === 'navigate' || 
-    req.destination === 'document' || 
-    url.endsWith('/') || 
-    url.includes('index.html') || 
-    url.includes('version.json') || 
-    url.includes('market_rates.json') || 
-    url.includes('_nocache') || 
-    url.includes('_upd') || 
+    req.mode === 'navigate' ||
+    req.destination === 'document' ||
+    url.endsWith('/') ||
+    url.includes('index.html') ||
+    url.includes('version.json') ||
+    url.includes('market_rates.json') ||
+    url.includes('_nocache') ||
+    url.includes('_upd') ||
     url.includes('_fresh') ||
     url.includes('_t=')
   );
