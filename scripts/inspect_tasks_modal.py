@@ -1,12 +1,9 @@
-import sys
-sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+with open('index.html', 'r', encoding='utf-8') as f:
+    text = f.read()
 
-with open('C:/Users/96656/.gemini/antigravity/scratch/family_expense_tracker_monefy/index.html', 'r', encoding='utf-8') as f:
-    lines = f.readlines()
-
-for i, line in enumerate(lines):
-    if 'id="tasksFullScreenModal"' in line or "id='tasksFullScreenModal'" in line:
-        print(f"tasksFullScreenModal found at line {i+1}")
-        for j in range(i, min(len(lines), i + 120)):
-            print(f"{j+1}: {lines[j]}", end='')
-        break
+start = text.find('id="tasksFullScreenModal"')
+end = text.find('</main>', start)
+print("tasksFullScreenModal start:", start, "end:", end)
+with open('scripts/tasks_modal_full.html', 'w', encoding='utf-8') as f_out:
+    f_out.write(text[start:end+10])
+print("wrote scripts/tasks_modal_full.html, size:", end + 10 - start)

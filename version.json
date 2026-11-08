@@ -1,6 +1,6 @@
 {
-  "version": "v5.0.9",
-  "build": "202611081215",
+  "version": "v5.1.0",
+  "build": "202611081240",
   "releaseDate": "2026-11-08",
-  "notes": "Radical fix for live currency & gold rates: multi-tier direct browser engine + hourly automated updater + spot ounce formula"
+  "notes": "Replication of Google Play To-Do List & Schedule Planner App: interactive calendar view, category carousel, datetime picker with quick time shortcuts, subtasks checklist, productivity KPIs, and sleek commitments page overhaul."
 }

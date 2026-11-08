@@ -11913,7 +11913,7 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">عيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
-            <span class="version-badge">v5.0.9</span>
+            <span class="version-badge">v5.1.0</span>
           </div>
         </div>
 
@@ -14821,137 +14821,252 @@
   <div id="tasksFullScreenModal" style="display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 100050; background: var(--bg-main, #0b1329); overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 0; margin: 0; box-sizing: border-box; direction: rtl;" dir="rtl">
     
     <!-- شريط علوي ذكي وثابت للشاشة الكاملة -->
-    <header style="position: sticky; top: 0; z-index: 100; background: rgba(11, 19, 41, 0.95); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1.2px solid rgba(168, 85, 247, 0.35); padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <button type="button" onclick="closeTasksFullScreenModal()" style="height: 38px; padding: 0 14px; border-radius: 10px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); color: #cbd5e1; font-size: 0.82rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background 0.15s ease;">
+    <header style="position: sticky; top: 0; z-index: 100; background: rgba(11, 19, 41, 0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1.2px solid rgba(168, 85, 247, 0.35); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" onclick="closeTasksFullScreenModal()" style="height: 36px; padding: 0 12px; border-radius: 9px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); color: #cbd5e1; font-size: 0.78rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: background 0.15s ease;">
           <i class="fa-solid fa-arrow-right"></i>
           <span>الرئيسية</span>
         </button>
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <div style="width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, #a855f7, #6366f1); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.15rem; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.35);">
-            <i class="fa-solid fa-list-check"></i>
+        <div style="display: flex; align-items: center; gap: 7px;">
+          <div style="width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, #a855f7, #6366f1); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.05rem; box-shadow: 0 3px 10px rgba(168, 85, 247, 0.35);">
+            <i class="fa-solid fa-calendar-check"></i>
           </div>
           <div>
-            <div style="font-size: 1.02rem; font-weight: 900; color: #f8fafc;">قائمة المهام</div>
-            
+            <div style="font-size: 0.94rem; font-weight: 900; color: #f8fafc;">قائمة المهام والتخطيط اليومي</div>
           </div>
         </div>
       </div>
 
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <button type="button" onclick="openNewTaskDrawerModal()" style="height: 38px; padding: 0 16px; border-radius: 11px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.82rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 7px; box-shadow: 0 4px 14px rgba(168, 85, 247, 0.45);">
-          <i class="fa-solid fa-circle-plus" style="font-size: 1.05rem;"></i>
-          <span>+ مهمة تفصيلية</span>
+      <!-- شريط التبديل الثلاثي الرئيسي: المهام / التقويم / الإنتاجية (مستوحى من تطبيق To-Do List) -->
+      <div style="display: flex; gap: 4px; background: rgba(15, 23, 42, 0.9); padding: 3px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
+        <button type="button" id="btnTaskTabList" onclick="switchTasksViewMode('list')" class="btn-tasks-nav-tab active" style="padding: 5px 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 900; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; background: linear-gradient(135deg, #a855f7, #7c3aed); color: #fff; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.4); transition: all 0.2s;">
+          <i class="fa-solid fa-list-check"></i> <span>المهام</span>
+        </button>
+        <button type="button" id="btnTaskTabCalendar" onclick="switchTasksViewMode('calendar')" class="btn-tasks-nav-tab" style="padding: 5px 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 900; border: 1px solid rgba(255, 255, 255, 0.08); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; background: transparent; color: #94a3b8; transition: all 0.2s;">
+          <i class="fa-solid fa-calendar-days"></i> <span>التقويم</span>
+        </button>
+        <button type="button" id="btnTaskTabStats" onclick="switchTasksViewMode('stats')" class="btn-tasks-nav-tab" style="padding: 5px 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 900; border: 1px solid rgba(255, 255, 255, 0.08); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; background: transparent; color: #94a3b8; transition: all 0.2s;">
+          <i class="fa-solid fa-chart-pie"></i> <span>الإنتاجية</span>
+        </button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <button type="button" onclick="openNewTaskDrawerModal()" style="height: 36px; padding: 0 14px; border-radius: 9px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.78rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 3px 12px rgba(168, 85, 247, 0.4);">
+          <i class="fa-solid fa-circle-plus"></i>
+          <span>+ تفصيلية</span>
         </button>
       </div>
     </header>
 
     <!-- المحتوى الرئيسي للمهام -->
-    <main style="max-width: 920px; margin: 0 auto; padding: 14px 14px 80px; display: flex; flex-direction: column; gap: 14px;">
+    <main style="max-width: 920px; margin: 0 auto; padding: 12px 12px 80px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px;">
       
-      <!-- شريط مؤشرات الإنجاز الذكي والإنتاجية (KPIs & Progress Ring/Bar) -->
-      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
-        <div class="task-kpi-card" onclick="switchDrawerTodoSection('all')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 10px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض كافة المهام">
-          <span class="task-kpi-num" id="kpiTasksTotalFull" style="color: #38bdf8; font-size: 1.30rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
-          <span class="task-kpi-label" style="font-size: 0.70rem; color: #94a3b8; font-weight: 800;">إجمالي المهام</span>
-        </div>
-        <div class="task-kpi-card" onclick="switchDrawerTodoSection('my_day')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(192, 132, 252, 0.35); border-radius: 12px; padding: 10px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض مهام اليوم">
-          <span class="task-kpi-num" id="kpiTasksActiveFull" style="color: #c084fc; font-size: 1.30rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
-          <span class="task-kpi-label" style="font-size: 0.70rem; color: #94a3b8; font-weight: 800;">قيد التنفيذ</span>
-        </div>
-        <div class="task-kpi-card" onclick="switchDrawerTodoSection('overdue')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(239, 68, 68, 0.35); border-radius: 12px; padding: 10px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض المهام المتأخرة">
-          <span class="task-kpi-num" id="kpiTasksOverdueFull" style="color: #ef4444; font-size: 1.30rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
-          <span class="task-kpi-label" style="font-size: 0.70rem; color: #94a3b8; font-weight: 800;">متأخرة ⚠️</span>
-        </div>
-        <div class="task-kpi-card" onclick="switchDrawerTodoSection('completed')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(52, 211, 153, 0.35); border-radius: 12px; padding: 10px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض المهام المكتملة">
-          <span class="task-kpi-num" id="kpiTasksDoneFull" style="color: #34d399; font-size: 1.30rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
-          <span class="task-kpi-label" style="font-size: 0.70rem; color: #94a3b8; font-weight: 800;">مكتملة ✅</span>
-        </div>
-      </div>
+      <!-- ==========================================================
+           1. التبويب الأول: شاشة المهام والقوائم (tasksTabListView)
+           ========================================================== -->
+      <div id="tasksTabListView" style="display: flex; flex-direction: column; gap: 10px;">
+        
+        <!-- شريط الإضافة السريع والمطور مع آلية اختيار الوقت واليوم والاختصارات الذكية -->
+        <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1.2px solid rgba(168, 85, 247, 0.4); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.35);">
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <input type="text" id="quickTaskTitleInput" placeholder="+ اكتب مهمة جديدة سريعة واضغط Enter للإضافة الفورية..." style="flex: 1; height: 38px; border-radius: 9px; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.14); color: #fff; font-size: 0.82rem; font-weight: 800; padding: 0 12px; outline: none; box-sizing: border-box;" onkeydown="if(event.key==='Enter') handleQuickTaskAdd()">
+            <button type="button" onclick="handleQuickTaskAdd()" style="height: 38px; padding: 0 16px; border-radius: 9px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.80rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 2px 10px rgba(168, 85, 247, 0.4);">
+              <i class="fa-solid fa-plus"></i>
+              <span>إضافة</span>
+            </button>
+          </div>
 
-      <!-- شريط نسبة الإنجاز والإنتاجية (Things 3 / Todoist Style) -->
-      <div style="background: rgba(15, 23, 42, 0.85); border-radius: 12px; padding: 10px 14px; border: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; gap: 12px;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <i class="fa-solid fa-chart-line" style="color: #a855f7; font-size: 0.95rem;"></i>
-          <span style="font-size: 0.76rem; font-weight: 800; color: #cbd5e1;">معدل إنجاز المهام:</span>
-        </div>
-        <div style="flex: 1; max-width: 320px; height: 8px; background: rgba(30, 41, 59, 0.9); border-radius: 5px; overflow: hidden;">
-          <div id="tasksOverallProgressBarFull" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #10b981); transition: width 0.4s ease;"></div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span id="tasksOverallProgressPctFull" style="font-size: 0.85rem; font-weight: 900; color: #10b981; font-family: var(--font-numbers);">0%</span>
-          <span id="tasksProductivityBadge" style="font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">جاهز للإنجاز</span>
-        </div>
-      </div>
+          <!-- السطر المطور: رقائق الموعد السريع + آلية اختيار الساعة واليوم السابقة المطورة -->
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;">
+            <!-- رقائق الموعد السريع + آلية اختيار الساعة واليوم المباشرة -->
+            <div style="display: flex; gap: 4px; align-items: center; flex-wrap: wrap;" id="quickTaskPresetChips">
+              <button type="button" class="btn-quick-date-chip active" id="chipQuickToday" onclick="setQuickTaskPreset('today')" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: rgba(168, 85, 247, 0.25); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); cursor: pointer;">☀️ اليوم</button>
+              <button type="button" class="btn-quick-date-chip" id="chipQuickTomorrow" onclick="setQuickTaskPreset('tomorrow')" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">🌅 غداً</button>
+              <button type="button" class="btn-quick-date-chip" id="chipQuickWeekend" onclick="setQuickTaskPreset('weekend')" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">🏖️ الجمعة</button>
+              <button type="button" class="btn-quick-date-chip" id="chipQuickNone" onclick="setQuickTaskPreset('none')" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">بدون موعد</button>
 
-      <!-- شريط الإضافة السريعة الذكية (Todoist Quick Add Bar) -->
-      <div class="tasks-quick-add-bar" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1.5px solid rgba(168, 85, 247, 0.45); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.35);">
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <input type="text" id="quickTaskTitleInput" placeholder="+ اكتب مهمة جديدة سريعة واضغط Enter للإضافة الفورية..." style="flex: 1; height: 40px; border-radius: 10px; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.14); color: #fff; font-size: 0.84rem; font-weight: 800; padding: 0 12px; outline: none; box-sizing: border-box;" onkeydown="if(event.key==='Enter') handleQuickTaskAdd()">
-          <button type="button" onclick="handleQuickTaskAdd()" style="height: 40px; padding: 0 18px; border-radius: 10px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.82rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 10px rgba(168, 85, 247, 0.4);">
-            <i class="fa-solid fa-plus"></i>
-            <span>إضافة</span>
+              <!-- آلية اختيار الساعة واليوم المباشرة المطورة بجانب الرقائق -->
+              <div style="display: inline-flex; align-items: center; gap: 3px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 7px; padding: 1px 6px;">
+                <span style="font-size: 0.70rem; color: #a855f7;"><i class="fa-regular fa-clock"></i></span>
+                <input type="datetime-local" id="quickTaskDateTimeInput" onchange="onQuickTaskDateTimeChange(this.value)" style="height: 26px; border: none; background: transparent; color: #cbd5e1; font-size: 0.68rem; font-weight: 700; outline: none; font-family: system-ui;">
+                <button type="button" onclick="setTaskDateTimePreset('today_evening', 'quickTaskDateTimeInput')" title="اليوم 8 م" style="background: rgba(168,85,247,0.15); border: none; border-radius: 4px; color: #c084fc; font-size: 0.62rem; padding: 2px 5px; cursor: pointer;">8م</button>
+                <button type="button" onclick="setTaskDateTimePreset('tomorrow_morning', 'quickTaskDateTimeInput')" title="غداً 10 ص" style="background: rgba(168,85,247,0.15); border: none; border-radius: 4px; color: #c084fc; font-size: 0.62rem; padding: 2px 5px; cursor: pointer;">10ص</button>
+                <button type="button" onclick="setTaskDateTimePreset('clear', 'quickTaskDateTimeInput')" title="مسح الموعد" style="background: rgba(239,68,68,0.15); border: none; border-radius: 4px; color: #f87171; font-size: 0.62rem; padding: 2px 5px; cursor: pointer;">&times;</button>
+              </div>
+            </div>
+
+            <!-- الفرد والأولوية والمبلغ التقديري -->
+            <div style="display: flex; gap: 5px; align-items: center; flex-wrap: wrap;">
+              <select id="quickTaskMemberSelect" style="height: 28px; border-radius: 7px; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; font-size: 0.70rem; font-weight: 800; padding: 0 6px; outline: none;">
+                <option value="البيت">🏠 البيت</option>
+                <option value="ماهر">👤 ماهر</option>
+                <option value="آية">👤 آية</option>
+                <option value="محمد">👤 محمد</option>
+                <option value="مريم">👤 مريم</option>
+                <option value="الحاجة">👤 الحاجة</option>
+                <option value="التونو">👤 التونو</option>
+              </select>
+
+              <select id="quickTaskPrioritySelect" style="height: 28px; border-radius: 7px; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; font-size: 0.70rem; font-weight: 800; padding: 0 6px; outline: none;">
+                <option value="high">🔴 عاجل P1</option>
+                <option value="medium">🟡 متوسطة P2</option>
+                <option value="normal" selected>⚪ عادية P3</option>
+                <option value="low">🔘 منخفضة P4</option>
+              </select>
+
+              <input type="number" id="quickTaskEstAmount" placeholder="مبلغ تقديري ج.م" style="width: 85px; height: 28px; border-radius: 7px; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.12); color: #fbbf24; font-size: 0.70rem; font-weight: 800; padding: 0 6px; outline: none;">
+            </div>
+          </div>
+        </div>
+
+        <!-- كاروسيل الفئات الدائرية الملونة المستوحى من تطبيق To-Do List -->
+        <div style="display: flex; gap: 6px; overflow-x: auto; padding: 2px 0 6px;" class="custom-scrollbar" id="tasksCategoryPillsStrip">
+          <button type="button" class="task-category-pill active" onclick="setTasksCategoryFilter('all')" data-cat="all" style="padding: 5px 11px; border-radius: 9px; font-size: 0.72rem; font-weight: 900; background: linear-gradient(135deg, #a855f7, #6366f1); color: #fff; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; box-shadow: 0 2px 8px rgba(168,85,247,0.35);">
+            <i class="fa-solid fa-layer-group"></i> <span>الكل</span>
+            <span id="catBadgeAll" style="background: rgba(255,255,255,0.25); padding: 1px 5px; border-radius: 6px; font-size: 0.62rem;">0</span>
+          </button>
+          <button type="button" class="task-category-pill" onclick="setTasksCategoryFilter('shopping')" data-cat="shopping" style="padding: 5px 11px; border-radius: 9px; font-size: 0.72rem; font-weight: 900; background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
+            <i class="fa-solid fa-cart-shopping"></i> <span>تسوق ومشتريات</span>
+            <span id="catBadgeShopping" style="background: rgba(16,185,129,0.2); padding: 1px 5px; border-radius: 6px; font-size: 0.62rem;">0</span>
+          </button>
+          <button type="button" class="task-category-pill" onclick="setTasksCategoryFilter('bills')" data-cat="bills" style="padding: 5px 11px; border-radius: 9px; font-size: 0.72rem; font-weight: 900; background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
+            <i class="fa-solid fa-file-invoice-dollar"></i> <span>فواتير والتزامات</span>
+            <span id="catBadgeBills" style="background: rgba(245,158,11,0.2); padding: 1px 5px; border-radius: 6px; font-size: 0.62rem;">0</span>
+          </button>
+          <button type="button" class="task-category-pill" onclick="setTasksCategoryFilter('health')" data-cat="health" style="padding: 5px 11px; border-radius: 9px; font-size: 0.72rem; font-weight: 900; background: rgba(244, 63, 94, 0.12); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.35); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
+            <i class="fa-solid fa-notes-medical"></i> <span>صحة وعلاج</span>
+            <span id="catBadgeHealth" style="background: rgba(244,63,94,0.2); padding: 1px 5px; border-radius: 6px; font-size: 0.62rem;">0</span>
+          </button>
+          <button type="button" class="task-category-pill" onclick="setTasksCategoryFilter('home')" data-cat="home" style="padding: 5px 11px; border-radius: 9px; font-size: 0.72rem; font-weight: 900; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
+            <i class="fa-solid fa-house"></i> <span>المنزل والأسرة</span>
+            <span id="catBadgeHome" style="background: rgba(56,189,248,0.2); padding: 1px 5px; border-radius: 6px; font-size: 0.62rem;">0</span>
+          </button>
+          <button type="button" class="task-category-pill" onclick="setTasksCategoryFilter('work')" data-cat="work" style="padding: 5px 11px; border-radius: 9px; font-size: 0.72rem; font-weight: 900; background: rgba(168, 85, 247, 0.12); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.35); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
+            <i class="fa-solid fa-briefcase"></i> <span>العمل والمشاريع</span>
+            <span id="catBadgeWork" style="background: rgba(168,85,247,0.2); padding: 1px 5px; border-radius: 6px; font-size: 0.62rem;">0</span>
           </button>
         </div>
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;">
-          <!-- اختصارات الموعد السريعة (TickTick / Any.do) -->
-          <div style="display: flex; gap: 4px; align-items: center;" id="quickTaskPresetChips">
-            <button type="button" class="btn-quick-date-chip active" id="chipQuickToday" onclick="setQuickTaskPreset('today')" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: rgba(168, 85, 247, 0.25); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); cursor: pointer;">☀️ اليوم</button>
-            <button type="button" class="btn-quick-date-chip" id="chipQuickTomorrow" onclick="setQuickTaskPreset('tomorrow')" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">🌅 غداً</button>
-            <button type="button" class="btn-quick-date-chip" id="chipQuickWeekend" onclick="setQuickTaskPreset('weekend')" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">🏖️ الجمعة</button>
-            <button type="button" class="btn-quick-date-chip" id="chipQuickNone" onclick="setQuickTaskPreset('none')" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">بدون موعد</button>
+
+        <!-- أشرطة التصفية السريعة والبحث وفلتر الأفراد -->
+        <div style="display: flex; gap: 6px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <!-- الفلاتر السريعة للمهام -->
+          <div style="display: flex; gap: 4px; overflow-x: auto; padding-bottom: 2px;" class="custom-scrollbar" id="tasksSmartListTabs">
+            <button type="button" class="btn-export-tool active exp-filter-pill" id="btnFullTodoMyDay" onclick="switchTodoSection('my_day')" style="padding: 4px 9px; border-radius: 7px; font-size: 0.70rem; font-weight: 800; white-space: nowrap;">☀️ يومي</button>
+            <button type="button" class="btn-export-tool exp-filter-pill" id="btnFullTodoImportant" onclick="switchTodoSection('important')" style="padding: 4px 9px; border-radius: 7px; font-size: 0.70rem; font-weight: 800; white-space: nowrap; color: #fde047;">⭐ الهامة</button>
+            <button type="button" class="btn-export-tool exp-filter-pill" id="btnFullTodoPlanned" onclick="switchTodoSection('planned')" style="padding: 4px 9px; border-radius: 7px; font-size: 0.70rem; font-weight: 800; white-space: nowrap; color: #38bdf8;">📅 المجدولة</button>
+            <button type="button" class="btn-export-tool exp-filter-pill" id="btnFullTodoShopping" onclick="switchTodoSection('shopping')" style="padding: 4px 9px; border-radius: 7px; font-size: 0.70rem; font-weight: 800; white-space: nowrap; color: #34d399;">🛒 مشتريات</button>
+            <button type="button" class="btn-export-tool exp-filter-pill" id="btnFullTodoOverdue" onclick="switchTodoSection('overdue')" style="padding: 4px 9px; border-radius: 7px; font-size: 0.70rem; font-weight: 800; white-space: nowrap; color: #f87171;">⚠️ متأخرة</button>
+            <button type="button" class="btn-export-tool exp-filter-pill" id="btnFullTodoCompleted" onclick="switchTodoSection('completed')" style="padding: 4px 9px; border-radius: 7px; font-size: 0.70rem; font-weight: 800; white-space: nowrap; color: #10b981;">✅ المكتملة</button>
           </div>
-          <div style="display: flex; gap: 6px; align-items: center;">
-            <select id="quickTaskMemberSelect" style="height: 30px; border-radius: 7px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1; font-size: 0.72rem; font-weight: 800; padding: 0 6px;">
-              <option value="البيت">🏠 البيت</option>
-              <option value="ماهر">👨 ماهر</option>
-              <option value="أية">👩 أية</option>
-              <option value="محمد">👦 محمد</option>
-              <option value="مريم">👧 مريم</option>
-              <option value="الحاجة">🧕 الحاجة</option>
-            </select>
-            <select id="quickTaskPrioritySelect" style="height: 30px; border-radius: 7px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1; font-size: 0.72rem; font-weight: 800; padding: 0 6px;">
-              <option value="normal">⚪ عادية P3</option>
-              <option value="medium">🟡 متوسطة P2</option>
-              <option value="high">🔴 عاجل P1</option>
-            </select>
-            <input type="number" id="quickTaskEstAmount" placeholder="مبلغ تقديري ج.م..." style="width: 100px; height: 30px; border-radius: 7px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.14); color: #fbbf24; font-size: 0.72rem; font-weight: 800; padding: 0 6px; text-align: center;">
+
+          <!-- فلتر أفراد العائلة -->
+          <div style="display: flex; gap: 3px; align-items: center; overflow-x: auto;" id="tasksMemberFilterPills">
+            <button type="button" class="btn-export-tool active" onclick="setTasksMemberFilter('all', this)" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800;">👥 الكل</button>
+            <button type="button" class="btn-export-tool" onclick="setTasksMemberFilter('ماهر', this)" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800;">ماهر</button>
+            <button type="button" class="btn-export-tool" onclick="setTasksMemberFilter('آية', this)" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800;">آية</button>
+            <button type="button" class="btn-export-tool" onclick="setTasksMemberFilter('محمد', this)" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800;">محمد</button>
+            <button type="button" class="btn-export-tool" onclick="setTasksMemberFilter('مريم', this)" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800;">مريم</button>
+            <button type="button" class="btn-export-tool" onclick="setTasksMemberFilter('البيت', this)" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800;">البيت</button>
           </div>
         </div>
-      </div>
 
-      <!-- تبويبات الأقسام الذكية والقوائم المخصصة (Microsoft To Do & Apple Reminders Smart Lists) -->
-      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px;" id="tasksSmartListTabs">
-        <button type="button" class="exp-tab-btn active" id="btnFullTodoMyDay" onclick="switchDrawerTodoSection('my_day')" style="padding: 9px 2px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; background: rgba(168, 85, 247, 0.25); color: #c084fc; border: 1.2px solid rgba(168, 85, 247, 0.45); cursor: pointer; text-align: center;">☀️ يومي</button>
-        <button type="button" class="exp-tab-btn" id="btnFullTodoImportant" onclick="switchDrawerTodoSection('important')" style="padding: 9px 2px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">⭐ الهامة</button>
-        <button type="button" class="exp-tab-btn" id="btnFullTodoPlanned" onclick="switchDrawerTodoSection('planned')" style="padding: 9px 2px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">📅 المجدولة</button>
-        <button type="button" class="exp-tab-btn" id="btnFullTodoShopping" onclick="switchDrawerTodoSection('shopping')" style="padding: 9px 2px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; background: transparent; color: #10b981; border: 1px solid rgba(16,185,129,0.25); cursor: pointer; text-align: center;">🛒 مشتريات</button>
-        <button type="button" class="exp-tab-btn" id="btnFullTodoOverdue" onclick="switchDrawerTodoSection('overdue')" style="padding: 9px 2px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; background: transparent; color: #ef4444; border: 1px solid rgba(239,68,68,0.25); cursor: pointer; text-align: center;">⚠️ متأخرة</button>
-        <button type="button" class="exp-tab-btn" id="btnFullTodoCompleted" onclick="switchDrawerTodoSection('completed')" style="padding: 9px 2px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">✅ المكتملة</button>
-      </div>
-
-      <!-- فلترة حسب أفراد العائلة وشريط البحث اللحظي -->
-      <div style="display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-        <!-- كبسولات الأفراد -->
-        <div style="display: flex; gap: 4px; overflow-x: auto; padding: 2px 0;" id="tasksMemberFilterPills">
-          <button type="button" class="btn-task-member-pill active" onclick="setTasksMemberFilter('all', this)" style="padding: 4px 10px; border-radius: 8px; font-size: 0.70rem; font-weight: 850; background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); cursor: pointer;">👥 الكل</button>
-          <button type="button" class="btn-task-member-pill" onclick="setTasksMemberFilter('ماهر', this)" style="padding: 4px 10px; border-radius: 8px; font-size: 0.70rem; font-weight: 850; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">👨 ماهر</button>
-          <button type="button" class="btn-task-member-pill" onclick="setTasksMemberFilter('أية', this)" style="padding: 4px 10px; border-radius: 8px; font-size: 0.70rem; font-weight: 850; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">👩 أية</button>
-          <button type="button" class="btn-task-member-pill" onclick="setTasksMemberFilter('محمد', this)" style="padding: 4px 10px; border-radius: 8px; font-size: 0.70rem; font-weight: 850; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">👦 محمد</button>
-          <button type="button" class="btn-task-member-pill" onclick="setTasksMemberFilter('مريم', this)" style="padding: 4px 10px; border-radius: 8px; font-size: 0.70rem; font-weight: 850; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">👧 مريم</button>
-          <button type="button" class="btn-task-member-pill" onclick="setTasksMemberFilter('البيت', this)" style="padding: 4px 10px; border-radius: 8px; font-size: 0.70rem; font-weight: 850; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">🏠 البيت</button>
+        <!-- حقل البحث السريع -->
+        <div style="position: relative;">
+          <input type="text" id="tasksSearchInput" placeholder="🔍 بحث في نصوص المهام والخطوات..." oninput="renderTasksProList()" style="width: 100%; height: 34px; border-radius: 8px; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.08); color: #cbd5e1; font-size: 0.74rem; font-weight: 700; padding: 0 32px 0 10px; outline: none; box-sizing: border-box;">
         </div>
 
-        <!-- حقل البحث السريع في المهام -->
-        <div style="flex: 1; min-width: 180px; position: relative;">
-          <input type="text" id="tasksSearchInput" placeholder="🔍 بحث في نصوص المهام والخطوات..." style="width: 100%; height: 32px; border-radius: 8px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.12); color: #fff; font-size: 0.74rem; font-weight: 700; padding: 0 10px; outline: none; box-sizing: border-box;" oninput="renderTasksProList()">
+        <!-- حاوية عرض كروت المهام التفاعلية -->
+        <div id="tasksFullScreenContainerList" style="display: flex; flex-direction: column; gap: 8px;">
+          <!-- تتولد كروت المهام التفاعلية ديناميكياً بواسطة محرك renderTasksProList() -->
         </div>
       </div>
 
-      <!-- حاوية قائمة كروت المهام التفاعلية -->
-      <div id="tasksFullScreenContainerList" style="display: flex; flex-direction: column; gap: 10px;">
-        <!-- تتولد ديناميكياً بواسطة renderTasksProList() -->
+      <!-- ==========================================================
+           2. التبويب الثاني: شاشة التقويم الشهري التفاعلي (tasksTabCalendarView)
+           ========================================================== -->
+      <div id="tasksTabCalendarView" style="display: none; flex-direction: column; gap: 10px;">
+        <!-- بطاقة التقويم الشهري التفاعلي -->
+        <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1.2px solid rgba(168, 85, 247, 0.35); border-radius: 14px; padding: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.35);">
+          <!-- شريط تصفح الشهر -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <button type="button" onclick="navigateTasksCalendar(-1)" style="width: 30px; height: 30px; border-radius: 7px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-chevron-right"></i></button>
+              <span id="calendarMonthTitle" style="font-size: 0.92rem; font-weight: 900; color: #f8fafc;">نوفمبر 2026</span>
+              <button type="button" onclick="navigateTasksCalendar(1)" style="width: 30px; height: 30px; border-radius: 7px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-chevron-left"></i></button>
+            </div>
+            <button type="button" onclick="goToTasksCalendarToday()" style="padding: 4px 10px; border-radius: 7px; font-size: 0.70rem; font-weight: 800; background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); cursor: pointer;">
+              <i class="fa-solid fa-calendar-day"></i> اليوم
+            </button>
+          </div>
+
+          <!-- شبكة أيام الأسبوع -->
+          <div style="display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; gap: 3px; margin-bottom: 6px; font-size: 0.68rem; font-weight: 800; color: #94a3b8;">
+            <div>سبت</div><div>أحد</div><div>إثنين</div><div>ثلاثاء</div><div>أربعاء</div><div>خميس</div><div>جمعة</div>
+          </div>
+
+          <!-- شبكة أيام الشهر مع مؤشرات المهام النقطية الملونة -->
+          <div id="tasksCalendarGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;">
+            <!-- تتولد خلايا الأيام ديناميكياً مع النقاط الملونة للمهام -->
+          </div>
+        </div>
+
+        <!-- قائمة مهام اليوم المختار من التقويم -->
+        <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 6px;">
+            <div style="font-size: 0.82rem; font-weight: 900; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-calendar-check"></i> <span id="calendarSelectedDayTitle">مهام اليوم المختار</span>
+            </div>
+            <span id="calendarSelectedDayCountBadge" style="font-size: 0.64rem; background: rgba(56, 189, 248, 0.18); color: #38bdf8; padding: 2px 7px; border-radius: 6px; font-weight: 800;">0 مهام</span>
+          </div>
+          <div id="tasksCalendarDayList" style="display: flex; flex-direction: column; gap: 6px;">
+            <!-- قائمة مهام اليوم المحدد -->
+          </div>
+        </div>
       </div>
+
+      <!-- ==========================================================
+           3. التبويب الثالث: شاشة متابعة الإنتاجية (tasksTabStatsView)
+           ========================================================== -->
+      <div id="tasksTabStatsView" style="display: none; flex-direction: column; gap: 10px;">
+        <!-- بطاقة الإنجاز والإنتاجية العامة -->
+        <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1.2px solid rgba(168, 85, 247, 0.35); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.35);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 0.92rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 7px;">
+              <i class="fa-solid fa-award" style="color: #fbbf24;"></i> <span>معدل الإنتاجية والإنجاز اليومي</span>
+            </div>
+            <span class="badge-active-currency" id="tasksProductivityBadge" style="font-size: 0.70rem; padding: 3px 10px; border-radius: 8px;">جاهز للتحدي!</span>
+          </div>
+
+          <!-- شريط نسبة الإنجاز العريض -->
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="flex: 1; height: 10px; background: rgba(255,255,255,0.08); border-radius: 5px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06);">
+              <div id="tasksOverallProgressBarFull" style="height: 100%; width: 0%; background: linear-gradient(90deg, #a855f7, #10b981); border-radius: 5px; transition: width 0.4s ease;"></div>
+            </div>
+            <span id="tasksOverallProgressPctFull" style="font-size: 0.88rem; font-weight: 950; color: #34d399; font-family: var(--font-numbers); direction: ltr; min-width: 40px; text-align: left;">0%</span>
+          </div>
+
+          <!-- المؤشرات الرقمية الأربعة للإنتاجية -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding-top: 4px;">
+            <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 8px 4px; text-align: center;">
+              <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 800;">إجمالي المهام</div>
+              <div id="kpiTasksTotalFull" style="font-size: 1.05rem; font-weight: 950; color: #38bdf8; margin-top: 2px;">0</div>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 8px 4px; text-align: center;">
+              <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 800;">قيد التنفيذ</div>
+              <div id="kpiTasksActiveFull" style="font-size: 1.05rem; font-weight: 950; color: #c084fc; margin-top: 2px;">0</div>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 8px 4px; text-align: center;">
+              <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 800;">المتأخرة</div>
+              <div id="kpiTasksOverdueFull" style="font-size: 1.05rem; font-weight: 950; color: #f87171; margin-top: 2px;">0</div>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 8px 4px; text-align: center;">
+              <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 800;">المكتملة</div>
+              <div id="kpiTasksDoneFull" style="font-size: 1.05rem; font-weight: 950; color: #34d399; margin-top: 2px;">0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </main>
   </div>
 
@@ -29837,6 +29952,12 @@ function installDailyNoonTrigger() {
     let currentDrawerTodoSection = 'my_day';
     let currentTasksMemberFilter = 'all';
     let quickTaskDueDatePreset = 'today';
+    let currentTasksViewMode = 'list'; // 'list' | 'calendar' | 'stats'
+    let currentTasksCategoryFilter = 'all'; // 'all' | 'shopping' | 'bills' | 'health' | 'home' | 'work';
+    let calendarCurrentYear = new Date().getFullYear();
+    let calendarCurrentMonth = new Date().getMonth(); // 0-indexed
+    let calendarSelectedDate = getLocalDateStr(new Date());
+
     window.currentPendingTaskPhotoUri = null;
     window.pendingSubtaskPhotos = window.pendingSubtaskPhotos || {};
 
@@ -29845,7 +29966,6 @@ function installDailyNoonTrigger() {
         const raw = localStorage.getItem('family_monefy_tasks');
         if (raw) return JSON.parse(raw);
       } catch(e) {}
-      // عينة تجريبية أولية راقية إذا لم تكن هناك مهام
       return [
         {
           id: 'task_demo_1',
@@ -29855,7 +29975,7 @@ function installDailyNoonTrigger() {
           dueTime: '18:00',
           priority: 'high',
           tag: 'shopping',
-          assignedMember: 'أية',
+          assignedMember: 'آية',
           estimatedAmount: 750,
           isExpenseConverted: false,
           starred: true,
@@ -29889,7 +30009,7 @@ function installDailyNoonTrigger() {
           dueDate: getLocalDateStr(new Date(Date.now() + 86400000)),
           dueTime: '14:00',
           priority: 'medium',
-          tag: 'family',
+          tag: 'home',
           assignedMember: 'محمد',
           estimatedAmount: 300,
           isExpenseConverted: false,
@@ -29911,7 +30031,7 @@ function installDailyNoonTrigger() {
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
       }
-      renderTasksProList();
+      switchTasksViewMode(currentTasksViewMode || 'list');
     }
 
     function closeTasksFullScreenModal() {
@@ -29926,7 +30046,93 @@ function installDailyNoonTrigger() {
       openTasksFullScreenModal();
     }
 
-    function switchDrawerTodoSection(sec) {
+    // =========================================================================
+    // التبديل بين أوضاع العرض الرئيسية: القوائم / التقويم / الإنتاجية
+    // =========================================================================
+    function switchTasksViewMode(mode) {
+      currentTasksViewMode = mode;
+      const vList = document.getElementById('tasksTabListView');
+      const vCal = document.getElementById('tasksTabCalendarView');
+      const vStats = document.getElementById('tasksTabStatsView');
+
+      const bList = document.getElementById('btnTaskTabList');
+      const bCal = document.getElementById('btnTaskTabCalendar');
+      const bStats = document.getElementById('btnTaskTabStats');
+
+      [bList, bCal, bStats].forEach(b => {
+        if (b) {
+          b.style.background = 'transparent';
+          b.style.color = '#94a3b8';
+          b.style.border = '1px solid rgba(255,255,255,0.08)';
+          b.style.boxShadow = 'none';
+          b.classList.remove('active');
+        }
+      });
+
+      if (vList) vList.style.display = mode === 'list' ? 'flex' : 'none';
+      if (vCal) vCal.style.display = mode === 'calendar' ? 'flex' : 'none';
+      if (vStats) vStats.style.display = mode === 'stats' ? 'flex' : 'none';
+
+      const activeBtn = mode === 'list' ? bList : (mode === 'calendar' ? bCal : bStats);
+      if (activeBtn) {
+        activeBtn.style.background = 'linear-gradient(135deg, #a855f7, #7c3aed)';
+        activeBtn.style.color = '#fff';
+        activeBtn.style.border = 'none';
+        activeBtn.style.boxShadow = '0 2px 8px rgba(168, 85, 247, 0.4)';
+        activeBtn.classList.add('active');
+      }
+
+      if (mode === 'calendar') {
+        renderTasksCalendar();
+      } else {
+        renderTasksProList();
+      }
+    }
+
+    // =========================================================================
+    // تصفية الفئات بكاروسيل التصنيفات الملونة
+    // =========================================================================
+    function setTasksCategoryFilter(cat) {
+      currentTasksCategoryFilter = cat;
+      const strip = document.getElementById('tasksCategoryPillsStrip');
+      if (strip) {
+        strip.querySelectorAll('.task-category-pill').forEach(btn => {
+          if (btn.getAttribute('data-cat') === cat) {
+            btn.classList.add('active');
+            btn.style.background = 'linear-gradient(135deg, #a855f7, #6366f1)';
+            btn.style.color = '#fff';
+            btn.style.boxShadow = '0 2px 8px rgba(168,85,247,0.35)';
+          } else {
+            btn.classList.remove('active');
+            btn.style.boxShadow = 'none';
+            // Restore default color styles
+            const bCat = btn.getAttribute('data-cat');
+            if (bCat === 'shopping') {
+              btn.style.background = 'rgba(16, 185, 129, 0.12)';
+              btn.style.color = '#34d399';
+            } else if (bCat === 'bills') {
+              btn.style.background = 'rgba(245, 158, 11, 0.12)';
+              btn.style.color = '#fbbf24';
+            } else if (bCat === 'health') {
+              btn.style.background = 'rgba(244, 63, 94, 0.12)';
+              btn.style.color = '#f43f5e';
+            } else if (bCat === 'home') {
+              btn.style.background = 'rgba(56, 189, 248, 0.12)';
+              btn.style.color = '#38bdf8';
+            } else if (bCat === 'work') {
+              btn.style.background = 'rgba(168, 85, 247, 0.12)';
+              btn.style.color = '#c084fc';
+            } else {
+              btn.style.background = 'rgba(255, 255, 255, 0.08)';
+              btn.style.color = '#94a3b8';
+            }
+          }
+        });
+      }
+      renderTasksProList();
+    }
+
+    function switchTodoSection(sec) {
       currentDrawerTodoSection = sec;
       const tabs = ['my_day', 'important', 'planned', 'shopping', 'overdue', 'completed'];
       tabs.forEach(t => {
@@ -29934,12 +30140,12 @@ function installDailyNoonTrigger() {
         const btn = document.getElementById(btnId);
         if (btn) {
           if (t === sec) {
-            btn.className = 'exp-tab-btn active';
+            btn.classList.add('active');
             btn.style.background = 'rgba(168, 85, 247, 0.25)';
             btn.style.color = '#c084fc';
             btn.style.border = '1.2px solid rgba(168, 85, 247, 0.45)';
           } else {
-            btn.className = 'exp-tab-btn';
+            btn.classList.remove('active');
             btn.style.background = 'transparent';
             btn.style.color = '#94a3b8';
             btn.style.border = '1px solid rgba(255,255,255,0.1)';
@@ -29953,7 +30159,7 @@ function installDailyNoonTrigger() {
       currentTasksMemberFilter = mem;
       const box = document.getElementById('tasksMemberFilterPills');
       if (box) {
-        box.querySelectorAll('.btn-task-member-pill').forEach(b => {
+        box.querySelectorAll('button').forEach(b => {
           b.classList.remove('active');
           b.style.background = 'transparent';
           b.style.color = '#94a3b8';
@@ -29969,6 +30175,9 @@ function installDailyNoonTrigger() {
       renderTasksProList();
     }
 
+    // =========================================================================
+    // آلية اختيار المواعيد والساعة السريعة مع حقل datetime-local
+    // =========================================================================
     function setQuickTaskPreset(preset) {
       quickTaskDueDatePreset = preset;
       const chips = document.getElementById('quickTaskPresetChips');
@@ -29991,6 +30200,52 @@ function installDailyNoonTrigger() {
         activeChip.style.color = '#c084fc';
         activeChip.style.border = '1px solid rgba(168, 85, 247, 0.4)';
       }
+
+      // ضبط القيمة في حقل الساعة واليوم المباشر
+      const dtInp = document.getElementById('quickTaskDateTimeInput');
+      if (dtInp) {
+        const now = new Date();
+        if (preset === 'today') {
+          now.setHours(20, 0, 0, 0);
+          dtInp.value = formatDateTimeLocalInput(now);
+        } else if (preset === 'tomorrow') {
+          now.setDate(now.getDate() + 1);
+          now.setHours(10, 0, 0, 0);
+          dtInp.value = formatDateTimeLocalInput(now);
+        } else if (preset === 'weekend') {
+          const dayOfWeek = now.getDay();
+          const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
+          now.setDate(now.getDate() + daysUntilFriday);
+          now.setHours(18, 0, 0, 0);
+          dtInp.value = formatDateTimeLocalInput(now);
+        } else if (preset === 'none') {
+          dtInp.value = '';
+        }
+      }
+    }
+
+    function onQuickTaskDateTimeChange(val) {
+      if (val) {
+        quickTaskDueDatePreset = 'custom';
+        const chips = document.getElementById('quickTaskPresetChips');
+        if (chips) {
+          chips.querySelectorAll('.btn-quick-date-chip').forEach(c => {
+            c.classList.remove('active');
+            c.style.background = 'transparent';
+            c.style.color = '#94a3b8';
+            c.style.border = '1px solid rgba(255,255,255,0.1)';
+          });
+        }
+      }
+    }
+
+    function formatDateTimeLocalInput(d) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      const hh = String(d.getHours()).padStart(2, '0');
+      const mm = String(d.getMinutes()).padStart(2, '0');
+      return `${y}-${m}-${day}T${hh}:${mm}`;
     }
 
     function handleQuickTaskAdd() {
@@ -30005,39 +30260,53 @@ function installDailyNoonTrigger() {
       const mem = document.getElementById('quickTaskMemberSelect')?.value || 'البيت';
       const prio = document.getElementById('quickTaskPrioritySelect')?.value || 'normal';
       const estAmt = parseFloat(document.getElementById('quickTaskEstAmount')?.value || 0) || null;
+      const dtInp = document.getElementById('quickTaskDateTimeInput');
 
-      const now = new Date();
       let targetDate = '';
-      if (quickTaskDueDatePreset === 'today') {
-        targetDate = getLocalDateStr(now);
-      } else if (quickTaskDueDatePreset === 'tomorrow') {
-        const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-        targetDate = getLocalDateStr(tomorrow);
-      } else if (quickTaskDueDatePreset === 'weekend') {
-        const dayOfWeek = now.getDay();
-        const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
-        const nextFri = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilFriday);
-        targetDate = getLocalDateStr(nextFri);
+      let targetTime = '';
+
+      if (dtInp && dtInp.value) {
+        const parts = dtInp.value.split('T');
+        targetDate = parts[0];
+        targetTime = parts[1] || '';
+      } else {
+        const now = new Date();
+        if (quickTaskDueDatePreset === 'today') {
+          targetDate = getLocalDateStr(now);
+          targetTime = '20:00';
+        } else if (quickTaskDueDatePreset === 'tomorrow') {
+          const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+          targetDate = getLocalDateStr(tomorrow);
+          targetTime = '10:00';
+        } else if (quickTaskDueDatePreset === 'weekend') {
+          const dayOfWeek = now.getDay();
+          const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
+          const nextFri = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilFriday);
+          targetDate = getLocalDateStr(nextFri);
+          targetTime = '18:00';
+        }
       }
 
-      let tag = 'general';
+      // تحديد التصنيف تلقائياً بناءً على الكلمات أو الفئة النشطة
+      let tag = currentTasksCategoryFilter !== 'all' ? currentTasksCategoryFilter : 'home';
       const tLower = title.toLowerCase();
       if (tLower.includes('شراء') || tLower.includes('سوبرماركت') || tLower.includes('خضار') || tLower.includes('لحمة') || estAmt > 0) tag = 'shopping';
       else if (tLower.includes('فاتورة') || tLower.includes('قسط') || tLower.includes('نت') || tLower.includes('كهرباء') || tLower.includes('غاز')) tag = 'bills';
-      else if (tLower.includes('بيت') || tLower.includes('منزل') || tLower.includes('تصليح')) tag = 'home';
-      else if (tLower.includes('دواء') || tLower.includes('علاج') || tLower.includes('دكتور')) tag = 'family';
+      else if (tLower.includes('دواء') || tLower.includes('علاج') || tLower.includes('دكتور') || tLower.includes('صيدلية')) tag = 'health';
+      else if (tLower.includes('شغل') || tLower.includes('مكتب') || tLower.includes('عميل') || tLower.includes('مشروع')) tag = 'work';
 
       const newTask = {
         id: 'task_' + Date.now(),
         title: title,
         completed: false,
         dueDate: targetDate,
-        dueTime: targetDate ? '20:00' : '',
+        dueTime: targetTime,
         priority: prio,
         tag: tag,
         assignedMember: mem,
         estimatedAmount: estAmt,
         isExpenseConverted: false,
+        starred: prio === 'high',
         subtasks: [],
         createdAt: new Date().toISOString()
       };
@@ -30047,220 +30316,317 @@ function installDailyNoonTrigger() {
       saveTodoTasks(tasks);
 
       inp.value = '';
+      if (dtInp) dtInp.value = '';
       const amtInp = document.getElementById('quickTaskEstAmount');
       if (amtInp) amtInp.value = '';
+
       showToast(`✅ تمت إضافة المهمة: ${title}`);
-      renderTasksProList();
-    }
 
-    function toggleDrawerTaskCompletion(taskId) {
-      const tasks = getTodoTasks();
-      const task = tasks.find(t => t.id === taskId);
-      if (!task) return;
-      task.completed = !task.completed;
-      if (task.completed) {
-        task.completedAt = new Date().toISOString();
-        showToast('🎉 أحسنت! تم إنجاز المهمة بنجاح');
-      }
-      saveTodoTasks(tasks);
-      renderTasksProList();
-    }
-
-    function toggleTaskStar(taskId) {
-      const tasks = getTodoTasks();
-      const task = tasks.find(t => t.id === taskId);
-      if (!task) return;
-      task.starred = !task.starred;
-      saveTodoTasks(tasks);
-      renderTasksProList();
-    }
-
-    function deleteDrawerTask(taskId) {
-      if (!confirm('هل أنت متأكد من حذف هذه المهمة نهائياً؟')) return;
-      let tasks = getTodoTasks();
-      tasks = tasks.filter(t => t.id !== taskId);
-      saveTodoTasks(tasks);
-      showToast('🗑️ تم حذف المهمة بنجاح');
-      renderTasksProList();
-    }
-
-    function convertTaskToExpense(taskId) {
-      const tasks = getTodoTasks();
-      const task = tasks.find(t => t.id === taskId);
-      if (!task) return;
-
-      closeTasksFullScreenModal();
-
-      let targetCat = 'other';
-      if (task.tag === 'bills') targetCat = 'bills';
-      else if (task.tag === 'shopping') targetCat = 'food';
-      else if (task.tag === 'home') targetCat = 'house';
-      else if (task.tag === 'family') targetCat = 'other';
-
-      openTxModal('expense', targetCat);
-
-      setTimeout(() => {
-        const labelInp = document.getElementById('inpTxLabel');
-        const amountInp = document.getElementById('inpTxAmount');
-        const memberInp = document.getElementById('inpTxMember');
-
-        if (labelInp) labelInp.value = task.title;
-        if (amountInp && task.estimatedAmount) amountInp.value = task.estimatedAmount;
-        if (memberInp && task.assignedMember) memberInp.value = task.assignedMember;
-
-        task.isExpenseConverted = true;
-        task.completed = true;
-        saveTodoTasks(tasks);
-      }, 150);
-    }
-
-    function toggleSubtaskCompleted(taskId, subtaskId) {
-      const tasks = getTodoTasks();
-      const task = tasks.find(t => t.id === taskId);
-      if (!task || !task.subtasks) return;
-      const sub = task.subtasks.find(s => s.id === subtaskId);
-      if (!sub) return;
-      sub.completed = !sub.completed;
-      saveTodoTasks(tasks);
-      renderTasksProList();
-    }
-
-    function toggleSubtaskForm(taskId, forceOpen = null) {
-      const box = document.getElementById(`subtaskAddBox_${taskId}`);
-      if (!box) return;
-      const willOpen = forceOpen !== null ? forceOpen : (box.style.display === 'none');
-      box.style.display = willOpen ? 'block' : 'none';
-      if (willOpen) {
-        const inp = document.getElementById(`inpSubtaskTitle_${taskId}`);
-        if (inp) inp.focus();
+      if (currentTasksViewMode === 'calendar') {
+        renderTasksCalendar();
+      } else {
+        renderTasksProList();
       }
     }
 
-    function addSubtaskToTask(taskId) {
-      const titleInp = document.getElementById(`inpSubtaskTitle_${taskId}`);
-      const title = titleInp ? titleInp.value.trim() : '';
-      if (!title) {
-        showToast('⚠️ يرجى كتابة بيان الخطوة الفرعية');
-        if (titleInp) titleInp.focus();
+    // =========================================================================
+    // محرك التقويم الشهري التفاعلي (Interactive Calendar Engine)
+    // =========================================================================
+    const arabicMonths = [
+      'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+      'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
+    ];
+
+    function renderTasksCalendar() {
+      const grid = document.getElementById('tasksCalendarGrid');
+      const titleEl = document.getElementById('calendarMonthTitle');
+      if (!grid) return;
+
+      if (titleEl) {
+        titleEl.textContent = `${arabicMonths[calendarCurrentMonth]} ${calendarCurrentYear}`;
+      }
+
+      grid.innerHTML = '';
+      const tasks = getTodoTasks();
+
+      // خريطة المهام حسب التاريخ لحساب النقاط الملونة
+      const tasksByDate = {};
+      tasks.forEach(t => {
+        if (!t.dueDate) return;
+        if (!tasksByDate[t.dueDate]) tasksByDate[t.dueDate] = [];
+        tasksByDate[t.dueDate].push(t);
+      });
+
+      const todayStr = getLocalDateStr(new Date());
+
+      // أول يوم في الشهر وعدد الأيام
+      const firstDayOfMonth = new Date(calendarCurrentYear, calendarCurrentMonth, 1);
+      const lastDayOfMonth = new Date(calendarCurrentYear, calendarCurrentMonth + 1, 0);
+      const totalDays = lastDayOfMonth.getDate();
+
+      // ترتيب الأيام العربية (يبدأ بالسبت: السبت=6 في JS Day)
+      // JS: 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+      const startDay = (firstDayOfMonth.getDay() + 1) % 7; // السبت = 0
+
+      // خلايا فارغة قبل بداية الشهر
+      for (let i = 0; i < startDay; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.style.height = '42px';
+        emptyCell.style.opacity = '0.15';
+        grid.appendChild(emptyCell);
+      }
+
+      // رسم أيام الشهر
+      for (let day = 1; day <= totalDays; day++) {
+        const dStr = `${calendarCurrentYear}-${String(calendarCurrentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const dayTasks = tasksByDate[dStr] || [];
+
+        const cell = document.createElement('div');
+        const isToday = dStr === todayStr;
+        const isSelected = dStr === calendarSelectedDate;
+
+        cell.style.cssText = `
+          height: 44px;
+          border-radius: 9px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          position: relative;
+          transition: all 0.2s ease;
+          border: ${isSelected ? '1.5px solid #a855f7' : (isToday ? '1.2px solid #38bdf8' : '1px solid rgba(255,255,255,0.06)')};
+          background: ${isSelected ? 'rgba(168, 85, 247, 0.25)' : (isToday ? 'rgba(56, 189, 248, 0.12)' : 'rgba(15, 23, 42, 0.5)')};
+        `;
+
+        cell.onclick = () => selectCalendarDay(dStr);
+
+        // رقم اليوم
+        const numSpan = document.createElement('span');
+        numSpan.textContent = day;
+        numSpan.style.cssText = `
+          font-size: 0.76rem;
+          font-weight: ${isToday || isSelected ? '900' : '700'};
+          color: ${isSelected ? '#f8fafc' : (isToday ? '#38bdf8' : '#cbd5e1')};
+          font-family: var(--font-numbers);
+        `;
+        cell.appendChild(numSpan);
+
+        // نقاط المهام الملونة (Color Dots)
+        if (dayTasks.length > 0) {
+          const dotsRow = document.createElement('div');
+          dotsRow.style.cssText = 'display: flex; gap: 2px; align-items: center; margin-top: 2px;';
+
+          // عرض حتى 3 نقاط ملونة تدل على طبيعة المهام
+          dayTasks.slice(0, 3).forEach(t => {
+            const dot = document.createElement('span');
+            let dotColor = '#38bdf8';
+            if (t.completed) dotColor = '#10b981';
+            else if (t.priority === 'high') dotColor = '#f43f5e';
+            else if (t.tag === 'shopping') dotColor = '#34d399';
+            else if (t.tag === 'bills') dotColor = '#fbbf24';
+
+            dot.style.cssText = `width: 5px; height: 5px; border-radius: 50%; background: ${dotColor};`;
+            dotsRow.appendChild(dot);
+          });
+          cell.appendChild(dotsRow);
+        }
+
+        grid.appendChild(cell);
+      }
+
+      // رسم قائمة مهام اليوم المختار
+      selectCalendarDay(calendarSelectedDate || todayStr);
+    }
+
+    function selectCalendarDay(dateStr) {
+      calendarSelectedDate = dateStr;
+      const titleEl = document.getElementById('calendarSelectedDayTitle');
+      const badgeEl = document.getElementById('calendarSelectedDayCountBadge');
+      const container = document.getElementById('tasksCalendarDayList');
+      if (!container) return;
+
+      const tasks = getTodoTasks().filter(t => t.dueDate === dateStr);
+      if (titleEl) titleEl.textContent = `مهام تاريخ: ${dateStr}`;
+      if (badgeEl) badgeEl.textContent = `${tasks.length} مهام`;
+
+      if (tasks.length === 0) {
+        container.innerHTML = `
+          <div style="padding: 16px; text-align: center; color: #64748b; font-size: 0.74rem;">
+            <i class="fa-solid fa-calendar-plus" style="font-size: 1.5rem; opacity: 0.4; margin-bottom: 6px; display: block; color: #a855f7;"></i>
+            لا توجد مهام مسجلة لهذا اليوم.
+            <div style="margin-top: 6px;">
+              <button type="button" onclick="setQuickTaskDirectDate('${dateStr}')" style="padding: 4px 10px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: rgba(168,85,247,0.2); color: #c084fc; border: 1px solid rgba(168,85,247,0.4); cursor: pointer;">+ إضافة مهمة لهذا التاريخ</button>
+            </div>
+          </div>
+        `;
         return;
       }
 
+      container.innerHTML = '';
+      tasks.forEach(t => {
+        const item = document.createElement('div');
+        item.style.cssText = `
+          background: rgba(30, 41, 59, 0.7);
+          border: 1px solid ${t.completed ? 'rgba(16, 185, 129, 0.3)' : 'rgba(168, 85, 247, 0.3)'};
+          border-radius: 9px;
+          padding: 8px 10px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 8px;
+        `;
+
+        item.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 8px; min-width: 0;">
+            <button type="button" onclick="toggleTaskCompleted('${t.id}')" style="width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid ${t.completed ? '#10b981' : '#a855f7'}; background: ${t.completed ? '#10b981' : 'transparent'}; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; cursor: pointer; flex-shrink: 0;">
+              ${t.completed ? '<i class="fa-solid fa-check"></i>' : ''}
+            </button>
+            <div style="min-width: 0;">
+              <div style="font-size: 0.82rem; font-weight: 800; color: ${t.completed ? '#94a3b8' : '#f8fafc'}; text-decoration: ${t.completed ? 'line-through' : 'none'}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                ${escapeHtml(t.title)}
+              </div>
+              <div style="font-size: 0.65rem; color: #94a3b8; display: flex; align-items: center; gap: 6px; margin-top: 1px;">
+                ${t.dueTime ? `<span>⏰ ${t.dueTime}</span>` : ''}
+                <span>👤 ${escapeHtml(t.assignedMember || 'البيت')}</span>
+                ${t.estimatedAmount ? `<span style="color: #fbbf24; font-weight: 800;">${t.estimatedAmount} ج.م</span>` : ''}
+              </div>
+            </div>
+          </div>
+          <button type="button" onclick="deleteTaskItem('${t.id}')" style="background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; color: #f87171; width: 26px; height: 26px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.72rem;"><i class="fa-solid fa-trash-can"></i></button>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function setQuickTaskDirectDate(dateStr) {
+      calendarSelectedDate = dateStr;
+      switchTasksViewMode('list');
+      const dtInp = document.getElementById('quickTaskDateTimeInput');
+      if (dtInp) {
+        dtInp.value = `${dateStr}T12:00`;
+        onQuickTaskDateTimeChange(dtInp.value);
+      }
+      const titleInp = document.getElementById('quickTaskTitleInput');
+      if (titleInp) titleInp.focus();
+    }
+
+    function navigateTasksCalendar(delta) {
+      calendarCurrentMonth += delta;
+      if (calendarCurrentMonth < 0) {
+        calendarCurrentMonth = 11;
+        calendarCurrentYear--;
+      } else if (calendarCurrentMonth > 11) {
+        calendarCurrentMonth = 0;
+        calendarCurrentYear++;
+      }
+      renderTasksCalendar();
+    }
+
+    function goToTasksCalendarToday() {
+      const now = new Date();
+      calendarCurrentYear = now.getFullYear();
+      calendarCurrentMonth = now.getMonth();
+      calendarSelectedDate = getLocalDateStr(now);
+      renderTasksCalendar();
+    }
+
+    function toggleTaskCompleted(id) {
       const tasks = getTodoTasks();
-      const task = tasks.find(t => t.id === taskId);
-      if (!task) return;
-
-      if (!task.subtasks) task.subtasks = [];
-      const newSub = {
-        id: 'sub_' + Date.now(),
-        title: title,
-        completed: false,
-        photoUri: window.pendingSubtaskPhotos[taskId] || null
-      };
-
-      task.subtasks.push(newSub);
-      saveTodoTasks(tasks);
-      delete window.pendingSubtaskPhotos[taskId];
-
-      titleInp.value = '';
-      toggleSubtaskForm(taskId, false);
-      showToast('✅ تمت إضافة الخطوة الفرعية بنجاح');
-      renderTasksProList();
-    }
-
-    function deleteSubtask(taskId, subtaskId) {
-      const tasks = getTodoTasks();
-      const task = tasks.find(t => t.id === taskId);
-      if (!task || !task.subtasks) return;
-      task.subtasks = task.subtasks.filter(s => s.id !== subtaskId);
-      saveTodoTasks(tasks);
-      renderTasksProList();
-    }
-
-    function handleSubtaskPhotoPicked(event, taskId) {
-      const file = event.target.files && event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const img = new Image();
-        img.onload = function() {
-          const canvas = document.createElement('canvas');
-          const maxDim = 500;
-          let w = img.width, h = img.height;
-          if (w > h && w > maxDim) { h = Math.round((h * maxDim) / w); w = maxDim; }
-          else if (h > maxDim) { w = Math.round((w * maxDim) / h); h = maxDim; }
-          canvas.width = w; canvas.height = h;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, w, h);
-          const compressed = canvas.toDataURL('image/jpeg', 0.80);
-          window.pendingSubtaskPhotos[taskId] = compressed;
-          const badge = document.getElementById(`subtaskPhotoBadge_${taskId}`);
-          if (badge) badge.style.display = 'inline';
-          showToast('📷 تم التقاط صورة الخطوة بنجاح');
-        };
-        img.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function openNewTaskDrawerModal() {
-      const modal = document.getElementById('newTaskDrawerModal');
-      if (modal) {
-        modal.style.display = 'flex';
-        const titleInp = document.getElementById('drawerNewTaskTitle');
-        if (titleInp) {
-          titleInp.value = '';
-          setTimeout(() => titleInp.focus(), 150);
+      const t = tasks.find(x => x.id === id);
+      if (t) {
+        t.completed = !t.completed;
+        saveTodoTasks(tasks);
+        if (currentTasksViewMode === 'calendar') {
+          renderTasksCalendar();
+        } else {
+          renderTasksProList();
         }
       }
     }
 
-    function handleDrawerAddNewTask() {
-      const titleInp = document.getElementById('drawerNewTaskTitle');
-      const title = titleInp ? titleInp.value.trim() : '';
-      if (!title) {
-        showToast('⚠️ يرجى كتابة عنوان المهمة');
-        if (titleInp) titleInp.focus();
-        return;
-      }
-
-      const mem = document.getElementById('drawerNewTaskMember')?.value || 'البيت';
-      const prio = document.getElementById('drawerNewTaskPriority')?.value || 'normal';
-      const tag = document.getElementById('drawerNewTaskTag')?.value || 'general';
-      const estAmt = parseFloat(document.getElementById('drawerNewTaskAmount')?.value || 0) || null;
-      const dtVal = document.getElementById('drawerNewTaskDateTimeInput')?.value || '';
-
-      let dueDate = '', dueTime = '';
-      if (dtVal) {
-        const parts = dtVal.split('T');
-        dueDate = parts[0] || '';
-        dueTime = parts[1] || '';
-      }
-
-      const newTask = {
-        id: 'task_' + Date.now(),
-        title: title,
-        completed: false,
-        dueDate: dueDate,
-        dueTime: dueTime,
-        priority: prio,
-        tag: tag,
-        assignedMember: mem,
-        estimatedAmount: estAmt,
-        isExpenseConverted: false,
-        starred: prio === 'high',
-        photoUri: currentPendingTaskPhotoUri || null,
-        subtasks: [],
-        createdAt: new Date().toISOString()
-      };
-
+    function toggleTaskStarred(id) {
       const tasks = getTodoTasks();
-      tasks.unshift(newTask);
-      saveTodoTasks(tasks);
+      const t = tasks.find(x => x.id === id);
+      if (t) {
+        t.starred = !t.starred;
+        saveTodoTasks(tasks);
+        renderTasksProList();
+      }
+    }
 
-      currentPendingTaskPhotoUri = null;
-      closeModal('newTaskDrawerModal');
-      showToast(`✅ تمت إضافة المهمة بنجاح: ${title}`);
+    function deleteTaskItem(id) {
+      let tasks = getTodoTasks();
+      tasks = tasks.filter(x => x.id !== id);
+      saveTodoTasks(tasks);
+      showToast('🗑️ تم حذف المهمة');
+      if (currentTasksViewMode === 'calendar') {
+        renderTasksCalendar();
+      } else {
+        renderTasksProList();
+      }
+    }
+
+    function convertTaskToExpense(id) {
+      const tasks = getTodoTasks();
+      const t = tasks.find(x => x.id === id);
+      if (!t) return;
+
+      const amt = Number(t.estimatedAmount) || 0;
+      if (typeof openExpenseModalWithData === 'function') {
+        openExpenseModalWithData({
+          title: t.title,
+          amount: amt,
+          member: t.assignedMember || 'البيت',
+          tag: t.tag || 'shopping'
+        });
+      } else {
+        showToast(`💰 تحويل: ${t.title} بمبلغ ${amt} ج.م`);
+      }
+      t.completed = true;
+      t.isExpenseConverted = true;
+      saveTodoTasks(tasks);
       renderTasksProList();
+    }
+
+    function addSubtaskToTask(taskId) {
+      const title = prompt('أدخل تفاصيل الخطوة الفرعية الجديدة:');
+      if (!title || !title.trim()) return;
+      const tasks = getTodoTasks();
+      const t = tasks.find(x => x.id === taskId);
+      if (t) {
+        if (!t.subtasks) t.subtasks = [];
+        t.subtasks.push({
+          id: 'sub_' + Date.now(),
+          title: title.trim(),
+          completed: false
+        });
+        saveTodoTasks(tasks);
+        renderTasksProList();
+      }
+    }
+
+    function toggleSubtaskCompleted(taskId, subId) {
+      const tasks = getTodoTasks();
+      const t = tasks.find(x => x.id === taskId);
+      if (t && t.subtasks) {
+        const sub = t.subtasks.find(s => s.id === subId);
+        if (sub) {
+          sub.completed = !sub.completed;
+          saveTodoTasks(tasks);
+          renderTasksProList();
+        }
+      }
+    }
+
+    function deleteSubtaskItem(taskId, subId) {
+      const tasks = getTodoTasks();
+      const t = tasks.find(x => x.id === taskId);
+      if (t && t.subtasks) {
+        t.subtasks = t.subtasks.filter(s => s.id !== subId);
+        saveTodoTasks(tasks);
+        renderTasksProList();
+      }
     }
 
     function setTaskDateTimePreset(preset, targetInputId = 'drawerNewTaskDateTimeInput') {
@@ -30269,6 +30635,7 @@ function installDailyNoonTrigger() {
       const now = new Date();
       if (preset === 'clear') {
         inp.value = '';
+        if (targetInputId === 'quickTaskDateTimeInput') onQuickTaskDateTimeChange('');
         showToast('تم مسح موعد المهمة');
         return;
       }
@@ -30277,19 +30644,18 @@ function installDailyNoonTrigger() {
         targetDate.setHours(20, 0, 0, 0);
       } else if (preset === 'tomorrow_morning') {
         targetDate.setDate(targetDate.getDate() + 1);
-        targetDate.setHours(9, 0, 0, 0);
+        targetDate.setHours(10, 0, 0, 0);
+      } else if (preset === 'after_two_days') {
+        targetDate.setDate(targetDate.getDate() + 2);
+        targetDate.setHours(12, 0, 0, 0);
       } else if (preset === 'weekend') {
         const dayOfWeek = now.getDay();
         const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
         targetDate.setDate(targetDate.getDate() + daysUntilFriday);
         targetDate.setHours(18, 0, 0, 0);
       }
-      const y = targetDate.getFullYear();
-      const m = String(targetDate.getMonth() + 1).padStart(2, '0');
-      const d = String(targetDate.getDate()).padStart(2, '0');
-      const hh = String(targetDate.getHours()).padStart(2, '0');
-      const mm = String(targetDate.getMinutes()).padStart(2, '0');
-      inp.value = `${y}-${m}-${d}T${hh}:${mm}`;
+      inp.value = formatDateTimeLocalInput(targetDate);
+      if (targetInputId === 'quickTaskDateTimeInput') onQuickTaskDateTimeChange(inp.value);
     }
 
     function handleTaskPhotoUpload(event) {
@@ -30368,6 +30734,21 @@ function installDailyNoonTrigger() {
         else if (overallPct >= 60) pBadge.textContent = '🔥 إنتاجية عالية';
         else pBadge.textContent = `${activeCount} مهام متبقية`;
       }
+
+      // تحديث عدادات رقائق الفئات التفاعلية
+      const bAll = document.getElementById('catBadgeAll');
+      const bShop = document.getElementById('catBadgeShopping');
+      const bBills = document.getElementById('catBadgeBills');
+      const bHealth = document.getElementById('catBadgeHealth');
+      const bHome = document.getElementById('catBadgeHome');
+      const bWork = document.getElementById('catBadgeWork');
+
+      if (bAll) bAll.textContent = allTasks.filter(t => !t.completed).length;
+      if (bShop) bShop.textContent = allTasks.filter(t => !t.completed && t.tag === 'shopping').length;
+      if (bBills) bBills.textContent = allTasks.filter(t => !t.completed && (t.tag === 'bills' || t.tag === 'commitments')).length;
+      if (bHealth) bHealth.textContent = allTasks.filter(t => !t.completed && t.tag === 'health').length;
+      if (bHome) bHome.textContent = allTasks.filter(t => !t.completed && t.tag === 'home').length;
+      if (bWork) bWork.textContent = allTasks.filter(t => !t.completed && t.tag === 'work').length;
 
       // تطبيق تصفية القسم الذكي (Smart Lists)
       let filtered = allTasks;

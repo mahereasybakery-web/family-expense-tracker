@@ -1,0 +1,9 @@
+لاق">&times;</button>
+      </div>
+
+      <!-- محتوى الضبط الموحد الشامل (مضغوط هندسياً بدون حاجة للتمرير) -->
+      <div style="padding: 6px 10px; overflow-y: auto; flex: 1; max-height: calc(94vh - 115px); display: flex; flex-direction: column; gap: 8px;" class="custom-scrollbar">
+
+        <!-- زر موازنة وتدقيق الأرصدة والمحافظ -->
+                <!-- زر موازنة وتدقيق الأرصدة والمحافظ -->
+        <button type="button" onclick="runInstantSettingsAudit()" style="width: 100%; height: 38px; border-radius: 10px; background: linear-gradient(135deg, #0284c7, #0ea5e9); border: none; color: #fff; fon
