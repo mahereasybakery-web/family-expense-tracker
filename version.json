@@ -1,14 +1,17 @@
 {
-  "version": "v5.2.2",
-  "updatedAt": "2026-11-08T14:35:00+03:00",
+  "version": "v5.2.3",
+  "buildId": 202611081550,
+  "updatedAt": "2026-11-08T15:50:00+03:00",
   "changelog": [
-    "v5.2.2: Commitments page restructured into two clean top sections: [ الفواتير والديون ] & [ الميزانيات ]",
-    "v5.2.2: Under Bills & Debts: Comprehensive KPI summary, 5-segment filter pills (الكل, فواتير, ديون علينا, ديون لنا, مسددة), and unified add form",
-    "v5.2.2: Under Budgets: Full monthly budget plan management, planned vs actual KPIs, and category/member budget tracking",
-    "v5.2.2: Mobile Tasks single-screen inline add with independent date and time rows preventing any digit overlap",
-    "v5.2.2: Removed 'قائمة المهام والتخطيط اليومي' from tasks header for clean mobile layout",
-    "v5.2.2: Complete icon palette engine across all 6 themes (ملون, ذهبي, زمردي, سماوي, ياقوتي, بلاتيني)",
-    "v5.2.2: Complete typography engine applying all 6 fonts (Alexandria, Cairo, IBM Plex, Almarai, Readex Pro, Tajawal) across the entire UI",
-    "v5.2.2: Eliminated generic 'بيان' label in operations list, displaying actual category and member statement"
+    "v5.2.3: دمج زر التحديث الشامل والمزامنة الفورية في الهيدر الرئيسي مع موازنة الأرصدة والعمليات والذهب وفحص كود التطبيق تلقائياً",
+    "v5.2.3: حذف زر التحديث والمزامنة المكرر من الإعدادات وتركيز كافة العمليات في زر واحد ذكي بالهيدر",
+    "v5.2.3: إعادة هيكلة صفحة الالتزامات إلى قسمين علويين: [ الفواتير والديون ] و [ الميزانيات ]",
+    "v5.2.3: دمج الميزانية التقديرية الشهرية وسجل الميزانيات بالكامل تحت زر الميزانيات مع تفعيل محرك التحميل التلقائي",
+    "v5.2.3: دمج تحديد اليوم والساعة في كارت واحد سريع لإضافة المهام وإلغاء الشرائح المثبتة القديمة",
+    "v5.2.3: تخصيص زر مرفقات المهام لفتح الكاميرا المباشرة فقط للتصوير الفوري مع شريط معاينة",
+    "v5.2.3: دمج بطاقة مؤشرات الإنتاجية وتثبيتها بشكل دائم أعلى قائمة المهام مع إزالة تبويبها المنفصل",
+    "v5.2.3: تفعيل محرك تقويم المهام الشهري مع عرض الأيام والنقاط التفاعلية عند النقر",
+    "v5.2.3: إصلاح تصفية العمليات عند النقر على بيان مصروف أو بيان شخص من درج الملخص",
+    "v5.2.3: حماية الهيدر الرئيسي من التجاوز لضمان ظهور زر الإعدادات والضبط على كافة الهواتف الذكية"
   ]
 }
