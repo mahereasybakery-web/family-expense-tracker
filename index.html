@@ -141,10 +141,10 @@
     }
 
     var currentEditTxReceiptDataUri = null;
-    var APP_VERSION = '4.9.9';
-    var APP_BUILD_ID = 202611071845;
-    window.APP_VERSION = '4.9.9';
-    window.APP_BUILD_ID = 202611071845;
+    var APP_VERSION = '5.0.4';
+    var APP_BUILD_ID = 202611081000;
+    window.APP_VERSION = '5.0.4';
+    window.APP_BUILD_ID = 202611081000;
     (function() {
       try {
         var t = localStorage.getItem('family_monefy_theme') || 'navy';
@@ -12176,7 +12176,7 @@
           </button>
 
           <!-- زر درج المهام والالتزامات العائلية والخطوات الفرعية (1-tap shortcut) -->
-          <button type="button" class="tool-pill-action" id="btnOpenTasksDrawer" onclick="openSummaryDrawer('tasks')" title="إدارة المهام والالتزامات العائلية والخطوات الفرعية" style="height: 38px; padding: 0 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(168, 85, 247, 0.5); background: linear-gradient(135deg, rgba(168, 85, 247, 0.20), rgba(15, 23, 42, 0.9)); color: #c084fc; flex-shrink: 0;">
+          <button type="button" class="tool-pill-action" id="btnOpenTasksDrawer" onclick="openTasksFullScreenModal()" title="إدارة المهام والالتزامات العائلية والخطوات الفرعية" style="height: 38px; padding: 0 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(168, 85, 247, 0.5); background: linear-gradient(135deg, rgba(168, 85, 247, 0.20), rgba(15, 23, 42, 0.9)); color: #c084fc; flex-shrink: 0;">
             <i class="fa-solid fa-list-check" style="color: #c084fc;"></i>
             <span>المهام</span>
           </button>
@@ -12238,16 +12238,25 @@
             <!-- فلتر بنوع المصروف والمحفظة في صفحة العمليات -->
             <div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 6px; align-items: center; width: 100%; box-sizing: border-box; margin-bottom: 2px;">
               <select id="opsFilterCategory" class="form-input-custom" onchange="filterOperationsList()" style="width: 100%; height: 36px; padding: 4px 8px; font-size: 0.78rem; font-weight: 800; border-radius: 10px;">
-                <option value="all">📁 كافة أنواع وبنود المصروفات</option>
-                <option value="food">🛒 طعام ومشتريات</option>
-                <option value="daily">☕ مصروف يومي</option>
-                <option value="bills">⚡ فواتير والتزامات</option>
-                <option value="transport">🚗 مواصلات وبنزين</option>
-                <option value="house">🛋️ مستلزمات منزل</option>
-                <option value="health">💊 صحة وعلاج</option>
-                <option value="clothes">👔 ملابس وأحذية</option>
-                <option value="education">🎓 تعليم ودروس</option>
-                <option value="other">🎁 أخرى ونثريات</option>
+                <option value="all">📁 كافة البنود (المصروفات والدخل)</option>
+                <optgroup label="── بنود المصروفات ──">
+                  <option value="food">🛒 طعام ومشتريات</option>
+                  <option value="daily">☕ مصروف يومي</option>
+                  <option value="bills">⚡ فواتير والتزامات</option>
+                  <option value="transport">🚗 مواصلات وبنزين</option>
+                  <option value="house">🛋️ مستلزمات منزل</option>
+                  <option value="health">💊 صحة وعلاج</option>
+                  <option value="clothes">👔 ملابس وأحذية</option>
+                  <option value="education">🎓 تعليم ودروس</option>
+                  <option value="other">🎁 أخرى ونثريات</option>
+                </optgroup>
+                <optgroup label="── بنود الدخل والإيرادات ──">
+                  <option value="salary">💵 راتب شهري</option>
+                  <option value="bonus">🎁 مكافآت وحوافز</option>
+                  <option value="invest">📈 أرباح واستثمارات</option>
+                  <option value="business">💼 أعمال وتجارة</option>
+                  <option value="other_inc">➕ دخل إضافي آخر</option>
+                </optgroup>
               </select>
               <select id="opsFilterMember" class="form-input-custom" onchange="filterOperationsList()" style="width: 100%; height: 36px; padding: 4px 6px; font-size: 0.78rem; font-weight: 800; border-radius: 10px;">
                 <option value="all">👤 كل الأفراد</option>
@@ -12262,13 +12271,13 @@
               </select>
             </div>
             <div style="display: flex; gap: 6px; align-items: center;" id="opsTypeFilterPills">
-              <button class="btn-export-tool active" onclick="setOpsTypeFilter('all', this)" style="border-radius: 10px; font-weight: 800; padding: 6px 14px; background: rgba(56, 189, 248, 0.2); color: #38bdf8;">
+              <button id="btnOpsFilterAll" class="btn-export-tool active" onclick="setOpsTypeFilter('all', this)" style="border-radius: 10px; font-weight: 800; padding: 6px 14px; background: rgba(56, 189, 248, 0.2); color: #38bdf8;">
                 <i class="fa-solid fa-layer-group"></i> كافة العمليات
               </button>
-              <button class="btn-export-tool" onclick="setOpsTypeFilter('expense', this)" style="border-radius: 10px; font-weight: 800; padding: 6px 14px; color: #f43f5e;">
+              <button id="btnOpsFilterExpenses" class="btn-export-tool" onclick="setOpsTypeFilter('expense', this)" style="border-radius: 10px; font-weight: 800; padding: 6px 14px; color: #f43f5e;">
                 <i class="fa-solid fa-arrow-up-right"></i> المصروفات
               </button>
-              <button class="btn-export-tool" onclick="setOpsTypeFilter('income', this)" style="border-radius: 10px; font-weight: 800; padding: 6px 14px; color: #10b981;">
+              <button id="btnOpsFilterIncome" class="btn-export-tool" onclick="setOpsTypeFilter('income', this)" style="border-radius: 10px; font-weight: 800; padding: 6px 14px; color: #10b981;">
                 <i class="fa-solid fa-arrow-down-left"></i> الإيداعات والدخل
               </button>
             </div>
@@ -13201,9 +13210,14 @@
                 <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 600;">إدارة الديون والأقساط، وبناء الميزانيات التقديرية بديناميكية وربط متعدد بالأفراد</div>
               </div>
             </div>
-            <button type="button" onclick="openNotesModal()" class="btn-wallet-action-pill" style="height: 32px; font-size: 0.72rem; padding: 0 10px; background: linear-gradient(135deg, #d97706, #b45309); border: none; color: #fff; font-weight: 800; border-radius: 9px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35); flex-shrink: 0;">
-              <i class="fa-solid fa-book-open"></i> <span>الملاحظات</span>
-            </button>
+            <div style="display: flex; gap: 6px;">
+              <button type="button" onclick="switchExpectedTab('bills')" class="btn-wallet-action-pill" style="height: 32px; font-size: 0.72rem; padding: 0 10px; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; color: #fff; font-weight: 900; border-radius: 9px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35); flex-shrink: 0;">
+                <i class="fa-solid fa-file-invoice"></i> <span>فواتير</span>
+              </button>
+              <button type="button" onclick="openNotesModal()" class="btn-wallet-action-pill" style="height: 32px; font-size: 0.72rem; padding: 0 10px; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; color: #fff; font-weight: 800; border-radius: 9px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35); flex-shrink: 0;">
+                <i class="fa-solid fa-book-open"></i> <span>الملاحظات</span>
+              </button>
+            </div>
           </div>
 
           <!-- شريط التبويب الرئيسي الثلاثي الفاخر والمستقل تماماً -->
@@ -13285,15 +13299,21 @@
             <div id="expectedNetPositionVal" style="font-size: 0.92rem; font-weight: 900; color: #f43f5e; direction: ltr;">- 0.00 ج.م</div>
           </div>
 
-          <!-- شريط التبديل: سداد/إضافة التزام على اليمين وقائمة الالتزامات على اليسار -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;">
-            <!-- 1. سداد / إضافة التزام مالي (ناحية اليمين) -->
-            <button type="button" id="btnTabNewExpected" onclick="switchExpectedTab('new')" class="exp-tab-btn" style="padding: 9px 10px; border-radius: 10px; font-weight: 900; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border: none; background: rgba(255,255,255,0.06); color: #94a3b8; border: 1px solid rgba(255,255,255,0.08);">
-              <i class="fa-solid fa-hand-holding-dollar" style="color: #38bdf8;"></i> <span>سداد / إضافة التزام</span>
+          <!-- شريط التبديل الثلاثي: إضافة التزام / فواتير مصورة / قائمة الالتزامات -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1.1fr; gap: 6px; margin-bottom: 12px;">
+            <!-- 1. سداد / إضافة التزام مالي -->
+            <button type="button" id="btnTabNewExpected" onclick="switchExpectedTab('new')" class="exp-tab-btn" style="padding: 9px 6px; border-radius: 10px; font-weight: 900; font-size: 0.76rem; display: flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.06); color: #94a3b8; transition: all 0.2s ease;">
+              <i class="fa-solid fa-hand-holding-dollar" style="color: #38bdf8;"></i> <span>إضافة التزام</span>
             </button>
 
-            <!-- 2. قائمة الالتزامات (ناحية اليسار) -->
-            <button type="button" id="btnTabListExpected" onclick="switchExpectedTab('list')" class="exp-tab-btn active" style="padding: 9px 10px; border-radius: 10px; font-weight: 900; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; border: none; background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);">
+            <!-- 2. زر فواتير الجديد المخصص لتسجيل الفواتير بالتواريخ وربطها بمصروف وشخص والصور -->
+            <button type="button" id="btnTabBillsExpected" onclick="switchExpectedTab('bills')" class="exp-tab-btn" style="padding: 9px 6px; border-radius: 10px; font-weight: 900; font-size: 0.76rem; display: flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.14); color: #fbbf24; transition: all 0.2s ease;">
+              <i class="fa-solid fa-file-invoice"></i> <span>فواتير</span>
+              <span class="badge-req-counter" id="billsCountBadgeTab" style="background: rgba(245, 158, 11, 0.35); color: #fbbf24; padding: 1px 6px; border-radius: 8px; font-size: 0.65rem; font-weight: 900;">0</span>
+            </button>
+
+            <!-- 3. قائمة الالتزامات -->
+            <button type="button" id="btnTabListExpected" onclick="switchExpectedTab('list')" class="exp-tab-btn active" style="padding: 9px 6px; border-radius: 10px; font-weight: 900; font-size: 0.76rem; display: flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border: none; background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35); transition: all 0.2s ease;">
               <i class="fa-solid fa-table-list"></i> <span>قائمة الالتزامات</span>
               <span class="badge-req-counter" id="expectedPendingBadgeTab" style="background: rgba(255, 255, 255, 0.25); color: #fff; padding: 1px 7px; border-radius: 8px; font-size: 0.70rem;">0</span>
             </button>
@@ -13412,87 +13432,120 @@
           </div>
 
           <!-- لوحة الجدول: عرض وتصفية كافة الالتزامات -->
-          <!-- قسم الفواتير والمستندات المصورة (panelBillsExpected) -->
-          <div id="panelBillsExpected" class="app-card-panel" style="display: none; background: rgba(30, 41, 59, 0.85); border: 1.2px solid rgba(245, 158, 11, 0.45); border-radius: 14px; padding: 14px; margin-bottom: 14px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid rgba(245, 158, 11, 0.25); padding-bottom: 6px;">
-              <div style="font-size: 0.88rem; font-weight: 900; color: #fbbf24; display: flex; align-items: center; gap: 6px;">
-                <i class="fa-solid fa-file-invoice"></i> <span>تسجيل ومتابعة الفواتير المصورة:</span>
+          <!-- قسم الفواتير والمستندات المصورة (panelBillsExpected) المعاد بناؤه باحترافية كاملة -->
+          <div id="panelBillsExpected" class="app-card-panel" style="display: none; background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95)); border: 1.5px solid rgba(245, 158, 11, 0.5); border-radius: 16px; padding: 16px; margin-bottom: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; border-bottom: 1.2px solid rgba(245, 158, 11, 0.3); padding-bottom: 8px;">
+              <div style="font-size: 0.92rem; font-weight: 900; color: #fbbf24; display: flex; align-items: center; gap: 8px;">
+                <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.4); display: flex; align-items: center; justify-content: center; color: #fbbf24;">
+                  <i class="fa-solid fa-file-invoice"></i>
+                </div>
+                <span>تسجيل ومتابعة الفواتير المصورة:</span>
               </div>
               <div style="display: flex; align-items: center; gap: 8px;">
-                <span id="billsCountSummaryBadge" style="font-size: 0.65rem; background: rgba(245, 158, 11, 0.2); color: #fbbf24; padding: 2px 8px; border-radius: 6px; font-weight: 800;">0 فاتورة مسجلة</span>
-                <button type="button" onclick="toggleBillsExpectedPanel()" title="إغلاق لوحة الفواتير" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 50%; width: 26px; height: 26px; line-height: 24px; text-align: center; color: #cbd5e1; font-size: 1.1rem; cursor: pointer;">&times;</button>
+                <span id="billsCountSummaryBadge" style="font-size: 0.68rem; background: rgba(245, 158, 11, 0.2); color: #fbbf24; padding: 3px 10px; border-radius: 8px; font-weight: 800; border: 1px solid rgba(245, 158, 11, 0.35);">0 فاتورة مسجلة</span>
+                <button type="button" onclick="switchExpectedTab('list')" title="العودة للقائمة" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 50%; width: 28px; height: 28px; line-height: 26px; text-align: center; color: #cbd5e1; font-size: 1.1rem; cursor: pointer;">&times;</button>
               </div>
             </div>
 
-            <!-- نموذج إضافة فاتورة جديدة -->
-            <form onsubmit="event.preventDefault(); saveNewBill();" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; background: rgba(15, 23, 42, 0.6); padding: 10px; border-radius: 10px; border: 1px dashed rgba(245, 158, 11, 0.3);">
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <!-- نموذج إضافة فاتورة جديدة متكامل مع المصروف والشخص والتاريخ والصورة/الكاميرا -->
+            <form onsubmit="event.preventDefault(); saveNewBill();" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; background: rgba(15, 23, 42, 0.7); padding: 14px; border-radius: 12px; border: 1.2px solid rgba(245, 158, 11, 0.35);">
+              
+              <!-- 1. بيان الفاتورة والمبلغ -->
+              <div style="display: grid; grid-template-columns: 2fr 1.2fr; gap: 10px;">
                 <div>
-                  <label style="font-size: 0.68rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 2px;">بيان الفاتورة <span class="req">*</span></label>
-                  <input type="text" id="inpBillName" class="form-input-custom" placeholder="مثال: كهرباء، غاز، إنترنت..." required style="height: 36px; font-size: 0.78rem;">
+                  <label style="font-size: 0.72rem; font-weight: 800; color: #cbd5e1; display: block; margin-bottom: 3px;">
+                    <i class="fa-solid fa-tag" style="color: #fbbf24;"></i> بيان / اسم الفاتورة <span class="req" style="color: #f43f5e;">*</span>
+                  </label>
+                  <input type="text" id="inpBillName" class="form-input-custom" placeholder="مثال: فاتورة كهرباء، غاز، إنترنت..." required style="height: 38px; font-size: 0.82rem; font-weight: 800;">
                 </div>
                 <div>
-                  <label style="font-size: 0.68rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 2px;">المبلغ (ج.م) <span class="req">*</span></label>
-                  <input type="number" step="0.01" id="inpBillAmount" class="form-input-custom" placeholder="0.00" required style="height: 36px; font-size: 0.90rem; font-weight: 900; color: #38bdf8;">
+                  <label style="font-size: 0.72rem; font-weight: 800; color: #cbd5e1; display: block; margin-bottom: 3px;">
+                    <i class="fa-solid fa-coins" style="color: #38bdf8;"></i> المبلغ (ج.م) <span class="req" style="color: #f43f5e;">*</span>
+                  </label>
+                  <input type="number" step="0.01" id="inpBillAmount" class="form-input-custom" placeholder="0.00" required style="height: 38px; font-size: 0.98rem; font-weight: 900; color: #38bdf8; text-align: center;">
                 </div>
               </div>
 
-              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px;">
+              <!-- 2. تاريخ الفاتورة / الاستحقاق، والشخص، والمصروف المرتبط -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
                 <div>
-                  <label style="font-size: 0.68rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 2px;">تاريخ الاستحقاق</label>
-                  <input type="date" id="inpBillDueDate" class="form-input-custom" style="height: 36px; font-size: 0.72rem;">
+                  <label style="font-size: 0.70rem; font-weight: 800; color: #cbd5e1; display: block; margin-bottom: 3px;">
+                    <i class="fa-regular fa-calendar" style="color: #38bdf8;"></i> تاريخ الفاتورة:
+                  </label>
+                  <input type="date" id="inpBillDueDate" class="form-input-custom" style="height: 38px; font-size: 0.78rem; font-weight: 800;">
                 </div>
                 <div>
-                  <label style="font-size: 0.68rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 2px;">تخص من</label>
-                  <select id="inpBillMember" class="form-select-custom" style="height: 36px; font-size: 0.75rem;">
-                    <option value="البيت">البيت</option>
+                  <label style="font-size: 0.70rem; font-weight: 800; color: #cbd5e1; display: block; margin-bottom: 3px;">
+                    <i class="fa-solid fa-user-check" style="color: #a855f7;"></i> تخص من بالعائلة:
+                  </label>
+                  <select id="inpBillMember" class="form-select-custom" style="height: 38px; font-size: 0.78rem; font-weight: 800; width: 100%;">
+                    <option value="البيت">🏠 البيت / العائلة</option>
                     <option value="ماهر">ماهر</option>
                     <option value="أية">أية</option>
                     <option value="محمد">محمد</option>
                     <option value="مريم">مريم</option>
                     <option value="الحاجة">الحاجة</option>
                     <option value="النونو">النونو</option>
+                    <option value="أخرى">أخرى</option>
                   </select>
                 </div>
                 <div>
-                  <label style="font-size: 0.68rem; font-weight: 800; color: #94a3b8; display: block; margin-bottom: 2px;">البند المرتبط</label>
-                  <select id="inpBillCategory" class="form-select-custom" style="height: 36px; font-size: 0.75rem;">
-                    <option value="bills">فواتير والتزامات</option>
-                    <option value="house">مستلزمات منزل</option>
-                    <option value="education">تعليم ودروس</option>
-                    <option value="health">صحة وعلاج</option>
-                    <option value="other">أخرى ونثريات</option>
+                  <label style="font-size: 0.70rem; font-weight: 800; color: #cbd5e1; display: block; margin-bottom: 3px;">
+                    <i class="fa-solid fa-tags" style="color: #10b981;"></i> ربط بمصروف معين:
+                  </label>
+                  <select id="inpBillCategory" class="form-select-custom" style="height: 38px; font-size: 0.78rem; font-weight: 800; width: 100%;">
+                    <option value="bills">⚡ فواتير والتزامات</option>
+                    <option value="house">🛋️ مستلزمات منزل</option>
+                    <option value="food">🛒 طعام ومشتريات</option>
+                    <option value="daily">☕ مصروف يومي</option>
+                    <option value="education">🎓 تعليم ودروس</option>
+                    <option value="health">💊 صحة وعلاج</option>
+                    <option value="transport">🚗 مواصلات وبنزين</option>
+                    <option value="clothes">👔 ملابس وأحذية</option>
+                    <option value="other">🎁 أخرى ونثريات</option>
                   </select>
                 </div>
               </div>
 
-              <!-- التقاط أو رفع صورة الفاتورة -->
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; background: rgba(30, 41, 59, 0.6); padding: 6px 10px; border-radius: 8px;">
+              <!-- 3. تصوير بالكاميرا أو رفع صورة الفاتورة -->
+              <div style="background: rgba(30, 41, 59, 0.8); border: 1.2px dashed rgba(245, 158, 11, 0.45); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
                 <input type="file" id="inpBillPhotoFile" accept="image/*" style="display: none;" onchange="handleBillPhotoSelected(event)">
-                <div style="display: flex; gap: 6px;">
-                  <button type="button" onclick="document.getElementById('inpBillPhotoFile').setAttribute('capture','environment'); document.getElementById('inpBillPhotoFile').click();" style="background: rgba(56, 189, 248, 0.2); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; border-radius: 6px; padding: 4px 10px; font-size: 0.70rem; font-weight: 800; cursor: pointer;">
-                    <i class="fa-solid fa-camera"></i> تصوير
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <button type="button" onclick="document.getElementById('inpBillPhotoFile').setAttribute('capture','environment'); document.getElementById('inpBillPhotoFile').click();" style="background: linear-gradient(135deg, #0284c7, #0369a1); border: none; color: #fff; border-radius: 8px; padding: 6px 14px; font-size: 0.76rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);">
+                    <i class="fa-solid fa-camera"></i> <span>تصوير بالكاميرا</span>
                   </button>
-                  <button type="button" onclick="document.getElementById('inpBillPhotoFile').removeAttribute('capture'); document.getElementById('inpBillPhotoFile').click();" style="background: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24; border-radius: 6px; padding: 4px 10px; font-size: 0.70rem; font-weight: 800; cursor: pointer;">
-                    <i class="fa-solid fa-image"></i> معرض
+                  <button type="button" onclick="document.getElementById('inpBillPhotoFile').removeAttribute('capture'); document.getElementById('inpBillPhotoFile').click();" style="background: rgba(245, 158, 11, 0.2); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24; border-radius: 8px; padding: 6px 14px; font-size: 0.76rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                    <i class="fa-solid fa-image"></i> <span>رفع من المعرض</span>
                   </button>
                 </div>
-                <div id="billPhotoPreviewBadge" style="font-size: 0.64rem; color: #94a3b8;">لم يتم التقاط صورة</div>
+                <div id="billPhotoPreviewBadge" style="display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: #94a3b8; font-weight: 700;">
+                  <span>لم يتم التقاط صورة</span>
+                </div>
               </div>
 
-              <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-top: 6px;">
-                <button type="submit" class="btn-submit-tx" style="height: 38px; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; border-radius: 8px; font-weight: 900; font-size: 0.80rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
-                  <i class="fa-solid fa-floppy-disk"></i> حفظ الفاتورة
+              <!-- معاينة الصورة المصغرة إن وجدت -->
+              <div id="billPhotoThumbRow" style="display: none; align-items: center; gap: 8px; background: rgba(15, 23, 42, 0.9); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.3);">
+                <img id="billPhotoThumbImg" src="" style="width: 36px; height: 36px; border-radius: 6px; object-fit: cover; border: 1px solid #38bdf8; cursor: pointer;" onclick="if(currentBillPhotoDataUri) openReceiptLightbox(currentBillPhotoDataUri, 'معاينة الفاتورة')">
+                <span style="font-size: 0.70rem; color: #34d399; font-weight: 800; flex: 1;">تم تجهيز الصورة بنجاح (انقر للمعاينة)</span>
+                <button type="button" onclick="clearCurrentBillPhoto()" style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); color: #f87171; border-radius: 6px; padding: 2px 8px; font-size: 0.65rem; cursor: pointer;">إزالة</button>
+              </div>
+
+              <!-- أزرار الحفظ والإلغاء -->
+              <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px; margin-top: 4px;">
+                <button type="submit" class="btn-submit-tx" style="height: 42px; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; border-radius: 10px; font-weight: 900; font-size: 0.86rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);">
+                  <i class="fa-solid fa-floppy-disk"></i> <span>حفظ وتثبيت الفاتورة</span>
                 </button>
-                <button type="button" onclick="toggleBillsExpectedPanel()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); height: 38px; border-radius: 8px; color: #94a3b8; font-weight: 800; font-size: 0.80rem; cursor: pointer;">
-                  إلغاء / إغلاق
+                <button type="button" onclick="switchExpectedTab('list')" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); height: 42px; border-radius: 10px; color: #94a3b8; font-weight: 800; font-size: 0.82rem; cursor: pointer;">
+                  إلغاء / رجوع
                 </button>
-              </div><!-- replaced single submit -->
-              <div style="display:none;"><button type="button"> حفظ الفاتورة وتثبيتها
-              </button>
+              </div>
             </form>
 
             <!-- جدول الفواتير المسجلة -->
+            <div style="font-size: 0.82rem; font-weight: 900; color: #f8fafc; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-list-check" style="color: #fbbf24;"></i>
+              <span>قائمة الفواتير المسجلة:</span>
+            </div>
             <div id="billsListContainer" style="display: flex; flex-direction: column; gap: 8px;"></div>
           </div>
 
@@ -14768,8 +14821,90 @@
          ============================================================== -->
     
 
-    <!-- عرض الفاتورة والصور المكبرة (Receipt Lightbox Modal) -->
-    <div class="modal-overlay modal-overlay-custom" id="receiptLightboxModal">
+    
+  <!-- =========================================================================
+       شاشة المهام الكاملة المنفصلة (Full-Screen Dedicated Tasks & To-Do Workspace)
+       تفتح بعرض وارتفاع الشاشة بالكامل عند الضغط على زر المهام من الشاشة الرئيسية
+       ========================================================================= -->
+  <div id="tasksFullScreenModal" style="display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 100050; background: var(--bg-main, #0b1329); overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 0; margin: 0; box-sizing: border-box; direction: rtl;" dir="rtl">
+    
+    <!-- شريط علوي زجاجي مثبت للشاشة الكاملة -->
+    <header style="position: sticky; top: 0; z-index: 100; background: rgba(11, 19, 41, 0.95); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1.2px solid rgba(168, 85, 247, 0.35); padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <button type="button" onclick="closeTasksFullScreenModal()" style="height: 38px; padding: 0 14px; border-radius: 10px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); color: #cbd5e1; font-size: 0.82rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background 0.15s ease;">
+          <i class="fa-solid fa-arrow-right"></i>
+          <span>الرئيسية</span>
+        </button>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, #a855f7, #6366f1); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.15rem; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.35);">
+            <i class="fa-solid fa-list-check"></i>
+          </div>
+          <div>
+            <div style="font-size: 1.02rem; font-weight: 900; color: #f8fafc;">إدارة المهام والخطوات الذكية</div>
+            <div style="font-size: 0.70rem; color: #c084fc; font-weight: 700;">مهام عيلة ماهر ❤️ أية ومتابعة الإنجاز والمسؤوليات</div>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" onclick="openNewTaskDrawerModal()" style="height: 40px; padding: 0 18px; border-radius: 12px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.85rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 16px rgba(168, 85, 247, 0.45); transition: transform 0.12s ease;">
+          <i class="fa-solid fa-circle-plus" style="font-size: 1.1rem;"></i>
+          <span>+ مهمة جديدة</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- المحتوى الداخلي بمساحة رحبة ومركزية متجاوبة -->
+    <main style="max-width: 920px; margin: 0 auto; padding: 18px 16px 80px; display: flex; flex-direction: column; gap: 16px;">
+      
+      <!-- شريط مؤشرات إنجاز المهام الذكي (KPIs & Metrics) -->
+      <div class="task-kpi-strip" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+        <div class="task-kpi-card" onclick="switchDrawerTodoSection('all')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 12px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض كافة المهام">
+          <span class="task-kpi-num" id="kpiTasksTotalFull" style="color: #38bdf8; font-size: 1.35rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
+          <span class="task-kpi-label" style="font-size: 0.72rem; color: #94a3b8; font-weight: 800;">إجمالي المهام</span>
+        </div>
+        <div class="task-kpi-card" onclick="switchDrawerTodoSection('my_day')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(192, 132, 252, 0.35); border-radius: 14px; padding: 12px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض مهام اليوم">
+          <span class="task-kpi-num" id="kpiTasksActiveFull" style="color: #c084fc; font-size: 1.35rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
+          <span class="task-kpi-label" style="font-size: 0.72rem; color: #94a3b8; font-weight: 800;">قيد التنفيذ</span>
+        </div>
+        <div class="task-kpi-card" onclick="switchDrawerTodoSection('overdue')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(239, 68, 68, 0.35); border-radius: 14px; padding: 12px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض المهام المتأخرة">
+          <span class="task-kpi-num" id="kpiTasksOverdueFull" style="color: #ef4444; font-size: 1.35rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
+          <span class="task-kpi-label" style="font-size: 0.72rem; color: #94a3b8; font-weight: 800;">متأخرة ⚠️</span>
+        </div>
+        <div class="task-kpi-card" onclick="switchDrawerTodoSection('completed')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(52, 211, 153, 0.35); border-radius: 14px; padding: 12px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض المهام المكتملة">
+          <span class="task-kpi-num" id="kpiTasksDoneFull" style="color: #34d399; font-size: 1.35rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
+          <span class="task-kpi-label" style="font-size: 0.72rem; color: #94a3b8; font-weight: 800;">مكتملة ✅</span>
+        </div>
+      </div>
+
+      <!-- شريط نسبة الإنجاز التراكمي للمهام -->
+      <div style="background: rgba(15, 23, 42, 0.85); border-radius: 14px; padding: 12px 16px; border: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; gap: 14px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <i class="fa-solid fa-chart-line" style="color: #a855f7; font-size: 1.05rem;"></i>
+          <span style="font-size: 0.78rem; font-weight: 800; color: #cbd5e1;">معدل إنجاز المهام التراكمي:</span>
+        </div>
+        <div style="flex: 1; max-width: 320px; height: 9px; background: rgba(30, 41, 59, 0.9); border-radius: 6px; overflow: hidden;">
+          <div id="tasksOverallProgressBarFull" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #10b981); transition: width 0.4s ease;"></div>
+        </div>
+        <span id="tasksOverallProgressPctFull" style="font-size: 0.88rem; font-weight: 900; color: #10b981; font-family: var(--font-numbers);">0%</span>
+      </div>
+
+      <!-- تبويبات أقسام المهام الستة: يومي / هام / مخطط / متأخرة / الكل / المكتملة -->
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;">
+        <button type="button" class="exp-tab-btn active" id="btnFullTodoMyDay" onclick="switchDrawerTodoSection('my_day')" style="padding: 10px 4px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; background: rgba(168, 85, 247, 0.25); color: #c084fc; border: 1.2px solid rgba(168, 85, 247, 0.45); cursor: pointer; text-align: center;">يومي</button>
+        <button type="button" class="exp-tab-btn" id="btnFullTodoImportant" onclick="switchDrawerTodoSection('important')" style="padding: 10px 4px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">هام ⭐</button>
+        <button type="button" class="exp-tab-btn" id="btnFullTodoPlanned" onclick="switchDrawerTodoSection('planned')" style="padding: 10px 4px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">مخطط</button>
+        <button type="button" class="exp-tab-btn" id="btnFullTodoOverdue" onclick="switchDrawerTodoSection('overdue')" style="padding: 10px 4px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; background: transparent; color: #ef4444; border: 1px solid rgba(239,68,68,0.25); cursor: pointer; text-align: center;">متأخرة ⚠️</button>
+        <button type="button" class="exp-tab-btn" id="btnFullTodoAll" onclick="switchDrawerTodoSection('all')" style="padding: 10px 4px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">الكل</button>
+        <button type="button" class="exp-tab-btn" id="btnFullTodoCompleted" onclick="switchDrawerTodoSection('completed')" style="padding: 10px 4px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">المكتملة</button>
+      </div>
+
+      <!-- قائمة المهام الكاملة -->
+      <div id="tasksFullScreenContainerList" style="display: flex; flex-direction: column; gap: 12px;"></div>
+    </main>
+  </div>
+
+<!-- عرض الفاتورة والصور المكبرة (Receipt Lightbox Modal) -->
+    <div class="modal-overlay modal-overlay-custom" id="receiptLightboxModal" style="z-index: 120000 !important;">
       <div class="modal-content-card" style="max-width: 480px; text-align: center;">
         <div class="modal-head">
           <h3 class="modal-title-custom"><i class="fa-solid fa-file-invoice" style="color: #38bdf8;"></i> <span id="lightboxHeaderTitle">معاينة الصورة المرفقة</span></h3>
@@ -15533,8 +15668,8 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = '4.9.9';
-      const APP_BUILD_ID = 202611071845;
+      const APP_VERSION = '5.0.4';
+      const APP_BUILD_ID = 202611081000;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
@@ -15768,7 +15903,7 @@
       // التصدير والعملة
       safeEvent('btnExportExcel', 'click', exportExcel);
       safeEvent('btnExportPdf', 'click', exportPdf);
-      safeEvent('btnToggleCurrency', 'click', toggleCurrency);
+      // safeEvent btnToggleCurrency removed to prevent double-click skip (onclick handles it)
 
       const dateInp = document.getElementById('inpTxDate');
       if (dateInp) dateInp.value = new Date().toISOString().split('T')[0];
@@ -18043,6 +18178,8 @@
         switchAnalyticsMainTab(activeAnalyticsMainTab || 'actual');
       }
       if (pageId === 'expected') {
+        if (typeof switchExpectedMainTab === 'function') switchExpectedMainTab('commitments');
+        if (typeof switchExpectedTab === 'function') switchExpectedTab('list');
         if (typeof renderExpectedList === 'function') {
           renderExpectedList();
         }
@@ -19832,19 +19969,47 @@ function generateRichDemoTransactions() {
       if (!container) return;
 
       if (!appendMore) {
-        container.innerHTML = '';
-        opsRenderLimit = 99999;
+        opsRenderLimit = 40;
       }
 
-      // تطبيق تصفية النوع على العمليات
-      let list = filtered || [];
+      // 1. مصدر الحركات الأساسي
+      let list = (filtered && Array.isArray(filtered) && filtered.length > 0) 
+        ? [...filtered] 
+        : [...(state.transactions || [])];
+
+      // 2. تطبيق فلترة الفترة الزمنية بدقة تامة (اليوم / الأسبوع / الشهر / الكل / مخصص)
+      const p = state.period || 'month';
+      const now = new Date();
+      const todayStr = getLocalDateStr(now);
+
+      if (p === 'day' || p === 'today') {
+        list = list.filter(t => t.date === todayStr);
+      } else if (p === 'week') {
+        const sevenDaysAgo = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 7);
+        const sevenDaysAgoStr = getLocalDateStr(sevenDaysAgo);
+        list = list.filter(t => t.date && t.date >= sevenDaysAgoStr && t.date <= todayStr);
+      } else if (p === 'month') {
+        const curYearMonth = todayStr.slice(0, 7);
+        list = list.filter(t => t.date && t.date.startsWith(curYearMonth));
+      } else if (p === 'custom' && state.customDateRange) {
+        const { from, to } = state.customDateRange;
+        if (from && to) {
+          list = list.filter(t => t.date && t.date >= from && t.date <= to);
+        } else if (from) {
+          list = list.filter(t => t.date && t.date >= from);
+        } else if (to) {
+          list = list.filter(t => t.date && t.date <= to);
+        }
+      }
+
+      // 3. تطبيق تصفية النوع على العمليات (المصروفات / الدخل / الكل)
       if (opsTypeFilterState === 'expense') {
         list = list.filter(t => t.type === 'expense');
       } else if (opsTypeFilterState === 'income') {
         list = list.filter(t => t.type === 'income');
       }
 
-      // تطبيق فلترة التصنيف في صفحة العمليات (Category Filter)
+      // 4. تطبيق فلترة التصنيف في صفحة العمليات (Category Filter)
       const catFilter = document.getElementById('opsFilterCategory')?.value || 'all';
       if (catFilter && catFilter !== 'all') {
         list = list.filter(t => {
@@ -19858,21 +20023,31 @@ function generateRichDemoTransactions() {
           if (catFilter === 'clothes') return c === 'clothes' || c === 'shopping';
           if (catFilter === 'education') return c === 'education' || c === 'school';
           if (catFilter === 'other') return c === 'other' || c === 'others' || c === 'gifts';
+          // بنود الدخل
+          if (catFilter === 'salary') return c === 'salary';
+          if (catFilter === 'bonus') return c === 'bonus';
+          if (catFilter === 'invest') return c === 'invest';
+          if (catFilter === 'business') return c === 'business';
+          if (catFilter === 'other_inc') return c === 'other_inc' || c === 'income';
           return c === catFilter;
         });
       }
 
-      // تطبيق فلترة العضو في صفحة العمليات (Member Filter)
-      const memFilter = document.getElementById('opsFilterMember')?.value || 'all';
+      // 5. تطبيق فلترة العضو في صفحة العمليات (Member Filter)
+      let memFilter = document.getElementById('opsFilterMember')?.value || 'all';
+      if (memFilter === 'all' && state.currentMemberFilter && state.currentMemberFilter !== 'الكل') {
+        memFilter = state.currentMemberFilter;
+      }
       if (memFilter && memFilter !== 'all') {
         list = list.filter(t => {
-          if (memFilter === 'البيت') return t.member === 'البيت' || t.member === 'العائلة' || !t.member;
-          if (memFilter === 'آية' || memFilter === 'أية') return t.member === 'آية' || t.member === 'أية';
-          return t.member === memFilter;
+          const m = t.member || 'البيت';
+          if (memFilter === 'البيت') return m === 'البيت' || m === 'العائلة' || !t.member;
+          if (memFilter === 'آية' || memFilter === 'أية') return m === 'آية' || m === 'أية';
+          return m === memFilter;
         });
       }
 
-      // تطبيق نص البحث إذا وجد
+      // 6. تطبيق نص البحث إذا وجد
       const searchInp = document.getElementById('opsSearchInput');
       const q = searchInp ? searchInp.value.trim().toLowerCase() : '';
       if (q) {
@@ -19890,10 +20065,10 @@ function generateRichDemoTransactions() {
 
       if (list.length === 0) {
         container.innerHTML = `
-          <div class="empty-state" style="padding: 30px 10px;">
+          <div class="empty-state" style="padding: 30px 10px; text-align: center;">
             <i class="fa-solid fa-receipt" style="color: #64748b; font-size: 2.2rem; margin-bottom: 10px;"></i>
-            <div class="empty-title" style="color: #cbd5e1; font-weight: 800;">لا توجد عمليات مطابقة</div>
-            <div class="empty-desc" style="color: #64748b; font-size: 0.8rem;">جرّب تغيير كلمات البحث أو تصفية العمليات</div>
+            <div class="empty-title" style="color: #cbd5e1; font-weight: 800; font-size: 0.95rem;">لا توجد عمليات مطابقة للفترة أو الفلاتر</div>
+            <div class="empty-desc" style="color: #64748b; font-size: 0.8rem; margin-top: 4px;">جرّب اختيار فترة زمنية أخرى (الشهر / الكل) أو إعادة ضبط الفلاتر</div>
           </div>
         `;
         return;
@@ -19905,6 +20080,13 @@ function generateRichDemoTransactions() {
       yesterdayDate.setDate(yesterdayDate.getDate() - 1);
       const yesterdayIso = getLocalDateStr(yesterdayDate);
 
+      // ترتيب الحركات تنازلياً حسب التاريخ والوقت
+      list.sort((a, b) => {
+        const da = (a.date || '') + ' ' + (a.time || '');
+        const db = (b.date || '') + ' ' + (b.time || '');
+        return db.localeCompare(da);
+      });
+
       // تجميع العمليات بحسب التاريخ
       const groupedByDate = {};
       const itemsToRender = list.slice(0, opsRenderLimit);
@@ -19915,11 +20097,8 @@ function generateRichDemoTransactions() {
         groupedByDate[d].push(tx);
       });
 
-      // إزالة زر عرض المزيد السابق إن وجد
-      const prevBtn = document.getElementById('btnLoadMoreOps');
-      if (prevBtn) prevBtn.remove();
-
-      // رسم الحركات مجمعة حسب التواريخ
+      // بناء مخرجات البطاقات ككتلة HTML موحدة وسريعة جداً (Single Batch DOM Update)
+      let cardsHtml = '';
       for (const [dateStr, txs] of Object.entries(groupedByDate)) {
         let groupTitle = dateStr;
         if (dateStr === todayIso) groupTitle = 'اليوم (Today) - ' + dateStr;
@@ -19932,9 +20111,6 @@ function generateRichDemoTransactions() {
           else dayIncSum += amt;
         });
 
-        // رأس قسم التاريخ
-        const headerEl = document.createElement('div');
-        headerEl.className = 'ops-date-group-header';
         let subtotalBadge = '';
         if (dayExpSum > 0 && dayIncSum > 0) {
           subtotalBadge = `${formatMoneyWithSignHtml(dayExpSum, '-', 'ops-date-subtotal exp')} ${formatMoneyWithSignHtml(dayIncSum, '+', 'ops-date-subtotal inc')}`;
@@ -19944,11 +20120,12 @@ function generateRichDemoTransactions() {
           subtotalBadge = `<span style="font-size: 0.70rem; color: #94a3b8; margin-left: 3px;">إجمالي الدخل:</span> ${formatMoneyWithSignHtml(dayIncSum, '+', 'ops-date-subtotal inc')}`;
         }
 
-        headerEl.innerHTML = `
-          <div class="ops-date-title"><i class="fa-regular fa-calendar"></i> ${groupTitle}</div>
-          <div>${subtotalBadge}</div>
+        cardsHtml += `
+          <div class="ops-date-group-header">
+            <div class="ops-date-title"><i class="fa-regular fa-calendar"></i> ${groupTitle}</div>
+            <div>${subtotalBadge}</div>
+          </div>
         `;
-        container.appendChild(headerEl);
 
         // كروت الحركات
         txs.forEach(tx => {
@@ -19956,7 +20133,6 @@ function generateRichDemoTransactions() {
           const isExp = tx.type === 'expense';
           const amt = Number(tx.amount) || 0;
           const sign = isExp ? '- ' : '+ ';
-          const color = isExp ? '#f43f5e' : '#10b981';
           const memberAvatar = MEMBER_AVATARS[tx.member] || null;
 
           let avatarHtml = memberAvatar
@@ -19966,91 +20142,96 @@ function generateRichDemoTransactions() {
           let receiptBadge = '';
           if (tx.receipt) {
             receiptBadge = `
-              <span class="ops-tx-chip" onclick="openReceiptLightbox('${tx.id}')" style="background: rgba(236, 72, 153, 0.18); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.35); cursor: pointer;" title="عرض الفاتورة المرفقة">
+              <span class="ops-tx-chip" onclick="event.stopPropagation(); openReceiptLightbox('${tx.receipt}', 'فاتورة: ${escapeHtml(tx.label || cat.name)}')" style="background: rgba(236, 72, 153, 0.18); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.35); cursor: pointer;" title="عرض الفاتورة المرفقة">
                 <i class="fa-solid fa-file-invoice"></i> فاتورة
               </span>
             `;
           }
 
-          const card = document.createElement('div');
-          card.className = 'ops-tx-card-lux';
-          card.setAttribute('data-tx-id', tx.id);
-          card.title = 'اضغط مرتين لعرض التفاصيل وتعديل العملية';
-          card.ondblclick = (e) => {
-            e.stopPropagation();
-            openEditTxModal(tx.id);
-          };
-          let lastTouchOps = 0;
-          card.addEventListener('touchend', (e) => {
-            if (e.target.closest('.ops-tx-del-btn') || e.target.closest('.ops-tx-edit-btn') || e.target.closest('[onclick*="openReceiptLightbox"]')) return;
-            const now = Date.now();
-            if (now - lastTouchOps < 350) {
-              e.preventDefault();
-              openEditTxModal(tx.id);
-            }
-            lastTouchOps = now;
-          });
-          card.innerHTML = `
-            <div class="ops-tx-right-cluster">
-              <div class="ops-tx-icon-bubble" style="background: linear-gradient(135deg, ${cat.color}, ${cat.color}99); color: #ffffff;">
-                <i class="fa-solid ${cat.icon}"></i>
-              </div>
-              <div class="ops-tx-info-block">
-                <div class="ops-tx-label-text" title="${escapeHtml(tx.label || cat.name)}">
-                  ${escapeHtml(tx.label || cat.name)}
+          let typePill = !isExp ? `
+            <span class="ops-tx-chip" style="background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); font-weight: 800;">
+              <i class="fa-solid fa-arrow-down-left"></i> إيداع ودخل
+            </span>
+          ` : '';
+
+          cardsHtml += `
+            <div class="ops-tx-card-lux" data-tx-id="${tx.id}" ondblclick="openEditTxModal('${tx.id}')" title="اضغط مرتين لعرض التفاصيل والتعديل">
+              <div class="ops-tx-right-cluster">
+                <div class="ops-tx-icon-bubble" style="background: linear-gradient(135deg, ${cat.color || '#38bdf8'}, ${(cat.color || '#38bdf8')}99); color: #ffffff;">
+                  <i class="fa-solid ${cat.icon || 'fa-receipt'}"></i>
                 </div>
-                <div class="ops-tx-meta-chips">
-                  <span class="ops-tx-chip" style="background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.25);">
-                    ${avatarHtml}
-                    <span>${tx.member || 'العائلة'}</span>
-                  </span>
-                  <span class="ops-tx-chip" style="background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.25);">
-                    <i class="fa-solid fa-vault"></i>
-                    <span>${getWalletName(tx.walletId)}</span>
-                  </span>
-                  ${receiptBadge}
+                <div class="ops-tx-info-block">
+                  <div class="ops-tx-label-text" title="${escapeHtml(tx.label || cat.name)}">
+                    ${escapeHtml(tx.label || cat.name)}
+                  </div>
+                  <div class="ops-tx-meta-chips">
+                    <span class="ops-tx-chip" style="background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.25);">
+                      ${avatarHtml}
+                      <span>${tx.member || 'العائلة'}</span>
+                    </span>
+                    <span class="ops-tx-chip" style="background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.25);">
+                      <i class="fa-solid fa-vault"></i>
+                      <span>${getWalletName(tx.walletId)}</span>
+                    </span>
+                    ${typePill}
+                    ${receiptBadge}
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="ops-tx-left-cluster">
-              ${formatMoneyWithSignHtml(amt, sign, 'ops-tx-amount-text')}
-              <button class="ops-tx-edit-btn" onclick="openEditTxModal('${tx.id}')" title="تعديل وتفاصيل الحركة" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; margin-left: 4px; transition: all 0.2s;">
-                <i class="fa-solid fa-pen-to-square" style="font-size: 0.76rem;"></i>
-              </button>
-              <button class="ops-tx-del-btn" onclick="deleteTx('${tx.id}')" title="حذف الحركة">
-                <i class="fa-solid fa-trash-can"></i>
-              </button>
+              <div class="ops-tx-left-cluster">
+                ${formatMoneyWithSignHtml(amt, sign, 'ops-tx-amount-text')}
+                <button class="ops-tx-edit-btn" onclick="openEditTxModal('${tx.id}')" title="تعديل وتفاصيل الحركة" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; margin-left: 4px; transition: all 0.2s;">
+                  <i class="fa-solid fa-pen-to-square" style="font-size: 0.76rem;"></i>
+                </button>
+                <button class="ops-tx-del-btn" onclick="deleteTx('${tx.id}')" title="حذف الحركة">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
             </div>
           `;
-          container.appendChild(card);
         });
       }
 
       // زر عرض المزيد إن وجد حركات إضافية
       if (totalCount > opsRenderLimit) {
         const remaining = totalCount - opsRenderLimit;
-        const loadMoreBox = document.createElement('div');
-        loadMoreBox.id = 'btnLoadMoreOps';
-        loadMoreBox.style.cssText = 'text-align: center; margin: 16px 0 24px;';
-        loadMoreBox.innerHTML = `
-          <button type="button" class="btn-export-tool" onclick="loadMoreOperations()" style="padding: 10px 24px; font-size: 0.82rem; font-weight: 800; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
-            <i class="fa-solid fa-angles-down"></i> عرض 50 حركة إضافية (المتبقي: ${remaining.toLocaleString()} عملية)
-          </button>
+        cardsHtml += `
+          <div id="btnLoadMoreOps" style="text-align: center; margin: 16px 0 24px;">
+            <button type="button" class="btn-export-tool" onclick="loadMoreOperations()" style="padding: 10px 24px; font-size: 0.82rem; font-weight: 800; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
+              <i class="fa-solid fa-angles-down"></i> عرض 40 حركة إضافية (المتبقي: ${remaining.toLocaleString()} عملية)
+            </button>
+          </div>
         `;
-        container.appendChild(loadMoreBox);
       }
+
+      container.innerHTML = cardsHtml;
+      const fullContainer = document.getElementById('tasksFullScreenContainerList');
+      if (fullContainer) {
+        fullContainer.innerHTML = cardsHtml;
+      }
+      // تحديث شارات ونسبة الشاشة الكاملة
+      const kpiTotF = document.getElementById('kpiTasksTotalFull');
+      const kpiActF = document.getElementById('kpiTasksActiveFull');
+      const kpiOvdF = document.getElementById('kpiTasksOverdueFull');
+      const kpiDonF = document.getElementById('kpiTasksDoneFull');
+      const barF = document.getElementById('tasksOverallProgressBarFull');
+      const pctF = document.getElementById('tasksOverallProgressPctFull');
+      if (kpiTotF) kpiTotF.textContent = totalCount;
+      if (kpiActF) kpiActF.textContent = activeCount;
+      if (kpiOvdF) kpiOvdF.textContent = overdueCount;
+      if (kpiDonF) kpiDonF.textContent = doneCount;
+      if (barF) barF.style.width = `${completionRate}%`;
+      if (pctF) pctF.textContent = `${completionRate}%`;
     }
 
-        function loadMoreOperations() {
-      opsRenderLimit = (opsRenderLimit || 50) + 50;
-      const filtered = getFilteredTransactions();
-      filterOperationsList();
+    function loadMoreOperations() {
+      opsRenderLimit = (opsRenderLimit || 40) + 40;
+      renderOperationsList(null, true);
     }
 
-function filterOperationsList() {
+    function filterOperationsList() {
       const inp = document.getElementById('opsSearchInput');
       state.searchQuery = inp ? inp.value.trim() : '';
-      // نمرر دائماً كافة العمليات من state.transactions حتى تظهر العمليات الجديدة فوراً دون حجب
       renderOperationsList(state.transactions || []);
     }
 
@@ -20827,38 +21008,59 @@ function filterOperationsList() {
 
     function switchExpectedTab(tab) {
       const pNew = document.getElementById('panelNewExpected');
+      const pBills = document.getElementById('panelBillsExpected');
       const pList = document.getElementById('panelListExpected');
       const bNew = document.getElementById('btnTabNewExpected');
+      const bBills = document.getElementById('btnTabBillsExpected');
       const bList = document.getElementById('btnTabListExpected');
+
+      [bNew, bBills, bList].forEach(b => {
+        if (b) {
+          b.style.background = 'rgba(255,255,255,0.06)';
+          b.style.color = '#94a3b8';
+          b.style.boxShadow = 'none';
+          b.style.border = '1px solid rgba(255,255,255,0.08)';
+          b.classList.remove('active');
+        }
+      });
 
       if (tab === 'new') {
         if (pNew) pNew.style.display = 'block';
+        if (pBills) pBills.style.display = 'none';
         if (pList) pList.style.display = 'none';
         if (bNew) {
           bNew.style.background = 'linear-gradient(135deg, #0284c7, #0369a1)';
           bNew.style.color = '#fff';
           bNew.style.boxShadow = '0 4px 12px rgba(2, 132, 199, 0.35)';
-        }
-        if (bList) {
-          bList.style.background = 'transparent';
-          bList.style.color = '#94a3b8';
-          bList.style.boxShadow = 'none';
+          bNew.classList.add('active');
         }
         if (typeof renderMemberPhotoPickers === 'function') {
           renderMemberPhotoPickers();
         }
+      } else if (tab === 'bills') {
+        if (pNew) pNew.style.display = 'none';
+        if (pBills) pBills.style.display = 'block';
+        if (pList) pList.style.display = 'none';
+        if (bBills) {
+          bBills.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+          bBills.style.color = '#fff';
+          bBills.style.boxShadow = '0 4px 14px rgba(245, 158, 11, 0.4)';
+          bBills.classList.add('active');
+        }
+        const dateInp = document.getElementById('inpBillDueDate');
+        if (dateInp && !dateInp.value) {
+          dateInp.value = typeof getLocalDateStr === 'function' ? getLocalDateStr(new Date()) : new Date().toISOString().split('T')[0];
+        }
+        renderBillsList();
       } else {
         if (pNew) pNew.style.display = 'none';
+        if (pBills) pBills.style.display = 'none';
         if (pList) pList.style.display = 'block';
         if (bList) {
           bList.style.background = 'linear-gradient(135deg, #0284c7, #0369a1)';
           bList.style.color = '#fff';
           bList.style.boxShadow = '0 4px 12px rgba(2, 132, 199, 0.35)';
-        }
-        if (bNew) {
-          bNew.style.background = 'transparent';
-          bNew.style.color = '#94a3b8';
-          bNew.style.boxShadow = 'none';
+          bList.classList.add('active');
         }
         renderExpectedList();
       }
@@ -23893,7 +24095,11 @@ function openSettingsModal(targetSection = '') {
     }
 
     
+    let lastCurrencyToggleTime = 0;
     function toggleCurrency() {
+      const now = Date.now();
+      if (now - lastCurrencyToggleTime < 220) return;
+      lastCurrencyToggleTime = now;
       // دورة العملات الأربعة: جنيه -> دولار -> ريال -> ذهب عيار 21 -> جنيه
       if (state.currency === 'EGP') state.currency = 'USD';
       else if (state.currency === 'USD') state.currency = 'SAR';
@@ -25833,10 +26039,10 @@ function openSettingsModal(targetSection = '') {
       const initialTotal = (state.wallets || []).reduce((s, w) => s + (Number(w.initialBalance) || 0), 0);
       const totalLiquidity = initialTotal + netFlow;
 
-      if (elInc) elInc.textContent = '+ ' + formatMoney(totalInc);
-      if (elExp) elExp.textContent = '- ' + formatMoney(totalExp);
-      if (elNet) elNet.textContent = (netFlow >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(netFlow));
-      if (elBal) elBal.textContent = (actualBalance >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(actualBalance));
+      if (elInc) elInc.innerHTML = formatMoneyWithSignHtml(totalInc, '+', 'audit-hero-metric inc');
+      if (elExp) elExp.innerHTML = formatMoneyWithSignHtml(totalExp, '-', 'audit-hero-metric exp');
+      if (elNet) elNet.innerHTML = formatMoneyWithSignHtml(Math.abs(netFlow), netFlow >= 0 ? '+' : '-', 'audit-hero-metric net');
+      if (elBal) elBal.innerHTML = formatMoneyWithSignHtml(Math.abs(actualBalance), actualBalance >= 0 ? '+' : '-', 'audit-hero-metric bal');
 
       if (elEq) {
         elEq.textContent = `افتتاحي (${formatMoney(initialTotal)}) + إيداع (${formatMoney(totalInc)}) - صرف (${formatMoney(totalExp)}) = سيولة (${formatMoney(totalLiquidity)})`;
@@ -25895,7 +26101,7 @@ function openSettingsModal(targetSection = '') {
       let cardsHtml = '';
       walletStats.forEach(w => {
         const pct = totalLiquidity > 0 ? ((w.currentBal / totalLiquidity) * 100).toFixed(1) : 0;
-        const isSelected = selectedWalletId === w.id;
+        const isSelected = auditSelectedWallets.has(w.id) || (selectedWalletId === w.id && auditSelectedWallets.size === 0);
         const borderStyle = isSelected ? `2px solid ${w.color}` : '1px solid rgba(255, 255, 255, 0.12)';
         const bgStyle = isSelected ? 'linear-gradient(135deg, rgba(30, 58, 138, 0.5), rgba(15, 23, 42, 0.9))' : 'rgba(30, 41, 59, 0.6)';
 
@@ -25919,17 +26125,43 @@ function openSettingsModal(targetSection = '') {
       container.innerHTML = cardsHtml;
     }
 
+    let auditSelectedWallets = new Set();
+    let auditSelectedCategories = new Set();
+    let auditSelectedPeriods = new Set();
+
     function quickFilterAuditWallet(walletId) {
-      const walSelect = document.getElementById('auditWalletFilter');
-      if (!walSelect) return;
-
-      if (walSelect.value === walletId) {
-        walSelect.value = 'all';
+      if (auditSelectedWallets.has(walletId)) {
+        auditSelectedWallets.delete(walletId);
       } else {
-        walSelect.value = walletId;
+        auditSelectedWallets.add(walletId);
       }
-
       renderAuditWalletsCards();
+      renderActualBalanceAuditLedger();
+    }
+
+    function toggleAuditCategoryFilter(catId) {
+      if (catId === 'all') {
+        auditSelectedCategories.clear();
+      } else {
+        if (auditSelectedCategories.has(catId)) {
+          auditSelectedCategories.delete(catId);
+        } else {
+          auditSelectedCategories.add(catId);
+        }
+      }
+      renderActualBalanceAuditLedger();
+    }
+
+    function toggleAuditPeriodFilter(periodId) {
+      if (periodId === 'all') {
+        auditSelectedPeriods.clear();
+      } else {
+        if (auditSelectedPeriods.has(periodId)) {
+          auditSelectedPeriods.delete(periodId);
+        } else {
+          auditSelectedPeriods.add(periodId);
+        }
+      }
       renderActualBalanceAuditLedger();
     }
 
@@ -25971,6 +26203,9 @@ function openSettingsModal(targetSection = '') {
     }
 
     function resetAuditFilters() {
+      if (typeof auditSelectedWallets !== 'undefined') auditSelectedWallets.clear();
+      if (typeof auditSelectedCategories !== 'undefined') auditSelectedCategories.clear();
+      if (typeof auditSelectedPeriods !== 'undefined') auditSelectedPeriods.clear();
       const sInput = document.getElementById('auditSearchInput');
       if (sInput) sInput.value = '';
 
@@ -26090,15 +26325,36 @@ function openSettingsModal(targetSection = '') {
           }
         }
 
-        // 4. فلتر البند / التصنيف
-        if (catVal !== 'all' && tx.category !== catVal) {
+        // 4. فلتر البند / التصنيف مع دعم الاختيار المتعدد (Multi-Select)
+        if (auditSelectedCategories.size > 0) {
+          if (!auditSelectedCategories.has(tx.category)) return false;
+        } else if (catVal !== 'all' && tx.category !== catVal) {
           return false;
         }
 
-        // 5. فلتر المحفظة
-        if (walletVal !== 'all') {
+        // 5. فلتر المحفظة مع دعم الاختيار المتعدد (Multi-Select)
+        if (auditSelectedWallets.size > 0) {
+          const inAny = auditSelectedWallets.has(tx.walletId) || 
+                        (!tx.walletId && auditSelectedWallets.has('wallet-cash-safe')) ||
+                        auditSelectedWallets.has(tx.toWalletId) ||
+                        auditSelectedWallets.has(tx.fromWalletId);
+          if (!inAny) return false;
+        } else if (walletVal !== 'all') {
           const inWallet = tx.walletId === walletVal || (!tx.walletId && walletVal === 'wallet-cash-safe') || tx.toWalletId === walletVal || tx.fromWalletId === walletVal;
           if (!inWallet) return false;
+        }
+
+        // 6. فلتر الفترات المتعددة إن تم تحديد أكثر من فترة
+        if (auditSelectedPeriods.size > 0) {
+          let matchPeriod = false;
+          if (auditSelectedPeriods.has('today') && txDate === todayStr) matchPeriod = true;
+          if (auditSelectedPeriods.has('yesterday') && txDate === yesterdayStr) matchPeriod = true;
+          if (auditSelectedPeriods.has('week') && txDate >= weekAgoStr) matchPeriod = true;
+          if (auditSelectedPeriods.has('this_month') && txDate.startsWith(thisMonthPrefix)) matchPeriod = true;
+          if (auditSelectedPeriods.has('last_month') && txDate.startsWith(lastMonthPrefix)) matchPeriod = true;
+          if (auditSelectedPeriods.has('last_30_days') && txDate >= thirtyDaysAgoStr) matchPeriod = true;
+          if (auditSelectedPeriods.has('this_year') && txDate.startsWith(thisYearPrefix)) matchPeriod = true;
+          if (!matchPeriod) return false;
         }
 
         // 6. فلتر نوع الحركة
@@ -26236,16 +26492,14 @@ function openSettingsModal(targetSection = '') {
               </span>
             </td>
 
-            <!-- المبلغ بتنسيق محاسبي دقيق -->
-            <td style="padding: 9px 10px; white-space: nowrap; text-align: left; direction: ltr;">
-              <span style="display: inline-block; padding: 3px 8px; border-radius: 6px; font-weight: 900; font-size: 0.78rem; color: ${amtColor}; background: ${amtBg};">
-                ${amtSign}${formatMoney(amt)}
-              </span>
+            <!-- المبلغ بتنسيق محاسبي دقيق مع رمز العملة يسار الرقم -->
+            <td style="padding: 9px 10px; white-space: nowrap; text-align: center;">
+              ${formatMoneyWithSignHtml(amt, isExp ? '-' : '+', 'audit-amount-val')}
             </td>
 
-            <!-- الرصيد التراكمي بعد الحركة -->
-            <td style="padding: 9px 10px; white-space: nowrap; text-align: left; direction: ltr; font-size: 0.76rem; font-weight: 900; color: #e2e8f0; font-family: 'Courier New', monospace;">
-              ${tx.runningBalAfter >= 0 ? '+' : '-'}${formatMoney(Math.abs(tx.runningBalAfter))}
+            <!-- الرصيد التراكمي بعد الحركة مع رمز العملة يسار الرقم -->
+            <td style="padding: 9px 10px; white-space: nowrap; text-align: center;">
+              ${formatMoneyWithSignHtml(Math.abs(tx.runningBalAfter), tx.runningBalAfter >= 0 ? '+' : '-', 'audit-running-bal-val')}
             </td>
           </tr>
         `;
@@ -27303,6 +27557,7 @@ function openSettingsModal(targetSection = '') {
           </div>
         `;
       }).join('');
+      syncTasksFull();
     }
 
     function restoreBudgetForView(budgetId) {
@@ -29827,6 +30082,21 @@ function installDailyNoonTrigger() {
       }
     }
 
+    
+    function openTasksFullScreenModal() {
+      const modal = document.getElementById('tasksFullScreenModal');
+      if (modal) {
+        modal.style.display = 'block';
+        if (typeof pushModalState === 'function') pushModalState('tasksFullScreenModal');
+      }
+      renderDrawerTasksList();
+    }
+
+    function closeTasksFullScreenModal() {
+      const modal = document.getElementById('tasksFullScreenModal');
+      if (modal) modal.style.display = 'none';
+    }
+
     function renderDrawerTasksList() {
       const container = document.getElementById('drawerTasksContainerList');
       const badge = document.getElementById('drawerTasksCountBadge');
@@ -29893,6 +30163,23 @@ function installDailyNoonTrigger() {
         filtered = allTasks.filter(t => !t.completed);
       }
 
+      const syncTasksFull = () => {
+        const fullContainer = document.getElementById('tasksFullScreenContainerList');
+        if (fullContainer) fullContainer.innerHTML = container.innerHTML;
+        const kTot = document.getElementById('kpiTasksTotalFull');
+        const kAct = document.getElementById('kpiTasksActiveFull');
+        const kOvd = document.getElementById('kpiTasksOverdueFull');
+        const kDon = document.getElementById('kpiTasksDoneFull');
+        const bProg = document.getElementById('tasksOverallProgressBarFull');
+        const pProg = document.getElementById('tasksOverallProgressPctFull');
+        if (kTot) kTot.textContent = totalCount;
+        if (kAct) kAct.textContent = activeCount;
+        if (kOvd) kOvd.textContent = overdueCount;
+        if (kDon) kDon.textContent = completedCount;
+        if (bProg) bProg.style.width = overallPct + '%';
+        if (pProg) pProg.textContent = overallPct + '%';
+      };
+
       if (filtered.length === 0) {
         container.innerHTML = `
           <div style="text-align: center; padding: 40px 14px; background: rgba(15, 23, 42, 0.65); border: 1.5px dashed rgba(168, 85, 247, 0.30); border-radius: 16px; margin-top: 6px;">
@@ -29906,6 +30193,7 @@ function installDailyNoonTrigger() {
             </button>
           </div>
         `;
+        syncTasksFull();
         return;
       }
 
@@ -30441,12 +30729,74 @@ function installDailyNoonTrigger() {
         currentBillPhotoDataUri = e.target.result;
         const badge = document.getElementById('billPhotoPreviewBadge');
         if (badge) {
-          badge.textContent = 'تم التقاط الصورة ✓';
-          badge.style.color = '#34d399';
+          badge.innerHTML = '<span style="color: #34d399;"><i class="fa-solid fa-circle-check"></i> تم التقاط الصورة بنجاح</span>';
         }
-        showToast('📷 تم التقاط صورة الفاتورة بنجاح!');
+        const thumbRow = document.getElementById('billPhotoThumbRow');
+        const thumbImg = document.getElementById('billPhotoThumbImg');
+        if (thumbRow && thumbImg) {
+          thumbImg.src = currentBillPhotoDataUri;
+          thumbRow.style.display = 'flex';
+        }
+        showToast('📷 تم حفظ صورة الفاتورة بنجاح!');
       };
       reader.readAsDataURL(file);
+    }
+
+    function clearCurrentBillPhoto() {
+      currentBillPhotoDataUri = null;
+      const fileInp = document.getElementById('inpBillPhotoFile');
+      if (fileInp) fileInp.value = '';
+      const badge = document.getElementById('billPhotoPreviewBadge');
+      if (badge) {
+        badge.innerHTML = '<span>لم يتم التقاط صورة</span>';
+      }
+      const thumbRow = document.getElementById('billPhotoThumbRow');
+      if (thumbRow) thumbRow.style.display = 'none';
+      showToast('تمت إزالة صورة الفاتورة');
+    }
+
+    function payBillAsExpense(billId) {
+      const bill = (state.expectedExpenses || []).find(b => b.id === billId);
+      if (!bill) return;
+
+      const catObj = (typeof getCategoryObj === 'function') ? getCategoryObj(bill.category || 'bills', 'expense') : null;
+      const amt = Number(bill.amount) || 0;
+      const defaultWallet = (state.wallets && state.wallets[0]) ? state.wallets[0].id : 'wallet-cash-safe';
+
+      const tx = {
+        id: 'tx-' + Date.now(),
+        type: 'expense',
+        label: bill.label || 'سداد فاتورة',
+        amount: amt,
+        category: bill.category || 'bills',
+        member: bill.member || 'البيت',
+        walletId: defaultWallet,
+        date: typeof getLocalDateStr === 'function' ? getLocalDateStr(new Date()) : new Date().toISOString().split('T')[0],
+        time: new Date().toTimeString().slice(0, 5),
+        receipt: bill.photo || null,
+        note: `تم السداد تلقائياً من فاتورة مسجلة (${bill.label})`,
+        author: state.currentUser || 'ماهر',
+        createdAt: new Date().toISOString()
+      };
+
+      if (!state.transactions) state.transactions = [];
+      state.transactions.unshift(tx);
+
+      // تحديث حالة الفاتورة لتصبح مسددة
+      bill.status = 'paid';
+      bill.paidAt = new Date().toISOString();
+      bill.paidTxId = tx.id;
+
+      if (typeof saveState === 'function') saveState();
+
+      if (typeof logActivity === 'function') {
+        logActivity('expense', `سداد فاتورة: ${bill.label} بمبلغ ${amt} ج.م`, amt, bill.member);
+      }
+
+      renderUI();
+      renderBillsList();
+      renderExpectedList();
+      showToast(`✅ تم سداد الفاتورة (${bill.label}) وتحويلها لمصروف مسجل بنجاح!`);
     }
 
     function saveNewBill() {
@@ -30520,20 +30870,55 @@ function installDailyNoonTrigger() {
         return;
       }
 
+      const badgeTab = document.getElementById('billsCountBadgeTab');
+      if (badgeTab) badgeTab.textContent = bills.filter(b => b.status !== 'paid').length;
+
       container.innerHTML = bills.map(b => {
+        const catObj = (typeof getCategoryObj === 'function') ? getCategoryObj(b.category || 'bills', 'expense') : { name: 'فواتير', icon: 'fa-file-invoice', color: '#fbbf24' };
+        const isPaid = b.status === 'paid';
+        const memberAvatar = MEMBER_AVATARS[b.member] || null;
+        let avatarHtml = memberAvatar
+          ? `<img src="${memberAvatar}" style="width: 18px; height: 18px; border-radius: 50%; object-fit: cover;">`
+          : `<i class="fa-solid fa-user" style="font-size: 0.70rem; color: #38bdf8;"></i>`;
+
         return `
-          <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 8px 12px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <i class="fa-solid fa-file-invoice" style="color: #fbbf24; font-size: 1.1rem;"></i>
+          <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(15, 23, 42, 0.85); border: 1.2px solid ${isPaid ? 'rgba(52, 211, 153, 0.3)' : 'rgba(245, 158, 11, 0.3)'}; border-radius: 12px; padding: 10px 14px; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, ${catObj.color || '#fbbf24'}, ${(catObj.color || '#fbbf24')}99); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.1rem; flex-shrink: 0;">
+                <i class="fa-solid ${catObj.icon || 'fa-file-invoice'}"></i>
+              </div>
               <div>
-                <div style="font-size: 0.78rem; font-weight: 800; color: #f8fafc;">${escapeHtml(b.label)}</div>
-                <div style="font-size: 0.64rem; color: #94a3b8;">تخص: ${b.member || 'البيت'} • الاستحقاق: ${b.dueDate || '──'}</div>
+                <div style="font-size: 0.86rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                  <span>${escapeHtml(b.label)}</span>
+                  ${isPaid ? '<span style="font-size: 0.62rem; background: rgba(52, 211, 153, 0.2); color: #34d399; padding: 1px 6px; border-radius: 6px; font-weight: 800;">مسددة ✅</span>' : ''}
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px; margin-top: 3px; font-size: 0.68rem; color: #94a3b8; flex-wrap: wrap;">
+                  <span style="display: inline-flex; align-items: center; gap: 4px;">
+                    ${avatarHtml}
+                    <strong style="color: #cbd5e1;">${b.member || 'البيت'}</strong>
+                  </span>
+                  <span>•</span>
+                  <span><i class="fa-regular fa-calendar" style="color: #38bdf8;"></i> ${b.dueDate || '──'}</span>
+                  <span>•</span>
+                  <span style="color: ${catObj.color || '#fbbf24'};"><i class="fa-solid fa-tag"></i> ${catObj.name}</span>
+                </div>
               </div>
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="font-size: 0.85rem; font-weight: 900; color: #fbbf24; direction: ltr;">${formatMoney(b.amount)}</span>
-              ${b.photo ? `<button type="button" onclick="openReceiptLightbox('${b.photo}', 'فاتورة: ${escapeHtml(b.label)}')" style="background: rgba(236, 72, 153, 0.2); border: 1px solid rgba(236, 72, 153, 0.4); color: #f472b6; border-radius: 6px; padding: 3px 6px; font-size: 0.65rem; cursor: pointer;"><i class="fa-solid fa-image"></i></button>` : ''}
-              <button type="button" onclick="deleteExpectedItem('${b.id}')" style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); color: #f87171; border-radius: 6px; padding: 3px 6px; font-size: 0.65rem; cursor: pointer;"><i class="fa-solid fa-trash-can"></i></button>
+              ${formatMoneyWithSignHtml(b.amount, '-', 'bill-amount-badge')}
+              ${b.photo ? `
+                <button type="button" onclick="openReceiptLightbox('${b.photo}', 'فاتورة: ${escapeHtml(b.label)}')" style="background: rgba(236, 72, 153, 0.2); border: 1.2px solid rgba(236, 72, 153, 0.4); color: #f472b6; border-radius: 8px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;" title="معاينة صورة الفاتورة">
+                  <i class="fa-solid fa-image" style="font-size: 0.85rem;"></i>
+                </button>
+              ` : ''}
+              ${!isPaid ? `
+                <button type="button" onclick="payBillAsExpense('${b.id}')" style="background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; border-radius: 8px; height: 32px; padding: 0 10px; font-size: 0.70rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);" title="سداد الفاتورة وتحويلها لمصروف">
+                  <i class="fa-solid fa-check"></i> <span>سداد</span>
+                </button>
+              ` : ''}
+              <button type="button" onclick="deleteExpectedItem('${b.id}')" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.35); color: #f87171; border-radius: 8px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;" title="حذف الفاتورة">
+                <i class="fa-solid fa-trash-can" style="font-size: 0.78rem;"></i>
+              </button>
             </div>
           </div>
         `;

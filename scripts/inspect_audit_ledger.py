@@ -1,10 +1,8 @@
-import sys, io, re
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 
 with open('index.html', 'r', encoding='utf-8') as f:
-    html = f.read()
+    text = f.read()
 
-m = re.search(r'function renderActualBalanceAuditLedger\b', html)
-if m:
-    print("=== renderActualBalanceAuditLedger ===")
-    print(html[m.start():m.start()+3500])
+pos = text.find('function renderActualBalanceAuditLedger')
+print(text[pos:pos+3500])
