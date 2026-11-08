@@ -142,10 +142,10 @@
     }
 
     var currentEditTxReceiptDataUri = null;
-    var APP_VERSION = 'v5.2.4';
-    var APP_BUILD_ID = 202611081550;
-    window.APP_VERSION = 'v5.2.4';
-    window.APP_BUILD_ID = 202611081550;
+    var APP_VERSION = 'v5.2.6';
+    var APP_BUILD_ID = 202611081720;
+    window\.APP_VERSION = 'v5.2.6';
+    window\.APP_BUILD_ID = 202611081720;
     (function() {
       try {
         var t = localStorage.getItem('family_monefy_theme') || 'navy';
@@ -4672,54 +4672,33 @@
       filter: brightness(1.15) !important;
     }
     .theme-pill-option.active {
-      border: 2.2px solid #38bdf8 !important;
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.65), inset 0 0 8px rgba(56, 189, 248, 0.22) !important;
-      transform: translateY(-2px) scale(1.03) !important;
-      background: rgba(56, 189, 248, 0.18) !important;
-    }
-    body.light-theme .theme-pill-option.active {
-      border: 2.2px solid #0284c7 !important;
-      box-shadow: 0 0 14px rgba(2, 132, 199, 0.45), inset 0 0 8px rgba(2, 132, 199, 0.15) !important;
-      background: rgba(2, 132, 199, 0.12) !important;
+      transform: translateY(-2px) scale(1.04) !important;
+      outline: 2px solid rgba(255, 255, 255, 0.35) !important;
     }
     .theme-pill-option .theme-color-dot {
-      width: 20px !important;
-      height: 20px !important;
-      min-width: 20px !important;
-      min-height: 20px !important;
+      width: 22px !important;
+      height: 22px !important;
+      min-width: 22px !important;
+      min-height: 22px !important;
       border-radius: 50% !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      font-size: 0.65rem !important;
+      font-size: 0.72rem !important;
       font-weight: 900 !important;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
       box-sizing: border-box !important;
-      margin-bottom: 2px !important;
-    }
-    .theme-pill-option.active .theme-color-dot {
-      background: #38bdf8 !important;
-      border: 2px solid #ffffff !important;
-      box-shadow: 0 0 10px #38bdf8 !important;
-      color: #04101e !important;
-    }
-    body.light-theme .theme-pill-option.active .theme-color-dot {
-      background: #0284c7 !important;
-      border: 2px solid #ffffff !important;
-      color: #ffffff !important;
+      margin-bottom: 3px !important;
     }
     .theme-pill-option .theme-selected-badge {
       display: none;
-      font-size: 0.55rem;
+      font-size: 0.60rem;
       font-weight: 900;
-      color: #38bdf8;
-      background: rgba(56, 189, 248, 0.22);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      padding: 1px 6px;
+      padding: 2px 7px;
       border-radius: 6px;
       line-height: 1.2;
-      margin-top: 2px;
-      box-shadow: 0 2px 6px rgba(56, 189, 248, 0.25);
+      margin-top: 3px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
     }
     .theme-pill-option.active .theme-selected-badge {
       display: inline-block !important;
@@ -4731,15 +4710,8 @@
       transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     .theme-card-box.active {
-      border: 2.2px solid #38bdf8 !important;
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.55), inset 0 0 8px rgba(56, 189, 248, 0.15) !important;
-      transform: translateY(-2px) scale(1.02) !important;
-    }
-    .theme-card-box.active .theme-check-dot {
-      background: #38bdf8 !important;
-      border: 2px solid #ffffff !important;
-      color: #04101e !important;
-      box-shadow: 0 0 10px #38bdf8 !important;
+      transform: translateY(-2px) scale(1.03) !important;
+      outline: 2px solid rgba(255, 255, 255, 0.35) !important;
     }
 
 
@@ -6935,7 +6907,7 @@
     [data-card-style="glass"] .category-card,
     [data-card-style="glass"] .grid-cat-card,
     [data-card-style="glass"] .cat-box,
-    [data-card-style="glass"] .cat-card,
+    /* removed [data-card-style="glass"] .cat-card to allow theme gradients */
     [data-card-style="glass"] .item-entry-card,
     [data-card-style="glass"] .ops-tx-card-lux,
     [data-card-style="glass"] .recent-tx-card,
@@ -6977,7 +6949,7 @@
     [data-card-style="minimal"] .category-card,
     [data-card-style="minimal"] .grid-cat-card,
     [data-card-style="minimal"] .cat-box,
-    [data-card-style="minimal"] .cat-card,
+    /* removed [data-card-style="minimal"] .cat-card to allow theme gradients */
     [data-card-style="minimal"] .item-entry-card,
     [data-card-style="minimal"] .ops-tx-card-lux,
     [data-card-style="minimal"] .recent-tx-card,
@@ -8332,7 +8304,7 @@
       color: #0284c7 !important;
     }
     .cockpit-hero-value {
-      font-size: clamp(1.70rem, 5.5vw, 2.30rem) !important;
+      font-size: clamp(1.15rem, 3.8vw, 1.60rem);
       font-weight: 950 !important;
       color: #38bdf8 !important;
       letter-spacing: -0.3px !important;
@@ -8342,6 +8314,8 @@
       line-height: 1.15 !important;
       white-space: nowrap !important;
       text-shadow: 0 2px 18px rgba(56, 189, 248, 0.65) !important;
+      max-width: 100% !important;
+      overflow: visible !important;
     }
     body.light-theme .cockpit-hero-value {
       color: #0284c7 !important;
@@ -9050,7 +9024,43 @@
 
 
     #taskDateTimePickerModal { z-index: 2000050 !important; }
-</style>
+
+    /* مقبضا الشاشات الجانبية يمين ويسار */
+    .side-screen-edge-handle {
+      position: fixed;
+      top: 52%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      cursor: pointer;
+      font-size: 0.65rem;
+      transition: all 0.22s ease;
+      opacity: 0.55;
+    }
+    .side-screen-edge-handle:hover {
+      opacity: 1;
+      width: 22px;
+    }
+    .side-screen-edge-handle.left-handle {
+      left: 0;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.5), rgba(2, 132, 199, 0.7));
+      border-radius: 0 8px 8px 0;
+      color: #ffffff;
+      box-shadow: 2px 0 10px rgba(56, 189, 248, 0.35);
+    }
+    .side-screen-edge-handle.right-handle {
+      right: 0;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.5), rgba(217, 119, 6, 0.7));
+      border-radius: 8px 0 0 8px;
+      color: #ffffff;
+      box-shadow: -2px 0 10px rgba(245, 158, 11, 0.35);
+    }
+
+  </style>
 
   <script>
     // إلغاء أي Service Worker قديم ومسح التخزين المؤقت فوراً
@@ -9836,7 +9846,7 @@
       overflow: hidden !important;
       border-width: 1.6px !important;
       border-style: solid !important;
-      background: linear-gradient(155deg, rgba(30, 41, 59, 0.90) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+      /* cat-card background handled by theme engine in renderCategoriesGrid */
       border-color: rgba(255, 255, 255, 0.12) !important;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
       transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease, box-shadow 0.2s ease, max-height 0.25s ease !important;
@@ -10698,7 +10708,7 @@
     }
 
     .cockpit-hero-value {
-      font-size: clamp(1.70rem, 5.5vw, 2.30rem) !important;
+      font-size: clamp(1.15rem, 3.8vw, 1.60rem);
       font-weight: 950 !important;
       color: #38bdf8 !important;
       letter-spacing: -0.3px !important;
@@ -10708,6 +10718,8 @@
       line-height: 1.15 !important;
       white-space: nowrap !important;
       text-shadow: 0 2px 18px rgba(56, 189, 248, 0.65) !important;
+      max-width: 100% !important;
+      overflow: visible !important;
     }
     body.light-theme .cockpit-hero-value {
       color: #0284c7 !important;
@@ -11147,7 +11159,7 @@
     }
 
     .cockpit-hero-value {
-      font-size: clamp(1.70rem, 5.5vw, 2.30rem) !important;
+      font-size: clamp(1.15rem, 3.8vw, 1.60rem);
       font-weight: 950 !important;
       color: #38bdf8 !important;
       letter-spacing: -0.3px !important;
@@ -11157,6 +11169,8 @@
       line-height: 1.15 !important;
       white-space: nowrap !important;
       text-shadow: 0 2px 18px rgba(56, 189, 248, 0.65) !important;
+      max-width: 100% !important;
+      overflow: visible !important;
     }
 
     .cockpit-hero-sub {
@@ -11255,7 +11269,7 @@
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
     }
     .cockpit-hero-value {
-      font-size: clamp(1.70rem, 5.5vw, 2.30rem) !important;
+      font-size: clamp(1.15rem, 3.8vw, 1.60rem);
       font-weight: 950 !important;
       color: #38bdf8 !important;
       letter-spacing: -0.3px !important;
@@ -11265,6 +11279,8 @@
       line-height: 1.15 !important;
       white-space: nowrap !important;
       text-shadow: 0 2px 18px rgba(56, 189, 248, 0.65) !important;
+      max-width: 100% !important;
+      overflow: visible !important;
     }
 
     /* --- 5. Category Cards (Monefy 3x3 Grid) Containment --- */
@@ -11889,21 +11905,17 @@
     <header class="app-header">
       <!-- السطر 1: الشعار واسم العائلة + شارة الحساب السحابي بالإيميل -->
       <div class="header-brand-row">
-        <div class="brand-box" style="display: flex; align-items: center; gap: 6px;">
-          <!-- أيقونة الشعار لفتح الإعدادات بنقرة واحدة -->
-          <div class="brand-icon" title="الإعدادات والتخصيص" onclick="openSettingsModal('brand_section')" style="width: 34px !important; height: 34px !important; min-width: 34px !important; min-height: 34px !important; border-radius: 10px !important; overflow: hidden !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important; cursor: pointer;">
-            
-          </div>
-          <!-- زر المهام الرئيسي الفاخر في أعلى الصفحة الرئيسية بدلاً من نص عائلة ماهر -->
-          <button type="button" class="header-tasks-main-btn" id="btnHeaderTasksTop" onclick="openTasksFullScreenModal()" title="إدارة المهام والتخطيط اليومي" style="height: 34px; padding: 0 11px; border-radius: 10px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.28), rgba(99, 102, 241, 0.28)); border: 1.2px solid rgba(168, 85, 247, 0.55); color: #f8fafc; font-size: 0.80rem; font-weight: 850; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 3px 12px rgba(168, 85, 247, 0.35); transition: all 0.2s;">
-            <i class="fa-solid fa-list-check" style="color: #c084fc; font-size: 0.90rem;"></i>
+        <div class="brand-box" style="display: flex; align-items: center; gap: 0; flex-shrink: 0;">
+          <!-- زر المهام الرئيسي الفاخر في أعلى الصفحة الرئيسية في مكان الشعار المحذوف تماماً وبدون أي فراغ -->
+          <button type="button" class="header-tasks-main-btn" id="btnHeaderTasksTop" onclick="openTasksFullScreenModal()" title="إدارة المهام والتخطيط اليومي" style="height: 32px; padding: 0 9px; border-radius: 9px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.32), rgba(99, 102, 241, 0.32)); border: 1.2px solid rgba(168, 85, 247, 0.6); color: #f8fafc; font-size: 0.76rem; font-weight: 850; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 2px 10px rgba(168, 85, 247, 0.3); transition: all 0.2s; white-space: nowrap;">
+            <i class="fa-solid fa-list-check" style="color: #c084fc; font-size: 0.86rem;"></i>
             <span>المهام</span>
-            <span id="headerTasksBadgeCount" style="background: #a855f7; color: #ffffff; font-size: 0.65rem; padding: 1px 6px; border-radius: 10px; font-weight: 900; box-shadow: 0 1px 4px rgba(0,0,0,0.4);">0</span>
+            <span id="headerTasksBadgeCount" style="background: #a855f7; color: #ffffff; font-size: 0.62rem; padding: 1px 5px; border-radius: 8px; font-weight: 900;">0</span>
           </button>
         </div>
 
         <!-- زر الضبط والمزامنة السحابية الموحد في الهيدر الرئيسي -->
-        <div style="display: flex; align-items: center; gap: 5px;">
+        <div style="display: flex; align-items: center; gap: 4px; flex-shrink: 0;">
           <!-- زر التنبيهات -->
           <button class="header-settings-btn" id="btnNotificationsBell" onclick="openNotificationsModal()" title="الإشعارات والتنبيهات الذكية" style="position: relative; background: rgba(245, 158, 11, 0.18); border-color: rgba(245, 158, 11, 0.45); color: #fbbf24; padding: 5px 8px;">
             <i class="fa-solid fa-bell"></i>
@@ -12110,7 +12122,7 @@
                 <i class="fa-solid fa-eye" id="iconBalancePrivacy"></i>
               </button>
             </div>
-            <div class="cockpit-hero-value" id="topCardBalance" style="font-size: clamp(1.65rem, 5.2vw, 2.20rem) !important; font-weight: 950 !important; letter-spacing: -0.3px; text-shadow: 0 2px 18px rgba(56, 189, 248, 0.65); margin: auto 0; color: #38bdf8;">+ 0.00 ج.م</div>
+            <div class="cockpit-hero-value" id="topCardBalance" style="font-size: clamp(1.15rem, 3.8vw, 1.60rem); font-weight: 950; letter-spacing: -0.3px; text-shadow: 0 2px 18px rgba(56, 189, 248, 0.65); margin: auto 0; color: #38bdf8; max-width: 100%; overflow: visible;">+ 0.00 ج.م</div>
             <div class="hero-liquidity-subtitle" style="font-size: clamp(0.58rem, 1.8vw, 0.66rem); color: #94a3b8; display: flex; align-items: center; gap: 4px; margin-top: 1px;">
               <i class="fa-solid fa-shield-halved" style="color: #34d399; font-size: 0.72rem;"></i>
               <span>صافي السيولة المعتمدة للمحافظ</span>
@@ -12164,15 +12176,20 @@
             <select class="wallet-dropdown-compact" id="activeWalletSelect" title="المحفظة النشطة" style="flex: 1 1 auto; width: 100%; min-width: 0; background: transparent; border: none; color: #38bdf8; font-weight: 900; font-size: 0.88rem; font-family: inherit; outline: none; cursor: pointer; direction: rtl; white-space: nowrap;"></select>
           </div>
 
-          <!-- زر حاسبة الصاغة والذهب المدمج -->
-          <!-- زر درج ملخص النشاط المالي الشامل (يفتح من اليسار) -->
-          <button type="button" class="tool-pill-action" id="btnOpenSummaryDrawer" onclick="openSummaryDrawer()" title="ملخص العمليات والنشاط المالي (اليوم / الأسبوع / الشهر)" style="height: 38px; padding: 0 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(56, 189, 248, 0.5); background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.9)); color: #38bdf8; flex-shrink: 0;">
+          <!-- زر درج ملخص النشاط المالي الشامل (يفتح الشاشة الجانبية اليسرى) -->
+          <button type="button" class="tool-pill-action" id="btnOpenSummaryDrawer" onclick="openSummaryDrawer()" title="الشاشة الجانبية اليسرى: ملخص العمليات والنشاط المالي" style="height: 38px; padding: 0 9px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(56, 189, 248, 0.5); background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.9)); color: #38bdf8; flex-shrink: 0;">
             <i class="fa-solid fa-chart-pie"></i>
             <span>ملخص</span>
           </button>
 
-          <!-- زر درج المهام والالتزامات العائلية والخطوات الفرعية (1-tap shortcut) -->
-          <button type="button" class="tool-pill-action" id="btnOpenTasksDrawer" onclick="openTasksFullScreenModal()" title="إدارة المهام والالتزامات العائلية والخطوات الفرعية" style="height: 38px; padding: 0 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(168, 85, 247, 0.5); background: linear-gradient(135deg, rgba(168, 85, 247, 0.20), rgba(15, 23, 42, 0.9)); color: #c084fc; flex-shrink: 0;">
+          <!-- زر شاشة الذهب والبورصة والعملات (يفتح الشاشة الجانبية اليمنى) -->
+          <button type="button" class="tool-pill-action gold-pill" id="btnOpenGold" onclick="openGoldDrawer()" title="الشاشة الجانبية اليمنى: شارت الذهب وأسعار العملات" style="height: 38px; padding: 0 9px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(245, 158, 11, 0.5); background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(15, 23, 42, 0.9)); color: #fbbf24; flex-shrink: 0;">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            <span>الذهب</span>
+          </button>
+
+          <!-- زر درج المهام والالتزامات العائلية (1-tap shortcut) -->
+          <button type="button" class="tool-pill-action" id="btnOpenTasksDrawer" onclick="openTasksFullScreenModal()" title="إدارة المهام والالتزامات العائلية والخطوات الفرعية" style="height: 38px; padding: 0 9px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; display: flex; align-items: center; gap: 5px; cursor: pointer; border: 1.2px solid rgba(168, 85, 247, 0.5); background: linear-gradient(135deg, rgba(168, 85, 247, 0.20), rgba(15, 23, 42, 0.9)); color: #c084fc; flex-shrink: 0;">
             <i class="fa-solid fa-list-check" style="color: #c084fc;"></i>
             <span>المهام</span>
           </button>
@@ -15159,7 +15176,7 @@
           <div>
             <h3 class="modal-title-custom" style="font-size: 0.90rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 6px;">
               <span>مركز الضبط الموحد والمزامنة</span>
-              <span class="version-badge" style="font-size: 0.62rem; background: rgba(34, 197, 94, 0.2); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 6px; border-radius: 5px;">v5.0.9 • متزامن</span>
+              <span class="version-badge" style="font-size: 0.62rem; background: rgba(34, 197, 94, 0.2); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 6px; border-radius: 5px;">v5.2.6 • متزامن</span>
             </h3>
             
           </div>
@@ -15172,38 +15189,69 @@
 
 
 
-        <!-- 2. زر واحد فقط للمستخدم النشط لفتح الشاشة الكاملة للتبديل بين المستخدمين -->
-        <div class="settings-user-capsule" onclick="openFullUserSelectionModal()" style="cursor: pointer; background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 14px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.35);">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <div style="position: relative;">
+        <!-- 1. كارت إدارة وتبديل حسابات العائلة - محكوم 100% داخل الحدود بدون أي خروج -->
+        <div class="settings-user-capsule" onclick="openFullUserSelectionModal()" style="cursor: pointer; background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 14px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.35); flex-wrap: wrap; gap: 8px; box-sizing: border-box; overflow: hidden; max-width: 100%;">
+          <div style="display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0;">
+            <div style="position: relative; flex-shrink: 0;">
               <img id="settingsCurrentMemberImg" src="" style="width: 44px; height: 44px; border-radius: 12px; object-fit: cover !important; object-position: top center !important; border: 2.2px solid #38bdf8; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
               <span style="position: absolute; bottom: -2px; left: -2px; width: 11px; height: 11px; border-radius: 50%; background: #22c55e; border: 1.5px solid #0f172a;"></span>
             </div>
-            <div>
-              <div style="font-size: 0.88rem; font-weight: 900; color: #fff;">المستخدم النشط: <span id="settingsCurrentMemberName" style="color: #38bdf8;">ماهر</span></div>
+            <div style="min-width: 0; flex: 1;">
+              <div style="font-size: 0.88rem; font-weight: 900; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">المستخدم النشط: <span id="settingsCurrentMemberName" style="color: #38bdf8;">ماهر</span></div>
               <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700;">أفراد الأسرة 👥</div>
             </div>
           </div>
-          <div style="display: flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.16); border: 1.2px solid rgba(56, 189, 248, 0.4); padding: 5px 12px; border-radius: 8px; color: #38bdf8; font-size: 0.74rem; font-weight: 900;">
-            <span>تبديل الحساب</span>
-            <i class="fa-solid fa-chevron-left" style="font-size: 0.68rem;"></i>
+          <!-- شارة الحساب الحالي: محكومة تماماً داخل الكارت ولا تخرج خارج الحدود -->
+          <div id="settingsActiveUserBadge" style="display: inline-flex; align-items: center; gap: 5px; background: rgba(34, 197, 94, 0.18); border: 1.2px solid rgba(34, 197, 94, 0.5); padding: 4px 10px; border-radius: 10px; color: #34d399; font-size: 0.72rem; font-weight: 850; flex-shrink: 0; white-space: nowrap; max-width: 100%; box-sizing: border-box;">
+            <i class="fa-solid fa-circle-check" style="color: #22c55e; font-size: 0.65rem;"></i>
+            <span>الحساب الحالي: <strong id="settingsActiveUserNameTxt" style="color: #ffffff;">ماهر</strong></span>
+            <i class="fa-solid fa-chevron-left" style="font-size: 0.65rem; margin-right: 3px; color: #38bdf8;"></i>
           </div>
         </div>
 
-        <!-- 3. بطاقة عائلة ماهر ❤️ أية - رمز الموزاييك المثبت دائماً (حذف الخيارات الأخرى) -->
+        <!-- 2. بطاقة صورة عائلة ماهر ❤️ أية الفاخرة -->
         <div id="family_portrait_settings_card" style="margin: 0 0 6px; border-radius: 14px; overflow: hidden; position: relative; border: 1.5px solid rgba(56, 189, 248, 0.45); box-shadow: 0 8px 24px rgba(0,0,0,0.5); cursor: pointer;" onclick="openReceiptLightbox('family_portrait.jpg', 'عائلة ماهر ❤️ أية - بيت عامر بالحب والبركة')" title="انقر لعرض صورة العائلة بدقة عالية">
           <img src="family_portrait.jpg" alt="عائلة ماهر وأية" id="settingsFamilyPortraitImg" style="width: 100%; height: 155px; object-fit: cover !important; object-position: top center !important; display: block;">
           <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(15,23,42,0.98) 0%, rgba(15,23,42,0.7) 65%, transparent 100%); padding: 8px 12px; display: flex; justify-content: space-between; align-items: flex-end;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <img src="assets/family_option2_mosaic.jpg" alt="شعار الموزاييك الملكي" style="width: 32px; height: 32px; border-radius: 8px; border: 1.5px solid #38bdf8; object-fit: cover !important; object-position: top center !important;">
+              <img id="settingsCurrentEmblemMini" src="assets/family_option1_gold_crest.jpg" alt="شعار العائلة" style="width: 32px; height: 32px; border-radius: 8px; border: 1.5px solid #fbbf24; object-fit: cover !important; object-position: top center !important;">
               <div>
                 <div style="font-size: 0.88rem; font-weight: 900; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">عائلة ماهر ❤️ أية</div>
-                
+                <div style="font-size: 0.62rem; color: #cbd5e1; font-weight: 700;">بيت عامر بالحب والبركة 👨‍👩‍👧‍👦</div>
               </div>
             </div>
             <span style="font-size: 0.64rem; background: rgba(56, 189, 248, 0.3); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.5); padding: 3px 8px; border-radius: 6px; font-weight: 800; backdrop-filter: blur(4px);">
               <i class="fa-solid fa-expand"></i> عرض
             </span>
+          </div>
+        </div>
+
+        <!-- 3. أداة الاختيار والتبديل التفاعلي لشعار ورمز العائلة المفضل (4 خيارات ملكية مع حفظ دائم) -->
+        <div style="background: rgba(15, 23, 42, 0.85); border: 1.3px solid rgba(251, 191, 36, 0.40); border-radius: 14px; padding: 10px 12px; margin-bottom: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.35);">
+          <div style="font-size: 0.72rem; font-weight: 900; color: #fbbf24; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
+            <span style="display: flex; align-items: center; gap: 5px;">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>اختر نمط رمز وشعار العائلة المفضل لديك:</span>
+            </span>
+            <span id="activeEmblemNameBadge" style="font-size: 0.62rem; color: #fbbf24; background: rgba(251, 191, 36, 0.16); border: 1px solid rgba(251, 191, 36, 0.4); padding: 2px 8px; border-radius: 6px; font-weight: 850;">الدرع الملكي المذهب ✓</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;" id="emblemOptionButtonsGroup">
+            <button type="button" onclick="switchFamilyEmblem(1)" class="emblem-opt-btn active" id="btnEmblemOpt1" style="background: rgba(30, 41, 59, 0.85); border: 2.2px solid #fbbf24; border-radius: 10px; padding: 6px 2px; cursor: pointer; text-align: center; color: #f8fafc; transition: all 0.2s ease; box-shadow: 0 0 12px rgba(251, 191, 36, 0.45);">
+              <img src="assets/family_option1_gold_crest.jpg" style="width: 36px; height: 36px; border-radius: 8px; object-fit: cover; display: block; margin: 0 auto 3px;">
+              <div style="font-size: 0.58rem; font-weight: 850; white-space: nowrap;">الدرع الملكي</div>
+            </button>
+            <button type="button" onclick="switchFamilyEmblem(2)" class="emblem-opt-btn" id="btnEmblemOpt2" style="background: rgba(30, 41, 59, 0.85); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 6px 2px; cursor: pointer; text-align: center; color: #f8fafc; transition: all 0.2s ease;">
+              <img src="assets/family_option2_mosaic.jpg" style="width: 36px; height: 36px; border-radius: 8px; object-fit: cover; display: block; margin: 0 auto 3px;">
+              <div style="font-size: 0.58rem; font-weight: 850; white-space: nowrap;">الموزاييك</div>
+            </button>
+            <button type="button" onclick="switchFamilyEmblem(3)" class="emblem-opt-btn" id="btnEmblemOpt3" style="background: rgba(30, 41, 59, 0.85); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 6px 2px; cursor: pointer; text-align: center; color: #f8fafc; transition: all 0.2s ease;">
+              <img src="assets/family_option3_rosette.jpg" style="width: 36px; height: 36px; border-radius: 8px; object-fit: cover; display: block; margin: 0 auto 3px;">
+              <div style="font-size: 0.58rem; font-weight: 850; white-space: nowrap;">المدار الزجاجي</div>
+            </button>
+            <button type="button" onclick="switchFamilyEmblem(4)" class="emblem-opt-btn" id="btnEmblemOpt4" style="background: rgba(30, 41, 59, 0.85); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 6px 2px; cursor: pointer; text-align: center; color: #f8fafc; transition: all 0.2s ease;">
+              <img src="assets/family_option4_emerald.jpg" style="width: 36px; height: 36px; border-radius: 8px; object-fit: cover; display: block; margin: 0 auto 3px;">
+              <div style="font-size: 0.58rem; font-weight: 850; white-space: nowrap;">الزمرد والنيون</div>
+            </button>
           </div>
         </div>
 
@@ -15731,8 +15779,8 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = 'v5.2.5';;
-      const APP_BUILD_ID = 202611081700;;
+      const APP_VERSION = 'v5.2.6';;
+      const APP_BUILD_ID = 202611081720;;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
@@ -19430,17 +19478,20 @@ function generateRichDemoTransactions() {
           elBal.style.color = actualBalance >= 0 ? '#38bdf8' : '#f43f5e';
         }
 
-        // تحجيم ذكي للأرقام الكبيرة حتى لا تتجاوز حدود البطاقة أو تظهر نقاط اختصار (...)
+        // تحجيم ذكي للأرقام الكبيرة حتى لا تتجاوز حدود البطاقة نهائياً وبدون أي نقاط اختصار (...)
         const balStr = elBal.textContent || '';
         if (balStr.length > 22) {
-          elBal.style.fontSize = 'clamp(0.95rem, 3.0vw, 1.12rem)';
-          elBal.style.letterSpacing = '-0.4px';
+          elBal.style.setProperty('font-size', 'clamp(0.88rem, 2.7vw, 1.05rem)', 'important');
+          elBal.style.letterSpacing = '-0.5px';
         } else if (balStr.length > 15) {
-          elBal.style.fontSize = 'clamp(1.12rem, 3.7vw, 1.30rem)';
+          elBal.style.setProperty('font-size', 'clamp(1.02rem, 3.2vw, 1.22rem)', 'important');
           elBal.style.letterSpacing = '-0.3px';
-        } else {
-          elBal.style.fontSize = 'clamp(1.22rem, 4.0vw, 1.45rem)';
+        } else if (balStr.length > 10) {
+          elBal.style.setProperty('font-size', 'clamp(1.15rem, 3.6vw, 1.38rem)', 'important');
           elBal.style.letterSpacing = '-0.2px';
+        } else {
+          elBal.style.setProperty('font-size', 'clamp(1.25rem, 4.0vw, 1.55rem)', 'important');
+          elBal.style.letterSpacing = '-0.1px';
         }
       }
 
@@ -19531,82 +19582,55 @@ function generateRichDemoTransactions() {
           name: 'طعام ومشتريات',
           emoji: '🛒',
           accent: '#10b981',
-          gradient: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(16, 185, 129, 0.35) 0%, rgba(16, 185, 129, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
-          bgLight: 'linear-gradient(160deg, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0.08) 40%, #ffffff 90%)',
-          border: '#10b981'
+          gradient: 'linear-gradient(135deg, #10b981 0%, #047857 100%)'
         },
         daily: {
           name: 'مصروف يومي',
           emoji: '☕',
           accent: '#f59e0b',
-          gradient: 'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(245, 158, 11, 0.35) 0%, rgba(245, 158, 11, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
-          bgLight: 'linear-gradient(160deg, rgba(245, 158, 11, 0.22) 0%, rgba(245, 158, 11, 0.08) 40%, #ffffff 90%)',
-          border: '#f59e0b'
+          gradient: 'linear-gradient(135deg, #f59e0b 0%, #b45309 100%)'
         },
         bills: {
           name: 'فواتير والتزامات',
           emoji: '⚡',
           accent: '#f97316',
-          gradient: 'linear-gradient(135deg, #f97316 0%, #c2410c 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(249, 115, 22, 0.35) 0%, rgba(249, 115, 22, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
-          bgLight: 'linear-gradient(160deg, rgba(249, 115, 22, 0.22) 0%, rgba(249, 115, 22, 0.08) 40%, #ffffff 90%)',
-          border: '#f97316'
+          gradient: 'linear-gradient(135deg, #f97316 0%, #c2410c 100%)'
         },
         transport: {
           name: 'مواصلات وبنزين',
           emoji: '🚗',
           accent: '#0284c7',
-          gradient: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(2, 132, 199, 0.35) 0%, rgba(2, 132, 199, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
-          bgLight: 'linear-gradient(160deg, rgba(2, 132, 199, 0.22) 0%, rgba(2, 132, 199, 0.08) 40%, #ffffff 90%)',
-          border: '#0284c7'
+          gradient: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)'
         },
         house: {
           name: 'مستلزمات منزل',
           emoji: '🛋️',
           accent: '#8b5cf6',
-          gradient: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(139, 92, 246, 0.35) 0%, rgba(139, 92, 246, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
-          bgLight: 'linear-gradient(160deg, rgba(139, 92, 246, 0.22) 0%, rgba(139, 92, 246, 0.08) 40%, #ffffff 90%)',
-          border: '#8b5cf6'
+          gradient: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)'
         },
         health: {
           name: 'صحة وعلاج',
           emoji: '💊',
           accent: '#ef4444',
-          gradient: 'linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(239, 68, 68, 0.35) 0%, rgba(239, 68, 68, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
-          bgLight: 'linear-gradient(160deg, rgba(239, 68, 68, 0.22) 0%, rgba(239, 68, 68, 0.08) 40%, #ffffff 90%)',
-          border: '#ef4444'
+          gradient: 'linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)'
         },
         clothes: {
           name: 'ملابس وأحذية',
           emoji: '👔',
           accent: '#ec4899',
-          gradient: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(236, 72, 153, 0.35) 0%, rgba(236, 72, 153, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
-          bgLight: 'linear-gradient(160deg, rgba(236, 72, 153, 0.22) 0%, rgba(236, 72, 153, 0.08) 40%, #ffffff 90%)',
-          border: '#ec4899'
+          gradient: 'linear-gradient(135deg, #ec4899 0%, #be185d 100%)'
         },
         education: {
           name: 'تعليم ودروس',
-          emoji: '🎓',
+          emoji: '📚',
           accent: '#3b82f6',
-          gradient: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(59, 130, 246, 0.35) 0%, rgba(59, 130, 246, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
-          bgLight: 'linear-gradient(160deg, rgba(59, 130, 246, 0.22) 0%, rgba(59, 130, 246, 0.08) 40%, #ffffff 90%)',
-          border: '#3b82f6'
+          gradient: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)'
         },
         other: {
           name: 'أخرى ونثريات',
           emoji: '🎁',
           accent: '#14b8a6',
-          gradient: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
-          bgDark: 'linear-gradient(160deg, rgba(20, 184, 166, 0.35) 0%, rgba(20, 184, 166, 0.15) 40%, rgba(15, 23, 42, 0.95) 100%)',
-          bgLight: 'linear-gradient(160deg, rgba(20, 184, 166, 0.22) 0%, rgba(20, 184, 166, 0.08) 40%, #ffffff 90%)',
-          border: '#14b8a6'
+          gradient: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)'
         }
       };
 
@@ -19615,12 +19639,80 @@ function generateRichDemoTransactions() {
       const isGold = state.currency === 'GOLD21';
       const currSymbol = getCurrencySymbol();
 
+      // محرك لوحات ألوان الكروت الداخلية المتكيفة بالكامل مع كافة سمات التطبيق الـ 9
+      const THEME_CARD_PALETTES = {
+        navy: {
+          bgGrad: (c) => `linear-gradient(160deg, ${c}42 0%, ${c}15 38%, #08162b 100%)`,
+          lowerZero: 'rgba(8, 22, 43, 0.88)',
+          lowerSpent: 'rgba(239, 68, 68, 0.28)',
+          border: (c) => `${c}cc`,
+          shadow: (c) => `0 4px 18px rgba(0, 0, 0, 0.5), 0 0 12px ${c}35, inset 0 1px 0 rgba(255, 255, 255, 0.15)`
+        },
+        black: {
+          bgGrad: (c) => `linear-gradient(160deg, ${c}38 0%, ${c}12 38%, #030407 100%)`,
+          lowerZero: 'rgba(10, 10, 14, 0.92)',
+          lowerSpent: 'rgba(239, 68, 68, 0.32)',
+          border: (c) => `${c}bb`,
+          shadow: (c) => `0 4px 18px rgba(0, 0, 0, 0.7), 0 0 14px ${c}40, inset 0 1px 0 rgba(255, 255, 255, 0.12)`
+        },
+        emerald: {
+          bgGrad: (c) => `linear-gradient(160deg, ${c}45 0%, rgba(6, 69, 50, 0.45) 40%, #031c13 100%)`,
+          lowerZero: 'rgba(3, 28, 19, 0.90)',
+          lowerSpent: 'rgba(239, 68, 68, 0.28)',
+          border: (c) => `${c}dd`,
+          shadow: (c) => `0 4px 18px rgba(0, 0, 0, 0.55), 0 0 14px ${c}44, inset 0 1px 0 rgba(52, 211, 153, 0.22)`
+        },
+        purple: {
+          bgGrad: (c) => `linear-gradient(160deg, ${c}45 0%, rgba(55, 18, 94, 0.45) 40%, #170729 100%)`,
+          lowerZero: 'rgba(23, 7, 41, 0.90)',
+          lowerSpent: 'rgba(239, 68, 68, 0.28)',
+          border: (c) => `${c}dd`,
+          shadow: (c) => `0 4px 18px rgba(0, 0, 0, 0.55), 0 0 14px ${c}44, inset 0 1px 0 rgba(192, 132, 252, 0.22)`
+        },
+        rose: {
+          bgGrad: (c) => `linear-gradient(160deg, ${c}45 0%, rgba(70, 14, 38, 0.45) 40%, #220614 100%)`,
+          lowerZero: 'rgba(34, 6, 20, 0.90)',
+          lowerSpent: 'rgba(239, 68, 68, 0.28)',
+          border: (c) => `${c}dd`,
+          shadow: (c) => `0 4px 18px rgba(0, 0, 0, 0.55), 0 0 14px ${c}44, inset 0 1px 0 rgba(251, 113, 133, 0.22)`
+        },
+        ocean: {
+          bgGrad: (c) => `linear-gradient(160deg, ${c}45 0%, rgba(14, 62, 92, 0.50) 40%, #051b2a 100%)`,
+          lowerZero: 'rgba(5, 27, 42, 0.90)',
+          lowerSpent: 'rgba(239, 68, 68, 0.28)',
+          border: (c) => `${c}dd`,
+          shadow: (c) => `0 4px 18px rgba(0, 0, 0, 0.55), 0 0 14px ${c}44, inset 0 1px 0 rgba(34, 211, 238, 0.22)`
+        },
+        gold: {
+          bgGrad: (c) => `linear-gradient(160deg, ${c}45 0%, rgba(59, 35, 16, 0.50) 40%, #1e1107 100%)`,
+          lowerZero: 'rgba(30, 17, 7, 0.90)',
+          lowerSpent: 'rgba(239, 68, 68, 0.28)',
+          border: (c) => `${c}dd`,
+          shadow: (c) => `0 4px 18px rgba(0, 0, 0, 0.55), 0 0 14px ${c}44, inset 0 1px 0 rgba(251, 191, 36, 0.22)`
+        },
+        slate: {
+          bgGrad: (c) => `linear-gradient(160deg, ${c}40 0%, rgba(30, 41, 59, 0.45) 40%, #0f1622 100%)`,
+          lowerZero: 'rgba(15, 22, 34, 0.90)',
+          lowerSpent: 'rgba(239, 68, 68, 0.28)',
+          border: (c) => `${c}dd`,
+          shadow: (c) => `0 4px 18px rgba(0, 0, 0, 0.55), 0 0 14px ${c}44, inset 0 1px 0 rgba(148, 163, 184, 0.22)`
+        },
+        light: {
+          bgGrad: (c) => `linear-gradient(160deg, ${c}25 0%, rgba(241, 245, 249, 0.70) 40%, #ffffff 100%)`,
+          lowerZero: 'rgba(241, 245, 249, 0.95)',
+          lowerSpent: 'rgba(239, 68, 68, 0.14)',
+          border: (c) => c,
+          shadow: (c) => `0 4px 14px rgba(0, 0, 0, 0.08), 0 0 10px ${c}30`
+        }
+      };
+
+      const pal = THEME_CARD_PALETTES[activeTheme] || THEME_CARD_PALETTES.navy;
       const existingCards = grid.querySelectorAll('.cat-card');
-      const needRebuild = (existingCards.length !== EXPENSE_CATEGORIES.length) || (grid.dataset.themeMode !== (isLight ? 'light' : 'dark'));
+      const needRebuild = (existingCards.length !== EXPENSE_CATEGORIES.length) || (grid.dataset.theme !== activeTheme);
 
       if (needRebuild) {
         grid.innerHTML = '';
-        grid.dataset.themeMode = isLight ? 'light' : 'dark';
+        grid.dataset.theme = activeTheme;
 
         EXPENSE_CATEGORIES.forEach(cat => {
           const spent = catTotals[cat.id] || (cat.id === 'other' ? (catTotals['entertainment'] || 0) : 0);
@@ -19628,17 +19720,12 @@ function generateRichDemoTransactions() {
             name: cat.name,
             emoji: '📦',
             accent: cat.color || '#38bdf8',
-            gradient: `linear-gradient(135deg, ${cat.color}, #334155)`,
-            bgDark: 'linear-gradient(160deg, rgba(56, 189, 248, 0.28) 0%, rgba(15, 23, 42, 0.94) 100%)',
-            bgLight: 'linear-gradient(160deg, rgba(56, 189, 248, 0.18) 0%, #ffffff 90%)',
-            border: cat.color
+            gradient: `linear-gradient(135deg, ${cat.color}, #334155)`
           };
 
-          const cardBg = isLight ? theme.bgLight : theme.bgDark;
-          const cardBorder = isLight ? `2px solid ${theme.accent}` : `2px solid ${theme.accent}dd`;
-          const cardShadow = isLight 
-            ? `0 4px 14px rgba(0, 0, 0, 0.08), 0 0 10px ${theme.accent}20` 
-            : `0 4px 18px rgba(0, 0, 0, 0.45), 0 0 14px ${theme.accent}35, inset 0 1px 0 rgba(255, 255, 255, 0.15)`;
+          const cardBg = pal.bgGrad(theme.accent);
+          const cardBorder = `2px solid ${pal.border(theme.accent)}`;
+          const cardShadow = pal.shadow(theme.accent);
 
           const converted = convertAmount(spent);
           let numStr = '0.00';
@@ -19647,24 +19734,22 @@ function generateRichDemoTransactions() {
           }
           const signStr = (spent > 0) ? '-' : '';
 
-          // خط أرقام أكبر وأجرأ يملأ فراغ النصف السفلي
-          let amtFontSize = 'clamp(0.92rem, 2.8vw, 1.08rem)';
+          // خط أرقام ذكي يتكيف مع طول المبلغ حتى لا يخرج عن حدود البطاقة نهائياً
+          let amtFontSize = 'clamp(0.85rem, 2.6vw, 0.96rem)';
           let amtLetterSpacing = '-0.2px';
           const totalLen = numStr.length;
           if (totalLen >= 14 || isGold) {
-            amtFontSize = 'clamp(0.64rem, 1.85vw, 0.74rem)';
+            amtFontSize = 'clamp(0.58rem, 1.7vw, 0.68rem)';
             amtLetterSpacing = '-0.5px';
           } else if (totalLen >= 10) {
-            amtFontSize = 'clamp(0.72rem, 2.1vw, 0.84rem)';
+            amtFontSize = 'clamp(0.66rem, 1.9vw, 0.76rem)';
             amtLetterSpacing = '-0.4px';
-          } else if (totalLen >= 8) {
-            amtFontSize = 'clamp(0.82rem, 2.5vw, 0.95rem)';
+          } else if (totalLen >= 7) {
+            amtFontSize = 'clamp(0.74rem, 2.2vw, 0.85rem)';
             amtLetterSpacing = '-0.3px';
           }
 
-          const lowerCardBg = spent > 0 
-            ? (isLight ? 'rgba(239, 68, 68, 0.14)' : 'rgba(239, 68, 68, 0.28)') 
-            : (isLight ? 'rgba(241, 245, 249, 0.95)' : 'rgba(15, 23, 42, 0.78)');
+          const lowerCardBg = spent > 0 ? pal.lowerSpent : pal.lowerZero;
           const lowerCardBorder = spent > 0 
             ? (isLight ? 'rgba(239, 68, 68, 0.6)' : '#f43f5e') 
             : (isLight ? 'rgba(203, 213, 225, 0.8)' : `${theme.accent}55`);
@@ -19688,7 +19773,7 @@ function generateRichDemoTransactions() {
             max-height: var(--app-card-max-h, 140px) !important;
             min-height: 0 !important;
             box-shadow: ${cardShadow} !important;
-            transition: transform 0.12s ease !important;
+            transition: all 0.22s ease !important;
             position: relative !important;
             box-sizing: border-box !important;
             overflow: hidden !important;
@@ -19716,27 +19801,28 @@ function generateRichDemoTransactions() {
               </div>
             </div>
 
-            <!-- 2. النصف السفلي: كبسولة أرقام أكبر تملأ الفراغ المخصص لها تماماً -->
+            <!-- 2. النصف السفلي: كبسولة أرقام محكومة تماماً داخل حدود البطاقة بدون أي خروج -->
             <div class="cat-card-bottom-half ${spent > 0 ? 'has-spent' : 'zero-spent'}" 
                  onclick="event.stopPropagation(); openOperationsFiltered({ category: '${cat.id}', categoryName: '${cat.name}', type: 'expense' });" 
                  title="انقر لعرض حركات ${theme.name}" 
-                 style="flex: 0.8 1 36%; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; padding: 4px 3px; cursor: pointer; background: ${lowerCardBg}; border-top: 1.5px solid ${lowerCardBorder}; box-sizing: border-box; transition: all 0.15s ease; overflow: hidden; touch-action: manipulation;">
+                 style="flex: 0.8 1 36%; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; padding: 4px 2px; cursor: pointer; background: ${lowerCardBg}; border-top: 1.5px solid ${lowerCardBorder}; box-sizing: border-box; transition: all 0.15s ease; overflow: hidden; touch-action: manipulation;">
               <div class="cat-amount-val" 
-                   style="font-family: var(--font-numbers); font-size: ${amtFontSize}; letter-spacing: ${amtLetterSpacing}; font-weight: 950; color: ${amtColor}; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; max-width: 100%; direction: rtl; text-align: center; font-variant-numeric: tabular-nums; display: flex; align-items: baseline; justify-content: center; gap: 3px; box-sizing: border-box; padding: 0 2px;">
-                ${signStr ? `<span style="font-weight: 950; margin-left: 2px; order: 1; font-size: 1.05em;">${signStr}</span>` : ''}
+                   style="font-family: var(--font-numbers); font-size: ${amtFontSize}; letter-spacing: ${amtLetterSpacing}; font-weight: 950; color: ${amtColor}; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; max-width: 100%; direction: rtl; text-align: center; font-variant-numeric: tabular-nums; display: flex; align-items: baseline; justify-content: center; gap: 2px; box-sizing: border-box; padding: 0 1px;">
+                ${signStr ? `<span style="font-weight: 950; margin-left: 2px; order: 1; font-size: 1.02em;">${signStr}</span>` : ''}
                 <span style="font-variant-numeric: tabular-nums; order: 2;">${numStr}</span>
-                <span style="font-size: 0.78em; font-weight: 850; opacity: 0.95; margin-right: 2px; order: 3;">${currSymbol}</span>
+                <span style="font-size: 0.74em; font-weight: 850; opacity: 0.95; margin-right: 1px; order: 3;">${currSymbol}</span>
               </div>
             </div>
           `;
           grid.appendChild(card);
         });
       } else {
-        // Fast in-place DOM updates without wiping grid
+        // Fast in-place DOM updates with live theme sync
         EXPENSE_CATEGORIES.forEach(cat => {
           const card = grid.querySelector(`[data-cat-id="${cat.id}"]`);
           if (!card) return;
           const spent = catTotals[cat.id] || (cat.id === 'other' ? (catTotals['entertainment'] || 0) : 0);
+          const theme = HIGH_CONTRAST_THEMES[cat.id] || { accent: cat.color || '#38bdf8' };
           const converted = convertAmount(spent);
           let numStr = '0.00';
           if (spent > 0) {
@@ -19744,40 +19830,45 @@ function generateRichDemoTransactions() {
           }
           const signStr = (spent > 0) ? '-' : '';
 
-          let amtFontSize = 'clamp(0.92rem, 2.8vw, 1.08rem)';
+          let amtFontSize = 'clamp(0.85rem, 2.6vw, 0.96rem)';
           let amtLetterSpacing = '-0.2px';
           const totalLen = numStr.length;
           if (totalLen >= 14 || isGold) {
-            amtFontSize = 'clamp(0.64rem, 1.85vw, 0.74rem)';
+            amtFontSize = 'clamp(0.58rem, 1.7vw, 0.68rem)';
             amtLetterSpacing = '-0.5px';
           } else if (totalLen >= 10) {
-            amtFontSize = 'clamp(0.72rem, 2.1vw, 0.84rem)';
+            amtFontSize = 'clamp(0.66rem, 1.9vw, 0.76rem)';
             amtLetterSpacing = '-0.4px';
-          } else if (totalLen >= 8) {
-            amtFontSize = 'clamp(0.82rem, 2.5vw, 0.95rem)';
+          } else if (totalLen >= 7) {
+            amtFontSize = 'clamp(0.74rem, 2.2vw, 0.85rem)';
             amtLetterSpacing = '-0.3px';
           }
+
+          // مزامنة الألوان الحية للبطاقة
+          card.style.background = pal.bgGrad(theme.accent);
+          card.style.borderColor = pal.border(theme.accent);
+          card.style.boxShadow = pal.shadow(theme.accent);
 
           const lowerHalf = card.querySelector('.cat-card-bottom-half');
           const amtEl = card.querySelector('.cat-amount-val');
           if (lowerHalf && amtEl) {
             const amtColor = spent > 0 ? (isLight ? '#b91c1c' : '#ff4d6d') : (isLight ? '#334155' : '#f1f5f9');
-            const lowerBg = spent > 0 ? (isLight ? 'rgba(239, 68, 68, 0.14)' : 'rgba(239, 68, 68, 0.28)') : (isLight ? 'rgba(241, 245, 249, 0.95)' : 'rgba(15, 23, 42, 0.78)');
+            const lowerBg = spent > 0 ? pal.lowerSpent : pal.lowerZero;
             lowerHalf.style.background = lowerBg;
             amtEl.style.fontSize = amtFontSize;
             amtEl.style.letterSpacing = amtLetterSpacing;
             amtEl.style.color = amtColor;
             amtEl.innerHTML = `
-              ${signStr ? `<span style="font-weight: 950; margin-left: 2px; order: 1; font-size: 1.05em;">${signStr}</span>` : ''}
+              ${signStr ? `<span style="font-weight: 950; margin-left: 2px; order: 1; font-size: 1.02em;">${signStr}</span>` : ''}
               <span style="font-variant-numeric: tabular-nums; order: 2;">${numStr}</span>
-              <span style="font-size: 0.78em; font-weight: 850; opacity: 0.95; margin-right: 2px; order: 3;">${currSymbol}</span>
+              <span style="font-size: 0.74em; font-weight: 850; opacity: 0.95; margin-right: 1px; order: 3;">${currSymbol}</span>
             `;
           }
         });
       }
     }
 
-        function openQuickCategoryExpense(catId) {
+    function openQuickCategoryExpense(catId) {
       // فتح نافذة المصروف وتحديد البند تلقائياً
       openTxModal('expense', catId);
     }
@@ -22296,13 +22387,21 @@ function openSettingsModal(targetSection = '') {
         try { localStorage.setItem('family_monefy_emblem', num); } catch(e) {}
       }
 
-      // 1. تحديث شعار العائلة في الهيدر الرئيسي فورياً
-      const headerLogo = document.getElementById('headerBrandFamilyLogo');
-      if (headerLogo) headerLogo.src = emblem.src;
-
-      // 2. تحديث صورة الأيقونة لكل العائلة في شريط الأفراد
+      // 1. تحديث صورة الأيقونة لكل العائلة في شريط الأفراد
+      if (typeof MEMBER_AVATARS !== 'undefined') {
+        MEMBER_AVATARS['الكل'] = emblem.src;
+        MEMBER_AVATARS['العائلة'] = emblem.src;
+        MEMBER_AVATARS['البيت'] = emblem.src;
+      }
       const avatarAll = document.getElementById('avatarImgAllFamily');
       if (avatarAll) avatarAll.src = emblem.src;
+
+      // 2. تحديث الشعار المصغر في كارت العائلة في الإعدادات
+      const miniEmblem = document.getElementById('settingsCurrentEmblemMini');
+      if (miniEmblem) {
+        miniEmblem.src = emblem.src;
+        miniEmblem.style.borderColor = emblem.color;
+      }
 
       // 3. تحديث مظهر الأزرار الأربعة وحالة التحديد والوهج
       for (let i = 1; i <= 4; i++) {
@@ -22310,10 +22409,10 @@ function openSettingsModal(targetSection = '') {
         if (!btn) continue;
         if (i === num) {
           btn.classList.add('active');
-          btn.style.border = `2.2px solid ${emblem.color}`;
-          btn.style.boxShadow = `0 0 14px ${emblem.color}88, inset 0 0 8px ${emblem.color}33`;
+          btn.style.border = `2.5px solid ${emblem.color}`;
+          btn.style.boxShadow = `0 0 16px ${emblem.color}aa, inset 0 0 8px ${emblem.color}44`;
           btn.style.transform = 'translateY(-2px) scale(1.05)';
-          btn.style.background = 'rgba(15, 23, 42, 0.95)';
+          btn.style.background = 'rgba(15, 23, 42, 0.98)';
         } else {
           btn.classList.remove('active');
           btn.style.border = '1.5px solid rgba(255, 255, 255, 0.12)';
@@ -22329,7 +22428,7 @@ function openSettingsModal(targetSection = '') {
         badge.textContent = emblem.name + ' ✓';
         badge.style.color = emblem.color;
         badge.style.borderColor = emblem.color;
-        badge.style.background = `${emblem.color}22`;
+        badge.style.background = `${emblem.color}25`;
       }
 
       // 5. إشعار التغيير
@@ -22478,8 +22577,8 @@ function openSettingsModal(targetSection = '') {
 
     function updateSettingsModalDisplay() {
       const user = state.currentUser || 'ماهر';
-      const curEmblem = 2; // تثبيت رمز شعار العائلة الموزاييك دائماً
-      if (typeof switchFamilyEmblem === 'function') switchFamilyEmblem(2, false);
+      const curEmblem = parseInt(localStorage.getItem('family_monefy_emblem')) || 1;
+      if (typeof switchFamilyEmblem === 'function') switchFamilyEmblem(curEmblem, false);
 
       const memberImgEl = document.getElementById('settingsCurrentMemberImg');
       const memberNameEl = document.getElementById('settingsCurrentMemberName');
@@ -22589,7 +22688,7 @@ function openSettingsModal(targetSection = '') {
       try {
         const backupData = {
           app: 'FamilyExpenseTrackerMonefy',
-          version: 'v5.2.4',
+          version: 'v5.2.6',
           exportedAt: new Date().toISOString(),
           account: (typeof GDRIVE_CONFIG !== 'undefined' ? GDRIVE_CONFIG.targetAccount : 'maher.easybakery@gmail.com'),
           state: state
@@ -22678,30 +22777,34 @@ function openSettingsModal(targetSection = '') {
 
         if (isMatch) {
           el.classList.add('active');
-          el.style.border = `2.5px solid ${tm.color}`;
-          el.style.boxShadow = `0 0 16px ${tm.color}88, inset 0 0 8px ${tm.color}33`;
-          el.style.transform = 'translateY(-2px) scale(1.03)';
+          el.style.setProperty('border', `2.8px solid ${tm.color}`, 'important');
+          el.style.setProperty('box-shadow', `0 0 18px ${tm.color}99, inset 0 0 8px ${tm.color}44`, 'important');
+          el.style.setProperty('transform', 'translateY(-2px) scale(1.04)', 'important');
+          el.style.setProperty('background', tm.bg, 'important');
           if (dot) {
-            dot.innerHTML = `<i class="fa-solid fa-check" style="font-size:0.62rem; font-weight:900; color:${tm.theme === 'light' ? '#fff' : '#000'};"></i>`;
-            dot.style.background = tm.color;
-            dot.style.borderColor = '#ffffff';
-            dot.style.boxShadow = `0 0 10px ${tm.color}`;
+            dot.innerHTML = `<i class="fa-solid fa-check" style="font-size:0.72rem; font-weight:900; color:${tm.theme === 'light' ? '#000' : '#fff'};"></i>`;
+            dot.style.setProperty('background', tm.color, 'important');
+            dot.style.setProperty('border', '2px solid #ffffff', 'important');
+            dot.style.setProperty('box-shadow', `0 0 12px ${tm.color}`, 'important');
           }
           if (badge) {
-            badge.style.display = 'inline-block';
-            badge.style.color = tm.color;
-            badge.style.borderColor = tm.color;
+            badge.style.setProperty('display', 'inline-block', 'important');
+            badge.textContent = 'مفعل الآن ✓';
+            badge.style.setProperty('color', tm.color, 'important');
+            badge.style.setProperty('border-color', tm.color, 'important');
+            badge.style.setProperty('background', `${tm.color}33`, 'important');
           }
         } else {
           el.classList.remove('active');
-          el.style.border = '';
-          el.style.boxShadow = '';
-          el.style.transform = '';
+          el.style.border = '1.5px solid rgba(255, 255, 255, 0.12)';
+          el.style.boxShadow = 'none';
+          el.style.transform = 'none';
+          el.style.background = tm.bg;
           if (dot) {
             dot.innerHTML = '';
-            dot.style.background = '';
-            dot.style.borderColor = '';
-            dot.style.boxShadow = '';
+            dot.style.background = 'transparent';
+            dot.style.borderColor = 'rgba(255,255,255,0.3)';
+            dot.style.boxShadow = 'none';
           }
           if (badge) {
             badge.style.display = 'none';
@@ -22734,6 +22837,9 @@ function openSettingsModal(targetSection = '') {
 
       // إعادة رسم وتحديث كافة الكروت الداخلية وقمرة القيادة فورياً لتتخذ مظهر السمة المختارة
       try {
+        if (typeof renderCategoriesGrid === 'function') {
+          renderCategoriesGrid(state.transactions);
+        }
         if (typeof renderUI === 'function') renderUI();
         if (typeof renderExpectedList === 'function') renderExpectedList();
         if (typeof updateAnalyticsChart === 'function') updateAnalyticsChart();
@@ -22761,14 +22867,25 @@ function openSettingsModal(targetSection = '') {
 
     function updateThemeCheckDots() {
       const cur = state.appTheme || 'navy';
+      const themeColorsMap = {
+        'navy': '#38bdf8',
+        'black': '#e2e8f0',
+        'emerald': '#34d399',
+        'purple': '#c084fc',
+        'rose': '#fb7185',
+        'ocean': '#22d3ee',
+        'gold': '#fbbf24',
+        'slate': '#94a3b8',
+        'light': '#0284c7'
+      };
+      const curColor = themeColorsMap[cur] || '#38bdf8';
       document.querySelectorAll('.theme-check-dot').forEach(dot => {
         const t = dot.getAttribute('data-theme');
         if (t === cur) {
-          dot.innerHTML = '<i class="fa-solid fa-check" style="font-weight:900;"></i>';
-          dot.style.background = '#38bdf8';
-          dot.style.color = '#000';
-          dot.style.borderColor = '#ffffff';
-          dot.style.boxShadow = '0 0 10px #38bdf8';
+          dot.innerHTML = `<i class="fa-solid fa-check" style="font-size: 0.72rem; font-weight:900; color:${cur === 'light' ? '#000' : '#fff'};"></i>`;
+          dot.style.setProperty('background', curColor, 'important');
+          dot.style.setProperty('border', '2px solid #ffffff', 'important');
+          dot.style.setProperty('box-shadow', `0 0 12px ${curColor}`, 'important');
         } else {
           dot.innerHTML = '';
           dot.style.background = 'transparent';
@@ -23098,6 +23215,306 @@ function openSettingsModal(targetSection = '') {
         if (btn) btn.textContent = isHidden ? 'طي الشارت' : 'إظهار الشارت';
       }
     }
+
+    
+    // =========================================================================
+    // محرك الشاشة الجانبية اليسرى (ملخص المصروفات والنشاط المالي بالفرد)
+    // =========================================================================
+    let currentDrawerMember = 'الكل';
+    let currentSummaryPeriod = 'month';
+    let currentSummaryCurrency = 'EGP';
+    let summaryCustomDateRange = { from: '', to: '' };
+
+    window.openSummaryLeftDrawer = openSummaryDrawer;
+
+    function openSummaryDrawer(targetMember = null) {
+      const drawer = document.getElementById('summaryLeftDrawer');
+      const backdrop = document.getElementById('summaryDrawerBackdrop');
+      if (targetMember) {
+        currentDrawerMember = targetMember;
+      } else if (state.currentMemberFilter && state.currentMemberFilter !== 'الكل') {
+        currentDrawerMember = state.currentMemberFilter;
+      } else {
+        currentDrawerMember = 'الكل';
+      }
+      if (drawer) drawer.classList.add('open');
+      if (backdrop) backdrop.classList.add('active');
+      renderSummaryDrawer(currentSummaryPeriod, currentDrawerMember);
+    }
+
+    function closeSummaryLeftDrawer() {
+      const drawer = document.getElementById('summaryLeftDrawer');
+      const backdrop = document.getElementById('summaryDrawerBackdrop');
+      if (drawer) drawer.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('active');
+    }
+
+    function switchSummaryPeriod(p) {
+      currentSummaryPeriod = p;
+      ['day', 'week', 'month', 'year', 'custom'].forEach(tab => {
+        const btnId = 'btnSummaryTab' + tab.charAt(0).toUpperCase() + tab.slice(1);
+        const btn = document.getElementById(btnId);
+        if (btn) {
+          if (tab === p) {
+            btn.className = 'exp-tab-btn active';
+            btn.style.background = 'linear-gradient(135deg, #0284c7, #0369a1)';
+            btn.style.color = '#fff';
+            btn.style.border = 'none';
+          } else {
+            btn.className = 'exp-tab-btn';
+            btn.style.background = 'transparent';
+            btn.style.color = '#94a3b8';
+            btn.style.border = '1px solid rgba(255,255,255,0.1)';
+          }
+        }
+      });
+
+      const customRow = document.getElementById('drawerSummaryCustomDateRow');
+      if (customRow) {
+        customRow.style.display = p === 'custom' ? 'grid' : 'none';
+      }
+
+      renderSummaryDrawer(p, currentDrawerMember);
+    }
+
+    function applyCustomSummaryDate() {
+      const from = document.getElementById('summaryCustomDateFrom')?.value || '';
+      const to = document.getElementById('summaryCustomDateTo')?.value || '';
+      summaryCustomDateRange = { from, to };
+      renderSummaryDrawer('custom', currentDrawerMember);
+    }
+
+    function setSummaryCurrency(curr) {
+      currentSummaryCurrency = curr;
+      ['EGP', 'SAR', 'USD', 'GOLD'].forEach(c => {
+        const btn = document.getElementById('btnSummaryCurr' + c);
+        if (btn) {
+          const isTarget = (curr === 'GOLD21' && c === 'GOLD') || (curr === c);
+          if (isTarget) {
+            btn.style.background = c === 'GOLD' ? 'rgba(245, 158, 11, 0.35)' : 'rgba(56, 189, 248, 0.35)';
+            btn.style.color = c === 'GOLD' ? '#fbbf24' : '#38bdf8';
+            btn.style.border = '1.2px solid ' + (c === 'GOLD' ? '#fbbf24' : '#38bdf8');
+          } else {
+            btn.style.background = 'transparent';
+            btn.style.color = '#94a3b8';
+            btn.style.border = '1px solid rgba(255,255,255,0.1)';
+          }
+        }
+      });
+      renderSummaryDrawer(currentSummaryPeriod, currentDrawerMember);
+    }
+
+    function formatSummaryVal(amtEgp) {
+      const g21Price = (state.market && state.market.gold21) || 6265;
+      const usdRate = (state.market && state.market.usdEgp) || 53.97;
+      const sarRate = (state.market && state.market.sarEgp) || 14.37;
+
+      if (currentSummaryCurrency === 'GOLD21') {
+        const grams = g21Price > 0 ? (amtEgp / g21Price).toFixed(2) : '0.00';
+        return `${grams} جم ذهب 21`;
+      } else if (currentSummaryCurrency === 'USD') {
+        const usd = usdRate > 0 ? (amtEgp / usdRate).toFixed(2) : '0.00';
+        return `$${Number(usd).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+      } else if (currentSummaryCurrency === 'SAR') {
+        const sar = sarRate > 0 ? (amtEgp / sarRate).toFixed(2) : '0.00';
+        return `ر.س ${Number(sar).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+      }
+      return `ج.م ${Number(amtEgp).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+    }
+
+    function switchDrawerMember(m) {
+      currentDrawerMember = m;
+      renderSummaryDrawer(currentSummaryPeriod, m);
+    }
+
+    function drillDownFromMemberDrawer(catId, catName) {
+      closeSummaryLeftDrawer();
+      if (typeof openOperationsFiltered === 'function') {
+        openOperationsFiltered({
+          category: catId,
+          categoryName: catName,
+          member: currentDrawerMember,
+          type: 'expense'
+        });
+      }
+      showToast(`🔍 عرض كشف حركات ${catName} الخاصة بـ ${currentDrawerMember}`);
+    }
+
+    function renderSummaryDrawer(period = currentSummaryPeriod, member = currentDrawerMember) {
+      const container = document.getElementById('summaryDrawerContent');
+      const selectorStrip = document.getElementById('drawerMemberSelectorStrip');
+      if (!container) return;
+
+      const membersList = ['الكل', 'البيت', 'ماهر', 'آية', 'محمد', 'مريم', 'الحاجة', 'النونو', 'أخرى'];
+      if (selectorStrip) {
+        selectorStrip.innerHTML = membersList.map(m => {
+          const isActive = m === member;
+          return `
+            <button type="button" onclick="switchDrawerMember('${m}')" style="padding: 4px 10px; border-radius: 8px; font-size: 0.72rem; font-weight: 850; border: ${isActive ? '1.2px solid #38bdf8' : '1px solid rgba(255,255,255,0.1)'}; background: ${isActive ? 'rgba(56, 189, 248, 0.25)' : 'rgba(15, 23, 42, 0.6)'}; color: ${isActive ? '#38bdf8' : '#94a3b8'}; cursor: pointer; white-space: nowrap; flex-shrink: 0; display: inline-flex; align-items: center; gap: 4px;">
+              <span>👤</span>
+              <span>${m}</span>
+            </button>
+          `;
+        }).join('');
+      }
+
+      const now = new Date();
+      const todayStr = getLocalDateStr(now);
+      const weekAgo = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 7);
+      const weekAgoStr = getLocalDateStr(weekAgo);
+      const thisMonthPrefix = todayStr.substring(0, 7);
+      const thisYearPrefix = todayStr.substring(0, 4);
+
+      let txList = [...(state.transactions || [])];
+      let periodTitle = 'حركات الفترة المحددة';
+
+      if (period === 'day') {
+        txList = txList.filter(t => t.date === todayStr);
+        periodTitle = `حركات اليوم (${todayStr})`;
+      } else if (period === 'week') {
+        txList = txList.filter(t => t.date >= weekAgoStr && t.date <= todayStr);
+        periodTitle = `حركات آخر 7 أيام`;
+      } else if (period === 'month') {
+        txList = txList.filter(t => (t.date || '').startsWith(thisMonthPrefix));
+        periodTitle = `حركات شهر ${now.toLocaleDateString('ar-EG', { month: 'long', year: 'numeric' })}`;
+      } else if (period === 'year') {
+        txList = txList.filter(t => (t.date || '').startsWith(thisYearPrefix));
+        periodTitle = `حركات عام ${thisYearPrefix}`;
+      } else if (period === 'custom') {
+        if (summaryCustomDateRange.from && summaryCustomDateRange.to) {
+          txList = txList.filter(t => t.date >= summaryCustomDateRange.from && t.date <= summaryCustomDateRange.to);
+          periodTitle = `الفترة (${summaryCustomDateRange.from} إلى ${summaryCustomDateRange.to})`;
+        }
+      }
+
+      if (member !== 'الكل') {
+        txList = txList.filter(t => {
+          const m = t.member || 'البيت';
+          if (member === 'البيت') return m === 'البيت' || m === 'العائلة' || !t.member;
+          if (member === 'آية' || member === 'أية') return m === 'آية' || m === 'أية';
+          return m === member;
+        });
+      }
+
+      let totalExp = 0, totalInc = 0;
+      const catTotals = {};
+
+      txList.forEach(t => {
+        const amt = Number(t.amount) || 0;
+        if (t.type === 'expense') {
+          totalExp += amt;
+          const cId = t.category || 'other';
+          catTotals[cId] = (catTotals[cId] || 0) + amt;
+        } else if (t.type === 'income') {
+          totalInc += amt;
+        }
+      });
+
+      const sortedCats = Object.entries(catTotals).sort((a, b) => b[1] - a[1]);
+      const catBreakdownHtml = sortedCats.map(([catId, sum]) => {
+        const cat = getCategoryObj(catId, 'expense');
+        const pct = totalExp > 0 ? ((sum / totalExp) * 100).toFixed(1) : '0';
+        return `
+          <div onclick="drillDownFromMemberDrawer('${catId}', '${cat.name}')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 32px; height: 32px; border-radius: 8px; background: ${cat.color ? cat.color + '22' : 'rgba(56,189,248,0.15)'}; border: 1px solid ${cat.color ? cat.color + '55' : 'rgba(56,189,248,0.3)'}; color: ${cat.color || '#38bdf8'}; display: flex; align-items: center; justify-content: center; font-size: 0.90rem;">
+                <i class="fa-solid ${cat.icon || 'fa-receipt'}"></i>
+              </div>
+              <div>
+                <div style="font-size: 0.82rem; font-weight: 850; color: #f8fafc;">${cat.name}</div>
+                <div style="font-size: 0.65rem; color: #94a3b8;">${pct}% من مصروفات ${member}</div>
+              </div>
+            </div>
+            <div style="text-align: left;">
+              <div style="font-size: 0.88rem; font-weight: 950; color: #ff4d6d; font-family: var(--font-numbers); direction: ltr;">
+                - ${formatSummaryVal(sum)}
+              </div>
+              <div style="font-size: 0.62rem; color: #38bdf8;">عرض التفاصيل ❯</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <div style="background: rgba(30, 41, 59, 0.55); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 10px; text-align: center;">
+          <div style="font-size: 0.72rem; color: #94a3b8; font-weight: 800;">${periodTitle}</div>
+          <div style="font-size: 0.92rem; font-weight: 900; color: #38bdf8; margin-top: 2px;">👤 ${member === 'الكل' ? 'كافة أفراد العائلة مجتمعين' : 'مصروفات: ' + member}</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px;">
+          <div style="background: rgba(244, 63, 94, 0.12); border: 1.2px solid rgba(244, 63, 94, 0.35); border-radius: 12px; padding: 10px; text-align: center;">
+            <div style="font-size: 0.66rem; color: #fca5a5; font-weight: 800;">إجمالي المصروفات</div>
+            <div style="font-size: 1.05rem; font-weight: 950; color: #ff4d6d; font-family: var(--font-numbers); direction: ltr; unicode-bidi: isolate; margin-top: 2px;">
+              - ${formatSummaryVal(totalExp)}
+            </div>
+          </div>
+          <div style="background: rgba(16, 185, 129, 0.12); border: 1.2px solid rgba(16, 185, 129, 0.35); border-radius: 12px; padding: 10px; text-align: center;">
+            <div style="font-size: 0.66rem; color: #86efac; font-weight: 800;">إجمالي الإيداعات</div>
+            <div style="font-size: 1.05rem; font-weight: 950; color: #34d399; font-family: var(--font-numbers); direction: ltr; unicode-bidi: isolate; margin-top: 2px;">
+              + ${formatSummaryVal(totalInc)}
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 6px;">
+          <span style="font-size: 0.80rem; font-weight: 900; color: #f8fafc;"><i class="fa-solid fa-list-ul" style="color: #38bdf8;"></i> توزيع النفقات حسب البند:</span>
+          <span style="font-size: 0.62rem; color: #38bdf8;">(انقر على أي بند للانتقال لكشف حركاته)</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          ${catBreakdownHtml || '<div style="text-align: center; color: #64748b; font-size: 0.76rem; padding: 25px 10px; background: rgba(15, 23, 42, 0.5); border-radius: 10px; border: 1px dashed rgba(255,255,255,0.1);">لا توجد حركات مصروفات مسجلة لهذا الفرد خلال الفترة المحددة</div>'}
+        </div>
+      `;
+    }
+
+    // تفعيل إيماءات السحب الجانبي (Swipe Gestures) لفتح وإغلاق الشاشات الجانبية يمين ويسار
+    let touchStartX = 0;
+    let touchStartY = 0;
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      if (e.changedTouches && e.changedTouches.length === 1) {
+        const deltaX = e.changedTouches[0].clientX - touchStartX;
+        const deltaY = e.changedTouches[0].clientY - touchStartY;
+
+        if (Math.abs(deltaX) > 40 && Math.abs(deltaY) < 90) {
+          const leftDrawer = document.getElementById('summaryLeftDrawer');
+          const isLeftOpen = leftDrawer && leftDrawer.classList.contains('open');
+          
+          const rightDrawer = document.getElementById('goldDrawerPanel');
+          const isRightOpen = rightDrawer && rightDrawer.classList.contains('open');
+
+          // إغلاق الشاشة الجانبية اليسرى عند السحب لليسار
+          if (isLeftOpen && deltaX < -35) {
+            closeSummaryLeftDrawer();
+            return;
+          }
+
+          // إغلاق الشاشة الجانبية اليمنى عند السحب لليمين
+          if (isRightOpen && deltaX > 35) {
+            closeGoldDrawer();
+            return;
+          }
+
+          // سحب من الحافة اليسرى لليمين: فتح الشاشة الجانبية اليسرى (ملخص العمليات)
+          if (!isLeftOpen && !isRightOpen && deltaX > 45 && touchStartX < 95) {
+            openSummaryDrawer();
+            return;
+          }
+
+          // سحب من الحافة اليمنى لليسار: فتح الشاشة الجانبية اليمنى (الذهب والعملات)
+          if (!isLeftOpen && !isRightOpen && deltaX < -45 && touchStartX > (window.innerWidth - 95)) {
+            openGoldDrawer();
+            return;
+          }
+        }
+      }
+    }, { passive: true });
 
     function openGoldDrawer() {
       const backdrop = document.getElementById('goldDrawerBackdrop');
@@ -25417,7 +25834,12 @@ function openSettingsModal(targetSection = '') {
 
     async function checkAndApplyAppUpdates(options = { isManual: false, silent: true }) {
       const now = Date.now();
-      if (!options.isManual && (now - lastAppUpdateCheckTime < 8000)) return Promise.resolve();
+      // حماية صارمة لمنع التحديث المتكرر أو حلقة إعادة التحميل المستمرة (Infinite Reload Loop Protection)
+      const lastUpdatedTs = Number(localStorage.getItem('family_monefy_just_updated_ts') || 0);
+      if (!options.isManual && (now - lastUpdatedTs < 60000)) {
+        return Promise.resolve();
+      }
+      if (!options.isManual && (now - lastAppUpdateCheckTime < 20000)) return Promise.resolve();
       if (isCheckingForAppUpdates) return Promise.resolve();
       
       isCheckingForAppUpdates = true;
@@ -25450,7 +25872,7 @@ function openSettingsModal(targetSection = '') {
           }
 
           const currentBuildNum = (typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611081550);
-          const currentVerStr = (typeof APP_VERSION !== 'undefined' ? APP_VERSION : 'v5.2.4');
+          const currentVerStr = (typeof APP_VERSION !== 'undefined' ? APP_VERSION : 'v5.2.6');
 
           const isNewer = remoteBuild && (
             (remoteBuild.version && remoteBuild.version !== currentVerStr) ||
@@ -25485,7 +25907,8 @@ function openSettingsModal(targetSection = '') {
               } catch(e) {}
             }
 
-            localStorage.setItem('family_monefy_just_updated', remoteBuild?.version || 'v5.2.3');
+            localStorage.setItem('family_monefy_just_updated_ts', Date.now());
+            localStorage.setItem('family_monefy_just_updated', remoteBuild?.version || 'v5.2.6');
             setTimeout(() => {
               window.location.reload(true);
             }, 800);
@@ -29385,5 +29808,14 @@ window.selectTasksCalendarDay = selectTasksCalendarDay;
         </div>
       </div>
     </div>
+
+  <!-- مقبضا الشاشات الجانبية العائمان (يمين ويسار) لفتح الشاشات بالسحب أو النقر المباشر -->
+  <div class="side-screen-edge-handle left-handle" onclick="openSummaryDrawer()" title="الشاشة الجانبية اليسرى: ملخص العمليات">
+    <i class="fa-solid fa-chevron-right"></i>
+  </div>
+  <div class="side-screen-edge-handle right-handle" onclick="openGoldDrawer()" title="الشاشة الجانبية اليمنى: الذهب والعملات">
+    <i class="fa-solid fa-chevron-left"></i>
+  </div>
+
 </body>
 </html>
