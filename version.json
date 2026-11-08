@@ -1,6 +1,6 @@
 {
-  "version": "v5.1.0",
-  "build": "202611081240",
+  "version": "v5.2.0",
+  "build": "202611081320",
   "releaseDate": "2026-11-08",
-  "notes": "Replication of Google Play To-Do List & Schedule Planner App: interactive calendar view, category carousel, datetime picker with quick time shortcuts, subtasks checklist, productivity KPIs, and sleek commitments page overhaul."
+  "notes": "Master UI & Architectural Overhaul: Luxury FinTech Design System (Obsidian & Executive Navy, IBM Plex Sans Arabic, Glassmorphism), Universal Clean Lists (Operations & Commitments with expandable actions on selection), Member Drawer per-member totals & card removal, and Tasks Pro Accordion with Camera capture on main and subtasks."
 }
