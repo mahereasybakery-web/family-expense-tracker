@@ -1,72 +1,94 @@
-import asyncio
 import sys
-sys.stdout.reconfigure(encoding='utf-8')
-from playwright.async_api import async_playwright
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+from playwright.sync_api import sync_playwright
 
-html_content = """<!DOCTYPE html>
+html_content = """
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <style>
-body { font-family: sans-serif; background: #0f172a; color: #fff; padding: 40px; }
-.amount-cluster {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 4px;
-  font-size: 1.2rem;
-  font-weight: 900;
+body { font-family: sans-serif; background: #0f172a; color: white; padding: 20px; }
+.test-box { font-size: 20px; margin: 15px 0; padding: 10px; background: #1e293b; border-radius: 8px; }
+.amount-flow-cluster {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: baseline !important;
+  gap: 3px !important;
+  direction: rtl !important;
+  unicode-bidi: isolate !important;
+  white-space: nowrap !important;
 }
-.sign-neg { color: #f43f5e; font-size: 1.3rem; }
-.sign-pos { color: #10b981; font-size: 1.3rem; }
-.num { font-variant-numeric: tabular-nums; }
-.curr { font-size: 0.85rem; color: #94a3b8; font-weight: 700; }
+.tx-sign-symbol { color: #f43f5e; font-weight: 900; }
+.tx-number-val { font-weight: 900; }
+.tx-currency-label { font-size: 0.8em; color: #94a3b8; }
 </style>
 </head>
 <body>
-  <h2>تجربة موضع العملة والإشارة في RTL:</h2>
-  
-  <p>المصروف (يجب أن تكون علامة السالب - على اليمين، والرقم بالوسط، والعملة ج.م على اليسار):</p>
-  <div class="amount-cluster" id="expCluster">
-    <span class="sign-neg" id="signEl">-</span>
-    <span class="num" id="numEl">1,550.00</span>
-    <span class="curr" id="currEl">ج.م</span>
-  </div>
-  
-  <p>الدخل (يجب أن تكون علامة الموجب + على اليمين، والرقم بالوسط، والعملة ج.م على اليسار):</p>
-  <div class="amount-cluster" id="incCluster">
-    <span class="sign-pos">+</span>
-    <span class="num">8,000.00</span>
-    <span class="curr">ج.م</span>
-  </div>
+<h3>Visual Position Check (Right to Left in RTL):</h3>
+<div class="test-box">
+  Cluster:
+  <span class="amount-flow-cluster" dir="rtl">
+    <span class="tx-sign-symbol">-</span>
+    <span class="tx-number-val">1,500.00</span>
+    <span class="tx-currency-label">ج.م</span>
+  </span>
+</div>
+
+<div class="test-box">
+  Cluster (currency first in DOM, dir="rtl"):
+  <span class="amount-flow-cluster" dir="rtl">
+    <span class="tx-currency-label">ج.م</span>
+    <span class="tx-number-val">1,500.00</span>
+    <span class="tx-sign-symbol">-</span>
+  </span>
+</div>
+
+<div class="test-box">
+  Text 1: 1,500.00 ج.م
+</div>
+
+<div class="test-box">
+  Text 2: ج.م 1,500.00
+</div>
+
+<div class="test-box">
+  Text 3 (with sign): - 1,500.00 ج.م
+</div>
+
+<div class="test-box">
+  Text 4 (with sign): ج.م 1,500.00 -
+</div>
+
+<div class="test-box">
+  Text 5 (with sign): - ج.م 1,500.00
+</div>
+
 </body>
 </html>
 """
 
-with open('C:/Users/96656/.gemini/antigravity/scratch/family_expense_tracker_monefy/test_layout.html', 'w', encoding='utf-8') as f:
-    f.write(html_content)
-
-async def run():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
-        page = await browser.new_page(viewport={"width": 412, "height": 915})
-        await page.goto('file:///C:/Users/96656/.gemini/antigravity/scratch/family_expense_tracker_monefy/test_layout.html')
-        await page.wait_for_timeout(500)
-        
-        sign_box = await page.evaluate("() => document.getElementById('signEl').getBoundingClientRect()")
-        num_box = await page.evaluate("() => document.getElementById('numEl').getBoundingClientRect()")
-        curr_box = await page.evaluate("() => document.getElementById('currEl').getBoundingClientRect()")
-        
-        print("Sign X (Rightmost should have largest X):", sign_box['x'])
-        print("Num X (Middle):", num_box['x'])
-        print("Curr X (Leftmost should have smallest X):", curr_box['x'])
-        
-        if sign_box['x'] > num_box['x'] and num_box['x'] > curr_box['x']:
-            print("SUCCESS! Sign is on the RIGHT, Number is in the MIDDLE, Currency is on the LEFT!")
-        else:
-            print("ORDER NOT MATCHED!")
-            
-        await page.screenshot(path="C:/Users/96656/.gemini/antigravity/brain/0de95090-23a6-4a7f-a9b2-09153ee49670/test_amount_layout.png")
-        await browser.close()
-
-asyncio.run(run())
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    page = browser.new_page()
+    page.set_content(html_content)
+    # Get bounding boxes of elements
+    boxes = page.evaluate("""() => {
+      const results = [];
+      const clusters = document.querySelectorAll('.amount-flow-cluster');
+      clusters.forEach((c, idx) => {
+        const sign = c.querySelector('.tx-sign-symbol').getBoundingClientRect();
+        const num = c.querySelector('.tx-number-val').getBoundingClientRect();
+        const curr = c.querySelector('.tx-currency-label').getBoundingClientRect();
+        results.push({
+          idx,
+          sign_x: sign.x,
+          num_x: num.x,
+          curr_x: curr.x
+        });
+      });
+      return results;
+    }""")
+    print("Bounding box results:", boxes)
+    page.screenshot(path="C:/Users/96656/.gemini/antigravity/scratch/family_expense_tracker_monefy/scripts/test_visual_pos.png")
+    browser.close()

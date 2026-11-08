@@ -11908,12 +11908,12 @@
       <!-- السطر 1: الشعار واسم العائلة + شارة الحساب السحابي بالإيميل -->
       <div class="header-brand-row">
         <div class="brand-box">
-          <div class="brand-icon" title="رمز عائلة ماهر ❤️ أية (انقر للإعدادات وشعار العائلة)" onclick="openSettingsModal('brand_section')" style="width: 36px !important; height: 36px !important; min-width: 36px !important; min-height: 36px !important; max-width: 36px !important; max-height: 36px !important; border-radius: 12px !important; overflow: hidden !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important; cursor: pointer; box-sizing: border-box !important;">
+          <div class="brand-icon" title="الإعدادات" onclick="openSettingsModal('brand_section')" style="width: 36px !important; height: 36px !important; min-width: 36px !important; min-height: 36px !important; max-width: 36px !important; max-height: 36px !important; border-radius: 12px !important; overflow: hidden !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important; cursor: pointer; box-sizing: border-box !important;">
             <img src="assets/family_option2_mosaic.jpg" id="headerBrandFamilyLogo" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: cover !important; border-radius: 12px !important; display: block !important;">
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">عيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
-            <span class="version-badge">v4.9.5</span>
+            <span class="version-badge">v5.0.6</span>
           </div>
         </div>
 
@@ -11927,18 +11927,18 @@
           </button>
 
           <!-- زر المزامنة والتحديث المدمج الفاخر (رمز التحديث + كلمة متزامن + الوقت) -->
-          <button class="header-settings-btn header-master-sync-btn" id="btnHeaderMasterSync" onclick="executeMasterUnifiedSyncAndRefresh(true)" title="انقر للمزامنة الشاملة وتحديث كود التطبيق والذهب والحسابات" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(2, 132, 199, 0.22)); border: 1.2px solid rgba(56, 189, 248, 0.45); color: #38bdf8; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; padding: 5px 9px; border-radius: 11px; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 2px 10px rgba(2, 132, 199, 0.35);">
+          <button class="header-settings-btn header-master-sync-btn" id="btnHeaderMasterSync" onclick="executeMasterUnifiedSyncAndRefresh(true)" title="مزامنة وتحديث" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(2, 132, 199, 0.22)); border: 1.2px solid rgba(56, 189, 248, 0.45); color: #38bdf8; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; padding: 5px 9px; border-radius: 11px; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 2px 10px rgba(2, 132, 199, 0.35);">
             <i class="fa-solid fa-arrows-rotate master-sync-icon-spin" id="headerMasterSyncSpinIcon" style="font-size: 0.74rem; color: #34d399;"></i>
             <span id="topDriveSyncStatusText" style="font-size: 0.72rem; font-weight: 900; color: #34d399;">متزامن</span>
             <span id="headerSyncTimeBadge" style="font-size: 0.63rem; font-weight: 800; color: #94a3b8; font-family: var(--font-numbers); direction: ltr; background: rgba(0,0,0,0.25); padding: 1px 5px; border-radius: 5px;">الآن</span>
           </button>
 
           <!-- زر الإعدادات الرئيسي -->
-          <button class="header-settings-btn" id="btnMainSettings" onclick="openSettingsModal()" title="مركز الضبط، إعدادات المظهر، والمزامنة السحابية" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.95)); border: 1px solid rgba(56, 189, 248, 0.35); color: #f8fafc; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 11px; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+          <button class="header-settings-btn" id="btnMainSettings" onclick="openSettingsModal()" title="الإعدادات" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.95)); border: 1px solid rgba(56, 189, 248, 0.35); color: #f8fafc; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 11px; cursor: pointer; transition: all 0.25s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
             <i class="fa-solid fa-sliders" style="font-size: 0.74rem; color: #38bdf8;"></i>
             <span style="font-size: 0.72rem; font-weight: 900; color: #f8fafc;">إعدادات</span>
           </button>
-          <button class="header-settings-btn" id="btnGlobalSearch" onclick="openGlobalSearchModal()" title="البحث الشامل في بيانات البرنامج بالكامل" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; margin-left: 4px;">
+          <button class="header-settings-btn" id="btnGlobalSearch" onclick="openGlobalSearchModal()" title="بحث" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35); color: #38bdf8; margin-left: 4px;">
             <i class="fa-solid fa-magnifying-glass"></i>
             <span>بحث</span>
           </button>
@@ -11950,7 +11950,7 @@
       
       <div class="avatars-container" id="avatarsContainer">
         <!-- الكل (إجمالي كافة المصروفات) -->
-        <div class="avatar-card" data-member="الكل" onclick="selectMember('الكل')" title="كافة مصروفات العائلة (إجمالي عام لكافة البنود والأفراد)">
+        <div class="avatar-card" data-member="الكل" onclick="selectMember('الكل')" title="الكل">
           <div class="avatar-bubble" style="background: linear-gradient(135deg, #0f766e, #14b8a6); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(15, 118, 110, 0.4);">
             <img src="avatar_all_family.jpg" alt="الكل" class="avatar-photo-img" id="avatarImgAllFamily" />
           </div>
@@ -11958,7 +11958,7 @@
         </div>
 
         <!-- البيت (مصروفات الأسرة المشتركة: إيجار، مياه، فواتير) -->
-        <div class="avatar-card" data-member="البيت" onclick="selectMember('البيت')" title="مصروفات وتكاليف البيت والأسرة المشتركة (إيجار، مياه، غاز، مستلزمات)">
+        <div class="avatar-card" data-member="البيت" onclick="selectMember('البيت')" title="البيت">
           <div class="avatar-bubble" style="background: linear-gradient(135deg, #0284c7, #0ea5e9); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: #ffffff; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);">
             <img src="data:image/jpeg;base64,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" alt="البيت" style="width: 100%; height: 100%; object-fit: cover; border-radius: 11px;">
           </div>
@@ -12115,7 +12115,7 @@
         <div class="kpi-master-wealth-cockpit" id="topKpiThreeStrip">
           
           <!-- الجانب الأيمن: بطل الشاشة المالي (الرصيد الفعلي المتاح) -->
-          <div class="cockpit-hero-side" onclick="openActualBalanceAuditModal()" title="الرصيد الفعلي المتوفر في جميع المحافظ المالية (انقر لإدارة المحافظ)" style="cursor: pointer;">
+          <div class="cockpit-hero-side" onclick="openActualBalanceAuditModal()" title="الرصيد الفعلي" style="cursor: pointer;">
             <div class="cockpit-hero-label">
               <div class="hero-wallet-icon-badge">
                 <i class="fa-solid fa-wallet"></i>
@@ -12135,7 +12135,7 @@
           <!-- الجانب الأيسر: كبسولات التدفقات النقدية التوأم (إيداعات + مصروفات) -->
           <div class="cockpit-flow-side">
             <!-- كبسولة إجمالي الإيداعات -->
-            <div class="cockpit-flow-pill inflow" onclick="openModal('incomeChoiceModal')" title="إجمالي عمليات الدخل والإيداع (انقر للتسجيل أو عرض السجل)" style="cursor: pointer;">
+            <div class="cockpit-flow-pill inflow" onclick="openModal('incomeChoiceModal')" title="الإيداعات" style="cursor: pointer;">
               <div class="flow-pill-left-group">
                 <div class="flow-icon-badge inflow-badge">
                   <i class="fa-solid fa-circle-arrow-down"></i>
@@ -12146,7 +12146,7 @@
             </div>
 
             <!-- كبسولة إجمالي المصروفات -->
-            <div class="cockpit-flow-pill outflow" onclick="openOperationsFiltered({ type: 'expense' })" title="إجمالي المصروفات الفعلية المسجلة (انقر لعرض سجل المصروفات المفلترة)" style="cursor: pointer;">
+            <div class="cockpit-flow-pill outflow" onclick="openOperationsFiltered({ type: 'expense' })" title="المصروفات" style="cursor: pointer;">
               <div class="flow-pill-left-group">
                 <div class="flow-icon-badge outflow-badge">
                   <i class="fa-solid fa-circle-arrow-up"></i>
@@ -12627,9 +12627,7 @@
                 <i class="fa-solid fa-scale-balanced"></i>
                 <span>مقارنة المصروفات الفعلية والتقديرية والمبالغ المستلمة</span>
               </div>
-              <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">
-                كشف محاسبي دقيق على الانحرافات والفائض والعجز النقدي
-              </div>
+
             </div>
             <div style="display: flex; gap: 6px;">
               <button class="btn-export-tool excel-btn" onclick="exportComparisonsAuditExcel()" title="تصدير تقرير المقارنات لإكسيل" style="padding: 4px 8px; font-size: 0.74rem;">
@@ -13207,7 +13205,7 @@
                 <h2 style="font-size: 0.95rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 6px;">
                   <span>التخطيط المالي والالتزامات والميزانية</span>
                 </h2>
-                <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 600;">إدارة الديون والأقساط، وبناء الميزانيات التقديرية بديناميكية وربط متعدد بالأفراد</div>
+                
               </div>
             </div>
             <div style="display: flex; gap: 6px;">
@@ -13242,7 +13240,7 @@
           <!-- كروت المؤشرات الأربعة في صف واحد فائق الدقة والتناسق (الالتزامات والديون) -->
           <div class="expected-kpi-cockpit" id="expectedKpiCockpit">
             <!-- 1. مصاريف قادمة -->
-            <div class="exp-kpi-card exp-card-amber" id="cardExpUpcoming" onclick="toggleExpectedFilter('upcoming_bill')" title="انقر لتصفية المصاريف والفواتير القادمة" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px 8px; border-radius: 13px;">
+            <div class="exp-kpi-card exp-card-amber" id="cardExpUpcoming" onclick="toggleExpectedFilter('upcoming_bill')" title="فواتير قادمة" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px 8px; border-radius: 13px;">
               <div class="exp-card-header" style="display: flex; align-items: center; justify-content: center; gap: 5px; width: 100%;">
                 <span style="font-size: 0.86rem; color: #fbbf24;"><i class="fa-solid fa-clock"></i></span>
                 <span class="exp-kpi-title" style="font-size: clamp(0.80rem, 2.3vw, 0.92rem); font-weight: 900; color: #fde047; white-space: nowrap;">مصاريف قادمة</span>
@@ -13254,7 +13252,7 @@
             </div>
 
             <!-- 2. ديون علينا للغير -->
-            <div class="exp-kpi-card exp-card-rose" id="cardExpDebtsOnUs" onclick="toggleExpectedFilter('debt_on_us')" title="انقر لتصفية الديون المستحقة علينا" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px 8px; border-radius: 13px;">
+            <div class="exp-kpi-card exp-card-rose" id="cardExpDebtsOnUs" onclick="toggleExpectedFilter('debt_on_us')" title="ديون علينا" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px 8px; border-radius: 13px;">
               <div class="exp-card-header" style="display: flex; align-items: center; justify-content: center; gap: 5px; width: 100%;">
                 <span style="font-size: 0.86rem; color: #f43f5e;"><i class="fa-solid fa-hand-holding-dollar"></i></span>
                 <span class="exp-kpi-title" style="font-size: clamp(0.80rem, 2.3vw, 0.92rem); font-weight: 900; color: #fca5a5; white-space: nowrap;">ديون علينا</span>
@@ -13266,7 +13264,7 @@
             </div>
 
             <!-- 3. ديون لنا عند الغير -->
-            <div class="exp-kpi-card exp-card-emerald" id="cardExpDebtsForUs" onclick="toggleExpectedFilter('debt_for_us')" title="انقر لتصفية الديون المستحقة لنا" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px 8px; border-radius: 13px;">
+            <div class="exp-kpi-card exp-card-emerald" id="cardExpDebtsForUs" onclick="toggleExpectedFilter('debt_for_us')" title="ديون لنا" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px 8px; border-radius: 13px;">
               <div class="exp-card-header" style="display: flex; align-items: center; justify-content: center; gap: 5px; width: 100%;">
                 <span style="font-size: 0.86rem; color: #34d399;"><i class="fa-solid fa-sack-dollar"></i></span>
                 <span class="exp-kpi-title" style="font-size: clamp(0.80rem, 2.3vw, 0.92rem); font-weight: 900; color: #86efac; white-space: nowrap;">ديون لنا</span>
@@ -14030,7 +14028,7 @@
         <!-- شارة التوضيح البارزة لطبيعة الحركة (دخل أم مصروف) مدمجة في سطر واحد أنيق -->
         <div class="tx-nature-banner income-nature" id="txNatureBanner" style="padding: 3px 8px; font-size: 0.68rem; margin-bottom: 4px; border-radius: 6px; line-height: 1.2;">
           <i class="fa-solid fa-arrow-trend-up" id="txNatureIcon"></i>
-          <span id="txNatureText">أنت الآن تسجل (دخل / إيداع وارد) - يضاف إلى الرصيد والمحفظة</span>
+          <span id="txNatureText">وارد / إيداع جديد</span>
         </div>
 
         <!-- المبلغ + الآلة الحاسبة المدمجة في صف أفقي واحد -->
@@ -14085,7 +14083,7 @@
         <!-- بيان الحركة (ملاحظات تفصيلية) إلزامي -->
         <div class="form-group-custom" style="margin-bottom: 4px;">
           <input type="text" class="form-input-custom" id="inpTxLabel" placeholder="بيان الحركة تفصيلياً (إلزامي) *" style="height: 34px; font-size: 0.78rem; padding: 4px 8px; box-sizing: border-box;">
-          <span class="error-hint" id="txLabelError" style="font-size: 0.65rem; padding: 2px 4px; margin-top: 1px;">عفواً، لا يتم قبول الإضافة الا بتسجيل بيان الحركة!</span>
+          <span class="error-hint" id="txLabelError" style="font-size: 0.65rem; padding: 2px 4px; margin-top: 1px;">بيان الحركة مطلوب *</span>
         </div>
 
         <!-- التصنيف + المحفظة في صف أفقي مقسم لعمودين متساويين -->
@@ -14218,9 +14216,7 @@
           <button class="btn-close-drawer" onclick="closeModal('smsModal')">&times;</button>
         </div>
 
-        <p style="font-size: 0.75rem; color: var(--text-muted);">
-          الصق رسالة البنك وسيقوم النظام باستخراج المبلغ والجهة فوراً وتوثيقها:
-        </p>
+
 
         <div style="display: flex; gap: 6px;">
           <button class="period-btn" onclick="loadSampleSms(1)">نموذج بنك مصر</button>
@@ -14354,7 +14350,7 @@
             </div>
             <div>
               <h3 class="modal-title-custom" style="font-size: 0.98rem; font-weight: 800; color: #f8fafc;">حسابات العائلة وقفل الأمان 🛡️</h3>
-              <div style="font-size: 0.65rem; color: #94a3b8;">اختر حسابك وقم بإدخال رمز القفل الخاص بك للمتابعة</div>
+              
             </div>
           </div>
           <button class="btn-close-drawer" onclick="closeModal('authModal')">&times;</button>
@@ -14458,7 +14454,7 @@
             </div>
             <div>
               <h3 class="modal-title-custom" style="font-size: 0.98rem; font-weight: 800; color: #f8fafc;">المزامنة السحابية اللحظية</h3>
-              <div style="font-size: 0.68rem; color: #34d399; font-weight: 700;">متصل ومحمي تلقائياً ☁️</div>
+              
             </div>
           </div>
           <button class="btn-close-drawer" onclick="closeModal('googleDriveSyncModal')">&times;</button>
@@ -14546,7 +14542,7 @@
             <i class="fa-solid fa-clock-rotate-left" style="color: #38bdf8; font-size: 1.3rem;"></i>
             <div>
               <div class="activity-header-title">سجل النشاطات والعمليات الشامل</div>
-              <div class="activity-header-subtitle">توثيق زمني فوري لكل حركات الإضافة، الخصم، التعديل والحذف</div>
+              
             </div>
           </div>
           <button class="modal-close-btn" onclick="closeModal('activityLogModal')">&times;</button>
@@ -14610,7 +14606,7 @@
             <i class="fa-brands fa-google-drive" style="color: #22c55e; font-size: 1.4rem;"></i>
             <div>
               <div class="activity-header-title">المزامنة عبر Google Drive والعمل أوفلاين</div>
-              <div class="activity-header-subtitle">تشغيل دائم مستقل 100% على هاتفك دون الاعتماد على GitHub</div>
+              
             </div>
           </div>
           <button class="modal-close-btn" onclick="closeModal('driveSyncModal')">&times;</button>
@@ -14623,9 +14619,7 @@
               <i class="fa-solid fa-cloud-arrow-up" style="color: #22c55e;"></i>
               <span>1. حفظ نسخة احتياطية على Google Drive</span>
             </div>
-            <div class="drive-card-desc">
-              يقوم التطبيق بتجميع كافة المصروفات، المداخيل، المحافظ، وسجل النشاطات في ملف احتياطي مشفر. على هاتفك المحمول، سيفتح لك خيار "حفظ في Google Drive" مباشرة!
-            </div>
+
             <button class="drive-action-btn-green" onclick="backupToGoogleDrive()">
               <i class="fa-brands fa-google-drive"></i>
               <span>حفظ ومزامنة فورية على Google Drive</span>
@@ -14638,9 +14632,7 @@
               <i class="fa-solid fa-cloud-arrow-down" style="color: #38bdf8;"></i>
               <span>2. استرجاع بياناتك من Google Drive</span>
             </div>
-            <div class="drive-card-desc">
-              اختر ملف النسخة الاحتياطية (.json) المحفوظ على Google Drive أو ذاكرة جهازك لاستعادة كافة الحركات في ثانية واحدة.
-            </div>
+
             <input type="file" id="inpDriveFile" accept=".json" style="display: none;" onchange="handleRestoreDriveFile(event)">
             <button class="drive-action-btn-blue" onclick="document.getElementById('inpDriveFile').click()">
               <i class="fa-solid fa-folder-open"></i>
@@ -14654,10 +14646,7 @@
               <i class="fa-solid fa-mobile-screen-button" style="color: #a855f7;"></i>
               <span>3. العمل الدائم على الجوال بدون إنترنت وبدون GitHub</span>
             </div>
-            <div class="drive-card-desc">
-              • <strong>تثبيت كبرنامج أصلي على الهاتف:</strong> افتح قائمة المتصفح واضغط <strong>"الإضافة إلى الشاشة الرئيسية (Add to Home Screen)"</strong> ليعمل معك كتطبيق هاتف مستقل بدون إنترنت وبدون شريط عنوان.<br>
-              • <strong>تحميل نسخة HTML مستقلة:</strong> يمكنك تحميل ملف التطبيق كاملاً وافتحه في أي وقت بدون إنترنت.
-            </div>
+
             <button class="drive-action-btn-purple" onclick="downloadOfflineAppHtml()">
               <i class="fa-solid fa-download"></i>
               <span>تحميل ملف التطبيق الكامل للتشغيل المستقل (Offline File)</span>
@@ -14687,7 +14676,7 @@
             </div>
             <div>
               <h3 class="modal-title-custom" style="margin: 0; font-size: 1.05rem;">البحث الشامل في البرنامج</h3>
-              <div style="font-size: 0.72rem; color: var(--text-muted);">ابحث فورياً في المصروفات، الإيرادات، الملاحظات، الطلبات، والديون</div>
+              
             </div>
           </div>
           <button type="button" class="btn-analytics-close" onclick="closeModal('globalSearchModal')" title="إغلاق">
@@ -14733,7 +14722,7 @@
             </div>
             <div>
               <h3 class="modal-title-custom" style="margin: 0; font-size: 1.05rem;">دفتر الملاحظات والتذكيرات المفتوحة</h3>
-              <div style="font-size: 0.72rem; color: var(--text-muted);">تسجيل الملاحظات العائلية المفتوحة وتوثيقها بتاريخها في الأرشيف</div>
+              
             </div>
           </div>
           <button type="button" class="btn-analytics-close" onclick="closeModal('notesModal')" title="إغلاق">
@@ -14828,78 +14817,138 @@
        ========================================================================= -->
   <div id="tasksFullScreenModal" style="display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 100050; background: var(--bg-main, #0b1329); overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 0; margin: 0; box-sizing: border-box; direction: rtl;" dir="rtl">
     
-    <!-- شريط علوي زجاجي مثبت للشاشة الكاملة -->
-    <header style="position: sticky; top: 0; z-index: 100; background: rgba(11, 19, 41, 0.95); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1.2px solid rgba(168, 85, 247, 0.35); padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; gap: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-      <div style="display: flex; align-items: center; gap: 12px;">
+    <!-- شريط علوي ذكي وثابت للشاشة الكاملة -->
+    <header style="position: sticky; top: 0; z-index: 100; background: rgba(11, 19, 41, 0.95); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1.2px solid rgba(168, 85, 247, 0.35); padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+      <div style="display: flex; align-items: center; gap: 10px;">
         <button type="button" onclick="closeTasksFullScreenModal()" style="height: 38px; padding: 0 14px; border-radius: 10px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); color: #cbd5e1; font-size: 0.82rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: background 0.15s ease;">
           <i class="fa-solid fa-arrow-right"></i>
           <span>الرئيسية</span>
         </button>
-        <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
           <div style="width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, #a855f7, #6366f1); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.15rem; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.35);">
             <i class="fa-solid fa-list-check"></i>
           </div>
           <div>
-            <div style="font-size: 1.02rem; font-weight: 900; color: #f8fafc;">إدارة المهام والخطوات الذكية</div>
-            <div style="font-size: 0.70rem; color: #c084fc; font-weight: 700;">مهام عيلة ماهر ❤️ أية ومتابعة الإنجاز والمسؤوليات</div>
+            <div style="font-size: 1.02rem; font-weight: 900; color: #f8fafc;">قائمة المهام</div>
+            
           </div>
         </div>
       </div>
+
       <div style="display: flex; align-items: center; gap: 8px;">
-        <button type="button" onclick="openNewTaskDrawerModal()" style="height: 40px; padding: 0 18px; border-radius: 12px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.85rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 16px rgba(168, 85, 247, 0.45); transition: transform 0.12s ease;">
-          <i class="fa-solid fa-circle-plus" style="font-size: 1.1rem;"></i>
-          <span>+ مهمة جديدة</span>
+        <button type="button" onclick="openNewTaskDrawerModal()" style="height: 38px; padding: 0 16px; border-radius: 11px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.82rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 7px; box-shadow: 0 4px 14px rgba(168, 85, 247, 0.45);">
+          <i class="fa-solid fa-circle-plus" style="font-size: 1.05rem;"></i>
+          <span>+ مهمة تفصيلية</span>
         </button>
       </div>
     </header>
 
-    <!-- المحتوى الداخلي بمساحة رحبة ومركزية متجاوبة -->
-    <main style="max-width: 920px; margin: 0 auto; padding: 18px 16px 80px; display: flex; flex-direction: column; gap: 16px;">
+    <!-- المحتوى الرئيسي للمهام -->
+    <main style="max-width: 920px; margin: 0 auto; padding: 14px 14px 80px; display: flex; flex-direction: column; gap: 14px;">
       
-      <!-- شريط مؤشرات إنجاز المهام الذكي (KPIs & Metrics) -->
-      <div class="task-kpi-strip" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-        <div class="task-kpi-card" onclick="switchDrawerTodoSection('all')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 12px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض كافة المهام">
-          <span class="task-kpi-num" id="kpiTasksTotalFull" style="color: #38bdf8; font-size: 1.35rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
-          <span class="task-kpi-label" style="font-size: 0.72rem; color: #94a3b8; font-weight: 800;">إجمالي المهام</span>
+      <!-- شريط مؤشرات الإنجاز الذكي والإنتاجية (KPIs & Progress Ring/Bar) -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+        <div class="task-kpi-card" onclick="switchDrawerTodoSection('all')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 10px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض كافة المهام">
+          <span class="task-kpi-num" id="kpiTasksTotalFull" style="color: #38bdf8; font-size: 1.30rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
+          <span class="task-kpi-label" style="font-size: 0.70rem; color: #94a3b8; font-weight: 800;">إجمالي المهام</span>
         </div>
-        <div class="task-kpi-card" onclick="switchDrawerTodoSection('my_day')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(192, 132, 252, 0.35); border-radius: 14px; padding: 12px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض مهام اليوم">
-          <span class="task-kpi-num" id="kpiTasksActiveFull" style="color: #c084fc; font-size: 1.35rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
-          <span class="task-kpi-label" style="font-size: 0.72rem; color: #94a3b8; font-weight: 800;">قيد التنفيذ</span>
+        <div class="task-kpi-card" onclick="switchDrawerTodoSection('my_day')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(192, 132, 252, 0.35); border-radius: 12px; padding: 10px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض مهام اليوم">
+          <span class="task-kpi-num" id="kpiTasksActiveFull" style="color: #c084fc; font-size: 1.30rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
+          <span class="task-kpi-label" style="font-size: 0.70rem; color: #94a3b8; font-weight: 800;">قيد التنفيذ</span>
         </div>
-        <div class="task-kpi-card" onclick="switchDrawerTodoSection('overdue')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(239, 68, 68, 0.35); border-radius: 14px; padding: 12px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض المهام المتأخرة">
-          <span class="task-kpi-num" id="kpiTasksOverdueFull" style="color: #ef4444; font-size: 1.35rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
-          <span class="task-kpi-label" style="font-size: 0.72rem; color: #94a3b8; font-weight: 800;">متأخرة ⚠️</span>
+        <div class="task-kpi-card" onclick="switchDrawerTodoSection('overdue')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(239, 68, 68, 0.35); border-radius: 12px; padding: 10px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض المهام المتأخرة">
+          <span class="task-kpi-num" id="kpiTasksOverdueFull" style="color: #ef4444; font-size: 1.30rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
+          <span class="task-kpi-label" style="font-size: 0.70rem; color: #94a3b8; font-weight: 800;">متأخرة ⚠️</span>
         </div>
-        <div class="task-kpi-card" onclick="switchDrawerTodoSection('completed')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(52, 211, 153, 0.35); border-radius: 14px; padding: 12px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض المهام المكتملة">
-          <span class="task-kpi-num" id="kpiTasksDoneFull" style="color: #34d399; font-size: 1.35rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
-          <span class="task-kpi-label" style="font-size: 0.72rem; color: #94a3b8; font-weight: 800;">مكتملة ✅</span>
+        <div class="task-kpi-card" onclick="switchDrawerTodoSection('completed')" style="cursor: pointer; background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(52, 211, 153, 0.35); border-radius: 12px; padding: 10px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" title="عرض المهام المكتملة">
+          <span class="task-kpi-num" id="kpiTasksDoneFull" style="color: #34d399; font-size: 1.30rem; font-weight: 900; display: block; font-family: var(--font-numbers);">0</span>
+          <span class="task-kpi-label" style="font-size: 0.70rem; color: #94a3b8; font-weight: 800;">مكتملة ✅</span>
         </div>
       </div>
 
-      <!-- شريط نسبة الإنجاز التراكمي للمهام -->
-      <div style="background: rgba(15, 23, 42, 0.85); border-radius: 14px; padding: 12px 16px; border: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; gap: 14px;">
+      <!-- شريط نسبة الإنجاز والإنتاجية (Things 3 / Todoist Style) -->
+      <div style="background: rgba(15, 23, 42, 0.85); border-radius: 12px; padding: 10px 14px; border: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; gap: 12px;">
         <div style="display: flex; align-items: center; gap: 8px;">
-          <i class="fa-solid fa-chart-line" style="color: #a855f7; font-size: 1.05rem;"></i>
-          <span style="font-size: 0.78rem; font-weight: 800; color: #cbd5e1;">معدل إنجاز المهام التراكمي:</span>
+          <i class="fa-solid fa-chart-line" style="color: #a855f7; font-size: 0.95rem;"></i>
+          <span style="font-size: 0.76rem; font-weight: 800; color: #cbd5e1;">معدل إنجاز المهام:</span>
         </div>
-        <div style="flex: 1; max-width: 320px; height: 9px; background: rgba(30, 41, 59, 0.9); border-radius: 6px; overflow: hidden;">
+        <div style="flex: 1; max-width: 320px; height: 8px; background: rgba(30, 41, 59, 0.9); border-radius: 5px; overflow: hidden;">
           <div id="tasksOverallProgressBarFull" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #10b981); transition: width 0.4s ease;"></div>
         </div>
-        <span id="tasksOverallProgressPctFull" style="font-size: 0.88rem; font-weight: 900; color: #10b981; font-family: var(--font-numbers);">0%</span>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <span id="tasksOverallProgressPctFull" style="font-size: 0.85rem; font-weight: 900; color: #10b981; font-family: var(--font-numbers);">0%</span>
+          <span id="tasksProductivityBadge" style="font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">جاهز للإنجاز</span>
+        </div>
       </div>
 
-      <!-- تبويبات أقسام المهام الستة: يومي / هام / مخطط / متأخرة / الكل / المكتملة -->
-      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;">
-        <button type="button" class="exp-tab-btn active" id="btnFullTodoMyDay" onclick="switchDrawerTodoSection('my_day')" style="padding: 10px 4px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; background: rgba(168, 85, 247, 0.25); color: #c084fc; border: 1.2px solid rgba(168, 85, 247, 0.45); cursor: pointer; text-align: center;">يومي</button>
-        <button type="button" class="exp-tab-btn" id="btnFullTodoImportant" onclick="switchDrawerTodoSection('important')" style="padding: 10px 4px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">هام ⭐</button>
-        <button type="button" class="exp-tab-btn" id="btnFullTodoPlanned" onclick="switchDrawerTodoSection('planned')" style="padding: 10px 4px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">مخطط</button>
-        <button type="button" class="exp-tab-btn" id="btnFullTodoOverdue" onclick="switchDrawerTodoSection('overdue')" style="padding: 10px 4px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; background: transparent; color: #ef4444; border: 1px solid rgba(239,68,68,0.25); cursor: pointer; text-align: center;">متأخرة ⚠️</button>
-        <button type="button" class="exp-tab-btn" id="btnFullTodoAll" onclick="switchDrawerTodoSection('all')" style="padding: 10px 4px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">الكل</button>
-        <button type="button" class="exp-tab-btn" id="btnFullTodoCompleted" onclick="switchDrawerTodoSection('completed')" style="padding: 10px 4px; border-radius: 12px; font-weight: 800; font-size: 0.78rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">المكتملة</button>
+      <!-- شريط الإضافة السريعة الذكية (Todoist Quick Add Bar) -->
+      <div class="tasks-quick-add-bar" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1.5px solid rgba(168, 85, 247, 0.45); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.35);">
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <input type="text" id="quickTaskTitleInput" placeholder="+ اكتب مهمة جديدة سريعة واضغط Enter للإضافة الفورية..." style="flex: 1; height: 40px; border-radius: 10px; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.14); color: #fff; font-size: 0.84rem; font-weight: 800; padding: 0 12px; outline: none; box-sizing: border-box;" onkeydown="if(event.key==='Enter') handleQuickTaskAdd()">
+          <button type="button" onclick="handleQuickTaskAdd()" style="height: 40px; padding: 0 18px; border-radius: 10px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.82rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 10px rgba(168, 85, 247, 0.4);">
+            <i class="fa-solid fa-plus"></i>
+            <span>إضافة</span>
+          </button>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;">
+          <!-- اختصارات الموعد السريعة (TickTick / Any.do) -->
+          <div style="display: flex; gap: 4px; align-items: center;" id="quickTaskPresetChips">
+            <button type="button" class="btn-quick-date-chip active" id="chipQuickToday" onclick="setQuickTaskPreset('today')" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: rgba(168, 85, 247, 0.25); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); cursor: pointer;">☀️ اليوم</button>
+            <button type="button" class="btn-quick-date-chip" id="chipQuickTomorrow" onclick="setQuickTaskPreset('tomorrow')" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">🌅 غداً</button>
+            <button type="button" class="btn-quick-date-chip" id="chipQuickWeekend" onclick="setQuickTaskPreset('weekend')" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">🏖️ الجمعة</button>
+            <button type="button" class="btn-quick-date-chip" id="chipQuickNone" onclick="setQuickTaskPreset('none')" style="padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">بدون موعد</button>
+          </div>
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <select id="quickTaskMemberSelect" style="height: 30px; border-radius: 7px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1; font-size: 0.72rem; font-weight: 800; padding: 0 6px;">
+              <option value="البيت">🏠 البيت</option>
+              <option value="ماهر">👨 ماهر</option>
+              <option value="أية">👩 أية</option>
+              <option value="محمد">👦 محمد</option>
+              <option value="مريم">👧 مريم</option>
+              <option value="الحاجة">🧕 الحاجة</option>
+            </select>
+            <select id="quickTaskPrioritySelect" style="height: 30px; border-radius: 7px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1; font-size: 0.72rem; font-weight: 800; padding: 0 6px;">
+              <option value="normal">⚪ عادية P3</option>
+              <option value="medium">🟡 متوسطة P2</option>
+              <option value="high">🔴 عاجل P1</option>
+            </select>
+            <input type="number" id="quickTaskEstAmount" placeholder="مبلغ تقديري ج.م..." style="width: 100px; height: 30px; border-radius: 7px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.14); color: #fbbf24; font-size: 0.72rem; font-weight: 800; padding: 0 6px; text-align: center;">
+          </div>
+        </div>
       </div>
 
-      <!-- قائمة المهام الكاملة -->
-      <div id="tasksFullScreenContainerList" style="display: flex; flex-direction: column; gap: 12px;"></div>
+      <!-- تبويبات الأقسام الذكية والقوائم المخصصة (Microsoft To Do & Apple Reminders Smart Lists) -->
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px;" id="tasksSmartListTabs">
+        <button type="button" class="exp-tab-btn active" id="btnFullTodoMyDay" onclick="switchDrawerTodoSection('my_day')" style="padding: 9px 2px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; background: rgba(168, 85, 247, 0.25); color: #c084fc; border: 1.2px solid rgba(168, 85, 247, 0.45); cursor: pointer; text-align: center;">☀️ يومي</button>
+        <button type="button" class="exp-tab-btn" id="btnFullTodoImportant" onclick="switchDrawerTodoSection('important')" style="padding: 9px 2px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">⭐ الهامة</button>
+        <button type="button" class="exp-tab-btn" id="btnFullTodoPlanned" onclick="switchDrawerTodoSection('planned')" style="padding: 9px 2px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">📅 المجدولة</button>
+        <button type="button" class="exp-tab-btn" id="btnFullTodoShopping" onclick="switchDrawerTodoSection('shopping')" style="padding: 9px 2px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; background: transparent; color: #10b981; border: 1px solid rgba(16,185,129,0.25); cursor: pointer; text-align: center;">🛒 مشتريات</button>
+        <button type="button" class="exp-tab-btn" id="btnFullTodoOverdue" onclick="switchDrawerTodoSection('overdue')" style="padding: 9px 2px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; background: transparent; color: #ef4444; border: 1px solid rgba(239,68,68,0.25); cursor: pointer; text-align: center;">⚠️ متأخرة</button>
+        <button type="button" class="exp-tab-btn" id="btnFullTodoCompleted" onclick="switchDrawerTodoSection('completed')" style="padding: 9px 2px; border-radius: 10px; font-weight: 800; font-size: 0.74rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">✅ المكتملة</button>
+      </div>
+
+      <!-- فلترة حسب أفراد العائلة وشريط البحث اللحظي -->
+      <div style="display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+        <!-- كبسولات الأفراد -->
+        <div style="display: flex; gap: 4px; overflow-x: auto; padding: 2px 0;" id="tasksMemberFilterPills">
+          <button type="button" class="btn-task-member-pill active" onclick="setTasksMemberFilter('all', this)" style="padding: 4px 10px; border-radius: 8px; font-size: 0.70rem; font-weight: 850; background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); cursor: pointer;">👥 الكل</button>
+          <button type="button" class="btn-task-member-pill" onclick="setTasksMemberFilter('ماهر', this)" style="padding: 4px 10px; border-radius: 8px; font-size: 0.70rem; font-weight: 850; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">👨 ماهر</button>
+          <button type="button" class="btn-task-member-pill" onclick="setTasksMemberFilter('أية', this)" style="padding: 4px 10px; border-radius: 8px; font-size: 0.70rem; font-weight: 850; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">👩 أية</button>
+          <button type="button" class="btn-task-member-pill" onclick="setTasksMemberFilter('محمد', this)" style="padding: 4px 10px; border-radius: 8px; font-size: 0.70rem; font-weight: 850; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">👦 محمد</button>
+          <button type="button" class="btn-task-member-pill" onclick="setTasksMemberFilter('مريم', this)" style="padding: 4px 10px; border-radius: 8px; font-size: 0.70rem; font-weight: 850; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">👧 مريم</button>
+          <button type="button" class="btn-task-member-pill" onclick="setTasksMemberFilter('البيت', this)" style="padding: 4px 10px; border-radius: 8px; font-size: 0.70rem; font-weight: 850; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;">🏠 البيت</button>
+        </div>
+
+        <!-- حقل البحث السريع في المهام -->
+        <div style="flex: 1; min-width: 180px; position: relative;">
+          <input type="text" id="tasksSearchInput" placeholder="🔍 بحث في نصوص المهام والخطوات..." style="width: 100%; height: 32px; border-radius: 8px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.12); color: #fff; font-size: 0.74rem; font-weight: 700; padding: 0 10px; outline: none; box-sizing: border-box;" oninput="renderTasksProList()">
+        </div>
+      </div>
+
+      <!-- حاوية قائمة كروت المهام التفاعلية -->
+      <div id="tasksFullScreenContainerList" style="display: flex; flex-direction: column; gap: 10px;">
+        <!-- تتولد ديناميكياً بواسطة renderTasksProList() -->
+      </div>
     </main>
   </div>
 
@@ -14936,17 +14985,13 @@
             </div>
             <div>
               <h3 class="modal-title-custom" style="font-size: 0.98rem; font-weight: 800; color: #f8fafc; margin: 0;">خلفيات وألوان التطبيق</h3>
-              <div style="font-size: 0.68rem; color: #38bdf8; font-weight: 700;">اختر مظهر ولون خلفية البرنامج المفضل لك</div>
+              
             </div>
           </div>
           <button type="button" class="btn-close-drawer" onclick="closeModal('themeDrawerModal')">&times;</button>
         </div>
 
-        <!-- شريط توضيحي -->
-        <div style="font-size: 0.72rem; color: #94a3b8; background: rgba(15, 23, 42, 0.6); padding: 6px 10px; border-radius: 8px; margin-bottom: 12px; border: 1px dashed rgba(56, 189, 248, 0.3); display: flex; align-items: center; gap: 6px;">
-          <i class="fa-solid fa-wand-magic-sparkles" style="color: #fbbf24;"></i>
-          <span>انقر على أي لون لتغيير خلفية التطبيق فورياً وحفظ اختيارك</span>
-        </div>
+
 
         <!-- شبكة كروت الخلفيات المتعددة الغنية بالألوان -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;" id="themeCardsGrid">
@@ -15053,9 +15098,9 @@
           <div>
             <h3 class="modal-title-custom" style="font-size: 0.90rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 6px;">
               <span>مركز الضبط الموحد والمزامنة</span>
-              <span class="version-badge" style="font-size: 0.62rem; background: rgba(34, 197, 94, 0.2); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 6px; border-radius: 5px;">v4.0.0 • متزامن</span>
+              <span class="version-badge" style="font-size: 0.62rem; background: rgba(34, 197, 94, 0.2); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 6px; border-radius: 5px;">v5.0.6 • متزامن</span>
             </h3>
-            <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 600;">المزامنة اللحظية، التخصيص البصري، وإدارة البيانات</div>
+            
           </div>
         </div>
         <button type="button" class="btn-modal-close" onclick="closeModal('settingsModal')" aria-label="إغلاق">&times;</button>
@@ -15064,10 +15109,11 @@
       <!-- محتوى الضبط الموحد الشامل (مضغوط هندسياً بدون حاجة للتمرير) -->
       <div style="padding: 6px 10px; overflow-y: auto; flex: 1; max-height: calc(94vh - 115px); display: flex; flex-direction: column; gap: 8px;" class="custom-scrollbar">
 
-        <!-- 1. زر موازنة وتدقيق كافة الأرصدة والمحافظ فوراً (في الأعلى بدون ديباجة كتابية) -->
-        <button type="button" onclick="runInstantSettingsAudit()" style="width: 100%; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #0284c7 0%, #0284c7 50%, #0ea5e9 100%); border: none; color: #fff; font-size: 0.88rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.40); margin: 2px 0 6px; transition: transform 0.12s ease;">
-          <i class="fa-solid fa-scale-balanced" style="font-size: 1.1rem; color: #e0f2fe;"></i>
-          <span>⚖️ موازنة وتدقيق كافة المحافظ والأرصدة فوراً</span>
+        <!-- زر موازنة وتدقيق الأرصدة والمحافظ -->
+                <!-- زر موازنة وتدقيق الأرصدة والمحافظ -->
+        <button type="button" onclick="runInstantSettingsAudit()" style="width: 100%; height: 38px; border-radius: 10px; background: linear-gradient(135deg, #0284c7, #0ea5e9); border: none; color: #fff; font-size: 0.82rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 10px rgba(2, 132, 199, 0.35); margin: 2px 0 6px;">
+          <i class="fa-solid fa-scale-balanced" style="font-size: 0.95rem;"></i>
+          <span>موازنة وتدقيق الأرصدة والمحافظ</span>
         </button>
 
         <!-- 2. زر واحد فقط للمستخدم النشط لفتح الشاشة الكاملة للتبديل بين المستخدمين -->
@@ -15079,7 +15125,7 @@
             </div>
             <div>
               <div style="font-size: 0.88rem; font-weight: 900; color: #fff;">المستخدم النشط: <span id="settingsCurrentMemberName" style="color: #38bdf8;">ماهر</span></div>
-              <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700;">انقر هنا لفتح شاشة التبديل بين أفراد الأسرة 👥</div>
+              <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700;">أفراد الأسرة 👥</div>
             </div>
           </div>
           <div style="display: flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.16); border: 1.2px solid rgba(56, 189, 248, 0.4); padding: 5px 12px; border-radius: 8px; color: #38bdf8; font-size: 0.74rem; font-weight: 900;">
@@ -15096,7 +15142,7 @@
               <img src="assets/family_option2_mosaic.jpg" alt="شعار الموزاييك الملكي" style="width: 32px; height: 32px; border-radius: 8px; border: 1.5px solid #38bdf8; object-fit: cover !important; object-position: top center !important;">
               <div>
                 <div style="font-size: 0.88rem; font-weight: 900; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">عائلة ماهر ❤️ أية</div>
-                <div style="font-size: 0.65rem; color: #cbd5e1; font-weight: 700;">رمز الموزاييك الملكي المعتمد 👑</div>
+                
               </div>
             </div>
             <span style="font-size: 0.64rem; background: rgba(56, 189, 248, 0.3); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.5); padding: 3px 8px; border-radius: 6px; font-weight: 800; backdrop-filter: blur(4px);">
@@ -15127,21 +15173,18 @@
             </div>
           </div>
 
-          <!-- زر المزامنة والتحديث الشامل الموحد (الكل في واحد بنقرة واحدة) -->
-          <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.20), rgba(16, 185, 129, 0.20)); border: 1.5px solid rgba(56, 189, 248, 0.50); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);">
+                    <!-- زر المزامنة والتحديث الشامل -->
+          <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.18), rgba(16, 185, 129, 0.18)); border: 1.2px solid rgba(56, 189, 248, 0.40); border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);">
             <div style="display: flex; align-items: center; justify-content: space-between;">
               <div style="display: flex; align-items: center; gap: 8px;">
-                <i class="fa-solid fa-arrows-rotate master-sync-icon-spin" id="settingsMasterSyncSpinIcon" style="color: #38bdf8; font-size: 1.1rem;"></i>
-                <span style="font-weight: 900; font-size: 0.88rem; color: #f8fafc;">المزامنة والتحديث الشامل (الكل في واحد)</span>
+                <i class="fa-solid fa-cloud-bolt" id="settingsMasterSyncSpinIcon" style="color: #38bdf8; font-size: 1.05rem;"></i>
+                <span style="font-weight: 900; font-size: 0.84rem; color: #f8fafc;">المزامنة السحابية والتحديث</span>
               </div>
-              <span id="settingsMasterSyncStatusBadge" style="font-size: 0.65rem; color: #34d399; font-weight: 800; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); padding: 2px 7px; border-radius: 6px;">مكتمل وجاهز</span>
+              <span id="settingsMasterSyncStatusBadge" style="font-size: 0.65rem; color: #34d399; font-weight: 800; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); padding: 2px 7px; border-radius: 6px;">متزامن ✓</span>
             </div>
-            <div style="font-size: 0.72rem; color: #94a3b8; line-height: 1.4;">
-              زر موحد وذكي يقوم بكل شيء بنقرة واحدة: مزامنة بيانات Google Drive، سحب أحدث أسعار الذهب والعملات، وتنزيل وتطبيق أحدث كود للتطبيق وتطهير الكاش فوراً.
-            </div>
-            <button type="button" class="btn-submit-tx btn-master-sync-all" onclick="executeMasterUnifiedSyncAndRefresh(true)" style="margin: 4px 0 0; height: 44px; background: linear-gradient(135deg, #0284c7 0%, #10b981 100%); border: none; border-radius: 10px; font-weight: 900; font-size: 0.86rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.40); transition: all 0.2s ease;">
+            <button type="button" class="btn-submit-tx btn-master-sync-all" onclick="executeMasterUnifiedSyncAndRefresh(true)" style="height: 40px; background: linear-gradient(135deg, #0284c7 0%, #10b981 100%); border: none; border-radius: 10px; font-weight: 900; font-size: 0.84rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35); transition: all 0.2s ease;">
               <i class="fa-solid fa-arrows-rotate master-sync-icon-spin"></i>
-              <span>تحديث ومزامنة شاملة لكل شيء الآن (زر واحد) 🚀</span>
+              <span>تحديث ومزامنة فورية 🚀</span>
             </button>
           </div>
         </div>
@@ -15160,11 +15203,7 @@
               <span id="activeThemeBadge" style="font-size: 0.63rem; color: #38bdf8; font-weight: 800; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 1px 7px; border-radius: 5px;">كحلي ملكي</span>
             </div>
 
-            <!-- زر فتح لوحة منتقي الخلفيات الموسعة الملونة -->
-            <button type="button" class="btn-submit-tx" onclick="openThemeDrawer()" style="height: 38px; background: linear-gradient(135deg, #a855f7, #7c3aed); font-size: 0.82rem; font-weight: 900; border-radius: 10px; margin-bottom: 8px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 7px; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.35); cursor: pointer; color: #fff;">
-              <i class="fa-solid fa-wand-magic-sparkles"></i>
-              <span>لوحة معاينة واختيار خلفيات التطبيق (9 ألوان وخلفيات) 🎨</span>
-            </button>
+
 
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
               <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')" style="background: rgba(14, 39, 76, 0.75);">
@@ -15373,7 +15412,7 @@
 
       <!-- تذييل النافذة البسيط والأنيق -->
       <div style="padding: 8px 14px; background: rgba(15, 23, 42, 0.98); border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
-        <span style="font-size: 0.65rem; color: #94a3b8;">مصروفات العائلة &copy; 2026 - نظام مالي محاسبي عائلي متكامل</span>
+        <span style="font-size: 0.65rem; color: #94a3b8;">مصروفات العائلة &copy; 2026</span>
         <button type="button" class="btn-export-tool" onclick="closeModal('settingsModal')" style="padding: 5px 16px; font-size: 0.74rem; font-weight: 800; border-radius: 8px;">
           إغلاق
         </button>
@@ -19311,23 +19350,18 @@ function generateRichDemoTransactions() {
         if (isCockpitBalanceHidden) {
           elInc.textContent = '••••••';
         } else {
-          const numFormatted = (typeof convertAmount === 'function' ? convertAmount(periodInc) : periodInc).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-          const currSym = (typeof getCurrencySymbol === 'function') ? getCurrencySymbol() : 'ج.م';
-          elInc.innerHTML = `<span class="flow-curr" style="font-size: 0.62rem; opacity: 0.85; font-weight: 700; margin-left: 2px;">${currSym}</span><span class="flow-val" style="direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; font-weight: 900;">+ ${numFormatted}</span>`;
+          elInc.innerHTML = formatMoneyWithSignHtml(periodInc, 'income');
         }
       }
       if (elExp) {
         if (isCockpitBalanceHidden) {
           elExp.textContent = '••••••';
         } else {
-          const numFormatted = (typeof convertAmount === 'function' ? convertAmount(periodExp) : periodExp).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-          const currSym = (typeof getCurrencySymbol === 'function') ? getCurrencySymbol() : 'ج.م';
-          const sign = periodExp > 0 ? '- ' : '';
-          elExp.innerHTML = `<span class="flow-curr" style="font-size: 0.62rem; opacity: 0.85; font-weight: 700; margin-left: 2px;">${currSym}</span><span class="flow-val" style="direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; font-weight: 900;">${sign}${numFormatted}</span>`;
+          elExp.innerHTML = formatMoneyWithSignHtml(periodExp, 'expense');
         }
       }
       if (elBal) {
-        elBal.textContent = isCockpitBalanceHidden ? '••••••••' : ((actualBalance >= 0 ? '+ ' : '- ') + formatMoney(Math.abs(actualBalance)));
+        elBal.innerHTML = isCockpitBalanceHidden ? '••••••••' : formatMoneyWithSignHtml(actualBalance);
         const isLight = document.body.classList.contains('light-theme');
         if (isLight) {
           elBal.style.color = actualBalance >= 0 ? '#0284c7' : '#b91c1c';
@@ -19858,23 +19892,27 @@ function generateRichDemoTransactions() {
       const memSelect = document.getElementById('opsFilterMember');
       let targetMember = (member && member !== 'الكل' && member !== 'العائلة') ? member : 'all';
       if (memSelect) {
-        memSelect.value = targetMember;
+        const opt = Array.from(memSelect.options).find(o => 
+          o.value === targetMember || 
+          ((targetMember === 'أية' || targetMember === 'آية') && (o.value === 'آية' || o.value === 'أية'))
+        );
+        if (opt) {
+          memSelect.value = opt.value;
+          targetMember = opt.value;
+        } else {
+          memSelect.value = targetMember;
+        }
       }
-      if (targetMember !== 'all') {
-        state.currentMemberFilter = targetMember;
-        state.selectedMember = targetMember;
-        document.querySelectorAll('.avatar-card').forEach(c => {
-          if (c.getAttribute('data-member') === targetMember) c.classList.add('active');
-          else c.classList.remove('active');
-        });
-      } else {
-        state.currentMemberFilter = 'الكل';
-        state.selectedMember = 'الكل';
-        document.querySelectorAll('.avatar-card').forEach(c => {
-          if (c.getAttribute('data-member') === 'الكل') c.classList.add('active');
-          else c.classList.remove('active');
-        });
-      }
+      state.currentMemberFilter = targetMember === 'all' ? 'الكل' : targetMember;
+      state.selectedMember = state.currentMemberFilter;
+      document.querySelectorAll('.avatar-card').forEach(c => {
+        const mAttr = c.getAttribute('data-member');
+        const isMatch = (targetMember === 'all' && mAttr === 'الكل') ||
+          (mAttr === targetMember) ||
+          ((targetMember === 'أية' || targetMember === 'آية') && (mAttr === 'أية' || mAttr === 'آية'));
+        if (isMatch) c.classList.add('active');
+        else c.classList.remove('active');
+      });
 
       // 6. ضبط المحفظة
       if (walletId) {
@@ -20034,10 +20072,7 @@ function generateRichDemoTransactions() {
       }
 
       // 5. تطبيق فلترة العضو في صفحة العمليات (Member Filter)
-      let memFilter = document.getElementById('opsFilterMember')?.value || 'all';
-      if (memFilter === 'all' && state.currentMemberFilter && state.currentMemberFilter !== 'الكل') {
-        memFilter = state.currentMemberFilter;
-      }
+      let memFilter = document.getElementById('opsFilterMember') ? document.getElementById('opsFilterMember').value : (state.currentMemberFilter && state.currentMemberFilter !== 'الكل' ? state.currentMemberFilter : 'all');
       if (memFilter && memFilter !== 'all') {
         list = list.filter(t => {
           const m = t.member || 'البيت';
@@ -20327,13 +20362,13 @@ function generateRichDemoTransactions() {
         if (titleEl) titleEl.textContent = 'تسجيل دخل جديد';
         if (iconEl) { iconEl.className = 'fa-solid fa-circle-plus'; iconEl.style.color = '#10b981'; }
         if (bannerEl) bannerEl.className = 'tx-nature-banner income-nature';
-        if (bannerTxt) bannerTxt.textContent = 'أنت الآن تسجل (دخل / إيداع وارد) - يضاف إلى الرصيد والمحفظة';
+        if (bannerTxt) bannerTxt.textContent = 'وارد / إيداع جديد إلى الرصيد';
         if (btnSaveTxt) btnSaveTxt.textContent = 'حفظ الدخل فوراً';
       } else {
         if (titleEl) titleEl.textContent = 'تسجيل مصروف جديد';
         if (iconEl) { iconEl.className = 'fa-solid fa-circle-minus'; iconEl.style.color = '#ef4444'; }
         if (bannerEl) bannerEl.className = 'tx-nature-banner expense-nature';
-        if (bannerTxt) bannerTxt.textContent = 'أنت الآن تسجل (مصروف / خصم خارج) - يخصم من الرصيد والمحفظة';
+        if (bannerTxt) bannerTxt.textContent = 'مصروف / خصم جديد من الرصيد';
         if (btnSaveTxt) btnSaveTxt.textContent = 'حفظ المصروف فوراً';
       }
 
@@ -24285,7 +24320,7 @@ function openSettingsModal(targetSection = '') {
           <div class="print-header-box">
             <div class="print-title-area">
               <h2>كشف الحساب والتدقيق المالي الشامل</h2>
-              <p>دفتر الأستاذ وتدقيق مصروفات ودخل عائلة ماهر ❤️ أية</p>
+              
             </div>
             <div style="text-align: left; font-size: 0.8rem; color: #64748b;">
               <div>تاريخ التقرير: <strong>${new Date().toLocaleDateString('ar-EG')}</strong></div>
@@ -24810,7 +24845,7 @@ function openSettingsModal(targetSection = '') {
             </div>
             <div>
               <div style="font-size: 0.88rem; font-weight: 800; color: #f8fafc;">عرض التسجيلات السابقة</div>
-              <div style="font-size: 0.72rem; color: #94a3b8;">استعراض كشف وسجل كافة الإيداعات السابقة بالتفصيل</div>
+              
             </div>
           </button>
         </div>
@@ -25905,7 +25940,7 @@ function openSettingsModal(targetSection = '') {
           </div>
           <div>
             <h3 style="font-size: 0.98rem; font-weight: 900; color: #f8fafc; margin: 0;">التبديل بين حسابات العائلة</h3>
-            <span style="font-size: 0.65rem; color: #38bdf8; font-weight: 700;">انقر على الحساب للانتقال الفوري إليه</span>
+            
           </div>
         </div>
         <button type="button" class="btn-modal-close" onclick="closeFullUserSelectionModal()">&times;</button>
@@ -25921,7 +25956,7 @@ function openSettingsModal(targetSection = '') {
         <div style="margin-bottom: 8px;">
           <img id="fullUserPinAvatar" src="" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover !important; object-position: top center !important; border: 2.5px solid #38bdf8; margin: 0 auto 6px; display: block; box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);">
           <div id="fullUserPinTitle" style="font-size: 0.90rem; font-weight: 900; color: #f8fafc;">قفل الحساب</div>
-          <div style="font-size: 0.66rem; color: #94a3b8; margin-top: 2px;">أدخل رمز PIN الخاص بهذا الحساب للتبديل إليه 🔒</div>
+          
         </div>
         <input type="password" id="inpFullUserPin" class="form-input-custom" placeholder="رمز القفل •••••" maxlength="15" inputmode="numeric" onkeydown="if(event.key==='Enter') verifyFullUserPinSubmit();" style="height: 40px; font-size: 1.15rem; text-align: center; letter-spacing: 4px; border-radius: 9px; background: rgba(30, 41, 59, 0.9); border: 1.4px solid rgba(56, 189, 248, 0.45); color: #fff; width: 100%; box-sizing: border-box; margin-bottom: 8px;">
         <div id="fullUserPinError" style="display: none; font-size: 0.68rem; color: #f43f5e; font-weight: 800; margin-bottom: 8px;">⚠️ رمز القفل غير صحيح! حاول مرة أخرى.</div>
@@ -26889,7 +26924,7 @@ function openSettingsModal(targetSection = '') {
           </div>
           <div>
             <h3 style="font-size: 0.98rem; font-weight: 900; color: #f8fafc; margin: 0;">التبديل بين حسابات العائلة</h3>
-            <span style="font-size: 0.65rem; color: #38bdf8; font-weight: 700;">انقر على الحساب للانتقال الفوري إليه</span>
+            
           </div>
         </div>
         <button type="button" class="btn-modal-close" onclick="closeFullUserSelectionModal()">&times;</button>
@@ -26905,7 +26940,7 @@ function openSettingsModal(targetSection = '') {
         <div style="margin-bottom: 8px;">
           <img id="fullUserPinAvatar" src="" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover !important; object-position: top center !important; border: 2.5px solid #38bdf8; margin: 0 auto 6px; display: block; box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);">
           <div id="fullUserPinTitle" style="font-size: 0.90rem; font-weight: 900; color: #f8fafc;">قفل الحساب</div>
-          <div style="font-size: 0.66rem; color: #94a3b8; margin-top: 2px;">أدخل رمز PIN الخاص بهذا الحساب للتبديل إليه 🔒</div>
+          
         </div>
         <input type="password" id="inpFullUserPin" class="form-input-custom" placeholder="رمز القفل •••••" maxlength="15" inputmode="numeric" onkeydown="if(event.key==='Enter') verifyFullUserPinSubmit();" style="height: 40px; font-size: 1.15rem; text-align: center; letter-spacing: 4px; border-radius: 9px; background: rgba(30, 41, 59, 0.9); border: 1.4px solid rgba(56, 189, 248, 0.45); color: #fff; width: 100%; box-sizing: border-box; margin-bottom: 8px;">
         <div id="fullUserPinError" style="display: none; font-size: 0.68rem; color: #f43f5e; font-weight: 800; margin-bottom: 8px;">⚠️ رمز القفل غير صحيح! حاول مرة أخرى.</div>
@@ -29384,7 +29419,7 @@ function installDailyNoonTrigger() {
           </div>
           <div>
             <h3 style="font-size: 0.98rem; font-weight: 900; color: #f8fafc; margin: 0;">التبديل بين حسابات العائلة</h3>
-            <span style="font-size: 0.65rem; color: #38bdf8; font-weight: 700;">انقر على الحساب للانتقال الفوري إليه</span>
+            
           </div>
         </div>
         <button type="button" class="btn-modal-close" onclick="closeFullUserSelectionModal()">&times;</button>
@@ -29400,7 +29435,7 @@ function installDailyNoonTrigger() {
         <div style="margin-bottom: 8px;">
           <img id="fullUserPinAvatar" src="" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover !important; object-position: top center !important; border: 2.5px solid #38bdf8; margin: 0 auto 6px; display: block; box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);">
           <div id="fullUserPinTitle" style="font-size: 0.90rem; font-weight: 900; color: #f8fafc;">قفل الحساب</div>
-          <div style="font-size: 0.66rem; color: #94a3b8; margin-top: 2px;">أدخل رمز PIN الخاص بهذا الحساب للتبديل إليه 🔒</div>
+          
         </div>
         <input type="password" id="inpFullUserPin" class="form-input-custom" placeholder="رمز القفل •••••" maxlength="15" inputmode="numeric" onkeydown="if(event.key==='Enter') verifyFullUserPinSubmit();" style="height: 40px; font-size: 1.15rem; text-align: center; letter-spacing: 4px; border-radius: 9px; background: rgba(30, 41, 59, 0.9); border: 1.4px solid rgba(56, 189, 248, 0.45); color: #fff; width: 100%; box-sizing: border-box; margin-bottom: 8px;">
         <div id="fullUserPinError" style="display: none; font-size: 0.68rem; color: #f43f5e; font-weight: 800; margin-bottom: 8px;">⚠️ رمز القفل غير صحيح! حاول مرة أخرى.</div>
@@ -29434,18 +29469,28 @@ function installDailyNoonTrigger() {
     // =========================================================================
     // محرك درج اليسار الموحد: ملخص النشاط + المهام الذكية Tasks + تقويم الذهب 21
     // =========================================================================
-    let currentDrawerTab = 'summary'; // 'summary' | 'tasks'
-    let currentSummaryPeriod = 'day'; // 'day' | 'week' | 'month' | 'year' | 'custom'
+        // =========================================================================
+    // الدرج الجانبي الأيسر: ملخص المصروفات بالفرد (Member Financial Breakdown)
+    // =========================================================================
+    let currentDrawerMember = 'الكل';
+    let currentSummaryPeriod = 'month'; // 'day' | 'week' | 'month' | 'year' | 'custom'
     let currentSummaryCurrency = 'EGP'; // 'EGP' | 'SAR' | 'USD' | 'GOLD21'
     let summaryCustomDateRange = { from: '', to: '' };
-    let currentPendingTaskPhotoUri = null;
 
-    function openSummaryDrawer(initialTab = 'summary') {
+    window.openSummaryLeftDrawer = openSummaryDrawer;
+    function openSummaryDrawer(targetMember = null) {
       const drawer = document.getElementById('summaryLeftDrawer');
       const backdrop = document.getElementById('summaryDrawerBackdrop');
+      if (targetMember) {
+        currentDrawerMember = targetMember;
+      } else if (state.currentMemberFilter && state.currentMemberFilter !== 'الكل') {
+        currentDrawerMember = state.currentMemberFilter;
+      } else {
+        currentDrawerMember = 'الكل';
+      }
       if (drawer) drawer.classList.add('open');
       if (backdrop) backdrop.classList.add('active');
-      switchLeftDrawerTab(initialTab);
+      renderSummaryDrawer(currentSummaryPeriod, currentDrawerMember);
     }
 
     function closeSummaryLeftDrawer() {
@@ -29453,31 +29498,6 @@ function installDailyNoonTrigger() {
       const backdrop = document.getElementById('summaryDrawerBackdrop');
       if (drawer) drawer.classList.remove('open');
       if (backdrop) backdrop.classList.remove('active');
-    }
-
-    function switchLeftDrawerTab(tab) {
-      currentDrawerTab = tab;
-      const btnSum = document.getElementById('btnDrawerMasterSummary');
-      const btnTasks = document.getElementById('btnDrawerMasterTasks');
-      const filterBar = document.getElementById('drawerSummaryFilterBar');
-      const sumSec = document.getElementById('drawerSummaryViewSection');
-      const tasksSec = document.getElementById('drawerTasksViewSection');
-
-      if (tab === 'summary') {
-        if (btnSum) { btnSum.style.background = 'linear-gradient(135deg, #0284c7, #0369a1)'; btnSum.style.color = '#fff'; }
-        if (btnTasks) { btnTasks.style.background = 'transparent'; btnTasks.style.color = '#c084fc'; }
-        if (filterBar) filterBar.style.display = 'flex';
-        if (sumSec) sumSec.style.display = 'flex';
-        if (tasksSec) tasksSec.style.display = 'none';
-        renderSummaryDrawer(currentSummaryPeriod);
-      } else {
-        if (btnSum) { btnSum.style.background = 'transparent'; btnSum.style.color = '#38bdf8'; }
-        if (btnTasks) { btnTasks.style.background = 'linear-gradient(135deg, #a855f7, #7c3aed)'; btnTasks.style.color = '#fff'; }
-        if (filterBar) filterBar.style.display = 'none';
-        if (sumSec) sumSec.style.display = 'none';
-        if (tasksSec) tasksSec.style.display = 'flex';
-        renderDrawerTasksList();
-      }
     }
 
     function switchSummaryPeriod(p) {
@@ -29505,14 +29525,14 @@ function installDailyNoonTrigger() {
         customRow.style.display = p === 'custom' ? 'grid' : 'none';
       }
 
-      renderSummaryDrawer(p);
+      renderSummaryDrawer(p, currentDrawerMember);
     }
 
     function applyCustomSummaryDate() {
       const from = document.getElementById('summaryCustomDateFrom')?.value || '';
       const to = document.getElementById('summaryCustomDateTo')?.value || '';
       summaryCustomDateRange = { from, to };
-      renderSummaryDrawer('custom');
+      renderSummaryDrawer('custom', currentDrawerMember);
     }
 
     function setSummaryCurrency(curr) {
@@ -29532,7 +29552,7 @@ function installDailyNoonTrigger() {
           }
         }
       });
-      renderSummaryDrawer(currentSummaryPeriod);
+      renderSummaryDrawer(currentSummaryPeriod, currentDrawerMember);
     }
 
     function formatSummaryVal(amtEgp) {
@@ -29548,14 +29568,44 @@ function installDailyNoonTrigger() {
         return `$${Number(usd).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
       } else if (currentSummaryCurrency === 'SAR') {
         const sar = sarRate > 0 ? (amtEgp / sarRate).toFixed(2) : '0.00';
-        return `${Number(sar).toLocaleString('en-US', { minimumFractionDigits: 2 })} ر.س`;
+        return `ر.س ${Number(sar).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
       }
-      return formatMoney(amtEgp);
+      return `ج.م ${Number(amtEgp).toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
     }
 
-    function renderSummaryDrawer(period = 'day') {
+    function switchDrawerMember(m) {
+      currentDrawerMember = m;
+      renderSummaryDrawer(currentSummaryPeriod, m);
+    }
+
+    function drillDownFromMemberDrawer(catId, catName) {
+      closeSummaryLeftDrawer();
+      openOperationsFiltered({
+        category: catId,
+        categoryName: catName,
+        member: currentDrawerMember,
+        type: 'expense'
+      });
+      showToast(`🔍 عرض كشف حركات ${catName} الخاصة بـ ${currentDrawerMember}`);
+    }
+
+    function renderSummaryDrawer(period = currentSummaryPeriod, member = currentDrawerMember) {
       const container = document.getElementById('summaryDrawerContent');
+      const selectorStrip = document.getElementById('drawerMemberSelectorStrip');
       if (!container) return;
+
+      const membersList = ['الكل', 'ماهر', 'أية', 'محمد', 'مريم', 'الحاجة', 'البيت'];
+      if (selectorStrip) {
+        selectorStrip.innerHTML = membersList.map(m => {
+          const isActive = m === member;
+          return `
+            <button type="button" onclick="switchDrawerMember('${m}')" style="padding: 4px 10px; border-radius: 8px; font-size: 0.72rem; font-weight: 850; border: ${isActive ? '1.2px solid #38bdf8' : '1px solid rgba(255,255,255,0.1)'}; background: ${isActive ? 'rgba(56, 189, 248, 0.25)' : 'rgba(15, 23, 42, 0.6)'}; color: ${isActive ? '#38bdf8' : '#94a3b8'}; cursor: pointer; white-space: nowrap; flex-shrink: 0; display: inline-flex; align-items: center; gap: 4px;">
+              <span>${m === 'الكل' ? '👥' : (m === 'البيت' ? '🏠' : (m === 'ماهر' ? '👨' : (m === 'أية' ? '👩' : (m === 'الحاجة' ? '🧕' : '🧒'))))}</span>
+              <span>${m}</span>
+            </button>
+          `;
+        }).join('');
+      }
 
       const now = new Date();
       const todayStr = getLocalDateStr(now);
@@ -29565,7 +29615,7 @@ function installDailyNoonTrigger() {
       const thisYearPrefix = todayStr.substring(0, 4);
 
       let txList = [...(state.transactions || [])];
-      let periodTitle = 'ملخص اليوم';
+      let periodTitle = 'ملخص الشهر الحالي';
 
       if (period === 'day') {
         txList = txList.filter(t => t.date === todayStr);
@@ -29587,9 +29637,18 @@ function installDailyNoonTrigger() {
         periodTitle = `ملخص الفترة المخصصة (${from || 'البداية'} إلى ${to || 'اليوم'})`;
       }
 
+      // تطبيق فلترة الفرد المختار بدقة تامة
+      if (member && member !== 'الكل') {
+        txList = txList.filter(t => {
+          const m = t.member || 'البيت';
+          if (member === 'البيت') return m === 'البيت' || m === 'العائلة' || !t.member;
+          if (member === 'آية' || member === 'أية') return m === 'آية' || m === 'أية';
+          return m === member;
+        });
+      }
+
       let totalExp = 0, totalInc = 0;
       const catTotals = {};
-      const memberTotals = {};
 
       txList.forEach(t => {
         const amt = Number(t.amount) || 0;
@@ -29597,263 +29656,575 @@ function installDailyNoonTrigger() {
           totalInc += amt;
         } else {
           totalExp += amt;
-          const c = t.category || 'other';
+          let c = t.category || 'other';
+          if (c === 'shopping' || c === 'supermarket') c = 'food';
+          if (c === 'kids' || c === 'gifts' || c === 'entertainment') c = 'other';
           catTotals[c] = (catTotals[c] || 0) + amt;
-          const m = t.member || 'البيت';
-          memberTotals[m] = (memberTotals[m] || 0) + amt;
         }
       });
 
-      const netFlow = totalInc - totalExp;
-
-      // تقويم الرصيد الفعلي الحالي التراكمي
-      let allTotalInc = 0, allTotalExp = 0;
-      (state.transactions || []).forEach(t => {
-        const a = Number(t.amount) || 0;
-        if (t.type === 'income') allTotalInc += a;
-        else if (t.type === 'expense') allTotalExp += a;
-      });
-      const actualBal = allTotalInc - allTotalExp;
-      const g21Rate = (state.market && state.market.gold21) || 6265;
-      const goldEquivalentGrams = g21Rate > 0 ? (actualBal / g21Rate).toFixed(2) : '0.00';
-
-      // بطاقات البنوك والمحافظ المالية مع النقر المباشر لفتح كشف حركاتها
-      const walletsHtml = (state.wallets || []).map(w => {
-        let wBal = 0;
-        (state.transactions || []).forEach(t => {
-          if (t.walletId === w.id) {
-            const a = Number(t.amount) || 0;
-            if (t.type === 'income') wBal += a;
-            else if (t.type === 'expense') wBal -= a;
-          }
-        });
-        return `
-          <div style="background: rgba(30, 41, 59, 0.75); border: 1.2px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: all 0.15s ease;" onclick="closeSummaryLeftDrawer(); openOperationsFiltered({ walletId: '${w.id}', walletName: '${w.name}' })" title="انقر لعرض تفاصيل وكشف حركات ${w.name}">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="width: 28px; height: 28px; border-radius: 7px; background: rgba(56, 189, 248, 0.15); display: flex; align-items: center; justify-content: center; color: #38bdf8; font-size: 0.82rem;">
-                <i class="fa-solid fa-building-columns"></i>
-              </div>
-              <div>
-                <div style="font-size: 0.78rem; font-weight: 800; color: #f8fafc;">${escapeHtml(w.name)}</div>
-                <div style="font-size: 0.62rem; color: #94a3b8;">${w.type || 'حساب بنكي'} • انقر للكشف</div>
-              </div>
-            </div>
-            <div style="font-size: 0.85rem; font-weight: 900; color: ${wBal >= 0 ? '#34d399' : '#f43f5e'}; direction: rtl;">
-              ${formatSummaryVal(wBal)}
-            </div>
-          </div>
-        `;
-      }).join('');
+      const memberPhotos = {
+        'ماهر': 'assets/members/maher.jpg',
+        'أية': 'assets/members/aya.jpg',
+        'محمد': 'assets/members/mohamed.jpg',
+        'مريم': 'assets/members/maryam.jpg',
+        'الحاجة': 'assets/members/elhaja.jpg',
+        'النونو': 'assets/members/nono.jpg',
+        'البيت': 'assets/members/home.jpg',
+        'الكل': 'assets/family_option2_mosaic.jpg'
+      };
+      const avatarSrc = memberPhotos[member] || 'assets/members/home.jpg';
 
       let catBreakdownHtml = Object.entries(catTotals).sort((a,b)=>b[1]-a[1]).map(([catId, sum]) => {
         const cat = getCategoryObj(catId, 'expense');
         const pct = totalExp > 0 ? ((sum / totalExp) * 100).toFixed(0) : 0;
+        const count = txList.filter(t => t.type === 'expense' && (t.category === catId || (catId === 'food' && (t.category === 'shopping' || t.category === 'supermarket')))).length;
+
         return `
-          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.76rem; background: rgba(15, 23, 42, 0.6); padding: 7px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); cursor: pointer;" onclick="closeSummaryLeftDrawer(); openOperationsFiltered({ category: '${catId}', categoryName: '${cat.name}', type: 'expense' });" title="انقر لعرض تفاصيل حركات ${cat.name}">
-            <div style="display: flex; align-items: center; gap: 7px;">
-              <span style="font-size: 0.95rem;">${cat.icon ? `<i class="fa-solid ${cat.icon}" style="color: ${cat.color || '#38bdf8'}; font-size: 0.85rem;"></i>` : '📦'}</span>
-              <span style="color: #f8fafc; font-weight: 700;">${cat.name}</span>
+          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem; background: rgba(15, 23, 42, 0.7); padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); cursor: pointer; transition: all 0.15s ease;" onclick="drillDownFromMemberDrawer('${catId}', '${cat.name}')" title="انقر لعرض تفاصيل حركات ${cat.name} الخاصة بـ ${member}">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.1rem;">${cat.icon ? `<i class="fa-solid ${cat.icon}" style="color: ${cat.color || '#38bdf8'}; font-size: 0.95rem;"></i>` : '📦'}</span>
+              <div>
+                <span style="color: #f8fafc; font-weight: 800;">${cat.name}</span>
+                <div style="font-size: 0.62rem; color: #94a3b8;">${count} حركة مسجلة • انقر للتصفية</div>
+              </div>
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <span style="color: #94a3b8; font-size: 0.68rem;">${pct}%</span>
-              <span style="color: #ff4d6d; font-weight: 900; direction: rtl;">- ${formatSummaryVal(sum)}</span>
+              <span style="color: #94a3b8; font-size: 0.68rem; background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 6px;">${pct}%</span>
+              <span style="color: #ff4d6d; font-weight: 950; font-family: var(--font-numbers); direction: ltr; unicode-bidi: isolate;">- ${formatSummaryVal(sum)}</span>
             </div>
           </div>
         `;
       }).join('');
 
       container.innerHTML = `
-        <!-- كارت تقويم الرصيد الفعلي بالذهب عيار 21 البارز -->
-        <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.20), rgba(15, 23, 42, 0.95)); border: 1.4px solid rgba(245, 158, 11, 0.55); border-radius: 14px; padding: 10px 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.4);">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-            <span style="font-size: 0.74rem; font-weight: 900; color: #fbbf24; display: flex; align-items: center; gap: 6px;">
-              <i class="fa-solid fa-scale-balanced"></i> تقويم الرصيد بالذهب عيار 21:
-            </span>
-            <span style="font-size: 0.62rem; color: #94a3b8;">سعر الجرام: ${Math.round(g21Rate).toLocaleString('ar-EG')} ج.م</span>
-          </div>
-          <div style="font-size: 1.25rem; font-weight: 950; color: #fde047; direction: rtl; margin-bottom: 2px;">
-            ${goldEquivalentGrams} جرام ذهب عيار 21
-          </div>
-          <div style="font-size: 0.64rem; color: #cbd5e1;">
-            يعادل رصيد السيولة الفعلي (${formatMoney(actualBal)}) مقوماً بسعر الصاغة الحقيقي اليوم.
-          </div>
-        </div>
-
-        <!-- كارت الملخص التنفيذي للفترة -->
-        <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.98)); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 12px; box-shadow: 0 4px 18px rgba(0,0,0,0.4);">
-          <div style="font-size: 0.80rem; font-weight: 900; color: #38bdf8; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
-            <span>${periodTitle}</span>
-            <span style="font-size: 0.68rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 2px 7px; border-radius: 6px;">${txList.length} حركة</span>
-          </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
-            <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 10px; padding: 8px; text-align: center;">
-              <div style="font-size: 0.64rem; color: #fca5a5; font-weight: 700;">إجمالي المصاريف</div>
-              <div style="font-size: 0.95rem; font-weight: 900; color: #ff4d6d; direction: rtl;">- ${formatSummaryVal(totalExp)}</div>
+        <!-- كارت بروفايل الفرد المختار المعتمد -->
+        <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 14px; padding: 12px; display: flex; align-items: center; gap: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.35);">
+          <img src="${avatarSrc}" onerror="this.src='family_portrait.jpg'" style="width: 50px; height: 50px; border-radius: 14px; object-fit: cover; object-position: top center; border: 2.2px solid #38bdf8; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
+          <div style="flex: 1;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 0.96rem; font-weight: 900; color: #fff;">${member === 'الكل' ? 'كافة أفراد الأسرة' : member}</span>
+              <span style="font-size: 0.65rem; color: #38bdf8; font-weight: 800; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 6px;">${periodTitle}</span>
             </div>
-            <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 8px; text-align: center;">
-              <div style="font-size: 0.64rem; color: #86efac; font-weight: 700;">إجمالي الإيداعات</div>
-              <div style="font-size: 0.95rem; font-weight: 900; color: #34d399; direction: rtl;">+ ${formatSummaryVal(totalInc)}</div>
+            <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 2px;">
+              ${txList.length} حركة مسجلة خلال الفترة
             </div>
           </div>
-          <div style="background: rgba(15, 23, 42, 0.7); border-radius: 8px; padding: 6px 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem;">
-            <span style="color: #cbd5e1; font-weight: 700;">صافي التدفق المالي:</span>
-            <span style="font-weight: 900; direction: rtl; color: ${netFlow >= 0 ? '#34d399' : '#f43f5e'};">
-              ${netFlow >= 0 ? '+' : '-'}${formatSummaryVal(Math.abs(netFlow))}
-            </span>
+        </div>
+
+        <!-- كروت مؤشرات الصرف والإيداع للفرد المختار -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <div style="background: rgba(244, 63, 94, 0.12); border: 1.2px solid rgba(244, 63, 94, 0.35); border-radius: 12px; padding: 10px; text-align: center;">
+            <div style="font-size: 0.66rem; color: #fca5a5; font-weight: 800;">إجمالي المصروفات</div>
+            <div style="font-size: 1.05rem; font-weight: 950; color: #ff4d6d; font-family: var(--font-numbers); direction: ltr; unicode-bidi: isolate; margin-top: 2px;">
+              - ${formatSummaryVal(totalExp)}
+            </div>
+          </div>
+          <div style="background: rgba(16, 185, 129, 0.12); border: 1.2px solid rgba(16, 185, 129, 0.35); border-radius: 12px; padding: 10px; text-align: center;">
+            <div style="font-size: 0.66rem; color: #86efac; font-weight: 800;">إجمالي الإيداعات</div>
+            <div style="font-size: 1.05rem; font-weight: 950; color: #34d399; font-family: var(--font-numbers); direction: ltr; unicode-bidi: isolate; margin-top: 2px;">
+              + ${formatSummaryVal(totalInc)}
+            </div>
           </div>
         </div>
 
-        <!-- قسم أرصدة البنوك والمحافظ المالية (مع النقر لفتح كشف البنك) -->
-        <div style="display: flex; flex-direction: column; gap: 6px;">
-          <div style="font-size: 0.78rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; justify-content: space-between;">
-            <span><i class="fa-solid fa-vault" style="color: #38bdf8;"></i> أرصدة البنوك والمحافظ المالية:</span>
-            <span style="font-size: 0.62rem; color: #94a3b8;">(انقر على أي بنك لفتح كشف حركاته)</span>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 5px;">
-            ${walletsHtml}
-          </div>
+        <!-- عنوان قائمة بنود الصرف مع التوجيه التفاعلي -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 6px;">
+          <span style="font-size: 0.80rem; font-weight: 900; color: #f8fafc;"><i class="fa-solid fa-list-ul" style="color: #38bdf8;"></i> توزيع النفقات حسب البند:</span>
+          
         </div>
 
-        <!-- توزيع البنود -->
-        <div style="font-size: 0.78rem; font-weight: 900; color: #f8fafc; margin-top: 4px;">توزيع المصاريف حسب البند:</div>
+        <!-- قائمة بنود الصرف للفرد المختار -->
         <div style="display: flex; flex-direction: column; gap: 6px;">
-          ${catBreakdownHtml || '<div style="text-align: center; color: #64748b; font-size: 0.74rem; padding: 10px;">لا توجد مصاريف مسجلة خلال هذه الفترة</div>'}
+          ${catBreakdownHtml || '<div style="text-align: center; color: #64748b; font-size: 0.76rem; padding: 25px 10px; background: rgba(15, 23, 42, 0.5); border-radius: 10px; border: 1px dashed rgba(255,255,255,0.1);">لا توجد حركات مصروفات مسجلة لهذا الفرد خلال الفترة المحددة</div>'}
         </div>
       `;
     }
 
     // =========================================================================
-    // محرك المهام والمهام الفرعية والصور المتكامل (Drawer Tasks Engine with Subtasks)
-    // =========================================================================
-    // =========================================================================
-    // نظام المهام الذكية الاحترافي المتكامل (Tasks Pro Engine)
+    // نظام المهام والمسؤوليات الذكي المتطور (Tasks Pro Engine - Top Mobile Apps Standards)
+    // مستوحى من أفضل مميزات Todoist, TickTick, Microsoft To Do, Things 3, Apple Reminders
     // =========================================================================
     let currentDrawerTodoSection = 'my_day';
+    let currentTasksMemberFilter = 'all';
+    let quickTaskDueDatePreset = 'today';
     window.currentPendingTaskPhotoUri = null;
     window.pendingSubtaskPhotos = window.pendingSubtaskPhotos || {};
 
-    // اختصارات التاريخ والوقت الذكية الموحدة بنقرة زر
+    function getTodoTasks() {
+      try {
+        const raw = localStorage.getItem('family_monefy_tasks');
+        if (raw) return JSON.parse(raw);
+      } catch(e) {}
+      // عينة تجريبية أولية راقية إذا لم تكن هناك مهام
+      return [
+        {
+          id: 'task_demo_1',
+          title: 'تسوق خضار ومستلزمات السوبرماركت الأسبوعية',
+          completed: false,
+          dueDate: getLocalDateStr(new Date()),
+          dueTime: '18:00',
+          priority: 'high',
+          tag: 'shopping',
+          assignedMember: 'أية',
+          estimatedAmount: 750,
+          isExpenseConverted: false,
+          starred: true,
+          subtasks: [
+            { id: 'sub_1_1', title: 'شراء فاكهة وخضار طازج', completed: true },
+            { id: 'sub_1_2', title: 'ألبان واجبان وبيض', completed: false },
+            { id: 'sub_1_3', title: 'منظفات وعناية شخصية', completed: false }
+          ]
+        },
+        {
+          id: 'task_demo_2',
+          title: 'سداد فاتورة الإنترنت المنزلي وفاتورة الكهرباء',
+          completed: false,
+          dueDate: getLocalDateStr(new Date()),
+          dueTime: '21:00',
+          priority: 'high',
+          tag: 'bills',
+          assignedMember: 'ماهر',
+          estimatedAmount: 580,
+          isExpenseConverted: false,
+          starred: true,
+          subtasks: [
+            { id: 'sub_2_1', title: 'دفع فاتورة وي WE إنترنت', completed: false },
+            { id: 'sub_2_2', title: 'شحن كارت الكهرباء الذكي', completed: false }
+          ]
+        },
+        {
+          id: 'task_demo_3',
+          title: 'مستلزمات المدرسة ودروس الأطفال',
+          completed: false,
+          dueDate: getLocalDateStr(new Date(Date.now() + 86400000)),
+          dueTime: '14:00',
+          priority: 'medium',
+          tag: 'family',
+          assignedMember: 'محمد',
+          estimatedAmount: 300,
+          isExpenseConverted: false,
+          starred: false,
+          subtasks: []
+        }
+      ];
+    }
+
+    function saveTodoTasks(tasks) {
+      try {
+        localStorage.setItem('family_monefy_tasks', JSON.stringify(tasks));
+      } catch(e) {}
+    }
+
+    function openTasksFullScreenModal() {
+      const modal = document.getElementById('tasksFullScreenModal');
+      if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
+      renderTasksProList();
+    }
+
+    function closeTasksFullScreenModal() {
+      const modal = document.getElementById('tasksFullScreenModal');
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+
+    function openTasksModal() {
+      openTasksFullScreenModal();
+    }
+
+    function switchDrawerTodoSection(sec) {
+      currentDrawerTodoSection = sec;
+      const tabs = ['my_day', 'important', 'planned', 'shopping', 'overdue', 'completed'];
+      tabs.forEach(t => {
+        const btnId = `btnFullTodo${t === 'my_day' ? 'MyDay' : (t === 'important' ? 'Important' : (t === 'planned' ? 'Planned' : (t === 'shopping' ? 'Shopping' : (t === 'overdue' ? 'Overdue' : 'Completed'))))}`;
+        const btn = document.getElementById(btnId);
+        if (btn) {
+          if (t === sec) {
+            btn.className = 'exp-tab-btn active';
+            btn.style.background = 'rgba(168, 85, 247, 0.25)';
+            btn.style.color = '#c084fc';
+            btn.style.border = '1.2px solid rgba(168, 85, 247, 0.45)';
+          } else {
+            btn.className = 'exp-tab-btn';
+            btn.style.background = 'transparent';
+            btn.style.color = '#94a3b8';
+            btn.style.border = '1px solid rgba(255,255,255,0.1)';
+          }
+        }
+      });
+      renderTasksProList();
+    }
+
+    function setTasksMemberFilter(mem, btn) {
+      currentTasksMemberFilter = mem;
+      const box = document.getElementById('tasksMemberFilterPills');
+      if (box) {
+        box.querySelectorAll('.btn-task-member-pill').forEach(b => {
+          b.classList.remove('active');
+          b.style.background = 'transparent';
+          b.style.color = '#94a3b8';
+          b.style.border = '1px solid rgba(255,255,255,0.1)';
+        });
+      }
+      if (btn) {
+        btn.classList.add('active');
+        btn.style.background = 'rgba(56, 189, 248, 0.2)';
+        btn.style.color = '#38bdf8';
+        btn.style.border = '1px solid rgba(56, 189, 248, 0.4)';
+      }
+      renderTasksProList();
+    }
+
+    function setQuickTaskPreset(preset) {
+      quickTaskDueDatePreset = preset;
+      const chips = document.getElementById('quickTaskPresetChips');
+      if (chips) {
+        chips.querySelectorAll('.btn-quick-date-chip').forEach(c => {
+          c.classList.remove('active');
+          c.style.background = 'transparent';
+          c.style.color = '#94a3b8';
+          c.style.border = '1px solid rgba(255,255,255,0.1)';
+        });
+      }
+      const activeChip = document.getElementById(
+        preset === 'today' ? 'chipQuickToday' : 
+        (preset === 'tomorrow' ? 'chipQuickTomorrow' : 
+        (preset === 'weekend' ? 'chipQuickWeekend' : 'chipQuickNone'))
+      );
+      if (activeChip) {
+        activeChip.classList.add('active');
+        activeChip.style.background = 'rgba(168, 85, 247, 0.25)';
+        activeChip.style.color = '#c084fc';
+        activeChip.style.border = '1px solid rgba(168, 85, 247, 0.4)';
+      }
+    }
+
+    function handleQuickTaskAdd() {
+      const inp = document.getElementById('quickTaskTitleInput');
+      const title = inp ? inp.value.trim() : '';
+      if (!title) {
+        showToast('⚠️ يرجى كتابة عنوان المهمة أولاً');
+        if (inp) inp.focus();
+        return;
+      }
+
+      const mem = document.getElementById('quickTaskMemberSelect')?.value || 'البيت';
+      const prio = document.getElementById('quickTaskPrioritySelect')?.value || 'normal';
+      const estAmt = parseFloat(document.getElementById('quickTaskEstAmount')?.value || 0) || null;
+
+      const now = new Date();
+      let targetDate = '';
+      if (quickTaskDueDatePreset === 'today') {
+        targetDate = getLocalDateStr(now);
+      } else if (quickTaskDueDatePreset === 'tomorrow') {
+        const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+        targetDate = getLocalDateStr(tomorrow);
+      } else if (quickTaskDueDatePreset === 'weekend') {
+        const dayOfWeek = now.getDay();
+        const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
+        const nextFri = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilFriday);
+        targetDate = getLocalDateStr(nextFri);
+      }
+
+      let tag = 'general';
+      const tLower = title.toLowerCase();
+      if (tLower.includes('شراء') || tLower.includes('سوبرماركت') || tLower.includes('خضار') || tLower.includes('لحمة') || estAmt > 0) tag = 'shopping';
+      else if (tLower.includes('فاتورة') || tLower.includes('قسط') || tLower.includes('نت') || tLower.includes('كهرباء') || tLower.includes('غاز')) tag = 'bills';
+      else if (tLower.includes('بيت') || tLower.includes('منزل') || tLower.includes('تصليح')) tag = 'home';
+      else if (tLower.includes('دواء') || tLower.includes('علاج') || tLower.includes('دكتور')) tag = 'family';
+
+      const newTask = {
+        id: 'task_' + Date.now(),
+        title: title,
+        completed: false,
+        dueDate: targetDate,
+        dueTime: targetDate ? '20:00' : '',
+        priority: prio,
+        tag: tag,
+        assignedMember: mem,
+        estimatedAmount: estAmt,
+        isExpenseConverted: false,
+        subtasks: [],
+        createdAt: new Date().toISOString()
+      };
+
+      const tasks = getTodoTasks();
+      tasks.unshift(newTask);
+      saveTodoTasks(tasks);
+
+      inp.value = '';
+      const amtInp = document.getElementById('quickTaskEstAmount');
+      if (amtInp) amtInp.value = '';
+      showToast(`✅ تمت إضافة المهمة: ${title}`);
+      renderTasksProList();
+    }
+
+    function toggleDrawerTaskCompletion(taskId) {
+      const tasks = getTodoTasks();
+      const task = tasks.find(t => t.id === taskId);
+      if (!task) return;
+      task.completed = !task.completed;
+      if (task.completed) {
+        task.completedAt = new Date().toISOString();
+        showToast('🎉 أحسنت! تم إنجاز المهمة بنجاح');
+      }
+      saveTodoTasks(tasks);
+      renderTasksProList();
+    }
+
+    function toggleTaskStar(taskId) {
+      const tasks = getTodoTasks();
+      const task = tasks.find(t => t.id === taskId);
+      if (!task) return;
+      task.starred = !task.starred;
+      saveTodoTasks(tasks);
+      renderTasksProList();
+    }
+
+    function deleteDrawerTask(taskId) {
+      if (!confirm('هل أنت متأكد من حذف هذه المهمة نهائياً؟')) return;
+      let tasks = getTodoTasks();
+      tasks = tasks.filter(t => t.id !== taskId);
+      saveTodoTasks(tasks);
+      showToast('🗑️ تم حذف المهمة بنجاح');
+      renderTasksProList();
+    }
+
+    function convertTaskToExpense(taskId) {
+      const tasks = getTodoTasks();
+      const task = tasks.find(t => t.id === taskId);
+      if (!task) return;
+
+      closeTasksFullScreenModal();
+
+      let targetCat = 'other';
+      if (task.tag === 'bills') targetCat = 'bills';
+      else if (task.tag === 'shopping') targetCat = 'food';
+      else if (task.tag === 'home') targetCat = 'house';
+      else if (task.tag === 'family') targetCat = 'other';
+
+      openTxModal('expense', targetCat);
+
+      setTimeout(() => {
+        const labelInp = document.getElementById('inpTxLabel');
+        const amountInp = document.getElementById('inpTxAmount');
+        const memberInp = document.getElementById('inpTxMember');
+
+        if (labelInp) labelInp.value = task.title;
+        if (amountInp && task.estimatedAmount) amountInp.value = task.estimatedAmount;
+        if (memberInp && task.assignedMember) memberInp.value = task.assignedMember;
+
+        task.isExpenseConverted = true;
+        task.completed = true;
+        saveTodoTasks(tasks);
+      }, 150);
+    }
+
+    function toggleSubtaskCompleted(taskId, subtaskId) {
+      const tasks = getTodoTasks();
+      const task = tasks.find(t => t.id === taskId);
+      if (!task || !task.subtasks) return;
+      const sub = task.subtasks.find(s => s.id === subtaskId);
+      if (!sub) return;
+      sub.completed = !sub.completed;
+      saveTodoTasks(tasks);
+      renderTasksProList();
+    }
+
+    function toggleSubtaskForm(taskId, forceOpen = null) {
+      const box = document.getElementById(`subtaskAddBox_${taskId}`);
+      if (!box) return;
+      const willOpen = forceOpen !== null ? forceOpen : (box.style.display === 'none');
+      box.style.display = willOpen ? 'block' : 'none';
+      if (willOpen) {
+        const inp = document.getElementById(`inpSubtaskTitle_${taskId}`);
+        if (inp) inp.focus();
+      }
+    }
+
+    function addSubtaskToTask(taskId) {
+      const titleInp = document.getElementById(`inpSubtaskTitle_${taskId}`);
+      const title = titleInp ? titleInp.value.trim() : '';
+      if (!title) {
+        showToast('⚠️ يرجى كتابة بيان الخطوة الفرعية');
+        if (titleInp) titleInp.focus();
+        return;
+      }
+
+      const tasks = getTodoTasks();
+      const task = tasks.find(t => t.id === taskId);
+      if (!task) return;
+
+      if (!task.subtasks) task.subtasks = [];
+      const newSub = {
+        id: 'sub_' + Date.now(),
+        title: title,
+        completed: false,
+        photoUri: window.pendingSubtaskPhotos[taskId] || null
+      };
+
+      task.subtasks.push(newSub);
+      saveTodoTasks(tasks);
+      delete window.pendingSubtaskPhotos[taskId];
+
+      titleInp.value = '';
+      toggleSubtaskForm(taskId, false);
+      showToast('✅ تمت إضافة الخطوة الفرعية بنجاح');
+      renderTasksProList();
+    }
+
+    function deleteSubtask(taskId, subtaskId) {
+      const tasks = getTodoTasks();
+      const task = tasks.find(t => t.id === taskId);
+      if (!task || !task.subtasks) return;
+      task.subtasks = task.subtasks.filter(s => s.id !== subtaskId);
+      saveTodoTasks(tasks);
+      renderTasksProList();
+    }
+
+    function handleSubtaskPhotoPicked(event, taskId) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          const maxDim = 500;
+          let w = img.width, h = img.height;
+          if (w > h && w > maxDim) { h = Math.round((h * maxDim) / w); w = maxDim; }
+          else if (h > maxDim) { w = Math.round((w * maxDim) / h); h = maxDim; }
+          canvas.width = w; canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          const compressed = canvas.toDataURL('image/jpeg', 0.80);
+          window.pendingSubtaskPhotos[taskId] = compressed;
+          const badge = document.getElementById(`subtaskPhotoBadge_${taskId}`);
+          if (badge) badge.style.display = 'inline';
+          showToast('📷 تم التقاط صورة الخطوة بنجاح');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function openNewTaskDrawerModal() {
+      const modal = document.getElementById('newTaskDrawerModal');
+      if (modal) {
+        modal.style.display = 'flex';
+        const titleInp = document.getElementById('drawerNewTaskTitle');
+        if (titleInp) {
+          titleInp.value = '';
+          setTimeout(() => titleInp.focus(), 150);
+        }
+      }
+    }
+
+    function handleDrawerAddNewTask() {
+      const titleInp = document.getElementById('drawerNewTaskTitle');
+      const title = titleInp ? titleInp.value.trim() : '';
+      if (!title) {
+        showToast('⚠️ يرجى كتابة عنوان المهمة');
+        if (titleInp) titleInp.focus();
+        return;
+      }
+
+      const mem = document.getElementById('drawerNewTaskMember')?.value || 'البيت';
+      const prio = document.getElementById('drawerNewTaskPriority')?.value || 'normal';
+      const tag = document.getElementById('drawerNewTaskTag')?.value || 'general';
+      const estAmt = parseFloat(document.getElementById('drawerNewTaskAmount')?.value || 0) || null;
+      const dtVal = document.getElementById('drawerNewTaskDateTimeInput')?.value || '';
+
+      let dueDate = '', dueTime = '';
+      if (dtVal) {
+        const parts = dtVal.split('T');
+        dueDate = parts[0] || '';
+        dueTime = parts[1] || '';
+      }
+
+      const newTask = {
+        id: 'task_' + Date.now(),
+        title: title,
+        completed: false,
+        dueDate: dueDate,
+        dueTime: dueTime,
+        priority: prio,
+        tag: tag,
+        assignedMember: mem,
+        estimatedAmount: estAmt,
+        isExpenseConverted: false,
+        starred: prio === 'high',
+        photoUri: currentPendingTaskPhotoUri || null,
+        subtasks: [],
+        createdAt: new Date().toISOString()
+      };
+
+      const tasks = getTodoTasks();
+      tasks.unshift(newTask);
+      saveTodoTasks(tasks);
+
+      currentPendingTaskPhotoUri = null;
+      closeModal('newTaskDrawerModal');
+      showToast(`✅ تمت إضافة المهمة بنجاح: ${title}`);
+      renderTasksProList();
+    }
+
     function setTaskDateTimePreset(preset, targetInputId = 'drawerNewTaskDateTimeInput') {
       const inp = document.getElementById(targetInputId);
       if (!inp) return;
-
       const now = new Date();
       if (preset === 'clear') {
         inp.value = '';
         showToast('تم مسح موعد المهمة');
         return;
       }
-
       let targetDate = new Date(now.getTime());
       if (preset === 'today_evening') {
         targetDate.setHours(20, 0, 0, 0);
       } else if (preset === 'tomorrow_morning') {
         targetDate.setDate(targetDate.getDate() + 1);
-        targetDate.setHours(10, 0, 0, 0);
-      } else if (preset === 'after_two_days') {
-        targetDate.setDate(targetDate.getDate() + 2);
-        targetDate.setHours(12, 0, 0, 0);
+        targetDate.setHours(9, 0, 0, 0);
       } else if (preset === 'weekend') {
-        // الجمعة القادمة الساعة 5 مساءً
-        const day = targetDate.getDay();
-        const diff = (5 - day + 7) % 7 || 7;
-        targetDate.setDate(targetDate.getDate() + diff);
-        targetDate.setHours(17, 0, 0, 0);
+        const dayOfWeek = now.getDay();
+        const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
+        targetDate.setDate(targetDate.getDate() + daysUntilFriday);
+        targetDate.setHours(18, 0, 0, 0);
       }
-
-      const yyyy = targetDate.getFullYear();
-      const mm = String(targetDate.getMonth() + 1).padStart(2, '0');
-      const dd = String(targetDate.getDate()).padStart(2, '0');
+      const y = targetDate.getFullYear();
+      const m = String(targetDate.getMonth() + 1).padStart(2, '0');
+      const d = String(targetDate.getDate()).padStart(2, '0');
       const hh = String(targetDate.getHours()).padStart(2, '0');
-      const min = String(targetDate.getMinutes()).padStart(2, '0');
-
-      inp.value = `${yyyy}-${mm}-${dd}T${hh}:${min}`;
-      showToast(`⏰ تم ضبط الموعد: ${formatArabicDateTime(inp.value)}`);
-    }
-
-    function formatArabicDateTime(dtStr) {
-      if (!dtStr) return '';
-      try {
-        const parts = dtStr.split('T');
-        const dParts = parts[0].split('-');
-        const year = dParts[0];
-        const month = parseInt(dParts[1], 10);
-        const day = parseInt(dParts[2], 10);
-        
-        const monthNames = ['', 'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
-        const mName = monthNames[month] || dParts[1];
-
-        let timeStr = '';
-        if (parts[1]) {
-          const tParts = parts[1].split(':');
-          let hours = parseInt(tParts[0], 10);
-          const minutes = tParts[1] || '00';
-          const period = hours >= 12 ? 'م' : 'ص';
-          hours = hours % 12 || 12;
-          timeStr = ` - ${hours}:${minutes} ${period}`;
-        }
-        return `${day} ${mName}${timeStr}`;
-      } catch(e) {
-        return dtStr;
-      }
-    }
-
-    function openNewTaskDrawerModal() {
-      openModal('newTaskDrawerModal');
-      setTimeout(() => {
-        const inp = document.getElementById('drawerNewTaskTitleInput');
-        if (inp) inp.focus();
-      }, 150);
-    }
-
-    function switchDrawerTodoSection(sec) {
-      currentDrawerTodoSection = sec;
-      const tabs = ['my_day', 'important', 'planned', 'overdue', 'all', 'completed'];
-      tabs.forEach(t => {
-        const btnId = 'btnDrawerTodo' + (t === 'my_day' ? 'MyDay' : (t === 'important' ? 'Important' : (t === 'planned' ? 'Planned' : (t === 'overdue' ? 'Overdue' : (t === 'all' ? 'All' : 'Completed')))));
-        const btn = document.getElementById(btnId);
-        if (btn) {
-          if (t === sec) {
-            btn.className = 'exp-tab-btn active';
-            btn.style.background = (sec === 'overdue') ? 'rgba(239, 68, 68, 0.25)' : 'rgba(168, 85, 247, 0.25)';
-            btn.style.color = (sec === 'overdue') ? '#f87171' : '#c084fc';
-            btn.style.border = 'none';
-          } else {
-            btn.className = 'exp-tab-btn';
-            btn.style.background = 'transparent';
-            btn.style.color = (t === 'overdue') ? '#ef4444' : '#94a3b8';
-            btn.style.border = (t === 'overdue') ? '1px solid rgba(239,68,68,0.25)' : '1px solid rgba(255,255,255,0.1)';
-          }
-        }
-      });
-      renderDrawerTasksList();
+      const mm = String(targetDate.getMinutes()).padStart(2, '0');
+      inp.value = `${y}-${m}-${d}T${hh}:${mm}`;
     }
 
     function handleTaskPhotoUpload(event) {
       const file = event.target.files && event.target.files[0];
       if (!file) return;
-
       const reader = new FileReader();
       reader.onload = function(e) {
         const img = new Image();
         img.onload = function() {
-          const maxDim = 900;
-          let w = img.width, h = img.height;
-          if (w > maxDim || h > maxDim) {
-            if (w > h) { h = Math.round((h * maxDim) / w); w = maxDim; }
-            else { w = Math.round((w * maxDim) / h); h = maxDim; }
-          }
           const canvas = document.createElement('canvas');
+          const maxDim = 600;
+          let w = img.width, h = img.height;
+          if (w > h && w > maxDim) { h = Math.round((h * maxDim) / w); w = maxDim; }
+          else if (h > maxDim) { w = Math.round((w * maxDim) / h); h = maxDim; }
           canvas.width = w; canvas.height = h;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, w, h);
-          currentPendingTaskPhotoUri = canvas.toDataURL('image/jpeg', 0.80);
-          
-          const preview = document.getElementById('taskPendingPhotoPreview');
+          const compressed = canvas.toDataURL('image/jpeg', 0.82);
+          currentPendingTaskPhotoUri = compressed;
           const previewImg = document.getElementById('taskPendingPhotoImg');
-          if (preview) preview.style.display = 'block';
-          if (previewImg) previewImg.src = currentPendingTaskPhotoUri;
-          showToast('📸 تم إرفاق صورة للمهمة بنجاح');
+          const previewCont = document.getElementById('taskPendingPhotoPreview');
+          if (previewImg) previewImg.src = compressed;
+          if (previewCont) previewCont.style.display = 'block';
+          showToast('📷 تم إرفاق الصورة للمهمة');
         };
         img.src = e.target.result;
       };
@@ -29862,259 +30233,24 @@ function installDailyNoonTrigger() {
 
     function clearTaskPendingPhoto() {
       currentPendingTaskPhotoUri = null;
-      const preview = document.getElementById('taskPendingPhotoPreview');
-      const previewImg = document.getElementById('taskPendingPhotoImg');
-      if (preview) preview.style.display = 'none';
-      if (previewImg) previewImg.src = '';
+      const previewCont = document.getElementById('taskPendingPhotoPreview');
+      if (previewCont) previewCont.style.display = 'none';
     }
 
-    function handleDrawerAddNewTask() {
-      const titleInp = document.getElementById('drawerNewTaskTitleInput');
-      const dtInp = document.getElementById('drawerNewTaskDateTimeInput');
-      const prioritySel = document.getElementById('drawerNewTaskPriority');
-      const tagSel = document.getElementById('drawerNewTaskTag');
-
-      const title = titleInp ? titleInp.value.trim() : '';
-      if (!title) {
-        showToast('⚠️ يرجى كتابة عنوان أو بيان المهمة');
-        if (titleInp) titleInp.focus();
-        return;
-      }
-
-      const dtVal = dtInp ? dtInp.value : '';
-      let dueDate = '', dueTime = '';
-      if (dtVal) {
-        const parts = dtVal.split('T');
-        dueDate = parts[0] || '';
-        dueTime = parts[1] ? parts[1].slice(0, 5) : '';
-      }
-
-      const priority = prioritySel ? prioritySel.value : 'normal';
-      const tag = tagSel ? tagSel.value : 'general';
-
-      const tasks = getTodoTasks();
-      const newTask = {
-        id: 'task-' + Date.now(),
-        title: title,
-        dueDateTime: dtVal,
-        dueDate: dueDate,
-        dueTime: dueTime,
-        priority: priority,
-        tag: tag,
-        completed: false,
-        starred: (currentDrawerTodoSection === 'important' || priority === 'high'),
-        photo: currentPendingTaskPhotoUri || null,
-        subtasks: [],
-        reminderFired: false,
-        createdAt: new Date().toISOString(),
-        author: state.currentUser || 'ماهر'
-      };
-
-      tasks.unshift(newTask);
-      saveTodoTasks(tasks);
-
-      if (titleInp) titleInp.value = '';
-      if (dtInp) dtInp.value = '';
-      clearTaskPendingPhoto();
-      closeModal('newTaskDrawerModal');
-      playNotificationChime();
-      renderDrawerTasksList();
-      showToast('✨ تمت إضافة المهمة والموعد بنجاح!');
-    }
-
-    function handleSubtaskPhotoPicked(event, taskId) {
-      const file = event.target.files && event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        const img = new Image();
-        img.onload = function() {
-          const maxDim = 800;
-          let w = img.width, h = img.height;
-          if (w > maxDim || h > maxDim) {
-            if (w > h) { h = Math.round((h * maxDim) / w); w = maxDim; }
-            else { w = Math.round((w * maxDim) / h); h = maxDim; }
-          }
-          const canvas = document.createElement('canvas');
-          canvas.width = w; canvas.height = h;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, w, h);
-          window.pendingSubtaskPhotos[taskId] = canvas.toDataURL('image/jpeg', 0.80);
-          
-          const badge = document.getElementById(`subtaskPhotoBadge_${taskId}`);
-          if (badge) badge.style.display = 'inline';
-          showToast('📷 تم إرفاق صورة للمهمة الفرعية');
-        };
-        img.src = evt.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function toggleSubtaskCompleted(taskId, subtaskId) {
-      const tasks = getTodoTasks();
-      const task = tasks.find(t => t.id === taskId);
-      if (task && task.subtasks) {
-        const sub = task.subtasks.find(s => s.id === subtaskId);
-        if (sub) {
-          sub.completed = !sub.completed;
-          saveTodoTasks(tasks);
-          playNotificationChime();
-          renderDrawerTasksList();
-          showToast(sub.completed ? '✓ اكتملت المهمة الفرعية' : 'تمت إعادة فتح المهمة الفرعية');
-        }
-      }
-    }
-
-    
-    // التحكم في إظهار وإخفاء نموذج إضافة الخطوة الفرعية
-    function toggleSubtaskForm(taskId, forceOpen = null) {
-      const box = document.getElementById(`subtaskAddBox_${taskId}`);
-      if (!box) return;
-      const isOpen = box.style.display !== 'none';
-      const willOpen = (forceOpen !== null) ? forceOpen : !isOpen;
-      box.style.display = willOpen ? 'block' : 'none';
-      if (willOpen) {
-        setTimeout(() => {
-          const inp = document.getElementById(`inpSubtaskTitle_${taskId}`);
-          if (inp) inp.focus();
-        }, 100);
-      }
-    }
-
-    // تبديل ظهور دليل وإرشادات آلية عمل المهام
-    function toggleTasksGuideDetails() {
-      const body = document.getElementById('tasksGuideDetailsBody');
-      const chev = document.getElementById('tasksGuideChevron');
-      if (!body) return;
-      const isOpen = body.style.display !== 'none';
-      body.style.display = isOpen ? 'none' : 'block';
-      if (chev) {
-        chev.className = isOpen ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-up';
-      }
-    }
-
-    function addSubtaskToTask(taskId) {
-      const titleInp = document.getElementById(`inpSubtaskTitle_${taskId}`);
-      const dtInp = document.getElementById(`inpSubtaskDateTime_${taskId}`);
-      const title = titleInp ? titleInp.value.trim() : '';
-      if (!title) {
-        showToast('⚠️ يرجى كتابة عنوان المهمة الفرعية');
-        if (titleInp) titleInp.focus();
-        return;
-      }
-
-      const dtVal = dtInp ? dtInp.value : '';
-      let dueDate = '', dueTime = '';
-      if (dtVal) {
-        const parts = dtVal.split('T');
-        dueDate = parts[0] || '';
-        dueTime = parts[1] ? parts[1].slice(0, 5) : '';
-      }
-
-      const tasks = getTodoTasks();
-      const task = tasks.find(t => t.id === taskId);
-      if (task) {
-        if (!task.subtasks) task.subtasks = [];
-        const photo = (window.pendingSubtaskPhotos && window.pendingSubtaskPhotos[taskId]) || null;
-        task.subtasks.push({
-          id: 'sub-' + Date.now(),
-          title: title,
-          dueDateTime: dtVal,
-          dueDate: dueDate,
-          dueTime: dueTime,
-          photo: photo,
-          completed: false,
-          reminderFired: false
-        });
-        if (window.pendingSubtaskPhotos) delete window.pendingSubtaskPhotos[taskId];
-        saveTodoTasks(tasks);
-        renderDrawerTasksList();
-        showToast('✓ تمت إضافة الخطوة الفرعية وتحديث نسبة الإنجاز');
-      }
-    }
-
-    function deleteSubtask(taskId, subtaskId) {
-      const tasks = getTodoTasks();
-      const task = tasks.find(t => t.id === taskId);
-      if (task && task.subtasks) {
-        task.subtasks = task.subtasks.filter(s => s.id !== subtaskId);
-        saveTodoTasks(tasks);
-        renderDrawerTasksList();
-        showToast('🗑️ تم حذف المهمة الفرعية');
-      }
-    }
-
-    // تحويل المهمة إلى مصروف أو التزام مالي بلمسة واحدة
-    function convertTaskToExpense(taskId) {
-      const tasks = getTodoTasks();
-      const task = tasks.find(t => t.id === taskId);
-      if (!task) return;
-
-      closeSummaryLeftDrawer();
-      
-      let preCat = 'other';
-      if (task.tag === 'bills') preCat = 'bills';
-      else if (task.tag === 'shopping') preCat = 'food';
-      else if (task.tag === 'home') preCat = 'house';
-
-      setTimeout(() => {
-        openTxModal('expense', preCat);
-        const labelInp = document.getElementById('inpTxLabel');
-        if (labelInp) {
-          labelInp.value = task.title;
-        }
-        showToast(`💡 تم تجهيز تسجيل مصروف للمهمة: ${task.title}`);
-      }, 250);
-    }
-
-    // تعديل المهمة سريعا
-    function openEditTaskPrompt(taskId) {
-      const tasks = getTodoTasks();
-      const task = tasks.find(t => t.id === taskId);
-      if (!task) return;
-
-      const newTitle = prompt('تعديل عنوان المهمة:', task.title);
-      if (newTitle !== null && newTitle.trim()) {
-        task.title = newTitle.trim();
-        saveTodoTasks(tasks);
-        renderDrawerTasksList();
-        showToast('✓ تم تحديث عنوان المهمة بنجاح');
-      }
-    }
-
-    
-    function openTasksFullScreenModal() {
-      const modal = document.getElementById('tasksFullScreenModal');
-      if (modal) {
-        modal.style.display = 'block';
-        if (typeof pushModalState === 'function') pushModalState('tasksFullScreenModal');
-      }
-      renderDrawerTasksList();
-    }
-
-    function closeTasksFullScreenModal() {
-      const modal = document.getElementById('tasksFullScreenModal');
-      if (modal) modal.style.display = 'none';
-    }
-
-    function renderDrawerTasksList() {
-      const container = document.getElementById('drawerTasksContainerList');
-      const badge = document.getElementById('drawerTasksCountBadge');
+    function renderTasksProList() {
+      const container = document.getElementById('tasksFullScreenContainerList');
       if (!container) return;
 
       const allTasks = getTodoTasks();
       const now = new Date();
       const todayStr = getLocalDateStr(now);
       const currentHHMM = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
-      const currentIsoPrefix = `${todayStr}T${currentHHMM}`;
 
-      // 1. حساب مؤشرات الـ KPIs المعتمدة بدقة رياضية
       const totalCount = allTasks.length;
       const activeCount = allTasks.filter(t => !t.completed).length;
       const completedCount = allTasks.filter(t => t.completed).length;
       const overdueCount = allTasks.filter(t => {
         if (t.completed) return false;
-        if (t.dueDateTime) return t.dueDateTime < currentIsoPrefix;
         if (t.dueDate) {
           if (t.dueDate < todayStr) return true;
           if (t.dueDate === todayStr && t.dueTime && t.dueTime < currentHHMM) return true;
@@ -30122,35 +30258,41 @@ function installDailyNoonTrigger() {
         return false;
       }).length;
 
-      const kpiTotalEl = document.getElementById('kpiTasksTotal');
-      const kpiActiveEl = document.getElementById('kpiTasksActive');
-      const kpiOverdueEl = document.getElementById('kpiTasksOverdue');
-      const kpiDoneEl = document.getElementById('kpiTasksDone');
-      const progBarEl = document.getElementById('tasksOverallProgressBar');
-      const progPctEl = document.getElementById('tasksOverallProgressPct');
+      const kTot = document.getElementById('kpiTasksTotalFull');
+      const kAct = document.getElementById('kpiTasksActiveFull');
+      const kOvd = document.getElementById('kpiTasksOverdueFull');
+      const kDon = document.getElementById('kpiTasksDoneFull');
+      const bProg = document.getElementById('tasksOverallProgressBarFull');
+      const pProg = document.getElementById('tasksOverallProgressPctFull');
+      const pBadge = document.getElementById('tasksProductivityBadge');
 
-      if (kpiTotalEl) kpiTotalEl.textContent = totalCount;
-      if (kpiActiveEl) kpiActiveEl.textContent = activeCount;
-      if (kpiOverdueEl) kpiOverdueEl.textContent = overdueCount;
-      if (kpiDoneEl) kpiDoneEl.textContent = completedCount;
-      if (badge) badge.textContent = activeCount;
+      if (kTot) kTot.textContent = totalCount;
+      if (kAct) kAct.textContent = activeCount;
+      if (kOvd) kOvd.textContent = overdueCount;
+      if (kDon) kDon.textContent = completedCount;
 
       const overallPct = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
-      if (progBarEl) progBarEl.style.width = overallPct + '%';
-      if (progPctEl) progPctEl.textContent = overallPct + '%';
+      if (bProg) bProg.style.width = overallPct + '%';
+      if (pProg) pProg.textContent = overallPct + '%';
+      if (pBadge) {
+        if (overallPct === 100 && totalCount > 0) pBadge.textContent = '🌟 إنجاز 100% مبهر!';
+        else if (overallPct >= 60) pBadge.textContent = '🔥 إنتاجية عالية';
+        else pBadge.textContent = `${activeCount} مهام متبقية`;
+      }
 
-      // 2. الفلترة المتقدمة حسب القسم المختار
+      // تطبيق تصفية القسم الذكي (Smart Lists)
       let filtered = allTasks;
       if (currentDrawerTodoSection === 'my_day') {
         filtered = allTasks.filter(t => !t.completed && (t.dueDate === todayStr || !t.dueDate));
       } else if (currentDrawerTodoSection === 'important') {
         filtered = allTasks.filter(t => !t.completed && (t.starred || t.priority === 'high'));
       } else if (currentDrawerTodoSection === 'planned') {
-        filtered = allTasks.filter(t => !t.completed && Boolean(t.dueDate || t.dueDateTime));
+        filtered = allTasks.filter(t => !t.completed && Boolean(t.dueDate));
+      } else if (currentDrawerTodoSection === 'shopping') {
+        filtered = allTasks.filter(t => !t.completed && (t.tag === 'shopping' || (t.estimatedAmount && t.estimatedAmount > 0)));
       } else if (currentDrawerTodoSection === 'overdue') {
         filtered = allTasks.filter(t => {
           if (t.completed) return false;
-          if (t.dueDateTime) return t.dueDateTime < currentIsoPrefix;
           if (t.dueDate) {
             if (t.dueDate < todayStr) return true;
             if (t.dueDate === todayStr && t.dueTime && t.dueTime < currentHHMM) return true;
@@ -30163,41 +30305,36 @@ function installDailyNoonTrigger() {
         filtered = allTasks.filter(t => !t.completed);
       }
 
-      const syncTasksFull = () => {
-        const fullContainer = document.getElementById('tasksFullScreenContainerList');
-        if (fullContainer) fullContainer.innerHTML = container.innerHTML;
-        const kTot = document.getElementById('kpiTasksTotalFull');
-        const kAct = document.getElementById('kpiTasksActiveFull');
-        const kOvd = document.getElementById('kpiTasksOverdueFull');
-        const kDon = document.getElementById('kpiTasksDoneFull');
-        const bProg = document.getElementById('tasksOverallProgressBarFull');
-        const pProg = document.getElementById('tasksOverallProgressPctFull');
-        if (kTot) kTot.textContent = totalCount;
-        if (kAct) kAct.textContent = activeCount;
-        if (kOvd) kOvd.textContent = overdueCount;
-        if (kDon) kDon.textContent = completedCount;
-        if (bProg) bProg.style.width = overallPct + '%';
-        if (pProg) pProg.textContent = overallPct + '%';
-      };
+      // تطبيق فلترة العضو المختار
+      if (currentTasksMemberFilter && currentTasksMemberFilter !== 'all') {
+        filtered = filtered.filter(t => (t.assignedMember || 'البيت') === currentTasksMemberFilter);
+      }
+
+      // تطبيق نص البحث إذا وجد
+      const q = (document.getElementById('tasksSearchInput')?.value || '').trim().toLowerCase();
+      if (q) {
+        filtered = filtered.filter(t => {
+          const title = (t.title || '').toLowerCase();
+          const mem = (t.assignedMember || '').toLowerCase();
+          const tag = (t.tag || '').toLowerCase();
+          const subMatch = (t.subtasks || []).some(s => (s.title || '').toLowerCase().includes(q));
+          return title.includes(q) || mem.includes(q) || tag.includes(q) || subMatch;
+        });
+      }
 
       if (filtered.length === 0) {
         container.innerHTML = `
-          <div style="text-align: center; padding: 40px 14px; background: rgba(15, 23, 42, 0.65); border: 1.5px dashed rgba(168, 85, 247, 0.30); border-radius: 16px; margin-top: 6px;">
-            <div style="width: 52px; height: 52px; border-radius: 50%; background: rgba(168, 85, 247, 0.15); color: #c084fc; display: inline-flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 10px;">
-              <i class="fa-solid fa-list-check"></i>
+          <div style="text-align: center; padding: 45px 16px; background: rgba(15, 23, 42, 0.65); border: 1.5px dashed rgba(168, 85, 247, 0.35); border-radius: 16px; margin-top: 6px;">
+            <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(168, 85, 247, 0.15); color: #c084fc; display: inline-flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 12px;">
+              <i class="fa-solid fa-clipboard-check"></i>
             </div>
-            <div style="font-weight: 850; font-size: 0.88rem; color: #f8fafc;">لا توجد مهام في هذا القسم حالياً</div>
-            <div style="font-size: 0.72rem; color: #94a3b8; margin: 6px 0 14px;">يمكنك إضافة مهمة جديدة وتحديد الموعد والتنبيهات الموحدة بخطوة واحدة</div>
-            <button type="button" onclick="openNewTaskDrawerModal()" style="height: 36px; padding: 0 18px; border-radius: 10px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.76rem; font-weight: 850; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 10px rgba(168, 85, 247, 0.35);">
-              <i class="fa-solid fa-plus"></i> + إضافة مهمة جديدة الآن
-            </button>
+            <div style="font-weight: 850; font-size: 0.95rem; color: #f8fafc;">لا توجد مهام في هذه القائمة حالياً</div>
+            
           </div>
         `;
-        syncTasksFull();
         return;
       }
 
-      // قواميس الوسوم والتصنيفات والأولويات
       const TAG_LABELS = {
         bills: { name: 'فواتير والتزامات', icon: 'fa-receipt', color: '#f97316' },
         shopping: { name: 'مشتريات', icon: 'fa-cart-shopping', color: '#10b981' },
@@ -30207,221 +30344,165 @@ function installDailyNoonTrigger() {
         general: { name: 'عام', icon: 'fa-tag', color: '#94a3b8' }
       };
 
-      const PRIORITY_BADGES = {
-        high: `<span class="task-badge task-badge-urgent"><i class="fa-solid fa-fire"></i> عاجل</span>`,
-        medium: `<span class="task-badge" style="background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.35); color: #fbbf24;"><i class="fa-solid fa-star"></i> متوسط</span>`,
-        normal: ''
-      };
-
       container.innerHTML = filtered.map(t => {
         const isDone = t.completed;
         const isStar = t.starred;
         const subtasks = t.subtasks || [];
-        const completedSubs = subtasks.filter(s => s.completed).length;
         const hasSubs = subtasks.length > 0;
-        const progressPct = hasSubs ? Math.round((completedSubs / subtasks.length) * 100) : 0;
+        const subsCompleted = subtasks.filter(s => s.completed).length;
 
-        // حالة الموعد والوقت الموحد
-        let dueBadgeHtml = '';
-        let cardStateClass = '';
+        const isOverdue = !isDone && t.dueDate && (t.dueDate < todayStr || (t.dueDate === todayStr && t.dueTime && t.dueTime < currentHHMM));
+        const isDueToday = !isDone && t.dueDate === todayStr;
 
-        const effectiveDt = t.dueDateTime || (t.dueDate ? `${t.dueDate}${t.dueTime ? 'T' + t.dueTime : ''}` : '');
-        if (effectiveDt) {
-          const isOverdue = !isDone && effectiveDt < currentIsoPrefix;
-          const isToday = !isDone && (t.dueDate === todayStr || effectiveDt.startsWith(todayStr));
-          const formattedDt = formatArabicDateTime(effectiveDt);
-
+        let dateBadge = '';
+        if (t.dueDate) {
           if (isOverdue) {
-            cardStateClass = 'is-overdue';
-            dueBadgeHtml = `<span class="task-badge task-badge-overdue"><i class="fa-solid fa-triangle-exclamation"></i> متأخرة: ${formattedDt}</span>`;
-          } else if (isToday) {
-            cardStateClass = 'is-today';
-            dueBadgeHtml = `<span class="task-badge task-badge-today"><i class="fa-regular fa-sun"></i> اليوم: ${formattedDt}</span>`;
+            dateBadge = `<span style="font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4);"><i class="fa-solid fa-triangle-exclamation"></i> متأخرة (${t.dueDate} ${t.dueTime || ''})</span>`;
+          } else if (isDueToday) {
+            dateBadge = `<span style="font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4);"><i class="fa-solid fa-clock"></i> اليوم ${t.dueTime || ''}</span>`;
           } else {
-            dueBadgeHtml = `<span class="task-badge task-badge-planned"><i class="fa-regular fa-calendar"></i> ${formattedDt}</span>`;
+            dateBadge = `<span style="font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);"><i class="fa-solid fa-calendar"></i> ${t.dueDate} ${t.dueTime || ''}</span>`;
           }
         }
 
-        const tagInfo = TAG_LABELS[t.tag] || TAG_LABELS.general;
-        const tagBadgeHtml = (t.tag && t.tag !== 'general')
-          ? `<span class="task-badge" style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); color: ${tagInfo.color};"><i class="fa-solid ${tagInfo.icon}"></i> ${tagInfo.name}</span>`
-          : '';
+        const tagObj = TAG_LABELS[t.tag] || TAG_LABELS.general;
+        const memberName = t.assignedMember || 'البيت';
 
-        const prioBadgeHtml = PRIORITY_BADGES[t.priority] || '';
-
-        // قائمة الخطوات الفرعية التفاعلية
-        const subtasksHtml = subtasks.map(s => {
-          const subDone = s.completed;
-          const subDt = s.dueDateTime || (s.dueDate ? `${s.dueDate}${s.dueTime ? 'T' + s.dueTime : ''}` : '');
-          const subDtText = subDt ? formatArabicDateTime(subDt) : '';
-
-          return `
-            <div class="subtask-row-item ${subDone ? 'done' : ''}">
-              <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0;">
-                <button type="button" onclick="toggleSubtaskCompleted('${t.id}', '${s.id}')" title="${subDone ? 'إعادة فتح الخطوة' : 'تعليم كمكتملة'}" style="background: transparent; border: none; padding: 0; cursor: pointer; color: ${subDone ? '#10b981' : '#c084fc'}; font-size: 1rem; display: flex; align-items: center; flex-shrink: 0;">
-                  <i class="fa-${subDone ? 'solid fa-circle-check' : 'regular fa-circle'}"></i>
-                </button>
-                <span style="font-size: 0.76rem; font-weight: 750; color: ${subDone ? '#64748b' : '#e2e8f0'}; text-decoration: ${subDone ? 'line-through' : 'none'}; word-break: break-word;">
-                  ${escapeHtml(s.title)}
-                </span>
-                ${subDtText ? `<span style="font-size: 0.60rem; color: #c084fc; background: rgba(168, 85, 247, 0.14); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 4px; padding: 1px 5px; white-space: nowrap;"><i class="fa-regular fa-clock"></i> ${subDtText}</span>` : ''}
-              </div>
-
-              <!-- صورة الخطوة الفرعية وزر حذفها -->
-              <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
-                ${s.photo ? `
-                  <img src="${s.photo}" onclick="openReceiptLightbox(this.src, 'مرفق الخطوة الفرعية: ${escapeHtml(s.title)}')" style="width: 22px; height: 22px; border-radius: 5px; object-fit: cover; border: 1.2px solid #a855f7; cursor: zoom-in;" title="تكبير الصورة">
-                ` : ''}
-                <button type="button" onclick="deleteSubtask('${t.id}', '${s.id}')" title="حذف الخطوة الفرعية" style="background: transparent; border: none; color: #ef4444; opacity: 0.75; cursor: pointer; font-size: 0.74rem; padding: 2px 4px;">
-                  <i class="fa-solid fa-trash-can"></i>
-                </button>
-              </div>
+        let subtasksHtml = subtasks.map(s => `
+          <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(15, 23, 42, 0.8); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px; flex: 1;">
+              <button type="button" onclick="toggleSubtaskCompleted('${t.id}', '${s.id}')" style="background: transparent; border: none; cursor: pointer; color: ${s.completed ? '#10b981' : '#94a3b8'}; font-size: 1.05rem; padding: 0;">
+                <i class="fa-${s.completed ? 'solid fa-circle-check' : 'regular fa-circle'}"></i>
+              </button>
+              <span style="font-size: 0.74rem; font-weight: 700; color: ${s.completed ? '#64748b' : '#f8fafc'}; text-decoration: ${s.completed ? 'line-through' : 'none'};">${escapeHtml(s.title)}</span>
             </div>
-          `;
-        }).join('');
+            <div style="display: flex; align-items: center; gap: 6px;">
+              ${s.photoUri ? `<img src="${s.photoUri}" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover; cursor: pointer;" onclick="openReceiptLightbox('${s.photoUri}', '${escapeHtml(s.title)}')">` : ''}
+              <button type="button" onclick="deleteSubtask('${t.id}', '${s.id}')" style="background: transparent; border: none; color: #ef4444; font-size: 0.75rem; cursor: pointer; opacity: 0.7;" title="حذف الخطوة">&times;</button>
+            </div>
+          </div>
+        `).join('');
 
         return `
-          <div class="task-card-item ${cardStateClass} ${isDone ? 'is-completed' : ''}">
-            <!-- السطر العلوي: علامة الاكتمال + العنوان + الأوسمة والأزرار -->
-            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;">
-              <div style="display: flex; align-items: flex-start; gap: 9px; flex: 1; min-width: 0;">
-                <button type="button" onclick="toggleTaskCompleted('${t.id}')" class="task-check-circle" title="${isDone ? 'إعادة فتح المهمة' : 'تعليم كمكتملة'}" style="margin-top: 1px; color: ${isDone ? '#10b981' : '#c084fc'}; font-size: 1.18rem;">
+          <div class="task-card-item" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1.3px solid ${isDone ? 'rgba(52, 211, 153, 0.4)' : (t.priority === 'high' ? 'rgba(239, 68, 68, 0.45)' : 'rgba(168, 85, 247, 0.35)')}; border-radius: 14px; padding: 12px 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.35); transition: all 0.15s ease;">
+            
+            <!-- السطر العلوي: الشيك بوكس + العنوان + النجمة + الحذف -->
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;">
+              <div style="display: flex; align-items: flex-start; gap: 10px; flex: 1;">
+                <!-- أيقونة الدائرة التفاعلية (Todoist / Things 3 Style) -->
+                <button type="button" onclick="toggleDrawerTaskCompletion('${t.id}')" style="background: transparent; border: none; cursor: pointer; color: ${isDone ? '#34d399' : '#94a3b8'}; font-size: 1.35rem; line-height: 1; padding: 2px 0 0;" title="${isDone ? 'إلغاء الإنجاز' : 'تحديد كمكتملة'}">
                   <i class="fa-${isDone ? 'solid fa-circle-check' : 'regular fa-circle'}"></i>
                 </button>
-                <div style="flex: 1; min-width: 0;">
-                  <div style="font-size: 0.86rem; font-weight: 850; line-height: 1.35; color: ${isDone ? '#94a3b8' : '#f8fafc'}; text-decoration: ${isDone ? 'line-through' : 'none'}; word-break: break-word;">
+                <div style="flex: 1;">
+                  <div style="font-size: 0.92rem; font-weight: 900; color: ${isDone ? '#94a3b8' : '#f8fafc'}; text-decoration: ${isDone ? 'line-through' : 'none'}; line-height: 1.35;">
                     ${escapeHtml(t.title)}
-                  </div>
-                  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-top: 5px;">
-                    ${dueBadgeHtml}
-                    ${prioBadgeHtml}
-                    ${tagBadgeHtml}
-                    ${hasSubs ? `<span class="task-badge" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8;"><i class="fa-solid fa-list-check"></i> ${completedSubs}/${subtasks.length} خطوة</span>` : ''}
-                    <span style="font-size: 0.58rem; color: #64748b;">بواسطة: ${escapeHtml(t.author || 'العائلة')}</span>
                   </div>
                 </div>
               </div>
 
-              <!-- أدوات التحكم السريعة: تحويل لمصروف، تعديل، صورة، نجمة، حذف -->
-              <div style="display: flex; align-items: center; gap: 5px; flex-shrink: 0;">
-                ${t.photo ? `
-                  <img src="${t.photo}" onclick="openReceiptLightbox(this.src, 'مرفق المهمة: ${escapeHtml(t.title)}')" style="width: 26px; height: 26px; border-radius: 6px; object-fit: cover; border: 1.3px solid #a855f7; cursor: zoom-in;" title="تكبير الصورة المرفقة">
-                ` : ''}
-                <button type="button" onclick="convertTaskToExpense('${t.id}')" title="تحويل لمصروف مسجل بلمسة واحدة" style="height: 28px; padding: 0 8px; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.35); color: #34d399; border-radius: 8px; font-size: 0.68rem; font-weight: 850; display: inline-flex; align-items: center; gap: 4px; cursor: pointer;">
-                  <i class="fa-solid fa-money-bill-transfer"></i>
-                  <span>تحويل لمصروف</span>
-                </button>
-                <button type="button" onclick="openEditTaskPrompt('${t.id}')" title="تعديل عنوان المهمة" style="width: 28px; height: 28px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #cbd5e1; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;">
-                  <i class="fa-solid fa-pen" style="font-size: 0.72rem;"></i>
-                </button>
-                <button type="button" onclick="toggleTaskStarred('${t.id}')" title="${isStar ? 'إلغاء التمييز' : 'تمييز كمهمة هامة'}" style="width: 28px; height: 28px; background: transparent; border: none; color: ${isStar ? '#fbbf24' : '#64748b'}; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.85rem;">
+              <!-- أزرار الإجراءات السريعة: المفضلة / الحذف -->
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <button type="button" onclick="toggleTaskStar('${t.id}')" style="background: transparent; border: none; color: ${isStar ? '#fbbf24' : '#64748b'}; font-size: 1.1rem; cursor: pointer; padding: 0 2px;" title="${isStar ? 'إلغاء التمييز' : 'تمييز كمهمة هامة'}">
                   <i class="fa-${isStar ? 'solid' : 'regular'} fa-star"></i>
                 </button>
-                <button type="button" onclick="deleteTaskItem('${t.id}')" title="حذف المهمة" style="width: 28px; height: 28px; background: transparent; border: none; color: #ef4444; opacity: 0.8; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.85rem;">
+                <button type="button" onclick="deleteDrawerTask('${t.id}')" style="background: transparent; border: none; color: #ef4444; font-size: 0.95rem; cursor: pointer; opacity: 0.65; padding: 0 2px;" title="حذف المهمة">
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
               </div>
             </div>
 
-            <!-- شريط تقدم إنجاز المهام الفرعية (Progress Bar) -->
-            ${hasSubs ? `
-              <div style="width: 100%; height: 5px; background: rgba(15, 23, 42, 0.9); border-radius: 4px; overflow: hidden; margin-top: 4px;">
-                <div style="width: ${progressPct}%; height: 100%; background: ${progressPct === 100 ? 'linear-gradient(90deg, #10b981, #059669)' : 'linear-gradient(90deg, #a855f7, #38bdf8)'}; border-radius: 4px; transition: width 0.3s ease;"></div>
-              </div>
-            ` : ''}
+            <!-- سطر الشارات والبيانات المرجعية (Member, Due Date, Priority, Est Amount) -->
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06);">
+              <div style="display: flex; align-items: center; gap: 5px; flex-wrap: wrap;">
+                <!-- شارة الفرد المسند إليه -->
+                <span style="font-size: 0.66rem; font-weight: 850; padding: 2px 7px; border-radius: 6px; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">
+                  👤 ${escapeHtml(memberName)}
+                </span>
 
-            <!-- قسم الخطوات والمهام الفرعية المنسق والاحترافي -->
-            <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 8px; margin-top: 6px;">
-              <!-- هيدر الخطوات الفرعية مع زر الإضافة المنسق -->
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                <div style="display: flex; align-items: center; gap: 6px;">
-                  <i class="fa-solid fa-list-check" style="color: #c084fc; font-size: 0.80rem;"></i>
-                  <span style="font-size: 0.74rem; font-weight: 850; color: #f8fafc;">الخطوات والمهام الفرعية:</span>
-                  ${hasSubs ? `<span style="font-size: 0.62rem; color: #34d399; background: rgba(16, 185, 129, 0.16); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 4px; padding: 1px 5px; font-weight: 800;">${completedSubs} من ${subtasks.length} مكتملة (${progressPct}%)</span>` : ''}
-                </div>
-                <button type="button" onclick="toggleSubtaskForm('${t.id}')" style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.40); color: #c084fc; border-radius: 7px; padding: 3px 8px; font-size: 0.68rem; font-weight: 850; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; transition: all 0.15s ease;">
-                  <i class="fa-solid fa-plus"></i> إضافة خطوة فرعية
+                <!-- شارة التصنيف -->
+                <span style="font-size: 0.66rem; font-weight: 800; padding: 2px 7px; border-radius: 6px; background: rgba(255, 255, 255, 0.06); color: ${tagObj.color}; border: 1px solid rgba(255,255,255,0.1);">
+                  <i class="fa-solid ${tagObj.icon}"></i> ${tagObj.name}
+                </span>
+
+                <!-- شارة الأولوية -->
+                ${t.priority === 'high' ? `<span style="font-size: 0.66rem; font-weight: 900; padding: 2px 7px; border-radius: 6px; background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4);"><i class="fa-solid fa-fire"></i> عاجل P1</span>` : ''}
+
+                <!-- شارة الموعد -->
+                ${dateBadge}
+              </div>
+
+              <!-- جزء المبلغ المالي والتحويل لمصروف (Fintech Integration) -->
+              <div style="display: flex; align-items: center; gap: 6px;">
+                ${t.estimatedAmount ? `
+                  <span style="font-size: 0.72rem; font-weight: 900; color: #fbbf24; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35); padding: 2px 8px; border-radius: 6px; font-family: var(--font-numbers); direction: ltr; unicode-bidi: isolate;">
+                    ج.م ${Number(t.estimatedAmount).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                  </span>
+                ` : ''}
+
+                ${!isDone && t.estimatedAmount && !t.isExpenseConverted ? `
+                  <button type="button" onclick="convertTaskToExpense('${t.id}')" style="height: 26px; padding: 0 8px; border-radius: 6px; background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; font-size: 0.66rem; font-weight: 900; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);">
+                    <i class="fa-solid fa-credit-card"></i> تحويل لمصروف
+                  </button>
+                ` : (t.isExpenseConverted ? `
+                  <span style="font-size: 0.64rem; font-weight: 850; color: #34d399; background: rgba(16, 185, 129, 0.15); padding: 2px 6px; border-radius: 5px;">✓ تم الصرف</span>
+                ` : '')}
+              </div>
+            </div>
+
+            <!-- قسم الخطوات الفرعية (TickTick & MS To Do Checklist) -->
+            <div style="margin-top: 8px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+                <button type="button" onclick="toggleSubtaskForm('${t.id}')" style="background: transparent; border: none; color: #c084fc; font-size: 0.70rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; padding: 0;">
+                  <i class="fa-solid fa-plus-circle"></i> + إضافة خطوة فرعية
                 </button>
+                ${hasSubs ? `
+                  <span style="font-size: 0.66rem; color: #94a3b8; font-weight: 800;">
+                    ${subsCompleted} من ${subtasks.length} خطوات مكتملة
+                  </span>
+                ` : ''}
               </div>
 
-              <!-- قائمة الخطوات الفرعية المسجلة -->
+              <!-- قائمة الخطوات إن وجدت -->
               ${hasSubs ? `
-                <div style="display: flex; flex-direction: column; gap: 5px; margin-bottom: 6px;">
+                <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
                   ${subtasksHtml}
                 </div>
-              ` : `
-                <div style="font-size: 0.68rem; color: #64748b; padding: 4px 2px; text-align: right; margin-bottom: 4px;">
-                  💡 لم تتم إضافة خطوات فرعية بعد. انقر على "+ إضافة خطوة فرعية" لتفتيت المهمة لخطوات تنفيذية.
-                </div>
-              `}
+              ` : ''}
 
-              <!-- صندوق ونموذج إضافة خطوة فرعية مخصص ومنسق هندسياً -->
-              <div id="subtaskAddBox_${t.id}" style="display: none; background: rgba(15, 23, 42, 0.98); border: 1.5px solid rgba(168, 85, 247, 0.45); border-radius: 12px; padding: 10px 12px; margin-top: 8px; box-shadow: 0 4px 18px rgba(0,0,0,0.45);">
-                <div style="font-size: 0.74rem; font-weight: 900; color: #c084fc; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
-                  <span style="display: flex; align-items: center; gap: 5px;">
-                    <i class="fa-solid fa-circle-plus"></i> إضافة خطوة أو مهمة فرعية جديدة:
-                  </span>
-                  <button type="button" onclick="toggleSubtaskForm('${t.id}', false)" style="background: transparent; border: none; color: #94a3b8; font-size: 1.1rem; cursor: pointer;">&times;</button>
-                </div>
-
-                <!-- 1. عنوان وبيان الخطوة الفرعية -->
-                <div style="margin-bottom: 8px;">
-                  <input type="text" id="inpSubtaskTitle_${t.id}" placeholder="اكتب بيان الخطوة الفرعية... (مثال: سحب إيصال، شراء خضار)" style="width: 100%; height: 36px; background: rgba(30, 41, 59, 0.95); border: 1.2px solid rgba(168, 85, 247, 0.35); border-radius: 8px; color: #fff; padding: 0 10px; font-size: 0.78rem; font-weight: 700; outline: none;">
-                </div>
-
-                <!-- 2. صف التاريخ والوقت الموحد + تصوير وإرفاق الصورة -->
-                <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 10px;">
-                  <div style="flex: 1; position: relative;">
-                    <input type="datetime-local" id="inpSubtaskDateTime_${t.id}" class="task-datetime-input" style="width: 100%; height: 34px; background: rgba(30, 41, 59, 0.95); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; color: #fff; padding: 0 8px; font-size: 0.72rem; outline: none;">
-                  </div>
-
+              <!-- صندوق إضافة خطوة فرعية سريعة -->
+              <div id="subtaskAddBox_${t.id}" style="display: none; background: rgba(15, 23, 42, 0.95); border: 1.2px solid rgba(168, 85, 247, 0.4); border-radius: 10px; padding: 8px 10px; margin-top: 6px;">
+                <div style="display: flex; gap: 6px; align-items: center;">
+                  <input type="text" id="inpSubtaskTitle_${t.id}" placeholder="اكتب خطوة فرعية واضغط حفظ..." style="flex: 1; height: 32px; background: rgba(30, 41, 59, 0.9); border: 1px solid rgba(255,255,255,0.12); border-radius: 7px; color: #fff; padding: 0 8px; font-size: 0.74rem; font-weight: 700; outline: none;" onkeydown="if(event.key==='Enter') addSubtaskToTask('${t.id}')">
+                  
                   <!-- زر إرفاق صورة للخطوة الفرعية -->
                   <input type="file" id="inpSubtaskPhoto_${t.id}" accept="image/*" style="display: none;" onchange="handleSubtaskPhotoPicked(event, '${t.id}')">
-                  <button type="button" onclick="document.getElementById('inpSubtaskPhoto_${t.id}').click()" title="إرفاق صورة للخطوة الفرعية" id="btnSubtaskPhoto_${t.id}" style="height: 34px; padding: 0 10px; border-radius: 8px; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.35); color: #c084fc; font-size: 0.72rem; font-weight: 800; display: inline-flex; align-items: center; gap: 5px; cursor: pointer;">
+                  <button type="button" onclick="document.getElementById('inpSubtaskPhoto_${t.id}').click()" title="إرفاق صورة" style="height: 32px; padding: 0 8px; border-radius: 7px; background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.35); color: #c084fc; font-size: 0.72rem; cursor: pointer;">
                     <i class="fa-solid fa-camera"></i>
-                    <span>صورة</span>
-                    <span id="subtaskPhotoBadge_${t.id}" style="display: none; font-size: 0.65rem; color: #34d399; font-weight: 900;">✓</span>
                   </button>
-                </div>
-
-                <!-- 3. أزرار الحفظ والإلغاء المنسقة -->
-                <div style="display: flex; gap: 8px;">
-                  <button type="button" onclick="addSubtaskToTask('${t.id}')" style="flex: 2; height: 34px; border-radius: 8px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.76rem; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.3);">
-                    <i class="fa-solid fa-check"></i> حفظ الخطوة الفرعية
+                  <button type="button" onclick="addSubtaskToTask('${t.id}')" style="height: 32px; padding: 0 12px; border-radius: 7px; background: #a855f7; border: none; color: #fff; font-size: 0.72rem; font-weight: 850; cursor: pointer;">
+                    حفظ
                   </button>
-                  <button type="button" onclick="toggleSubtaskForm('${t.id}', false)" style="flex: 1; height: 34px; border-radius: 8px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); color: #94a3b8; font-size: 0.74rem; font-weight: 800; cursor: pointer;">
-                    إلغاء
+                  <button type="button" onclick="toggleSubtaskForm('${t.id}', false)" style="height: 32px; padding: 0 8px; border-radius: 7px; background: rgba(255,255,255,0.06); border: none; color: #94a3b8; font-size: 0.72rem; cursor: pointer;">
+                    &times;
                   </button>
                 </div>
               </div>
             </div>
+
+            <!-- صورة المرفق إن وجدت في المهمة الرئيسية -->
+            ${t.photoUri ? `
+              <div style="margin-top: 8px; text-align: center;">
+                <img src="${t.photoUri}" style="max-height: 100px; border-radius: 8px; border: 1.2px solid rgba(168, 85, 247, 0.4); object-fit: contain; cursor: pointer;" onclick="openReceiptLightbox('${t.photoUri}', '${escapeHtml(t.title)}')">
+              </div>
+            ` : ''}
           </div>
         `;
       }).join('');
     }
-    // =========================================================================
-    // 2. مهام Microsoft To-Do المتكاملة (Tasks Engine)
-    // =========================================================================
-    let currentTodoSection = 'my_day';
 
-    function getTodoTasks() {
-      try {
-        return JSON.parse(localStorage.getItem('family_monefy_tasks') || '[]');
-      } catch(e) { return []; }
-    }
+    // اسم بديل متوافق لضمان عدم توقف أي استدعاء قديم
+    const renderDrawerTasksList = renderTasksProList;
 
-    function saveTodoTasks(tasks) {
-      try {
-        localStorage.setItem('family_monefy_tasks', JSON.stringify(tasks));
-      } catch(e) {}
-    }
-
-    function openTasksModal() {
-      openSummaryDrawer('tasks');
-      return;
-      renderTasksList();
-      openModal('tasksModal');
-    }
 
     function switchTodoSection(sec) {
       currentTodoSection = sec;
@@ -30539,7 +30620,7 @@ function installDailyNoonTrigger() {
           <div style="text-align: center; padding: 35px 10px; color: #94a3b8; font-size: 0.8rem;">
             <i class="fa-solid fa-list-check" style="font-size: 2rem; color: #a855f7; opacity: 0.5; margin-bottom: 8px;"></i>
             <div>لا توجد مهام في هذا القسم حالياً</div>
-            <div style="font-size: 0.68rem; color: #64748b; margin-top: 4px;">أضف مهمتك الأولى باستخدام الحقل أعلاه</div>
+            
           </div>
         `;
         return;
@@ -31268,9 +31349,7 @@ function installDailyNoonTrigger() {
             <h3 class="modal-title-custom" style="font-size: 1.08rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 8px;">
               <span>كشف وتدقيق مصدر الرصيد الفعلي</span>
             </h3>
-            <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 600;">
-              تحليل مصادر السيولة النقدية والمصرفية، مطابقة الإيداعات والصرف، وفلترة تفصيلية متعددة الأبعاد
-            </div>
+
           </div>
         </div>
 
@@ -31885,26 +31964,30 @@ function installDailyNoonTrigger() {
        1. درج ملخص النشاط المالي الشامل (يفتح من اليسار)
        ========================================================================= -->
   <div class="drawer-backdrop" id="summaryDrawerBackdrop" onclick="closeSummaryLeftDrawer()"></div>
-  <div class="summary-left-drawer" id="summaryLeftDrawer" style="display: flex; flex-direction: column; overflow: hidden;">
-    <!-- ترويسة الدرج المزدوجة الموحدة: ملخص النشاط + المهام الذكية Tasks -->
+    <!-- الدرج الجانبي الأيسر: ملخص المصروفات بالفرد (Member Financial Breakdown) -->
+  <div class="summary-left-drawer" id="summaryLeftDrawer" style="display: flex; flex-direction: column; overflow: hidden;" dir="rtl">
+    <!-- ترويسة الدرج الأيسر: ملخص المصروفات بالفرد -->
     <div style="padding: 12px 14px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); background: linear-gradient(135deg, #0f172a, #1e293b); flex-shrink: 0;">
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <div style="display: flex; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 2px;">
-            <button type="button" id="btnDrawerMasterSummary" onclick="switchLeftDrawerTab('summary')" style="padding: 5px 12px; border-radius: 8px; font-size: 0.76rem; font-weight: 900; border: none; background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; cursor: pointer; display: flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-chart-pie"></i> ملخص النشاط
-            </button>
-            <button type="button" id="btnDrawerMasterTasks" onclick="switchLeftDrawerTab('tasks')" style="padding: 5px 12px; border-radius: 8px; font-size: 0.76rem; font-weight: 900; border: none; background: transparent; color: #c084fc; cursor: pointer; display: flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-list-check"></i> المهام (Tasks)
-              <span id="drawerTasksCountBadge" style="background: rgba(168, 85, 247, 0.3); color: #f3e8ff; padding: 0 5px; border-radius: 6px; font-size: 0.62rem;">0</span>
-            </button>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div style="width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, #0284c7, #0369a1); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.05rem; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);">
+            <i class="fa-solid fa-user-chart"></i>
+          </div>
+          <div>
+            <div style="font-size: 0.95rem; font-weight: 900; color: #f8fafc;">ملخص المصروفات بالفرد</div>
+            <div style="font-size: 0.65rem; color: #38bdf8; font-weight: 700;">تحليل دقيق لنفقات وبنود كل فرد من الأسرة</div>
           </div>
         </div>
         <button type="button" onclick="closeSummaryLeftDrawer()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; width: 28px; height: 28px; line-height: 26px; text-align: center; color: #94a3b8; font-size: 1.15rem; cursor: pointer;">&times;</button>
       </div>
 
-      <!-- أدوات الفلاتر الزمنية للملخص (تظهر في تبويب ملخص النشاط فقط) -->
-      <div id="drawerSummaryFilterBar" style="display: flex; flex-direction: column; gap: 6px;">
+      <!-- شريط كبسولات اختيار أفراد العائلة في الدرج -->
+      <div id="drawerMemberSelectorStrip" style="display: flex; gap: 5px; overflow-x: auto; padding: 4px 0 6px; -webkit-overflow-scrolling: touch;" class="custom-scrollbar">
+        <!-- تتولد ديناميكياً بواسطة renderMemberSelectorStrip() -->
+      </div>
+
+      <!-- أدوات الفلاتر الزمنية للملخص -->
+      <div id="drawerSummaryFilterBar" style="display: flex; flex-direction: column; gap: 6px; margin-top: 4px;">
         <!-- تبويبات الفترات: اليوم / الأسبوع / الشهر / السنة / مخصص -->
         <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;">
           <button type="button" class="exp-tab-btn active" id="btnSummaryTabDay" onclick="switchSummaryPeriod('day')" style="padding: 6px 2px; border-radius: 8px; font-weight: 800; font-size: 0.70rem; border: none; background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; cursor: pointer; text-align: center;">اليوم</button>
@@ -31921,113 +32004,22 @@ function installDailyNoonTrigger() {
           <button type="button" onclick="applyCustomSummaryDate()" style="padding: 0 8px; height: 30px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; background: #0284c7; color: #fff; border: none; cursor: pointer;">تطبيق</button>
         </div>
 
-        <!-- شريط تحويل العملات وتقويم الأسعار: جنيه / ريال / دولار / ذهب عيار 21 -->
+        <!-- شريط تحويل العملات وتقويم الأسعار -->
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px; background: rgba(15, 23, 42, 0.7); padding: 4px 6px; border-radius: 8px; border: 1px solid rgba(245, 158, 11, 0.25);">
-          <span style="font-size: 0.64rem; font-weight: 800; color: #fbbf24;"><i class="fa-solid fa-coins"></i> تقويم العملة:</span>
+          <span style="font-size: 0.64rem; font-weight: 800; color: #fbbf24;"><i class="fa-solid fa-coins"></i> العملة:</span>
           <div style="display: flex; gap: 4px;">
             <button type="button" class="btn-summary-curr-pill active" id="btnSummaryCurrEGP" onclick="setSummaryCurrency('EGP')" style="padding: 2px 7px; border-radius: 6px; font-size: 0.64rem; font-weight: 900; cursor: pointer; border: 1px solid rgba(56, 189, 248, 0.5); background: rgba(56, 189, 248, 0.2); color: #38bdf8;">ج.م</button>
             <button type="button" class="btn-summary-curr-pill" id="btnSummaryCurrSAR" onclick="setSummaryCurrency('SAR')" style="padding: 2px 7px; border-radius: 6px; font-size: 0.64rem; font-weight: 900; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8;">ر.س</button>
             <button type="button" class="btn-summary-curr-pill" id="btnSummaryCurrUSD" onclick="setSummaryCurrency('USD')" style="padding: 2px 7px; border-radius: 6px; font-size: 0.64rem; font-weight: 900; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8;">$ USD</button>
-            <button type="button" class="btn-summary-curr-pill" id="btnSummaryCurrGOLD" onclick="setSummaryCurrency('GOLD21')" style="padding: 2px 7px; border-radius: 6px; font-size: 0.64rem; font-weight: 900; cursor: pointer; border: 1px solid rgba(245, 158, 11, 0.5); background: rgba(245, 158, 11, 0.15); color: #fbbf24;">🪙 عيار 21</button>
+            <button type="button" class="btn-summary-curr-pill" id="btnSummaryCurrGOLD" onclick="setSummaryCurrency('GOLD21')" style="padding: 2px 7px; border-radius: 6px; font-size: 0.64rem; font-weight: 900; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #94a3b8;">🪙 ذهب 21</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 1. لوحة محتوى ملخص النشاط المالي -->
-    <div id="drawerSummaryViewSection" style="flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 12px;" class="custom-scrollbar">
-      <div id="summaryDrawerContent" style="display: flex; flex-direction: column; gap: 12px;"></div>
-    </div>
-
-    <!-- 2. لوحة محتوى المهام المتكاملة الاحترافية (Tasks Pro System) -->
-    <div id="drawerTasksViewSection" style="display: none; flex: 1; overflow-y: auto; padding: 12px; flex-direction: column; gap: 10px;" class="custom-scrollbar">
-      <!-- كارت توضيح ودليل آلية عمل المهام الذكية والخطوات الفرعية (دليل إرشادي تفاعلي) -->
-      <div class="tasks-guide-banner" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.12), rgba(15, 23, 42, 0.92)); border: 1.2px solid rgba(168, 85, 247, 0.35); border-radius: 14px; padding: 10px 12px; margin-bottom: 6px; box-shadow: 0 4px 14px rgba(0,0,0,0.25);">
-        <div style="display: flex; align-items: center; justify-content: space-between; cursor: pointer;" onclick="toggleTasksGuideDetails()">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <div style="width: 28px; height: 28px; border-radius: 8px; background: rgba(168, 85, 247, 0.22); color: #c084fc; display: flex; align-items: center; justify-content: center; font-size: 0.90rem; border: 1px solid rgba(168, 85, 247, 0.35);">
-              <i class="fa-solid fa-lightbulb"></i>
-            </div>
-            <div>
-              <div style="font-size: 0.80rem; font-weight: 900; color: #f8fafc;">آلية عمل نظام المهام والخطوات الفرعية 📋</div>
-              <div style="font-size: 0.64rem; color: #c084fc; font-weight: 700;">دليل تفتيت المهام، الجدولة الموحدة، والربط المالي التلقائي</div>
-            </div>
-          </div>
-          <button type="button" id="btnToggleTasksGuide" style="background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.4); color: #c084fc; border-radius: 7px; padding: 3px 9px; font-size: 0.66rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 4px;">
-            <span>شرح الآلية</span>
-            <i class="fa-solid fa-chevron-down" id="tasksGuideChevron"></i>
-          </button>
-        </div>
-        
-        <div id="tasksGuideDetailsBody" style="display: none; margin-top: 10px; border-top: 1px dashed rgba(168, 85, 247, 0.25); padding-top: 8px; font-size: 0.70rem; color: #cbd5e1; line-height: 1.55;">
-          <div style="display: grid; grid-template-columns: 1fr; gap: 6px;">
-            <div style="background: rgba(30, 41, 59, 0.7); padding: 7px 10px; border-radius: 8px; border-right: 3px solid #38bdf8;">
-              <strong style="color: #38bdf8;">1. المهمة الرئيسية:</strong> حدد الهدف المالي أو العائلي مع تحديد الموعد والوقت في نفس الاختيار مع إرفاق صورة المستند أو الفاتورة.
-            </div>
-            <div style="background: rgba(30, 41, 59, 0.7); padding: 7px 10px; border-radius: 8px; border-right: 3px solid #a855f7;">
-              <strong style="color: #c084fc;">2. تفتيت المهام إلى خطوات فرعية:</strong> قَسّم المهمة لخطوات تنفيذية محددة؛ كل خطوة لها موعد وصورة مستقلة، ويُحسب شريط الإنجاز التراكمي تلقائياً فور تأشيرها.
-            </div>
-            <div style="background: rgba(30, 41, 59, 0.7); padding: 7px 10px; border-radius: 8px; border-right: 3px solid #10b981;">
-              <strong style="color: #34d399;">3. التحويل لمصروف بلمسة واحدة:</strong> انقر على أيقونة التحويل المالي <i class="fa-solid fa-money-bill-transfer"></i> لتنتقل تفاصيل المهمة ومبلغها مباشرة لنافذة المصروفات دون إعادة كتابة البيانات.
-            </div>
-            <div style="background: rgba(30, 41, 59, 0.7); padding: 7px 10px; border-radius: 8px; border-right: 3px solid #f59e0b;">
-              <strong style="color: #fbbf24;">4. التنبيهات والفلترة اللحظية:</strong> تنبيهات صوتية ومرئية عند حلول مواعيد الاستحقاق، مع فلترة فورية حسب اليوم، الهام، المخطط، والمتأخر.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      
-      <!-- شريط مؤشرات إنجاز المهام الذكي (KPIs & Metrics) -->
-      <div class="task-kpi-strip">
-        <div class="task-kpi-card" onclick="switchDrawerTodoSection('all')" style="cursor: pointer;" title="عرض كافة المهام النشطة">
-          <span class="task-kpi-num" id="kpiTasksTotal" style="color: #38bdf8;">0</span>
-          <span class="task-kpi-label">إجمالي المهام</span>
-        </div>
-        <div class="task-kpi-card" onclick="switchDrawerTodoSection('my_day')" style="cursor: pointer;" title="عرض مهام اليوم">
-          <span class="task-kpi-num" id="kpiTasksActive" style="color: #c084fc;">0</span>
-          <span class="task-kpi-label">قيد التنفيذ</span>
-        </div>
-        <div class="task-kpi-card" onclick="switchDrawerTodoSection('overdue')" style="cursor: pointer;" title="عرض المهام المتأخرة">
-          <span class="task-kpi-num" id="kpiTasksOverdue" style="color: #ef4444;">0</span>
-          <span class="task-kpi-label">متأخرة ⚠️</span>
-        </div>
-        <div class="task-kpi-card" onclick="switchDrawerTodoSection('completed')" style="cursor: pointer;" title="عرض المهام المنجزة">
-          <span class="task-kpi-num" id="kpiTasksDone" style="color: #34d399;">0</span>
-          <span class="task-kpi-label">مكتملة ✅</span>
-        </div>
-      </div>
-
-      <!-- شريط نسبة الإنجاز التراكمي -->
-      <div style="background: rgba(15, 23, 42, 0.82); border-radius: 9px; padding: 6px 10px; border: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; gap: 8px;">
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <i class="fa-solid fa-chart-line" style="color: #a855f7; font-size: 0.80rem;"></i>
-          <span style="font-size: 0.68rem; font-weight: 800; color: #cbd5e1;">معدل إنجاز المهام:</span>
-        </div>
-        <div style="flex: 1; max-width: 150px; height: 6px; background: rgba(30, 41, 59, 0.9); border-radius: 4px; overflow: hidden;">
-          <div id="tasksOverallProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #10b981); transition: width 0.4s ease;"></div>
-        </div>
-        <span id="tasksOverallProgressPct" style="font-size: 0.70rem; font-weight: 900; color: #10b981; font-family: var(--font-numbers);">0%</span>
-      </div>
-
-      <!-- زر منفصل ومستقل لإضافة مهمة جديدة يفتح نافذة الإضافة المتكاملة -->
-      <button type="button" onclick="openNewTaskDrawerModal()" class="btn-create-task-main" style="width: 100%; height: 42px; border-radius: 12px; background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; color: #fff; font-size: 0.84rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4); margin: 4px 0 2px; transition: transform 0.12s ease;">
-        <i class="fa-solid fa-circle-plus" style="font-size: 1.05rem;"></i>
-        <span>+ إضافة مهمة جديدة</span>
-      </button>
-
-      <!-- تبويبات أقسام المهام الستة: يومي / هام / مخطط / متأخرة / الكل / المكتملة -->
-      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px; margin: 2px 0;">
-        <button type="button" class="exp-tab-btn active" id="btnDrawerTodoMyDay" onclick="switchDrawerTodoSection('my_day')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.64rem; background: rgba(168, 85, 247, 0.25); color: #c084fc; border: none; cursor: pointer; text-align: center;">يومي</button>
-        <button type="button" class="exp-tab-btn" id="btnDrawerTodoImportant" onclick="switchDrawerTodoSection('important')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.64rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">هام ⭐</button>
-        <button type="button" class="exp-tab-btn" id="btnDrawerTodoPlanned" onclick="switchDrawerTodoSection('planned')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.64rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">مخطط</button>
-        <button type="button" class="exp-tab-btn" id="btnDrawerTodoOverdue" onclick="switchDrawerTodoSection('overdue')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.64rem; background: transparent; color: #ef4444; border: 1px solid rgba(239,68,68,0.25); cursor: pointer; text-align: center;">متأخرة ⚠️</button>
-        <button type="button" class="exp-tab-btn" id="btnDrawerTodoAll" onclick="switchDrawerTodoSection('all')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.64rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">الكل</button>
-        <button type="button" class="exp-tab-btn" id="btnDrawerTodoCompleted" onclick="switchDrawerTodoSection('completed')" style="padding: 5px 2px; border-radius: 7px; font-weight: 800; font-size: 0.64rem; background: transparent; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-align: center;">المكتملة</button>
-      </div>
-
-      <!-- قائمة المهام التفاعلية المتطورة مع المهام الفرعية والصور -->
-      <div id="drawerTasksContainerList" style="display: flex; flex-direction: column; gap: 8px;"></div>
+    <!-- المحتوى التفاعلي للملخص بالفرد -->
+    <div id="summaryDrawerContent" style="padding: 12px 14px 40px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 10px;" class="custom-scrollbar">
+      <!-- يتولد ديناميكياً بواسطة renderSummaryDrawer() -->
     </div>
   </div>
 
@@ -32048,7 +32040,7 @@ function installDailyNoonTrigger() {
           </div>
           <div>
             <h3 style="font-size: 0.98rem; font-weight: 900; color: #f8fafc; margin: 0;">إضافة مهمة ذكية جديدة</h3>
-            <span style="font-size: 0.65rem; color: #c084fc; font-weight: 700;">جدولة مواعيد، تنبيهات، وإرفاق صور</span>
+            
           </div>
         </div>
         <button type="button" class="btn-modal-close" onclick="closeModal('newTaskDrawerModal')">&times;</button>
@@ -32150,8 +32142,8 @@ function installDailyNoonTrigger() {
             <i class="fa-solid fa-check-double"></i>
           </div>
           <div>
-            <h3 style="margin: 0; font-size: 0.95rem; font-weight: 900; color: #f8fafc;">Microsoft To-Do | المهام اليومية</h3>
-            <div style="font-size: 0.64rem; color: #c084fc;">إدارة وتنظيم مهام العائلة وتذكيرات الالتزامات</div>
+            <h3 style="margin: 0; font-size: 0.95rem; font-weight: 900; color: #f8fafc;">قائمة المهام</h3>
+            
           </div>
         </div>
         <button type="button" class="btn-modal-close" onclick="closeModal('tasksModal')">&times;</button>
@@ -32201,8 +32193,8 @@ function installDailyNoonTrigger() {
             <i class="fa-solid fa-bell"></i>
           </div>
           <div>
-            <h3 style="margin: 0; font-size: 0.95rem; font-weight: 900; color: #f8fafc;">مركز الإشعارات والتنبيهات الذكية</h3>
-            <div style="font-size: 0.64rem; color: #fbbf24;">تحديثات العمليات، المزامنة، وتذكيرات الاستحقاق</div>
+            <h3 style="margin: 0; font-size: 0.95rem; font-weight: 900; color: #f8fafc;">الإشعارات والتنبيهات</h3>
+            
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
@@ -32211,14 +32203,7 @@ function installDailyNoonTrigger() {
         </div>
       </div>
 
-      <!-- تنبيه ذكي خاص لأية -->
-      <div id="notifAyaReminderBanner" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.18), rgba(15, 23, 42, 0.85)); border: 1px solid rgba(236, 72, 153, 0.4); border-radius: 12px; padding: 8px 12px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-        <span style="font-size: 1.1rem;">🌸</span>
-        <div style="flex: 1;">
-          <div style="font-size: 0.72rem; font-weight: 900; color: #f472b6;">تذكير يومي لطيف لأية:</div>
-          <div style="font-size: 0.65rem; color: #e2e8f0;">لا تنسي توثيق مصاريف ومشتريات اليوم أولاً بأول للحفاظ على دقة الميزانية ❤️</div>
-        </div>
-      </div>
+
 
       <!-- قائمة الإشعارات والتنبيهات -->
       <div id="notificationsListContainer" style="flex: 1; overflow-y: auto; max-height: 420px; display: flex; flex-direction: column; gap: 7px;" class="custom-scrollbar"></div>
@@ -32240,7 +32225,7 @@ function installDailyNoonTrigger() {
           </div>
           <div>
             <h3 style="font-size: 0.98rem; font-weight: 900; color: #f8fafc; margin: 0;">التبديل بين حسابات العائلة</h3>
-            <span style="font-size: 0.65rem; color: #38bdf8; font-weight: 700;">انقر على الحساب للانتقال الفوري إليه</span>
+            
           </div>
         </div>
         <button type="button" class="btn-modal-close" onclick="closeFullUserSelectionModal()">&times;</button>
@@ -32256,7 +32241,7 @@ function installDailyNoonTrigger() {
         <div style="margin-bottom: 8px;">
           <img id="fullUserPinAvatar" src="" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover !important; object-position: top center !important; border: 2.5px solid #38bdf8; margin: 0 auto 6px; display: block; box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);">
           <div id="fullUserPinTitle" style="font-size: 0.90rem; font-weight: 900; color: #f8fafc;">قفل الحساب</div>
-          <div style="font-size: 0.66rem; color: #94a3b8; margin-top: 2px;">أدخل رمز PIN الخاص بهذا الحساب للتبديل إليه 🔒</div>
+          
         </div>
         <input type="password" id="inpFullUserPin" class="form-input-custom" placeholder="رمز القفل •••••" maxlength="15" inputmode="numeric" onkeydown="if(event.key==='Enter') verifyFullUserPinSubmit();" style="height: 40px; font-size: 1.15rem; text-align: center; letter-spacing: 4px; border-radius: 9px; background: rgba(30, 41, 59, 0.9); border: 1.4px solid rgba(56, 189, 248, 0.45); color: #fff; width: 100%; box-sizing: border-box; margin-bottom: 8px;">
         <div id="fullUserPinError" style="display: none; font-size: 0.68rem; color: #f43f5e; font-weight: 800; margin-bottom: 8px;">⚠️ رمز القفل غير صحيح! حاول مرة أخرى.</div>

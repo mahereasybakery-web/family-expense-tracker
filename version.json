@@ -1,6 +1,6 @@
 {
-  "version": "5.0.4",
-  "buildId": 202611081000,
-  "updatedAt": "2026-11-08T10:00:00+03:00",
-  "releaseNotes": "إصلاح جذري لصفحة الالتزامات والفواتير، تسريع صفحة العمليات مع إظهار الدخل وفلاتر التواريخ والأشخاص والبنود، نقل المهام إلى شاشة كاملة متطورة ومستقلة، ترقية شاشة تدقيق الرصيد الفعلي بدعم الاختيار المتعدد وفتح مرفقات الفواتير، وضبط تبديل العملات الرباعي"
+  "version": "v5.0.6",
+  "build": "202611081120",
+  "releaseDate": "2026-11-08",
+  "notes": "Preamble-free ultra-clean UI, global currency left alignment, mobile-first tasks workspace, member financial summary drawer with drill-down"
 }

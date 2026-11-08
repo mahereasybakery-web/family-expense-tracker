@@ -1,10 +1,9 @@
-import sys, io, re
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+import sys
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
-with open('index.html', 'r', encoding='utf-8') as f:
-    html = f.read()
+with open('C:/Users/96656/.gemini/antigravity/scratch/family_expense_tracker_monefy/index.html', 'r', encoding='utf-8') as f:
+    text = f.read()
 
-m = re.search(r'id=["\']summaryLeftDrawer["\']', html)
-if m:
-    print("=== summaryLeftDrawer ===")
-    print(html[m.start():m.start()+2500])
+idx = text.find('id="summaryLeftDrawer"')
+if idx != -1:
+    print(text[idx:idx+1500])
