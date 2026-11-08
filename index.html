@@ -142,9 +142,9 @@
     }
 
     var currentEditTxReceiptDataUri = null;
-    var APP_VERSION = 'v5.2.3';
+    var APP_VERSION = 'v5.2.4';
     var APP_BUILD_ID = 202611081550;
-    window.APP_VERSION = 'v5.2.3';
+    window.APP_VERSION = 'v5.2.4';
     window.APP_BUILD_ID = 202611081550;
     (function() {
       try {
@@ -4328,6 +4328,50 @@
     .expense-cat-header-hint {
       font-size: 0.72rem;
       color: #64748b;
+    }
+
+    /* شريط التبديل بين نمطي عرض العمليات: تجميع باليوم / مجمع */
+    .ops-view-mode-bar {
+      position: sticky;
+      top: 0;
+      z-index: 15;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin: 4px 12px 8px;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 4px;
+      border-radius: 13px;
+      border: 1.2px solid rgba(56, 189, 248, 0.25);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+    .ops-view-mode-btn {
+      height: 36px;
+      border: 1.5px solid transparent;
+      border-radius: 9px;
+      background: transparent;
+      color: #94a3b8;
+      font-weight: 850;
+      font-size: 0.80rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: inherit;
+    }
+    .ops-view-mode-btn:hover {
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .ops-view-mode-btn.active {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.38), rgba(56, 189, 248, 0.22)) !important;
+      color: #ffffff !important;
+      border-color: #38bdf8 !important;
+      box-shadow: 0 2px 10px rgba(56, 189, 248, 0.35) !important;
     }
 
     /* أزرار التبديل المقسمة لصفحة العمليات والأرشيف */
@@ -9004,6 +9048,8 @@
       font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
     }
 
+
+    #taskDateTimePickerModal { z-index: 2000050 !important; }
 </style>
 
   <script>
@@ -11846,7 +11892,7 @@
         <div class="brand-box" style="display: flex; align-items: center; gap: 6px;">
           <!-- أيقونة الشعار لفتح الإعدادات بنقرة واحدة -->
           <div class="brand-icon" title="الإعدادات والتخصيص" onclick="openSettingsModal('brand_section')" style="width: 34px !important; height: 34px !important; min-width: 34px !important; min-height: 34px !important; border-radius: 10px !important; overflow: hidden !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important; cursor: pointer;">
-            <img src="assets/family_option2_mosaic.jpg" id="headerBrandFamilyLogo" style="width: 34px !important; height: 34px !important; object-fit: cover !important; border-radius: 10px !important; display: block !important;">
+            
           </div>
           <!-- زر المهام الرئيسي الفاخر في أعلى الصفحة الرئيسية بدلاً من نص عائلة ماهر -->
           <button type="button" class="header-tasks-main-btn" id="btnHeaderTasksTop" onclick="openTasksFullScreenModal()" title="إدارة المهام والتخطيط اليومي" style="height: 34px; padding: 0 11px; border-radius: 10px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.28), rgba(99, 102, 241, 0.28)); border: 1.2px solid rgba(168, 85, 247, 0.55); color: #f8fafc; font-size: 0.80rem; font-weight: 850; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 3px 12px rgba(168, 85, 247, 0.35); transition: all 0.2s;">
@@ -12147,6 +12193,18 @@
            ================================================================ -->
       <div class="page-view" id="viewOperations" style="display: none;">
         
+        <!-- شريط التبديل بين نمطي عرض العمليات: تجميع باليوم / مجمع (فوق العمليات المسجلة والأرشيف) -->
+        <div class="ops-view-mode-bar" id="opsViewModeToggleBar">
+          <button type="button" class="ops-view-mode-btn active" id="btnOpsModeDaily" onclick="setOperationsViewMode('daily')">
+            <i class="fa-solid fa-calendar-day"></i>
+            <span>تجميع باليوم</span>
+          </button>
+          <button type="button" class="ops-view-mode-btn" id="btnOpsModeFlat" onclick="setOperationsViewMode('flat')">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>مجمع</span>
+          </button>
+        </div>
+
         <!-- أزرار التبديل المقسمة: العمليات المسجلة (الافتراضي) / الأرشيف -->
         <div class="segmented-tabs-bar">
           <button class="segmented-tab-btn active" id="btnOpsSubRegistered" onclick="switchOperationsSubTab('registered')">
@@ -12312,7 +12370,7 @@
         </div>
 
         <!-- 2. لوحة التحكم بالفترة الزمنية للمؤشرات: واضحة وثابتة لكافة الأقسام -->
-        <div class="analytics-control-panel" style="margin: 0 8px 10px; background: rgba(15, 23, 42, 0.9); border: 1.4px solid var(--border); border-radius: 14px; padding: 8px 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);">
+        <div class="analytics-control-panel" style="position: sticky; top: 0px; z-index: 60; margin: 0 8px 10px; background: rgba(15, 23, 42, 0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1.4px solid var(--border); border-radius: 14px; padding: 8px 10px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
             <span style="font-size: 0.80rem; font-weight: 800; color: #cbd5e1;"><i class="fa-regular fa-calendar-check" style="color: #38bdf8;"></i> الفترة الزمنية للتحليل:</span>
             <span class="period-active-pill" id="analyticsPeriodActivePill" style="font-size: 0.74rem; padding: 2px 8px; border-radius: 8px; background: rgba(56, 189, 248, 0.15); color: #38bdf8; font-weight: 800;">الشهر الحالي</span>
@@ -14769,25 +14827,13 @@
             </button>
           </div>
 
-          <!-- السطر 2: تحديد اليوم والساعة جنباً إلى جنب في شاشة واحدة دون شرائح منبثقة أو خيارات مثبتة -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-            <div style="background: rgba(15, 23, 42, 0.75); border: 1.2px solid rgba(168, 85, 247, 0.35); border-radius: 10px; padding: 6px 10px; display: flex; flex-direction: column; gap: 2px;">
-              <label style="font-size: 0.65rem; color: #c084fc; font-weight: 850; display: flex; align-items: center; gap: 4px;">
-                <i class="fa-regular fa-calendar"></i> اليوم والتاريخ:
-              </label>
-              <input type="date" id="quickTaskInlineDate" class="form-input-custom" style="width: 100%; height: 32px; border: none; background: transparent; color: #fff; font-size: 0.80rem; font-weight: 850; outline: none; padding: 0;">
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.75); border: 1.2px solid rgba(56, 189, 248, 0.35); border-radius: 10px; padding: 6px 10px; display: flex; flex-direction: column; gap: 2px;">
-              <label style="font-size: 0.65rem; color: #38bdf8; font-weight: 850; display: flex; align-items: center; gap: 4px;">
-                <i class="fa-regular fa-clock"></i> توقيت الإشعار:
-              </label>
-              <input type="time" id="quickTaskInlineTime" class="form-input-custom" style="width: 100%; height: 32px; border: none; background: transparent; color: #fff; font-size: 0.80rem; font-weight: 850; outline: none; padding: 0;">
-            </div>
-          </div>
-
-          <!-- السطر 3: مرفق الكاميرا المباشر فقط (بدون فتح ملفات) + معاينة الصورة -->
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
-            <button type="button" onclick="triggerTaskCameraOnly()" style="height: 34px; padding: 0 12px; border-radius: 9px; background: rgba(56, 189, 248, 0.15); border: 1.2px solid rgba(56, 189, 248, 0.45); color: #38bdf8; font-size: 0.74rem; font-weight: 850; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(56, 189, 248, 0.2);">
+          <!-- السطر 2: زر تحديد التاريخ والساعة معاً (بلمسة واحدة) + زر تصوير مرفق الكاميرا المباشر -->
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <button type="button" class="btn-quick-task-dt-trigger" id="btnQuickTaskDateTimeTrigger" onclick="openTaskDateTimePickerModal()" style="height: 36px; padding: 0 14px; border-radius: 10px; background: rgba(168, 85, 247, 0.22); border: 1.2px solid rgba(168, 85, 247, 0.55); color: #e9d5ff; font-size: 0.78rem; font-weight: 850; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.25); transition: all 0.2s;">
+              <i class="fa-regular fa-clock" style="color: #c084fc;"></i>
+              <span id="lblQuickTaskDateTimeTrigger">📅 تحديد التاريخ والساعة معاً</span>
+            </button>
+            <button type="button" onclick="triggerTaskCameraOnly()" style="height: 36px; padding: 0 14px; border-radius: 10px; background: rgba(56, 189, 248, 0.18); border: 1.2px solid rgba(56, 189, 248, 0.5); color: #38bdf8; font-size: 0.78rem; font-weight: 850; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(56, 189, 248, 0.2);">
               <i class="fa-solid fa-camera"></i>
               <span>تصوير مرفق بالكاميرا</span>
             </button>
@@ -14796,34 +14842,9 @@
           </div>
         </div>
 
-        <div style="display: flex; gap: 6px; overflow-x: auto; padding: 2px 0 6px;" class="custom-scrollbar" id="tasksCategoryPillsStrip">
-          <button type="button" class="task-category-pill active" onclick="setTasksCategoryFilter('all')" data-cat="all" style="padding: 5px 11px; border-radius: 9px; font-size: 0.72rem; font-weight: 900; background: linear-gradient(135deg, #a855f7, #6366f1); color: #fff; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; box-shadow: 0 2px 8px rgba(168,85,247,0.35);">
-            <i class="fa-solid fa-layer-group"></i> <span>الكل</span>
-            <span id="catBadgeAll" style="background: rgba(255,255,255,0.25); padding: 1px 5px; border-radius: 6px; font-size: 0.62rem;">0</span>
-          </button>
-          <button type="button" class="task-category-pill" onclick="setTasksCategoryFilter('shopping')" data-cat="shopping" style="padding: 5px 11px; border-radius: 9px; font-size: 0.72rem; font-weight: 900; background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.35); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
-            <i class="fa-solid fa-cart-shopping"></i> <span>تسوق ومشتريات</span>
-            <span id="catBadgeShopping" style="background: rgba(16,185,129,0.2); padding: 1px 5px; border-radius: 6px; font-size: 0.62rem;">0</span>
-          </button>
-          <button type="button" class="task-category-pill" onclick="setTasksCategoryFilter('bills')" data-cat="bills" style="padding: 5px 11px; border-radius: 9px; font-size: 0.72rem; font-weight: 900; background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
-            <i class="fa-solid fa-file-invoice-dollar"></i> <span>فواتير والتزامات</span>
-            <span id="catBadgeBills" style="background: rgba(245,158,11,0.2); padding: 1px 5px; border-radius: 6px; font-size: 0.62rem;">0</span>
-          </button>
-          <button type="button" class="task-category-pill" onclick="setTasksCategoryFilter('health')" data-cat="health" style="padding: 5px 11px; border-radius: 9px; font-size: 0.72rem; font-weight: 900; background: rgba(244, 63, 94, 0.12); color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.35); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
-            <i class="fa-solid fa-notes-medical"></i> <span>صحة وعلاج</span>
-            <span id="catBadgeHealth" style="background: rgba(244,63,94,0.2); padding: 1px 5px; border-radius: 6px; font-size: 0.62rem;">0</span>
-          </button>
-          <button type="button" class="task-category-pill" onclick="setTasksCategoryFilter('home')" data-cat="home" style="padding: 5px 11px; border-radius: 9px; font-size: 0.72rem; font-weight: 900; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
-            <i class="fa-solid fa-house"></i> <span>المنزل والأسرة</span>
-            <span id="catBadgeHome" style="background: rgba(56,189,248,0.2); padding: 1px 5px; border-radius: 6px; font-size: 0.62rem;">0</span>
-          </button>
-          <button type="button" class="task-category-pill" onclick="setTasksCategoryFilter('work')" data-cat="work" style="padding: 5px 11px; border-radius: 9px; font-size: 0.72rem; font-weight: 900; background: rgba(168, 85, 247, 0.12); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.35); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;">
-            <i class="fa-solid fa-briefcase"></i> <span>العمل والمشاريع</span>
-            <span id="catBadgeWork" style="background: rgba(168,85,247,0.2); padding: 1px 5px; border-radius: 6px; font-size: 0.62rem;">0</span>
-          </button>
-        </div>
-
-        <!-- أشرطة التصفية السريعة والبحث وفلتر الأفراد -->
+        <!-- شريط الفلاتر والبحث المثبت أثناء التمرير في كل طرق العرض -->
+        <div class="tasks-sticky-filter-wrapper" style="position: sticky; top: 50px; z-index: 85; background: rgba(11, 19, 41, 0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); padding: 8px 0; border-bottom: 1.2px solid rgba(168, 85, 247, 0.3); display: flex; flex-direction: column; gap: 8px;">
+          <!-- أشرطة التصفية السريعة والبحث وفلتر الأفراد -->
         <div style="display: flex; gap: 6px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
           <!-- الفلاتر السريعة للمهام -->
           <div style="display: flex; gap: 4px; overflow-x: auto; padding-bottom: 2px;" class="custom-scrollbar" id="tasksSmartListTabs">
@@ -14852,6 +14873,9 @@
         </div>
 
         <!-- حاوية عرض كروت المهام التفاعلية -->
+        
+        </div>
+
         <div id="tasksFullScreenContainerList" style="display: flex; flex-direction: column; gap: 8px;">
           <!-- تتولد كروت المهام التفاعلية ديناميكياً بواسطة محرك renderTasksProList() -->
         </div>
@@ -15219,7 +15243,7 @@
               </div>
               <span id="activeIconThemeBadge" style="font-size: 0.63rem; color: #fbbf24; font-weight: 800; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); padding: 1px 7px; border-radius: 5px;">ملون فينتك (افتراضي)</span>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;">
               <div class="icon-theme-pill active" id="iconThemeOptVibrant" onclick="setAppIconTheme('vibrant')">
                 <div class="icon-palette-preview">
                   <span class="icon-palette-dot" style="background:#10b981;"></span>
@@ -15527,6 +15551,7 @@
 
     // حالة التطبيق
     var state = window.state = {
+      opsViewMode: (function() { try { return localStorage.getItem('family_monefy_ops_view_mode') || 'daily'; } catch(e) { return 'daily'; } })(),
       expectedTypeFilter: null,
       currentUser: 'ماهر',
       selectedMember: 'ماهر', // الفرد المختار حالياً - يحدد الديفولت تلقائياً
@@ -15663,7 +15688,7 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = 'v5.2.3';
+      const APP_VERSION = 'v5.2.4';
       const APP_BUILD_ID = 202611081550;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
@@ -16106,9 +16131,35 @@
     }
 
     function setAnalyticsPeriod(period) {
-      setAppPeriod(period === 'day' ? 'today' : period);
+      state.period = period === 'day' ? 'today' : period;
       const customBox = document.getElementById('analyticsCustomRangeBox');
       if (customBox) customBox.style.display = (period === 'custom') ? 'block' : 'none';
+
+      document.querySelectorAll('.analytics-period-btn').forEach(b => {
+        const btnP = b.getAttribute('data-period');
+        if (btnP === period || (period === 'day' && btnP === 'today') || (period === 'today' && btnP === 'day')) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
+
+      const periodLabels = {
+        'today': 'اليوم',
+        'day': 'اليوم',
+        'week': 'الأسبوع الحالي',
+        'month': 'الشهر الحالي',
+        'all': 'كافة الفترات',
+        'custom': 'فترة مخصصة'
+      };
+      const anaPill = document.getElementById('analyticsPeriodActivePill');
+      if (anaPill) anaPill.textContent = periodLabels[period] || period;
+
+      setAppPeriod(period === 'day' ? 'today' : period);
+      if (typeof updateAnalyticsChart === 'function') updateAnalyticsChart();
+      if (typeof renderAnalyticsUI === 'function') renderAnalyticsUI();
+      if (typeof renderExecutiveKPIs === 'function') renderExecutiveKPIs();
+      if (typeof renderExecutiveCharts === 'function') renderExecutiveCharts();
     }
 
     function toggleAnalyticsCustomRange() {
@@ -18183,6 +18234,12 @@
         }
       }
       if (pageId === 'operations') {
+        const curMode = state.opsViewMode || 'daily';
+        const btnDaily = document.getElementById('btnOpsModeDaily');
+        const btnFlat = document.getElementById('btnOpsModeFlat');
+        if (btnDaily) btnDaily.classList.toggle('active', curMode === 'daily');
+        if (btnFlat) btnFlat.classList.toggle('active', curMode === 'flat');
+
         if (typeof switchOperationsSubTab === 'function') {
           switchOperationsSubTab(state.activeOpsSubTab || 'registered');
         }
@@ -18474,6 +18531,10 @@
       // 4. إعادة رسم الحسابات وتحديث بنود المصاريف فوراً
       renderUI();
       if (typeof filterOperationsList === "function") filterOperationsList();
+      if (typeof updateAnalyticsChart === "function") updateAnalyticsChart();
+      if (typeof renderAnalyticsUI === "function") renderAnalyticsUI();
+      if (typeof renderExecutiveKPIs === "function") renderExecutiveKPIs();
+      if (typeof renderExecutiveCharts === "function") renderExecutiveCharts();
       showToast(`📅 تم تطبيق الفترة: ${periodLabels[p] || p}`);
     }
 
@@ -19959,22 +20020,40 @@ function generateRichDemoTransactions() {
       if (typeof renderActivityLogUI === 'function') renderActivityLogUI();
     }
 
-        window.selectedOperationRowId = null;
+    window.selectedOperationRowId = null;
+    window.selectedExpectedRowId = null;
+
     function formatMoneyVal(v) {
       const converted = typeof convertAmount === 'function' ? convertAmount(v) : v;
       const curr = typeof getCurrencySymbol === 'function' ? getCurrencySymbol() : (state.currency || 'ج.م');
       return Number(converted || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ' + curr;
     }
-    window.selectedExpectedRowId = null;
+
+    // التبديل بين نمطي عرض العمليات: 'daily' (تجميع باليوم) أو 'flat' (مجمع بدون تجميع مع التاريخ أسفل بيان العملية)
+    function setOperationsViewMode(mode, persist = true) {
+      if (mode !== 'flat') mode = 'daily';
+      state.opsViewMode = mode;
+      if (persist) {
+        try {
+          localStorage.setItem('family_monefy_ops_view_mode', mode);
+        } catch(e) {}
+      }
+      const btnDaily = document.getElementById('btnOpsModeDaily');
+      const btnFlat = document.getElementById('btnOpsModeFlat');
+      if (btnDaily) btnDaily.classList.toggle('active', mode === 'daily');
+      if (btnFlat) btnFlat.classList.toggle('active', mode === 'flat');
+
+      // إذا كان المستخدم في تبويب الأرشيف، تحويله تلقائياً لقائمة العمليات
+      if (state.activeOpsSubTab === 'archive' && typeof switchOperationsSubTab === 'function') {
+        switchOperationsSubTab('registered');
+      } else {
+        renderOperationsList(null, false);
+      }
+    }
 
     function toggleSelectOperationRow(txId) {
       if (window.selectedOperationRowId === txId) {
         window.selectedOperationRowId = null;
-    function formatMoneyVal(v) {
-      const converted = typeof convertAmount === 'function' ? convertAmount(v) : v;
-      const curr = typeof getCurrencySymbol === 'function' ? getCurrencySymbol() : (state.currency || 'ج.م');
-      return Number(converted || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ' + curr;
-    }
       } else {
         window.selectedOperationRowId = txId;
       }
@@ -20149,48 +20228,26 @@ function generateRichDemoTransactions() {
         return db.localeCompare(da);
       });
 
-      // تجميع العمليات بحسب التاريخ
-      const groupedByDate = {};
+      // التحقق من نمط العرض المختار: 'flat' (مجمع) أو 'daily' (تجميع باليوم)
+      const curOpsMode = state.opsViewMode || (function() {
+        try { return localStorage.getItem('family_monefy_ops_view_mode'); } catch(e) { return null; }
+      })() || 'daily';
+      state.opsViewMode = curOpsMode;
+
+      // مزامنة حالة الأزرار العلوية
+      const btnDaily = document.getElementById('btnOpsModeDaily');
+      const btnFlat = document.getElementById('btnOpsModeFlat');
+      if (btnDaily) btnDaily.classList.toggle('active', curOpsMode === 'daily');
+      if (btnFlat) btnFlat.classList.toggle('active', curOpsMode === 'flat');
+
       const itemsToRender = list.slice(0, opsRenderLimit);
-
-      itemsToRender.forEach(tx => {
-        const d = tx.date || todayIso;
-        if (!groupedByDate[d]) groupedByDate[d] = [];
-        groupedByDate[d].push(tx);
-      });
-
-      // بناء مخرجات البطاقات ككتلة HTML موحدة وسريعة جداً
       let cardsHtml = '';
-      for (const [dateStr, txs] of Object.entries(groupedByDate)) {
-        let groupTitle = dateStr;
-        if (dateStr === todayIso) groupTitle = 'اليوم (Today) - ' + dateStr;
-        else if (dateStr === yesterdayIso) groupTitle = 'الأمس (Yesterday) - ' + dateStr;
 
-        let dayExpSum = 0, dayIncSum = 0;
-        txs.forEach(t => {
-          const amt = Number(t.amount) || 0;
-          if (t.type === 'expense') dayExpSum += amt;
-          else dayIncSum += amt;
-        });
-
-        let subtotalBadge = '';
-        if (dayExpSum > 0 && dayIncSum > 0) {
-          subtotalBadge = `${formatMoneyWithSignHtml(dayExpSum, '-', 'ops-date-subtotal exp')} ${formatMoneyWithSignHtml(dayIncSum, '+', 'ops-date-subtotal inc')}`;
-        } else if (dayExpSum > 0) {
-          subtotalBadge = `<span style="font-size: 0.70rem; color: #94a3b8; margin-left: 3px;">إجمالي المنصرف:</span> ${formatMoneyWithSignHtml(dayExpSum, '-', 'ops-date-subtotal exp')}`;
-        } else {
-          subtotalBadge = `<span style="font-size: 0.70rem; color: #94a3b8; margin-left: 3px;">إجمالي الدخل:</span> ${formatMoneyWithSignHtml(dayIncSum, '+', 'ops-date-subtotal inc')}`;
-        }
-
-        cardsHtml += `
-          <div class="ops-date-group-header">
-            <div class="ops-date-title"><i class="fa-regular fa-calendar"></i> ${groupTitle}</div>
-            <div>${subtotalBadge}</div>
-          </div>
-        `;
-
-        // بناء بطاقة الحركة النظيفة (العملية، البيان، الرقم، التاريخ فقط)
-        txs.forEach(tx => {
+      if (curOpsMode === 'flat') {
+        // =========================================================================
+        // الوضع الجديد: "مجمع" (بدون تجميع لعمليات اليوم + التاريخ مدمج أسفل بيان العملية)
+        // =========================================================================
+        itemsToRender.forEach(tx => {
           const cat = getCategoryObj(tx.category, tx.type);
           const isExp = tx.type === 'expense';
           const amt = Number(tx.amount) || 0;
@@ -20208,17 +20265,25 @@ function generateRichDemoTransactions() {
           cardsHtml += `
             <div class="ops-tx-card-clean" data-tx-id="${tx.id}" onclick="toggleSelectOperationRow('${tx.id}')" style="background: ${isSelected ? 'rgba(56, 189, 248, 0.08)' : 'rgba(15, 23, 42, 0.75)'}; border: 1px solid ${isSelected ? '#38bdf8' : 'rgba(255, 255, 255, 0.08)'}; border-radius: 12px; padding: 10px 12px; margin-bottom: 7px; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 8px rgba(0,0,0,0.25);">
               
-              <!-- الصف الرئيسي النظيف: العملية والبيان على اليمين | الرقم والتاريخ على اليسار -->
+              <!-- الصف الرئيسي النظيف: العملية والبيان مع التاريخ المدمج أسفله على اليمين | الرقم والنوع على اليسار -->
               <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
-                <!-- العملية + البيان -->
+                <!-- العملية + البيان وبأسفله التاريخ مباشرة -->
                 <div style="display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;">
                   <div style="width: 38px; height: 38px; border-radius: 10px; background: ${cat.color ? cat.color + '22' : 'rgba(56, 189, 248, 0.15)'}; border: 1px solid ${cat.color ? cat.color + '55' : 'rgba(56, 189, 248, 0.3)'}; color: ${cat.color || '#38bdf8'}; display: flex; align-items: center; justify-content: center; font-size: 1.05rem; flex-shrink: 0;">
                     <i class="fa-solid ${cat.icon || 'fa-receipt'}"></i>
                   </div>
                   <div style="min-width: 0; flex: 1;">
-                    <div style="font-size: 0.88rem; font-weight: 850; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <!-- بيان العملية -->
+                    <div style="font-size: 0.88rem; font-weight: 850; color: #f8fafc; line-height: 1.35; word-break: break-word;" title="${escapeHtml(rawLabel)}">
                       ${escapeHtml(rawLabel)}
                     </div>
+                    <!-- التاريخ مدمج أسفل بيان العملية مباشرة -->
+                    <div class="ops-tx-date-inline" style="font-size: 0.69rem; color: #38bdf8; font-weight: 800; margin-top: 2px; display: inline-flex; align-items: center; gap: 4px;">
+                      <i class="fa-regular fa-calendar-days" style="font-size: 0.64rem; color: #38bdf8;"></i>
+                      <span>${tx.date || ''}</span>
+                      ${tx.time ? `<span style="color: #94a3b8; font-size: 0.64rem; font-weight: 700;">• ${tx.time}</span>` : ''}
+                    </div>
+                    <!-- شريط البند والعضو والمحفظة والإيصال -->
                     <div style="font-size: 0.70rem; color: #94a3b8; margin-top: 1px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
                       <span style="color: ${cat.color || '#38bdf8'}; font-weight: 750;">${cat.name}</span>
                       <span style="color: #94a3b8; font-size: 0.65rem; background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 6px;">👤 ${memberName}</span>
@@ -20228,13 +20293,13 @@ function generateRichDemoTransactions() {
                   </div>
                 </div>
 
-                <!-- الرقم + التاريخ -->
-                <div style="text-align: left; display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0;">
-                  <div style="color: ${amtColor}; font-weight: 950; font-size: 0.95rem; font-family: var(--font-numbers); direction: ltr; unicode-bidi: isolate;">
+                <!-- الرقم على اليسار بدون تكرار التاريخ -->
+                <div style="text-align: left; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; flex-shrink: 0;">
+                  <div style="color: ${amtColor}; font-weight: 950; font-size: 0.96rem; font-family: var(--font-numbers); direction: ltr; unicode-bidi: isolate;">
                     ${sign} ${formatMoneyVal(amt)}
                   </div>
-                  <div style="font-size: 0.65rem; color: #64748b; font-weight: 700; margin-top: 2px;">
-                    ${tx.date || ''} ${tx.time ? '• ' + tx.time : ''}
+                  <div style="font-size: 0.64rem; color: #64748b; font-weight: 700; margin-top: 2px;">
+                    ${isExp ? 'منصرف' : 'إيداع'}
                   </div>
                 </div>
               </div>
@@ -20260,6 +20325,118 @@ function generateRichDemoTransactions() {
             </div>
           `;
         });
+      } else {
+        // =========================================================================
+        // الوضع الحالي: "تجميع باليوم" (المجمّع بحسب التاريخ مع الترويسات والإجماليات)
+        // =========================================================================
+        const groupedByDate = {};
+        itemsToRender.forEach(tx => {
+          const d = tx.date || todayIso;
+          if (!groupedByDate[d]) groupedByDate[d] = [];
+          groupedByDate[d].push(tx);
+        });
+
+        // بناء مخرجات البطاقات ككتلة HTML موحدة وسريعة جداً
+        for (const [dateStr, txs] of Object.entries(groupedByDate)) {
+          let groupTitle = dateStr;
+          if (dateStr === todayIso) groupTitle = 'اليوم (Today) - ' + dateStr;
+          else if (dateStr === yesterdayIso) groupTitle = 'الأمس (Yesterday) - ' + dateStr;
+
+          let dayExpSum = 0, dayIncSum = 0;
+          txs.forEach(t => {
+            const amt = Number(t.amount) || 0;
+            if (t.type === 'expense') dayExpSum += amt;
+            else dayIncSum += amt;
+          });
+
+          let subtotalBadge = '';
+          if (dayExpSum > 0 && dayIncSum > 0) {
+            subtotalBadge = `${formatMoneyWithSignHtml(dayExpSum, '-', 'ops-date-subtotal exp')} ${formatMoneyWithSignHtml(dayIncSum, '+', 'ops-date-subtotal inc')}`;
+          } else if (dayExpSum > 0) {
+            subtotalBadge = `<span style="font-size: 0.70rem; color: #94a3b8; margin-left: 3px;">إجمالي المنصرف:</span> ${formatMoneyWithSignHtml(dayExpSum, '-', 'ops-date-subtotal exp')}`;
+          } else {
+            subtotalBadge = `<span style="font-size: 0.70rem; color: #94a3b8; margin-left: 3px;">إجمالي الدخل:</span> ${formatMoneyWithSignHtml(dayIncSum, '+', 'ops-date-subtotal inc')}`;
+          }
+
+          cardsHtml += `
+            <div class="ops-date-group-header">
+              <div class="ops-date-title"><i class="fa-regular fa-calendar"></i> ${groupTitle}</div>
+              <div>${subtotalBadge}</div>
+            </div>
+          `;
+
+          // بناء بطاقة الحركة النظيفة (العملية، البيان، الرقم، التاريخ فقط)
+          txs.forEach(tx => {
+            const cat = getCategoryObj(tx.category, tx.type);
+            const isExp = tx.type === 'expense';
+            const amt = Number(tx.amount) || 0;
+            const sign = isExp ? '-' : '+';
+            const amtColor = isExp ? '#ff4d6d' : '#34d399';
+            const memberName = tx.member || 'العائلة';
+            const walletName = typeof getWalletName === 'function' ? getWalletName(tx.walletId) : '';
+            const isSelected = (window.selectedOperationRowId === tx.id);
+            let cleanLbl = (tx.label || tx.description || tx.note || '').trim();
+            if (!cleanLbl || cleanLbl === 'بيان' || cleanLbl === 'بدون بيان') {
+              cleanLbl = `${cat.name} (${memberName})`;
+            }
+            const rawLabel = cleanLbl;
+
+            cardsHtml += `
+              <div class="ops-tx-card-clean" data-tx-id="${tx.id}" onclick="toggleSelectOperationRow('${tx.id}')" style="background: ${isSelected ? 'rgba(56, 189, 248, 0.08)' : 'rgba(15, 23, 42, 0.75)'}; border: 1px solid ${isSelected ? '#38bdf8' : 'rgba(255, 255, 255, 0.08)'}; border-radius: 12px; padding: 10px 12px; margin-bottom: 7px; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 8px rgba(0,0,0,0.25);">
+                
+                <!-- الصف الرئيسي النظيف: العملية والبيان على اليمين | الرقم والتاريخ على اليسار -->
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+                  <!-- العملية + البيان -->
+                  <div style="display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1;">
+                    <div style="width: 38px; height: 38px; border-radius: 10px; background: ${cat.color ? cat.color + '22' : 'rgba(56, 189, 248, 0.15)'}; border: 1px solid ${cat.color ? cat.color + '55' : 'rgba(56, 189, 248, 0.3)'}; color: ${cat.color || '#38bdf8'}; display: flex; align-items: center; justify-content: center; font-size: 1.05rem; flex-shrink: 0;">
+                      <i class="fa-solid ${cat.icon || 'fa-receipt'}"></i>
+                    </div>
+                    <div style="min-width: 0; flex: 1;">
+                      <div style="font-size: 0.88rem; font-weight: 850; color: #f8fafc; line-height: 1.35; word-break: break-word;" title="${escapeHtml(rawLabel)}">
+                        ${escapeHtml(rawLabel)}
+                      </div>
+                      <div style="font-size: 0.70rem; color: #94a3b8; margin-top: 1px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                        <span style="color: ${cat.color || '#38bdf8'}; font-weight: 750;">${cat.name}</span>
+                        <span style="color: #94a3b8; font-size: 0.65rem; background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 6px;">👤 ${memberName}</span>
+                        ${walletName ? `<span style="color: #cbd5e1; font-size: 0.65rem; background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 6px;">💳 ${walletName}</span>` : ''}
+                        ${tx.receipt ? '<span style="color: #f472b6; font-size: 0.65rem;"><i class="fa-solid fa-paperclip"></i> إيصال</span>' : ''}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- الرقم + التاريخ -->
+                  <div style="text-align: left; display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0;">
+                    <div style="color: ${amtColor}; font-weight: 950; font-size: 0.95rem; font-family: var(--font-numbers); direction: ltr; unicode-bidi: isolate;">
+                      ${sign} ${formatMoneyVal(amt)}
+                    </div>
+                    <div style="font-size: 0.65rem; color: #64748b; font-weight: 700; margin-top: 2px;">
+                      ${tx.date || ''} ${tx.time ? '• ' + tx.time : ''}
+                    </div>
+                  </div>
+                </div>
+
+                <!-- درج الإجراءات المخفي: يفتح حصرياً عند الضغط على العملية (تعديل، حذف، إيصال) -->
+                <div class="ops-row-actions-drawer" data-drawer-tx-id="${tx.id}" style="display: ${isSelected ? 'flex' : 'none'}; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(255, 255, 255, 0.12); animation: fadeIn 0.15s ease;">
+                  ${tx.receipt ? `
+                    <button type="button" onclick="event.stopPropagation(); viewReceiptImage('${tx.receipt}')" style="height: 30px; padding: 0 10px; border-radius: 8px; font-size: 0.72rem; font-weight: 800; background: rgba(236, 72, 153, 0.18); border: 1px solid rgba(236, 72, 153, 0.4); color: #f472b6; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+                      <i class="fa-solid fa-image"></i>
+                      <span>عرض الإيصال</span>
+                    </button>
+                  ` : ''}
+                  <button type="button" onclick="event.stopPropagation(); editTx('${tx.id}')" style="height: 30px; padding: 0 12px; border-radius: 8px; font-size: 0.72rem; font-weight: 800; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>تعديل</span>
+                  </button>
+                  <button type="button" onclick="event.stopPropagation(); deleteTx('${tx.id}')" style="height: 30px; padding: 0 12px; border-radius: 8px; font-size: 0.72rem; font-weight: 800; background: rgba(244, 63, 94, 0.18); border: 1px solid rgba(244, 63, 94, 0.4); color: #f43f5e; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <span>حذف</span>
+                  </button>
+                </div>
+
+              </div>
+            `;
+          });
+        }
       }
 
       if (list.length > opsRenderLimit) {
@@ -21742,7 +21919,7 @@ showToast(`👤 تم تصفية العرض على: ${memberDisplayName}`);
                 <i class="${iconClass}"></i>
               </div>
               <div style="min-width: 0; flex: 1;">
-                <div style="font-size: 0.88rem; font-weight: 850; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                <div style="font-size: 0.88rem; font-weight: 850; color: #f8fafc; line-height: 1.35; word-break: break-word;" title="${escapeHtml(rawLabel)}">
                   ${escapeHtml(item.title || typeName)}
                 </div>
                 <div style="font-size: 0.70rem; color: #94a3b8; margin-top: 1px; display: flex; align-items: center; gap: 6px;">
@@ -22369,7 +22546,7 @@ function openSettingsModal(targetSection = '') {
       try {
         const backupData = {
           app: 'FamilyExpenseTrackerMonefy',
-          version: 'v5.2.3',
+          version: 'v5.2.4',
           exportedAt: new Date().toISOString(),
           account: (typeof GDRIVE_CONFIG !== 'undefined' ? GDRIVE_CONFIG.targetAccount : 'maher.easybakery@gmail.com'),
           state: state
@@ -25230,7 +25407,7 @@ function openSettingsModal(targetSection = '') {
           }
 
           const currentBuildNum = (typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611081550);
-          const currentVerStr = (typeof APP_VERSION !== 'undefined' ? APP_VERSION : 'v5.2.3');
+          const currentVerStr = (typeof APP_VERSION !== 'undefined' ? APP_VERSION : 'v5.2.4');
 
           const isNewer = remoteBuild && (
             (remoteBuild.version && remoteBuild.version !== currentVerStr) ||
@@ -25802,7 +25979,7 @@ function openSettingsModal(targetSection = '') {
                   <i class="fa-solid ${catInfo.icon}"></i>
                 </div>
                 <div style="min-width: 0; flex: 1;">
-                  <div style="font-size: 0.88rem; font-weight: 850; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                  <div style="font-size: 0.88rem; font-weight: 850; color: #f8fafc; line-height: 1.35; word-break: break-word;" title="${escapeHtml(rawLabel)}">
                     ${escapeHtml(b.title || b.label || 'فاتورة مستحقة')}
                   </div>
                   <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 2px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
@@ -25902,7 +26079,7 @@ function openSettingsModal(targetSection = '') {
                   <i class="fa-solid ${isDebtOnUs ? 'fa-arrow-down-long' : 'fa-arrow-up-long'}"></i>
                 </div>
                 <div style="min-width: 0; flex: 1;">
-                  <div style="font-size: 0.88rem; font-weight: 850; color: #f8fafc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                  <div style="font-size: 0.88rem; font-weight: 850; color: #f8fafc; line-height: 1.35; word-break: break-word;" title="${escapeHtml(rawLabel)}">
                     ${escapeHtml(d.title || d.label || 'دين مستحق')}
                   </div>
                   <div style="font-size: 0.68rem; color: #94a3b8; margin-top: 2px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
@@ -26317,7 +26494,8 @@ function openSettingsModal(targetSection = '') {
     }
 
 // =========================================================================
-// TASKS & CALENDAR ENGINE PRO (v5.2.3 Master Unified)
+// =========================================================================
+// TASKS, CALENDAR & DATE-TIME PICKER ENGINE (v5.2.4 Master Unified)
 // =========================================================================
 
 window.currentTasksViewMode = 'list';
@@ -26328,11 +26506,201 @@ window.currentTaskCategoryFilter = 'all';
 window.currentTaskMemberFilter = 'all';
 window.currentTaskSectionFilter = 'all';
 window.currentQuickTaskPhoto = null;
+window._activeQuickTaskDate = '';
+window._activeQuickTaskTime = '10:00';
+
+window.taskSelectedDateVal = '';
+window.taskSelectedTimeVal = '10:00';
 
 const arabicMonths = [
   'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
   'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
 ];
+
+function formatTimeReadable(timeStr) {
+  if (!timeStr) return '';
+  const parts = timeStr.split(':').map(Number);
+  const h = parts[0] || 0;
+  const m = parts[1] || 0;
+  const isPm = h >= 12;
+  const h12 = h % 12 || 12;
+  return `${h12}:${m < 10 ? '0' + m : m} ${isPm ? 'مساءً' : 'صباحاً'}`;
+}
+
+function updateTaskDateTimeSummary() {
+  const summaryEl = document.getElementById('taskDateTimeSummaryBadge');
+  if (!summaryEl) return;
+  const now = new Date();
+  const todayIso = now.toISOString().slice(0, 10);
+  const tomorrow = new Date(now);
+  tomorrow.setDate(now.getDate() + 1);
+  const tomorrowIso = tomorrow.toISOString().slice(0, 10);
+
+  let dateName = window.taskSelectedDateVal || todayIso;
+  if (window.taskSelectedDateVal === todayIso) dateName = 'اليوم';
+  else if (window.taskSelectedDateVal === tomorrowIso) dateName = 'غداً';
+
+  const timeText = formatTimeReadable(window.taskSelectedTimeVal);
+  summaryEl.textContent = `الموعد: ${dateName} ${timeText ? '• الساعة ' + timeText : ''}`;
+}
+
+function openTaskDateTimePickerModal() {
+  const modal = document.getElementById('taskDateTimePickerModal');
+  if (!modal) return;
+  modal.style.display = 'flex';
+  modal.classList.add('open', 'active');
+  modal.style.setProperty('z-index', '2000050', 'important'); modal.style.position = 'fixed'; modal.style.inset = '0'; modal.style.display = 'flex'; modal.style.alignItems = 'center'; modal.style.justifyContent = 'center';
+
+  const dateInp = document.getElementById('taskCustomPickerDate');
+  const timeInp = document.getElementById('taskCustomPickerTime');
+  const now = new Date();
+  const todayIso = now.toISOString().slice(0, 10);
+
+  if (!window.taskSelectedDateVal) window.taskSelectedDateVal = todayIso;
+  if (dateInp) dateInp.value = window.taskSelectedDateVal;
+  if (timeInp) timeInp.value = window.taskSelectedTimeVal || '10:00';
+
+  updateTaskDateTimeSummary();
+}
+
+function closeTaskDateTimePickerModal() {
+  const modal = document.getElementById('taskDateTimePickerModal');
+  if (!modal) return;
+  modal.classList.remove('open', 'active');
+  modal.style.display = 'none';
+}
+
+function selectTaskDatePreset(preset, btn) {
+  document.querySelectorAll('#taskModalDateChips .task-dt-chip').forEach(b => {
+    b.classList.remove('active');
+    b.style.background = 'transparent';
+    b.style.color = '#94a3b8';
+    b.style.borderColor = 'rgba(255,255,255,0.12)';
+  });
+  if (btn) {
+    btn.classList.add('active');
+    btn.style.background = 'rgba(56, 189, 248, 0.22)';
+    btn.style.color = '#38bdf8';
+    btn.style.borderColor = 'rgba(56, 189, 248, 0.45)';
+  }
+
+  const now = new Date();
+  let targetDate = new Date(now);
+
+  if (preset === 'today') {
+    // today
+  } else if (preset === 'tomorrow') {
+    targetDate.setDate(now.getDate() + 1);
+  } else if (preset === 'after2days') {
+    targetDate.setDate(now.getDate() + 2);
+  } else if (preset === 'friday') {
+    const day = now.getDay();
+    const diff = (5 - day + 7) % 7 || 7;
+    targetDate.setDate(now.getDate() + diff);
+  } else if (preset === 'nextweek') {
+    targetDate.setDate(now.getDate() + 7);
+  }
+
+  window.taskSelectedDateVal = targetDate.toISOString().slice(0, 10);
+  const dateInp = document.getElementById('taskCustomPickerDate');
+  if (dateInp) dateInp.value = window.taskSelectedDateVal;
+
+  updateTaskDateTimeSummary();
+}
+
+function onTaskCustomDateChange(val) {
+  window.taskSelectedDateVal = val;
+  document.querySelectorAll('#taskModalDateChips .task-dt-chip').forEach(b => {
+    b.classList.remove('active');
+    b.style.background = 'transparent';
+    b.style.color = '#94a3b8';
+  });
+  updateTaskDateTimeSummary();
+}
+
+function selectTaskTimePreset(timeStr, btn) {
+  document.querySelectorAll('#taskModalTimeChips .task-time-chip').forEach(b => {
+    b.classList.remove('active');
+    b.style.background = 'transparent';
+    b.style.color = '#94a3b8';
+    b.style.borderColor = 'rgba(255,255,255,0.12)';
+  });
+  if (btn) {
+    btn.classList.add('active');
+    btn.style.background = 'rgba(168, 85, 247, 0.22)';
+    btn.style.color = '#c084fc';
+    btn.style.borderColor = 'rgba(168, 85, 247, 0.45)';
+  }
+
+  window.taskSelectedTimeVal = timeStr;
+  const timeInp = document.getElementById('taskCustomPickerTime');
+  if (timeInp) timeInp.value = timeStr;
+
+  updateTaskDateTimeSummary();
+}
+
+function onTaskCustomTimeChange(val) {
+  window.taskSelectedTimeVal = val;
+  document.querySelectorAll('#taskModalTimeChips .task-time-chip').forEach(b => {
+    b.classList.remove('active');
+    b.style.background = 'transparent';
+    b.style.color = '#94a3b8';
+  });
+  updateTaskDateTimeSummary();
+}
+
+function confirmTaskDateTimePicker() {
+  const lbl = document.getElementById('lblQuickTaskDateTimeTrigger');
+  const btn = document.getElementById('btnQuickTaskDateTimeTrigger');
+  if (!window.taskSelectedDateVal) {
+    window.taskSelectedDateVal = new Date().toISOString().slice(0, 10);
+  }
+
+  const now = new Date();
+  const todayIso = now.toISOString().slice(0, 10);
+  const tomorrow = new Date(now);
+  tomorrow.setDate(now.getDate() + 1);
+  const tomorrowIso = tomorrow.toISOString().slice(0, 10);
+
+  let dateName = window.taskSelectedDateVal;
+  if (window.taskSelectedDateVal === todayIso) dateName = 'اليوم';
+  else if (window.taskSelectedDateVal === tomorrowIso) dateName = 'غداً';
+
+  const timeText = formatTimeReadable(window.taskSelectedTimeVal);
+  const fullLabel = `📅 ${dateName} ${timeText ? '(' + timeText + ')' : ''}`;
+
+  if (lbl) lbl.textContent = fullLabel;
+  if (btn) {
+    btn.style.background = 'rgba(168, 85, 247, 0.35)';
+    btn.style.borderColor = '#c084fc';
+    btn.style.color = '#ffffff';
+  }
+
+  window._activeQuickTaskDate = window.taskSelectedDateVal;
+  window._activeQuickTaskTime = window.taskSelectedTimeVal;
+
+  closeTaskDateTimePickerModal();
+  if (typeof showToast === 'function') showToast(`✅ تم تحديد موعد المهمة: ${fullLabel}`);
+}
+
+function clearTaskDateTimePicker() {
+  window.taskSelectedDateVal = '';
+  window.taskSelectedTimeVal = '';
+  window._activeQuickTaskDate = '';
+  window._activeQuickTaskTime = '';
+
+  const lbl = document.getElementById('lblQuickTaskDateTimeTrigger');
+  const btn = document.getElementById('btnQuickTaskDateTimeTrigger');
+  if (lbl) lbl.textContent = '📅 تحديد التاريخ والساعة معاً';
+  if (btn) {
+    btn.style.background = 'rgba(168, 85, 247, 0.22)';
+    btn.style.borderColor = 'rgba(168, 85, 247, 0.55)';
+    btn.style.color = '#e9d5ff';
+  }
+
+  closeTaskDateTimePickerModal();
+  if (typeof showToast === 'function') showToast('تم مسح موعد المهمة');
+}
 
 function getTodoTasks() {
   try {
@@ -26344,7 +26712,6 @@ function getTodoTasks() {
   } catch (e) {
     console.warn('Error reading tasks:', e);
   }
-  // Default sample tasks if none exist
   const todayStr = new Date().toISOString().slice(0, 10);
   const sample = [
     {
@@ -26396,18 +26763,6 @@ function openTasksFullScreenModal() {
     modal.style.opacity = '1';
     modal.style.zIndex = '100050';
     document.body.style.overflow = 'hidden';
-  }
-  // Initialize inline date and time inputs with today's values if blank
-  const dtInp = document.getElementById('quickTaskInlineDate');
-  const tmInp = document.getElementById('quickTaskInlineTime');
-  const now = new Date();
-  if (dtInp && !dtInp.value) {
-    dtInp.value = now.toISOString().slice(0, 10);
-  }
-  if (tmInp && !tmInp.value) {
-    const hh = String(now.getHours()).padStart(2, '0');
-    const mm = String(now.getMinutes()).padStart(2, '0');
-    tmInp.value = `${hh}:${mm}`;
   }
   switchTasksViewMode(window.currentTasksViewMode || 'list');
   renderTasksProList();
@@ -26486,7 +26841,6 @@ function handleTaskCameraOnlyChosen(event) {
   const reader = new FileReader();
   reader.onload = function(e) {
     const rawData = e.target.result;
-    // Resize with canvas to keep size compact
     const img = new Image();
     img.onload = function() {
       const maxDim = 800;
@@ -26539,9 +26893,6 @@ function clearTaskPendingPhoto() {
 
 function handleQuickTaskAdd() {
   const titleInp = document.getElementById('quickTaskTitleInput');
-  const dateInp = document.getElementById('quickTaskInlineDate');
-  const timeInp = document.getElementById('quickTaskInlineTime');
-
   const title = titleInp ? titleInp.value.trim() : '';
   if (!title) {
     if (typeof showToast === 'function') showToast('يرجى إدخال عنوان المهمة أولاً');
@@ -26550,8 +26901,8 @@ function handleQuickTaskAdd() {
   }
 
   const now = new Date();
-  const dueDate = dateInp && dateInp.value ? dateInp.value : now.toISOString().slice(0, 10);
-  const dueTime = timeInp && timeInp.value ? timeInp.value : '';
+  const dueDate = window._activeQuickTaskDate || now.toISOString().slice(0, 10);
+  const dueTime = window._activeQuickTaskTime || '';
 
   const newTask = {
     id: 'task_' + Date.now(),
@@ -26571,9 +26922,9 @@ function handleQuickTaskAdd() {
   tasks.unshift(newTask);
   saveTodoTasks(tasks);
 
-  // Clear inputs
   if (titleInp) titleInp.value = '';
   clearTaskPendingPhoto();
+  clearTaskDateTimePicker();
 
   renderTasksProList();
   updateTasksProductivityKPIs();
@@ -26603,7 +26954,6 @@ function updateTasksProductivityKPIs() {
   if (elBadge) elBadge.textContent = `${pct}%`;
   if (elBar) elBar.style.width = `${pct}%`;
 
-  // Update category badges
   const catCounts = { all: total, shopping: 0, bills: 0, health: 0, home: 0, work: 0 };
   tasks.forEach(t => {
     if (catCounts[t.category] !== undefined) catCounts[t.category]++;
@@ -26641,11 +26991,11 @@ function deleteTaskItem(taskId) {
 }
 
 function toggleExpandTask(taskId) {
-  const subWrap = document.getElementById('taskSubtasksWrap_' + taskId);
+  const detailsWrap = document.getElementById('taskDetailsWrap_' + taskId);
   const icon = document.getElementById('taskExpandIcon_' + taskId);
-  if (subWrap) {
-    const isHidden = subWrap.style.display === 'none';
-    subWrap.style.display = isHidden ? 'flex' : 'none';
+  if (detailsWrap) {
+    const isHidden = detailsWrap.style.display === 'none' || !detailsWrap.style.display;
+    detailsWrap.style.display = isHidden ? 'flex' : 'none';
     if (icon) {
       icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
     }
@@ -26815,75 +27165,76 @@ function renderTasksProList() {
       background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.95));
       border: 1.2px solid ${t.completed ? 'rgba(16, 185, 129, 0.3)' : (isOverdue ? 'rgba(244, 63, 94, 0.45)' : 'rgba(168, 85, 247, 0.3)')};
       border-radius: 14px;
-      padding: 12px 14px;
+      padding: 10px 14px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       box-shadow: 0 4px 14px rgba(0,0,0,0.3);
       transition: all 0.2s ease;
     `;
 
-    let photoHtml = '';
-    if (t.photo) {
-      photoHtml = `
-        <div style="margin-top: 4px;">
-          <img src="${t.photo}" style="max-height: 120px; border-radius: 8px; border: 1.2px solid rgba(168,85,247,0.4); object-fit: cover; cursor: pointer;" onclick="if(typeof openReceiptLightbox==='function') openReceiptLightbox('${t.photo}', '${escapeHtml(t.title)}')">
-        </div>
-      `;
-    }
-
-    let subtasksHtml = '';
-    if (subtasks.length > 0) {
-      subtasksHtml = `
-        <div id="taskSubtasksWrap_${t.id}" style="display: none; flex-direction: column; gap: 6px; padding-top: 6px; border-top: 1px dashed rgba(255,255,255,0.1);">
-          ${subtasks.map(s => `
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; background: rgba(15, 23, 42, 0.6); padding: 5px 8px; border-radius: 7px;">
-              <div style="display: flex; align-items: center; gap: 6px; min-width: 0;">
-                <button type="button" onclick="toggleSubtaskCompleted('${t.id}', '${s.id}')" style="width: 18px; height: 18px; border-radius: 50%; border: 1.2px solid ${s.completed ? '#10b981' : '#a855f7'}; background: ${s.completed ? '#10b981' : 'transparent'}; color: #fff; font-size: 0.60rem; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
-                  ${s.completed ? '<i class="fa-solid fa-check"></i>' : ''}
-                </button>
-                <span style="font-size: 0.75rem; color: ${s.completed ? '#64748b' : '#cbd5e1'}; text-decoration: ${s.completed ? 'line-through' : 'none'};">${escapeHtml(s.title)}</span>
-              </div>
-              <button type="button" onclick="deleteSubtask('${t.id}', '${s.id}')" style="background: transparent; border: none; color: #f87171; cursor: pointer; font-size: 0.70rem; padding: 2px;"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-          `).join('')}
-          <div style="display: flex; gap: 4px; margin-top: 4px;">
-            <input type="text" id="newSubtaskInput_${t.id}" placeholder="+ خطوة فرعية..." style="flex: 1; height: 28px; border-radius: 6px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size: 0.72rem; padding: 0 8px; outline: none;" onkeydown="if(event.key==='Enter') addNewSubtaskInline('${t.id}')">
-            <button type="button" onclick="addNewSubtaskInline('${t.id}')" style="height: 28px; padding: 0 10px; border-radius: 6px; background: rgba(168,85,247,0.3); border: 1px solid rgba(168,85,247,0.5); color: #c084fc; font-size: 0.70rem; font-weight: 800; cursor: pointer;">إضافة</button>
-          </div>
-        </div>
-      `;
-    }
-
+    // Compact Collapsed Header (shows title, check button, metadata badges, and expand button)
     card.innerHTML = `
-      <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; cursor: pointer;" onclick="toggleExpandTask('${t.id}')">
         <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
-          <button type="button" onclick="toggleTaskCompleted('${t.id}')" style="width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid ${t.completed ? '#10b981' : '#a855f7'}; background: ${t.completed ? '#10b981' : 'transparent'}; color: #fff; font-size: 0.72rem; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: all 0.2s;">
+          <button type="button" onclick="event.stopPropagation(); toggleTaskCompleted('${t.id}')" style="width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid ${t.completed ? '#10b981' : '#a855f7'}; background: ${t.completed ? '#10b981' : 'transparent'}; color: #fff; font-size: 0.72rem; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: all 0.2s;">
             ${t.completed ? '<i class="fa-solid fa-check"></i>' : ''}
           </button>
           <div style="min-width: 0; flex: 1;">
             <div style="font-size: 0.85rem; font-weight: 850; color: ${t.completed ? '#64748b' : '#f8fafc'}; text-decoration: ${t.completed ? 'line-through' : 'none'}; word-break: break-word;">
               ${escapeHtml(t.title)}
             </div>
-            <div style="font-size: 0.68rem; color: #94a3b8; display: flex; align-items: center; gap: 8px; margin-top: 2px; flex-wrap: wrap;">
-              ${t.dueDate ? `<span style="color: ${isOverdue ? '#f43f5e' : (isDueToday ? '#38bdf8' : '#94a3b8')}; font-weight: 800;"><i class="fa-regular fa-calendar"></i> ${t.dueDate}</span>` : ''}
-              ${t.dueTime ? `<span><i class="fa-regular fa-clock"></i> ${t.dueTime}</span>` : ''}
-              <span style="color: #c084fc;"><i class="fa-solid fa-user"></i> ${escapeHtml(t.assignedMember || 'البيت')}</span>
-              ${subtasks.length > 0 ? `<span style="color: #34d399; font-weight: 800;"><i class="fa-solid fa-list-check"></i> ${doneSubs}/${subtasks.length} خطوات</span>` : ''}
+            <div style="font-size: 0.66rem; color: #94a3b8; display: flex; align-items: center; gap: 6px; margin-top: 1px; flex-wrap: wrap;">
+              ${t.dueDate ? `<span style="color: ${isOverdue ? '#f43f5e' : (isDueToday ? '#38bdf8' : '#94a3b8')}; font-weight: 800;">📅 ${t.dueDate}</span>` : ''}
+              ${t.dueTime ? `<span>⏰ ${t.dueTime}</span>` : ''}
+              ${t.photo ? `<span style="color: #38bdf8; font-weight: 800;"><i class="fa-solid fa-image"></i> مرفق صورة</span>` : ''}
+              ${subtasks.length > 0 ? `<span style="color: #34d399; font-weight: 800;">(${doneSubs}/${subtasks.length} خطوات)</span>` : ''}
             </div>
           </div>
         </div>
-        <div style="display: flex; align-items: center; gap: 5px; flex-shrink: 0;">
-          ${subtasks.length > 0 ? `
-            <button type="button" onclick="toggleExpandTask('${t.id}')" style="width: 28px; height: 28px; border-radius: 7px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; transition: transform 0.2s;">
-              <i class="fa-solid fa-chevron-down" id="taskExpandIcon_${t.id}"></i>
-            </button>
-          ` : ''}
-          <button type="button" onclick="deleteTaskItem('${t.id}')" style="width: 28px; height: 28px; border-radius: 7px; background: rgba(244,63,94,0.12); border: 1px solid rgba(244,63,94,0.3); color: #f43f5e; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.72rem;"><i class="fa-solid fa-trash-can"></i></button>
+        <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
+          <button type="button" onclick="event.stopPropagation(); toggleExpandTask('${t.id}')" style="width: 28px; height: 28px; border-radius: 7px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; transition: transform 0.2s;">
+            <i class="fa-solid fa-chevron-down" id="taskExpandIcon_${t.id}"></i>
+          </button>
+          <button type="button" onclick="event.stopPropagation(); deleteTaskItem('${t.id}')" style="width: 28px; height: 28px; border-radius: 7px; background: rgba(244,63,94,0.12); border: 1px solid rgba(244,63,94,0.3); color: #f43f5e; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.72rem;"><i class="fa-solid fa-trash-can"></i></button>
         </div>
       </div>
-      ${photoHtml}
-      ${subtasksHtml}
+
+      <!-- Details Container (COLLAPSED BY DEFAULT: display: none) -->
+      <div id="taskDetailsWrap_${t.id}" style="display: none; flex-direction: column; gap: 8px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.1); margin-top: 4px;">
+        ${t.photo ? `
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 8px; border-radius: 9px; border: 1px solid rgba(168,85,247,0.3);">
+            <div style="font-size: 0.70rem; font-weight: 850; color: #c084fc; margin-bottom: 5px;"><i class="fa-solid fa-image"></i> الصورة المرفقة للمهمة (اضغط للتكبير):</div>
+            <img src="${t.photo}" style="max-height: 140px; border-radius: 8px; border: 1.2px solid rgba(168,85,247,0.5); object-fit: cover; cursor: pointer; display: block;" onclick="if(typeof openReceiptLightbox==='function') openReceiptLightbox('${t.photo}', '${escapeHtml(t.title)}')">
+          </div>
+        ` : ''}
+
+        <div style="display: flex; gap: 8px; align-items: center; font-size: 0.70rem; color: #94a3b8;">
+          <span style="color: #c084fc;"><i class="fa-solid fa-user"></i> المسؤول: ${escapeHtml(t.assignedMember || 'البيت')}</span>
+          ${t.estimatedAmount ? `<span style="color: #fbbf24; font-weight: 850;">💰 التكلفة المقدرة: ${t.estimatedAmount} ج.م</span>` : ''}
+        </div>
+
+        ${subtasks.length > 0 ? `
+          <div style="display: flex; flex-direction: column; gap: 5px;">
+            <div style="font-size: 0.70rem; font-weight: 850; color: #38bdf8;"><i class="fa-solid fa-list-check"></i> الخطوات الفرعية:</div>
+            ${subtasks.map(s => `
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; background: rgba(15, 23, 42, 0.6); padding: 5px 8px; border-radius: 7px;">
+                <div style="display: flex; align-items: center; gap: 6px; min-width: 0;">
+                  <button type="button" onclick="toggleSubtaskCompleted('${t.id}', '${s.id}')" style="width: 18px; height: 18px; border-radius: 50%; border: 1.2px solid ${s.completed ? '#10b981' : '#a855f7'}; background: ${s.completed ? '#10b981' : 'transparent'}; color: #fff; font-size: 0.60rem; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;">
+                    ${s.completed ? '<i class="fa-solid fa-check"></i>' : ''}
+                  </button>
+                  <span style="font-size: 0.75rem; color: ${s.completed ? '#64748b' : '#cbd5e1'}; text-decoration: ${s.completed ? 'line-through' : 'none'};">${escapeHtml(s.title)}</span>
+                </div>
+                <button type="button" onclick="deleteSubtask('${t.id}', '${s.id}')" style="background: transparent; border: none; color: #f87171; cursor: pointer; font-size: 0.70rem; padding: 2px;"><i class="fa-solid fa-xmark"></i></button>
+              </div>
+            `).join('')}
+          </div>
+        ` : ''}
+        <div style="display: flex; gap: 4px; margin-top: 4px;">
+          <input type="text" id="newSubtaskInput_${t.id}" placeholder="+ إضافة خطوة فرعية..." style="flex: 1; height: 28px; border-radius: 6px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size: 0.72rem; padding: 0 8px; outline: none;" onkeydown="if(event.key==='Enter') addNewSubtaskInline('${t.id}')">
+          <button type="button" onclick="addNewSubtaskInline('${t.id}')" style="height: 28px; padding: 0 10px; border-radius: 6px; background: rgba(168,85,247,0.3); border: 1px solid rgba(168,85,247,0.5); color: #c084fc; font-size: 0.70rem; font-weight: 800; cursor: pointer;">إضافة</button>
+        </div>
+      </div>
     `;
 
     container.appendChild(card);
@@ -26958,7 +27309,7 @@ function selectTasksCalendarDay(dateStr) {
           <div style="font-size: 0.65rem; color: #94a3b8; display: flex; align-items: center; gap: 6px; margin-top: 1px;">
             ${t.dueTime ? `<span>⏰ ${t.dueTime}</span>` : ''}
             <span>👤 ${escapeHtml(t.assignedMember || 'البيت')}</span>
-            ${t.estimatedAmount ? `<span style="color: #fbbf24; font-weight: 800;">${t.estimatedAmount} ج.م</span>` : ''}
+            ${t.photo ? `<span style="color: #38bdf8;">📷 صورة</span>` : ''}
           </div>
         </div>
       </div>
@@ -26991,7 +27342,6 @@ function renderTasksCalendar() {
   const lastDayOfMonth = new Date(window.calendarCurrentYear, window.calendarCurrentMonth + 1, 0);
   const totalDays = lastDayOfMonth.getDate();
 
-  // Arabic week starts on Saturday: 6=Sat in JS -> startDay = (day + 1) % 7
   const startDay = (firstDayOfMonth.getDay() + 1) % 7;
 
   for (let i = 0; i < startDay; i++) {
@@ -27060,7 +27410,7 @@ function renderTasksCalendar() {
   selectTasksCalendarDay(window.calendarSelectedDate || todayStr);
 }
 
-// Bind all functions to window for instant inline HTML onclick availability
+// Global Bindings for inline HTML handlers
 window.openTasksFullScreenModal = openTasksFullScreenModal;
 window.closeTasksFullScreenModal = closeTasksFullScreenModal;
 window.openTasksModal = openTasksModal;
@@ -27068,6 +27418,14 @@ window.switchTasksViewMode = switchTasksViewMode;
 window.triggerTaskCameraOnly = triggerTaskCameraOnly;
 window.handleTaskCameraOnlyChosen = handleTaskCameraOnlyChosen;
 window.clearTaskPendingPhoto = clearTaskPendingPhoto;
+window.openTaskDateTimePickerModal = openTaskDateTimePickerModal;
+window.closeTaskDateTimePickerModal = closeTaskDateTimePickerModal;
+window.selectTaskDatePreset = selectTaskDatePreset;
+window.onTaskCustomDateChange = onTaskCustomDateChange;
+window.selectTaskTimePreset = selectTaskTimePreset;
+window.onTaskCustomTimeChange = onTaskCustomTimeChange;
+window.confirmTaskDateTimePicker = confirmTaskDateTimePicker;
+window.clearTaskDateTimePicker = clearTaskDateTimePicker;
 window.handleQuickTaskAdd = handleQuickTaskAdd;
 window.getTodoTasks = getTodoTasks;
 window.saveTodoTasks = saveTodoTasks;
@@ -27087,7 +27445,7 @@ window.navigateTasksCalendar = navigateTasksCalendar;
 window.goToTasksCalendarToday = goToTasksCalendarToday;
 window.selectTasksCalendarDay = selectTasksCalendarDay;
 
-</script>
+    </script>
 
   <!-- ==============================================================
        نافذة تحويل ونقل الرصيد بين المحافظ المالية (Inter-Wallet Transfer)
@@ -28134,7 +28492,7 @@ window.selectTasksCalendarDay = selectTasksCalendarDay;
     <!-- =========================================================================
          نافذة منتقي الوقت والتاريخ المتطورة للمهام (Touch-Friendly Task Date & Time Picker Modal)
          ========================================================================= -->
-    <div class="modal-overlay modal-overlay-custom" id="taskDateTimePickerModal" style="z-index: 1000050 !important; display: none;">
+    <div class="modal-overlay modal-overlay-custom" id="taskDateTimePickerModal" style="position: fixed; inset: 0; z-index: 2000000 !important; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.75);">
       <div class="modal-content-card" style="max-width: 440px; border-radius: 18px; padding: 16px 18px; background: #0c1429; border: 1.2px solid rgba(168, 85, 247, 0.45); box-shadow: 0 12px 40px rgba(0,0,0,0.85);">
         
         <!-- الرأس -->
