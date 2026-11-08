@@ -1,6 +1,6 @@
 {
-  "version": "v5.0.6",
-  "build": "202611081120",
+  "version": "v5.0.8",
+  "build": "202611081200",
   "releaseDate": "2026-11-08",
-  "notes": "Preamble-free ultra-clean UI, global currency left alignment, mobile-first tasks workspace, member financial summary drawer with drill-down"
+  "notes": "Overhaul commitments page to sleek modern FinTech layout, eliminate clutter and duplicate dates, currency left alignment, full-screen todo task workspace"
 }
