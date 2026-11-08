@@ -1,6 +1,14 @@
 {
-  "version": "v5.2.0",
-  "build": "202611081320",
-  "releaseDate": "2026-11-08",
-  "notes": "Master UI & Architectural Overhaul: Luxury FinTech Design System (Obsidian & Executive Navy, IBM Plex Sans Arabic, Glassmorphism), Universal Clean Lists (Operations & Commitments with expandable actions on selection), Member Drawer per-member totals & card removal, and Tasks Pro Accordion with Camera capture on main and subtasks."
+  "version": "v5.2.1",
+  "updatedAt": "2026-11-08T13:53:00+03:00",
+  "changelog": [
+    "v5.2.1: Rebuilt Commitments & Debts & Bills from scratch with clear separation between Debts and Bills",
+    "v5.2.1: Modern coordinated Add screen for Bills and Debts with camera/photo attachments",
+    "v5.2.1: Moved Tasks button to top header replacing family brand text",
+    "v5.2.1: Re-engineered touch-friendly Task Date & Time Picker Modal with quick presets",
+    "v5.2.1: Unified Master Sync & Balance button in top header merging offline balancing, live gold, and app update checks",
+    "v5.2.1: Comprehensive Luxury FinTech theme redesign across all 9 palettes and subtle card styles",
+    "v5.2.1: Fixed Operations filtering synchronization and Summary Drawer category/member drilldown",
+    "v5.2.1: Hierarchical Back Navigation preserving filter state and sub-pages"
+  ]
 }
