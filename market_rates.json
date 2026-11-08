@@ -1,51 +1,47 @@
 {
-  "source": "ta3weem.com",
-  "sources_urls": {
-    "banque_misr": "https://ta3weem.com/ar/banks/banque-misr-bm",
-    "gold_idsc": "https://ta3weem.com/ar/gold-data-sources/information-and-decision-support-center-gold"
-  },
-  "updated_at": "2026-11-07T23:21:09.107686",
-  "updated_at_display": "2026-11-07 11:21 PM",
+  "updatedAt": "2026-11-08T09:06:03.481758+00:00",
+  "lastUpdateHuman": "2026-11-08 11:06 AM بتوقيت القاهرة",
+  "provider": "نظام أسعار الصرف والذهب الهجين متعدد المصادر (Banque Misr + Global FX + XAU Spot)",
   "currencies": {
     "USD": {
       "code": "USD",
       "name": "دولار أمريكي",
-      "buy": 53.87,
-      "sell": 53.97,
-      "chg": "0%",
-      "bank": "بنك مصر"
+      "buy": 54.3,
+      "sell": 54.4,
+      "chg": "0.797%",
+      "bank": "بنك مصر (مباشر تعويم)"
     },
     "SAR": {
       "code": "SAR",
       "name": "ريال سعودي",
-      "buy": 14.28,
-      "sell": 14.37,
-      "chg": "0%",
-      "bank": "بنك مصر"
+      "buy": 14.39,
+      "sell": 14.49,
+      "chg": "0.797%",
+      "bank": "بنك مصر (مباشر تعويم)"
     },
     "EUR": {
       "code": "EUR",
-      "name": "يورو",
-      "buy": 60.16,
-      "sell": 60.63,
-      "chg": "0%",
-      "bank": "بنك مصر"
+      "name": "يورو أوروبي",
+      "buy": 60.45,
+      "sell": 61.11,
+      "chg": "0.797%",
+      "bank": "بنك مصر (مباشر تعويم)"
     },
     "AED": {
       "code": "AED",
       "name": "درهم إماراتي",
-      "buy": 14.65,
-      "sell": 14.7,
-      "chg": "0%",
-      "bank": "بنك مصر"
+      "buy": 14.77,
+      "sell": 14.81,
+      "chg": "0.797%",
+      "bank": "بنك مصر (مباشر تعويم)"
     },
     "KWD": {
       "code": "KWD",
       "name": "دينار كويتي",
-      "buy": 171.02,
-      "sell": 175.43,
-      "chg": "0%",
-      "bank": "بنك مصر"
+      "buy": 172.38,
+      "sell": 176.82,
+      "chg": "0.797%",
+      "bank": "بنك مصر (مباشر تعويم)"
     }
   },
   "gold": {
@@ -55,7 +51,7 @@
       "buy": 7091.5,
       "sell": 7160.0,
       "chg": "0%",
-      "source": "مركز المعلومات ودعم اتخاذ القرار"
+      "source": "مركز المعلومات IDSC (مباشر تعويم)"
     },
     "gold21": {
       "karat": 21,
@@ -63,7 +59,7 @@
       "buy": 6205.0,
       "sell": 6265.0,
       "chg": "0%",
-      "source": "مركز المعلومات ودعم اتخاذ القرار"
+      "source": "مركز المعلومات IDSC (مباشر تعويم)"
     },
     "gold18": {
       "karat": 18,
@@ -71,17 +67,17 @@
       "buy": 5318.5,
       "sell": 5370.0,
       "chg": "0%",
-      "source": "مركز المعلومات ودعم اتخاذ القرار"
+      "source": "مركز المعلومات IDSC (مباشر تعويم)"
     },
     "goldPound": {
       "karat": 21,
       "weight": 8,
-      "name": "جنيه الذهب (BTC)",
+      "name": "جنيه ذهب (BTC)",
       "buy": 49640.0,
       "sell": 50120.0,
       "chg": "0%",
-      "source": "مركز المعلومات ودعم اتخاذ القرار"
+      "source": "مركز المعلومات IDSC / الصاغة"
     },
-    "goldOunceUSD": 4043.83
+    "goldOunceUSD": 4072.1
   }
 }

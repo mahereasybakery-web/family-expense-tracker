@@ -11913,7 +11913,7 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <h1 class="brand-title" style="font-size: clamp(0.78rem, 3.4vw, 0.95rem); margin: 0; white-space: nowrap;">عيلة ماهر <i class="fa-solid fa-heart heart-icon" style="color: #ec4899;"></i> أية</h1>
-            <span class="version-badge">v5.0.8</span>
+            <span class="version-badge">v5.0.9</span>
           </div>
         </div>
 
@@ -15101,7 +15101,7 @@
           <div>
             <h3 class="modal-title-custom" style="font-size: 0.90rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 6px;">
               <span>مركز الضبط الموحد والمزامنة</span>
-              <span class="version-badge" style="font-size: 0.62rem; background: rgba(34, 197, 94, 0.2); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 6px; border-radius: 5px;">v5.0.8 • متزامن</span>
+              <span class="version-badge" style="font-size: 0.62rem; background: rgba(34, 197, 94, 0.2); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 6px; border-radius: 5px;">v5.0.9 • متزامن</span>
             </h3>
             
           </div>
@@ -22910,96 +22910,146 @@ function openSettingsModal(targetSection = '') {
       }
     }
 
-    async function fetchTradingViewRates() {
+    async function fetchTradingViewRates(forceLive = false) {
       const spin = document.getElementById('iconSpin');
       const goldBadgeIcon = document.querySelector('#btnOpenGold i');
       if (spin) spin.classList.add('fa-spin');
       if (goldBadgeIcon) goldBadgeIcon.classList.add('fa-spin');
 
       let marketData = null;
+      let isFresh = false;
 
-      // 1. استيراد أسعار تعويم الرسمية الفورية من market_rates.json (بنك مصر & مركز المعلومات IDSC)
-      try {
-        const resp = await fetch('market_rates.json?_t=' + Date.now(), { cache: 'no-store' });
-        if (resp.ok) {
-          marketData = await resp.json();
-        }
-      } catch (e) {
-        console.warn('Local market_rates.json notice:', e);
-      }
-
-      // شبكة أمان مباشرة عبر الإنترنت في حال تعذر قراءة الملف المحلي
-      if (!marketData) {
+      // 1. استيراد أسعار تعويم الرسمية الفورية من market_rates.json (إذا كانت حديثة وأقل من 90 دقيقة)
+      if (!forceLive) {
         try {
-          const apiResp = await fetch('https://open.er-api.com/v6/latest/USD', { cache: 'no-store' });
-          if (apiResp.ok) {
-            const apiData = await apiResp.json();
-            if (apiData && apiData.rates && apiData.rates.EGP) {
-              const liveUsd = apiData.rates.EGP;
-              const liveSar = apiData.rates.SAR ? (liveUsd / apiData.rates.SAR) : 14.37;
-              marketData = {
-                currencies: {
-                  USD: { sell: liveUsd, buy: liveUsd - 0.10, chg: '0%' },
-                  SAR: { sell: liveSar, buy: liveSar - 0.10, chg: '0%' }
-                },
-                gold: {
-                  gold21: { sell: 6265.00, buy: 6205.00, chg: '0%' },
-                  gold24: { sell: 7160.00, buy: 7091.50, chg: '0%' },
-                  gold18: { sell: 5370.00, buy: 5318.50, chg: '0%' },
-                  goldPound: { sell: 50120.00, buy: 49640.00, chg: '0%' },
-                  goldOunceUSD: 4043.83
-                }
-              };
+          const resp = await fetch('market_rates.json?_t=' + Date.now(), { cache: 'no-store' });
+          if (resp.ok) {
+            const json = await resp.json();
+            if (json && json.currencies && json.gold) {
+              const updatedTime = json.updatedAt ? new Date(json.updatedAt).getTime() : 0;
+              const ageMinutes = (Date.now() - updatedTime) / (1000 * 60);
+              if (ageMinutes < 90) {
+                marketData = json;
+                isFresh = true;
+              }
             }
           }
-        } catch(netErr) {
-          console.warn('Online exchange fallback notice:', netErr);
+        } catch (e) {
+          console.warn('Local market_rates.json notice:', e);
         }
       }
 
-      // كاش محفوظ مسبقاً في حال عدم وجود اتصال
+      // 2. المحرك المالي اللحظي المباشر عبر المتصفح (Direct Live Fallback Engine)
+      // ينشط تلقائياً إذا كان الملف المحلي قديماً، أو تعذر الوصول إليه، أو طلب المستخدم تحديثاً يدوياً فورياً
+      if (!marketData || !isFresh || forceLive) {
+        try {
+          let liveUsd = 0;
+          let liveSar = 0;
+          let liveEur = 0;
+          let liveAed = 0;
+
+          // جلب أسعار العملات الفورية الحية
+          const fxUrls = [
+            'https://api.exchangerate-api.com/v4/latest/USD',
+            'https://open.er-api.com/v6/latest/USD'
+          ];
+          for (const fxUrl of fxUrls) {
+            try {
+              const fxResp = await fetch(fxUrl, { cache: 'no-store' });
+              if (fxResp.ok) {
+                const fxData = await fxResp.json();
+                if (fxData && fxData.rates && fxData.rates.EGP) {
+                  liveUsd = Number(fxData.rates.EGP);
+                  liveSar = liveUsd / (Number(fxData.rates.SAR) || 3.75);
+                  liveEur = liveUsd / (Number(fxData.rates.EUR) || 0.92);
+                  liveAed = liveUsd / (Number(fxData.rates.AED) || 3.6725);
+                  break;
+                }
+              }
+            } catch (e) {}
+          }
+
+          // جلب سعر أونصة الذهب الفورية عالمياً (Live XAU Spot)
+          let liveGoldOunce = 0;
+          try {
+            const goldResp = await fetch('https://api.gold-api.com/price/XAU', { cache: 'no-store' });
+            if (goldResp.ok) {
+              const gData = await goldResp.json();
+              if (gData && gData.price && Number(gData.price) > 1000) {
+                liveGoldOunce = Number(gData.price);
+              }
+            }
+          } catch (e) {}
+
+          if (liveUsd > 30 && liveGoldOunce > 1000) {
+            // معادلة الذهب المعتمدة بالسوق المصري (جرام 24 = (الأونصة × الدولار ÷ 31.1035) × 1.012 فروق صاغة)
+            const g24Calc = Math.round(((liveGoldOunce * liveUsd) / 31.1034768) * 1.012);
+            const g21Calc = Math.round(g24Calc * (21 / 24));
+            const g18Calc = Math.round(g24Calc * (18 / 24));
+            const gPoundCalc = Math.round(g21Calc * 8);
+
+            marketData = {
+              updatedAt: new Date().toISOString(),
+              currencies: {
+                USD: { sell: Number(liveUsd.toFixed(2)), buy: Number((liveUsd - 0.10).toFixed(2)), chg: '0%' },
+                SAR: { sell: Number(liveSar.toFixed(2)), buy: Number((liveSar - 0.05).toFixed(2)), chg: '0%' },
+                EUR: { sell: Number(liveEur.toFixed(2)), buy: Number((liveEur - 0.20).toFixed(2)), chg: '0%' },
+                AED: { sell: Number(liveAed.toFixed(2)), buy: Number((liveAed - 0.05).toFixed(2)), chg: '0%' }
+              },
+              gold: {
+                gold24: { sell: g24Calc, buy: g24Calc - 40, chg: '0%' },
+                gold21: { sell: g21Calc, buy: g21Calc - 35, chg: '0%' },
+                gold18: { sell: g18Calc, buy: g18Calc - 30, chg: '0%' },
+                goldPound: { sell: gPoundCalc, buy: gPoundCalc - 300, chg: '0%' },
+                goldOunceUSD: liveGoldOunce
+              }
+            };
+          }
+        } catch(netErr) {
+          console.warn('Direct live financial engine notice:', netErr);
+        }
+      }
+
+      // 3. كاش محفوظ مسبقاً في حال انقطاع الإنترنت الكامل (Offline Graceful Fallback)
       const savedMarket = localStorage.getItem('family_last_live_market');
       let cached = null;
       if (savedMarket) {
         try { cached = JSON.parse(savedMarket); } catch (e) {}
       }
 
-      // 2. الأسعار الأساسية الدقيقة المعتمدة من تعويم
-      // https://ta3weem.com/ar/banks/banque-misr-bm
-      // https://ta3weem.com/ar/gold-data-sources/information-and-decision-support-center-gold
-      let usdSell = cached ? (cached.usdEgp || 55.84) : 55.84;
-      let usdBuy = cached ? (cached.usdBuy || 55.74) : 55.74;
-      let usdChg = cached ? (cached.usdChg ?? -0.45) : -0.45;
+      let usdSell = cached ? (cached.usdEgp || 54.40) : 54.40;
+      let usdBuy = cached ? (cached.usdBuy || 54.30) : 54.30;
+      let usdChg = cached ? (cached.usdChg ?? 0.0) : 0.0;
 
-      let sarSell = cached ? (cached.sarEgp || 14.87) : 14.87;
-      let sarBuy = cached ? (cached.sarBuy || 14.78) : 14.78;
-      let sarChg = cached ? (cached.sarChg ?? -0.45) : -0.45;
+      let sarSell = cached ? (cached.sarEgp || 14.49) : 14.49;
+      let sarBuy = cached ? (cached.sarBuy || 14.39) : 14.39;
+      let sarChg = cached ? (cached.sarChg ?? 0.0) : 0.0;
 
-      let eurSell = cached ? (cached.eurEgp || 62.62) : 62.62;
-      let eurBuy = cached ? (cached.eurBuy || 62.08) : 62.08;
-      let eurChg = cached ? (cached.eurChg ?? 0.03) : 0.03;
+      let eurSell = cached ? (cached.eurEgp || 61.11) : 61.11;
+      let eurBuy = cached ? (cached.eurBuy || 60.45) : 60.45;
+      let eurChg = cached ? (cached.eurChg ?? 0.0) : 0.0;
 
-      let aedSell = cached ? (cached.aedEgp || 15.20) : 15.20;
-      let aedBuy = cached ? (cached.aedBuy || 15.16) : 15.16;
-      let aedChg = cached ? (cached.aedChg ?? -0.44) : -0.44;
+      let aedSell = cached ? (cached.aedEgp || 14.81) : 14.81;
+      let aedBuy = cached ? (cached.aedBuy || 14.77) : 14.77;
+      let aedChg = cached ? (cached.aedChg ?? 0.0) : 0.0;
 
-      let g24Sell = cached ? (cached.gold24 || 7308.50) : 7308.50;
-      let g24Buy = cached ? (cached.gold24Buy || 7280.00) : 7280.00;
+      let g24Sell = cached ? (cached.gold24 || 7160.00) : 7160.00;
+      let g24Buy = cached ? (cached.gold24Buy || 7091.50) : 7091.50;
       let g24Chg = cached ? (cached.gold24Chg ?? 0.00) : 0.00;
 
-      let g21Sell = cached ? (cached.gold21 || 6395.00) : 6395.00;
-      let g21Buy = cached ? (cached.gold21Buy || 6370.00) : 6370.00;
+      let g21Sell = cached ? (cached.gold21 || 6265.00) : 6265.00;
+      let g21Buy = cached ? (cached.gold21Buy || 6205.00) : 6205.00;
       let g21Chg = cached ? (cached.gold21Chg ?? 0.00) : 0.00;
 
-      let g18Sell = cached ? (cached.gold18 || 5481.50) : 5481.50;
-      let g18Buy = cached ? (cached.gold18Buy || 5460.00) : 5460.00;
+      let g18Sell = cached ? (cached.gold18 || 5370.00) : 5370.00;
+      let g18Buy = cached ? (cached.gold18Buy || 5318.50) : 5318.50;
       let g18Chg = cached ? (cached.gold18Chg ?? 0.00) : 0.00;
 
-      let gPoundSell = cached ? (cached.goldPound || 49320.00) : 49320.00;
-      let gPoundBuy = cached ? (cached.goldPoundBuy || 48920.00) : 48920.00;
-      let gPoundChg = cached ? (cached.goldPoundChg ?? -3.60) : -3.60;
+      let gPoundSell = cached ? (cached.goldPound || 50120.00) : 50120.00;
+      let gPoundBuy = cached ? (cached.goldPoundBuy || 49640.00) : 49640.00;
+      let gPoundChg = cached ? (cached.goldPoundChg ?? 0.0) : 0.0;
 
-      let goldOunce = cached ? (cached.goldOunce || 4043.83) : 4043.83;
+      let goldOunce = cached ? (cached.goldOunce || 4072.10) : 4072.10;
 
       if (marketData && marketData.currencies && marketData.gold) {
         if (marketData.currencies.USD) {
@@ -23047,9 +23097,9 @@ function openSettingsModal(targetSection = '') {
         }
       }
 
-      // حفظ كائن السوق في التطبيق
+      // حفظ كائن السوق في الحالة المحلية
       state.market = {
-        source: 'تعويم (بنك مصر & مركز المعلومات IDSC)',
+        source: (marketData && marketData.provider) ? marketData.provider : 'السوق المالي والبورصة الحية',
         usdEgp: usdSell, usdBuy: usdBuy, usdChg: usdChg,
         sarEgp: sarSell, sarBuy: sarBuy, sarChg: sarChg,
         eurEgp: eurSell, eurBuy: eurBuy, eurChg: eurChg,
@@ -23059,7 +23109,7 @@ function openSettingsModal(targetSection = '') {
         gold18: g18Sell, gold18Buy: g18Buy, gold18Chg: g18Chg,
         goldPound: gPoundSell, goldPoundBuy: gPoundBuy, goldPoundChg: gPoundChg,
         goldOunce: goldOunce,
-        updatedAt: (marketData && marketData.updated_at) ? marketData.updated_at : new Date().toISOString()
+        updatedAt: (marketData && marketData.updatedAt) ? marketData.updatedAt : new Date().toISOString()
       };
 
       // نسب التحويل المحاسبي الدقيق
@@ -23105,10 +23155,10 @@ function openSettingsModal(targetSection = '') {
 
       setElText('tvSummaryText', `دولار: ${usdSell.toFixed(2)} ج.م | ريال: ${sarSell.toFixed(2)} ج.م | ذهب 21: ${Math.round(g21Sell).toLocaleString('ar-EG')} ج.م`);
 
-      const displayTime = (marketData && marketData.updated_at_display) 
-        ? marketData.updated_at_display 
+      const displayTime = (marketData && marketData.lastUpdateHuman) 
+        ? marketData.lastUpdateHuman 
         : ('اليوم ' + nowTimeStr);
-      setElText('tvUpdateTime', 'تعويم: ' + displayTime + ' (بنك مصر & الصاغة)');
+      setElText('tvUpdateTime', 'مباشر: ' + displayTime);
 
       if (typeof updateCalcDisplay === 'function') updateCalcDisplay();
       if (typeof renderUI === 'function') renderUI();
@@ -23119,7 +23169,6 @@ function openSettingsModal(targetSection = '') {
 
       return state.market;
     }
-
     // =========================================================================
     // محرك البدء الشامل والموازنة التلقائية مع كل عملية فتح للبرنامج
     // =========================================================================

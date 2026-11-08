@@ -1,6 +1,6 @@
 {
-  "version": "v5.0.8",
-  "build": "202611081200",
+  "version": "v5.0.9",
+  "build": "202611081215",
   "releaseDate": "2026-11-08",
-  "notes": "Overhaul commitments page to sleek modern FinTech layout, eliminate clutter and duplicate dates, currency left alignment, full-screen todo task workspace"
+  "notes": "Radical fix for live currency & gold rates: multi-tier direct browser engine + hourly automated updater + spot ounce formula"
 }
