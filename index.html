@@ -13862,7 +13862,7 @@
                 <i class="fa-solid fa-plus-circle" style="color: #38bdf8;"></i>
                 <span id="unifiedAddCommitmentTitle">تسجيل فاتورة أو دين جديد</span>
               </div>
-              <button type="button" onclick="toggleUnifiedAddCommitmentPanel()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 50%; width: 28px; height: 28px; line-height: 26px; text-align: center; color: #cbd5e1; font-size: 1.1rem; cursor: pointer;">&times;</button>
+              <button type="button" id="btnCancelUnifiedAddCommitment" onclick="toggleUnifiedAddCommitmentPanel()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 50%; width: 28px; height: 28px; line-height: 26px; text-align: center; color: #cbd5e1; font-size: 1.1rem; cursor: pointer;">&times;</button>
             </div>
 
             <!-- التفرقة الصريحة في أعلى شاشة الإضافة: 3 خيارات واضحة -->
@@ -14056,9 +14056,6 @@
 
         </div> <!-- إغلاق subViewCommitments -->
 
-        
-                </div> <!-- إغلاق subViewCommitments التام والنهائي -->
-
         <!-- شريط تبويب داخلي منسق لقسم الميزانيات -->
         <div class="budgets-sub-tab-strip" id="budgetsSubTabStrip" style="display: flex; gap: 6px; background: rgba(15, 23, 42, 0.85); padding: 4px; border-radius: 11px; border: 1px solid rgba(56, 189, 248, 0.25); margin-bottom: 10px;">
           <button type="button" id="btnBudgetSubCurrent" onclick="switchBudgetSubTab('current')" style="flex: 1; padding: 8px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 900; background: linear-gradient(135deg, #10b981, #059669); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);">
@@ -14240,8 +14237,7 @@
             <!-- تتولد خطط الميزانيات السابقة ديناميكياً -->
           </div>
         </div>
-      </div>
-    </div> <!-- إغلاق viewExpected الرسمي -->
+      </div> <!-- إغلاق viewExpected الرسمي -->
   </div> <!-- إغلاق appScrollBody الرسمي -->
 
   <!-- الشريط السفلي الثابت (Bottom Navigation Bar) -->
@@ -15833,324 +15829,411 @@
       </div>
     </div>
 
+        <!-- ==============================================================
+         نافذة مركز الضبط الموحد والمظهر والمزامنة (Settings & Cloud Hub Modal)
+         ============================================================== -->
     <div class="modal-overlay modal-overlay-custom" id="settingsModal">
-    <div class="modal-content-card" style="max-width: 500px; width: 95%; max-height: 94vh; display: flex; flex-direction: column; padding: 0; border-radius: 18px; overflow: hidden; border: 1.5px solid rgba(56, 189, 248, 0.35); box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65);">
-      
-      <!-- الرأس الفاخر للنافذة -->
-      <div class="modal-head" style="padding: 8px 12px; margin: 0; background: linear-gradient(135deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98)); border-bottom: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <div style="width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(168, 85, 247, 0.2)); border: 1.2px solid rgba(56, 189, 248, 0.4); display: flex; align-items: center; justify-content: center; font-size: 1.05rem; color: #38bdf8;">
-            <i class="fa-solid fa-sliders"></i>
+      <div class="modal-content-card" style="max-width: 520px; width: 95%; max-height: 90vh; display: flex; flex-direction: column; padding: 0; border-radius: 20px; overflow: hidden; border: 1.5px solid rgba(56, 189, 248, 0.35); box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65); margin: auto;">
+        
+        <!-- الرأس الفاخر للنافذة -->
+        <div class="modal-head" style="padding: 12px 18px; margin: 0; background: linear-gradient(135deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98)); border-bottom: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(168, 85, 247, 0.2)); border: 1.2px solid rgba(56, 189, 248, 0.4); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; color: #38bdf8;">
+              <i class="fa-solid fa-sliders"></i>
+            </div>
+            <div>
+              <h3 class="modal-title-custom" style="font-size: 0.96rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 6px;">
+                <span>مركز الضبط الموحد</span>
+                <span class="version-badge" style="font-size: 0.65rem; background: rgba(34, 197, 94, 0.2); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.4);">v5.3.1 • متزامن</span>
+              </h3>
+              <div style="font-size: 0.68rem; color: #94a3b8; font-weight: 600;">التحكم الشامل، الهوية، المزامنة، والبيانات</div>
+            </div>
           </div>
-          <div>
-            <h3 class="modal-title-custom" style="font-size: 0.90rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 6px;">
-              <span>مركز الضبط الموحد والمزامنة</span>
-              <span class="version-badge" style="font-size: 0.62rem; background: rgba(34, 197, 94, 0.2); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 6px; border-radius: 5px;">v5.3.1 • متزامن</span>
-            </h3>
+          <button type="button" class="btn-modal-close" onclick="closeModal('settingsModal')" aria-label="إغلاق">&times;</button>
+        </div>
+
+        <!-- كبسولة المستخدم النشط الحالية -->
+        <div class="settings-user-capsule" onclick="openFullUserSelectionModal()" style="cursor: pointer; background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95)); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;" title="انقر لتبديل العضو النشط">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="position: relative;">
+              <img id="settingsCurrentMemberImg" src="" style="width: 44px; height: 44px; border-radius: 12px; object-fit: cover; border: 2px solid #38bdf8; box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);">
+              <div style="position: absolute; bottom: -2px; right: -2px; width: 12px; height: 12px; border-radius: 50%; background: #10b981; border: 2px solid #0f172a;"></div>
+            </div>
+            <div>
+              <div style="font-size: 0.88rem; font-weight: 900; color: #fff; display: flex; align-items: center; gap: 6px;">
+                <span id="settingsCurrentMemberName">ماهر</span>
+                <span id="settingsActiveUserBadge" style="font-size: 0.62rem; background: rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 1px 6px; border-radius: 4px; font-weight: 800;">
+                  العضو النشط: <strong id="settingsActiveUserNameTxt" style="color: #ffffff;">ماهر</strong>
+                </span>
+              </div>
+              <div id="settingsMemberPinStatus" style="font-size: 0.66rem; color: #94a3b8; margin-top: 2px;">
+                <i class="fa-solid fa-shield-check" style="color: #34d399;"></i> الحساب محمي برمز PIN سري 🔒
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn-export-tool" style="padding: 5px 12px; font-size: 0.72rem; font-weight: 800; border-radius: 8px; display: flex; align-items: center; gap: 5px; pointer-events: none; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35);">
+            <i class="fa-solid fa-arrows-rotate"></i> تبديل
+          </button>
+        </div>
+
+        <!-- شريط التبويبات الثلاثي المنظم -->
+        <div class="settings-tabs-strip" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 8px 14px; background: rgba(15, 23, 42, 0.7); border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-shrink: 0;">
+          <button type="button" class="settings-tab-btn active" data-tab="appearance" onclick="switchSettingsTab('appearance')">
+            <i class="fa-solid fa-palette"></i>
+            <span>المظهر والهوية</span>
+          </button>
+          <button type="button" class="settings-tab-btn" data-tab="sync" onclick="switchSettingsTab('sync')">
+            <i class="fa-brands fa-google-drive"></i>
+            <span>السحابة والمزامنة</span>
+          </button>
+          <button type="button" class="settings-tab-btn" data-tab="data" onclick="switchSettingsTab('data')">
+            <i class="fa-solid fa-database"></i>
+            <span>المحافظ والبيانات</span>
+          </button>
+        </div>
+
+        <!-- محتوى التبويبات المنظم والمرن والقابل للتمرير -->
+        <div style="padding: 14px 16px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 12px;" class="custom-scrollbar">
+
+          <!-- ==========================================
+               التبويب 1: المظهر والتخصيص والثيمات
+               ========================================== -->
+          <div class="settings-tab-pane" id="settingsPane_appearance" style="display: block;">
             
+            <!-- 1. شعارات وهوية العائلة -->
+            <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 12px 14px; margin-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <div style="font-size: 0.82rem; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                  <i class="fa-solid fa-crown" style="color: #fbbf24;"></i>
+                  <span>شعارات وهوية العائلة:</span>
+                </div>
+                <span id="activeEmblemNameBadge" class="family-emblem-badge" style="font-size: 0.65rem; background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.4); padding: 2px 8px; border-radius: 6px; font-weight: 800;">صقر ذهبي</span>
+              </div>
+              <div id="emblemOptionButtonsGroup" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
+                <button type="button" onclick="switchFamilyEmblem(1)" class="emblem-opt-btn active" id="btnEmblemOpt1" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 2px; border-radius: 10px; cursor: pointer; border: 1.5px solid rgba(255,255,255,0.12); background: rgba(30, 41, 59, 0.85); color: #fff;">
+                  <img src="assets/family_option1_gold_crest.jpg" style="width: 38px; height: 38px; border-radius: 8px; object-fit: cover;">
+                  <span style="font-size: 0.65rem; font-weight: 800;">صقر ذهبي</span>
+                </button>
+                <button type="button" onclick="switchFamilyEmblem(2)" class="emblem-opt-btn" id="btnEmblemOpt2" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 2px; border-radius: 10px; cursor: pointer; border: 1.5px solid rgba(255,255,255,0.12); background: rgba(30, 41, 59, 0.85); color: #fff;">
+                  <img src="assets/family_option2_mosaic.jpg" style="width: 38px; height: 38px; border-radius: 8px; object-fit: cover;">
+                  <span style="font-size: 0.65rem; font-weight: 800;">فسيفساء</span>
+                </button>
+                <button type="button" onclick="switchFamilyEmblem(3)" class="emblem-opt-btn" id="btnEmblemOpt3" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 2px; border-radius: 10px; cursor: pointer; border: 1.5px solid rgba(255,255,255,0.12); background: rgba(30, 41, 59, 0.85); color: #fff;">
+                  <img src="assets/family_option3_rosette.jpg" style="width: 38px; height: 38px; border-radius: 8px; object-fit: cover;">
+                  <span style="font-size: 0.65rem; font-weight: 800;">أندلسية</span>
+                </button>
+                <button type="button" onclick="switchFamilyEmblem(4)" class="emblem-opt-btn" id="btnEmblemOpt4" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 2px; border-radius: 10px; cursor: pointer; border: 1.5px solid rgba(255,255,255,0.12); background: rgba(30, 41, 59, 0.85); color: #fff;">
+                  <img src="assets/family_option4_emerald.jpg" style="width: 38px; height: 38px; border-radius: 8px; object-fit: cover;">
+                  <span style="font-size: 0.65rem; font-weight: 800;">زمردة</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 2. ألوان وخلفيات التطبيق (9 ألوان) -->
+            <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 12px 14px; margin-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <div style="font-size: 0.82rem; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                  <i class="fa-solid fa-paint-roller" style="color: #38bdf8;"></i>
+                  <span>ألوان وخلفيات التطبيق:</span>
+                </div>
+                <span id="activeThemeBadge" style="font-size: 0.65rem; color: #38bdf8; font-weight: 800; background: rgba(56, 189, 248, 0.15); padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.3);">كحلي ملكي</span>
+              </div>
+              <div class="theme-color-palette" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+                <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div class="theme-color-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #0284c7; flex-shrink: 0;"></div>
+                  <span>كحلي ملكي</span>
+                </div>
+                <div class="theme-pill-option" id="themeOptBlack" onclick="setAppTheme('black')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div class="theme-color-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #090d16; border: 1px solid #475569; flex-shrink: 0;"></div>
+                  <span>أسود فاحم</span>
+                </div>
+                <div class="theme-pill-option" id="themeOptEmerald" onclick="setAppTheme('emerald')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div class="theme-color-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #10b981; flex-shrink: 0;"></div>
+                  <span>زمردي فاخر</span>
+                </div>
+                <div class="theme-pill-option" id="themeOptPurple" onclick="setAppTheme('purple')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div class="theme-color-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #a855f7; flex-shrink: 0;"></div>
+                  <span>بنفسجي ملكي</span>
+                </div>
+                <div class="theme-pill-option" id="themeOptRose" onclick="setAppTheme('rose')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div class="theme-color-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #e11d48; flex-shrink: 0;"></div>
+                  <span>عنابي ياقوتي</span>
+                </div>
+                <div class="theme-pill-option" id="themeOptOcean" onclick="setAppTheme('ocean')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div class="theme-color-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #06b6d4; flex-shrink: 0;"></div>
+                  <span>سماوي فيروزي</span>
+                </div>
+                <div class="theme-pill-option" id="themeOptGold" onclick="setAppTheme('gold')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div class="theme-color-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #f59e0b; flex-shrink: 0;"></div>
+                  <span>موكا وبرونزي</span>
+                </div>
+                <div class="theme-pill-option" id="themeOptSlate" onclick="setAppTheme('slate')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div class="theme-color-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #64748b; flex-shrink: 0;"></div>
+                  <span>تيتانيوم رمادي</span>
+                </div>
+                <div class="theme-pill-option" id="themeOptLight" onclick="setAppTheme('light')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px; background: rgba(255, 255, 255, 0.95); color: #0f172a;">
+                  <div class="theme-color-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #f8fafc; border: 1px solid #94a3b8; flex-shrink: 0;"></div>
+                  <span style="color: #0f172a; font-weight: 800;">أبيض نهار</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. أنماط وألوان الأيقونات (6 أنماط) -->
+            <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 12px 14px; margin-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <div style="font-size: 0.82rem; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                  <i class="fa-solid fa-icons" style="color: #f59e0b;"></i>
+                  <span>أنماط وألوان الأيقونات:</span>
+                </div>
+                <span id="activeIconThemeBadge" style="font-size: 0.65rem; color: #fbbf24; font-weight: 800; background: rgba(251, 191, 36, 0.15); padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(251, 191, 36, 0.3);">ملون فينتك</span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+                <div class="icon-theme-pill active" id="iconThemeOptVibrant" onclick="setAppIconTheme('vibrant')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div style="display: flex; gap: 2px;"><span style="color: #10b981;">●</span><span style="color: #38bdf8;">●</span><span style="color: #f59e0b;">●</span></div>
+                  <span>ملون</span>
+                </div>
+                <div class="icon-theme-pill" id="iconThemeOptGold" onclick="setAppIconTheme('gold')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div style="display: flex; gap: 2px; color: #f59e0b;"><span>●</span><span>●</span><span>●</span></div>
+                  <span>ذهبي</span>
+                </div>
+                <div class="icon-theme-pill" id="iconThemeOptEmerald" onclick="setAppIconTheme('emerald')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div style="display: flex; gap: 2px; color: #10b981;"><span>●</span><span>●</span><span>●</span></div>
+                  <span>زمردي</span>
+                </div>
+                <div class="icon-theme-pill" id="iconThemeOptOcean" onclick="setAppIconTheme('ocean')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div style="display: flex; gap: 2px; color: #06b6d4;"><span>●</span><span>●</span><span>●</span></div>
+                  <span>سماوي</span>
+                </div>
+                <div class="icon-theme-pill" id="iconThemeOptPurple" onclick="setAppIconTheme('purple')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div style="display: flex; gap: 2px; color: #a855f7;"><span>●</span><span>●</span><span>●</span></div>
+                  <span>ياقوتي</span>
+                </div>
+                <div class="icon-theme-pill" id="iconThemeOptSilver" onclick="setAppIconTheme('silver')" style="padding: 7px 6px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 6px; border-radius: 8px;">
+                  <div style="display: flex; gap: 2px; color: #94a3b8;"><span>●</span><span>●</span><span>●</span></div>
+                  <span>بلاتيني</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. خط الكلمات والأرقام (6 خطوط) -->
+            <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 12px 14px; margin-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <div style="font-size: 0.82rem; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
+                  <i class="fa-solid fa-font" style="color: #38bdf8;"></i>
+                  <span>خط الكلمات والأرقام:</span>
+                </div>
+                <span id="activeFontBadge" style="font-size: 0.65rem; color: #34d399; font-weight: 800; background: rgba(52, 211, 153, 0.15); padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(52, 211, 153, 0.3);">تاجوال (افتراضي)</span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+                <button type="button" class="analytics-sec-btn font-choice-pill active" id="fontChoiceTajawal" onclick="setAppFont('tajawal')" style="padding: 7px 4px; font-size: 0.72rem; font-family: 'Tajawal', sans-serif !important; border-radius: 8px;">
+                  ✨ تاجوال
+                </button>
+                <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceCairo" onclick="setAppFont('cairo')" style="padding: 7px 4px; font-size: 0.72rem; font-family: 'Cairo', sans-serif !important; border-radius: 8px;">
+                  🏛️ كايرو
+                </button>
+                <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceIBM" onclick="setAppFont('ibm')" style="padding: 7px 4px; font-size: 0.72rem; font-family: 'IBM Plex Sans Arabic', sans-serif !important; border-radius: 8px;">
+                  🏢 آي بي إم
+                </button>
+                <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceAlmarai" onclick="setAppFont('almarai')" style="padding: 7px 4px; font-size: 0.72rem; font-family: 'Almarai', sans-serif !important; border-radius: 8px;">
+                  📱 المراعي
+                </button>
+                <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceReadex" onclick="setAppFont('readex')" style="padding: 7px 4px; font-size: 0.72rem; font-family: 'Readex Pro', sans-serif !important; border-radius: 8px;">
+                  📐 ريدكس
+                </button>
+                <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceAlexandria" onclick="setAppFont('alexandria')" style="padding: 7px 4px; font-size: 0.72rem; font-family: 'Alexandria', sans-serif !important; border-radius: 8px;">
+                  🏛️ الإسكندرية
+                </button>
+              </div>
+            </div>
+
+            <!-- 5. حجم الخط ونمط الكروت -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <!-- الحجم -->
+              <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <div style="font-size: 0.74rem; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 4px;">
+                    <i class="fa-solid fa-text-height" style="color: #38bdf8;"></i> حجم الخط:
+                  </div>
+                  <span id="activeFontSizeBadge" style="font-size: 0.60rem; color: #38bdf8; font-weight: 800;">وسط</span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;">
+                  <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeSmall" onclick="setAppFontSize('small')" style="padding: 6px 2px; font-size: 0.68rem; border-radius: 6px;">صغير</button>
+                  <button type="button" class="analytics-sec-btn font-size-pill active" id="fontSizeMedium" onclick="setAppFontSize('medium')" style="padding: 6px 2px; font-size: 0.70rem; border-radius: 6px;">وسط</button>
+                  <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeLarge" onclick="setAppFontSize('large')" style="padding: 6px 2px; font-size: 0.72rem; border-radius: 6px;">كبير</button>
+                </div>
+              </div>
+              <!-- النمط -->
+              <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px 12px;">
+                <div style="font-size: 0.74rem; font-weight: 800; color: #f8fafc; margin-bottom: 6px; display: flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-shapes" style="color: #38bdf8;"></i> نمط الكروت:
+                </div>
+                <div id="cardStyleButtonsContainer" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+                  <button type="button" class="analytics-sec-btn active" id="designStyleGlass" onclick="setAppDesignStyle('glass')" style="padding: 6px 2px; font-size: 0.66rem; border-radius: 6px;">✨ زجاجي</button>
+                  <button type="button" class="analytics-sec-btn" id="designStyleMin" onclick="setAppDesignStyle('minimal')" style="padding: 6px 2px; font-size: 0.66rem; border-radius: 6px;">📐 مدمج</button>
+                  <button type="button" class="analytics-sec-btn" id="designStyleNeu" onclick="setAppDesignStyle('neumorphic')" style="padding: 6px 2px; font-size: 0.66rem; border-radius: 6px;">🔲 نيومورف</button>
+                  <button type="button" class="analytics-sec-btn" id="designStyleNeon" onclick="setAppDesignStyle('neon')" style="padding: 6px 2px; font-size: 0.66rem; border-radius: 6px;">⚡ نيون</button>
+                </div>
+              </div>
+            </div>
+
           </div>
+
+          <!-- ==========================================
+               التبويب 2: السحابة والمزامنة المباشرة
+               ========================================== -->
+          <div class="settings-tab-pane" id="settingsPane_sync" style="display: none;">
+            
+            <!-- كارت المزامنة السحابية المباشرة (Google Drive) -->
+            <div class="settings-action-card" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.10), rgba(15, 23, 42, 0.90)); border: 1.5px solid rgba(34, 197, 94, 0.4); border-radius: 16px; padding: 14px 15px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div style="width: 34px; height: 34px; border-radius: 8px; background: rgba(34, 197, 94, 0.2); display: flex; align-items: center; justify-content: center; color: #22c55e; font-size: 1.15rem;">
+                    <i class="fa-brands fa-google-drive"></i>
+                  </div>
+                  <div>
+                    <span style="font-weight: 900; font-size: 0.90rem; color: #f8fafc; display: block;">سحابة العائلة والمزامنة المباشرة</span>
+                    <span style="font-size: 0.68rem; color: #94a3b8;">ربط فوري وحفظ مشفر لحظياً مع خادم السحابة</span>
+                  </div>
+                </div>
+                <span id="settingsDriveCloudStatusBadge" style="background: rgba(34, 197, 94, 0.2); color: #34d399; font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; border: 1px solid rgba(34, 197, 94, 0.35); display: flex; align-items: center; gap: 4px;">
+                  <i class="fa-solid fa-circle" style="font-size: 0.45rem; color: #22c55e;"></i> متصل ومحدث تلقائياً
+                </span>
+              </div>
+
+              <!-- تفاصيل الحساب والملف والتطابق الرياضي -->
+              <div style="background: rgba(0, 0, 0, 0.35); border-radius: 10px; padding: 9px 12px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px; font-size: 0.74rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: #94a3b8;">الحساب السحابي المعتمد:</span>
+                  <span id="settingsModalUserEmail" style="color: #38bdf8; font-weight: 800; direction: ltr; font-family: monospace;">maher.easybakery@gmail.com</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="color: #94a3b8;">قاعدة البيانات المشتركة:</span>
+                  <span style="color: #34d399; font-weight: 800; font-family: monospace;">family_expense_tracker_db.json</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 5px;">
+                  <span style="color: #94a3b8;">توقيت آخر مزامنة:</span>
+                  <span id="settingsDriveLastSyncTimeText" style="color: #fbbf24; font-weight: 800;">آخر مزامنة: الآن</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 5px;">
+                  <span style="color: #94a3b8;">الموازنة الرياضية للأرصدة:</span>
+                  <span id="settingsReconciliationDiffBadge" style="font-weight: 800; color: #34d399;">
+                    <i class="fa-solid fa-circle-check" style="color: #34d399;"></i> مطابقة تامة (فرق الرصيد: 0.00 ج.م)
+                  </span>
+                </div>
+              </div>
+
+              <!-- زر المزامنة الفورية السحابية -->
+              <button type="button" class="btn-submit-tx" onclick="executeGoogleDriveSync()" style="width: 100%; height: 42px; background: linear-gradient(135deg, #10b981, #059669); border: none; border-radius: 12px; font-weight: 900; font-size: 0.88rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35); margin-bottom: 8px;">
+                <i class="fa-solid fa-arrows-rotate" id="settingsDriveSyncIconSpin"></i>
+                <span>مزامنة وحفظ سحابي فوري الآن (متزامن)</span>
+              </button>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: #94a3b8; padding: 0 2px;">
+                <span><i class="fa-solid fa-bolt" style="color: #fbbf24;"></i> كل معاملة تسجلها تُحفظ فوراً على السحابة</span>
+                <button type="button" onclick="closeModal('settingsModal'); openGoogleDriveSyncModal();" style="background: none; border: none; color: #38bdf8; text-decoration: underline; cursor: pointer; font-size: 0.72rem; font-weight: 800;">
+                  خيارات الربط المتقدمة ⚙️
+                </button>
+              </div>
+            </div>
+
+            <!-- كارت تحديث التطبيق ومسح الكاش السحابي -->
+            <div class="settings-action-card" style="background: rgba(56, 189, 248, 0.08); border: 1.2px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 12px 14px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <i class="fa-solid fa-rotate" style="color: #38bdf8; font-size: 1.05rem;"></i>
+                  <span style="font-weight: 800; font-size: 0.86rem; color: #f8fafc;">إعادة تحميل وتحديث التطبيق</span>
+                </div>
+                <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; font-size: 0.66rem; font-weight: 800; padding: 2px 7px; border-radius: 6px;">تحديث فوري من GitHub</span>
+              </div>
+              <p style="font-size: 0.72rem; color: #94a3b8; margin: 0 0 10px 0; line-height: 1.4;">
+                يقوم بإعادة تحميل أحدث إصدار منشور فوراً، مسح الكاش المؤقت لمتصفح الهاتف، وجلب كافة المعاملات السحابية.
+              </p>
+              <button type="button" class="btn-primary-custom" onclick="forcePurgeCacheAndReload()" style="width: 100%; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; padding: 10px 12px; border-radius: 10px; font-weight: 800; font-size: 0.84rem; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <i class="fa-solid fa-arrows-rotate"></i>
+                <span>إعادة التحميل وتحديث التطبيق الآن</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- ==========================================
+               التبويب 3: المحافظ والبيانات والنسخ الاحتياطي
+               ========================================== -->
+          <div class="settings-tab-pane" id="settingsPane_data" style="display: none;">
+            
+            <!-- كارت إدارة المحافظ والحسابات البنكية -->
+            <div class="settings-action-card" id="settingsSec_data" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 13px 15px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <div style="font-weight: 800; font-size: 0.86rem; color: #f8fafc; display: flex; align-items: center; gap: 8px;">
+                  <i class="fa-solid fa-wallet" style="color: #10b981;"></i>
+                  <span>إدارة المحافظ والحسابات البنكية</span>
+                </div>
+                <span id="settingsWalletCountText" style="font-size: 0.68rem; color: #10b981; font-weight: 800; background: rgba(16, 185, 129, 0.15); padding: 2px 7px; border-radius: 6px;">
+                  4 محافظ نشطة
+                </span>
+              </div>
+              <p style="font-size: 0.72rem; color: #94a3b8; margin: 0 0 10px 0; line-height: 1.4;">
+                تعديل أسماء المحافظ، تحديث الأرصدة الافتتاحية، تسجيل التحويلات البنكية، واستعراض كشف الحساب.
+              </p>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <button type="button" class="btn-submit-tx" onclick="closeModal('settingsModal'); openModal('walletModal');" style="margin: 0; padding: 9px 10px; font-size: 0.78rem; font-weight: 800; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                  <i class="fa-solid fa-pen-to-square"></i> تعديل المحافظ والأرصدة
+                </button>
+                <button type="button" class="btn-export-tool excel-btn" onclick="closeModal('settingsModal'); openWalletStatementModal();" style="padding: 9px 10px; font-size: 0.78rem; font-weight: 800; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                  <i class="fa-solid fa-receipt"></i> كشف الحساب المحاسبي
+                </button>
+              </div>
+            </div>
+
+            <!-- كارت النسخ الاحتياطي المحلي واستيراد JSON -->
+            <div class="settings-action-card" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 13px 15px;">
+              <div style="font-weight: 800; font-size: 0.86rem; color: #f8fafc; margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-file-code" style="color: #38bdf8;"></i>
+                <span>النسخ الاحتياطي المحلي (ملف JSON)</span>
+              </div>
+              <p style="font-size: 0.72rem; color: #94a3b8; margin: 0 0 10px 0; line-height: 1.4;">
+                تصدير نسخة احتياطية كاملة بهاتفك، أو استرجاع بيانات محفوظة مسبقاً.
+              </p>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <button type="button" class="btn-export-tool" onclick="downloadBackup()" style="padding: 9px 10px; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 10px;">
+                  <i class="fa-solid fa-download"></i> تصدير نسخة (JSON)
+                </button>
+                <button type="button" class="btn-export-tool" onclick="document.getElementById('settingsBackupFileInput').click()" style="padding: 9px 10px; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 10px;">
+                  <i class="fa-solid fa-upload"></i> استيراد نسخة (JSON)
+                </button>
+                <input type="file" id="settingsBackupFileInput" accept=".json" style="display: none;" onchange="handleBackupUpload(event)">
+              </div>
+            </div>
+
+            <!-- كارت إعادة التعيين والنموذج التجريبي -->
+            <div class="settings-action-card" style="background: rgba(239, 68, 68, 0.06); border: 1.2px solid rgba(239, 68, 68, 0.25); border-radius: 16px; padding: 12px 14px;">
+              <div style="font-weight: 800; font-size: 0.84rem; color: #f87171; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>منطقة إعادة التعيين والتجربة</span>
+              </div>
+              <p style="font-size: 0.70rem; color: #94a3b8; margin: 0 0 8px 0; line-height: 1.4;">
+                إعادة بناء المعاملات والمحافظ وتطبيق النموذج التجريبي الأصلي للتطبيق.
+              </p>
+              <button type="button" class="btn-submit-tx" onclick="resetToDemoData()" style="width: 100%; background: linear-gradient(135deg, rgba(239, 68, 68, 0.85), rgba(220, 38, 38, 0.95)); margin: 0; padding: 8px 12px; font-weight: 800; font-size: 0.78rem; border-radius: 10px; border: 1px solid rgba(239, 68, 68, 0.5);">
+                <i class="fa-solid fa-trash-can-arrow-up"></i> مسح البيانات السابقة وتطبيق التجربة الجديدة
+              </button>
+            </div>
+
+          </div>
+
         </div>
-        <button type="button" class="btn-modal-close" onclick="closeModal('settingsModal')" aria-label="إغلاق">&times;</button>
+
+        <!-- تذييل النافذة الأنيق المدمج داخل الكارت -->
+        <div style="padding: 10px 18px; background: rgba(15, 23, 42, 0.98); border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+          <span style="font-size: 0.68rem; color: #94a3b8;">مصروفات العائلة &copy; 2026 - نظام مالي محاسبي عائلي متكامل</span>
+          <button type="button" class="btn-export-tool" onclick="closeModal('settingsModal')" style="padding: 6px 18px; font-size: 0.78rem; font-weight: 800; border-radius: 10px; background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.12);">
+            إغلاق
+          </button>
+        </div>
+
       </div>
-
-      <!-- محتوى الضبط الموحد الشامل (مضغوط هندسياً بدون حاجة للتمرير) -->
-      <div style="padding: 6px 10px; overflow-y: auto; flex: 1; max-height: calc(94vh - 115px); display: flex; flex-direction: column; gap: 8px;" class="custom-scrollbar">
-
-
-
-        <!-- 1. كارت إدارة وتبديل حسابات العائلة - محكوم 100% داخل الحدود بدون أي خروج -->
-        <div class="settings-user-capsule" onclick="openFullUserSelectionModal()" style="cursor: pointer; background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 14px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.35); flex-wrap: wrap; gap: 8px; box-sizing: border-box; overflow: hidden; max-width: 100%;">
-          <div style="display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0;">
-            <div style="position: relative; flex-shrink: 0;">
-              <img id="settingsCurrentMemberImg" src="" style="width: 44px; height: 44px; border-radius: 12px; object-fit: cover !important; object-position: top center !important; border: 2.2px solid #38bdf8; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.4);">
-              <span style="position: absolute; bottom: -2px; left: -2px; width: 11px; height: 11px; border-radius: 50%; background: #22c55e; border: 1.5px solid #0f172a;"></span>
-            </div>
-            <div style="min-width: 0; flex: 1;">
-              <div style="font-size: 0.88rem; font-weight: 900; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">المستخدم النشط: <span id="settingsCurrentMemberName" style="color: #38bdf8;">ماهر</span></div>
-              <div style="font-size: 0.65rem; color: #94a3b8; font-weight: 700;">أفراد الأسرة 👥</div>
-            </div>
-          </div>
-          <!-- شارة الحساب الحالي: محكومة تماماً داخل الكارت ولا تخرج خارج الحدود -->
-          <div id="settingsActiveUserBadge" style="display: inline-flex; align-items: center; gap: 5px; background: rgba(34, 197, 94, 0.18); border: 1.2px solid rgba(34, 197, 94, 0.5); padding: 4px 10px; border-radius: 10px; color: #34d399; font-size: 0.72rem; font-weight: 850; flex-shrink: 0; white-space: nowrap; max-width: 100%; box-sizing: border-box;">
-            <i class="fa-solid fa-circle-check" style="color: #22c55e; font-size: 0.65rem;"></i>
-            <span>الحساب الحالي: <strong id="settingsActiveUserNameTxt" style="color: #ffffff;">ماهر</strong></span>
-            <i class="fa-solid fa-chevron-left" style="font-size: 0.65rem; margin-right: 3px; color: #38bdf8;"></i>
-          </div>
-        </div>
-
-        <!-- 2. شعار وهوية عائلة ماهر ❤️ أية الفاخرة -->
-        <div id="family_portrait_settings_card" style="margin: 0 0 6px; border-radius: 14px; overflow: hidden; position: relative; border: 1.5px solid rgba(56, 189, 248, 0.45); background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)); padding: 12px 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 12px;">
-          <img src="assets/family_option1_gold_crest.jpg" alt="شعار العائلة" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; border: 1.5px solid #fbbf24; flex-shrink: 0;">
-          <div>
-            <div style="font-size: 0.88rem; font-weight: 900; color: #f8fafc;">عائلة ماهر ❤️ أية</div>
-            <div style="font-size: 0.72rem; color: #38bdf8; font-weight: 700;">بيت عامر بالحب والبركة والإدارة المالية الذكية</div>
-          </div>
-        </div>
-
-        <!-- 3. أداة الاختيار والتبديل التفاعلي لشعار ورمز العائلة المفضل (4 خيارات ملكية مع حفظ دائم) -->
-        <div style="background: rgba(15, 23, 42, 0.85); border: 1.3px solid rgba(251, 191, 36, 0.40); border-radius: 14px; padding: 10px 12px; margin-bottom: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.35);">
-          <div style="font-size: 0.72rem; font-weight: 900; color: #fbbf24; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px;">
-            <span style="display: flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-wand-magic-sparkles"></i>
-              <span>اختر نمط رمز وشعار العائلة المفضل لديك:</span>
-            </span>
-            <span id="activeEmblemNameBadge" style="font-size: 0.62rem; color: #fbbf24; background: rgba(251, 191, 36, 0.16); border: 1px solid rgba(251, 191, 36, 0.4); padding: 2px 8px; border-radius: 6px; font-weight: 850;">الدرع الملكي المذهب ✓</span>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;" id="emblemOptionButtonsGroup">
-            <button type="button" onclick="switchFamilyEmblem(1)" class="emblem-opt-btn active" id="btnEmblemOpt1" style="background: rgba(30, 41, 59, 0.85); border: 2.2px solid #fbbf24; border-radius: 10px; padding: 6px 2px; cursor: pointer; text-align: center; color: #f8fafc; transition: all 0.2s ease; box-shadow: 0 0 12px rgba(251, 191, 36, 0.45);">
-              <img src="assets/family_option1_gold_crest.jpg" style="width: 36px; height: 36px; border-radius: 8px; object-fit: cover; display: block; margin: 0 auto 3px;">
-              <div style="font-size: 0.58rem; font-weight: 850; white-space: nowrap;">الدرع الملكي</div>
-            </button>
-            <button type="button" onclick="switchFamilyEmblem(2)" class="emblem-opt-btn" id="btnEmblemOpt2" style="background: rgba(30, 41, 59, 0.85); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 6px 2px; cursor: pointer; text-align: center; color: #f8fafc; transition: all 0.2s ease;">
-              <img src="assets/family_option2_mosaic.jpg" style="width: 36px; height: 36px; border-radius: 8px; object-fit: cover; display: block; margin: 0 auto 3px;">
-              <div style="font-size: 0.58rem; font-weight: 850; white-space: nowrap;">الموزاييك</div>
-            </button>
-            <button type="button" onclick="switchFamilyEmblem(3)" class="emblem-opt-btn" id="btnEmblemOpt3" style="background: rgba(30, 41, 59, 0.85); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 6px 2px; cursor: pointer; text-align: center; color: #f8fafc; transition: all 0.2s ease;">
-              <img src="assets/family_option3_rosette.jpg" style="width: 36px; height: 36px; border-radius: 8px; object-fit: cover; display: block; margin: 0 auto 3px;">
-              <div style="font-size: 0.58rem; font-weight: 850; white-space: nowrap;">المدار الزجاجي</div>
-            </button>
-            <button type="button" onclick="switchFamilyEmblem(4)" class="emblem-opt-btn" id="btnEmblemOpt4" style="background: rgba(30, 41, 59, 0.85); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 6px 2px; cursor: pointer; text-align: center; color: #f8fafc; transition: all 0.2s ease;">
-              <img src="assets/family_option4_emerald.jpg" style="width: 36px; height: 36px; border-radius: 8px; object-fit: cover; display: block; margin: 0 auto 3px;">
-              <div style="font-size: 0.58rem; font-weight: 850; white-space: nowrap;">الزمرد والنيون</div>
-            </button>
-          </div>
-        </div>
-
-        <!-- ========================================================
-             القسم 1: كارت المزامنة السحابية وتحديث النظام (كارت موحد فائق الرشاقة)
-             ======================================================== -->
-        </div>
-
-        <!-- ========================================================
-             القسم 2: المظهر والتخصيص البصري
-             ======================================================== -->
-        <div class="settings-unified-section" style="background: rgba(15, 23, 42, 0.90); border: 1.2px solid rgba(255, 255, 255, 0.10); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 10px;">
-          <!-- 1. سمة وألوان التطبيق (9 خلفيات وألوان ملكية راقية) -->
-          <div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-              <div style="font-size: 0.76rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
-                <i class="fa-solid fa-palette" style="color: #a855f7; font-size: 0.88rem;"></i>
-                <span>خلفيات وألوان التطبيق:</span>
-              </div>
-              <span id="activeThemeBadge" style="font-size: 0.63rem; color: #38bdf8; font-weight: 800; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 1px 7px; border-radius: 5px;">كحلي ملكي</span>
-            </div>
-
-
-
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
-              <div class="theme-pill-option active" id="themeOptNavy" onclick="setAppTheme('navy')" style="background: rgba(14, 39, 76, 0.75);">
-                <div class="theme-color-dot theme-check-dot" data-theme="navy" style="border: 1.5px solid #38bdf8;"><i class="fa-solid fa-check"></i></div>
-                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">💙 كحلي ملكي</span>
-                <span class="theme-selected-badge">مفعل ✓</span>
-              </div>
-              <div class="theme-pill-option" id="themeOptBlack" onclick="setAppTheme('black')" style="background: rgba(0, 0, 0, 0.90);">
-                <div class="theme-color-dot theme-check-dot" data-theme="black" style="border: 1.5px solid #666;"></div>
-                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">🖤 أسود فاحم</span>
-                <span class="theme-selected-badge">مفعل ✓</span>
-              </div>
-              <div class="theme-pill-option" id="themeOptEmerald" onclick="setAppTheme('emerald')" style="background: rgba(6, 69, 50, 0.75);">
-                <div class="theme-color-dot theme-check-dot" data-theme="emerald" style="border: 1.5px solid #34d399;"></div>
-                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">💚 زمردي فاخر</span>
-                <span class="theme-selected-badge">مفعل ✓</span>
-              </div>
-              <div class="theme-pill-option" id="themeOptPurple" onclick="setAppTheme('purple')" style="background: rgba(55, 18, 94, 0.75);">
-                <div class="theme-color-dot theme-check-dot" data-theme="purple" style="border: 1.5px solid #c084fc;"></div>
-                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">💜 بنفسجي ملكي</span>
-                <span class="theme-selected-badge">مفعل ✓</span>
-              </div>
-              <div class="theme-pill-option" id="themeOptRose" onclick="setAppTheme('rose')" style="background: rgba(70, 14, 38, 0.75);">
-                <div class="theme-color-dot theme-check-dot" data-theme="rose" style="border: 1.5px solid #fb7185;"></div>
-                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">🍷 عنابي ياقوتي</span>
-                <span class="theme-selected-badge">مفعل ✓</span>
-              </div>
-              <div class="theme-pill-option" id="themeOptOcean" onclick="setAppTheme('ocean')" style="background: rgba(14, 62, 92, 0.75);">
-                <div class="theme-color-dot theme-check-dot" data-theme="ocean" style="border: 1.5px solid #22d3ee;"></div>
-                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">🌊 سماوي فيروزي</span>
-                <span class="theme-selected-badge">مفعل ✓</span>
-              </div>
-              <div class="theme-pill-option" id="themeOptGold" onclick="setAppTheme('gold')" style="background: rgba(59, 35, 16, 0.75);">
-                <div class="theme-color-dot theme-check-dot" data-theme="gold" style="border: 1.5px solid #fbbf24;"></div>
-                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">☕ موكا وبرونزي</span>
-                <span class="theme-selected-badge">مفعل ✓</span>
-              </div>
-              <div class="theme-pill-option" id="themeOptSlate" onclick="setAppTheme('slate')" style="background: rgba(30, 41, 59, 0.75);">
-                <div class="theme-color-dot theme-check-dot" data-theme="slate" style="border: 1.5px solid #94a3b8;"></div>
-                <span style="font-weight: 800; font-size: 0.68rem; color: #f8fafc;">🪙 تيتانيوم رمادي</span>
-                <span class="theme-selected-badge">مفعل ✓</span>
-              </div>
-              <div class="theme-pill-option" id="themeOptLight" onclick="setAppTheme('light')" style="background: rgba(255, 255, 255, 0.95);">
-                <div class="theme-color-dot theme-check-dot" data-theme="light" style="border: 1.5px solid #0284c7;"></div>
-                <span style="font-weight: 800; font-size: 0.68rem; color: #0f172a;">☀️ أبيض نهار</span>
-                <span class="theme-selected-badge">مفعل ✓</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2. ألوان ونمط الأيقونات (Icon Color Palettes) -->
-          <div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-              <div style="font-size: 0.76rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
-                <i class="fa-solid fa-icons" style="color: #fbbf24; font-size: 0.88rem;"></i>
-                <span>ألوان ونمط الأيقونات:</span>
-              </div>
-              <span id="activeIconThemeBadge" style="font-size: 0.63rem; color: #fbbf24; font-weight: 800; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); padding: 1px 7px; border-radius: 5px;">ملون فينتك (افتراضي)</span>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;">
-              <div class="icon-theme-pill active" id="iconThemeOptVibrant" onclick="setAppIconTheme('vibrant')">
-                <div class="icon-palette-preview">
-                  <span class="icon-palette-dot" style="background:#10b981;"></span>
-                  <span class="icon-palette-dot" style="background:#0284c7;"></span>
-                  <span class="icon-palette-dot" style="background:#f59e0b;"></span>
-                </div>
-                <span>ملون</span>
-              </div>
-              <div class="icon-theme-pill" id="iconThemeOptGold" onclick="setAppIconTheme('gold')">
-                <div class="icon-palette-preview">
-                  <span class="icon-palette-dot" style="background:#f59e0b;"></span>
-                  <span class="icon-palette-dot" style="background:#fbbf24;"></span>
-                  <span class="icon-palette-dot" style="background:#d97706;"></span>
-                </div>
-                <span>ذهبي</span>
-              </div>
-              <div class="icon-theme-pill" id="iconThemeOptEmerald" onclick="setAppIconTheme('emerald')">
-                <div class="icon-palette-preview">
-                  <span class="icon-palette-dot" style="background:#10b981;"></span>
-                  <span class="icon-palette-dot" style="background:#34d399;"></span>
-                  <span class="icon-palette-dot" style="background:#059669;"></span>
-                </div>
-                <span>زمردي</span>
-              </div>
-              <div class="icon-theme-pill" id="iconThemeOptOcean" onclick="setAppIconTheme('ocean')">
-                <div class="icon-palette-preview">
-                  <span class="icon-palette-dot" style="background:#0284c7;"></span>
-                  <span class="icon-palette-dot" style="background:#38bdf8;"></span>
-                  <span class="icon-palette-dot" style="background:#06b6d4;"></span>
-                </div>
-                <span>سماوي</span>
-              </div>
-              <div class="icon-theme-pill" id="iconThemeOptPurple" onclick="setAppIconTheme('purple')">
-                <div class="icon-palette-preview">
-                  <span class="icon-palette-dot" style="background:#8b5cf6;"></span>
-                  <span class="icon-palette-dot" style="background:#c084fc;"></span>
-                  <span class="icon-palette-dot" style="background:#ec4899;"></span>
-                </div>
-                <span>ياقوتي</span>
-              </div>
-              <div class="icon-theme-pill" id="iconThemeOptSilver" onclick="setAppIconTheme('silver')">
-                <div class="icon-palette-preview">
-                  <span class="icon-palette-dot" style="background:#94a3b8;"></span>
-                  <span class="icon-palette-dot" style="background:#cbd5e1;"></span>
-                  <span class="icon-palette-dot" style="background:#64748b;"></span>
-                </div>
-                <span>بلاتيني</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3. خط الكلمات والأرقام (6 فونتات عربية ومصرفية رائدة) -->
-          <div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-              <div style="font-size: 0.76rem; font-weight: 900; color: #f8fafc; display: flex; align-items: center; gap: 6px;">
-                <i class="fa-solid fa-font" style="color: #38bdf8; font-size: 0.88rem;"></i>
-                <span>خط الكلمات والأرقام:</span>
-              </div>
-              <span id="activeFontBadge" style="font-size: 0.63rem; color: #34d399; font-weight: 800; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); padding: 1px 7px; border-radius: 5px;">تاجوال (افتراضي)</span>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;">
-              <button type="button" class="analytics-sec-btn font-choice-pill active" id="fontChoiceTajawal" onclick="setAppFont('tajawal')" style="padding: 5px 2px; font-size: 0.70rem; font-family: 'Tajawal', sans-serif !important;">
-                ✨ تاجوال
-              </button>
-              <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceCairo" onclick="setAppFont('cairo')" style="padding: 5px 2px; font-size: 0.70rem; font-family: 'Cairo', sans-serif !important;">
-                🏦 كايرو
-              </button>
-              <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceIBM" onclick="setAppFont('ibm')" style="padding: 5px 2px; font-size: 0.70rem; font-family: 'IBM Plex Sans Arabic', sans-serif !important;">
-                🏢 IBM Plex
-              </button>
-              <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceAlmarai" onclick="setAppFont('almarai')" style="padding: 5px 2px; font-size: 0.70rem; font-family: 'Almarai', sans-serif !important;">
-                📱 المراعي
-              </button>
-              <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceReadex" onclick="setAppFont('readex')" style="padding: 5px 2px; font-size: 0.70rem; font-family: 'Readex Pro', sans-serif !important;">
-                📐 ريدكس
-              </button>
-              <button type="button" class="analytics-sec-btn font-choice-pill" id="fontChoiceAlexandria" onclick="setAppFont('alexandria')" style="padding: 5px 2px; font-size: 0.70rem; font-family: 'Alexandria', sans-serif !important;">
-                🏛️ الإسكندرية
-              </button>
-            </div>
-          </div>
-
-          <!-- 4. حجم الخط (صف منفصل كامل العرض مريح) -->
-          <div style="margin-bottom: 8px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-              <div style="font-size: 0.74rem; font-weight: 800; color: #cbd5e1; display: flex; align-items: center; gap: 5px;">
-                <i class="fa-solid fa-text-height" style="color: #38bdf8;"></i>
-                <span>حجم الخط:</span>
-              </div>
-              <span id="activeFontSizeBadge" style="font-size: 0.63rem; color: #38bdf8; font-weight: 800; background: rgba(56, 189, 248, 0.15); padding: 1px 7px; border-radius: 5px;">وسط (الافتراضي)</span>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
-              <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeSmall" onclick="setAppFontSize('small', true, true)" style="padding: 7px 4px; font-size: 0.72rem; justify-content: center;">صغير</button>
-              <button type="button" class="analytics-sec-btn font-size-pill active" id="fontSizeMedium" onclick="setAppFontSize('medium', true, true)" style="padding: 7px 4px; font-size: 0.74rem; justify-content: center;">وسط</button>
-              <button type="button" class="analytics-sec-btn font-size-pill" id="fontSizeLarge" onclick="setAppFontSize('large', true, true)" style="padding: 7px 4px; font-size: 0.76rem; justify-content: center;">كبير</button>
-            </div>
-          </div>
-
-          <!-- 5. نمط الكروت (صف منفصل كامل العرض يتسع للأنماط الأربعة دون أي اقتصاص) -->
-          <div>
-            <div style="font-size: 0.74rem; font-weight: 800; color: #cbd5e1; margin-bottom: 4px; display: flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-shapes" style="color: #38bdf8;"></i>
-              <span>نمط الكروت:</span>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;" id="cardStyleButtonsContainer">
-              <button type="button" class="analytics-sec-btn active" id="designStyleGlass" onclick="setAppDesignStyle('glass')" style="padding: 7px 4px; font-size: 0.70rem; justify-content: center;">✨ زجاجي</button>
-              <button type="button" class="analytics-sec-btn" id="designStyleMin" onclick="setAppDesignStyle('minimal')" style="padding: 7px 4px; font-size: 0.70rem; justify-content: center;">📐 مدمج</button>
-              <button type="button" class="analytics-sec-btn" id="designStyleNeu" onclick="setAppDesignStyle('neumorphic')" style="padding: 7px 4px; font-size: 0.70rem; justify-content: center;">🌟 مجسم 3D</button>
-              <button type="button" class="analytics-sec-btn" id="designStyleNeon" onclick="setAppDesignStyle('neon')" style="padding: 7px 4px; font-size: 0.70rem; justify-content: center;">💎 نيون</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- ========================================================
-             القسم 3: إدارة المحافظ والنسخ الاحتياطي (كارت موحد مضغوط)
-             ======================================================== -->
-        <div class="settings-unified-section" id="settingsSec_data" style="background: rgba(15, 23, 42, 0.85); border: 1.2px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 8px 10px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-            <div style="font-weight: 800; font-size: 0.74rem; color: #cbd5e1; display: flex; align-items: center; gap: 5px;">
-              <i class="fa-solid fa-wallet" style="color: #10b981;"></i>
-              <span>إدارة المحافظ والنسخ الاحتياطي:</span>
-            </div>
-            <span id="settingsWalletCountText" style="font-size: 0.63rem; color: #10b981; font-weight: 800; background: rgba(16, 185, 129, 0.15); padding: 1px 6px; border-radius: 5px;">
-              4 محافظ نشطة
-            </span>
-          </div>
-          <!-- 4 أزرار تنفيذية متناسقة في شبكة من 4 أعمدة -->
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px;">
-            <button type="button" class="btn-submit-tx" onclick="closeModal('settingsModal'); openModal('walletModal');" style="margin: 0; height: 31px; padding: 0 4px; font-size: 0.68rem; font-weight: 800; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 3px;">
-              <i class="fa-solid fa-pen-to-square"></i> المحافظ
-            </button>
-            <button type="button" class="btn-export-tool excel-btn" onclick="closeModal('settingsModal'); openWalletStatementModal();" style="height: 31px; padding: 0 4px; font-size: 0.68rem; font-weight: 800; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 3px;">
-              <i class="fa-solid fa-receipt"></i> كشف الحساب
-            </button>
-            <button type="button" class="btn-export-tool" onclick="downloadBackup()" style="height: 31px; padding: 0 4px; font-size: 0.68rem; font-weight: 800; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 3px;">
-              <i class="fa-solid fa-download"></i> تصدير JSON
-            </button>
-            <button type="button" class="btn-export-tool" onclick="document.getElementById('settingsBackupFileInput').click()" style="height: 31px; padding: 0 4px; font-size: 0.68rem; font-weight: 800; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 3px;">
-              <i class="fa-solid fa-upload"></i> استيراد JSON
-            </button>
-            <input type="file" id="settingsBackupFileInput" accept=".json" style="display: none;" onchange="handleBackupUpload(event)">
-          </div>
-        </div>
-
-      </div>
-
-      <!-- تذييل النافذة البسيط والأنيق -->
-      <div style="padding: 8px 14px; background: rgba(15, 23, 42, 0.98); border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
-        <span style="font-size: 0.65rem; color: #94a3b8;">مصروفات العائلة &copy; 2026</span>
-        <button type="button" class="btn-export-tool" onclick="closeModal('settingsModal')" style="padding: 5px 16px; font-size: 0.74rem; font-weight: 800; border-radius: 8px;">
-          إغلاق
-        </button>
-      </div>
-
     </div>
+
 
   <div class="toast-msg" id="toastMsg">
     <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i>
@@ -16438,7 +16521,7 @@
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
       const APP_VERSION = 'v5.3.1';;
-      const APP_BUILD_ID = 202611091020;;
+      const APP_BUILD_ID = 202611091055;;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
@@ -22534,7 +22617,7 @@ showToast(`👤 تم تصفية العرض على: ${memberDisplayName}`);
     }
 
     function renderExpectedList() {
-      // تم التوجيه تلقائياً إلى محرك الالتزامات والميزانيات المزدوج المطور v5.2.9
+      // تم التوجيه تلقائياً إلى محرك الالتزامات والميزانيات المزدوج المطور v5.3.0
       if (typeof renderCommitmentsPageUI === 'function') {
         renderCommitmentsPageUI();
       }
@@ -22783,6 +22866,9 @@ showToast(`👤 تم تصفية العرض على: ${memberDisplayName}`);
 function openSettingsModal(targetSection = '') {
       updateSettingsModalDisplay();
       openModal('settingsModal');
+      const activeBtn = document.querySelector('#settingsModal .settings-tab-btn.active');
+      const activeTab = activeBtn ? activeBtn.getAttribute('data-tab') : 'appearance';
+      switchSettingsTab(activeTab || 'appearance');
       if (targetSection === 'users') {
         setTimeout(() => {
           const sec = document.getElementById('settingsSec_users');
@@ -23116,7 +23202,7 @@ function openSettingsModal(targetSection = '') {
       try {
         const backupData = {
           app: 'FamilyExpenseTrackerMonefy',
-          version: 'v5.2.9',
+          version: 'v5.3.0',
           exportedAt: new Date().toISOString(),
           account: (typeof GDRIVE_CONFIG !== 'undefined' ? GDRIVE_CONFIG.targetAccount : 'maher.easybakery@gmail.com'),
           state: state
@@ -26230,7 +26316,7 @@ function openSettingsModal(targetSection = '') {
           }
 
           const currentBuildNum = (typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611081550);
-          const currentVerStr = (typeof APP_VERSION !== 'undefined' ? APP_VERSION : 'v5.2.9');
+          const currentVerStr = (typeof APP_VERSION !== 'undefined' ? APP_VERSION : 'v5.3.0');
 
           const isNewer = remoteBuild && (
             (remoteBuild.version && remoteBuild.version !== currentVerStr) ||
@@ -26266,7 +26352,7 @@ function openSettingsModal(targetSection = '') {
             }
 
             localStorage.setItem('family_monefy_just_updated_ts', Date.now());
-            localStorage.setItem('family_monefy_just_updated', remoteBuild?.version || 'v5.2.9');
+            localStorage.setItem('family_monefy_just_updated', remoteBuild?.version || 'v5.3.0');
             setTimeout(() => {
               window.location.reload(true);
             }, 800);
@@ -26781,6 +26867,91 @@ function openSettingsModal(targetSection = '') {
       renderCommitmentsDebtsList();
     }
 
+    
+    // =========================================================================
+    // محرك تعديل الالتزامات والديون الفاخر (Commitments Edit Engine)
+    // =========================================================================
+    function openEditCommitmentModal(id) {
+      const exp = (state.expectedExpenses || []).find(e => e.id === id);
+      if (!exp) return;
+
+      const idInp = document.getElementById('inpEditCommitmentId');
+      const titleInp = document.getElementById('inpEditCommitmentTitle');
+      const amtInp = document.getElementById('inpEditCommitmentAmount');
+      const dateInp = document.getElementById('inpEditCommitmentDueDate');
+      const memSel = document.getElementById('inpEditCommitmentMember');
+      const catSel = document.getElementById('inpEditCommitmentCategory');
+      const notesInp = document.getElementById('inpEditCommitmentNotes');
+      const titleEl = document.getElementById('editCommitmentModalTitle');
+
+      if (idInp) idInp.value = exp.id;
+      if (titleInp) titleInp.value = exp.title || exp.label || '';
+      if (amtInp) amtInp.value = exp.amount || '';
+      if (dateInp) dateInp.value = exp.dueDate || '';
+      if (memSel) memSel.value = exp.member || 'البيت';
+      if (catSel) catSel.value = exp.category || (String(exp.type).includes('for_us') ? 'debt_for_us' : (String(exp.type).includes('debt') ? 'debt_on_us' : 'bills'));
+      if (notesInp) notesInp.value = exp.notes || '';
+
+      const isDebt = String(exp.type || '').includes('debt') || exp.isDebt;
+      if (titleEl) {
+        titleEl.textContent = isDebt ? 'تعديل بيانات الدين المستحق' : 'تعديل الفاتورة / القسط الدوري';
+      }
+
+      openModal('editCommitmentModal');
+    }
+    window.openEditCommitmentModal = openEditCommitmentModal;
+
+    function saveEditedCommitment() {
+      const idInp = document.getElementById('inpEditCommitmentId');
+      const titleInp = document.getElementById('inpEditCommitmentTitle');
+      const amtInp = document.getElementById('inpEditCommitmentAmount');
+      const dateInp = document.getElementById('inpEditCommitmentDueDate');
+      const memSel = document.getElementById('inpEditCommitmentMember');
+      const catSel = document.getElementById('inpEditCommitmentCategory');
+      const notesInp = document.getElementById('inpEditCommitmentNotes');
+
+      const id = idInp ? idInp.value : '';
+      const title = titleInp ? titleInp.value.trim() : '';
+      const amount = parseFloat(amtInp ? amtInp.value : 0);
+      const dueDate = dateInp ? dateInp.value : '';
+      const member = memSel ? memSel.value : 'البيت';
+      const category = catSel ? catSel.value : 'bills';
+      const notes = notesInp ? notesInp.value.trim() : '';
+
+      if (!title) {
+        showToast('⚠️ يرجى إدخال اسم أو بيان الالتزام', 'error');
+        if (titleInp) titleInp.focus();
+        return;
+      }
+      if (isNaN(amount) || amount <= 0) {
+        showToast('⚠️ يرجى إدخال مبلغ صحيح أكبر من الصفر', 'error');
+        if (amtInp) amtInp.focus();
+        return;
+      }
+
+      const exp = (state.expectedExpenses || []).find(e => e.id === id);
+      if (!exp) return;
+
+      exp.title = title;
+      exp.label = title;
+      exp.amount = amount;
+      exp.dueDate = dueDate;
+      exp.member = member;
+      exp.category = category;
+      exp.notes = notes;
+      exp.updatedAt = new Date().toISOString();
+
+      try {
+        localStorage.setItem('family_monefy_expected', JSON.stringify(state.expectedExpenses));
+      } catch(e) {}
+
+      closeModal('editCommitmentModal');
+      playNotificationChime();
+      renderCommitmentsPageUI();
+      showToast('✅ تم حفظ تعديلات الالتزام بنجاح');
+    }
+    window.saveEditedCommitment = saveEditedCommitment;
+
     function renderCommitmentsBillsList() {
       const container = document.getElementById('billsListContentContainer');
       const countHeader = document.getElementById('billsTotalSubheaderTxt');
@@ -26869,20 +27040,24 @@ function openSettingsModal(targetSection = '') {
             </div>
 
             <!-- درج الإجراءات السريعة للفاتورة (يفتح عند النقر) -->
-            <div style="display: ${isSelected ? 'flex' : 'none'}; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(255, 255, 255, 0.12);">
+            <div style="display: ${isSelected ? 'flex' : 'none'}; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(255, 255, 255, 0.12); flex-wrap: wrap;">
               ${!isPaid ? `
-                <button type="button" onclick="event.stopPropagation(); payBillDirectly('${b.id}')" style="height: 30px; padding: 0 12px; border-radius: 8px; font-size: 0.72rem; font-weight: 850; background: rgba(52, 211, 153, 0.20); border: 1px solid rgba(52, 211, 153, 0.45); color: #34d399; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
-                  <i class="fa-solid fa-check"></i>
+                <button type="button" onclick="event.stopPropagation(); openPayExpectedModal('${b.id}')" style="height: 32px; padding: 0 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 850; background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 2px 8px rgba(16,185,129,0.35);">
+                  <i class="fa-solid fa-money-bill-transfer"></i>
                   <span>سداد وصرف الفاتورة</span>
                 </button>
               ` : ''}
+              <button type="button" onclick="event.stopPropagation(); openEditCommitmentModal('${b.id}')" style="height: 32px; padding: 0 10px; border-radius: 8px; font-size: 0.74rem; font-weight: 800; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.45); color: #38bdf8; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>تعديل</span>
+              </button>
               ${b.photo ? `
-                <button type="button" onclick="event.stopPropagation(); viewReceiptImage('${b.photo}')" style="height: 30px; padding: 0 10px; border-radius: 8px; font-size: 0.72rem; font-weight: 800; background: rgba(236, 72, 153, 0.18); border: 1px solid rgba(236, 72, 153, 0.4); color: #f472b6; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+                <button type="button" onclick="event.stopPropagation(); viewReceiptImage('${b.photo}')" style="height: 32px; padding: 0 10px; border-radius: 8px; font-size: 0.74rem; font-weight: 800; background: rgba(236, 72, 153, 0.18); border: 1px solid rgba(236, 72, 153, 0.4); color: #f472b6; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
                   <i class="fa-solid fa-image"></i>
                   <span>عرض الفاتورة</span>
                 </button>
               ` : ''}
-              <button type="button" onclick="event.stopPropagation(); deleteCommitmentItem('${b.id}')" style="height: 30px; padding: 0 10px; border-radius: 8px; font-size: 0.72rem; font-weight: 800; background: rgba(244, 63, 94, 0.18); border: 1px solid rgba(244, 63, 94, 0.4); color: #f43f5e; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+              <button type="button" onclick="event.stopPropagation(); deleteCommitmentItem('${b.id}')" style="height: 32px; padding: 0 10px; border-radius: 8px; font-size: 0.74rem; font-weight: 800; background: rgba(244, 63, 94, 0.18); border: 1px solid rgba(244, 63, 94, 0.4); color: #f43f5e; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
                 <i class="fa-solid fa-trash-can"></i>
                 <span>حذف</span>
               </button>
@@ -26978,18 +27153,22 @@ function openSettingsModal(targetSection = '') {
             </div>
 
             <!-- درج إجراءات السداد والتسوية للديون -->
-            <div style="display: ${isSelected ? 'flex' : 'none'}; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(255, 255, 255, 0.12);">
+            <div style="display: ${isSelected ? 'flex' : 'none'}; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(255, 255, 255, 0.12); flex-wrap: wrap;">
               ${!isPaid ? `
-                <button type="button" onclick="event.stopPropagation(); settleDebtPrompt('${d.id}', false)" style="height: 30px; padding: 0 11px; border-radius: 8px; font-size: 0.72rem; font-weight: 850; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+                <button type="button" onclick="event.stopPropagation(); settleDebtPrompt('${d.id}', false)" style="height: 32px; padding: 0 11px; border-radius: 8px; font-size: 0.74rem; font-weight: 850; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
                   <i class="fa-solid fa-coins"></i>
-                  <span>سداد جزء من الدين</span>
+                  <span>سداد دفعة جزئية</span>
                 </button>
-                <button type="button" onclick="event.stopPropagation(); settleDebtPrompt('${d.id}', true)" style="height: 30px; padding: 0 11px; border-radius: 8px; font-size: 0.72rem; font-weight: 850; background: rgba(52, 211, 153, 0.20); border: 1px solid rgba(52, 211, 153, 0.45); color: #34d399; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+                <button type="button" onclick="event.stopPropagation(); openPayExpectedModal('${d.id}')" style="height: 32px; padding: 0 11px; border-radius: 8px; font-size: 0.74rem; font-weight: 850; background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 2px 8px rgba(16,185,129,0.35);">
                   <i class="fa-solid fa-check-double"></i>
-                  <span>تسوية كاملة وإغلاق</span>
+                  <span>${isDebtOnUs ? 'سداد وتسوية كاملة' : 'تحصيل وإيداع كامل'}</span>
                 </button>
               ` : ''}
-              <button type="button" onclick="event.stopPropagation(); deleteCommitmentItem('${d.id}')" style="height: 30px; padding: 0 10px; border-radius: 8px; font-size: 0.72rem; font-weight: 800; background: rgba(244, 63, 94, 0.18); border: 1px solid rgba(244, 63, 94, 0.4); color: #f43f5e; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+              <button type="button" onclick="event.stopPropagation(); openEditCommitmentModal('${d.id}')" style="height: 32px; padding: 0 10px; border-radius: 8px; font-size: 0.74rem; font-weight: 800; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.45); color: #38bdf8; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>تعديل</span>
+              </button>
+              <button type="button" onclick="event.stopPropagation(); deleteCommitmentItem('${d.id}')" style="height: 32px; padding: 0 10px; border-radius: 8px; font-size: 0.74rem; font-weight: 800; background: rgba(244, 63, 94, 0.18); border: 1px solid rgba(244, 63, 94, 0.4); color: #f43f5e; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
                 <i class="fa-solid fa-trash-can"></i>
                 <span>حذف</span>
               </button>
@@ -27044,37 +27223,61 @@ function openSettingsModal(targetSection = '') {
       const debt = (state.expectedExpenses || []).find(e => e.id === id);
       if (!debt) return;
 
+      if (isFull) {
+        openPayExpectedModal(id);
+        return;
+      }
+
       const amt = Number(debt.amount) || 0;
       const currentPaid = Number(debt.paidAmount) || 0;
       const remaining = Math.max(0, amt - currentPaid);
 
-      if (isFull) {
-        if (!confirm(`هل تريد تسوية وإغلاق هذا الدين بالكامل بمبلغ ${remaining} ج.م؟`)) return;
-        debt.paidAmount = amt;
+      const inp = prompt(`المبلغ المتبقي: ${remaining} ج.م\nأدخل مبلغ الدفعة المسددة / المحصلة:`, remaining);
+      if (!inp) return;
+      const payAmt = parseFloat(inp);
+      if (isNaN(payAmt) || payAmt <= 0) {
+        showToast('⚠️ الرجاء إدخال مبلغ صحيح', 'error');
+        return;
+      }
+
+      const actualPayment = Math.min(remaining, payAmt);
+      debt.paidAmount = currentPaid + actualPayment;
+      if (debt.paidAmount >= amt) {
         debt.status = 'paid';
         debt.settledAt = new Date().toISOString();
-      } else {
-        const inp = prompt(`المبلغ المتبقي: ${remaining} ج.م\nأدخل مبلغ الدفعة المسددة / المحصلة:`, remaining);
-        if (!inp) return;
-        const payAmt = parseFloat(inp);
-        if (isNaN(payAmt) || payAmt <= 0) {
-          showToast('⚠️ مبلغ غير صحيح', 'error');
-          return;
-        }
-        debt.paidAmount = Math.min(amt, currentPaid + payAmt);
-        if (debt.paidAmount >= amt) {
-          debt.status = 'paid';
-          debt.settledAt = new Date().toISOString();
-        }
       }
+
+      // تسجيل حركة مالية محاسبية دقيقة ومطابقة
+      const isDebtOnUs = (debt.type === 'debt_on_us' || debt.type === 'debt');
+      const activeWalletId = state.currentWalletId || (state.wallets[0] ? state.wallets[0].id : 'wallet-cash-safe');
+      const targetWallet = (state.wallets || []).find(w => w.id === activeWalletId);
+
+      const newTx = {
+        id: 'tx-debt-' + Date.now(),
+        type: isDebtOnUs ? 'expense' : 'income',
+        amount: actualPayment,
+        label: isDebtOnUs ? `سداد دفعة دين: ${debt.title || debt.label}` : `تحصيل دفعة دين: ${debt.title || debt.label}`,
+        category: isDebtOnUs ? 'bills' : 'income',
+        member: debt.member || 'البيت',
+        walletId: activeWalletId,
+        date: getLocalDateStr(new Date()),
+        time: new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }),
+        author: state.currentUser || 'ماهر',
+        createdAt: new Date().toISOString()
+      };
+
+      if (!state.transactions) state.transactions = [];
+      state.transactions.unshift(newTx);
+      if (typeof saveTx === 'function') saveTx();
 
       try {
         localStorage.setItem('family_monefy_expected', JSON.stringify(state.expectedExpenses));
       } catch(e) {}
 
       playNotificationChime();
+      renderUI();
       renderCommitmentsPageUI();
-      showToast('✅ تم تسجيل سداد وتسوية الدين بنجاح');
+      showToast(`✅ تم تسجيل دفعة ${isDebtOnUs ? 'سداد' : 'تحصيل'} بمبلغ ${actualPayment} ج.م بنجاح`);
     }
 
     function deleteCommitmentItem(id) {
@@ -29748,7 +29951,7 @@ window.selectTasksCalendarDay = selectTasksCalendarDay;
 
 // =========================================================================
 // =========================================================================
-// MASTER SUITE: ALL MISSING EVENT HANDLERS & MODAL ENGINES (v5.2.9 Comprehensive)
+// MASTER SUITE: ALL MISSING EVENT HANDLERS & MODAL ENGINES (v5.3.0 Comprehensive)
 // =========================================================================
 
 // 1. TRANSACTION EDITING & RECEIPTS
@@ -30310,7 +30513,7 @@ window.handleAddNewTask = handleAddNewTask;
 async function executeGoogleDriveSync(isManual = false) {
   try {
     const payload = {
-      version: 'v5.2.9',
+      version: 'v5.3.0',
       timestamp: new Date().toISOString(),
       state: state
     };
@@ -30331,7 +30534,7 @@ window.executeDailyNoonBackup = executeDailyNoonBackup;
 function exportToGoogleDriveDirect() {
   const data = {
     app: 'Family Expense Tracker',
-    version: 'v5.2.9',
+    version: 'v5.3.0',
     exportedAt: new Date().toISOString(),
     state: state
   };
@@ -31023,6 +31226,89 @@ window.filterArchiveType = filterArchiveType;
             <i class="fa-solid fa-check-circle"></i> تأكيد الحركة بالمحفظة
           </button>
           <button type="button" onclick="closeModal('payExpectedModal')" style="padding: 10px 16px; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; font-weight: 800; cursor: pointer;">
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <!-- =========================================================================
+       نافذة تعديل الالتزام أو الدين (Edit Commitment Modal)
+       ========================================================================= -->
+  <div class="modal-overlay modal-overlay-custom" id="editCommitmentModal" style="display: none; z-index: 100010;">
+    <div class="modal-content-card" style="max-width: 460px; background: rgba(15, 23, 42, 0.98); border: 1.2px solid rgba(56, 189, 248, 0.4); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.7);">
+      <div class="modal-head" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+        <h3 class="modal-title-custom" style="font-size: 0.95rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 7px;">
+          <i class="fa-solid fa-pen-to-square" style="color: #38bdf8;"></i>
+          <span id="editCommitmentModalTitle">تعديل الالتزام المالي</span>
+        </h3>
+        <button type="button" class="btn-modal-close" onclick="closeModal('editCommitmentModal')" aria-label="إغلاق" style="background: transparent; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer;">&times;</button>
+      </div>
+      <div style="padding: 4px 6px;">
+        <input type="hidden" id="inpEditCommitmentId">
+        
+        <!-- البيان أو الاسم -->
+        <div class="form-group-custom" style="margin-bottom: 10px;">
+          <label class="form-label-custom" style="font-size: 0.76rem; font-weight: 800; color: #cbd5e1; margin-bottom: 4px; display: block;">بيان أو اسم الالتزام / الفاتورة:</label>
+          <input type="text" id="inpEditCommitmentTitle" class="form-input-custom" style="width: 100%; height: 38px; border-radius: 8px; font-weight: 850; box-sizing: border-box; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.12); color: #fff; padding: 0 10px;">
+        </div>
+
+        <!-- المبلغ وتاريخ الاستحقاق -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
+          <div class="form-group-custom">
+            <label class="form-label-custom" style="font-size: 0.76rem; font-weight: 800; color: #cbd5e1; margin-bottom: 4px; display: block;">المبلغ (ج.م):</label>
+            <input type="number" step="0.01" id="inpEditCommitmentAmount" class="form-input-custom" style="width: 100%; height: 38px; border-radius: 8px; font-weight: 900; font-family: var(--font-numbers); direction: ltr; box-sizing: border-box; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.12); color: #fbbf24; padding: 0 10px;">
+          </div>
+          <div class="form-group-custom">
+            <label class="form-label-custom" style="font-size: 0.76rem; font-weight: 800; color: #cbd5e1; margin-bottom: 4px; display: block;">تاريخ الاستحقاق:</label>
+            <input type="date" id="inpEditCommitmentDueDate" class="form-input-custom" style="width: 100%; height: 38px; border-radius: 8px; font-weight: 800; font-size: 0.78rem; box-sizing: border-box; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.12); color: #fff; padding: 0 8px;">
+          </div>
+        </div>
+
+        <!-- يخص الفرد والتصنيف -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
+          <div class="form-group-custom">
+            <label class="form-label-custom" style="font-size: 0.76rem; font-weight: 800; color: #cbd5e1; margin-bottom: 4px; display: block;">يخص الفرد:</label>
+            <select id="inpEditCommitmentMember" class="form-select-custom" style="width: 100%; height: 38px; border-radius: 8px; font-weight: 800; box-sizing: border-box; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.12); color: #fff; padding: 0 8px;">
+              <option value="البيت">البيت (مشترك)</option>
+              <option value="ماهر">ماهر</option>
+              <option value="أية">أية</option>
+              <option value="محمد">محمد</option>
+              <option value="مريم">مريم</option>
+              <option value="حمزة">حمزة</option>
+              <option value="عمر">عمر</option>
+            </select>
+          </div>
+          <div class="form-group-custom">
+            <label class="form-label-custom" style="font-size: 0.76rem; font-weight: 800; color: #cbd5e1; margin-bottom: 4px; display: block;">التصنيف المحاسبي:</label>
+            <select id="inpEditCommitmentCategory" class="form-select-custom" style="width: 100%; height: 38px; border-radius: 8px; font-weight: 800; box-sizing: border-box; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.12); color: #fff; padding: 0 8px;">
+              <option value="bills">⚡ كهرباء وفواتير</option>
+              <option value="house">🛋️ إيجار ومنزل</option>
+              <option value="education">🎓 تعليم ودراسة</option>
+              <option value="transport">🚗 مواصلات وسيارة</option>
+              <option value="health">🩺 علاج وتأمين</option>
+              <option value="other">📦 أخرى ونثريات</option>
+              <option value="debt_on_us">🔴 دين علينا</option>
+              <option value="debt_for_us">🟢 دين لنا</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ملاحظات -->
+        <div class="form-group-custom" style="margin-bottom: 14px;">
+          <label class="form-label-custom" style="font-size: 0.76rem; font-weight: 800; color: #cbd5e1; margin-bottom: 4px; display: block;">ملاحظات وتفاصيل إضافية:</label>
+          <input type="text" id="inpEditCommitmentNotes" class="form-input-custom" placeholder="مثال: رقم الحساب، ملاحظات السداد..." style="width: 100%; height: 38px; border-radius: 8px; font-weight: 800; box-sizing: border-box; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.12); color: #fff; padding: 0 10px;">
+        </div>
+
+        <!-- أزرار الإجراءات -->
+        <div style="display: flex; gap: 8px;">
+          <button type="button" onclick="saveEditedCommitment()" class="btn-submit-tx" style="flex: 1; height: 42px; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; border-radius: 10px; color: #fff; font-weight: 850; font-size: 0.86rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
+            <i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات
+          </button>
+          <button type="button" onclick="closeModal('editCommitmentModal')" style="height: 42px; padding: 0 16px; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; font-weight: 800; cursor: pointer;">
             إلغاء
           </button>
         </div>
