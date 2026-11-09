@@ -21533,23 +21533,42 @@ showToast(`👤 تم تصفية العرض على: ${memberDisplayName}`);
       const header = document.getElementById('lightboxHeaderTitle');
       if (!img) return;
 
-      if (typeof source === 'string' && (source.startsWith('data:image') || source.startsWith('http') || source.startsWith('blob:'))) {
+      if (!source) {
+        if (typeof showToast === 'function') showToast('عفواً، لا توجد صورة مرفقة لعرضها');
+        return;
+      }
+
+      // 1. إذا كان المصدر مسار صورة أو Base64 أو رابط مباشر
+      if (typeof source === 'string' && (
+        source.startsWith('data:') || 
+        source.startsWith('http') || 
+        source.startsWith('blob:') ||
+        source.includes('/') ||
+        source.length > 50 ||
+        /\.(jpg|jpeg|png|webp|svg|gif)($|\?)/i.test(source)
+      )) {
         if (header) header.textContent = 'معاينة الصورة المرفقة';
         if (lbl) lbl.textContent = optionalTitle || 'مرفق مصور بالملاحظة';
         img.src = source;
         openModal('receiptLightboxModal');
+        const lb = document.getElementById('receiptLightboxModal');
+        if (lb) lb.style.setProperty('z-index', '1200050', 'important');
         return;
       }
 
+      // 2. إذا كان المصدر معرف عملية (tx id)
       const tx = (state.transactions || []).find(t => t.id === source);
-      if (!tx || !tx.receipt) {
-        showToast('عفواً، لا توجد صورة مرفقة لعرضها');
+      const receiptSrc = tx ? (tx.receiptDataUri || tx.receiptUrl || tx.receipt || tx.photo || tx.image) : null;
+      if (!tx || !receiptSrc) {
+        if (typeof showToast === 'function') showToast('عفواً، لا توجد صورة مرفقة لعرضها');
         return;
       }
       if (header) header.textContent = 'معاينة الفاتورة المرفقة';
-      if (lbl) lbl.textContent = `${tx.label} (${formatMoney(tx.amount)})`;
-      img.src = tx.receipt;
+      if (lbl) lbl.textContent = `${tx.label || 'عملية'} (${(typeof formatMoney === 'function') ? formatMoney(tx.amount) : tx.amount + ' ج.م'})`;
+      img.src = receiptSrc;
       openModal('receiptLightboxModal');
+      const lb = document.getElementById('receiptLightboxModal');
+      if (lb) lb.style.setProperty('z-index', '1200050', 'important');
     }
 
     // =========================================================================
@@ -31347,7 +31366,7 @@ window.filterArchiveType = filterArchiveType;
 
         <!-- أزرار الإجراءات -->
         <div style="display: flex; gap: 8px;">
-          <button type="button" onclick="saveEditedCommitment()" class="btn-submit-tx" style="flex: 1; height: 42px; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; border-radius: 10px; color: #fff; font-weight: 850; font-size: 0.86rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
+          <button type="button" id="btnSaveEditedCommitment" onclick="saveEditedCommitment()" class="btn-submit-tx" style="flex: 1; height: 42px; background: linear-gradient(135deg, #0284c7, #0369a1); border: none; border-radius: 10px; color: #fff; font-weight: 850; font-size: 0.86rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
             <i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات
           </button>
           <button type="button" onclick="closeModal('editCommitmentModal')" style="height: 42px; padding: 0 16px; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; font-weight: 800; cursor: pointer;">
