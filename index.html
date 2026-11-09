@@ -145,10 +145,10 @@
     }
 
     var currentEditTxReceiptDataUri = null;
-    var APP_VERSION = 'v5.3.0';
-    var APP_BUILD_ID = 202611091045;
-    window.APP_VERSION = 'v5.3.0';
-    window.APP_BUILD_ID = 202611091045;
+    var APP_VERSION = 'v5.3.1';
+    var APP_BUILD_ID = 202611091055;
+    window.APP_VERSION = 'v5.3.1';
+    window.APP_BUILD_ID = 202611091055;
     (function() {
       try {
         var t = localStorage.getItem('family_monefy_theme') || 'navy';
@@ -9179,7 +9179,7 @@
 
   
     /* =========================================================================
-       قمرة القيادة المالية وقسم الالتزامات التنفيذي المطور v5.3.0
+       قمرة القيادة المالية وقسم الالتزامات التنفيذي المطور v5.3.1
        ========================================================================= */
     .kpi-master-wealth-cockpit {
       width: calc(100% - 14px) !important;
@@ -9415,7 +9415,7 @@
     body.light-theme .flow-amount.outflow-color { color: #e11d48 !important; }
 
     /* =========================================================================
-       الكروت الرباعية التنفيذية للالتزامات v5.3.0 (Commitments 4 Executive Cards)
+       الكروت الرباعية التنفيذية للالتزامات v5.3.1 (Commitments 4 Executive Cards)
        ========================================================================= */
     .com-kpi-cards-grid {
       display: grid !important;
@@ -12637,7 +12637,7 @@
                 <!-- شريط المؤشرات المالية التنفيذي الماسي الموحد (Executive Wealth Cockpit)
              تصميم ملكي تنفيذي فائق الفخامة والوضوح بأحدث معايير FinTech العالمية
              ========================================================================= -->
-        <!-- قمرة القيادة المالية التنفيذية الفاخرة (Master Wealth Executive Cockpit v5.3.0) -->
+        <!-- قمرة القيادة المالية التنفيذية الفاخرة (Master Wealth Executive Cockpit v5.3.1) -->
         <div class="kpi-master-wealth-cockpit" id="topKpiThreeStrip">
           
           <!-- الجانب الأيمن: بطل الشاشة المالي (الرصيد الفعلي المتاح) -->
@@ -15331,20 +15331,17 @@
         </div>
       </div>
 
-      <!-- أدوات التحكم العلوية: زر إضافة مهمة جديدة إلى يمين المهام + التبديل بين المهام والتقويم -->
-      <div style="display: flex; align-items: center; gap: 6px;">
-        <!-- زر إضافة مهمة في الهيدر العلوي إلى يمين المهام مباشرة -->
-        <button type="button" id="btnTasksHeaderAdd" onclick="toggleUnifiedTaskCreator()" style="height: 36px; padding: 0 12px; border-radius: 9px; background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; font-size: 0.76rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 3px 12px rgba(16, 185, 129, 0.4); transition: transform 0.15s;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
-          <i class="fa-solid fa-plus"></i>
-          <span>+ إضافة مهمة</span>
-        </button>
-
-        <div style="display: flex; gap: 3px; background: rgba(15, 23, 42, 0.9); padding: 3px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
-          <button type="button" id="btnTaskTabList" onclick="switchTasksViewMode('list')" class="btn-tasks-nav-tab active" style="padding: 5px 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 900; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; background: linear-gradient(135deg, #a855f7, #7c3aed); color: #fff; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.4); transition: all 0.2s;">
-            <i class="fa-solid fa-list-check"></i> <span>المهام</span>
+      <!-- أدوات التحكم العلوية: تبويبات العرض المدمجة الاحترافية (قائمة المهام / التقويم) -->
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" id="btnTasksHeaderAdd" style="display: none;" onclick="toggleUnifiedTaskCreator()"></button>
+        <div class="tasks-segmented-nav" style="display: inline-flex; align-items: center; background: rgba(15, 23, 42, 0.95); padding: 3px; border-radius: 12px; border: 1.2px solid rgba(168, 85, 247, 0.35); box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);">
+          <button type="button" id="btnTaskTabList" onclick="switchTasksViewMode('list')" class="btn-tasks-nav-tab active" style="height: 32px; padding: 0 14px; border-radius: 9px; font-size: 0.78rem; font-weight: 900; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #a855f7, #7c3aed); color: #fff; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.45); transition: all 0.25s ease;">
+            <i class="fa-solid fa-list-check"></i>
+            <span>المهام</span>
           </button>
-          <button type="button" id="btnTaskTabCalendar" onclick="switchTasksViewMode('calendar')" class="btn-tasks-nav-tab" style="padding: 5px 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 900; border: 1px solid rgba(255, 255, 255, 0.08); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; background: transparent; color: #94a3b8; transition: all 0.2s;">
-            <i class="fa-solid fa-calendar-days"></i> <span>التقويم</span>
+          <button type="button" id="btnTaskTabCalendar" onclick="switchTasksViewMode('calendar')" class="btn-tasks-nav-tab" style="height: 32px; padding: 0 14px; border-radius: 9px; font-size: 0.78rem; font-weight: 900; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #94a3b8; transition: all 0.25s ease;">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>التقويم</span>
           </button>
         </div>
       </div>
@@ -15403,6 +15400,21 @@
             <div id="pinnedTasksProgressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #10b981); transition: width 0.3s ease;"></div>
           </div>
         </div>
+
+        <!-- زر وكارت إضافة مهمة جديدة بارز وفي المكان الطبيعي والأنسب للمستخدم -->
+        <button type="button" id="btnHeroAddTaskBar" onclick="toggleUnifiedTaskCreator()" style="width: 100%; height: 48px; border-radius: 14px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(5, 150, 105, 0.08)); border: 1.5px dashed rgba(16, 185, 129, 0.55); color: #34d399; font-size: 0.88rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; box-shadow: 0 4px 14px rgba(0,0,0,0.25); transition: all 0.2s ease; box-sizing: border-box;" onmouseover="this.style.borderColor='#10b981'; this.style.background='rgba(16, 185, 129, 0.22)';" onmouseout="this.style.borderColor='rgba(16, 185, 129, 0.55)'; this.style.background='linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(5, 150, 105, 0.08))';">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, #10b981, #059669); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.88rem; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.45);">
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <span style="font-size: 0.88rem; font-weight: 900; color: #f8fafc;">+ إضافة مهمة جديدة</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 0.72rem; color: #a7f3d0; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(16, 185, 129, 0.35); padding: 3px 10px; border-radius: 8px; font-weight: 850;">
+              انقر للتسجيل
+            </span>
+          </div>
+        </button>
 
         <!-- لوحة تسجيل وإضافة المهمة الموحدة والشاملة (مخفية افتراضياً وتظهر فقط عند الضغط على زر إضافة مهمة) -->
         <div id="tasksUnifiedCreatorCard" class="tasks-unified-creator-card" style="display: none; background: linear-gradient(135deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.99)); border: 1.5px solid rgba(16, 185, 129, 0.55); border-radius: 18px; padding: 14px 16px; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); transition: all 0.3s ease;">
@@ -15679,6 +15691,12 @@
       </div>
 
     </main>
+
+    <!-- زر الإضافة العائم الرشيق للوصول السريع للمهمة في أي وقت أثناء التمرير -->
+    <button type="button" id="btnTasksFabAdd" onclick="toggleUnifiedTaskCreator()" title="إضافة مهمة جديدة" style="position: fixed; bottom: 24px; left: 24px; z-index: 100150; height: 48px; padding: 0 18px; border-radius: 24px; background: linear-gradient(135deg, #10b981, #059669); border: 1.5px solid rgba(255,255,255,0.25); color: #ffffff; font-size: 0.85rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.5), 0 3px 10px rgba(0,0,0,0.5); transition: transform 0.2s ease;" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='scale(1)'">
+      <i class="fa-solid fa-plus" style="font-size: 1rem;"></i>
+      <span>مهمة جديدة</span>
+    </button>
   </div> <!-- إغلاق tasksFullScreenModal -->
 
 <!-- عرض الفاتورة والصور المكبرة (Receipt Lightbox Modal) -->
@@ -15827,7 +15845,7 @@
           <div>
             <h3 class="modal-title-custom" style="font-size: 0.90rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 6px;">
               <span>مركز الضبط الموحد والمزامنة</span>
-              <span class="version-badge" style="font-size: 0.62rem; background: rgba(34, 197, 94, 0.2); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 6px; border-radius: 5px;">v5.3.0 • متزامن</span>
+              <span class="version-badge" style="font-size: 0.62rem; background: rgba(34, 197, 94, 0.2); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 6px; border-radius: 5px;">v5.3.1 • متزامن</span>
             </h3>
             
           </div>
@@ -16419,7 +16437,7 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = 'v5.3.0';;
+      const APP_VERSION = 'v5.3.1';;
       const APP_BUILD_ID = 202611091020;;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
@@ -28495,13 +28513,13 @@ function switchTasksViewMode(mode) {
       btnList.style.background = 'transparent';
       btnList.style.color = '#94a3b8';
       btnList.style.boxShadow = 'none';
-      btnList.style.border = '1px solid rgba(255, 255, 255, 0.08)';
+      btnList.style.border = 'none';
     }
     if (btnCal) {
       btnCal.classList.add('active');
       btnCal.style.background = 'linear-gradient(135deg, #a855f7, #7c3aed)';
       btnCal.style.color = '#fff';
-      btnCal.style.boxShadow = '0 2px 8px rgba(168, 85, 247, 0.4)';
+      btnCal.style.boxShadow = '0 2px 8px rgba(168, 85, 247, 0.45)';
       btnCal.style.border = 'none';
     }
     if (viewList) viewList.style.display = 'none';
@@ -28512,7 +28530,7 @@ function switchTasksViewMode(mode) {
       btnList.classList.add('active');
       btnList.style.background = 'linear-gradient(135deg, #a855f7, #7c3aed)';
       btnList.style.color = '#fff';
-      btnList.style.boxShadow = '0 2px 8px rgba(168, 85, 247, 0.4)';
+      btnList.style.boxShadow = '0 2px 8px rgba(168, 85, 247, 0.45)';
       btnList.style.border = 'none';
     }
     if (btnCal) {
@@ -28520,7 +28538,7 @@ function switchTasksViewMode(mode) {
       btnCal.style.background = 'transparent';
       btnCal.style.color = '#94a3b8';
       btnCal.style.boxShadow = 'none';
-      btnCal.style.border = '1px solid rgba(255, 255, 255, 0.08)';
+      btnCal.style.border = 'none';
     }
     if (viewList) viewList.style.display = 'flex';
     if (viewCal) viewCal.style.display = 'none';
@@ -28594,7 +28612,7 @@ function clearTaskPendingPhoto() {
 
 
 /* ==========================================================
-   وظائف لوحة تسجيل وإضافة المهام الموحدة (v5.3.0)
+   وظائف لوحة تسجيل وإضافة المهام الموحدة (v5.3.1)
    دمج بيان المهمة + التاجات + التاريخ والساعة من نفس الشاشة
    ========================================================== */
 window._selectedTaskTag = 'general';
@@ -28824,6 +28842,8 @@ window._activeSubtaskTaskId = null;
 
 function showUnifiedTaskCreator() {
   const card = document.getElementById('tasksUnifiedCreatorCard');
+  const heroBtn = document.getElementById('btnHeroAddTaskBar');
+  if (heroBtn) heroBtn.style.display = 'none';
   if (card) {
     card.style.display = 'flex';
     card.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -28834,13 +28854,20 @@ function showUnifiedTaskCreator() {
 
 function hideUnifiedTaskCreator() {
   const card = document.getElementById('tasksUnifiedCreatorCard');
+  const heroBtn = document.getElementById('btnHeroAddTaskBar');
   if (card) {
     card.style.display = 'none';
   }
+  if (heroBtn) heroBtn.style.display = 'flex';
   resetUnifiedTaskForm();
 }
 
 function toggleUnifiedTaskCreator() {
+  if (window.currentTasksViewMode === 'calendar') {
+    switchTasksViewMode('list');
+    showUnifiedTaskCreator();
+    return;
+  }
   const card = document.getElementById('tasksUnifiedCreatorCard');
   if (!card) return;
   if (card.style.display === 'none' || getComputedStyle(card).display === 'none') {
@@ -29854,7 +29881,7 @@ function openNotificationsModal() {
       <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 12px; margin-bottom: 8px;">
         <div style="display: flex; align-items: center; gap: 8px; font-weight: 800; color: #38bdf8; font-size: 0.85rem;">
           <i class="fa-solid fa-circle-check"></i>
-          <span>النظام جاهز ومحدث (v5.3.0)</span>
+          <span>النظام جاهز ومحدث (v5.3.1)</span>
         </div>
         <div style="font-size: 0.75rem; color: #cbd5e1; margin-top: 4px;">
           تم تدقيق وتحديث كافة الأنظمة بنجاح مع مطابقة رياضية للأرصدة بنسبة 100%.
@@ -31607,7 +31634,7 @@ window.filterArchiveType = filterArchiveType;
 
 
   <!-- ==============================================================
-       نافذة تعديل بند الميزانية التقديري وربطه بأفراد الأسرة (v5.3.0)
+       نافذة تعديل بند الميزانية التقديري وربطه بأفراد الأسرة (v5.3.1)
        ============================================================== -->
   <div id="modalEditBudgetItem" class="custom-modal-overlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 2000000; align-items: center; justify-content: center; padding: 14px;">
     <div class="custom-modal-content" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.96)); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 18px; width: 100%; max-width: 440px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); overflow: hidden; animation: popIn 0.25s ease;">
