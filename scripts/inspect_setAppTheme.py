@@ -1,9 +1,8 @@
 import sys
-sys.stdout.reconfigure(encoding='utf-8')
-with open('index.html', 'r', encoding='utf-8') as f:
-    text = f.read()
 
-pos = text.find('function setAppTheme(')
-print("function setAppTheme at:", pos)
-if pos != -1:
-    print(text[pos:pos+4000])
+sys.stdout.reconfigure(encoding='utf-8')
+with open(r"C:\Users\96656\.gemini\antigravity\scratch\family_expense_tracker_monefy\index.html", "r", encoding="utf-8") as f:
+    lines = f.readlines()
+
+for i in range(22675, min(22800, len(lines))):
+    print(f"{i+1}: {lines[i]}", end="")

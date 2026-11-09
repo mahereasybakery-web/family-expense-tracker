@@ -1,12 +1,17 @@
 import sys
-sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+import re
 
-with open('C:/Users/96656/.gemini/antigravity/scratch/family_expense_tracker_monefy/index.html', 'r', encoding='utf-8') as f:
-    text = f.read()
+sys.stdout.reconfigure(encoding='utf-8')
 
-start_idx = text.find('id="settingsModal"')
-if start_idx != -1:
-    end_idx = text.find('id="tasksFullScreenModal"', start_idx)
-    if end_idx == -1:
-        end_idx = start_idx + 8000
-    print(text[start_idx:end_idx])
+with open('index.html', 'r', encoding='utf-8') as f:
+    html = f.read()
+
+# Search for "خلفيات وألوان التطبيق"
+matches = [m.start() for m in re.finditer(r'خلفيات وألوان التطبيق|ألوان ونمط الأيقونات|خط الكلمات والأرقام|نمط الكروت', html)]
+print(f"Settings matches found: {len(matches)}")
+for idx in matches:
+    start = max(0, idx - 100)
+    end = min(len(html), idx + 2000)
+    print("=== SETTINGS SECTION ===")
+    print(html[start:end])
+    print("========================")

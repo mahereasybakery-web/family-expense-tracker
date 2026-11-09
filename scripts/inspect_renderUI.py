@@ -1,11 +1,9 @@
-import sys, io, re
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+import sys
+
+sys.stdout.reconfigure(encoding='utf-8')
 
 with open('index.html', 'r', encoding='utf-8') as f:
     html = f.read()
 
-m = re.search(r'function renderUI\(\)', html)
-if m:
-    start = m.start()
-    print("=== renderUI ===")
-    print(html[start:start+1800])
+idx = html.find('function renderUI()')
+print(html[idx:idx+1500])

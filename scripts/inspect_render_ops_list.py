@@ -1,12 +1,13 @@
 import sys
-sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+import re
 
-with open('C:/Users/96656/.gemini/antigravity/scratch/family_expense_tracker_monefy/index.html', 'r', encoding='utf-8') as f:
-    lines = f.readlines()
+sys.stdout.reconfigure(encoding='utf-8')
+with open('index.html', 'r', encoding='utf-8') as f:
+    content = f.read()
 
-for i, line in enumerate(lines):
-    if 'function renderOperationsList(' in line:
-        print(f"renderOperationsList found at line {i+1}")
-        for j in range(i, min(len(lines), i + 100)):
-            print(f"{j+1}: {lines[j]}", end='')
-        break
+matches = list(re.finditer(r'renderOperationsList', content))
+print(f'renderOperationsList occurrences: {len(matches)}')
+for m in matches:
+    idx = m.start()
+    print('---')
+    print(content[idx:idx+800])

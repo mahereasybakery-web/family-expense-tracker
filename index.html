@@ -9,6 +9,9 @@
   <title>عيلة ماهر ❤️ أية</title>
   <meta name="apple-mobile-web-app-title" content="عيلة ماهر ❤️ أية">
   <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="shortcut icon" href="./assets/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
   <meta name="theme-color" content="#0f172a">
 
   <!-- الخطوط والأيقونات -->
@@ -142,10 +145,10 @@
     }
 
     var currentEditTxReceiptDataUri = null;
-    var APP_VERSION = 'v5.2.9';
-    var APP_BUILD_ID = 202611090940;
-    window.APP_VERSION = 'v5.2.9';
-    window.APP_BUILD_ID = 202611090940;
+    var APP_VERSION = 'v5.3.0';
+    var APP_BUILD_ID = 202611091020;
+    window.APP_VERSION = 'v5.3.0';
+    window.APP_BUILD_ID = 202611091020;
     (function() {
       try {
         var t = localStorage.getItem('family_monefy_theme') || 'navy';
@@ -8304,7 +8307,7 @@
       color: #0284c7 !important;
     }
     .cockpit-hero-value {
-      font-size: clamp(1.15rem, 3.8vw, 1.60rem);
+      font-size: clamp(1.42rem, 4.8vw, 1.90rem) !important;
       font-weight: 950 !important;
       color: #38bdf8 !important;
       letter-spacing: -0.3px !important;
@@ -8313,7 +8316,7 @@
       font-variant-numeric: tabular-nums !important;
       line-height: 1.15 !important;
       white-space: nowrap !important;
-      text-shadow: 0 2px 18px rgba(56, 189, 248, 0.65) !important;
+      text-shadow: 0 2px 20px rgba(56, 189, 248, 0.70) !important;
       max-width: 100% !important;
       overflow: visible !important;
     }
@@ -8405,7 +8408,7 @@
     .flow-title.outflow-color { color: #f87171 !important; }
     body.light-theme .flow-title.outflow-color { color: #b91c1c !important; }
 
-    .flow-amount { font-weight: 950 !important; font-variant-numeric: tabular-nums !important; direction: rtl !important; font-size: clamp(0.78rem, 2.4vw, 0.94rem) !important;
+    .flow-amount { font-weight: 950 !important; font-variant-numeric: tabular-nums !important; direction: rtl !important; font-size: clamp(0.96rem, 3.0vw, 1.18rem) !important; line-height: 1.1 !important;
       letter-spacing: -0.3px !important;
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
     }
@@ -8897,6 +8900,53 @@
     /* =========================================================================
        منظومة أنماط وألوان الأيقونات الفاخرة (Comprehensive Icon Palettes)
        ========================================================================= */
+    
+    /* =========================================================================
+       نمط أزرار باليتات الأيقونات في مركز الضبط
+       ========================================================================= */
+    .icon-theme-pill {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 7px 4px;
+      border-radius: 9px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1.2px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      font-size: 0.70rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .icon-theme-pill:hover {
+      background: rgba(30, 41, 59, 0.85);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+    .icon-theme-pill.active {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(15, 23, 42, 0.95)) !important;
+      border: 1.5px solid #38bdf8 !important;
+      color: #38bdf8 !important;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.35) !important;
+    }
+    .icon-palette-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      margin-bottom: 2px;
+    }
+    .icon-palette-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
     /* 1. ذهبي ملكي (Royal Gold) */
     html[data-icon-theme="gold"] .cat-card i,
     html[data-icon-theme="gold"] .cat-card svg,
@@ -10774,7 +10824,7 @@
     }
 
     .cockpit-hero-value {
-      font-size: clamp(1.15rem, 3.8vw, 1.60rem);
+      font-size: clamp(1.42rem, 4.8vw, 1.90rem) !important;
       font-weight: 950 !important;
       color: #38bdf8 !important;
       letter-spacing: -0.3px !important;
@@ -10783,7 +10833,7 @@
       font-variant-numeric: tabular-nums !important;
       line-height: 1.15 !important;
       white-space: nowrap !important;
-      text-shadow: 0 2px 18px rgba(56, 189, 248, 0.65) !important;
+      text-shadow: 0 2px 20px rgba(56, 189, 248, 0.70) !important;
       max-width: 100% !important;
       overflow: visible !important;
     }
@@ -10962,12 +11012,13 @@
     body.light-theme .flow-title.outflow-color { color: #be123c !important; }
 
     .flow-amount {
-      font-size: clamp(0.78rem, 2.4vw, 0.94rem) !important;
+      font-size: clamp(0.96rem, 3.0vw, 1.18rem) !important;
       font-weight: 950 !important;
       direction: rtl !important;
       font-variant-numeric: tabular-nums !important;
       letter-spacing: -0.3px !important;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45) !important;
+      line-height: 1.1 !important;
     }
     .flow-amount.inflow-color {
       color: #34d399 !important;
@@ -11225,7 +11276,7 @@
     }
 
     .cockpit-hero-value {
-      font-size: clamp(1.15rem, 3.8vw, 1.60rem);
+      font-size: clamp(1.42rem, 4.8vw, 1.90rem) !important;
       font-weight: 950 !important;
       color: #38bdf8 !important;
       letter-spacing: -0.3px !important;
@@ -11234,7 +11285,7 @@
       font-variant-numeric: tabular-nums !important;
       line-height: 1.15 !important;
       white-space: nowrap !important;
-      text-shadow: 0 2px 18px rgba(56, 189, 248, 0.65) !important;
+      text-shadow: 0 2px 20px rgba(56, 189, 248, 0.70) !important;
       max-width: 100% !important;
       overflow: visible !important;
     }
@@ -11300,12 +11351,13 @@
     }
 
     .flow-amount {
-      font-size: clamp(0.78rem, 2.4vw, 0.94rem) !important;
+      font-size: clamp(0.96rem, 3.0vw, 1.18rem) !important;
       font-weight: 950 !important;
       direction: rtl !important;
       font-variant-numeric: tabular-nums !important;
       letter-spacing: -0.3px !important;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45) !important;
+      line-height: 1.1 !important;
     }
 
     .cockpit-hero-sub {
@@ -11327,15 +11379,16 @@
       gap: 3px !important;
     }
     .flow-amount {
-      font-size: clamp(0.78rem, 2.4vw, 0.94rem) !important;
+      font-size: clamp(0.96rem, 3.0vw, 1.18rem) !important;
       font-weight: 950 !important;
       direction: rtl !important;
       font-variant-numeric: tabular-nums !important;
       letter-spacing: -0.3px !important;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45) !important;
+      line-height: 1.1 !important;
     }
     .cockpit-hero-value {
-      font-size: clamp(1.15rem, 3.8vw, 1.60rem);
+      font-size: clamp(1.42rem, 4.8vw, 1.90rem) !important;
       font-weight: 950 !important;
       color: #38bdf8 !important;
       letter-spacing: -0.3px !important;
@@ -11344,7 +11397,7 @@
       font-variant-numeric: tabular-nums !important;
       line-height: 1.15 !important;
       white-space: nowrap !important;
-      text-shadow: 0 2px 18px rgba(56, 189, 248, 0.65) !important;
+      text-shadow: 0 2px 20px rgba(56, 189, 248, 0.70) !important;
       max-width: 100% !important;
       overflow: visible !important;
     }
@@ -11969,40 +12022,41 @@
     
     <!-- الشريط العلوي -->
     <header class="app-header">
-      <!-- السطر 1: شريط البراند والمهام (يمين) + عدسة البحث والتنبيهات والمزامنة والضبط (يسار) بتناسق فائق -->
+      <!-- السطر 1: أقصى يمين الشاشة (تنبيهات ثم بحث ثم مهام) ويسار الشاشة (مزامنة + ضبط) بتناسق تام -->
       <div class="header-brand-row" style="display: flex; justify-content: space-between; align-items: center; gap: 6px; width: 100%; box-sizing: border-box; flex-wrap: nowrap;">
-        <!-- كتلة اليمين (زر المهام الرئيسي) -->
-        <div class="brand-box" style="display: flex; align-items: center; gap: 5px; flex-shrink: 0;">
-          <!-- زر المهام الرئيسي -->
-          <button type="button" class="header-tasks-main-btn" id="btnHeaderTasksTop" onclick="openTasksFullScreenModal()" title="عرض وإدارة المهام والمخطط اليومي" style="height: 32px; padding: 0 9px; border-radius: 9px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.28), rgba(99, 102, 241, 0.28)); border: 1.2px solid rgba(168, 85, 247, 0.55); color: #f8fafc; font-size: 0.74rem; font-weight: 850; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.25); transition: all 0.2s; white-space: nowrap;">
+        <!-- كتلة أقصى يمين الشاشة: تنبيهات ثم بحث ثم مهام (بناءً على طلب المستخدم) -->
+        <div class="brand-box" style="display: flex; align-items: center; gap: 4px; flex-shrink: 0;">
+          <!-- 1. زر التنبيهات (أقصى يمين الشاشة) -->
+          <button class="header-settings-btn" id="btnNotificationsBell" onclick="openNotificationsModal()" title="الإشعارات والتنبيهات الذكية" style="position: relative; background: rgba(245, 158, 11, 0.18); border: 1.2px solid rgba(245, 158, 11, 0.45); color: #fbbf24; height: 32px; padding: 0 7px; border-radius: 9px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; font-size: 0.70rem; font-weight: 800; white-space: nowrap;">
+            <i class="fa-solid fa-bell"></i>
+            <span id="headerNotifBadge" class="notif-badge-dot" style="position: absolute; top: 3px; right: 3px; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; border: 1px solid #0f172a; display: inline-block;"></span>
+            <span>تنبيهات</span>
+          </button>
+
+          <!-- 2. زر البحث (بجانب التنبيهات) -->
+          <button class="header-settings-btn" id="btnGlobalSearch" onclick="openGlobalSearchModal()" title="البحث الشامل في البرنامج" style="background: rgba(56, 189, 248, 0.16); border: 1.2px solid rgba(56, 189, 248, 0.45); color: #38bdf8; height: 32px; padding: 0 8px; border-radius: 9px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; font-size: 0.72rem; font-weight: 850; transition: all 0.2s; white-space: nowrap;">
+            <i class="fa-solid fa-magnifying-glass" style="font-size: 0.76rem;"></i>
+            <span>بحث</span>
+          </button>
+
+          <!-- 3. زر المهام الرئيسي (ثم المهام) -->
+          <button type="button" class="header-tasks-main-btn" id="btnHeaderTasksTop" onclick="openTasksFullScreenModal()" title="عرض وإدارة المهام والمخطط اليومي" style="height: 32px; padding: 0 8px; border-radius: 9px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.28), rgba(99, 102, 241, 0.28)); border: 1.2px solid rgba(168, 85, 247, 0.55); color: #f8fafc; font-size: 0.74rem; font-weight: 850; cursor: pointer; display: flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.25); transition: all 0.2s; white-space: nowrap;">
             <i class="fa-solid fa-list-check" style="color: #c084fc; font-size: 0.82rem;"></i>
             <span>المهام</span>
             <span id="headerTasksBadgeCount" style="background: #a855f7; color: #ffffff; font-size: 0.60rem; padding: 1px 5px; border-radius: 8px; font-weight: 900;">0</span>
           </button>
         </div>
 
-        <!-- أزرار الإجراءات السريعة (عدسة البحث + تنبيهات + مزامنة + ضبط) بتناسق تام -->
+        <!-- كتلة أقصى يسار الشاشة: المزامنة والضبط -->
         <div style="display: flex; align-items: center; gap: 4px; flex-shrink: 0;">
-          <!-- استعادة عدسة البحث الشامل -->
-          <button class="header-settings-btn" id="btnGlobalSearch" onclick="openGlobalSearchModal()" title="البحث الشامل في البرنامج" style="background: rgba(56, 189, 248, 0.16); border: 1.2px solid rgba(56, 189, 248, 0.45); color: #38bdf8; height: 32px; padding: 0 8px; border-radius: 9px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; font-size: 0.72rem; font-weight: 850; transition: all 0.2s; white-space: nowrap;">
-            <i class="fa-solid fa-magnifying-glass" style="font-size: 0.76rem;"></i>
-            <span>بحث</span>
-          </button>
-          <!-- زر التنبيهات -->
-          <button class="header-settings-btn" id="btnNotificationsBell" onclick="openNotificationsModal()" title="الإشعارات والتنبيهات الذكية" style="position: relative; background: rgba(245, 158, 11, 0.18); border: 1.2px solid rgba(245, 158, 11, 0.45); color: #fbbf24; height: 32px; padding: 0 7px; border-radius: 9px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; font-size: 0.70rem; font-weight: 800;">
-            <i class="fa-solid fa-bell"></i>
-            <span id="headerNotifBadge" class="notif-badge-dot" style="position: absolute; top: 3px; right: 3px; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; border: 1px solid #0f172a; display: inline-block;"></span>
-            <span>تنبيهات</span>
-          </button>
-
           <!-- زر المزامنة والتحديث المدمج الشامل -->
-          <button class="header-settings-btn header-master-sync-btn" id="btnHeaderMasterSync" onclick="executeMasterUnifiedSyncAndRefresh(true)" title="تحديث شامل وموازنة الأرصدة والذهب" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.20), rgba(2, 132, 199, 0.20)); border: 1.2px solid rgba(56, 189, 248, 0.45); color: #38bdf8; font-weight: 850; display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 0 8px; border-radius: 9px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);">
+          <button class="header-settings-btn header-master-sync-btn" id="btnHeaderMasterSync" onclick="executeMasterUnifiedSyncAndRefresh(true)" title="تحديث شامل وموازنة الأرصدة والذهب" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.20), rgba(2, 132, 199, 0.20)); border: 1.2px solid rgba(56, 189, 248, 0.45); color: #38bdf8; font-weight: 850; display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 0 8px; border-radius: 9px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25); white-space: nowrap;">
             <i class="fa-solid fa-arrows-rotate master-sync-icon-spin" id="headerMasterSyncSpinIcon" style="font-size: 0.74rem; color: #34d399;"></i>
             <span id="topDriveSyncStatusText" style="font-size: 0.70rem; font-weight: 900; color: #34d399;">محدث</span>
           </button>
 
           <!-- زر الضبط والإعدادات الرئيسي - واضح وبارز وبدون أي حجب أو تداخل -->
-          <button class="header-settings-btn" id="btnMainSettings" onclick="openSettingsModal()" title="مركز الضبط والمزامنة" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1.2px solid rgba(56, 189, 248, 0.45); color: #f8fafc; font-weight: 850; display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 0 9px; border-radius: 9px; cursor: pointer; transition: all 0.2s ease; z-index: 10;">
+          <button class="header-settings-btn" id="btnMainSettings" onclick="openSettingsModal()" title="مركز الضبط والمزامنة" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98)); border: 1.2px solid rgba(56, 189, 248, 0.45); color: #f8fafc; font-weight: 850; display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 0 9px; border-radius: 9px; cursor: pointer; transition: all 0.2s ease; z-index: 10; white-space: nowrap;">
             <i class="fa-solid fa-sliders" style="color: #38bdf8; font-size: 0.78rem;"></i>
             <span>الضبط</span>
           </button>
@@ -12015,7 +12069,7 @@
         <!-- الكل (إجمالي كافة المصروفات) -->
         <div class="avatar-card" data-member="الكل" onclick="selectMember('الكل')" title="الكل">
           <div class="avatar-bubble" style="background: linear-gradient(135deg, #0f766e, #14b8a6); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(15, 118, 110, 0.4);">
-            <img src="avatar_all_family.jpg" alt="الكل" class="avatar-photo-img" id="avatarImgAllFamily" />
+            <i class="fa-solid fa-people-roof" id="avatarImgAllFamily" style="color: #ffffff; font-size: 1.15rem;"></i>
           </div>
           <span class="avatar-name-label">الكل</span>
         </div>
@@ -12188,11 +12242,7 @@
                 <i class="fa-solid fa-eye" id="iconBalancePrivacy"></i>
               </button>
             </div>
-            <div class="cockpit-hero-value" id="topCardBalance" style="font-size: clamp(1.15rem, 3.8vw, 1.60rem); font-weight: 950; letter-spacing: -0.3px; text-shadow: 0 2px 18px rgba(56, 189, 248, 0.65); margin: auto 0; color: #38bdf8; max-width: 100%; overflow: visible;">+ 0.00 ج.م</div>
-            <div class="hero-liquidity-subtitle" style="font-size: clamp(0.58rem, 1.8vw, 0.66rem); color: #94a3b8; display: flex; align-items: center; gap: 4px; margin-top: 1px;">
-              <i class="fa-solid fa-shield-halved" style="color: #34d399; font-size: 0.72rem;"></i>
-              <span>صافي السيولة المعتمدة للمحافظ</span>
-            </div>
+            <div class="cockpit-hero-value" id="topCardBalance" style="font-size: clamp(1.42rem, 4.8vw, 1.90rem); font-weight: 950; letter-spacing: -0.3px; text-shadow: 0 2px 20px rgba(56, 189, 248, 0.70); margin: auto 0; color: #38bdf8; max-width: 100%; overflow: visible; line-height: 1.15;">+ 0.00 ج.م</div>
           </div>
 
           <!-- الفاصل الرأسي الزجاجي الفاخر المتوهج -->
@@ -13600,7 +13650,7 @@
             </div>
           </div>
 
-        </div></div></div> <!-- إغلاق subViewCommitments النهائي المؤكد -->
+        </div> <!-- إغلاق subViewCommitments -->
 
         
         <!-- شريط تبويب داخلي منسق لقسم الميزانيات -->
@@ -15229,7 +15279,6 @@
       </div>
 
     </main>
-  </div>
 
 <!-- عرض الفاتورة والصور المكبرة (Receipt Lightbox Modal) -->
     <div class="modal-overlay modal-overlay-custom" id="receiptLightboxModal" style="z-index: 120000 !important;">
@@ -15377,7 +15426,7 @@
           <div>
             <h3 class="modal-title-custom" style="font-size: 0.90rem; font-weight: 900; color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 6px;">
               <span>مركز الضبط الموحد والمزامنة</span>
-              <span class="version-badge" style="font-size: 0.62rem; background: rgba(34, 197, 94, 0.2); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 6px; border-radius: 5px;">v5.2.9 • متزامن</span>
+              <span class="version-badge" style="font-size: 0.62rem; background: rgba(34, 197, 94, 0.2); color: #34d399; border: 1px solid rgba(34, 197, 94, 0.4); padding: 1px 6px; border-radius: 5px;">v5.3.0 • متزامن</span>
             </h3>
             
           </div>
@@ -15410,20 +15459,12 @@
           </div>
         </div>
 
-        <!-- 2. بطاقة صورة عائلة ماهر ❤️ أية الفاخرة -->
-        <div id="family_portrait_settings_card" style="margin: 0 0 6px; border-radius: 14px; overflow: hidden; position: relative; border: 1.5px solid rgba(56, 189, 248, 0.45); box-shadow: 0 8px 24px rgba(0,0,0,0.5); cursor: pointer;" onclick="openReceiptLightbox('family_portrait.jpg', 'عائلة ماهر ❤️ أية - بيت عامر بالحب والبركة')" title="انقر لعرض صورة العائلة بدقة عالية">
-          <img src="family_portrait.jpg" alt="عائلة ماهر وأية" id="settingsFamilyPortraitImg" style="width: 100%; height: 155px; object-fit: cover !important; object-position: top center !important; display: block;">
-          <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(15,23,42,0.98) 0%, rgba(15,23,42,0.7) 65%, transparent 100%); padding: 8px 12px; display: flex; justify-content: space-between; align-items: flex-end;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <img id="settingsCurrentEmblemMini" src="assets/family_option1_gold_crest.jpg" alt="شعار العائلة" style="width: 32px; height: 32px; border-radius: 8px; border: 1.5px solid #fbbf24; object-fit: cover !important; object-position: top center !important;">
-              <div>
-                <div style="font-size: 0.88rem; font-weight: 900; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">عائلة ماهر ❤️ أية</div>
-                <div style="font-size: 0.62rem; color: #cbd5e1; font-weight: 700;">بيت عامر بالحب والبركة 👨‍👩‍👧‍👦</div>
-              </div>
-            </div>
-            <span style="font-size: 0.64rem; background: rgba(56, 189, 248, 0.3); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.5); padding: 3px 8px; border-radius: 6px; font-weight: 800; backdrop-filter: blur(4px);">
-              <i class="fa-solid fa-expand"></i> عرض
-            </span>
+        <!-- 2. شعار وهوية عائلة ماهر ❤️ أية الفاخرة -->
+        <div id="family_portrait_settings_card" style="margin: 0 0 6px; border-radius: 14px; overflow: hidden; position: relative; border: 1.5px solid rgba(56, 189, 248, 0.45); background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)); padding: 12px 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 12px;">
+          <img src="assets/family_option1_gold_crest.jpg" alt="شعار العائلة" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; border: 1.5px solid #fbbf24; flex-shrink: 0;">
+          <div>
+            <div style="font-size: 0.88rem; font-weight: 900; color: #f8fafc;">عائلة ماهر ❤️ أية</div>
+            <div style="font-size: 0.72rem; color: #38bdf8; font-weight: 700;">بيت عامر بالحب والبركة والإدارة المالية الذكية</div>
           </div>
         </div>
 
@@ -15691,13 +15732,10 @@
       </div>
 
     </div>
-  </div>
-  </div>
-<div class="toast-msg" id="toastMsg">
-      <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i>
-      <span id="toastTxt">تم بنجاح!</span>
-    </div>
 
+  <div class="toast-msg" id="toastMsg">
+    <i class="fa-solid fa-circle-check" style="color: var(--primary);"></i>
+    <span id="toastTxt">تم بنجاح!</span>
   </div>
 
   <script>
@@ -15980,25 +16018,23 @@
     
 
       // 3. إدارة إصدار التطبيق والتحديث التلقائي (مع الحفاظ التام على بيانات ومصروفات المستخدم)
-      const APP_VERSION = 'v5.2.9';;
-      const APP_BUILD_ID = 202611090940;;
+      const APP_VERSION = 'v5.3.0';;
+      const APP_BUILD_ID = 202611091020;;
       const DATA_SEED_VERSION = 'v4.0_clean_1000';
       const storedVer = localStorage.getItem('family_monefy_version');
       const storedSeed = localStorage.getItem('family_monefy_seed_version');
 
-      // تهيئة البيانات التجريبية الأولية فقط في حال عدم وجود أي حركات مسجلة مسبقاً
-      const hasExistingTx = !!localStorage.getItem('family_monefy_v2_tx');
-      if (!hasExistingTx && storedSeed !== DATA_SEED_VERSION) {
-        localStorage.removeItem('family_monefy_v2_tx');
-        localStorage.removeItem('family_monefy_txs');
-        localStorage.removeItem('family_monefy_requests');
-        localStorage.removeItem('family_monefy_notes');
-        localStorage.removeItem('family_monefy_debts');
-        localStorage.removeItem('family_monefy_wallets');
-        localStorage.removeItem('family_monefy_activity_log');
-        localStorage.removeItem('family_monefy_monthly_budgets');
-        localStorage.removeItem('family_monefy_expected');
-        
+      // تهيئة البيانات الأولية بأمان تام وبدون مساس بأي بيانات موجودة للمستخدم
+      const hasAnyExistingData = !!(
+        localStorage.getItem('family_monefy_transactions') ||
+        localStorage.getItem('family_monefy_v2_tx') ||
+        localStorage.getItem('family_monefy_monthly_budgets') ||
+        localStorage.getItem('family_monefy_expected') ||
+        localStorage.getItem('family_monefy_wallets') ||
+        localStorage.getItem('family_monefy_requests') ||
+        localStorage.getItem('family_monefy_tasks')
+      );
+      if (!hasAnyExistingData && storedSeed !== DATA_SEED_VERSION) {
         localStorage.setItem('family_monefy_version', APP_VERSION);
         localStorage.setItem('family_monefy_seed_version', DATA_SEED_VERSION);
 
@@ -19679,21 +19715,36 @@ function generateRichDemoTransactions() {
           elBal.style.color = actualBalance >= 0 ? '#38bdf8' : '#f43f5e';
         }
 
-        // تحجيم ذكي للأرقام الكبيرة حتى لا تتجاوز حدود البطاقة نهائياً وبدون أي نقاط اختصار (...)
+        // تحجيم ذكي للأرقام الكبيرة حتى تكون أكبر وأبرز ولا تتجاوز حدود البطاقة نهائياً
         const balStr = elBal.textContent || '';
         if (balStr.length > 22) {
-          elBal.style.setProperty('font-size', 'clamp(0.88rem, 2.7vw, 1.05rem)', 'important');
+          elBal.style.setProperty('font-size', 'clamp(1.00rem, 3.2vw, 1.25rem)', 'important');
           elBal.style.letterSpacing = '-0.5px';
-        } else if (balStr.length > 15) {
-          elBal.style.setProperty('font-size', 'clamp(1.02rem, 3.2vw, 1.22rem)', 'important');
+        } else if (balStr.length > 16) {
+          elBal.style.setProperty('font-size', 'clamp(1.18rem, 3.8vw, 1.45rem)', 'important');
           elBal.style.letterSpacing = '-0.3px';
-        } else if (balStr.length > 10) {
-          elBal.style.setProperty('font-size', 'clamp(1.15rem, 3.6vw, 1.38rem)', 'important');
+        } else if (balStr.length > 11) {
+          elBal.style.setProperty('font-size', 'clamp(1.32rem, 4.2vw, 1.65rem)', 'important');
           elBal.style.letterSpacing = '-0.2px';
         } else {
-          elBal.style.setProperty('font-size', 'clamp(1.25rem, 4.0vw, 1.55rem)', 'important');
-          elBal.style.letterSpacing = '-0.1px';
+          elBal.style.setProperty('font-size', 'clamp(1.45rem, 4.8vw, 1.90rem)', 'important');
+          elBal.style.letterSpacing = '-0.2px';
         }
+
+        // تحجيم ذكي لكبسولتي الإيداعات والمصروفات لتكون أرقامها أكبر وأبرز دون أي خروج عن الكارت
+        function scaleFlowAmountPill(el) {
+          if (!el) return;
+          const s = el.textContent || '';
+          if (s.length > 18) {
+            el.style.setProperty('font-size', 'clamp(0.78rem, 2.4vw, 0.90rem)', 'important');
+          } else if (s.length > 14) {
+            el.style.setProperty('font-size', 'clamp(0.86rem, 2.7vw, 1.02rem)', 'important');
+          } else {
+            el.style.setProperty('font-size', 'clamp(0.96rem, 3.0vw, 1.18rem)', 'important');
+          }
+        }
+        scaleFlowAmountPill(elInc);
+        scaleFlowAmountPill(elExp);
       }
 
       // ضبط شارة وتلميح الفترة الزمنية لكبسولتي التدفقات
@@ -22055,7 +22106,7 @@ showToast(`👤 تم تصفية العرض على: ${memberDisplayName}`);
     }
 
     function renderExpectedList() {
-      // تم التوجيه تلقائياً إلى محرك الالتزامات والميزانيات المزدوج المطور v5.2.8
+      // تم التوجيه تلقائياً إلى محرك الالتزامات والميزانيات المزدوج المطور v5.2.9
       if (typeof renderCommitmentsPageUI === 'function') {
         renderCommitmentsPageUI();
       }
@@ -22637,7 +22688,7 @@ function openSettingsModal(targetSection = '') {
       try {
         const backupData = {
           app: 'FamilyExpenseTrackerMonefy',
-          version: 'v5.2.8',
+          version: 'v5.2.9',
           exportedAt: new Date().toISOString(),
           account: (typeof GDRIVE_CONFIG !== 'undefined' ? GDRIVE_CONFIG.targetAccount : 'maher.easybakery@gmail.com'),
           state: state
@@ -25751,7 +25802,7 @@ function openSettingsModal(targetSection = '') {
           }
 
           const currentBuildNum = (typeof APP_BUILD_ID !== 'undefined' ? Number(APP_BUILD_ID) : 202611081550);
-          const currentVerStr = (typeof APP_VERSION !== 'undefined' ? APP_VERSION : 'v5.2.8');
+          const currentVerStr = (typeof APP_VERSION !== 'undefined' ? APP_VERSION : 'v5.2.9');
 
           const isNewer = remoteBuild && (
             (remoteBuild.version && remoteBuild.version !== currentVerStr) ||
@@ -25787,7 +25838,7 @@ function openSettingsModal(targetSection = '') {
             }
 
             localStorage.setItem('family_monefy_just_updated_ts', Date.now());
-            localStorage.setItem('family_monefy_just_updated', remoteBuild?.version || 'v5.2.8');
+            localStorage.setItem('family_monefy_just_updated', remoteBuild?.version || 'v5.2.9');
             setTimeout(() => {
               window.location.reload(true);
             }, 800);
@@ -28115,7 +28166,7 @@ function clearTaskPendingPhoto() {
 
 
 /* ==========================================================
-   وظائف لوحة تسجيل وإضافة المهام الموحدة (v5.2.9)
+   وظائف لوحة تسجيل وإضافة المهام الموحدة (v5.3.0)
    دمج بيان المهمة + التاجات + التاريخ والساعة من نفس الشاشة
    ========================================================== */
 window._selectedTaskTag = 'general';
@@ -29242,7 +29293,7 @@ window.selectTasksCalendarDay = selectTasksCalendarDay;
 
 // =========================================================================
 // =========================================================================
-// MASTER SUITE: ALL MISSING EVENT HANDLERS & MODAL ENGINES (v5.2.8 Comprehensive)
+// MASTER SUITE: ALL MISSING EVENT HANDLERS & MODAL ENGINES (v5.2.9 Comprehensive)
 // =========================================================================
 
 // 1. TRANSACTION EDITING & RECEIPTS
@@ -29375,7 +29426,7 @@ function openNotificationsModal() {
       <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 12px; margin-bottom: 8px;">
         <div style="display: flex; align-items: center; gap: 8px; font-weight: 800; color: #38bdf8; font-size: 0.85rem;">
           <i class="fa-solid fa-circle-check"></i>
-          <span>النظام جاهز ومحدث (v5.2.9)</span>
+          <span>النظام جاهز ومحدث (v5.3.0)</span>
         </div>
         <div style="font-size: 0.75rem; color: #cbd5e1; margin-top: 4px;">
           تم تدقيق وتحديث كافة الأنظمة بنجاح مع مطابقة رياضية للأرصدة بنسبة 100%.
@@ -29419,7 +29470,7 @@ function promptMemberPin(member) {
   if (grid) grid.style.display = 'none';
   if (pinView) pinView.style.display = 'block';
   if (title) title.textContent = member;
-  if (avatar) avatar.src = (typeof getMemberAvatar === 'function') ? getMemberAvatar(member) : 'avatar_all_family.jpg';
+  if (avatar) avatar.src = (typeof getMemberAvatar === 'function') ? getMemberAvatar(member) : 'assets/family_option1_gold_crest.jpg';
   if (err) err.style.display = 'none';
   if (inp) {
     inp.value = '';
@@ -29804,7 +29855,7 @@ window.handleAddNewTask = handleAddNewTask;
 async function executeGoogleDriveSync(isManual = false) {
   try {
     const payload = {
-      version: 'v5.2.8',
+      version: 'v5.2.9',
       timestamp: new Date().toISOString(),
       state: state
     };
@@ -29825,7 +29876,7 @@ window.executeDailyNoonBackup = executeDailyNoonBackup;
 function exportToGoogleDriveDirect() {
   const data = {
     app: 'Family Expense Tracker',
-    version: 'v5.2.8',
+    version: 'v5.2.9',
     exportedAt: new Date().toISOString(),
     state: state
   };
@@ -31128,7 +31179,7 @@ window.filterArchiveType = filterArchiveType;
 
 
   <!-- ==============================================================
-       نافذة تعديل بند الميزانية التقديري وربطه بأفراد الأسرة (v5.2.9)
+       نافذة تعديل بند الميزانية التقديري وربطه بأفراد الأسرة (v5.3.0)
        ============================================================== -->
   <div id="modalEditBudgetItem" class="custom-modal-overlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 2000000; align-items: center; justify-content: center; padding: 14px;">
     <div class="custom-modal-content" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.96)); border: 1.5px solid rgba(56, 189, 248, 0.45); border-radius: 18px; width: 100%; max-width: 440px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); overflow: hidden; animation: popIn 0.25s ease;">

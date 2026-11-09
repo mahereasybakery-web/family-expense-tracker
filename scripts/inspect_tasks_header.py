@@ -1,7 +1,10 @@
 import sys
+import re
+
 sys.stdout.reconfigure(encoding='utf-8')
 with open('index.html', 'r', encoding='utf-8') as f:
-    text = f.read()
+    content = f.read()
 
-pos = text.find('id="tasksFullScreenModal"')
-print(text[pos:pos+2000])
+idx = content.find('قائمة المهام والتخطيط اليومي')
+if idx != -1:
+    print(content[idx-400:idx+600])

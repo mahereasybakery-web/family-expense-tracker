@@ -1,10 +1,10 @@
-import sys, io, re
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+import sys, io
 
-with open('index.html', 'r', encoding='utf-8') as f:
-    html = f.read()
+sys.stdout.reconfigure(encoding='utf-8')
+HTML_FILE = r"C:\Users\96656\.gemini\antigravity\scratch\family_expense_tracker_monefy\index.html"
 
-m = re.search(r'function switchAppPage\b', html)
-if m:
-    print("=== switchAppPage part 2 ===")
-    print(html[m.start()+1400:m.start()+2500])
+with open(HTML_FILE, 'r', encoding='utf-8') as f:
+    c = f.read()
+
+pos = c.find("if (pageId === 'expected')")
+print(c[pos:pos+500])

@@ -1,12 +1,18 @@
 import sys
-sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+import re
 
-with open('C:/Users/96656/.gemini/antigravity/scratch/family_expense_tracker_monefy/index.html', 'r', encoding='utf-8') as f:
-    lines = f.readlines()
+sys.stdout.reconfigure(encoding='utf-8')
 
-for i, line in enumerate(lines):
-    if 'function formatMoney' in line:
-        print(f"formatMoney at line {i+1}")
-        for j in range(max(0, i-5), min(len(lines), i + 65)):
-            print(f"{j+1}: {lines[j]}", end='')
-        break
+with open('index.html', 'r', encoding='utf-8') as f:
+    content = f.read()
+
+idx = content.find('function formatMoneyVal(')
+if idx != -1:
+    print(content[idx:idx+500])
+else:
+    # let's search for formatMoney
+    matches = list(re.finditer(r'function formatMoney', content))
+    for m in matches:
+        idx = m.start()
+        print('---')
+        print(content[idx:idx+300])

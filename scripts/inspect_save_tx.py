@@ -1,12 +1,16 @@
-import sys
-sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+import sys, io
 
-with open('C:/Users/96656/.gemini/antigravity/scratch/family_expense_tracker_monefy/index.html', 'r', encoding='utf-8') as f:
-    lines = f.readlines()
+sys.stdout.reconfigure(encoding='utf-8')
+HTML_FILE = r"C:\Users\96656\.gemini\antigravity\scratch\family_expense_tracker_monefy\index.html"
 
-for i, line in enumerate(lines):
-    if 'function saveTx(' in line or 'async function saveTx(' in line:
-        print(f"saveTx found at line {i+1}")
-        for j in range(i, min(len(lines), i + 60)):
-            print(f"{j+1}: {lines[j]}", end='')
-        break
+with open(HTML_FILE, 'r', encoding='utf-8') as f:
+    c = f.read()
+
+pos = c.find('function saveTx')
+if pos == -1:
+    pos = c.find('function handleSaveTx')
+if pos == -1:
+    pos = c.find('function submitTx')
+print("pos:", pos)
+if pos != -1:
+    print(c[pos:pos+1500])

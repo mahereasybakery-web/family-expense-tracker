@@ -1,5 +1,5 @@
 // Service Worker for Family Expense Tracker (Offline First & PWA)
-const CACHE_NAME = 'family-finance-v5.2.9-202611090940';
+const CACHE_NAME = 'family-finance-v5.3.0-202611091020';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -8,20 +8,20 @@ const STATIC_ASSETS = [
   './assets/icon-192.png',
   './assets/icon-512.png',
   './assets/favicon.png',
+  './assets/apple-touch-icon.png',
+  './assets/family_option1_gold_crest.jpg',
   './assets/family_option2_mosaic.jpg',
-  './avatar_all_family.jpg',
+  './assets/family_option3_rosette.jpg',
+  './assets/family_option4_emerald.jpg',
   './avatar_mohamed.jpg',
-  './baby.jpg',
-  './family_portrait.jpg'
+  './baby.jpg'
 ];
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS).catch((err) => {
-        console.warn('SW pre-cache warning:', err);
-      });
+      return cache.addAll(STATIC_ASSETS);
     })
   );
 });
@@ -32,7 +32,6 @@ self.addEventListener('activate', (e) => {
       return Promise.all(
         keys.map((k) => {
           if (k !== CACHE_NAME) {
-            console.log('SW purging old cache:', k);
             return caches.delete(k);
           }
         })
@@ -42,61 +41,29 @@ self.addEventListener('activate', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
-  const req = e.request;
+  if (e.request.method !== 'GET') return;
+  const url = new URL(e.request.url);
 
-  // Only handle GET requests
-  if (req.method !== 'GET') return;
-
-  const url = req.url;
-
-  // 1. استراتيجية Network-First لكافة طلبات التنقل وملفات HTML والإصدارات لمنع احتجاز المستخدم في الكاش القديم
-  const isHtmlOrNavigate = (
-    req.mode === 'navigate' ||
-    req.destination === 'document' ||
-    url.endsWith('/') ||
-    url.includes('index.html') ||
-    url.includes('version.json') ||
-    url.includes('market_rates.json') ||
-    url.includes('_nocache') ||
-    url.includes('_upd') ||
-    url.includes('_fresh') ||
-    url.includes('_t=')
-  );
-
-  if (isHtmlOrNavigate) {
+  // Network first for index.html, version.json, market_rates.json to ensure instant updates
+  if (url.pathname.endsWith('index.html') || url.pathname.endsWith('version.json') || url.pathname.endsWith('market_rates.json') || url.pathname === '/' || url.pathname.endsWith('/')) {
     e.respondWith(
-      fetch(req, { cache: 'no-store' })
-        .then((networkResp) => {
-          if (networkResp && networkResp.status === 200) {
-            const respToCache = networkResp.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(req, respToCache));
-          }
-          return networkResp;
-        })
-        .catch(() => {
-          // في حال انقطاع الإنترنت الكامل (Offline)، يتم العودة للنسخة المخزنة محلياً
-          return caches.match(req).then((cached) => cached || caches.match('./index.html') || caches.match('./'));
-        })
+      fetch(e.request).then((res) => {
+        const copy = res.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(e.request, copy));
+        return res;
+      }).catch(() => caches.match(e.request))
     );
     return;
   }
 
-  // 2. استراتيجية Stale-While-Revalidate للصور والملفات الثابتة
+  // Cache first with network fallback for other static assets
   e.respondWith(
-    caches.match(req).then((cachedResp) => {
-      const fetchPromise = fetch(req).then((networkResp) => {
-        if (networkResp && networkResp.status === 200 && networkResp.type === 'basic') {
-          const respToCache = networkResp.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(req, respToCache);
-          });
-        }
-        return networkResp;
-      }).catch(() => {
-        return cachedResp;
+    caches.match(e.request).then((cached) => {
+      return cached || fetch(e.request).then((res) => {
+        const copy = res.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(e.request, copy));
+        return res;
       });
-
-      return cachedResp || fetchPromise;
     })
   );
 });

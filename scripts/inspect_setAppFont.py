@@ -1,9 +1,11 @@
 import sys
+import re
+
 sys.stdout.reconfigure(encoding='utf-8')
 with open('index.html', 'r', encoding='utf-8') as f:
-    text = f.read()
+    content = f.read()
 
-pos = text.find('function setAppFont(')
-print("function setAppFont at:", pos)
-if pos != -1:
-    print(text[pos:pos+4000])
+m = re.search(r'function setAppFont\(', content)
+if m:
+    idx = m.start()
+    print(content[idx:idx+1500])
