@@ -146,9 +146,9 @@
 
     var currentEditTxReceiptDataUri = null;
     var APP_VERSION = 'v5.3.0';
-    var APP_BUILD_ID = 202611091020;
+    var APP_BUILD_ID = 202611091030;
     window.APP_VERSION = 'v5.3.0';
-    window.APP_BUILD_ID = 202611091020;
+    window.APP_BUILD_ID = 202611091030;
     (function() {
       try {
         var t = localStorage.getItem('family_monefy_theme') || 'navy';
@@ -13393,13 +13393,10 @@
               </div>
             </div>
 
-            <!-- الكروت الرباعية التنفيذية المتناسقة (عدد البنود أسفل اسم البند تماماً) -->
-            <div class="commitments-4cards-grid" id="commitmentsExecutiveCardsStrip" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
-              
-              <!-- كارت 1: مصاريف دورية / قادمة (أصفر) -->
-              <div class="com-kpi-cards-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; width: 100%; box-sizing: border-box;">
+            <!-- الكروت الرباعية التنفيذية المتناسقة (صف واحد إلزامي بـ 4 أعمدة بدقة تامة) -->
+            <div class="com-kpi-cards-grid" id="commitmentsExecutiveCardsStrip" style="display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 6px !important; width: 100% !important; box-sizing: border-box !important;">
                 <!-- كارت 1: مصاريف دورية (أصفر) -->
-                <div class="com-kpi-card card-bills" id="cardComBills" onclick="setCommitmentsSubFilter('bills')" title="فواتير ومصاريف دورية قادمة" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.14), rgba(15, 23, 42, 0.92)); border: 1.4px solid rgba(245, 158, 11, 0.45);">
+                <div class="com-kpi-card card-bills" id="cardComBills" onclick="setCommitmentsSubFilter('bills')" title="فواتير ومصاريف دورية قادمة" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.14), rgba(15, 23, 42, 0.92)); border: 1.4px solid rgba(245, 158, 11, 0.45); min-width: 0; box-sizing: border-box;">
                   <div class="com-card-header">
                     <i class="fa-solid fa-clock com-card-icon" style="color: #fbbf24;"></i>
                     <span class="com-card-title" style="color: #fde047;">مصاريف دورية</span>
@@ -13411,7 +13408,7 @@
                 </div>
 
                 <!-- كارت 2: ديون علينا (أحمر) -->
-                <div class="com-kpi-card card-debts-on-us" id="cardComDebtsOnUs" onclick="setCommitmentsSubFilter('debts_on_us')" title="ديون والتزامات علينا للغير" style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.14), rgba(15, 23, 42, 0.92)); border: 1.4px solid rgba(244, 63, 94, 0.45);">
+                <div class="com-kpi-card card-debts-on-us" id="cardComDebtsOnUs" onclick="setCommitmentsSubFilter('debts_on_us')" title="ديون والتزامات علينا للغير" style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.14), rgba(15, 23, 42, 0.92)); border: 1.4px solid rgba(244, 63, 94, 0.45); min-width: 0; box-sizing: border-box;">
                   <div class="com-card-header">
                     <i class="fa-solid fa-handshake-angle com-card-icon" style="color: #fb7185;"></i>
                     <span class="com-card-title" style="color: #fda4af;">ديون علينا</span>
@@ -13423,7 +13420,7 @@
                 </div>
 
                 <!-- كارت 3: ديون لنا (أخضر) -->
-                <div class="com-kpi-card card-debts-for-us" id="cardComDebtsForUs" onclick="setCommitmentsSubFilter('debts_for_us')" title="ديون ومستحقات لنا عند الغير" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(15, 23, 42, 0.92)); border: 1.4px solid rgba(16, 185, 129, 0.45);">
+                <div class="com-kpi-card card-debts-for-us" id="cardComDebtsForUs" onclick="setCommitmentsSubFilter('debts_for_us')" title="ديون ومستحقات لنا عند الغير" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(15, 23, 42, 0.92)); border: 1.4px solid rgba(16, 185, 129, 0.45); min-width: 0; box-sizing: border-box;">
                   <div class="com-card-header">
                     <i class="fa-solid fa-sack-dollar com-card-icon" style="color: #34d399;"></i>
                     <span class="com-card-title" style="color: #6ee7b7;">ديون لنا</span>
@@ -13435,7 +13432,7 @@
                 </div>
 
                 <!-- كارت 4: تم السداد (أزرق) -->
-                <div class="com-kpi-card card-settled" id="cardComSettled" onclick="setCommitmentsSubFilter('settled')" title="الالتزامات التي تم سدادها بالكامل" style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.14), rgba(15, 23, 42, 0.92)); border: 1.4px solid rgba(56, 189, 248, 0.45);">
+                <div class="com-kpi-card card-settled" id="cardComSettled" onclick="setCommitmentsSubFilter('settled')" title="الالتزامات التي تم سدادها بالكامل" style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.14), rgba(15, 23, 42, 0.92)); border: 1.4px solid rgba(56, 189, 248, 0.45); min-width: 0; box-sizing: border-box;">
                   <div class="com-card-header">
                     <i class="fa-solid fa-circle-check com-card-icon" style="color: #38bdf8;"></i>
                     <span class="com-card-title" style="color: #7dd3fc;">تم السداد</span>
@@ -13445,8 +13442,8 @@
                   </div>
                   <div id="kpiCapSettledAmount" class="com-card-amount" style="color: #38bdf8;">0.00 ج.م</div>
                 </div>
-              </div>
-          </div>
+          </div> <!-- نهاية commitmentKpiMasterCard المستقلة -->
+            </div>
 
           <!-- ========================================================
                شاشة الإضافة المنسقة الموحدة الفاخرة (Unified Coordinated Add Form)
@@ -13653,6 +13650,8 @@
         </div> <!-- إغلاق subViewCommitments -->
 
         
+                </div> <!-- إغلاق subViewCommitments التام والنهائي -->
+
         <!-- شريط تبويب داخلي منسق لقسم الميزانيات -->
         <div class="budgets-sub-tab-strip" id="budgetsSubTabStrip" style="display: flex; gap: 6px; background: rgba(15, 23, 42, 0.85); padding: 4px; border-radius: 11px; border: 1px solid rgba(56, 189, 248, 0.25); margin-bottom: 10px;">
           <button type="button" id="btnBudgetSubCurrent" onclick="switchBudgetSubTab('current')" style="flex: 1; padding: 8px 10px; border-radius: 8px; font-size: 0.78rem; font-weight: 900; background: linear-gradient(135deg, #10b981, #059669); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);">
@@ -14925,8 +14924,14 @@
         </div>
       </div>
 
-      <!-- أدوات التحكم العلوية: التبديل بين المهام والتقويم + زر إضافة مهمة جديدة -->
+      <!-- أدوات التحكم العلوية: زر إضافة مهمة جديدة إلى يمين المهام + التبديل بين المهام والتقويم -->
       <div style="display: flex; align-items: center; gap: 6px;">
+        <!-- زر إضافة مهمة في الهيدر العلوي إلى يمين المهام مباشرة -->
+        <button type="button" id="btnTasksHeaderAdd" onclick="toggleUnifiedTaskCreator()" style="height: 36px; padding: 0 12px; border-radius: 9px; background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; font-size: 0.76rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 3px 12px rgba(16, 185, 129, 0.4); transition: transform 0.15s;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
+          <i class="fa-solid fa-plus"></i>
+          <span>+ إضافة مهمة</span>
+        </button>
+
         <div style="display: flex; gap: 3px; background: rgba(15, 23, 42, 0.9); padding: 3px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
           <button type="button" id="btnTaskTabList" onclick="switchTasksViewMode('list')" class="btn-tasks-nav-tab active" style="padding: 5px 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 900; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; background: linear-gradient(135deg, #a855f7, #7c3aed); color: #fff; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.4); transition: all 0.2s;">
             <i class="fa-solid fa-list-check"></i> <span>المهام</span>
@@ -14935,12 +14940,6 @@
             <i class="fa-solid fa-calendar-days"></i> <span>التقويم</span>
           </button>
         </div>
-
-        <!-- زر إضافة مهمة في الهيدر العلوي -->
-        <button type="button" id="btnTasksHeaderAdd" onclick="toggleUnifiedTaskCreator()" style="height: 36px; padding: 0 12px; border-radius: 9px; background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; font-size: 0.76rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 5px; box-shadow: 0 3px 12px rgba(16, 185, 129, 0.4);">
-          <i class="fa-solid fa-plus"></i>
-          <span>+ إضافة مهمة</span>
-        </button>
       </div>
 
       <!-- مدخلات رفع وتصوير الصور المخفية للمهام الرئيسية والمهام الفرعية -->
@@ -14966,15 +14965,9 @@
               <span>مؤشرات الإنتاجية والإنجاز:</span>
             </div>
             
-            <!-- الكتلة بجانب المؤشرات: نسبة الإنجاز + زر إضافة مهمة صريح ومباشر -->
+            <!-- الكتلة بجانب المؤشرات: نسبة الإنجاز -->
             <div style="display: flex; align-items: center; gap: 8px;">
               <span id="pinnedTasksCompletionRateBadge" style="font-size: 0.72rem; font-weight: 950; color: #34d399; background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); padding: 2px 8px; border-radius: 8px;">0%</span>
-              
-              <!-- زر إضافة مهمة بجانب المؤشرات كما طلب المستخدم تماماً -->
-              <button type="button" id="btnProductivityAddTask" onclick="toggleUnifiedTaskCreator()" style="height: 30px; padding: 0 12px; border-radius: 8px; background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; font-size: 0.74rem; font-weight: 950; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35); transition: transform 0.15s;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
-                <i class="fa-solid fa-circle-plus"></i>
-                <span>إضافة مهمة</span>
-              </button>
             </div>
           </div>
 
@@ -15146,7 +15139,7 @@
 
         </div>
 
-        class="tasks-sticky-filter-wrapper" style="position: sticky; top: 50px; z-index: 85; background: rgba(11, 19, 41, 0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); padding: 8px 0; border-bottom: 1.2px solid rgba(168, 85, 247, 0.3); display: flex; flex-direction: column; gap: 8px;">
+        <div class="tasks-sticky-filter-wrapper" style="position: sticky; top: 50px; z-index: 85; background: rgba(11, 19, 41, 0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); padding: 8px 0; border-bottom: 1.2px solid rgba(168, 85, 247, 0.3); display: flex; flex-direction: column; gap: 8px;">
           <!-- أشرطة التصفية السريعة والبحث وفلتر الأفراد -->
         <div style="display: flex; gap: 6px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
           <!-- الفلاتر السريعة للمهام -->
@@ -16067,14 +16060,23 @@
       } else {
         const storedTx = localStorage.getItem('family_monefy_v2_tx') || localStorage.getItem('family_monefy_txs');
         let parsedTx = null;
-        if (storedTx) {
-          try { parsedTx = JSON.parse(storedTx); } catch(e) {}
+        if (storedTx !== null) {
+          try { 
+            parsedTx = JSON.parse(storedTx); 
+          } catch(e) {
+            parsedTx = null;
+          }
         }
-        if (!parsedTx || !Array.isArray(parsedTx) || parsedTx.length === 0) {
+        if (parsedTx !== null && Array.isArray(parsedTx)) {
+          // بيانات المستخدم الحقيقية محترمة ومحفوظة حتى لو كانت فارغة 0 حركات
+          state.transactions = parsedTx;
+        } else if (localStorage.getItem('family_monefy_user_cleared') === 'true') {
+          // قام المستخدم بمسح البيانات سابقاً فلن يتم فرض بيانات تجريبية عليه
+          state.transactions = [];
+        } else {
+          // أول زيارة إطلاقاً للتطبيق على متصفح جديد تماماً
           state.transactions = generateRichDemoTransactions();
           saveTx();
-        } else {
-          state.transactions = parsedTx;
         }
 
         try {
@@ -26206,13 +26208,19 @@ function openSettingsModal(targetSection = '') {
       const allItems = state.expectedExpenses;
       const nowStr = getLocalDateStr(new Date());
 
-      // فصل الفواتير عن الديون
-      const bills = allItems.filter(e => e.type === 'upcoming_bill' || e.type === 'bill' || e.isBill);
-      const debts = allItems.filter(e => e.type === 'debt_on_us' || e.type === 'debt_for_us' || e.type === 'debt');
+      // فصل الفواتير عن الديون تصنيفاً شاملاً ودقيقاً
+      const isDebtItem = e => {
+        if (!e) return false;
+        if (e.isDebt === true) return true;
+        const t = String(e.type || '').toLowerCase();
+        return t.includes('debt') || t === 'loan';
+      };
+      const bills = allItems.filter(e => !isDebtItem(e));
+      const debts = allItems.filter(e => isDebtItem(e));
 
       const pendingBills = bills.filter(b => b.status !== 'paid');
       const pendingDebts = debts.filter(d => d.status !== 'paid');
-      const pendingDebtsOnUs = pendingDebts.filter(d => d.type === 'debt_on_us' || d.type === 'debt');
+      const pendingDebtsOnUs = pendingDebts.filter(d => d.type === 'debt_on_us' || d.type === 'debt' || !String(d.type).includes('for_us'));
       const pendingDebtsForUs = pendingDebts.filter(d => d.type === 'debt_for_us');
       const settledItems = allItems.filter(i => i.status === 'paid');
 
@@ -26352,7 +26360,13 @@ function openSettingsModal(targetSection = '') {
       const countHeader = document.getElementById('billsTotalSubheaderTxt');
       if (!container) return;
 
-      const allBills = (state.expectedExpenses || []).filter(e => e.type === 'upcoming_bill' || e.type === 'bill' || e.isBill);
+      const isDebtItem = e => {
+        if (!e) return false;
+        if (e.isDebt === true) return true;
+        const t = String(e.type || '').toLowerCase();
+        return t.includes('debt') || t === 'loan';
+      };
+      const allBills = (state.expectedExpenses || []).filter(e => !isDebtItem(e));
       if (countHeader) countHeader.textContent = `${allBills.length} فاتورة مسجلة`;
 
       let list = allBills.slice();
@@ -26457,7 +26471,13 @@ function openSettingsModal(targetSection = '') {
       const countHeader = document.getElementById('debtsTotalSubheaderTxt');
       if (!container) return;
 
-      const allDebts = (state.expectedExpenses || []).filter(e => e.type === 'debt_on_us' || e.type === 'debt_for_us' || e.type === 'debt');
+      const isDebtItem = e => {
+        if (!e) return false;
+        if (e.isDebt === true) return true;
+        const t = String(e.type || '').toLowerCase();
+        return t.includes('debt') || t === 'loan';
+      };
+      const allDebts = (state.expectedExpenses || []).filter(e => isDebtItem(e));
       if (countHeader) countHeader.textContent = `${allDebts.length} ديون مسجلة`;
 
       let list = allDebts.slice();
