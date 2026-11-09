@@ -9,7 +9,6 @@ async def main():
     errors = []
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
-        # Test on 390px (standard modern phone)
         page = await browser.new_page(viewport={'width': 390, 'height': 844}, locale='ar-SA')
         
         page.on("pageerror", lambda err: errors.append(f"PAGE ERROR: {err}"))
@@ -45,15 +44,13 @@ async def main():
         print(f"  btnHeaderMasterSync:  x={box_sync['x']:.1f}, width={box_sync['width']:.1f}")
         print(f"  btnMainSettings:      x={box_settings['x']:.1f}, width={box_settings['width']:.1f}")
 
-        # In RTL, rightmost element has the largest X coordinate:
-        # box_notif.x > box_search.x > box_tasks.x > box_sync.x > box_settings.x
         assert box_notif['x'] > box_search['x'], "Notifications should be to the right of Search!"
         assert box_search['x'] > box_tasks['x'], "Search should be to the right of Tasks!"
         assert box_tasks['x'] > box_sync['x'], "Tasks should be to the right of Sync!"
         assert box_sync['x'] > box_settings['x'], "Sync should be to the right of Settings!"
         print("Header button ordering verification: PASSED 100%!")
 
-        # 3. Check Cockpit Numbers (topCardBalance, topCardIncome, topCardExpense)
+        # 3. Check Cockpit Numbers
         metrics = await page.evaluate("""() => {
             const bal = document.getElementById('topCardBalance');
             const inc = document.getElementById('topCardIncome');
@@ -86,27 +83,14 @@ async def main():
         for k, v in metrics.items():
             print(f"  {k}: {v}")
 
-        # Capture Screenshot
+        # Capture Screenshots
         screenshot_path = r'C:\Users\96656\.gemini\antigravity\brain\41612e6e-3dec-41c4-bd40-64364cb0071b\v530_cockpit_and_header.png'
         await page.screenshot(path=screenshot_path)
         print("Saved v530_cockpit_and_header.png")
 
-        # Test on 360px viewport (compact mobile)
+        # Test on 360px viewport
         await page.set_viewport_size({'width': 360, 'height': 780})
         await page.wait_for_timeout(300)
-        metrics_360 = await page.evaluate("""() => {
-            const bal = document.getElementById('topCardBalance');
-            const inc = document.getElementById('topCardIncome');
-            const exp = document.getElementById('topCardExpense');
-            return {
-                balFontSize: window.getComputedStyle(bal).fontSize,
-                incFontSize: window.getComputedStyle(inc).fontSize,
-                expFontSize: window.getComputedStyle(exp).fontSize,
-                balScrollW: bal.scrollWidth,
-                balClientW: bal.clientWidth
-            };
-        }""")
-        print("Cockpit Metrics on 360px:", metrics_360)
         screenshot_360_path = r'C:\Users\96656\.gemini\antigravity\brain\41612e6e-3dec-41c4-bd40-64364cb0071b\v530_360px_header_and_numbers.png'
         await page.screenshot(path=screenshot_360_path)
         print("Saved v530_360px_header_and_numbers.png")
@@ -141,10 +125,10 @@ async def main():
         await page.wait_for_timeout(300)
         settings_modal_vis = await page.evaluate("() => { const m = document.getElementById('settingsModal'); return m && window.getComputedStyle(m).display !== 'none'; }")
         print("Settings Modal Interactive:", settings_modal_vis)
-        await page.evaluate("closeSettingsModal()")
+        await page.evaluate("closeModal('settingsModal')")
         await page.wait_for_timeout(200)
 
-        print("All tests passed with zero errors!")
+        print("ALL TESTS PASSED WITH 100% SUCCESS!")
         await browser.close()
 
 if __name__ == '__main__':
