@@ -146,9 +146,9 @@
 
     var currentEditTxReceiptDataUri = null;
     var APP_VERSION = 'v5.3.0';
-    var APP_BUILD_ID = 202611091030;
+    var APP_BUILD_ID = 202611091045;
     window.APP_VERSION = 'v5.3.0';
-    window.APP_BUILD_ID = 202611091030;
+    window.APP_BUILD_ID = 202611091045;
     (function() {
       try {
         var t = localStorage.getItem('family_monefy_theme') || 'navy';
@@ -9177,7 +9177,416 @@
       box-shadow: -2px 0 10px rgba(245, 158, 11, 0.35);
     }
 
-  </style>
+  
+    /* =========================================================================
+       قمرة القيادة المالية وقسم الالتزامات التنفيذي المطور v5.3.0
+       ========================================================================= */
+    .kpi-master-wealth-cockpit {
+      width: calc(100% - 14px) !important;
+      margin: 4px 7px 8px !important;
+      min-height: 88px !important;
+      height: auto !important;
+      box-sizing: border-box !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 7px 12px !important;
+      gap: 10px !important;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.88)) !important;
+      border: 1.4px solid rgba(56, 189, 248, 0.35) !important;
+      border-radius: 16px !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+      direction: rtl !important;
+      position: relative !important;
+      overflow: hidden !important;
+      transition: all 0.25s ease !important;
+    }
+    .kpi-master-wealth-cockpit:hover {
+      border-color: rgba(56, 189, 248, 0.6) !important;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55), 0 0 15px rgba(56, 189, 248, 0.15) !important;
+    }
+
+    body.light-theme .kpi-master-wealth-cockpit {
+      background: #ffffff !important;
+      border: 1.5px solid #cbd5e1 !important;
+      border-radius: 16px !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+    }
+
+    .cockpit-hero-side {
+      flex: 1.25 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      gap: 2px !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
+    }
+    .cockpit-hero-label {
+      font-size: 0.72rem !important;
+      font-weight: 850 !important;
+      color: #94a3b8 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      white-space: nowrap !important;
+    }
+    body.light-theme .cockpit-hero-label {
+      color: #475569 !important;
+    }
+    .hero-wallet-icon-badge {
+      width: 22px !important;
+      height: 22px !important;
+      min-width: 22px !important;
+      border-radius: 7px !important;
+      background: rgba(56, 189, 248, 0.2) !important;
+      border: 1.2px solid rgba(56, 189, 248, 0.5) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.35) !important;
+      flex-shrink: 0 !important;
+    }
+    .hero-wallet-icon-badge i {
+      color: #38bdf8 !important;
+      font-size: 0.78rem !important;
+    }
+    .cockpit-hero-value {
+      font-size: clamp(1.35rem, 4.6vw, 1.85rem) !important;
+      font-weight: 950 !important;
+      color: #38bdf8 !important;
+      letter-spacing: -0.3px !important;
+      direction: rtl !important;
+      text-align: right !important;
+      font-variant-numeric: tabular-nums !important;
+      line-height: 1.18 !important;
+      white-space: nowrap !important;
+      text-shadow: 0 2px 18px rgba(56, 189, 248, 0.65) !important;
+      max-width: 100% !important;
+      overflow: visible !important;
+    }
+    body.light-theme .cockpit-hero-value {
+      color: #0284c7 !important;
+      text-shadow: none !important;
+    }
+    .cockpit-hero-sub {
+      font-size: 0.62rem !important;
+      color: #64748b !important;
+      font-weight: 750 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+    body.light-theme .cockpit-hero-sub {
+      color: #64748b !important;
+    }
+
+    .cockpit-divider {
+      width: 1.2px !important;
+      height: 60px !important;
+      background: linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.35), transparent) !important;
+      flex-shrink: 0 !important;
+    }
+    body.light-theme .cockpit-divider {
+      background: linear-gradient(to bottom, transparent, #cbd5e1, transparent) !important;
+    }
+
+    .cockpit-flow-side {
+      flex: 1.35 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      gap: 6px !important;
+      min-width: 0 !important;
+    }
+    .cockpit-flow-pill {
+      width: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 5px 8px !important;
+      border-radius: 10px !important;
+      white-space: nowrap !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+      min-height: 32px !important;
+      box-sizing: border-box !important;
+    }
+    .cockpit-flow-pill:hover {
+      transform: translateY(-1px) scale(1.01) !important;
+    }
+    .cockpit-flow-pill.inflow {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(15, 23, 42, 0.88) 100%) !important;
+      border: 1.2px solid rgba(16, 185, 129, 0.55) !important;
+      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.15) !important;
+    }
+    body.light-theme .cockpit-flow-pill.inflow {
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%) !important;
+      border: 1.4px solid #34d399 !important;
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.12) !important;
+    }
+    .cockpit-flow-pill.outflow {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.18) 0%, rgba(15, 23, 42, 0.88) 100%) !important;
+      border: 1.2px solid rgba(244, 63, 94, 0.55) !important;
+      box-shadow: 0 2px 10px rgba(244, 63, 94, 0.15) !important;
+    }
+    body.light-theme .cockpit-flow-pill.outflow {
+      background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%) !important;
+      border: 1.4px solid #f87171 !important;
+      box-shadow: 0 2px 6px rgba(239, 68, 68, 0.12) !important;
+    }
+
+    .flow-pill-left-group {
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      flex-shrink: 0 !important;
+    }
+
+    .flow-icon-badge {
+      width: 20px !important;
+      height: 20px !important;
+      min-width: 20px !important;
+      border-radius: 6px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+      transition: all 0.2s ease !important;
+    }
+    .flow-icon-badge.inflow-badge {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border: 1px solid rgba(16, 185, 129, 0.55) !important;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.3) !important;
+    }
+    .flow-icon-badge.inflow-badge i {
+      color: #34d399 !important;
+      font-size: 0.72rem !important;
+    }
+    body.light-theme .flow-icon-badge.inflow-badge {
+      background: #d1fae5 !important;
+      border-color: #86efac !important;
+    }
+    body.light-theme .flow-icon-badge.inflow-badge i {
+      color: #047857 !important;
+    }
+
+    .flow-icon-badge.outflow-badge {
+      background: rgba(244, 63, 94, 0.25) !important;
+      border: 1px solid rgba(244, 63, 94, 0.55) !important;
+      box-shadow: 0 0 8px rgba(244, 63, 94, 0.3) !important;
+    }
+    .flow-icon-badge.outflow-badge i {
+      color: #fb7185 !important;
+      font-size: 0.72rem !important;
+    }
+    body.light-theme .flow-icon-badge.outflow-badge {
+      background: #ffe4e6 !important;
+      border-color: #fca5a5 !important;
+    }
+    body.light-theme .flow-icon-badge.outflow-badge i {
+      color: #be123c !important;
+    }
+
+    .flow-title {
+      font-weight: 850 !important;
+      font-size: clamp(0.70rem, 2.3vw, 0.76rem) !important;
+      white-space: nowrap !important;
+      letter-spacing: -0.2px !important;
+    }
+    .flow-title.inflow-color { color: #6ee7b7 !important; }
+    body.light-theme .flow-title.inflow-color { color: #047857 !important; }
+    .flow-title.outflow-color { color: #fda4af !important; }
+    body.light-theme .flow-title.outflow-color { color: #be123c !important; }
+
+    .flow-amount {
+      font-size: clamp(0.76rem, 2.6vw, 0.88rem) !important;
+      font-weight: 900 !important;
+      direction: rtl !important;
+      white-space: nowrap !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+    .flow-amount.inflow-color { color: #34d399 !important; }
+    body.light-theme .flow-amount.inflow-color { color: #047857 !important; }
+    .flow-amount.outflow-color { color: #fb7185 !important; }
+    body.light-theme .flow-amount.outflow-color { color: #e11d48 !important; }
+
+    /* =========================================================================
+       الكروت الرباعية التنفيذية للالتزامات v5.3.0 (Commitments 4 Executive Cards)
+       ========================================================================= */
+    .com-kpi-cards-grid {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 6px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      margin-top: 6px !important;
+    }
+
+    .com-kpi-card {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 7px 3px 5px !important;
+      border-radius: 12px !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+      cursor: pointer !important;
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      text-align: center !important;
+      gap: 2px !important;
+    }
+
+    .com-kpi-card:hover {
+      transform: translateY(-2px) !important;
+    }
+
+    .com-kpi-card .com-card-header {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 4px !important;
+      width: 100% !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+    }
+
+    .com-kpi-card .com-card-icon {
+      font-size: 0.74rem !important;
+      flex-shrink: 0 !important;
+    }
+
+    .com-kpi-card .com-card-title {
+      font-size: clamp(0.68rem, 2.2vw, 0.78rem) !important;
+      font-weight: 850 !important;
+      white-space: nowrap !important;
+      line-height: 1.2 !important;
+    }
+
+    .com-kpi-card .com-card-badge-wrap {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      margin: 1px 0 !important;
+    }
+
+    .com-kpi-card .com-card-count-badge {
+      padding: 1px 6px !important;
+      border-radius: 6px !important;
+      font-size: 0.65rem !important;
+      font-weight: 800 !important;
+      white-space: nowrap !important;
+      line-height: 1.2 !important;
+      letter-spacing: -0.2px !important;
+    }
+
+    .com-kpi-card .com-card-amount {
+      font-size: clamp(0.70rem, 2.5vw, 0.85rem) !important;
+      font-weight: 950 !important;
+      direction: rtl !important;
+      text-align: center !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      line-height: 1.25 !important;
+      width: 100% !important;
+      font-variant-numeric: tabular-nums !important;
+    }
+
+    /* Card 1: مصاريف دورية (أصفر/ذهبي) */
+    .com-kpi-card.card-bills {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.16), rgba(15, 23, 42, 0.92)) !important;
+      border: 1.4px solid rgba(245, 158, 11, 0.45) !important;
+      box-shadow: 0 3px 12px rgba(245, 158, 11, 0.12) !important;
+    }
+    .com-kpi-card.card-bills .com-card-icon { color: #fbbf24 !important; }
+    .com-kpi-card.card-bills .com-card-title { color: #fde047 !important; }
+    .com-kpi-card.card-bills .com-card-count-badge {
+      background: rgba(245, 158, 11, 0.22) !important;
+      color: #fbbf24 !important;
+      border: 1px solid rgba(245, 158, 11, 0.4) !important;
+    }
+    .com-kpi-card.card-bills .com-card-amount { color: #fbbf24 !important; }
+
+    /* Card 2: ديون علينا (أحمر/وردي) */
+    .com-kpi-card.card-debts-on-us {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.16), rgba(15, 23, 42, 0.92)) !important;
+      border: 1.4px solid rgba(244, 63, 94, 0.45) !important;
+      box-shadow: 0 3px 12px rgba(244, 63, 94, 0.12) !important;
+    }
+    .com-kpi-card.card-debts-on-us .com-card-icon { color: #fb7185 !important; }
+    .com-kpi-card.card-debts-on-us .com-card-title { color: #fda4af !important; }
+    .com-kpi-card.card-debts-on-us .com-card-count-badge {
+      background: rgba(244, 63, 94, 0.22) !important;
+      color: #fb7185 !important;
+      border: 1px solid rgba(244, 63, 94, 0.4) !important;
+    }
+    .com-kpi-card.card-debts-on-us .com-card-amount { color: #fb7185 !important; }
+
+    /* Card 3: ديون لنا (أخضر/زمردي) */
+    .com-kpi-card.card-debts-for-us {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(15, 23, 42, 0.92)) !important;
+      border: 1.4px solid rgba(16, 185, 129, 0.45) !important;
+      box-shadow: 0 3px 12px rgba(16, 185, 129, 0.12) !important;
+    }
+    .com-kpi-card.card-debts-for-us .com-card-icon { color: #34d399 !important; }
+    .com-kpi-card.card-debts-for-us .com-card-title { color: #6ee7b7 !important; }
+    .com-kpi-card.card-debts-for-us .com-card-count-badge {
+      background: rgba(16, 185, 129, 0.22) !important;
+      color: #34d399 !important;
+      border: 1px solid rgba(16, 185, 129, 0.4) !important;
+    }
+    .com-kpi-card.card-debts-for-us .com-card-amount { color: #34d399 !important; }
+
+    /* Card 4: تم السداد (أزرق/سماوي) */
+    .com-kpi-card.card-settled {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.16), rgba(15, 23, 42, 0.92)) !important;
+      border: 1.4px solid rgba(56, 189, 248, 0.45) !important;
+      box-shadow: 0 3px 12px rgba(2, 132, 199, 0.12) !important;
+    }
+    .com-kpi-card.card-settled .com-card-icon { color: #38bdf8 !important; }
+    .com-kpi-card.card-settled .com-card-title { color: #7dd3fc !important; }
+    .com-kpi-card.card-settled .com-card-count-badge {
+      background: rgba(2, 132, 199, 0.22) !important;
+      color: #38bdf8 !important;
+      border: 1px solid rgba(2, 132, 199, 0.4) !important;
+    }
+    .com-kpi-card.card-settled .com-card-amount { color: #38bdf8 !important; }
+
+    /* Light Theme support */
+    body.light-theme .com-kpi-card.card-bills {
+      background: linear-gradient(135deg, #fffbeb, #ffffff) !important;
+      border-color: #f59e0b !important;
+    }
+    body.light-theme .com-kpi-card.card-bills .com-card-title,
+    body.light-theme .com-kpi-card.card-bills .com-card-amount { color: #b45309 !important; }
+
+    body.light-theme .com-kpi-card.card-debts-on-us {
+      background: linear-gradient(135deg, #fff1f2, #ffffff) !important;
+      border-color: #f43f5e !important;
+    }
+    body.light-theme .com-kpi-card.card-debts-on-us .com-card-title,
+    body.light-theme .com-kpi-card.card-debts-on-us .com-card-amount { color: #be123c !important; }
+
+    body.light-theme .com-kpi-card.card-debts-for-us {
+      background: linear-gradient(135deg, #ecfdf5, #ffffff) !important;
+      border-color: #10b981 !important;
+    }
+    body.light-theme .com-kpi-card.card-debts-for-us .com-card-title,
+    body.light-theme .com-kpi-card.card-debts-for-us .com-card-amount { color: #047857 !important; }
+
+    body.light-theme .com-kpi-card.card-settled {
+      background: linear-gradient(135deg, #f0f9ff, #ffffff) !important;
+      border-color: #0284c7 !important;
+    }
+    body.light-theme .com-kpi-card.card-settled .com-card-title,
+    body.light-theme .com-kpi-card.card-settled .com-card-amount { color: #0369a1 !important; }
+</style>
 
     <script>
     // تسجيل Service Worker للعمل أوفلاين وتحديث الكاش تلقائياً بصيغة PWA
@@ -12228,7 +12637,7 @@
                 <!-- شريط المؤشرات المالية التنفيذي الماسي الموحد (Executive Wealth Cockpit)
              تصميم ملكي تنفيذي فائق الفخامة والوضوح بأحدث معايير FinTech العالمية
              ========================================================================= -->
-        <!-- قمرة القيادة المالية التنفيذية الفاخرة (Master Wealth Executive Cockpit) -->
+        <!-- قمرة القيادة المالية التنفيذية الفاخرة (Master Wealth Executive Cockpit v5.3.0) -->
         <div class="kpi-master-wealth-cockpit" id="topKpiThreeStrip">
           
           <!-- الجانب الأيمن: بطل الشاشة المالي (الرصيد الفعلي المتاح) -->
@@ -12242,7 +12651,11 @@
                 <i class="fa-solid fa-eye" id="iconBalancePrivacy"></i>
               </button>
             </div>
-            <div class="cockpit-hero-value" id="topCardBalance" style="font-size: clamp(1.42rem, 4.8vw, 1.90rem); font-weight: 950; letter-spacing: -0.3px; text-shadow: 0 2px 20px rgba(56, 189, 248, 0.70); margin: auto 0; color: #38bdf8; max-width: 100%; overflow: visible; line-height: 1.15;">+ 0.00 ج.م</div>
+            <div class="cockpit-hero-value" id="topCardBalance">+ 0.00 ج.م</div>
+            <div class="cockpit-hero-sub">
+              <i class="fa-solid fa-shield-halved" style="color: #0ea5e9; font-size: 0.62rem;"></i>
+              <span>صافي السيولة لجميع المحافظ</span>
+            </div>
           </div>
 
           <!-- الفاصل الرأسي الزجاجي الفاخر المتوهج -->
@@ -12253,12 +12666,9 @@
             <!-- كبسولة إجمالي الإيداعات -->
             <div class="cockpit-flow-pill inflow" onclick="openModal('incomeChoiceModal')" title="الإيداعات والدخل" style="cursor: pointer;">
               <div class="flow-pill-left-group">
-                <div class="flow-icon-badge inflow-badge" style="width: 22px; height: 22px; min-width: 22px; border-radius: 7px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(16, 185, 129, 0.35), rgba(5, 150, 105, 0.2)); border: 1px solid rgba(16, 185, 129, 0.6); box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="display: block;">
-                    <circle cx="12" cy="12" r="10" stroke="#10b981"></circle>
-                    <polyline points="8 12 12 16 16 12" stroke="#10b981"></polyline>
-                    <line x1="12" y1="8" x2="12" y2="16" stroke="#10b981"></line>
-                  </svg></div>
+                <div class="flow-icon-badge inflow-badge">
+                  <i class="fa-solid fa-arrow-down-long"></i>
+                </div>
                 <span class="flow-title inflow-color">إيداعات</span>
               </div>
               <span class="flow-amount inflow-color" id="topCardIncome">+ 0.00 ج.م</span>
@@ -12267,12 +12677,9 @@
             <!-- كبسولة إجمالي المصروفات -->
             <div class="cockpit-flow-pill outflow" onclick="openOperationsFiltered({ type: 'expense' })" title="المصروفات والسحوبات" style="cursor: pointer;">
               <div class="flow-pill-left-group">
-                <div class="flow-icon-badge outflow-badge" style="width: 22px; height: 22px; min-width: 22px; border-radius: 7px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(244, 63, 94, 0.35), rgba(225, 29, 72, 0.2)); border: 1px solid rgba(244, 63, 94, 0.6); box-shadow: 0 0 8px rgba(244, 63, 94, 0.3);">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" style="display: block;">
-                    <circle cx="12" cy="12" r="10" stroke="#f43f5e"></circle>
-                    <polyline points="16 12 12 8 8 12" stroke="#f43f5e"></polyline>
-                    <line x1="12" y1="16" x2="12" y2="8" stroke="#f43f5e"></line>
-                  </svg></div>
+                <div class="flow-icon-badge outflow-badge">
+                  <i class="fa-solid fa-arrow-up-long"></i>
+                </div>
                 <span class="flow-title outflow-color">مصروفات</span>
               </div>
               <span class="flow-amount outflow-color" id="topCardExpense">- 0.00 ج.م</span>
@@ -13393,57 +13800,57 @@
               </div>
             </div>
 
-            <!-- الكروت الرباعية التنفيذية المتناسقة (صف واحد إلزامي بـ 4 أعمدة بدقة تامة) -->
-            <div class="com-kpi-cards-grid" id="commitmentsExecutiveCardsStrip" style="display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 6px !important; width: 100% !important; box-sizing: border-box !important;">
+            <!-- الكروت الرباعية التنفيذية المتناسقة (صف واحد إلزامي بـ 4 أعمدة بدقة تامة - عدد البنود أسفل اسم البند تماماً) -->
+            <div class="com-kpi-cards-grid" id="commitmentsExecutiveCardsStrip">
                 <!-- كارت 1: مصاريف دورية (أصفر) -->
-                <div class="com-kpi-card card-bills" id="cardComBills" onclick="setCommitmentsSubFilter('bills')" title="فواتير ومصاريف دورية قادمة" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.14), rgba(15, 23, 42, 0.92)); border: 1.4px solid rgba(245, 158, 11, 0.45); min-width: 0; box-sizing: border-box;">
+                <div class="com-kpi-card card-bills" id="cardComBills" onclick="setCommitmentsSubFilter('bills')" title="فواتير ومصاريف دورية قادمة">
                   <div class="com-card-header">
-                    <i class="fa-solid fa-clock com-card-icon" style="color: #fbbf24;"></i>
-                    <span class="com-card-title" style="color: #fde047;">مصاريف دورية</span>
+                    <i class="fa-solid fa-clock com-card-icon"></i>
+                    <span class="com-card-title">مصاريف</span>
                   </div>
                   <div class="com-card-badge-wrap">
-                    <span id="kpiCap1Count" class="com-card-count-badge" style="background: rgba(245, 158, 11, 0.22); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4);">0 بند</span>
+                    <span id="kpiCap1Count" class="com-card-count-badge">0 بند</span>
                   </div>
-                  <div id="kpiCap1Amount" class="com-card-amount" style="color: #fbbf24;">0.00 ج.م</div>
+                  <div id="kpiCap1Amount" class="com-card-amount">0.00 ج.م</div>
                 </div>
 
                 <!-- كارت 2: ديون علينا (أحمر) -->
-                <div class="com-kpi-card card-debts-on-us" id="cardComDebtsOnUs" onclick="setCommitmentsSubFilter('debts_on_us')" title="ديون والتزامات علينا للغير" style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.14), rgba(15, 23, 42, 0.92)); border: 1.4px solid rgba(244, 63, 94, 0.45); min-width: 0; box-sizing: border-box;">
+                <div class="com-kpi-card card-debts-on-us" id="cardComDebtsOnUs" onclick="setCommitmentsSubFilter('debts_on_us')" title="ديون والتزامات علينا للغير">
                   <div class="com-card-header">
-                    <i class="fa-solid fa-handshake-angle com-card-icon" style="color: #fb7185;"></i>
-                    <span class="com-card-title" style="color: #fda4af;">ديون علينا</span>
+                    <i class="fa-solid fa-handshake-angle com-card-icon"></i>
+                    <span class="com-card-title">ديون علينا</span>
                   </div>
                   <div class="com-card-badge-wrap">
-                    <span id="kpiCap2Count" class="com-card-count-badge" style="background: rgba(244, 63, 94, 0.22); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.4);">0 بند</span>
+                    <span id="kpiCap2Count" class="com-card-count-badge">0 بند</span>
                   </div>
-                  <div id="kpiCap2Amount" class="com-card-amount" style="color: #fb7185;">- 0.00 ج.م</div>
+                  <div id="kpiCap2Amount" class="com-card-amount">- 0.00 ج.م</div>
                 </div>
 
                 <!-- كارت 3: ديون لنا (أخضر) -->
-                <div class="com-kpi-card card-debts-for-us" id="cardComDebtsForUs" onclick="setCommitmentsSubFilter('debts_for_us')" title="ديون ومستحقات لنا عند الغير" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(15, 23, 42, 0.92)); border: 1.4px solid rgba(16, 185, 129, 0.45); min-width: 0; box-sizing: border-box;">
+                <div class="com-kpi-card card-debts-for-us" id="cardComDebtsForUs" onclick="setCommitmentsSubFilter('debts_for_us')" title="ديون ومستحقات لنا عند الغير">
                   <div class="com-card-header">
-                    <i class="fa-solid fa-sack-dollar com-card-icon" style="color: #34d399;"></i>
-                    <span class="com-card-title" style="color: #6ee7b7;">ديون لنا</span>
+                    <i class="fa-solid fa-sack-dollar com-card-icon"></i>
+                    <span class="com-card-title">ديون لنا</span>
                   </div>
                   <div class="com-card-badge-wrap">
-                    <span id="kpiCap3Count" class="com-card-count-badge" style="background: rgba(16, 185, 129, 0.22); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);">0 بند</span>
+                    <span id="kpiCap3Count" class="com-card-count-badge">0 بند</span>
                   </div>
-                  <div id="kpiCap3Amount" class="com-card-amount" style="color: #34d399;">+ 0.00 ج.م</div>
+                  <div id="kpiCap3Amount" class="com-card-amount">+ 0.00 ج.م</div>
                 </div>
 
                 <!-- كارت 4: تم السداد (أزرق) -->
-                <div class="com-kpi-card card-settled" id="cardComSettled" onclick="setCommitmentsSubFilter('settled')" title="الالتزامات التي تم سدادها بالكامل" style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.14), rgba(15, 23, 42, 0.92)); border: 1.4px solid rgba(56, 189, 248, 0.45); min-width: 0; box-sizing: border-box;">
+                <div class="com-kpi-card card-settled" id="cardComSettled" onclick="setCommitmentsSubFilter('settled')" title="الالتزامات التي تم سدادها بالكامل">
                   <div class="com-card-header">
-                    <i class="fa-solid fa-circle-check com-card-icon" style="color: #38bdf8;"></i>
-                    <span class="com-card-title" style="color: #7dd3fc;">تم السداد</span>
+                    <i class="fa-solid fa-circle-check com-card-icon"></i>
+                    <span class="com-card-title">تم السداد</span>
                   </div>
                   <div class="com-card-badge-wrap">
-                    <span id="kpiCapSettledCount" class="com-card-count-badge" style="background: rgba(2, 132, 199, 0.22); color: #38bdf8; border: 1px solid rgba(2, 132, 199, 0.4);">0 مكتمل</span>
+                    <span id="kpiCapSettledCount" class="com-card-count-badge">0 مكتمل</span>
                   </div>
-                  <div id="kpiCapSettledAmount" class="com-card-amount" style="color: #38bdf8;">0.00 ج.م</div>
+                  <div id="kpiCapSettledAmount" class="com-card-amount">0.00 ج.م</div>
                 </div>
-          </div> <!-- نهاية commitmentKpiMasterCard المستقلة -->
             </div>
+          </div> <!-- نهاية commitmentKpiMasterCard المستقلة -->
 
           <!-- ========================================================
                شاشة الإضافة المنسقة الموحدة الفاخرة (Unified Coordinated Add Form)
