@@ -1,0 +1,67 @@
+{
+  "app": "FamilyExpenseTrackerMonefy",
+  "account": "maher.easybakery@gmail.com",
+  "backupType": "daily_noon_scheduled",
+  "backupDate": "2026-11-14",
+  "previousDayDeleted": "2026-11-13",
+  "scheduledTime": "12:00:00",
+  "executedAt": "2026-11-14T18:29:46.942433+03:00",
+  "database": {
+    "app": "FamilyExpenseTrackerMonefy",
+    "account": "maher.easybakery@gmail.com",
+    "backupType": "daily_noon_scheduled",
+    "backupDate": "2026-11-14",
+    "previousDayDeleted": "2026-11-13",
+    "scheduledTime": "12:00:00",
+    "executedAt": "2026-11-14T15:07:33.703Z",
+    "database": {
+      "transactions": [],
+      "wallets": [
+        {
+          "id": "wallet-cash-safe",
+          "name": "كاش البيت",
+          "type": "cash",
+          "balance": 0,
+          "initialBalance": 0,
+          "icon": "fa-money-bill-1-wave",
+          "color": "#06b6d4",
+          "isDefault": true
+        },
+        {
+          "id": "wallet-reserve",
+          "name": "المبلغ الإحتياطى",
+          "type": "reserve",
+          "balance": 0,
+          "initialBalance": 0,
+          "icon": "fa-vault",
+          "color": "#f59e0b"
+        },
+        {
+          "id": "wallet-vodafone",
+          "name": "فودافون كاش",
+          "type": "wallet",
+          "balance": 0,
+          "initialBalance": 0,
+          "icon": "fa-mobile-screen",
+          "color": "#ef4444"
+        },
+        {
+          "id": "wallet-other",
+          "name": "أخرى",
+          "type": "other",
+          "balance": 0,
+          "initialBalance": 0,
+          "icon": "fa-wallet",
+          "color": "#8b5cf6"
+        }
+      ],
+      "expectedExpenses": [],
+      "monthlyBudgets": [],
+      "moneyRequests": [],
+      "notes": [],
+      "debts": [],
+      "activityLog": [],
+      "currency": "EGP"
+    }
+  }
+}
