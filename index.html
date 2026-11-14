@@ -15955,17 +15955,20 @@
         </div>
       </div>
 
-      <!-- أدوات التحكم العلوية: تبويبات العرض المدمجة الاحترافية (قائمة المهام / التقويم) -->
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <button type="button" id="btnTasksHeaderAdd" style="display: none;" onclick="toggleUnifiedTaskCreator()"></button>
-        <div class="tasks-segmented-nav" style="display: inline-flex; align-items: center; background: rgba(15, 23, 42, 0.95); padding: 3px; border-radius: 12px; border: 1.2px solid rgba(168, 85, 247, 0.35); box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);">
-          <button type="button" id="btnTaskTabList" onclick="switchTasksViewMode('list')" class="btn-tasks-nav-tab active" style="height: 32px; padding: 0 14px; border-radius: 9px; font-size: 0.78rem; font-weight: 900; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #a855f7, #7c3aed); color: #fff; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.45); transition: all 0.25s ease;">
-            <i class="fa-solid fa-list-check"></i>
-            <span>المهام</span>
+      <!-- أدوات التحكم العلوية: زر إضافة مهمة جديدة إلى يمين المهام + التبديل بين المهام والتقويم -->
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <!-- زر إضافة مهمة في الهيدر العلوي إلى يمين المهام مباشرة -->
+        <button type="button" id="btnTasksHeaderAdd" onclick="toggleUnifiedTaskCreator()" style="height: 36px; padding: 0 14px; border-radius: 9px; background: linear-gradient(135deg, #10b981, #059669); border: none; color: #fff; font-size: 0.78rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 3px 12px rgba(16, 185, 129, 0.4); transition: transform 0.15s;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'">
+          <i class="fa-solid fa-plus"></i>
+          <span>+ إضافة مهمة</span>
+        </button>
+
+        <div style="display: flex; gap: 3px; background: rgba(15, 23, 42, 0.9); padding: 3px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
+          <button type="button" id="btnTaskTabList" onclick="switchTasksViewMode('list')" class="btn-tasks-nav-tab active" style="padding: 5px 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 900; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; background: linear-gradient(135deg, #a855f7, #7c3aed); color: #fff; box-shadow: 0 2px 8px rgba(168, 85, 247, 0.4); transition: all 0.2s;">
+            <i class="fa-solid fa-list-check"></i> <span>المهام</span>
           </button>
-          <button type="button" id="btnTaskTabCalendar" onclick="switchTasksViewMode('calendar')" class="btn-tasks-nav-tab" style="height: 32px; padding: 0 14px; border-radius: 9px; font-size: 0.78rem; font-weight: 900; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #94a3b8; transition: all 0.25s ease;">
-            <i class="fa-solid fa-calendar-days"></i>
-            <span>التقويم</span>
+          <button type="button" id="btnTaskTabCalendar" onclick="switchTasksViewMode('calendar')" class="btn-tasks-nav-tab" style="padding: 5px 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 900; border: 1px solid rgba(255, 255, 255, 0.08); cursor: pointer; display: inline-flex; align-items: center; gap: 5px; background: transparent; color: #94a3b8; transition: all 0.2s;">
+            <i class="fa-solid fa-calendar-days"></i> <span>التقويم</span>
           </button>
         </div>
       </div>
