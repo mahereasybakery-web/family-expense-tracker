@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-17T21:41:41.996115+00:00",
-  "lastUpdateHuman": "2026-11-17 11:41 PM بتوقيت القاهرة",
+  "updatedAt": "2026-11-18T03:29:49.037231+00:00",
+  "lastUpdateHuman": "2026-11-18 05:29 AM بتوقيت القاهرة",
   "provider": "نظام أسعار الصرف والذهب الهجين متعدد المصادر (Banque Misr + Global FX + XAU Spot)",
   "currencies": {
     "USD": {
@@ -78,6 +78,6 @@
       "chg": "0.505%",
       "source": "مركز المعلومات IDSC / الصاغة"
     },
-    "goldOunceUSD": 3852.72
+    "goldOunceUSD": 3793.4
   }
 }
