@@ -1,0 +1,521 @@
+{
+  "app": "FamilyExpenseTrackerMonefy",
+  "account": "maher.easybakery@gmail.com",
+  "backupType": "daily_noon_scheduled",
+  "backupDate": "2026-11-28",
+  "previousDayDeleted": "2026-11-27",
+  "scheduledTime": "12:00:00",
+  "executedAt": "2026-11-28T20:19:50.852188+03:00",
+  "database": {
+    "app": "FamilyExpenseTrackerMonefy",
+    "account": "maher.easybakery@gmail.com",
+    "backupType": "daily_noon_scheduled",
+    "backupDate": "2026-11-28",
+    "previousDayDeleted": "2026-11-27",
+    "scheduledTime": "12:00:00",
+    "executedAt": "2026-11-28T20:14:58.581955+03:00",
+    "database": {
+      "app": "FamilyExpenseTrackerMonefy",
+      "account": "maher.easybakery@gmail.com",
+      "backupType": "daily_noon_scheduled",
+      "backupDate": "2026-11-28",
+      "previousDayDeleted": "2026-11-27",
+      "scheduledTime": "12:00:00",
+      "executedAt": "2026-11-28T12:51:34.082Z",
+      "database": {
+        "transactions": [],
+        "wallets": [
+          {
+            "id": "wallet-cash-safe",
+            "name": "كاش البيت",
+            "type": "cash",
+            "balance": 0,
+            "initialBalance": 0,
+            "icon": "fa-money-bill-1-wave",
+            "color": "#06b6d4",
+            "isDefault": true,
+            "updatedAt": "2026-11-28T12:51:25.573Z"
+          },
+          {
+            "id": "wallet-other",
+            "name": "أخرى",
+            "type": "other",
+            "balance": 0,
+            "initialBalance": 0,
+            "icon": "fa-wallet",
+            "color": "#8b5cf6",
+            "updatedAt": "2026-11-28T12:51:25.574Z"
+          },
+          {
+            "id": "wallet-reserve",
+            "name": "المبلغ الإحتياطى",
+            "type": "reserve",
+            "balance": 0,
+            "initialBalance": 0,
+            "icon": "fa-vault",
+            "color": "#f59e0b",
+            "updatedAt": "2026-11-28T12:51:25.574Z"
+          },
+          {
+            "id": "wallet-vodafone",
+            "name": "فودافون كاش",
+            "type": "wallet",
+            "balance": 0,
+            "initialBalance": 0,
+            "icon": "fa-mobile-screen",
+            "color": "#ef4444",
+            "updatedAt": "2026-11-28T12:51:25.574Z"
+          }
+        ],
+        "expectedExpenses": [],
+        "monthlyBudgets": [
+          {
+            "month": "2026-11",
+            "title": "ميزانية نوفمبر 2026 التقديرية",
+            "categories": {
+              "food": 22000,
+              "daily": 5000,
+              "bills": 8500,
+              "transport": 6500,
+              "house": 6000,
+              "health": 5500,
+              "clothes": 6000,
+              "education": 15000,
+              "other": 5500
+            },
+            "incomes": [
+              {
+                "id": "inc-nov-1",
+                "name": "راتب ماهر الأساسي",
+                "amount": 82000,
+                "member": "ماهر"
+              },
+              {
+                "id": "inc-nov-2",
+                "name": "أرباح استثمارات وأسهم",
+                "amount": 18000,
+                "member": "ماهر"
+              },
+              {
+                "id": "inc-nov-3",
+                "name": "أتعاب استشارات وأعمال حرة",
+                "amount": 20000,
+                "member": "ماهر"
+              }
+            ],
+            "updatedAt": "2026-11-01T10:00:00.000Z",
+            "id": "bgt-2026-11-1",
+            "name": "ميزانية نوفمبر 2026 التقديرية",
+            "items": [
+              {
+                "id": "item-food-1",
+                "category": "food",
+                "title": "طعام ومشتريات",
+                "amount": 22000,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-daily-2",
+                "category": "daily",
+                "title": "مصروف يومي",
+                "amount": 5000,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-bills-3",
+                "category": "bills",
+                "title": "فواتير والتزامات",
+                "amount": 8500,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-transport-4",
+                "category": "transport",
+                "title": "مواصلات وبنزين",
+                "amount": 6500,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-house-5",
+                "category": "house",
+                "title": "مستلزمات منزل",
+                "amount": 6000,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-health-6",
+                "category": "health",
+                "title": "صحة وعلاج",
+                "amount": 5500,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-clothes-7",
+                "category": "clothes",
+                "title": "ملابس وأحذية",
+                "amount": 6000,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-education-8",
+                "category": "education",
+                "title": "تعليم ودروس",
+                "amount": 15000,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-other-9",
+                "category": "other",
+                "title": "أخرى ونثريات",
+                "amount": 5500,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              }
+            ]
+          },
+          {
+            "month": "2026-10",
+            "title": "ميزانية أكتوبر 2026 التقديرية",
+            "categories": {
+              "food": 20000,
+              "daily": 4500,
+              "bills": 8000,
+              "transport": 6000,
+              "house": 5500,
+              "health": 5000,
+              "clothes": 5500,
+              "education": 14000,
+              "other": 5000
+            },
+            "incomes": [
+              {
+                "id": "inc-oct-1",
+                "name": "راتب ماهر الأساسي",
+                "amount": 82000,
+                "member": "ماهر"
+              },
+              {
+                "id": "inc-oct-2",
+                "name": "عوائد استثمار",
+                "amount": 16000,
+                "member": "ماهر"
+              }
+            ],
+            "updatedAt": "2026-10-01T10:00:00.000Z",
+            "id": "bgt-2026-10-2",
+            "name": "ميزانية أكتوبر 2026 التقديرية",
+            "items": [
+              {
+                "id": "item-food-1",
+                "category": "food",
+                "title": "طعام ومشتريات",
+                "amount": 20000,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-daily-2",
+                "category": "daily",
+                "title": "مصروف يومي",
+                "amount": 4500,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-bills-3",
+                "category": "bills",
+                "title": "فواتير والتزامات",
+                "amount": 8000,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-transport-4",
+                "category": "transport",
+                "title": "مواصلات وبنزين",
+                "amount": 6000,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-house-5",
+                "category": "house",
+                "title": "مستلزمات منزل",
+                "amount": 5500,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-health-6",
+                "category": "health",
+                "title": "صحة وعلاج",
+                "amount": 5000,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-clothes-7",
+                "category": "clothes",
+                "title": "ملابس وأحذية",
+                "amount": 5500,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-education-8",
+                "category": "education",
+                "title": "تعليم ودروس",
+                "amount": 14000,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-other-9",
+                "category": "other",
+                "title": "أخرى ونثريات",
+                "amount": 5000,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              }
+            ]
+          },
+          {
+            "month": "2026-09",
+            "title": "ميزانية سبتمبر 2026 التقديرية",
+            "categories": {
+              "food": 19500,
+              "daily": 4500,
+              "bills": 7800,
+              "transport": 5800,
+              "house": 5200,
+              "health": 4800,
+              "clothes": 5000,
+              "education": 22000,
+              "other": 4500
+            },
+            "incomes": [
+              {
+                "id": "inc-sep-1",
+                "name": "راتب ماهر الأساسي",
+                "amount": 82000,
+                "member": "ماهر"
+              },
+              {
+                "id": "inc-sep-2",
+                "name": "أتعاب استشارات",
+                "amount": 25000,
+                "member": "ماهر"
+              }
+            ],
+            "updatedAt": "2026-09-01T10:00:00.000Z",
+            "id": "bgt-2026-09-3",
+            "name": "ميزانية سبتمبر 2026 التقديرية",
+            "items": [
+              {
+                "id": "item-food-1",
+                "category": "food",
+                "title": "طعام ومشتريات",
+                "amount": 19500,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-daily-2",
+                "category": "daily",
+                "title": "مصروف يومي",
+                "amount": 4500,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-bills-3",
+                "category": "bills",
+                "title": "فواتير والتزامات",
+                "amount": 7800,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-transport-4",
+                "category": "transport",
+                "title": "مواصلات وبنزين",
+                "amount": 5800,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-house-5",
+                "category": "house",
+                "title": "مستلزمات منزل",
+                "amount": 5200,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-health-6",
+                "category": "health",
+                "title": "صحة وعلاج",
+                "amount": 4800,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-clothes-7",
+                "category": "clothes",
+                "title": "ملابس وأحذية",
+                "amount": 5000,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-education-8",
+                "category": "education",
+                "title": "تعليم ودروس",
+                "amount": 22000,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              },
+              {
+                "id": "item-other-9",
+                "category": "other",
+                "title": "أخرى ونثريات",
+                "amount": 4500,
+                "members": [
+                  "البيت"
+                ],
+                "notes": ""
+              }
+            ]
+          },
+          {
+            "id": "proj-bgt-finishing-1",
+            "project": "تشطيب الشقة الجديدة",
+            "title": "موازنة تشطيب الشقة الجديدة",
+            "month": "2026-11",
+            "items": [
+              {
+                "id": "pitem-1",
+                "category": "house",
+                "title": "أعمال السباكة والعزل",
+                "amount": 35000,
+                "members": [
+                  "ماهر"
+                ]
+              },
+              {
+                "id": "pitem-2",
+                "category": "bills",
+                "title": "تأسيس الكهرباء والإنارة",
+                "amount": 28000,
+                "members": [
+                  "ماهر"
+                ]
+              },
+              {
+                "id": "pitem-3",
+                "category": "house",
+                "title": "المحارة والدهانات والديكور",
+                "amount": 45000,
+                "members": [
+                  "أية",
+                  "ماهر"
+                ]
+              },
+              {
+                "id": "pitem-4",
+                "category": "house",
+                "title": "أرضيات وسيراميك وبورسلين",
+                "amount": 55000,
+                "members": [
+                  "أية"
+                ]
+              },
+              {
+                "id": "pitem-5",
+                "category": "other",
+                "title": "أبواب وشبابيك ونجارة",
+                "amount": 30000,
+                "members": [
+                  "ماهر"
+                ]
+              }
+            ],
+            "updatedAt": "2026-11-01T10:00:00.000Z",
+            "name": "موازنة تشطيب الشقة الجديدة",
+            "categories": {
+              "house": 135000,
+              "bills": 28000,
+              "other": 30000
+            },
+            "incomes": []
+          }
+        ],
+        "moneyRequests": [],
+        "notes": [],
+        "debts": [],
+        "activityLog": [],
+        "currency": "EGP"
+      }
+    }
+  }
+}
